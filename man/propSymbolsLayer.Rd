@@ -58,14 +58,41 @@ the legend.}
 \item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
+\value{
+A plot is returned.
+}
 \description{
 Plot a proportional symbols layer. Various symbols are availables.
 }
 \details{
-The (\code{breakval}) parameter allows to plot symbols of two colors: the first color (\code{col}) for values superior of equal to breakval,
+The (\code{breakval}) parameter allows to plot symbols of two
+colors: the first color (\code{col}) for values superior or equal to breakval,
 second color (\code{col2}) for values inferior to breakval.
 }
 \examples{
-data("TNdeleg")
+data("nuts2006")
+
+# Layout plot
+layoutLayer(title = "Countries Population in Europe",
+            sources = "UMS RIATE, 2015",
+            author = "UMS RIATE",
+            scale = 0,
+            frame = TRUE,
+            col = "black",
+            coltitle = "white",
+            bg = "#D9F5FF",
+            south = TRUE,
+            extent = nuts0.spdf)
+
+# Countries plot
+plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
+
+# Population plot on proportional symbols
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
+                 var = "pop2008", k = 0.01,
+                 symbols = "squares", col =  "#920000",
+                 legend.pos = "right",
+                 legend.title.txt = "Total\\npopulation (2008)",
+                 legend.style = "a")
 }
 

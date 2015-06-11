@@ -8,18 +8,19 @@
 #' @param txt Labels field in data
 #' @param col Labels color
 #' @param cex Labels size
+#' @param ... further \link{text} arguments, such as \code{pos} or \code{adj}.
 #' @export
 #' @import sp
 #' @examples
 #' data("TNdeleg")
 labelLayer <- function(spdf, df, spdfid = NA, dfid = NA, txt, col = "black",
-                       cex = 0.7){
+                       cex = 0.7, ...){
   if (is.na(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.na(dfid)){dfid <- names(df)[1]}
   if (class(spdf) %in% c("SpatialPolygonsDataFrame", "SpatialPointsDataFrame")){
     dots <- cbind(spdf@data[, spdfid],as.data.frame(coordinates(spdf)))
     colnames(dots) <- c(spdfid,"x","y")
     dots <- data.frame(dots, df[match(dots[ ,spdfid], df[ , dfid]), ])
-    text(dots$x, dots$y, labels = dots[,txt], cex=cex, col=col)
+    text(dots$x, dots$y, labels = dots[,txt], cex=cex, col=col, ...)
   }
 }

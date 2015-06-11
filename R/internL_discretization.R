@@ -44,7 +44,7 @@
 #' @import classInt
 #' @export
 
-discretization <- function(v,nbclass=NULL,method="quantile"){
+discretization <- function(v, nbclass = NULL, method = "quantile"){
 
   v <- as.vector(na.omit(v))
 
@@ -52,7 +52,7 @@ discretization <- function(v,nbclass=NULL,method="quantile"){
 
 
   if(is.null(nbclass)){
-    nbclass<- round(1+3.3*log10(length(v)),0)
+    nbclass <- round(1+3.3*log10(length(v)),0)
   }
 
 
@@ -66,21 +66,21 @@ discretization <- function(v,nbclass=NULL,method="quantile"){
     {
 
 
-      intervals<-min(v)
-      intervals<-c(intervals,max(v))
-      r<-exp((log(max(v))-log(min(v)))/nbclass) # raison
-      tmp<-min(v)
+      intervals <- min(v)
+      intervals <- c(intervals,max(v))
+      r <- exp((log(max(v))-log(min(v)))/nbclass) # raison
+      tmp <- min(v)
       for ( i in 1:(nbclass-1)) {
-        intervals<-c(intervals,tmp*r)
-        tmp<-tmp*r
-        intervals<-sort(intervals)
+        intervals <- c(intervals,tmp*r)
+        tmp <- tmp*r
+        intervals <- sort(intervals)
       }
     }
 
 
-    if (method=="q6")
+    if (method == "q6")
     {
-      intervals<-as.vector(quantile(v,probs = c(0, 5, 27.5, 55, 72.5, 95, 100)/100))
+      intervals <- as.vector(quantile(v,probs = c(0, 5, 27.5, 55, 72.5, 95, 100)/100))
     }
 
 }

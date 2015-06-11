@@ -22,7 +22,9 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
 
 \item{bg}{Background color}
 
-\item{scale}{Size of the scale}
+\item{scale}{Size of the scale in map units. If set to NULL, no scale is
+displayed, if set to 0 an automatic scale is displayed
+(1/10 of the map width)}
 
 \item{frame}{Wheither displaying a frame or not}
 
@@ -30,7 +32,8 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
 
 \item{south}{South arrow}
 
-\item{extent}{extent (add = FALSE)}
+\item{extent}{extent optional, set the extent to the one of a
+Spatial*DataFrame. If not set, plot.new has to be called first.}
 }
 \description{
 layoutLayer function.

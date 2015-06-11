@@ -5,7 +5,7 @@
 \title{labelLayer function.}
 \usage{
 labelLayer(spdf, df, spdfid = NA, dfid = NA, txt, col = "black",
-  cex = 0.7)
+  cex = 0.7, ...)
 }
 \arguments{
 \item{spdf}{Spatial*DataFrame}
@@ -21,6 +21,8 @@ labelLayer(spdf, df, spdfid = NA, dfid = NA, txt, col = "black",
 \item{col}{Labels color}
 
 \item{cex}{Labels size}
+
+\item{...}{further \link{text} arguments, such as \code{pos} or \code{adj}.}
 }
 \description{
 Put labels

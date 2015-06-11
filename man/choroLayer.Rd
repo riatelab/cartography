@@ -2,45 +2,98 @@
 % Please edit documentation in R/choroLayer.R
 \name{choroLayer}
 \alias{choroLayer}
-\title{choroLayer}
+\title{Choropleth Layer}
 \usage{
 choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, distr = NULL,
-  col = NULL, nbclass = NULL, method = "quantile", add = FALSE)
+  col = NULL, nbclass = NULL, method = "quantile",
+  legend.pos = "bottomleft", legend.title.txt = var,
+  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.frame = FALSE,
+  legend.values.rnd = 0, add = TRUE)
 }
 \arguments{
-\item{spdf}{spatial dataframe (geometries)}
+\item{spdf}{Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame
+symbols are plotted on centroids.}
 
-\item{df}{dataframe (data)}
+\item{df}{data.frame; \code{df} contains the values to plot.}
 
-\item{spdfid}{id of the spdf (if null, the first column is used)}
+\item{spdfid}{character; id field in \code{spdf}, default to the first column
+of the \code{spdf} data.frame. (optional)}
 
-\item{dfid}{id of the df (if null, the first column is used)}
+\item{dfid}{character; id field in \code{df}, default to the first column
+of \code{df}. (optional)}
 
-\item{var}{field used}
+\item{var}{character; name of the numeric field in \code{df} to plot.}
 
-\item{distr}{vector of classes}
+\item{distr}{numeric; a vector of breaks. (see Details)}
 
-\item{col}{vector of colors}
+\item{col}{character; a vector of colors.}
 
-\item{nbclass}{number of classes targeted (if null,
-the Huntsberger method is used)}
+\item{nbclass}{numeric; a targeted number of classes (if null,the Huntsberger
+method is used).}
 
-\item{method}{discretization method ("sd", "equal",
-"quantile", "jenks","q6","geom")}
+\item{method}{character; a discretization method; one of "sd", "equal",
+"quantile", "jenks","q6","geom"  (see Details)}
 
-\item{add}{add = T}
+\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+
+\item{legend.title.txt}{character; title of the legend.}
+
+\item{legend.title.cex}{numeric; size of the legend title.}
+
+\item{legend.values.cex}{numeric; size of the values in the legend.}
+
+\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+not (FALSE).}
+
+\item{legend.values.rnd}{numeric; number of decimal places of the values in
+the legend.}
+
+\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+not (FALSE).}
 }
 \value{
-plot
+A plot is returned
 }
 \description{
-plot a chorpoleth layer
+Plot a chorpoleth layer.
 }
 \details{
-plot a chorpoleth layer
+If \code{distr} is used, \code{nbclass} and \code{method} are not.
+
+"sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. "q6"
+is ... and "geom" is ...
 }
 \examples{
-choroLayer(spdf = TNdeleg.spdf, df = TNdeleg, var =  "housing", nbclass = 20,
-method = "equal",add=FALSE)
+data("nuts2006")
+
+# Layout plot
+layoutLayer(title = "Countries Population in Europe",
+            sources = "UMS RIATE, 2015",
+            author = "UMS RIATE",
+            scale = 0,
+            frame = TRUE,
+            col = "black",
+            coltitle = "white",
+            bg = "#D9F5FF",
+            south = TRUE,
+            extent = nuts0.spdf)
+
+# GDP per capita
+nuts0.df$gpppercapita <- nuts0.df$gdppps2008 * 1000000 / nuts0.df$pop2008
+
+# Plot the GDP per capit
+choroLayer(spdf = nuts0.spdf,
+           df = nuts0.df,
+           var = "gpppercapita",
+           legend.pos = "right",
+           nbclass = 6,
+           col = c("#FEE5D9", "#FCBBA1", "#FC9272", "#FB6A4A" ,"#DE2D26" ,"#A50F15"),
+           method = "q6",
+           legend.values.cex = 0.5,
+           add = TRUE,
+           legend.title.txt = "GDP per capita\\n(euros/inhabitants)",
+           legend.frame = TRUE,
+           legend.values.rnd = 0)
 }
 
