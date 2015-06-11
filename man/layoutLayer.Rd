@@ -22,7 +22,7 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
 
 \item{bg}{Background color}
 
-\item{scale}{Size of the scale in map units. If set to NULL, no scale is
+\item{scale}{Size of the scale in kilometers. If set to NULL, no scale is
 displayed, if set to 0 an automatic scale is displayed
 (1/10 of the map width)}
 

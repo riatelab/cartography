@@ -6,7 +6,7 @@
 #' @param title Title of the map
 #' @param sources Sources of the map
 #' @param author Author of the map
-#' @param scale Size of the scale in map units. If set to NULL, no scale is 
+#' @param scale Size of the scale in kilometers. If set to NULL, no scale is 
 #' displayed, if set to 0 an automatic scale is displayed 
 #' (1/10 of the map width)
 #' @param frame Wheither displaying a frame or not

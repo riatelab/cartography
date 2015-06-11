@@ -11,8 +11,7 @@ choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, distr = NULL,
   legend.values.rnd = 0, add = TRUE)
 }
 \arguments{
-\item{spdf}{Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame
-symbols are plotted on centroids.}
+\item{spdf}{Spatial*DataFrame.}
 
 \item{df}{data.frame; \code{df} contains the values to plot.}
 
@@ -68,7 +67,7 @@ is ... and "geom" is ...
 data("nuts2006")
 
 # Layout plot
-layoutLayer(title = "Countries Population in Europe",
+layoutLayer(title = "GDP per Capita in Europe",
             sources = "UMS RIATE, 2015",
             author = "UMS RIATE",
             scale = 0,

@@ -1,8 +1,7 @@
 #' @title Choropleth Layer
 #' @name choroLayer
 #' @description Plot a chorpoleth layer.
-#' @param spdf Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame 
-#' symbols are plotted on centroids.
+#' @param spdf Spatial*DataFrame.
 #' @param df data.frame; \code{df} contains the values to plot.
 #' @param spdfid character; id field in \code{spdf}, default to the first column 
 #' of the \code{spdf} data.frame. (optional)
@@ -36,7 +35,7 @@
 #' data("nuts2006")
 #' 
 #' # Layout plot
-#' layoutLayer(title = "Countries Population in Europe",
+#' layoutLayer(title = "GDP per Capita in Europe",
 #'             sources = "UMS RIATE, 2015",
 #'             author = "UMS RIATE",
 #'             scale = 0,

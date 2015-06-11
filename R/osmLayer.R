@@ -1,13 +1,29 @@
-#' @title Get an OpenStreetMap Object
-#' @param spdf Spatial*DataFrame with projection information
-#' @param type Type of map used in the \code{OpenStreetMap} package
-#' @param zoom Zoom level of the map
-#' @details This function uses rgdal and OpenStreetMap packages.
+#' @title Get Tiles From Open Map Servers
+#' @name getTiles
+#' @description Get map tiles based on a Spatial*DataFrame extent. Maps can be 
+#' fetched from various open map servers.
+#' @param spdf Spatial*DataFrame; it must have a valid projection attribute.
+#' @param type character; the tile server from which to get the map 
+#' (see Details).
+#' @param zoom numeric; the zoom level. If null, it is determined automatically 
+#' (see Details).
+#' @details This function uses rgdal and OpenStreetMap packages. 
+#' 
+#' Available tile servers are described in the \code{\link{openmap}} function of 
+#' the OpenStreetMap package.
+#' 
+#' Zoom levels are descibed on the OpenStreetMap wiki: 
+#' \link{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
 #' @export
 #' @import sp
+#' @return An OpenStreetMap object is returned.
 #' @examples
-#' data("TNdeleg")
-getOSMLayer <- function(spdf, type = "osm", zoom = NULL){
+#' data("nuts2006")
+#' 
+#' # Download the tiles
+#' StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+#' class(StamWatCol)
+getTiles <- function(spdf, type = "osm", zoom = NULL){
   if (!requireNamespace("rgdal", quietly = TRUE)) {
     stop("'rgdal' package needed for this function to work. Please install it.",
          call. = FALSE)
@@ -51,20 +67,25 @@ getOSMLayer <- function(spdf, type = "osm", zoom = NULL){
   return(finalOSM)
 }
 
-#' @title Plot an OpenStreetMap Layer
-#' @param x OpenStreetMap object
-#' @param add Whether to add the layer to an existing map (TRUE) or not (FALSE)
-#' @details This function is a wrapper for plot.OpenStreetMap
+#' @title Plot Tiles From Open Map Servers
+#' @name tilesLayer
+#' @param x OpenStreetMap object; \code{\link{getTiles}} outputs these tiles.
+#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' not (FALSE).
+#' @details This function is a wrapper for \code{\link{plot.OpenStreetMap}} from 
+#' OpenStreetMap package.
 #' @export
 #' @examples
 #' data("TNdeleg")
-osmLayer <- function(x, add = FALSE){
+tilesLayer <- function(x, add = FALSE){
   if (!requireNamespace("OpenStreetMap", quietly = TRUE)) {
     stop("'OpenStreetMap' package needed for this function to work. Please install it.",
          call. = FALSE)
   }
   OpenStreetMap::plot.OpenStreetMap(x, add = add, removeMargin = FALSE)
 }
+
+
 
 
 
