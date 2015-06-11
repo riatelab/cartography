@@ -1,0 +1,25 @@
+Package: cartography
+Title: Thematic Cartography and More
+Version: 0.1
+Authors@R: c(
+      person("Timothee", "Giraud", 
+        email = "timothee.giraud@ums-riate.fr", role = c("cre","aut")),
+      person("Nicolas", "Lambert", 
+        email = "nicolas.lambert@ums-riate.fr", role = c("aut")))
+Description: Create and integrate maps into your R workflow. Classical thematic 
+  maps and more unconventionnal geographical representation are available. 
+License: GPL-3
+LazyData: true
+Depends:
+    R (>= 2.10),
+    sp
+Imports:
+    classInt,
+    reshape2
+Suggests:
+    rgeos,
+    OpenStreetMap,
+    raster,
+    rgdal,
+    knitr
+Encoding: UTF-8
