@@ -4,23 +4,25 @@
 \alias{labelLayer}
 \title{labelLayer function.}
 \usage{
-labelLayer(spdf, df, spdfid = NA, dfid = NA, txt, col = "black",
+labelLayer(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
   cex = 0.7, ...)
 }
 \arguments{
-\item{spdf}{Spatial*DataFrame}
+\item{spdf}{Spatial*DataFrame.}
 
-\item{df}{DataFrame with Ids and Labels}
+\item{df}{data.frame; \code{df} contains the labels field to plot.}
 
-\item{spdfid}{Ids of the obj Spatial*DataFrame}
+\item{spdfid}{character; id field in \code{spdf}, default to the first column
+of the \code{spdf} data.frame. (optional)}
 
-\item{dfid}{Ids of the DataFrame}
+\item{dfid}{character; id field in \code{df}, default to the first column
+of \code{df}. (optional)}
 
-\item{txt}{Labels field in data}
+\item{txt}{character; labels field in \code{df}.}
 
-\item{col}{Labels color}
+\item{col}{character; labels color.}
 
-\item{cex}{Labels size}
+\item{cex}{numeric; labels cex.}
 
 \item{...}{further \link{text} arguments, such as \code{pos} or \code{adj}.}
 }
@@ -28,6 +30,29 @@ labelLayer(spdf, df, spdfid = NA, dfid = NA, txt, col = "black",
 Put labels
 }
 \examples{
-data("TNdeleg")
+data("nuts2006")
+
+# Display countries boundaries
+plot(nuts0.spdf, col = "grey60",border = "grey20")
+
+# Layout plot
+layoutLayer(title = "Most Populated Countries of Europe",
+            sources = "The 10 most populated countries of Europe",
+            author = "Total population 2008, in millions of inhabitants.",
+            scale = NULL,
+            frame = TRUE,
+            col = "black",
+            coltitle = "white",
+            south = TRUE)
+
+# Selection of the 10 most populated countries of Europe
+dflab <- nuts0.df[order(nuts0.df$pop2008, decreasing = TRUE),][1:10,]
+
+# Label creation
+dflab$lab <- paste(dflab$id, "\\n", round(dflab$pop2008/1000000,0), "M", sep ="")
+
+# Label plot of the 10 most populated countries
+labelLayer(spdf = nuts0.spdf, df = dflab, txt = "lab",
+           col = "blue", cex = 0.7, font = 2)
 }
 

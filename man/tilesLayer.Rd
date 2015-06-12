@@ -7,7 +7,7 @@
 tilesLayer(x, add = FALSE)
 }
 \arguments{
-\item{x}{OpenStreetMap object; \code{\link{getTiles}} outputs these tiles.}
+\item{x}{OpenStreetMap object; \code{\link{getTiles}} outputs these objects.}
 
 \item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
@@ -16,10 +16,10 @@ not (FALSE).}
 Plot Tiles From Open Map Servers
 }
 \details{
-This function is a wrapper for \code{\link{plot.OpenStreetMap}} from
+This function is a wrapper for \code{plot.OpenStreetMap} from
 OpenStreetMap package.
 }
 \examples{
-data("TNdeleg")
+data("nuts2006")
 }
 

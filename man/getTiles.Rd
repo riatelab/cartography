@@ -25,17 +25,13 @@ fetched from various open map servers.
 \details{
 This function uses rgdal and OpenStreetMap packages.
 
-Available tile servers are described in the \code{\link{openmap}} function of
+Available tile servers are described in the \code{openmap} function of
 the OpenStreetMap package.
 
 Zoom levels are descibed on the OpenStreetMap wiki:
-\link{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
+\url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
 }
 \examples{
 data("nuts2006")
-
-# Download the tiles
-StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
-class(StamWatCol)
 }
 

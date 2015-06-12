@@ -38,7 +38,7 @@
 #' layoutLayer(title = "GDP per Capita in Europe",
 #'             sources = "UMS RIATE, 2015",
 #'             author = "UMS RIATE",
-#'             scale = 0,
+#'             scale = NULL,
 #'             frame = TRUE,
 #'             col = "black",
 #'             coltitle = "white",
