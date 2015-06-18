@@ -3,8 +3,6 @@
 #' @name discLayer
 #' @details Compute and plot spatial discontinuities (relative or absolutes)
 #' @param spdf SpatialLinesDataFrame (geometric borders)
-#'
-#'
 #' @param df dataframe (data)
 #' @param spdfid1 first id of the border
 #' @param spdfid2 second id of the border
@@ -21,10 +19,10 @@
 #' @param sizemax thickness of the bigger line (default = 10)
 #' @param type Mesuer of discontinuity. "rel","abs" (default = "rel")
 #' @param add add=TRUE
-#'
+#' @param legend.txt character; title in the legend
 #' @examples
 #' data(nuts2006)
-#' nuts0.contig.spdf <-borders(nuts0.spdf)
+#' nuts0.contig.spdf <- getBorders(nuts0.spdf)
 #' plot(nuts0.spdf, col="#CCCCCC", lwd=1, border="white")
 #' discLayer(spdf = nuts0.contig.spdf, df = nuts0.df, dfid = "id", spdfid1 = "id1", spdfid2 = "id2",
 #' var = "gdppps2008", col="red", nbclass=5,  method="quantile", threshold = 0.5, sizemin = 1,
@@ -37,7 +35,8 @@
 discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL,
                       var, distr = NULL, col= "red", nbclass=NULL,
                       method="quantile", threshold = 0.75, sizemin = 1,
-                      sizemax = 10, type = "rel",add = FALSE){
+                      sizemax = 10, type = "rel",add = FALSE,
+                      legend.txt="leg title"){
 
 
 # Join (1 and 2)
@@ -69,7 +68,7 @@ plot(spdf, col=col,lwd=spdf@data$sizesMap,add=add)
 
 # Legend
 
-LegendSizeLines(pos = "bottomleft", legTitle = "Title of the legend", legTitleCex = 0.8,
+LegendSizeLines(pos = "bottomleft", legTitle = legend.txt, legTitleCex = 0.8,
 legValuesCex = 0.6, distr = distr, thickness = sizes, col =col, round =2, nodata = FALSE)
 
 
