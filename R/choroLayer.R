@@ -14,10 +14,8 @@
 #' method is used).
 #' @param method character; a discretization method; one of "sd", "equal", 
 #' "quantile", "jenks","q6","geom"  (see Details)
-#' @details If \code{distr} is used, \code{nbclass} and \code{method} are not.
-#' 
-#' "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. "q6" 
-#' is ... and "geom" is ...
+#' @param border character; color of polygon borders.
+#' @param lwd numeric; borders width.
 #' @param legend.pos character; position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
 #' @param legend.title.txt character; title of the legend.
@@ -29,6 +27,10 @@
 #' not (FALSE).
 #' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @details If \code{distr} is used, \code{nbclass} and \code{method} are not.
+#' 
+#' "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. "q6" 
+#' is ... and "geom" is ...
 #' @return A plot is returned
 #' @export
 #' @examples
@@ -64,6 +66,7 @@
 #'            legend.values.rnd = 0)
 choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var, 
                        distr = NULL, col = NULL, nbclass = NULL, method = "quantile",
+                       border = NA, lwd = 1,
                        legend.pos = "bottomleft", legend.title.txt = var,
                        legend.title.cex = 0.8, legend.values.cex = 0.6,
                        legend.frame = FALSE,
@@ -79,7 +82,7 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   layer <- choro(var=spdf@data[,var], distr = distr, col = col,
                  nbclass = nbclass, method = method)
   # poly
-  plot(spdf, col = as.vector(layer$colMap), border = "black", lwd = 1, 
+  plot(spdf, col = as.vector(layer$colMap), border = border, lwd = lwd, 
        add = add)
   
   LegendChoro(pos = legend.pos, 

@@ -5,8 +5,8 @@
 \title{Choropleth Layer}
 \usage{
 choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, distr = NULL,
-  col = NULL, nbclass = NULL, method = "quantile",
-  legend.pos = "bottomleft", legend.title.txt = var,
+  col = NULL, nbclass = NULL, method = "quantile", border = NA,
+  lwd = 1, legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.frame = FALSE,
   legend.values.rnd = 0, add = TRUE)
 }
@@ -32,6 +32,10 @@ method is used).}
 
 \item{method}{character; a discretization method; one of "sd", "equal",
 "quantile", "jenks","q6","geom"  (see Details)}
+
+\item{border}{character; color of polygon borders.}
+
+\item{lwd}{numeric; borders width.}
 
 \item{legend.pos}{character; position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
