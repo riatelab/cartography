@@ -1,6 +1,6 @@
 #' @title polygons to borders
 #' @description between polygons
-#' @name borders
+#' @name getBorders
 #' @details Extract borders from a SpatialPolygonsDataFrame
 #' @param spdf SpatialPolygonsDataFrame
 #' @param tol tolerance to detect contiguity (in map units)
@@ -10,12 +10,12 @@
 #' @examples
 #' data(nuts2006)
 #' plot(nuts0.spdf ,col="#CCCCCC",border="white",lwd=1)
-#' contig <-borders(spdf=nuts0.spdf)
+#' contig <- getBorders(spdf=nuts0.spdf)
 #' plot(contig,col="red",lwd=2,add=TRUE)
 #' @return SpatialLinesDataFrame
 #' @export
 
-borders <- function(spdf, tol=1,id=NULL){
+getBorders <- function(spdf, tol=1,id=NULL){
 
   if (!requireNamespace("rgeos", quietly = TRUE)) {
     stop("'rgeos' package needed for this function to work. Please install it.",
@@ -71,7 +71,7 @@ borders <- function(spdf, tol=1,id=NULL){
 
   bordures=NULL
   t <- 0
-  pb <- txtProgressBar(min = 0, max = dim(transfrontCountries)[1], style = 3)
+#   pb <- txtProgressBar(min = 0, max = dim(transfrontCountries)[1], style = 3)
   for ( i in 1:(dim(transfrontCountries)[1])) {
     p1 <- as.character(transfrontCountries$Var1[i])
     p2 <- as.character(transfrontCountries$Var2[i])
@@ -83,9 +83,9 @@ borders <- function(spdf, tol=1,id=NULL){
     }
     Sys.sleep(0.1)
     # update progress bar
-    setTxtProgressBar(pb, i)
+#     setTxtProgressBar(pb, i)
   }
-  close(pb)
+#   close(pb)
 
 
   data<-data.frame(id=sapply(slot(bordures, "polygons"), slot, "ID"))

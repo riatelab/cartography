@@ -7,7 +7,7 @@
 discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
   distr = NULL, col = "red", nbclass = NULL, method = "quantile",
   threshold = 0.75, sizemin = 1, sizemax = 10, type = "rel",
-  add = FALSE)
+  add = FALSE, legend.txt = "leg title")
 }
 \arguments{
 \item{spdf}{SpatialLinesDataFrame (geometric borders)}
@@ -41,6 +41,8 @@ the Huntsberger method is used)}
 \item{type}{Mesuer of discontinuity. "rel","abs" (default = "rel")}
 
 \item{add}{add=TRUE}
+
+\item{legend.txt}{character; title in the legend}
 }
 \value{
 plot
@@ -53,7 +55,7 @@ Compute and plot spatial discontinuities (relative or absolutes)
 }
 \examples{
 data(nuts2006)
-nuts0.contig.spdf <-borders(nuts0.spdf)
+nuts0.contig.spdf <- getBorders(nuts0.spdf)
 plot(nuts0.spdf, col="#CCCCCC", lwd=1, border="white")
 discLayer(spdf = nuts0.contig.spdf, df = nuts0.df, dfid = "id", spdfid1 = "id1", spdfid2 = "id2",
 var = "gdppps2008", col="red", nbclass=5,  method="quantile", threshold = 0.5, sizemin = 1,
