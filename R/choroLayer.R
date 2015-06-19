@@ -9,7 +9,7 @@
 #' of \code{df}. (optional)
 #' @param var character; name of the numeric field in \code{df} to plot.
 #' @param distr numeric; a vector of breaks. (see Details)
-#' @param col character; a vector of colors.
+#' @param col character; 
 #' @param nbclass numeric; a targeted number of classes (if null,the Huntsberger 
 #' method is used).
 #' @param method character; a discretization method; one of "sd", "equal", 

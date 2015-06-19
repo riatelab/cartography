@@ -306,3 +306,9 @@ NULL
 #' @description Countries
 #' @docType data
 NULL
+
+#' @title World background
+#' @name world.spdf
+#' @description World
+#' @docType data
+NULL
