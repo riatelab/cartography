@@ -7,7 +7,9 @@
 discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
   distr = NULL, col = "red", nbclass = NULL, method = "quantile",
   threshold = 0.75, sizemin = 1, sizemax = 10, type = "rel",
-  add = FALSE, legend.txt = "leg title")
+  add = FALSE, legend.title.txt = "legend title",
+  legend.pos = "bottomleft", legend.title.cex = 0.8,
+  legend.values.cex = 0.6, legend.values.rnd = 2)
 }
 \arguments{
 \item{spdf}{SpatialLinesDataFrame (geometric borders)}
@@ -42,7 +44,17 @@ the Huntsberger method is used)}
 
 \item{add}{add=TRUE}
 
-\item{legend.txt}{character; title in the legend}
+\item{legend.title.txt}{character; title of the legend.}
+
+\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+
+\item{legend.title.cex}{numeric; size of the legend title.}
+
+\item{legend.values.cex}{numeric; size of the values in the legend.}
+
+\item{legend.values.rnd}{numeric; number of decimal places of the values in
+the legend.}
 }
 \value{
 plot

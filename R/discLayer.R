@@ -19,7 +19,13 @@
 #' @param sizemax thickness of the bigger line (default = 10)
 #' @param type Mesuer of discontinuity. "rel","abs" (default = "rel")
 #' @param add add=TRUE
-#' @param legend.txt character; title in the legend
+#' @param legend.pos character; position of the legend, one of "topleft", "top", 
+#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
+#' @param legend.title.txt character; title of the legend.
+#' @param legend.title.cex numeric; size of the legend title.
+#' @param legend.values.cex numeric; size of the values in the legend.
+#' @param legend.values.rnd numeric; number of decimal places of the values in 
+#' the legend.
 #' @examples
 #' data(nuts2006)
 #' nuts0.contig.spdf <- getBorders(nuts0.spdf)
@@ -36,41 +42,51 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL,
                       var, distr = NULL, col= "red", nbclass=NULL,
                       method="quantile", threshold = 0.75, sizemin = 1,
                       sizemax = 10, type = "rel",add = FALSE,
-                      legend.txt="leg title"){
-
-
-# Join (1 and 2)
-spdf@data <- data.frame(spdf@data, var1=df[match(spdf@data[,spdfid1], df[,dfid]),var])
-spdf@data <- data.frame(spdf@data, var2=df[match(spdf@data[,spdfid2], df[,dfid]),var])
-
-# discontinuité relative ou absolue
-if (type == "rel") {spdf@data$disc <- pmax(spdf@data$var1/spdf@data$var2,spdf@data$var2/spdf@data$var1)}
-if (type == "abs") {spdf@data$disc <- pmax(spdf@data$var1-spdf@data$var2,spdf@data$var2-spdf@data$var1)}
-
-# Valeur muinimal
+                      legend.title.txt="legend title", legend.pos = "bottomleft", 
+                      legend.title.cex = 0.8, legend.values.cex = 0.6, 
+                      legend.values.rnd = 2){
+  # Join (1 and 2)
+  spdf@data <- data.frame(spdf@data, var1=df[match(spdf@data[,spdfid1], 
+                                                   df[,dfid]),var])
+  spdf@data <- data.frame(spdf@data, var2=df[match(spdf@data[,spdfid2], 
+                                                   df[,dfid]),var])
+  
+  # discontinuité relative ou absolue
+  if (type == "rel") {spdf@data$disc <- pmax(spdf@data$var1/spdf@data$var2,
+                                             spdf@data$var2/spdf@data$var1)}
+  if (type == "abs") {spdf@data$disc <- pmax(spdf@data$var1-spdf@data$var2,
+                                             spdf@data$var2-spdf@data$var1)}
+  
+  # Valeur muinimal
   minvar<-as.numeric(quantile(spdf@data$disc,probs = c(threshold)))
+  
+  # Discretisation
+  spdf <- spdf[spdf@data$disc >=minvar,]
+  distr <- discretization(v=spdf@data$disc,nbclass=nbclass,method=method)
+  
+  # Classes de tailles
+  x <- (sizemax-sizemin)/nbclass
+  sizes <- sizemin
+  for(i in 1:nbclass){sizes <- c(sizes,sizes[i]+x)}
+  
+  # Affectation des tailles au spdf
+  sizesMap <- sizes[(findInterval(spdf@data$disc,distr,all.inside=TRUE))]
+  spdf@data <- data.frame(spdf@data,sizesMap)
+  
+  # Cartographie
+  plot(spdf, col=col,lwd=spdf@data$sizesMap,add=add)
+  
+  # Legend
+  
+  LegendSizeLines(pos = legend.pos, legTitle = legend.title.txt, 
+                  legTitleCex =legend.title.cex ,
+                  legValuesCex = legend.values.cex, 
+                  distr = distr, thickness = sizes, 
+                  col =col, round = legend.values.rnd, 
+                  nodata = FALSE)
+  
+  
 
-# Discretisation
-spdf <- spdf[spdf@data$disc >=minvar,]
-distr <- discretization(v=spdf@data$disc,nbclass=nbclass,method=method)
-
-# Classes de tailles
-x <- (sizemax-sizemin)/nbclass
-sizes <- sizemin
-for(i in 1:nbclass){sizes <- c(sizes,sizes[i]+x)}
-
-# Affectation des tailles au spdf
-sizesMap <- sizes[(findInterval(spdf@data$disc,distr,all.inside=TRUE))]
-spdf@data <- data.frame(spdf@data,sizesMap)
-
-# Cartographie
-plot(spdf, col=col,lwd=spdf@data$sizesMap,add=add)
-
-# Legend
-
-LegendSizeLines(pos = "bottomleft", legTitle = legend.txt, legTitleCex = 0.8,
-legValuesCex = 0.6, distr = distr, thickness = sizes, col =col, round =2, nodata = FALSE)
-
-
+  
 }
 
