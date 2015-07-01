@@ -9,7 +9,6 @@
 #' @details We have to describe precisely the function here
 #' @return A regular grid and a table of surface intersection are returned.
 #' @import sp
-#' @import reshape2
 # @examples
 # data(nuts2006)
 # mygrid <- getGridLayer(spdf=nuts2.spdf,cellsize=200000)
@@ -28,47 +27,27 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   spdf <- spChFIDs(spdf, spdf@data[,spdfid])
   spdf@data$area <- rgeos::gArea(spdf, byid=TRUE)
   
-  extent <- bbox(spdf)
-  posx <- extent[1]
-  posy <- extent[2]
-  nbcells_x <- floor((extent[3] - extent[1]) / cellsize)+1
-  nbcells_y <- floor((extent[4] - extent[2]) / cellsize)+1
-  
-  pb <- txtProgressBar(min = 0, max = (nbcells_x+3), style = 3)
-  for(i in 0:nbcells_x){
-    for(j in 0:nbcells_y){
-      square <- paste("POLYGON((",posx+cellsize*i," ",posy+cellsize*j,",",
-                      posx+cellsize+cellsize*i," ",posy+cellsize*j,",",
-                      posx+cellsize+cellsize*i," ",posy+cellsize+cellsize*j,",",
-                      posx+cellsize*i," ",posy+cellsize+cellsize*j,",",
-                      posx+cellsize*i," ",posy+cellsize*j,"))",sep="")
-      if(i==0 & j == 0){
-        spgrid <- rgeos::readWKT(square)
-        spgrid <- spChFIDs(spgrid, iden <- paste(i,j,sep="_"))
-      } else {
-        spgrid2 <- rgeos:: readWKT(square)
-        spgrid2 <- spChFIDs(spgrid2, iden <- paste(i,j,sep="_"))
-        spgrid <- rbind(spgrid,spgrid2)
-      }
-    }
-    Sys.sleep(0.1)
-    # update progress bar
-    setTxtProgressBar(pb, i)
-  }
-  data<-data.frame(id=sapply(slot(spgrid, "polygons"), slot, "ID"))
-  row.names(data)<-data$id
-  spgrid<-SpatialPolygonsDataFrame(spgrid, data)
+  boundingBox <- bbox(spdf)
+  rounder <- boundingBox %% cellsize
+  boundingBox[,1] <- boundingBox[,1] - rounder[,1]
+  roundermax <- cellsize - rounder[,2]
+  boundingBox[,2] <- boundingBox[,2] + cellsize - rounder[,2]
+  boxCoordX <- seq(from = boundingBox[1,1], to = boundingBox[1,2], 
+                   by = cellsize)
+  boxCoordY <- seq(from = boundingBox[2,1], to = boundingBox[2,2], 
+                   by = cellsize)
+  spatGrid <- expand.grid(boxCoordX, boxCoordY)
+  spatGrid$id <- seq(1, nrow(spatGrid), 1)
+  coordinates(spatGrid) <- 1:2 # promote to SpatialPointsDataFrame
+  gridded(spatGrid) <- TRUE # promote to SpatialPixelsDataFrame
+  spgrid <-  as(spatGrid, "SpatialPolygonsDataFrame") # promote to SpatialPolygonDataFrame
   proj4string(spgrid) <-proj4string(spdf)
+  row.names(spgrid) <- as.character(spgrid$id)
   
   # On ne garde que ce qui touche le fond de carte initial
-  over <- rgeos::gDisjoint(spgrid, spdf, byid = TRUE)
-  over <-melt(over,variable.name=1,value.name="touch", na.rm=TRUE)
-  over <- over[over$touch ==FALSE,2:3]
-  over$touch <- "ok"
-  colnames(over)<-c("id","touch")
-  spgrid@data <- data.frame(spgrid@data, touch=over[match(spgrid@data$id, 
-                                                          over$id),"touch"])
-  spgrid <- spgrid[!is.na(spgrid@data$touch),1]
+  over <- rgeos::gIntersects(spgrid, spdf, byid = TRUE)
+  x <- colSums(over)
+  spgrid <- spgrid[spgrid$id %in% names(x[x>0]),]
   
   mask <- rgeos:: gBuffer(spdf, byid=FALSE, id=NULL, width=1.0, quadsegs=5, 
                           capStyle="ROUND",joinStyle="ROUND", mitreLimit=1.0)
@@ -81,18 +60,17 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   spgrid@data$cell_area <- rgeos::gArea(spgrid, byid=TRUE)
   proj4string(spgrid) <-proj4string(spdf)
   
-  setTxtProgressBar(pb, i+1)
   # On calcul la table de passage
   # intersection
   parts <- rgeos::gIntersection(spgrid, spdf, byid=TRUE,drop_lower_td=TRUE)
-  data<-data.frame(id=sapply(slot(parts, "polygons"), slot, "ID"))
+  data <- data.frame(id=sapply(slot(parts, "polygons"), slot, "ID"))
   tmp <- data.frame(do.call('rbind', (strsplit(as.character(data$id)," "))))
   data$id1 <- as.vector(tmp$X1)
   data$id2 <- as.vector(tmp$X2)
   row.names(data)<-data$id
   parts<-SpatialPolygonsDataFrame(parts, data)
   proj4string(parts) <-proj4string(spdf)
-  setTxtProgressBar(pb, i+2)
+  
   # Part de surface intersectée
   parts@data$area_part <- rgeos::gArea(parts, byid=TRUE)
   parts@data <- data.frame(parts@data, 
@@ -101,10 +79,97 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   parts@data$area_pct <- (parts@data$area_part/parts@data$area_full)*100
   areas <- parts@data[,c("id1","id2","area_pct")]
   colnames(areas) <- c("id_cell","id_geo","area_pct")
-  setTxtProgressBar(pb, i+3)
-  close(pb)
   return(list(spdf = spgrid, df = areas))
 }
+# getGridLayer <- function(spdf, cellsize, spdfid = NULL){
+#   if (!requireNamespace("rgeos", quietly = TRUE)) {
+#     stop("'rgeos' package needed for this function to work. Please install it.",
+#          call. = FALSE)
+#   }
+#   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
+#   
+#   spdf@data <- spdf@data[spdfid]
+#   row.names(spdf@data)<-spdf@data[,spdfid]
+#   spdf <- spChFIDs(spdf, spdf@data[,spdfid])
+#   spdf@data$area <- rgeos::gArea(spdf, byid=TRUE)
+#   
+#   extent <- bbox(spdf)
+#   posx <- extent[1]
+#   posy <- extent[2]
+#   nbcells_x <- floor((extent[3] - extent[1]) / cellsize)+1
+#   nbcells_y <- floor((extent[4] - extent[2]) / cellsize)+1
+#   
+#   pb <- txtProgressBar(min = 0, max = (nbcells_x+3), style = 3)
+#   for(i in 0:nbcells_x){
+#     for(j in 0:nbcells_y){
+#       square <- paste("POLYGON((",posx+cellsize*i," ",posy+cellsize*j,",",
+#                       posx+cellsize+cellsize*i," ",posy+cellsize*j,",",
+#                       posx+cellsize+cellsize*i," ",posy+cellsize+cellsize*j,",",
+#                       posx+cellsize*i," ",posy+cellsize+cellsize*j,",",
+#                       posx+cellsize*i," ",posy+cellsize*j,"))",sep="")
+#       if(i==0 & j == 0){
+#         spgrid <- rgeos::readWKT(square)
+#         spgrid <- spChFIDs(spgrid, iden <- paste(i,j,sep="_"))
+#       } else {
+#         spgrid2 <- rgeos:: readWKT(square)
+#         spgrid2 <- spChFIDs(spgrid2, iden <- paste(i,j,sep="_"))
+#         spgrid <- rbind(spgrid,spgrid2)
+#       }
+#     }
+#     Sys.sleep(0.1)
+#     # update progress bar
+#     setTxtProgressBar(pb, i)
+#   }
+#   data<-data.frame(id=sapply(slot(spgrid, "polygons"), slot, "ID"))
+#   row.names(data)<-data$id
+#   spgrid<-SpatialPolygonsDataFrame(spgrid, data)
+#   proj4string(spgrid) <-proj4string(spdf)
+#   
+#   # On ne garde que ce qui touche le fond de carte initial
+#   over <- rgeos::gDisjoint(spgrid, spdf, byid = TRUE)
+#   over <-melt(over,variable.name=1,value.name="touch", na.rm=TRUE)
+#   over <- over[over$touch ==FALSE,2:3]
+#   over$touch <- "ok"
+#   colnames(over)<-c("id","touch")
+#   spgrid@data <- data.frame(spgrid@data, touch=over[match(spgrid@data$id, 
+#                                                           over$id),"touch"])
+#   spgrid <- spgrid[!is.na(spgrid@data$touch),1]
+#   
+#   mask <- rgeos:: gBuffer(spdf, byid=FALSE, id=NULL, width=1.0, quadsegs=5, 
+#                           capStyle="ROUND",joinStyle="ROUND", mitreLimit=1.0)
+#   spgrid<- rgeos::gIntersection(spgrid, mask, byid=TRUE, 
+#                                 id=as.character(spgrid@data$id), 
+#                                 drop_lower_td=FALSE)
+#   data<-data.frame(id=sapply(slot(spgrid, "polygons"), slot, "ID"))
+#   row.names(data)<-data$id
+#   spgrid<-SpatialPolygonsDataFrame(spgrid, data)
+#   spgrid@data$cell_area <- rgeos::gArea(spgrid, byid=TRUE)
+#   proj4string(spgrid) <-proj4string(spdf)
+#   
+#   setTxtProgressBar(pb, i+1)
+#   # On calcul la table de passage
+#   # intersection
+#   parts <- rgeos::gIntersection(spgrid, spdf, byid=TRUE,drop_lower_td=TRUE)
+#   data<-data.frame(id=sapply(slot(parts, "polygons"), slot, "ID"))
+#   tmp <- data.frame(do.call('rbind', (strsplit(as.character(data$id)," "))))
+#   data$id1 <- as.vector(tmp$X1)
+#   data$id2 <- as.vector(tmp$X2)
+#   row.names(data)<-data$id
+#   parts<-SpatialPolygonsDataFrame(parts, data)
+#   proj4string(parts) <-proj4string(spdf)
+#   setTxtProgressBar(pb, i+2)
+#   # Part de surface intersectée
+#   parts@data$area_part <- rgeos::gArea(parts, byid=TRUE)
+#   parts@data <- data.frame(parts@data, 
+#                            area_full=spdf@data[match(
+#                              parts@data$id2, spdf@data[,spdfid]),"area"])
+#   parts@data$area_pct <- (parts@data$area_part/parts@data$area_full)*100
+#   areas <- parts@data[,c("id1","id2","area_pct")]
+#   colnames(areas) <- c("id_cell","id_geo","area_pct")
+#   setTxtProgressBar(pb, i+3)
+#   close(pb)
+#   return(list(spdf = spgrid, df = areas))
+# }
 
 #' @title Compute Data For A Grid Layer
 #' @description This function compute the data within for grid layer according to surface intersection.
@@ -143,7 +208,7 @@ getGridData <- function(x, df, dfid=NULL, var) {
                               "cell_area"])
   grid_data$var_density <- (grid_data$var/grid_data$cell_area)*1000
   grid_data <-grid_data[,c("id_cell","var","var_density")]
-  colnames(grid_data) <- c("id_cell",var,paste(var,"dentisy",sep="_"))
+  colnames(grid_data) <- c("id_cell",var,paste(var,"density",sep="_"))
   
   return(grid_data)
   

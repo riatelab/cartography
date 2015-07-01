@@ -273,7 +273,7 @@ LegendTypo <- function(pos = "bottomleft", legTitle = "Title of the legend", leg
 #' @param col1 color defalul = "red"
 #' @param col2 color default = "blue"
 #' @param frame if TRUE, a frame is drawn
-#' @param type Type of display of the legend. "a" or "b"
+#' @param type Type of display of the legend. "c" or "e"
 #' @export
 #' @examples
 #' data("nuts2006")
@@ -283,18 +283,18 @@ LegendTypo <- function(pos = "bottomleft", legTitle = "Title of the legend", leg
 #'                   legTitleCex = 0.8, legValuesCex = 0.6,
 #'                   varvect = nuts1.df$pop2008,
 #'                   sizevect = sqrt((abs(nuts1.df$pop2008) * 100000) / pi),
-#'                   breakval=1, col1="red", col2="blue", frame=TRUE, round=0, type ="a")
+#'                   breakval=1, col1="red", col2="blue", frame=TRUE, round=0, type ="c")
 #'
 #' LegendCircSymbols(pos = "topleft", legTitle = "Title of\nthe legend",
 #'                   legTitleCex = 0.8, legValuesCex = 0.6,
 #'                   varvect = nuts1.df$pop2008,
 #'                   sizevect = sqrt((abs(nuts1.df$pop2008) * 1000) / pi),
-#'                   breakval=1000, col1="red", col2="blue", frame=TRUE, round=0, type ="b")
+#'                   breakval=1000, col1="red", col2="blue", frame=TRUE, round=0, type ="e")
 #' @return plot
 
 
 LegendCircSymbols<- function(pos = "topleft", legTitle = "Title of the legend", legTitleCex = 0.8,
-                       legValuesCex = 0.6, varvect, sizevect, breakval, col1="red", col2="blue", frame=FALSE, round=0, type ="a"){
+                       legValuesCex = 0.6, varvect, sizevect, breakval, col1="red", col2="blue", frame=FALSE, round=0, type ="c"){
 
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
   if(pos %in% positions){
@@ -333,7 +333,7 @@ rVal <- round(rVal,round)
 
 # xsize & ysize
 
-if (type=="a"){
+if (type=="c"){
   longVal <- rVal[strwidth(rVal,cex=legValuesCex)==max(strwidth(rVal,cex=legValuesCex))][1]
   if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=legValuesCex)>strwidth(longVal,cex=legValuesCex)){longVal <- paste(">=",breakval)}}
   legend_xsize <- max(rLeg[1]*2 + strwidth(longVal,cex=legValuesCex),strwidth(legTitle,cex = legTitleCex)-delta1)
@@ -342,7 +342,7 @@ if (type=="a"){
   if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
 }
 
-if (type=="b"){
+if (type=="e"){
   longVal <- rVal[strwidth(rVal,cex=legValuesCex)==max(strwidth(rVal,cex=legValuesCex))][1]
   if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=legValuesCex)>strwidth(longVal,cex=legValuesCex)){longVal <- paste(">=",breakval)}}
   legend_xsize <- max(rLeg[1]*2 + strwidth(longVal,cex=legValuesCex),strwidth(legTitle,cex = legTitleCex)-delta1)
@@ -382,7 +382,7 @@ if(!is.null(breakval)){
 }
 
 
-if (type=="a"){
+if (type=="c"){
 # cercles (V1)
 for(i in 1:4){
 symbols(x = xref + rLeg[1] ,y=yref + rLeg[i],circles=rLeg[i],add=TRUE,bg=mycol,inches=FALSE)
@@ -397,7 +397,7 @@ for(i in 1:4){
 text(x=xref ,y=yref + delta2 + rLeg[1]*2 + delta2,legTitle,adj=c(0,0),cex=legTitleCex)
 
 }
-if (type=="b"){
+if (type=="e"){
 
 # cercles (V2)
 jump <- 0
@@ -438,7 +438,7 @@ text(x=xref ,y=yref + (rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4])*2 + 3*delta2/2 + delta1
 #' @param col1 color defalul = "red"
 #' @param col2 color default = "blue"
 #' @param frame if TRUE, a frame is drawn
-#' @param type Type of display of the legend. "a" or "b"
+#' @param type Type of display of the legend. "c" or "e"
 #' @export
 #' @examples
 #' data("nuts2006")
@@ -448,25 +448,25 @@ text(x=xref ,y=yref + (rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4])*2 + 3*delta2/2 + delta1
 #'                      legTitleCex = 0.8, legValuesCex = 0.6,
 #'                      varvect = nuts1.df$pop2008,
 #'                      sizevect = sqrt((abs(nuts1.df$pop2008) * 5000)),
-#'                      breakval=10, col1="red", col2="blue", frame=TRUE, round=0, type ="a")
+#'                      breakval=10, col1="red", col2="blue", frame=TRUE, round=0, type ="c")
 #'
 #' LegendSquaresSymbols(pos = "topright", legTitle = "Title",
 #'                      legTitleCex = 1.2, legValuesCex = 0.8,
 #'                      varvect = nuts1.df$pop2008,
 #'                      sizevect = sqrt((abs(nuts1.df$pop2008) * 50000)),
-#'                      breakval=10, col1="red", col2="blue", frame=TRUE, round=0, type ="b")
+#'                      breakval=10, col1="red", col2="blue", frame=TRUE, round=0, type ="e")
 #'
 #' LegendSquaresSymbols(pos = "topleft", legTitle = "Title\nof\nthe legend",
 #'                      legTitleCex = 0.8, legValuesCex = 0.6,
 #'                      varvect = nuts1.df$pop2008,
 #'                      sizevect = sqrt((abs(nuts1.df$pop2008) * 500)),
-#'                      breakval=NULL, col1="red", col2="blue", frame=TRUE, round=0, type ="b")
+#'                      breakval=NULL, col1="red", col2="blue", frame=TRUE, round=0, type ="e")
 #' @return plot
 
 
 
 LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend", legTitleCex = 0.8,
-                             legValuesCex = 0.6, varvect, sizevect, breakval, col1="red", col2="blue", frame=FALSE, round=0, type ="a"){
+                             legValuesCex = 0.6, varvect, sizevect, breakval, col1="red", col2="blue", frame=FALSE, round=0, type ="c"){
 
 
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
@@ -506,7 +506,7 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
 
   # xsize & ysize
 
-  if (type=="a"){
+  if (type=="c"){
     longVal <- rVal[strwidth(rVal,cex=legValuesCex)==max(strwidth(rVal,cex=legValuesCex))][1]
     if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=legValuesCex)>strwidth(longVal,cex=legValuesCex)){longVal <- paste(">=",breakval)}}
     legend_xsize <- max(rLeg[1] + strwidth(longVal,cex=legValuesCex),strwidth(legTitle,cex = legTitleCex)-delta1)
@@ -515,7 +515,7 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
     if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
   }
 
-  if (type=="b"){
+  if (type=="e"){
     longVal <- rVal[strwidth(rVal,cex=legValuesCex)==max(strwidth(rVal,cex=legValuesCex))][1]
     if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=legValuesCex)>strwidth(longVal,cex=legValuesCex)){longVal <- paste(">=",breakval)}}
     legend_xsize <- max(rLeg[1] + strwidth(longVal,cex=legValuesCex)+ delta2,strwidth(legTitle,cex = legTitleCex))-delta1
@@ -547,14 +547,14 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
   if(!is.null(breakval)){
 
 
-    if (type=="a"){
+    if (type=="c"){
       symbols(x = xref+height/3,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col1,inches=FALSE)
       symbols(x = xref+height/3 ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
     text(xref + height/1.5 + delta2,yref + height/2,paste ("<",breakval),adj=c(0,0.5),cex=legValuesCex)
     text(xref + height/1.5 + delta2 , yref + height + height/2,paste (">=",breakval),adj=c(0,0.5),cex=legValuesCex)
     yref <- yref + height *2 + delta2
     }
-    if (type == "b"){
+    if (type == "e"){
       symbols(x = xref + rLeg[1]/2,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col1,inches=FALSE)
       symbols(x = xref + rLeg[1]/2 ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
       text(xref + rLeg[1]/2 + height/3 + delta2,yref + height/2,paste ("<",breakval),adj=c(0,0.5),cex=legValuesCex)
@@ -566,7 +566,7 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
   }
 
 
-  if (type=="a"){
+  if (type=="c"){
     # squares (V1)
     for(i in 1:4){
       symbols(x = xref + rLeg[i]/2 + (rLeg[1]-rLeg[i]),y=yref + rLeg[i]/2, squares = rLeg[i],add=TRUE,bg=mycol,inches=FALSE)
@@ -581,7 +581,7 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
     text(x=xref ,y=yref + rLeg[1] + delta1 ,legTitle,adj=c(0,0),cex=legTitleCex)
 
   }
-  if (type=="b"){
+  if (type=="e"){
 
     # cercles (V2)
     jump <- rLeg[4]/2
@@ -617,7 +617,7 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
 #' @param col1 color defalul = "red"
 #' @param col2 color default = "blue"
 #' @param frame if TRUE, a frame is drawn
-#' @param type Type of display of the legend. "a" or "b"
+#' @param type Type of display of the legend. "c" or "e"
 #' @export
 #' @examples
 #' data("nuts2006")
@@ -627,17 +627,17 @@ LegendSquaresSymbols<- function(pos = "topleft", legTitle = "Title of the legend
 #'                     legTitleCex = 0.8, legValuesCex = 0.6,
 #'                     varvect = nuts1.df$pop2008,
 #'                     sizevect = sqrt((abs(nuts1.df$pop2008) * 1000000) / pi),
-#'                     breakval=1000, col1="red", col2="blue", frame=TRUE, round=0, type ="a")
+#'                     breakval=1000, col1="red", col2="blue", frame=TRUE, round=0, type ="c")
 #'
 #' LegendHeightSymbols(pos = "left", legTitle = "Title of the legend",
 #'                     legTitleCex = 0.8, legValuesCex = 0.6,
 #'                     varvect = nuts1.df$pop2008,
 #'                     sizevect = sqrt((abs(nuts1.df$pop2008) * 600) / pi),
-#'                     breakval=NULL, col1="yellow", col2="blue", frame=FALSE, round=0, type ="b")
+#'                     breakval=NULL, col1="yellow", col2="blue", frame=FALSE, round=0, type ="e")
 #' @return plot
 
 LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend", legTitleCex = 0.8,
-                                legValuesCex = 0.6, varvect, sizevect, breakval, col1="red", col2="blue", frame=FALSE, round=0, type ="a"){
+                                legValuesCex = 0.6, varvect, sizevect, breakval, col1="red", col2="blue", frame=FALSE, round=0, type ="c"){
 
 
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
@@ -674,7 +674,7 @@ LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend"
 
     # xsize & ysize
 
-    if (type=="a"){
+    if (type=="c"){
       longVal <- rVal[strwidth(rVal,cex=legValuesCex)==max(strwidth(rVal,cex=legValuesCex))][1]
       if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=legValuesCex)>strwidth(longVal,cex=legValuesCex)){longVal <- paste(">=",breakval)}}
       legend_xsize <- max(height/1.5 + strwidth(longVal,cex=legValuesCex),strwidth(legTitle,cex = legTitleCex)-delta1)
@@ -683,7 +683,7 @@ LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend"
       if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
     }
 
-    if (type=="b"){
+    if (type=="e"){
       longVal <- rVal[strwidth(rVal,cex=legValuesCex)==max(strwidth(rVal,cex=legValuesCex))][1]
       if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=legValuesCex)>strwidth(longVal,cex=legValuesCex)){longVal <- paste(">=",breakval)}}
       legend_xsize <- max(height/1.5 + strwidth(longVal,cex=legValuesCex)-delta2,strwidth(legTitle,cex = legTitleCex)-delta1)
@@ -723,7 +723,7 @@ LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend"
     }
 
 
-    if (type=="a"){
+    if (type=="c"){
       # (V1)
 
 
@@ -741,7 +741,7 @@ LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend"
       text(x=xref ,y=yref + rLeg[1] + delta1 ,legTitle,adj=c(0,0),cex=legTitleCex)
 
     }
-    if (type=="b"){
+    if (type=="e"){
 
       #  (V2)
       jump <- 0
@@ -780,7 +780,7 @@ LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend"
 #' @param col1 color defalul = "red"
 #' @param col2 color default = "blue"
 #' @param frame if TRUE, a frame is drawn
-#' @param type Type of display of the legend. "a" or "b"
+#' @param type Type of display of the legend. "c" or "e"
 #' @export
 #' @examples
 #' data("nuts2006")
@@ -794,18 +794,18 @@ LegendHeightSymbols<- function(pos = "topleft", legTitle = "Title of the legend"
 #'                     var2label = "pib (euros)", legTitle="PIB par habitant",
 #'                       legTitleCex = 0.8, legValuesCex = 0.6,
 #'                       vect1 = vect1, vect2 = vect2, sizevect1 = sizevect1, sizevect2 = sizevect2,
-#'                       col1="green", col2="yellow", frame=TRUE, round=2, type="b")
+#'                       col1="green", col2="yellow", frame=TRUE, round=2, type="e")
 #'
 #' LegendChineseSymbols(pos = "bottomleft", var1label = "population totale (habs)",
 #'                       var2label = "pib (euros)", legTitle="PIB par habitant",
 #'                       legTitleCex = 0.8, legValuesCex = 0.6,
 #'                       vect1 = vect1, vect2 = vect2, sizevect1 = sizevect1, sizevect2 = sizevect2,
-#'                       col1="green", col2="yellow", frame=TRUE, round=2, type="a")
+#'                       col1="green", col2="yellow", frame=TRUE, round=2, type="c")
 #' @return plot
 
 
 LegendChineseSymbols<- function(pos = "topleft", legTitle, var1label,var2label, legTitleCex = 0.8,
-                                legValuesCex = 0.6, vect1, vect2, sizevect1, sizevect2,col1="red", col2="blue", frame=FALSE, round=0, type="a"){
+                                legValuesCex = 0.6, vect1, vect2, sizevect1, sizevect2,col1="red", col2="blue", frame=FALSE, round=0, type="c"){
 
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
   if(pos %in% positions){
@@ -857,10 +857,10 @@ LegendChineseSymbols<- function(pos = "topleft", legTitle, var1label,var2label, 
 
 
 
-   if (type=="a"){
+   if (type=="c"){
      legend_ysize <- strheight(legTitle,cex=legTitleCex) + delta2 + rLegmax2/2 + rLegmax1/2 + delta1 + height *2 + delta2 + rLegmin2/2 + rLegmin1/2 + (rLegmin2 + rLegmax2)/4 + + (rLegmin1 + rLegmax1)/4 + 3*delta2
    }
-   if (type =="b"){
+   if (type =="e"){
      legend_ysize <- strheight(legTitle,cex=legTitleCex) + delta2 + rLegmax2/2 + rLegmax1/2 + delta1 + height *2 + delta2
 
    }
@@ -904,7 +904,7 @@ yref <- yref + height *2 + delta2
 
 
 
-  if (type=="a"){
+  if (type=="c"){
 
 
     text(x=xref ,y=yref + (rLegmax1 + rLegmax2 + rLegmin1 + rLegmin2 + (rLegmax1-rLegmin1)/2 +  (rLegmax2-rLegmin2)/2)/2
@@ -946,7 +946,7 @@ yref <- yref + height *2 + delta2
 
   }
 
-if (type=="b"){
+if (type=="e"){
 
   text(x=xref ,y=yref + rLegmax2/2 + rLegmax1/2 + delta1 + delta1,adj=c(0,0),legTitle,cex=legTitleCex)
 

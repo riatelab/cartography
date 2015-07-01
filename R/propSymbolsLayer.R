@@ -1,46 +1,47 @@
 #' @title Proportional Symbols Layer
 #' @name propSymbolsLayer
 #' @description Plot a proportional symbols layer. Various symbols are availables.
-#' @param spdf Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame 
-#' symbols are plotted on centroids.
-#' @param df data.frame; \code{df} contains the values to plot.
-#' @param spdfid character; id field in \code{spdf}, default to the first column 
-#' of the \code{spdf} data.frame. (optional)
-#' @param dfid character; id field in \code{df}, default to the first column 
-#' of \code{df}. (optional)
-#' @param var character; name of the numeric field in \code{df} to plot.
-#' @param symbols character; type of symbols, one of "circles", "squares" or "height").
+#' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
+#' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
+#' @param df data.frame; df contains the values to plot.
+#' @param spdfid character; id field in spdf, default to the first column 
+#' of the spdf data.frame. (optional)
+#' @param dfid character; id field in df, default to the first column 
+#' of df. (optional)
+#' @param var character; name of the numeric field in df to plot.
+#' @param symbols character; type of symbols, one of "circle", "square" or "bar".
 #' @param col character; color of symbols.
 #' @param col2 character; second color of symbols (see Details).
 #' @param breakval numeric; breaking value (see Details).
-#' @param k numeric; share of the map occupied by the biggest symbol.
-#' @param fixmax numeric; value of the biggest symbol. (optional)
+#' @param k numeric; share of the map occupied by the biggest symbol (see Details).
+#' @param fixmax numeric; value of the biggest symbol (see Details).
 #' @param legend.pos character; position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
+#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt character; title of the legend.
 #' @param legend.title.cex numeric; size of the legend title.
 #' @param legend.values.cex numeric; size of the values in the legend.
-#' @param legend.values.rnd numeric; number of decimal places of the values in 
-#' the legend.
-#' @param legend.style character; either "a" or "b". The legend has two display 
-#' styles.
+#' @param legend.values.rnd numeric; number of decimal places of the values 
+#' displayed in the legend.
+#' @param legend.style character; either "c" or "e". The legend has two display 
+#' styles, "c" stands for compact and "e" for extended.
 #' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details The (\code{breakval}) parameter allows to plot symbols of two 
-#' colors: the first color (\code{col}) for values superior or equal to breakval,
-#' second color (\code{col2}) for values inferior to breakval.
+#' @details The breakval parameter allows to plot symbols of two 
+#' colors: the first color (col) for values superior or equal to breakval,
+#' second color (col2) for values inferior to breakval.
+#' 
+#' Two maps with the same spdf, k, and fixmax parameters will be comparable.
 #' @return A plot is returned.
 #' @export
 #' @import sp
 #' @examples
 #' data("nuts2006")
-#' 
 #' # Layout plot
 #' layoutLayer(title = "Countries Population in Europe", 
-#'             sources = "UMS RIATE, 2015", 
-#'             author = "UMS RIATE",
+#'             sources = "Eurostat, 2008", 
 #'             scale = NULL, 
 #'             frame = TRUE,
 #'             col = "black", 
@@ -55,18 +56,67 @@
 #' # Population plot on proportional symbols
 #' propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
 #'                  var = "pop2008", k = 0.01,
-#'                  symbols = "squares", col =  "#920000",
+#'                  symbols = "square", col =  "#920000",
 #'                  legend.pos = "right", 
 #'                  legend.title.txt = "Total\npopulation (2008)", 
-#'                  legend.style = "a")
-
+#'                  legend.style = "c")
+#' 
+#' # Layout plot
+#' layoutLayer(title = "Countries GDP", 
+#'             sources = "Eurostat, 2008", 
+#'             scale = NULL, 
+#'             frame = TRUE,
+#'             col = "black", 
+#'             coltitle = "white",
+#'             bg = "#D9F5FF",
+#'             south = TRUE, 
+#'             extent = nuts0.spdf)
+#' 
+#' # Countries plot
+#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
+#' 
+#' # Population plot on proportional symbols
+#' propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
+#'                  var = "gdppps2008", k = 0.01,
+#'                  symbols = "bar", col =  "#920000",
+#'                  legend.pos = "right", 
+#'                  legend.title.txt = "GDP\nin Millions PPS (2008)", 
+#'                  legend.style = "e")
+#' 
+#' 
+#' oldpar <- par(mfrow = c(1,2), mar = c(0,0,0,0))
+#' # Countries plot
+#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+#' 
+#' # Population plot on proportional symbols
+#' propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
+#'                  var = "birth_2008", k = 0.01,
+#'                  fixmax = max(nuts0.df$birth_2008),
+#'                  symbols = "circle", col =  "orange",
+#'                  legend.pos = "right", 
+#'                  legend.title.txt = "nb of births", 
+#'                  legend.style = "e")
+#' 
+#' 
+#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+#' 
+#' # Population plot on proportional symbols
+#' propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
+#'                  var = "death_2008", k = 0.01,
+#'                  symbols = "circle", col =  "pink",
+#'                  fixmax = max(nuts0.df$birth_2008),
+#'                  legend.pos = "right", 
+#'                  legend.style = "e",
+#'                  legend.title.txt = "nb of deaths")
+#' 
+#' par(oldpar)
 propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
-                             symbols = "circles",
+                             symbols = "circle",
                              col = "#E84923", col2 = "#7DC437", breakval = NULL,
                              k = 0.02, fixmax = NULL,
                              legend.pos = "bottomleft", legend.title.txt = var,
                              legend.title.cex = 0.8, legend.values.cex = 0.6,
-                             legend.style = "a", legend.frame = FALSE,
+                             legend.style = "c", legend.frame = FALSE,
                              legend.values.rnd = 0, add = TRUE){
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
@@ -106,67 +156,76 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     mycols <- rep(col, nrow(dots))
   }
   
+  if (add==FALSE){
+    sp::plot(spdf, col = NA, border = NA)
+  }
+  
+  
   # CIRCLES
-  if (symbols == "circles"){
+  if (symbols == "circle"){
     symbols(dots[, c("x", "y")], circles = dots$circleSize, bg = mycols,
-            add = add,
-            inches = FALSE, asp = 1, xlab = "", ylab = "")
+            add = TRUE,
+            inches = FALSE, asp = 1	)
     sizevect <- dots$circleSize
     varvect <- dots[,var]
-    LegendCircSymbols(pos = legend.pos, legTitle = legend.title.txt,
-                      legTitleCex = legend.title.cex,
-                      legValuesCex = legend.values.cex,
-                      varvect = varvect,
-                      sizevect = sizevect,
-                      breakval  = breakval,
-                      col1 = col,
-                      col2 = col2,
-                      frame = legend.frame,
-                      round = legend.values.rnd,
-                      type = legend.style)
-  }
-  
-  # SQUARES
-  if (symbols == "squares"){
-    symbols(dots[, c("x", "y")], squares = dots$squareSize, bg = mycols,
-            add = add, inches = FALSE, asp = 1, xlab = "", ylab = "")
-    sizevect <- dots$squareSize
-    varvect <- dots[,var]
-    LegendSquaresSymbols(pos = legend.pos, legTitle = legend.title.txt,
-                         legTitleCex = legend.title.cex, 
-                         legValuesCex = legend.values.cex,
-                         varvect = varvect,
-                         sizevect = sizevect,
-                         breakval = breakval, 
-                         col1 = col, 
-                         col2 = col2, 
-                         frame = legend.frame, 
-                         round = legend.values.rnd, 
-                         type = legend.style)
-  }
-  
-  #BARRES
-  if (symbols == "height"){
-    width<-min((par()$usr[4]-par()$usr[3])/40,(par()$usr[2]-par()$usr[1])/40)
-    tmp <- as.matrix(data.frame(width,dots$heightSize))
-    dots$y2 <- dots$y+dots$heightSize/2
-    symbols(dots[,c("x","y2")], rectangles = tmp, add = add, bg = mycols,
-            inches = FALSE, asp = 1, xlab = "", ylab = "")
-    sizevect <- dots$heightSize
-    varvect <- dots[,var]
-    LegendHeightSymbols(pos = legend.pos, legTitle = legend.title.txt,
-                        legTitleCex = legend.title.cex, 
+    if(legend.pos!="n"){
+      LegendCircSymbols(pos = legend.pos, legTitle = legend.title.txt,
+                        legTitleCex = legend.title.cex,
                         legValuesCex = legend.values.cex,
                         varvect = varvect,
                         sizevect = sizevect,
-                        breakval = breakval, 
-                        col1 = col, 
-                        col2 = col2, 
-                        frame = legend.frame, 
-                        round = legend.values.rnd, 
+                        breakval  = breakval,
+                        col1 = col,
+                        col2 = col2,
+                        frame = legend.frame,
+                        round = legend.values.rnd,
                         type = legend.style)
-    
+    }
+  }
+  # SQUARES
+  if (symbols == "square"){
+    symbols(dots[, c("x", "y")], squares = dots$squareSize, bg = mycols,
+            add = TRUE, inches = FALSE, asp = 1)
+    sizevect <- dots$squareSize
+    varvect <- dots[,var]
+    if(legend.pos!="n"){
+      LegendSquaresSymbols(pos = legend.pos, legTitle = legend.title.txt,
+                           legTitleCex = legend.title.cex, 
+                           legValuesCex = legend.values.cex,
+                           varvect = varvect,
+                           sizevect = sizevect,
+                           breakval = breakval, 
+                           col1 = col, 
+                           col2 = col2, 
+                           frame = legend.frame, 
+                           round = legend.values.rnd, 
+                           type = legend.style)
+    }
   }
   
+  #BARRES
+  if (symbols == "bar"){
+    width<-min((par()$usr[4] - par()$usr[3]) / 40, (par()$usr[2] - par()$usr[1]) / 40)
+    tmp <- as.matrix(data.frame(width, dots$heightSize))
+    dots$y2 <- dots$y + dots$heightSize / 2
+    symbols(dots[,c("x","y2")], rectangles = tmp, add = TRUE, bg = mycols,
+            inches = FALSE, asp = 1)
+    sizevect <- dots$heightSize
+    varvect <- dots[,var]
+    if(legend.pos!="n"){
+      LegendHeightSymbols(pos = legend.pos, legTitle = legend.title.txt,
+                          legTitleCex = legend.title.cex, 
+                          legValuesCex = legend.values.cex,
+                          varvect = varvect,
+                          sizevect = sizevect,
+                          breakval = breakval, 
+                          col1 = col, 
+                          col2 = col2, 
+                          frame = legend.frame, 
+                          round = legend.values.rnd, 
+                          type = legend.style)
+      
+    }
+  }
 }
 
