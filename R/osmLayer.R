@@ -33,9 +33,14 @@ getTiles <- function(spdf, type = "osm", zoom = NULL){
          call. = FALSE)
   }
   if(!'package:OpenStreetMap' %in% search()){
-    attachNamespace('raster')
+
     attachNamespace('OpenStreetMap')
   }
+  if(!'package:raster' %in% search()){
+    attachNamespace('raster')
+  }
+
+  
   if (is.na(sp::proj4string(spdf))){
     stop("The Spatial object must contain information on its projection.",
          call. = FALSE)
@@ -61,7 +66,7 @@ getTiles <- function(spdf, type = "osm", zoom = NULL){
                                       type = type)
   }
   finalOSM <- OpenStreetMap::openproj(x = tempOSM, projection = sp::CRS(sp::proj4string(spdf)))
-#   detach(name = package:OpenStreetMap)
+  detach(name = package:OpenStreetMap)
 #   detach(name = package:raster)
 
   # plot(finalOSM, removeMargin = F)

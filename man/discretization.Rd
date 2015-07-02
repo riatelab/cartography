@@ -2,7 +2,7 @@
 % Please edit documentation in R/internL_discretization.R
 \name{discretization}
 \alias{discretization}
-\title{discretization}
+\title{Discretiza}
 \usage{
 discretization(v, nbclass = NULL, method = "quantile")
 }

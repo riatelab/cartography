@@ -1,12 +1,10 @@
-#' discretization
-#'
-#' discretization function
+#' @title Discretiza
+#' @name discretization
+#' @description discretization function
 #' @details bla bla bla
-#'
 #' @param v vector
 #' @param nbclass number of classes
 #' @param method methods of discretisation : "sd", "equal", "quantile", "jenks", "geom", "q6"
-#'
 #' @examples
 #'
 #' # 1) SELECT AND VISUALIZE AN INDICATOR
@@ -45,27 +43,17 @@
 #' @export
 
 discretization <- function(v, nbclass = NULL, method = "quantile"){
-
   v <- as.vector(na.omit(v))
-
   classIntMethods <- c("sd", "equal", "quantile", "jenks")
-
-
   if(is.null(nbclass)){
     nbclass <- round(1+3.3*log10(length(v)),0)
   }
-
-
   if (method %in% classIntMethods){
     intervals <- classInt::classIntervals(v,nbclass,style=method)$brks
-
+    
   } else {
-
-
     if (method=="geom")
     {
-
-
       intervals <- min(v)
       intervals <- c(intervals,max(v))
       r <- exp((log(max(v))-log(min(v)))/nbclass) # raison
@@ -76,15 +64,11 @@ discretization <- function(v, nbclass = NULL, method = "quantile"){
         intervals <- sort(intervals)
       }
     }
-
-
     if (method == "q6")
     {
-      intervals <- as.vector(quantile(v,probs = c(0, 5, 27.5, 55, 72.5, 95, 100)/100))
+      intervals <- as.vector(quantile(v,probs = c(0, 5, 27.5, 50, 72.5, 95, 100)/100))
     }
-
-}
-
+  }
   return(intervals)
 }
 

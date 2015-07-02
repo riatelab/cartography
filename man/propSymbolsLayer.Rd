@@ -6,10 +6,10 @@
 \usage{
 propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
   symbols = "circle", col = "#E84923", col2 = "#7DC437",
-  breakval = NULL, k = 0.02, fixmax = NULL, legend.pos = "bottomleft",
-  legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.style = "c", legend.frame = FALSE, legend.values.rnd = 0,
-  add = TRUE)
+  border = "black", lwd = 1, breakval = NULL, k = 0.02, fixmax = NULL,
+  legend.pos = "bottomleft", legend.title.txt = var,
+  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.style = "c",
+  legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
 }
 \arguments{
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
@@ -30,6 +30,10 @@ of df. (optional)}
 \item{col}{character; color of symbols.}
 
 \item{col2}{character; second color of symbols (see Details).}
+
+\item{border}{character; color of polygon borders.}
+
+\item{lwd}{numeric; borders width.}
 
 \item{breakval}{numeric; breaking value (see Details).}
 
@@ -63,7 +67,7 @@ not (FALSE).}
 A plot is returned.
 }
 \description{
-Plot a proportional symbols layer. Various symbols are availables.
+Plot a proportional symbols layer.
 }
 \details{
 The breakval parameter allows to plot symbols of two
@@ -73,7 +77,8 @@ second color (col2) for values inferior to breakval.
 Two maps with the same spdf, k, and fixmax parameters will be comparable.
 }
 \examples{
-data("nuts2006")
+## data("nuts2006")
+## Exemple 1
 # Layout plot
 layoutLayer(title = "Countries Population in Europe",
             sources = "Eurostat, 2008",
@@ -84,10 +89,8 @@ layoutLayer(title = "Countries Population in Europe",
             bg = "#D9F5FF",
             south = TRUE,
             extent = nuts0.spdf)
-
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
-
 # Population plot on proportional symbols
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  var = "pop2008", k = 0.01,
@@ -96,33 +99,21 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.title.txt = "Total\\npopulation (2008)",
                  legend.style = "c")
 
-# Layout plot
-layoutLayer(title = "Countries GDP",
-            sources = "Eurostat, 2008",
-            scale = NULL,
-            frame = TRUE,
-            col = "black",
-            coltitle = "white",
-            bg = "#D9F5FF",
-            south = TRUE,
-            extent = nuts0.spdf)
-
+## Exemple 2
 # Countries plot
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
-
+plot(nuts0.spdf, col = "grey60",border = "grey20")
 # Population plot on proportional symbols
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  var = "gdppps2008", k = 0.01,
-                 symbols = "bar", col =  "#920000",
+                 symbols = "bar", col =  "#B00EF0",
                  legend.pos = "right",
                  legend.title.txt = "GDP\\nin Millions PPS (2008)",
                  legend.style = "e")
 
-
+## Exemple 3
 oldpar <- par(mfrow = c(1,2), mar = c(0,0,0,0))
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-
 # Population plot on proportional symbols
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  var = "birth_2008", k = 0.01,
@@ -131,10 +122,7 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.pos = "right",
                  legend.title.txt = "nb of births",
                  legend.style = "e")
-
-
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-
 # Population plot on proportional symbols
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  var = "death_2008", k = 0.01,
@@ -143,7 +131,18 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.pos = "right",
                  legend.style = "e",
                  legend.title.txt = "nb of deaths")
-
 par(oldpar)
+
+## Exemple 4
+nuts0.df$balance <- nuts0.df$birth_2008-nuts0.df$death_2008
+plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+# Population plot on proportional symbols
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
+                 var = "balance", k = 0.01,
+                 symbols = "circle",
+                 col = "orange", col2 = "green", breakval=0,
+                 legend.pos = "right",
+                 legend.style = "c",
+                 legend.title.txt = "Natural Balance\\n(2008)")
 }
 
