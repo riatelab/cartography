@@ -2,52 +2,58 @@
 % Please edit documentation in R/palettes.R
 \name{carto.pal}
 \alias{carto.pal}
-\title{carto.pal}
+\title{Build Cartographic Palettes}
 \usage{
 carto.pal(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
-  alphaeffect = FALSE)
+  transparency = FALSE)
 }
 \arguments{
-\item{pal1}{name of the color gradiant}
+\item{pal1}{character; name of the color gradiant (see Details).}
 
-\item{n1}{number of colors (up to 20)}
+\item{n1}{numeric; number of colors (up to 20)}
 
-\item{pal2}{name of a second color gradiant (optionnal)}
+\item{pal2}{character; name of the color gradiant (see Details).}
 
-\item{n2}{number of colors for the second color gradiant (up to 20) (optionnal)}
+\item{n2}{numeric; number of colors (up to 20)}
 
-\item{middle}{boolean. if true, add a neutral color in the middle (optionnal)}
+\item{middle}{boolean; if TRUE, add a neutral color ("#F6F6F6") between two gradients.}
 
-\item{alphaeffect}{boolean. If true, enhance contrasts by adding opacity (optionnal)}
+\item{transparency}{boolean; if TRUE, enhance contrasts by adding opacity variation.}
 }
 \value{
-vector
+A vector of colors is returned
 }
 \description{
-Build a color palette
+Builds sequantial and diverging color palettes.
+Diververging color palettes can be dissymetric (two gradients with different number of colors)
 }
 \details{
-This function call and combine colors from the colors object with several paraemeters
+Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
+"pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal".
+Use  \code{display.carto.all(5)} to show all palettes. Use display.carto.pal("PALETTE NAME") to show one palette.
 }
 \examples{
 # Simple gradient in blue
-carto.pal("blue.pal",20)
+carto.pal(pal1 = "blue.pal" ,n1 = 20)
 
 # double gradient blue / red
-carto.pal(pal1="blue.pal",n1=10, pal2="red.pal",n2=10)
+carto.pal(pal1 = "blue.pal", n1 = 10, pal2 = "red.pal", n2 = 10)
 
 # Adding a neutral color
-carto.pal(pal1="blue.pal",n1=10,pal2="red.pal",n2=10,middle=TRUE)
+carto.pal(pal1 = "blue.pal", n1 = 10, pal2 = "red.pal", n2 = 10, middle = TRUE)
 
-# Enhancing contrasts with alphaeffect
-carto.pal(pal1="blue.pal",n1=10,pal2="red.pal",n2=10,middle=TRUE,alphaeffect=TRUE)
+# Enhancing contrasts with transparency
+carto.pal(pal1="blue.pal", n1 = 10, pal2 = "red.pal", n2 = 10, middle = TRUE,
+          transparency = TRUE)
 
 # The double gradient can be asymetric
-carto.pal(pal1="blue.pal",n1=5,pal2="red.pal",n2=15,middle=TRUE,alphaeffect=TRUE)
+carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15, middle = TRUE,
+          transparency = TRUE)
 
 # Build and display a palette
-mypal <- carto.pal(pal1="blue.pal",n1=5,pal2="red.pal",n2=15,middle=TRUE,alphaeffect=TRUE)
-k<-length(mypal)
+mypal <- carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15,
+                   middle = TRUE, transparency = TRUE)
+k <- length(mypal)
 image(1:k, 1, as.matrix(1:k), col =mypal, xlab = paste(k," classes",sep=""),
 ylab = "", xaxt = "n", yaxt = "n",bty = "n")
 }

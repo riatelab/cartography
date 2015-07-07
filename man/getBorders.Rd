@@ -2,30 +2,30 @@
 % Please edit documentation in R/borders.R
 \name{getBorders}
 \alias{getBorders}
-\title{polygons to borders}
+\title{Extract SpatialPolygonsDataFrame Borders}
 \usage{
-getBorders(spdf, tol = 1, id = NULL)
+getBorders(spdf, spdfid = NULL, tol = 1)
 }
 \arguments{
-\item{spdf}{SpatialPolygonsDataFrame}
+\item{spdf}{SpatialPolygonsDataFrame.}
 
-\item{tol}{tolerance to detect contiguity (in map units)}
+\item{spdfid}{character; id field in spdf, default to the first column
+of the spdf data.frame. (optional)}
 
-\item{id}{unique id on the spdf}
+\item{tol}{numeric; tolerance to detect contiguity (in map units). You may
+not want to change this parameter.}
 }
 \value{
-SpatialLinesDataFrame
+A SpatialLinesDataFrame of borders is returned.
 }
 \description{
-between polygons
-}
-\details{
-Extract borders from a SpatialPolygonsDataFrame
+Extract borders between SpatialPolygonsDataFrame units.
 }
 \examples{
 data(nuts2006)
-plot(nuts0.spdf ,col="#CCCCCC",border="white",lwd=1)
-contig <- getBorders(spdf=nuts0.spdf)
-plot(contig,col="red",lwd=2,add=TRUE)
+nuts0.contig.spdf <- getBorders(nuts0.spdf)
+nuts0.contig.spdf$col <- sample(x = rainbow(length(nuts0.contig.spdf)))
+plot(nuts0.spdf, border = NA, col = "grey60")
+plot(nuts0.contig.spdf, col = nuts0.contig.spdf$col, lwd = 3, add = TRUE)
 }
 

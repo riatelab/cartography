@@ -40,7 +40,7 @@
 #' @export
 #' @import sp
 #' @examples
-#' ## data("nuts2006")
+#' data("nuts2006")
 #' ## Exemple 1
 #' # Layout plot
 #' layoutLayer(title = "Countries Population in Europe", 
@@ -120,7 +120,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   dots <- cbind(spdf@data[,spdfid], as.data.frame(sp::coordinates(spdf)))
-  colnames(dots) <- c(spdfid, "x", "y")
+  colnames(dots)[1] <- c(spdfid)
   dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
   dots <- dots[order(dots[, var], decreasing = TRUE),]
   
@@ -160,7 +160,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # CIRCLES
   if (symbols == "circle"){
-    symbols(dots[, c("x", "y")], circles = dots$circleSize, bg = mycols, 
+    symbols(dots[, 2:3], circles = dots$circleSize, bg = mycols, 
             fg = border, lwd = lwd,
             add = TRUE,
             inches = FALSE, asp = 1	)
@@ -182,7 +182,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   }
   # SQUARES
   if (symbols == "square"){
-    symbols(dots[, c("x", "y")], squares = dots$squareSize, bg = mycols,
+    symbols(dots[, 2:3], squares = dots$squareSize, bg = mycols,
             fg = border, lwd = lwd,
             add = TRUE, inches = FALSE, asp = 1)
     sizevect <- dots$squareSize
@@ -207,8 +207,8 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   if (symbols == "bar"){
     width<-min((par()$usr[4] - par()$usr[3]) / 40, (par()$usr[2] - par()$usr[1]) / 40)
     tmp <- as.matrix(data.frame(width, dots$heightSize))
-    dots$y2 <- dots$y + dots$heightSize / 2
-    symbols(dots[,c("x","y2")], rectangles = tmp, add = TRUE, bg = mycols,
+    dots[,3] <- dots[,3] + dots$heightSize / 2
+    symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = mycols,
             fg = border, lwd = lwd,
             inches = FALSE, asp = 1)
     sizevect <- dots$heightSize

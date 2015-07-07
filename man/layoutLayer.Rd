@@ -2,7 +2,7 @@
 % Please edit documentation in R/layoutLayer.R
 \name{layoutLayer}
 \alias{layoutLayer}
-\title{layoutLayer function.}
+\title{Layout Layer}
 \usage{
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   author = "Author(s)", col = "black", coltitle = "white", bg = NULL,
@@ -10,38 +10,56 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   extent = NULL)
 }
 \arguments{
-\item{title}{Title of the map}
+\item{title}{character; title of the map.}
 
-\item{sources}{Sources of the map}
+\item{sources}{character; sources of the map (or something else).}
 
-\item{author}{Author of the map}
+\item{author}{character; author of the map (or something else).}
 
-\item{col}{Color of the frame}
+\item{col}{character; color of the frame border.}
 
-\item{coltitle}{Color of the Title}
+\item{coltitle}{character; color of the title.}
 
-\item{bg}{Background color}
+\item{bg}{character; color of the frame background.}
 
-\item{scale}{Size of the scale in kilometers. If set to NULL, no scale is
-displayed, if set to 0 an automatic scale is displayed
-(1/10 of the map width)}
+\item{scale}{numeric; size of the scale in kilometers. If set to NULL, no scale is
+displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).}
 
-\item{frame}{Wheither displaying a frame or not}
+\item{frame}{boolean; wheither displaying a frame or not.}
 
-\item{north}{Noth arrow}
+\item{north}{boolean; wheither displaying a Noth arrow.}
 
-\item{south}{South arrow}
+\item{south}{boolean; wheither displaying a South arrow.}
 
-\item{extent}{extent optional, set the extent to the one of a
-Spatial*DataFrame. If not set, plot.new has to be called first.}
+\item{extent}{SpatialPolygonsDataFrame or SpatialPointsDataFrame; set the extent to the one of a
+Spatial object.}
 }
 \description{
-layoutLayer function.
+Plot a layout layer.
 }
 \details{
-Must only be called after a plot
+If extent is not set, plot.new has to be called first.
 }
 \examples{
-data("TNdeleg")
+data("nuts2006")
+# Exemple 1
+plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+# Layout plot
+layoutLayer(title = "Title",
+            sources = "Sources",
+            author = "Author",
+            scale = 0,
+            frame = TRUE,
+            col = "black",
+            coltitle = "white",
+            south = TRUE)
+
+# Exemple 2
+layoutLayer(scale = NULL,col = NA, coltitle = "black",
+            sources = "", author = "",
+            frame = FALSE, bg = "#A6CAE0",
+            south = TRUE, extent = nuts0.spdf)
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
 }
 

@@ -2,21 +2,18 @@
 % Please edit documentation in R/palettes.R
 \name{display.carto.all}
 \alias{display.carto.all}
-\title{display.carto.all}
+\title{Display All Cartographic Palettes}
 \usage{
-display.carto.all(nb = 10)
+display.carto.all(n = 10)
 }
 \arguments{
-\item{nb}{numeric number of colors by palettes (from 1 to 20)}
+\item{n}{numeric; number of colors by palettes (from 1 to 20).}
 }
 \value{
-vector
+A plot is returned.
 }
 \description{
-Display all the color palettes available
-}
-\details{
-This function displays all the palettes available in the package
+Display all the available color palettes.
 }
 \examples{
 display.carto.all(1)

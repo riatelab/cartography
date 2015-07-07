@@ -2,48 +2,46 @@
 % Please edit documentation in R/labelLayer.R
 \name{labelLayer}
 \alias{labelLayer}
-\title{labelLayer function.}
+\title{Label Layer}
 \usage{
 labelLayer(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
   cex = 0.7, ...)
 }
 \arguments{
-\item{spdf}{Spatial*DataFrame.}
+\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
+is a SpatialPolygonsDataFrame texts are plotted on centroids.}
 
-\item{df}{data.frame; \code{df} contains the labels field to plot.}
+\item{df}{data.frame; df contains the labels to plot.}
 
-\item{spdfid}{character; id field in \code{spdf}, default to the first column
-of the \code{spdf} data.frame. (optional)}
+\item{spdfid}{character; id field in spdf, default to the first column
+of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in \code{df}, default to the first column
-of \code{df}. (optional)}
+\item{dfid}{character; id field in df, default to the first column
+of df. (optional)}
 
-\item{txt}{character; labels field in \code{df}.}
+\item{txt}{character; labels field in df.}
 
 \item{col}{character; labels color.}
 
 \item{cex}{numeric; labels cex.}
 
-\item{...}{further \link{text} arguments, such as \code{pos} or \code{adj}.}
+\item{...}{further \link{text} arguments, such as pos or adj.}
 }
 \description{
-Put labels
+Put labels on a map.
 }
 \examples{
 data("nuts2006")
 
-# Display countries boundaries
-plot(nuts0.spdf, col = "grey60",border = "grey20")
-
 # Layout plot
-layoutLayer(title = "Most Populated Countries of Europe",
-            sources = "The 10 most populated countries of Europe",
-            author = "Total population 2008, in millions of inhabitants.",
-            scale = NULL,
-            frame = TRUE,
-            col = "black",
-            coltitle = "white",
-            south = TRUE)
+layoutLayer(  title = "Most Populated Countries of Europe",
+              author = "", sources = "",
+              scale = NULL,col = NA, coltitle = "black",
+              frame = FALSE, bg = "#A6CAE0",
+              south = TRUE, extent = nuts0.spdf)
+
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
 
 # Selection of the 10 most populated countries of Europe
 dflab <- nuts0.df[order(nuts0.df$pop2008, decreasing = TRUE),][1:10,]
@@ -53,6 +51,9 @@ dflab$lab <- paste(dflab$id, "\\n", round(dflab$pop2008/1000000,0), "M", sep =""
 
 # Label plot of the 10 most populated countries
 labelLayer(spdf = nuts0.spdf, df = dflab, txt = "lab",
-           col = "blue", cex = 0.7, font = 2)
+           col = "#690409", cex = 0.9, font = 2)
+text(x = 5477360, y = 4177311, labels = "The 10 most populated countries of Europe
+Total population 2008, in millions of inhabitants.",
+     cex = 0.7, adj = 0)
 }
 

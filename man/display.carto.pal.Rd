@@ -2,21 +2,22 @@
 % Please edit documentation in R/palettes.R
 \name{display.carto.pal}
 \alias{display.carto.pal}
-\title{display.carto.pal}
+\title{Display One Cartographic Palette}
 \usage{
 display.carto.pal(name)
 }
 \arguments{
-\item{name}{character name of the palette available in the package}
+\item{name}{character; name of the palette available in the package (see Details)}
 }
 \value{
-plot
+A plot is returned.
 }
 \description{
-Display one color palette
+Display one color palette.
 }
 \details{
-This function displays all the content of one palette
+Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
+"pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal".
 }
 \examples{
 display.carto.pal("orange.pal")

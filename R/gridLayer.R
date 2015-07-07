@@ -1,19 +1,21 @@
 #' @title Build A Regular Grid Layer
-#' @name gridLayer
+#' @name getGridLayer
 #' @description Build a regular grid based on a SpatialPolygonsDataFrame. 
 #' Provide also a table of surface intersections. 
 #' @param spdf SpatialPolygonsDataFrame.
-#' @param cellsize numeric; cell size in map units.
-#' @param spdfid character; id field in \code{spdf}, default to the first column 
-#' of the \code{spdf} data.frame. (optional)
-#' @details We have to describe precisely the function here
-#' @return A regular grid and a table of surface intersection are returned.
+#' @param cellsize numeric; output cell size in map units.
+#' @param spdfid character; id field in spdf, default to the first column 
+#' of the spdf data.frame. (optional)
+#' @return A list is returned. The list contains spdf: a SpatialPolygonsDataFrame of 
+#' a regular grid and df;  a data.frame of surface intersection. df fields are id_cell: ids of the grid; 
+#' id_geo: ids of the spdf and area_pct: share of the area of the polygon in the cell 
+#' (a value of 55 means that 55% of the spdf unit is within the cell).
 #' @import sp
-# @examples
-# data(nuts2006)
-# mygrid <- getGridLayer(spdf=nuts2.spdf,cellsize=200000)
-# plot(mygrid$spdf)
-# head(mygrid$df)
+#' @examples
+#' data(nuts2006)
+#' mygrid <- getGridLayer(spdf = nuts2.spdf, cellsize = 200000)
+#' plot(mygrid$spdf)
+#' head(mygrid$df)
 #' @export
 getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   if (!requireNamespace("rgeos", quietly = TRUE)) {
@@ -81,113 +83,40 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   colnames(areas) <- c("id_cell","id_geo","area_pct")
   return(list(spdf = spgrid, df = areas))
 }
-# getGridLayer <- function(spdf, cellsize, spdfid = NULL){
-#   if (!requireNamespace("rgeos", quietly = TRUE)) {
-#     stop("'rgeos' package needed for this function to work. Please install it.",
-#          call. = FALSE)
-#   }
-#   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-#   
-#   spdf@data <- spdf@data[spdfid]
-#   row.names(spdf@data)<-spdf@data[,spdfid]
-#   spdf <- spChFIDs(spdf, spdf@data[,spdfid])
-#   spdf@data$area <- rgeos::gArea(spdf, byid=TRUE)
-#   
-#   extent <- bbox(spdf)
-#   posx <- extent[1]
-#   posy <- extent[2]
-#   nbcells_x <- floor((extent[3] - extent[1]) / cellsize)+1
-#   nbcells_y <- floor((extent[4] - extent[2]) / cellsize)+1
-#   
-#   pb <- txtProgressBar(min = 0, max = (nbcells_x+3), style = 3)
-#   for(i in 0:nbcells_x){
-#     for(j in 0:nbcells_y){
-#       square <- paste("POLYGON((",posx+cellsize*i," ",posy+cellsize*j,",",
-#                       posx+cellsize+cellsize*i," ",posy+cellsize*j,",",
-#                       posx+cellsize+cellsize*i," ",posy+cellsize+cellsize*j,",",
-#                       posx+cellsize*i," ",posy+cellsize+cellsize*j,",",
-#                       posx+cellsize*i," ",posy+cellsize*j,"))",sep="")
-#       if(i==0 & j == 0){
-#         spgrid <- rgeos::readWKT(square)
-#         spgrid <- spChFIDs(spgrid, iden <- paste(i,j,sep="_"))
-#       } else {
-#         spgrid2 <- rgeos:: readWKT(square)
-#         spgrid2 <- spChFIDs(spgrid2, iden <- paste(i,j,sep="_"))
-#         spgrid <- rbind(spgrid,spgrid2)
-#       }
-#     }
-#     Sys.sleep(0.1)
-#     # update progress bar
-#     setTxtProgressBar(pb, i)
-#   }
-#   data<-data.frame(id=sapply(slot(spgrid, "polygons"), slot, "ID"))
-#   row.names(data)<-data$id
-#   spgrid<-SpatialPolygonsDataFrame(spgrid, data)
-#   proj4string(spgrid) <-proj4string(spdf)
-#   
-#   # On ne garde que ce qui touche le fond de carte initial
-#   over <- rgeos::gDisjoint(spgrid, spdf, byid = TRUE)
-#   over <-melt(over,variable.name=1,value.name="touch", na.rm=TRUE)
-#   over <- over[over$touch ==FALSE,2:3]
-#   over$touch <- "ok"
-#   colnames(over)<-c("id","touch")
-#   spgrid@data <- data.frame(spgrid@data, touch=over[match(spgrid@data$id, 
-#                                                           over$id),"touch"])
-#   spgrid <- spgrid[!is.na(spgrid@data$touch),1]
-#   
-#   mask <- rgeos:: gBuffer(spdf, byid=FALSE, id=NULL, width=1.0, quadsegs=5, 
-#                           capStyle="ROUND",joinStyle="ROUND", mitreLimit=1.0)
-#   spgrid<- rgeos::gIntersection(spgrid, mask, byid=TRUE, 
-#                                 id=as.character(spgrid@data$id), 
-#                                 drop_lower_td=FALSE)
-#   data<-data.frame(id=sapply(slot(spgrid, "polygons"), slot, "ID"))
-#   row.names(data)<-data$id
-#   spgrid<-SpatialPolygonsDataFrame(spgrid, data)
-#   spgrid@data$cell_area <- rgeos::gArea(spgrid, byid=TRUE)
-#   proj4string(spgrid) <-proj4string(spdf)
-#   
-#   setTxtProgressBar(pb, i+1)
-#   # On calcul la table de passage
-#   # intersection
-#   parts <- rgeos::gIntersection(spgrid, spdf, byid=TRUE,drop_lower_td=TRUE)
-#   data<-data.frame(id=sapply(slot(parts, "polygons"), slot, "ID"))
-#   tmp <- data.frame(do.call('rbind', (strsplit(as.character(data$id)," "))))
-#   data$id1 <- as.vector(tmp$X1)
-#   data$id2 <- as.vector(tmp$X2)
-#   row.names(data)<-data$id
-#   parts<-SpatialPolygonsDataFrame(parts, data)
-#   proj4string(parts) <-proj4string(spdf)
-#   setTxtProgressBar(pb, i+2)
-#   # Part de surface intersectée
-#   parts@data$area_part <- rgeos::gArea(parts, byid=TRUE)
-#   parts@data <- data.frame(parts@data, 
-#                            area_full=spdf@data[match(
-#                              parts@data$id2, spdf@data[,spdfid]),"area"])
-#   parts@data$area_pct <- (parts@data$area_part/parts@data$area_full)*100
-#   areas <- parts@data[,c("id1","id2","area_pct")]
-#   colnames(areas) <- c("id_cell","id_geo","area_pct")
-#   setTxtProgressBar(pb, i+3)
-#   close(pb)
-#   return(list(spdf = spgrid, df = areas))
-# }
-
 #' @title Compute Data For A Grid Layer
-#' @description This function compute the data within for grid layer according to surface intersection.
+#' @description This function computes data to match a grid layer (outputed by \link{getGridLayer} )
+#' according to the surface intersections.
 #' @name getGridData
-#' @param x list; list generated by the \link{gridLayer} function.
-#' @param df data.frame; \code{df} contains the values to adapt to the grid.
-#' @param dfid character; id field in \code{df}, default to the first column 
-#' of \code{df}. (optional)
-#' @param var character; name of the numeric field in \code{df} to adapt to the grid.
-#' @return A data.frame is returned.
-#' @details We have to describe precisely the function here
-# @exemples
-# data(nuts2006)
-# mygrid <- getGridLayer(spdf=nuts2.spdf,cellsize=200000)
-# datagrid.df <- getGridData(mygrid, nuts2.df, "pop2008",dfid=NULL)
-# plot(mygrid$spdf,col="#CCCCCC",border="white")
-# propSymbolsLayer(spdf= mygrid$spdf, df = datagrid.df, 
-#                  var = "pop2008",k=0.002,col="black", add=T)
+#' @param x list; list generated by the \link{getGridLayer} function.
+#' @param df data.frame; df contains the values to adapt to the grid. It must 
+#' correspond to the spdf argument in \link{getGridLayer}.
+#' @param dfid character; id field in df, default to the first column 
+#' of df. (optional)
+#' @param var character; name of the numeric field in df to adapt to the grid.
+#' @return A data.frame is returned. id_cell are ids of the grid, the two other 
+#' variable are the share of the variable in each cell and the share of the 
+#' variable in each cell divided by its area (in map units).
+#' @examples
+#' data(nuts2006)
+#' # Create a grid layer
+#' mygrid <- getGridLayer(spdf=nuts2.spdf,cellsize = 200000)
+#' # Compute data for the grid layer
+#' datagrid.df <- getGridData(mygrid, nuts2.df, "pop2008",dfid=NULL)
+#' 
+#' # Plot total population
+#' plot(mygrid$spdf, col="#CCCCCC",border="white")
+#' propSymbolsLayer(spdf = mygrid$spdf, df = datagrid.df, legend.style = "e",
+#'                  legend.pos = "right", border = "white",legend.title.txt = "Total population",
+#'                  var = "pop2008", k=0.005, col="black", add=TRUE)
+#' 
+#' # Plot dentsity of population 
+#' ## conversion from square meter to square kilometers
+#' datagrid.df$densitykm <- datagrid.df$pop2008_density*1000*1000 
+#' cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
+#' choroLayer(spdf = mygrid$spdf,df = datagrid.df,var = "densitykm", add=FALSE,
+#'            border = "grey80",col=cols,
+#'            legend.pos = "right", method = "q6",
+#'            legend.title.txt = "Population density")
 #' @export
 getGridData <- function(x, df, dfid=NULL, var) {
   if (is.null(dfid)){dfid <- names(df)[1]}
@@ -206,11 +135,9 @@ getGridData <- function(x, df, dfid=NULL, var) {
                             x$spdf@data[match(
                               grid_data$id_cell, x$spdf@data$id),
                               "cell_area"])
-  grid_data$var_density <- (grid_data$var/grid_data$cell_area)*1000
-  grid_data <-grid_data[,c("id_cell","var","var_density")]
+  grid_data$var_density <- (grid_data$var/grid_data$cell_area)
+  grid_data <- grid_data[,c("id_cell","var","var_density")]
   colnames(grid_data) <- c("id_cell",var,paste(var,"density",sep="_"))
-  
   return(grid_data)
-  
 }
 

@@ -1,36 +1,57 @@
 #### Methods wrappers
-#' layoutLayer function.
-#'
-#' @details Must only be called after a plot
+#' @title Layout Layer
+#' @description Plot a layout layer.
 #' @name layoutLayer
-#' @param title Title of the map
-#' @param sources Sources of the map
-#' @param author Author of the map
-#' @param scale Size of the scale in kilometers. If set to NULL, no scale is 
-#' displayed, if set to 0 an automatic scale is displayed 
-#' (1/10 of the map width)
-#' @param frame Wheither displaying a frame or not
-#' @param col Color of the frame
-#' @param coltitle Color of the Title
-#' @param bg Background color
-#' @param north Noth arrow
-#' @param south South arrow
-#' @param extent extent optional, set the extent to the one of a 
-#' Spatial*DataFrame. If not set, plot.new has to be called first.
+#' @param title character; title of the map.
+#' @param sources character; sources of the map (or something else).
+#' @param author character; author of the map (or something else).
+#' @param scale numeric; size of the scale in kilometers. If set to NULL, no scale is 
+#' displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).
+#' @param frame boolean; wheither displaying a frame or not.
+#' @param col character; color of the frame border.
+#' @param coltitle character; color of the title.
+#' @param bg character; color of the frame background.
+#' @param north boolean; wheither displaying a Noth arrow.
+#' @param south boolean; wheither displaying a South arrow.
+#' @param extent SpatialPolygonsDataFrame or SpatialPointsDataFrame; set the extent to the one of a 
+#' Spatial object.
+#' @details If extent is not set, plot.new has to be called first.
 #' @export
 #' @examples
-#' data("TNdeleg")
+#' data("nuts2006")
+#' # Exemple 1
+#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+#' # Layout plot
+#' layoutLayer(title = "Title", 
+#'             sources = "Sources", 
+#'             author = "Author",
+#'             scale = 0, 
+#'             frame = TRUE,
+#'             col = "black", 
+#'             coltitle = "white",
+#'             south = TRUE)
+#' 
+#' # Exemple 2
+#' layoutLayer(scale = NULL,col = NA, coltitle = "black",
+#'             sources = "", author = "",
+#'             frame = FALSE, bg = "#A6CAE0",
+#'             south = TRUE, extent = nuts0.spdf)
+#' plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+#' plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
 layoutLayer <- function(title = "Title of the map, year",
                         sources = "Source(s)", author = "Author(s)",
                         col = "black", coltitle = "white", bg = NULL,
                         scale = 0, frame = TRUE, north = FALSE, 
                         south = FALSE,
                         extent = NULL){
-  if (!is.null(extent)){
-    sp::plot(extent, border = NA, col = NA, add = FALSE)
-  }
   
-  mapExtent <- par()$usr
+    if (!is.null(extent)){
+      sp::plot(extent, border = NA, col = NA, add = FALSE)
+      mapExtent <- par()$usr
+    }else {
+      mapExtent <- par()$usr
+    }
+
   x1 <- mapExtent[1]
   x2 <- mapExtent[2]
   y1 <- mapExtent[3]
@@ -49,7 +70,7 @@ layoutLayer <- function(title = "Title of the map, year",
       scalesize <- (x2-x1)/10
       scalesize <- signif(scalesize, digits = 0)
     }
-    if(scale != 0){scalesize <- scale*1000}
+    if(scale != 0){scalesize <- scale * 1000}
     labelscale <- paste(scalesize / 1000,"km", sep = " ")
     rect(x2 - scalesize - delta/2, y1+delta, x2-delta/2, y1+(y2-y1)/200+delta/2,
          col = "black", border = "black")

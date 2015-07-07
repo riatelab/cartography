@@ -133,8 +133,8 @@ NULL
 #' @docType data
 NULL
 
-#' @title color palettes
-#' @name colors
+#' @title Color Palettes
+#' @name cartography.colors
 #' @description Color gradients adapted to thematic cartography
 #' @format list
 #' @details xxx

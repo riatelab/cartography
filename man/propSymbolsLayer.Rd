@@ -77,7 +77,7 @@ second color (col2) for values inferior to breakval.
 Two maps with the same spdf, k, and fixmax parameters will be comparable.
 }
 \examples{
-## data("nuts2006")
+data("nuts2006")
 ## Exemple 1
 # Layout plot
 layoutLayer(title = "Countries Population in Europe",

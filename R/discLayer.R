@@ -84,9 +84,5 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL,
                   distr = distr, thickness = sizes, 
                   col =col, round = legend.values.rnd, 
                   nodata = FALSE)
-  
-  
-
-  
 }
 
