@@ -122,7 +122,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   dots <- cbind(spdf@data[,spdfid], as.data.frame(sp::coordinates(spdf)))
   colnames(dots)[1] <- c(spdfid)
   dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
-  dots <- dots[order(dots[, var], decreasing = TRUE),]
+  dots <- dots[order(abs(dots[, var]), decreasing = TRUE),]
   
   x1 <- sp::bbox(spdf)[1]
   y1 <- sp::bbox(spdf)[2]
