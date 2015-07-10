@@ -43,7 +43,6 @@
 #' The "geom" method consists is based on a geometric progression along the variable values.  
 #' @references Herbert A. Sturges, «
 #' \emph{The Choice of a Class Interval }», Journal of the American Statistical Association, vol. 21, n° 153, mars 1926, p. 65-66.
-#' @return A plot is returned
 #' @export
 #' @examples
 #' ## Exemple 1
@@ -104,26 +103,26 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # get the colors and breaks
   layer <- choro(var=spdf@data[,var], distr = breaks, col = col,
-                 nbclass = nclass, method = method)
+                 nclass = nclass, method = method)
   # poly
   plot(spdf, col = as.vector(layer$colMap), border = border, lwd = lwd, 
        add = add)
-
+  
   nodata <- FALSE
   if(max(is.na(df[,var])>0)){nodata <- TRUE}
   
   if(legend.pos !="n"){
-    LegendChoro(pos = legend.pos, 
-                legTitle = legend.title.txt,
-                legTitleCex = legend.title.cex,
-                legValuesCex = legend.values.cex,
-                distr = layer$distr, 
-                cols = layer$col, 
-                round = legend.values.rnd,
+    legendChoro(pos = legend.pos, 
+                title.txt = legend.title.txt,
+                title.cex = legend.title.cex,
+                values.cex = legend.values.cex,
+                breaks = layer$distr, 
+                col = layer$col, 
+                values.rnd = legend.values.rnd,
                 frame = legend.frame, 
                 symbol="box", 
                 nodata = nodata, 
-                nodatalabel = legend.nodata)
+                nodata.txt = legend.nodata)
     
   }
   

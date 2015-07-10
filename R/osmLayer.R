@@ -19,10 +19,10 @@
 #' @return An OpenStreetMap object is returned.
 #' @examples
 #' data("nuts2006")
-# 
-# # Download the tiles
-# StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
-# class(StamWatCol)
+#' # Download the tiles
+#' # Do not run:
+#' #StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+#' #class(StamWatCol)
 getTiles <- function(spdf, type = "osm", zoom = NULL){
   if (!requireNamespace("rgdal", quietly = TRUE)) {
     stop("'rgdal' package needed for this function to work. Please install it.",
@@ -83,25 +83,13 @@ getTiles <- function(spdf, type = "osm", zoom = NULL){
 #' @export
 #' @examples
 #' data("nuts2006")
-# 
-# # Download the tiles
-# StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
-# 
-# # Display the tiles Layer
-# tilesLayer(x = StamWatCol)
-# 
-# # Display countries boundaries
-# plot(nuts0.spdf, add = TRUE)
-# 
-# # Layout plot
-# layoutLayer(title = "Europe", 
-#             sources = "Stamen, UMS RIATE, 2015", 
-#             author = "UMS RIATE",
-#             scale = NULL, 
-#             frame = TRUE,
-#             col = "black", 
-#             coltitle = "white",
-#             south = TRUE)
+#' # Do not run: 
+#' # Download the tiles
+#' #StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+#' #Display the tiles Layer
+#' #tilesLayer(x = StamWatCol)
+#' #Display countries boundaries
+#' #plot(nuts0.spdf, add = TRUE)
 tilesLayer <- function(x, add = FALSE){
   if (!requireNamespace("OpenStreetMap", quietly = TRUE)) {
     stop("'OpenStreetMap' package needed for this function to work. Please install it.",

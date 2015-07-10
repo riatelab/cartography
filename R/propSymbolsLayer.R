@@ -36,7 +36,6 @@
 #' second color (col2) for values inferior to breakval.
 #' 
 #' Two maps with the same spdf, k, and fixmax parameters will be comparable.
-#' @return A plot is returned.
 #' @export
 #' @import sp
 #' @examples
@@ -167,17 +166,17 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     sizevect <- dots$circleSize
     varvect <- dots[,var]
     if(legend.pos!="n"){
-      LegendCircSymbols(pos = legend.pos, legTitle = legend.title.txt,
-                        legTitleCex = legend.title.cex,
-                        legValuesCex = legend.values.cex,
-                        varvect = varvect,
-                        sizevect = sizevect,
+      legendCirclesSymbols(pos = legend.pos, title.txt = legend.title.txt,
+                        title.cex = legend.title.cex,
+                        values.cex = legend.values.cex,
+                        var = varvect,
+                        r = sizevect,
                         breakval  = breakval,
-                        col1 = col,
+                        col = col,
                         col2 = col2,
                         frame = legend.frame,
-                        round = legend.values.rnd,
-                        type = legend.style)
+                        values.rnd =  legend.values.rnd,
+                        style = legend.style)
     }
   }
   # SQUARES
@@ -188,18 +187,17 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     sizevect <- dots$squareSize
     varvect <- dots[,var]
     if(legend.pos!="n"){
-      LegendSquaresSymbols(pos = legend.pos, legTitle = legend.title.txt,
-                           legTitleCex = legend.title.cex, 
-                           legValuesCex = legend.values.cex,
-                           varvect = varvect,
-                           sizevect = sizevect,
-                           breakval = breakval, 
-                           
-                           col1 = col, 
-                           col2 = col2, 
-                           frame = legend.frame, 
-                           round = legend.values.rnd, 
-                           type = legend.style)
+      legendSquaresSymbols(pos = legend.pos, title.txt = legend.title.txt,
+                           title.cex = legend.title.cex,
+                           values.cex = legend.values.cex,
+                           var = varvect,
+                           r = sizevect,
+                           breakval  = breakval,
+                           col = col,
+                           col2 = col2,
+                           frame = legend.frame,
+                           values.rnd =  legend.values.rnd,
+                           style = legend.style)
     }
   }
   
@@ -214,17 +212,17 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     sizevect <- dots$heightSize
     varvect <- dots[,var]
     if(legend.pos!="n"){
-      LegendHeightSymbols(pos = legend.pos, legTitle = legend.title.txt,
-                          legTitleCex = legend.title.cex, 
-                          legValuesCex = legend.values.cex,
-                          varvect = varvect,
-                          sizevect = sizevect,
-                          breakval = breakval, 
-                          col1 = col, 
-                          col2 = col2,             
-                          frame = legend.frame, 
-                          round = legend.values.rnd, 
-                          type = legend.style)
+      legendBarsSymbols(pos = legend.pos, title.txt = legend.title.txt,
+                           title.cex = legend.title.cex,
+                           values.cex = legend.values.cex,
+                           var = varvect,
+                           r = sizevect,
+                           breakval  = breakval,
+                           col = col,
+                           col2 = col2,
+                           frame = legend.frame,
+                           values.rnd =  legend.values.rnd,
+                           style = legend.style)
       
     }
   }

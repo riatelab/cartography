@@ -9,7 +9,7 @@
 #' @return A list is returned. The list contains spdf: a SpatialPolygonsDataFrame of 
 #' a regular grid and df;  a data.frame of surface intersection. df fields are id_cell: ids of the grid; 
 #' id_geo: ids of the spdf and area_pct: share of the area of the polygon in the cell 
-#' (a value of 55 means that 55% of the spdf unit is within the cell).
+#' (a value of 55 means that 55\% of the spdf unit is within the cell).
 #' @import sp
 #' @examples
 #' data(nuts2006)

@@ -6,6 +6,8 @@
 #' of the spdf data.frame. (optional)
 #' @param tol numeric; tolerance to detect contiguity (in map units). You may 
 #' not want to change this parameter.
+#' @return A SpatialLinesDataFrame of borders is returned. This object has three id fields: id, id1 and id2.
+#' id1 and id2 are ids of units that neighbour a border; id concatenates id1 and id2.
 #' @import sp
 #' @import reshape2
 #' @examples
@@ -14,9 +16,8 @@
 #' nuts0.contig.spdf$col <- sample(x = rainbow(length(nuts0.contig.spdf)))
 #' plot(nuts0.spdf, border = NA, col = "grey60")
 #' plot(nuts0.contig.spdf, col = nuts0.contig.spdf$col, lwd = 3, add = TRUE)
-#' @return A SpatialLinesDataFrame of borders is returned.
 #' @export
-getBorders <- function(spdf, spdfid=NULL, tol=1){
+getBorders <- function(spdf, spdfid = NULL, tol = 1){
 
   if (!requireNamespace("rgeos", quietly = TRUE)) {
     stop("'rgeos' package needed for this function to work. Please install it.",
@@ -35,7 +36,6 @@ getBorders <- function(spdf, spdfid=NULL, tol=1){
   # simplification du fichier, regroupement des polygones multi-parties
   spdf@data <- spdf@data[id]
   colnames(spdf@data)[1]<-"id"
-  class(spdf@data$id)
 
   spdf@data$id <- as.vector(as.character(spdf@data$id))
   spdf <- sp::spChFIDs(spdf,spdf$id)
@@ -44,10 +44,9 @@ getBorders <- function(spdf, spdfid=NULL, tol=1){
   spdf<-SpatialPolygonsDataFrame(spdf, data)
 
   poly1xpoly2 <- function(spdf, distance, poly1, poly2){
-
     # buffers des pays
-    geombuff <- rgeos::gBuffer(spdf, byid=TRUE, width=distance,quadsegs=1,capStyle="SQUARE")
-
+    geombuff <- rgeos::gBuffer(spdf, byid=TRUE, width=distance,quadsegs=1,
+                               capStyle="SQUARE")
     # Intersection
     tmp1 <- geombuff[geombuff@data$id==poly1,]
     tmp2 <- geombuff[geombuff@data$id==poly2,]
@@ -60,13 +59,14 @@ getBorders <- function(spdf, spdfid=NULL, tol=1){
   }
 
   # Execution de la sous fonction pour toutes les geométries contigues (selon la tol)
-
-  geombuff <- rgeos::gBuffer(spdf, byid=TRUE, width=distance,quadsegs=1,capStyle="SQUARE")
+  geombuff <- rgeos::gBuffer(spdf, byid=TRUE, width=distance,quadsegs=1,
+                             capStyle="SQUARE")
   test <- rgeos::gDisjoint(geombuff, byid = TRUE)
   transfrontCountries <- melt(test,variable.name=1,value.name="fij", na.rm=TRUE)
-  transfrontCountries <- transfrontCountries[transfrontCountries$Var1 !=transfrontCountries$Var2,]
-  transfrontCountries <- transfrontCountries[transfrontCountries$fij ==FALSE,]
 
+  transfrontCountries <- transfrontCountries[transfrontCountries$Var1 != 
+                                               transfrontCountries$Var2,]
+  transfrontCountries <- transfrontCountries[transfrontCountries$fij ==FALSE,]
   bordures <- NULL
   t <- 0
 #   pb <- txtProgressBar(min = 0, max = dim(transfrontCountries)[1], style = 3)
@@ -74,12 +74,10 @@ getBorders <- function(spdf, spdfid=NULL, tol=1){
     p1 <- as.character(transfrontCountries$Var1[i])
     p2 <- as.character(transfrontCountries$Var2[i])
     x<-poly1xpoly2(spdf=spdf,distance=distance,poly1=p1,poly2=p2)
-
     if(class(x)=="SpatialPolygons"){
       if(t==0){bordures<-x} else { bordures <-rbind(bordures, x) }
       t=1
     }
-
   }
   data<-data.frame(id=sapply(slot(bordures, "polygons"), slot, "ID"))
 
@@ -87,12 +85,11 @@ getBorders <- function(spdf, spdfid=NULL, tol=1){
   bordures<-SpatialPolygonsDataFrame(bordures, data)
 
   borders <- rgeos::gBoundary(bordures, byid=TRUE, id = bordures@data$id)
-  borders<-SpatialLinesDataFrame(borders, data)
-
-  borders@data
-  tmp <- data.frame(do.call('rbind', strsplit(as.character(borders@data$id),mysep)))
-  tmp$X1<-as.vector(tmp$X1)
-  tmp$X2<-as.vector(tmp$X2)
+  borders <- SpatialLinesDataFrame(borders, data)
+  tmp <- data.frame(do.call('rbind', strsplit(as.character(borders@data$id),
+                                              mysep)))
+  tmp$X1 <- as.vector(tmp$X1)
+  tmp$X2 <- as.vector(tmp$X2)
   colnames(tmp)<-c("id1","id2")
   borders@data$id1 <- tmp$id1
   borders@data$id2 <- tmp$id2

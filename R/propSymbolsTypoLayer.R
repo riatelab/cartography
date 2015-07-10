@@ -107,17 +107,17 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
             inches = FALSE, asp = 1, xlab = "", ylab = "")
     sizevect <- dots$circleSize
     varvect <- dots[,var]
-    LegendCircSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
-                      legTitleCex = legend.title.cex,
-                      legValuesCex = legend.values.cex,
-                      varvect = varvect,
-                      sizevect = sizevect,
-                      breakval  = NULL,
-                      col1 = "white",
-                      col2 = "white",
-                      frame = legend.frame,
-                      round = legend.values.rnd,
-                      type = legend.style)
+#     LegendCircSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
+#                       legTitleCex = legend.title.cex,
+#                       legValuesCex = legend.values.cex,
+#                       varvect = varvect,
+#                       sizevect = sizevect,
+#                       breakval  = NULL,
+#                       col1 = "white",
+#                       col2 = "white",
+#                       frame = legend.frame,
+#                       round = legend.values.rnd,
+#                       type = legend.style)
      }
   
   # SQUARES
@@ -141,13 +141,13 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
 
     
   }
-  # CAISSONS TYPO
-  LegendTypo(pos = legend.var2.pos, legTitle = legend.title.var2.txt,
-             legTitleCex = legend.title.cex, legValuesCex = legend.values.cex,
-             categ = rVal,
-             cols = colours,
-             nodatalabel = "Absence\nd'information",nodata = FALSE,
-             frame=legend.frame,symbol="box")
+#   # CAISSONS TYPO
+#   LegendTypo(pos = legend.var2.pos, legTitle = legend.title.var2.txt,
+#              legTitleCex = legend.title.cex, legValuesCex = legend.values.cex,
+#              categ = rVal,
+#              cols = colours,
+#              nodatalabel = "Absence\nd'information",nodata = FALSE,
+#              frame=legend.frame,symbol="box")
   
 }
 

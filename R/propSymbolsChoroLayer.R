@@ -11,7 +11,7 @@
 #' @param var character; name of the numeric field in \code{df} to plot.
 #' @param var2 character; name of the factor field in \code{df} to plot.
 #' @param distr numeric; a vector of breaks. (see Details)
-#' @param nbclass numeric; a targeted number of classes (if null,the Huntsberger 
+#' @param nclass numeric; a targeted number of classes (if null,the Huntsberger 
 #' method is used).
 #' @param method character; a discretization method; one of "sd", "equal", 
 #' "quantile", "jenks","q6","geom"  (see Details)
@@ -66,7 +66,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                  var2,
                                  symbols = "circles",
                                  col = NULL,
-                                 nbclass=NULL,
+                                 nclass=NULL,
                                  distr=NULL,
                                  method="quantile",
                                  k = 0.02, fixmax = NULL,
@@ -104,7 +104,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   
   # get the colors and distr
   layer <- choro(var=dots[,var2], distr = distr, col = col,
-                 nbclass = nbclass, method = method)
+                 nclass = nclass, method = method)
   
   
   # CIRCLES
@@ -114,17 +114,17 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
             inches = FALSE, asp = 1, xlab = "", ylab = "")
     sizevect <- dots$circleSize
     varvect <- dots[,var]
-    LegendCircSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
-                      legTitleCex = legend.title.cex,
-                      legValuesCex = legend.values.cex,
-                      varvect = varvect,
-                      sizevect = sizevect,
-                      breakval  = NULL,
-                      round = legend.values.rnd,
-                      col1 = "white",
-                      col2 = "white",
-                      frame = legend.frame,
-                      type = legend.style)
+#     LegendCircSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
+#                       legTitleCex = legend.title.cex,
+#                       legValuesCex = legend.values.cex,
+#                       varvect = varvect,
+#                       sizevect = sizevect,
+#                       breakval  = NULL,
+#                       round = legend.values.rnd,
+#                       col1 = "white",
+#                       col2 = "white",
+#                       frame = legend.frame,
+#                       type = legend.style)
   }
   
   # SQUARES
@@ -134,18 +134,18 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
     sizevect <- dots$squareSize
     varvect <- dots[,var]
     
-    LegendSquaresSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
-                      legTitleCex = legend.title.cex,
-                      legValuesCex = legend.values.cex,
-                      varvect = varvect,
-                      sizevect = sizevect,
-                      breakval  = NULL,
-                      col1 = "white",
-                      col2 = "white",
-                      frame = legend.frame,
-                      round = legend.values.rnd,
-                      type = legend.style)
-    
+#     LegendSquaresSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
+#                       legTitleCex = legend.title.cex,
+#                       legValuesCex = legend.values.cex,
+#                       varvect = varvect,
+#                       sizevect = sizevect,
+#                       breakval  = NULL,
+#                       col1 = "white",
+#                       col2 = "white",
+#                       frame = legend.frame,
+#                       round = legend.values.rnd,
+#                       type = legend.style)
+#     
   }
   
   #BARRES
@@ -157,34 +157,34 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
             inches = FALSE, asp = 1, xlab = "", ylab = "")
     sizevect <- dots$heightSize
     varvect <- dots[,var]
-    
-    LegendHeightSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
-                        legTitleCex = legend.title.cex,
-                        legValuesCex = legend.values.cex,
-                        varvect = varvect,
-                        sizevect = sizevect,
-                        breakval  = NULL,
-                        col1 = "white",
-                        col2 = "white",
-                        frame = legend.frame,
-                        round = legend.values.rnd,
-                        type = legend.style)
+#     
+#     LegendHeightSymbols(pos = legend.var.pos, legTitle = legend.title.var.txt,
+#                         legTitleCex = legend.title.cex,
+#                         legValuesCex = legend.values.cex,
+#                         varvect = varvect,
+#                         sizevect = sizevect,
+#                         breakval  = NULL,
+#                         col1 = "white",
+#                         col2 = "white",
+#                         frame = legend.frame,
+#                         round = legend.values.rnd,
+#                         type = legend.style)
     
     
   }
 
 # LEGENDE CAISSONS CHORO
-LegendChoro(pos = legend.var2.pos, 
-            legTitle = legend.title.var2.txt,
-            legTitleCex = legend.title.cex,
-            legValuesCex = legend.values.cex,
-            distr = layer$distr, 
-            cols = layer$col, 
-            round = legend.values.rnd,
-            frame = legend.frame, 
-            symbol="box",
-            nodata = FALSE, 
-            nodatalabel = "No data available")
+# LegendChoro(pos = legend.var2.pos, 
+#             legTitle = legend.title.var2.txt,
+#             legTitleCex = legend.title.cex,
+#             legValuesCex = legend.values.cex,
+#             distr = layer$distr, 
+#             cols = layer$col, 
+#             round = legend.values.rnd,
+#             frame = legend.frame, 
+#             symbol="box",
+#             nodata = FALSE, 
+#             nodatalabel = "No data available")
 
 
 

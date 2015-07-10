@@ -80,17 +80,17 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   if(max(is.na(df[,var])>0)){nodata <- TRUE}
   
   if(legend.pos !="n"){
-    LegendTypo(pos = legend.pos, 
-                legTitle = legend.title.txt,
-                legTitleCex = legend.title.cex,
-                legValuesCex = legend.values.cex,
-                categ = rVal, 
-                cols = mycols, 
-                frame = legend.frame, 
-                symbol="box", 
-                nodata = nodata, 
-                nodatalabel = legend.nodata)
-    
+#     LegendTypo(pos = legend.pos, 
+#                 legTitle = legend.title.txt,
+#                 legTitleCex = legend.title.cex,
+#                 legValuesCex = legend.values.cex,
+#                 categ = rVal, 
+#                 cols = mycols, 
+#                 frame = legend.frame, 
+#                 symbol="box", 
+#                 nodata = nodata, 
+#                 nodatalabel = legend.nodata)
+#     
   }
   
 

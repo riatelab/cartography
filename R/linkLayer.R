@@ -48,7 +48,7 @@ propLinkLayer <- function(spdf, df, spdfid = NULL, dfidi = NULL, dfidj = NULL,
 #' @param var2 name of the variable corresponding to discretize
 #' @param distr vector of classes
 #' @param col vector of colors
-#' @param nbclass number of classes targeted (if null,
+#' @param nclass number of classes targeted (if null,
 #' the Huntsberger method is used)
 #' @param method discretization method ("sd", "equal",
 #' "quantile", "jenks","q6","geom")
@@ -59,7 +59,7 @@ propLinkChoroLayer <- function(spdf, df, spdfid = NULL, dfidi = NULL,
                                dfidj = NULL, var1 = NULL, var2 = NULL,
                                distr = NULL,
                                col = carto.pal("kaki.pal", n1 = 6),
-                               nbclass = 6,
+                               nclass = 6,
                                method = "quantile",
                                maxlwd = 20){
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
@@ -80,7 +80,7 @@ propLinkChoroLayer <- function(spdf, df, spdfid = NULL, dfidi = NULL,
   flux$lwd <- flux[,var] / (max(flux[,var1]) / maxlwd)
   choroout <- choro(var=flux[,var2], distr = distr,
                     col = col,
-                    nbclass = nbclass,
+                    nclass = nclass,
                     method = method)
 
   flux$col <- choroout$colMap

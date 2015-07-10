@@ -11,7 +11,7 @@
 #' @details Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
 #' "pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal". 
 #' Use  \code{display.carto.all(5)} to show all palettes. Use display.carto.pal("PALETTE NAME") to show one palette. 
-#' @return A vector of colors is returned
+#' @return A vector of colors is returned.
 #' @examples 
 #' # Simple gradient in blue
 #' carto.pal(pal1 = "blue.pal" ,n1 = 20)
@@ -94,7 +94,6 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' display.carto.all(8)
 #' display.carto.all(12)
 #' display.carto.all(20)
-#' @return A plot is returned.
 #' @export
 display.carto.all<-function(n = 10)
 {
@@ -129,7 +128,6 @@ display.carto.all<-function(n = 10)
 #' @examples
 #' display.carto.pal("orange.pal")
 #' display.carto.pal("sand.pal")
-#' @return A plot is returned.
 #' @export
 display.carto.pal<-function(name)
 {
