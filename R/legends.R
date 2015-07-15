@@ -746,7 +746,7 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 
 #' @title Legend For Double Proportionnal Triangles Maps
 #' @description Plot legends for double proportionnal triangles maps.
-#' @name legend2TrianglesSymbols
+#' @name legendPropTriangles
 #' @param pos character; position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
 #' @param title.txt character; title of the legend.
@@ -776,13 +776,13 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 #' var2 <- round((nuts0.df$gdppps2008 / sum(nuts0.df$gdppps2008))*100,2)
 #' r <- sqrt(var)/2*1000000
 #' r2 <- sqrt(var2)/2*1000000
-#' legend2TrianglesSymbols(pos = "topright", var.txt = "population totale (habs)",
+#' legendPropTriangles(pos = "topright", var.txt = "population totale (habs)",
 #'                         var2.txt = "pib (euros)", title.txt="PIB par habitant",
 #'                         title.cex = 0.8, values.cex = 0.6, cex = 1,
 #'                         var = var, var2 = var2, r = r, r2 = r2,
 #'                         col="green", col2="yellow", frame=TRUE, values.rnd=2, 
 #'                         style="c")
-legend2TrianglesSymbols<- function(pos = "topleft", title.txt, var.txt,var2.txt, 
+legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt, 
                                    title.cex = 0.8, cex = 1,
                                    values.cex = 0.6, var, var2, r, r2, col="red", 
                                    col2="blue", frame=FALSE, values.rnd=0, style="c"){
