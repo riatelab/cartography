@@ -77,6 +77,11 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL,
   spdf@data <- data.frame(spdf@data, var2=df[match(spdf@data[,spdfid2], 
                                                    df[,dfid]),var])
   
+  
+  # elimination des valeurs manquantes
+  spdf <- spdf[!is.na(spdf@data$var1),]
+  spdf <- spdf[!is.na(spdf@data$var2),]
+  
   # discontinuité relative ou absolue
   if (type == "rel") {spdf@data$disc <- pmax(spdf@data$var1/spdf@data$var2,
                                              spdf@data$var2/spdf@data$var1)}
