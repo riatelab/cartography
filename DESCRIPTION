@@ -1,8 +1,8 @@
 Package: cartography
 Title: Thematic Cartography and More
-Version: 0.1
+Version: 1.0
 Authors@R: c(
-      person("Timothee", "Giraud", 
+      person("Timothée", "Giraud", 
         email = "timothee.giraud@ums-riate.fr", role = c("cre","aut")),
       person("Nicolas", "Lambert", 
         email = "nicolas.lambert@ums-riate.fr", role = c("aut")))
