@@ -2,102 +2,102 @@
 % Please edit documentation in R/propSymbolsChoroLayer.R
 \name{propSymbolsChoroLayer}
 \alias{propSymbolsChoroLayer}
-\title{Proportional Symbols Typo Layer}
+\title{Proportional and Choropleth Layer}
 \usage{
-propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2,
-  symbols = "circles", col = NULL, nclass = NULL, distr = NULL,
-  method = "quantile", k = 0.02, fixmax = NULL,
-  legend.var.pos = "bottomleft", legend.var2.pos = "bottomleft",
-  legend.title.var.txt = var, legend.title.var2.txt = var2,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.style = "a",
-  legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
+propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
+  fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1, var2,
+  col = NULL, nclass = NULL, breaks = NULL, method = "quantile",
+  legend.var.pos = "right", legend.var2.pos = "topright",
+  legend.var.title.txt = var, legend.var2.title.txt = var2,
+  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.var.style = "c",
+  legend.var.frame = FALSE, legend.var2.frame = FALSE,
+  legend.var.values.rnd = 0, legend.var2.values.rnd = 0,
+  legend.var2.nodata = "no data", add = TRUE)
 }
 \arguments{
-\item{spdf}{Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame
-symbols are plotted on centroids.}
+\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
+is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{data.frame; \code{df} contains the values to plot.}
+\item{df}{data.frame; df contains the values to plot.}
 
-\item{spdfid}{character; id field in \code{spdf}, default to the first column
-of the \code{spdf} data.frame. (optional)}
+\item{spdfid}{character; id field in spdf, default to the first column
+of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in \code{df}, default to the first column
-of \code{df}. (optional)}
+\item{dfid}{character; id field in df, default to the first column
+of df. (optional)}
 
-\item{var}{character; name of the numeric field in \code{df} to plot.}
+\item{var}{character; name of the numeric field in df to plot the symbols sizes.}
 
-\item{var2}{character; name of the factor field in \code{df} to plot.}
+\item{k}{numeric; share of the map occupied by the biggest symbol (see Details).}
 
-\item{symbols}{character; type of symbols, one of "circles", "squares" or "height").}
+\item{fixmax}{numeric; value of the biggest symbol (see Details).}
 
-\item{col}{character; a vector of colors (hues).}
+\item{symbols}{character; type of symbols, one of "circle", "square" or "bar".}
 
-\item{nclass}{numeric; a targeted number of classes (if null,the Huntsberger
-method is used).}
+\item{border}{character; color of polygon borders.}
 
-\item{distr}{numeric; a vector of breaks. (see Details)}
+\item{lwd}{numeric; borders width.}
+
+\item{var2}{character; name of the numeric field in df to plot the colors.}
+
+\item{col}{character; a vector of colors. Note that if breaks is specified there must be one less
+colors specified than the number of break.}
+
+\item{nclass}{numeric; a targeted number of classes. If null, the number of class is automatically defined (see Details).}
+
+\item{breaks}{numeric; break points in sorted order to indicate the intervals for assigning the colors.
+Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
 
 \item{method}{character; a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see Details)}
+"quantile", "jenks","q6","geom"  (see Details).}
 
-\item{k}{numeric; share of the map occupied by the biggest symbol.}
+\item{legend.var.pos}{character; position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
+legend.var.pos is "n" then the legend is not plotted.}
 
-\item{fixmax}{numeric; value of the biggest symbol. (optional)}
+\item{legend.var2.pos}{character; position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
+legend.var2.pos is "n" then the legend is not plotted.}
 
-\item{legend.var.pos}{character; position of the legend var, one of "topleft", "top",}
+\item{legend.var.title.txt}{character; title of the legend (numeric data).}
 
-\item{legend.var2.pos}{character; position of the legend var2, one of "topleft", "top",
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
-
-\item{legend.title.var.txt}{character; title of the legend (numeric data).}
-
-\item{legend.title.var2.txt}{character; title of the legend (factor data).}
+\item{legend.var2.title.txt}{character; title of the legend (factor data).}
 
 \item{legend.title.cex}{numeric; size of the legend title.}
 
 \item{legend.values.cex}{numeric; size of the values in the legend.}
 
-\item{legend.style}{character; either "a" or "b". The legend has two display
+\item{legend.var.style}{character; either "a" or "b". The legend has two display
 styles.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.var.frame}{boolean; whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.values.rnd}{numeric; number of decimal places of the values in
+\item{legend.var2.frame}{boolean; whether to add a frame to the legend (TRUE) or
+not (FALSE).}
+
+\item{legend.var.values.rnd}{numeric; number of decimal places of the values in
 the legend.}
+
+\item{legend.var2.values.rnd}{numeric; number of decimal places of the values in
+the legend.}
+
+\item{legend.var2.nodata}{text for legend.nodata}
 
 \item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
-\value{
-A plot is returned.
-}
 \description{
-Plot a proportional symbols layer with a color based on a qualitative data. Various symbols are availables.
+Plot a proportional symbols layer with color based on a quantitative data discrtization.
 }
 \examples{
 data("nuts2006")
-# Layout plot
-layoutLayer(title = "Countries Population in Europe",
-           sources = "UMS RIATE, 2015",
-           author = "UMS RIATE",
-           scale = NULL,
-           frame = TRUE,
-           col = "black",
-          coltitle = "white",
-           bg = "#D9F5FF",
-           south = TRUE,
-           extent = nuts0.spdf)
-#Countries plot
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
-#Population plot on proportional symbols
-#colours <- palette(rainbow(length(nuts0.spdf)))
-#propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
-#                     var = "pop2008", var2="id", k = 0.01,
-#                     symbols = "circles", col =  colours,
-#                     legend.var.pos = "topleft", legend.var2.pos = "topright",
-#                     legend.title.var.txt = "Total\\npopulation (2008)",
-#                     legend.title.var2.txt = "Types de trucs",
-#                     legend.style = "b")
+## Exemple 1
+# Countries plot
+plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+# Population and growth rate
+nuts0.df$cagr <- (((nuts0.df$pop2008 / nuts0.df$pop1999)^(1/9)) - 1) * 100
+propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,var = "pop2008", var2 = "cagr",
+                      legend.var.values.rnd = -3, legend.var2.values.rnd = 2)
 }
 
