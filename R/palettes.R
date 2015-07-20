@@ -94,6 +94,7 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' display.carto.all(8)
 #' display.carto.all(12)
 #' display.carto.all(20)
+#' @import graphics
 #' @export
 display.carto.all<-function(n = 10)
 {

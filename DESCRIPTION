@@ -10,12 +10,14 @@ Description: Create and integrate maps into your R workflow. Classical thematic
   maps and more unconventionnal geographical representation are available. 
 License: GPL-3
 LazyData: true
-Depends:
+Depends: 
     R (>= 2.10),
     sp
 Imports:
     classInt,
-    reshape2
+    reshape2, 
+    stats, 
+    graphics
 Suggests:
     rgeos,
     OpenStreetMap,

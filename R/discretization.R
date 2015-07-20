@@ -37,6 +37,7 @@
 #' abline(v = med, col = "blue", lwd = 3)
 #' @return numeric
 #' @import classInt
+#' @import stats
 #' @export
 discretization <- function(v, nclass = NULL, method = "quantile"){
   v <- as.vector(na.omit(v))
