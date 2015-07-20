@@ -1,96 +1,151 @@
-#' @name propLinkLayer
-#' @title Layer of Proportional Links
-#' @description Plot a layer of links
-#' @param spdf Spatial*DataFrame
-#' @param df DataFrame with Ids and Labels
-#' @param spdfid Ids of the obj Spatial*DataFrame
-#' @param dfidi Ids of origins
-#' @param dfidj Ids of destinations
-#' @param var1 name of the variable corresponding to lwd of the links
-#' @param var2 name of the variable corresponding to colors
-#' @param maxlwd max lwd of the links
-#' @return a plot
+
+
+
+
+#' @name getLinkLayer
+#' @title Create a SpatialLinesDataFrame from a data.frame of Links.
+#' @description Create a SpatialLinesDataFrame from a data.frame of links.
+#' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; layer used to 
+#' get starting points of links. If spdf2 is NULL, spdf is also used to get ending points.  
+#' If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.
+#' @param spdf2 SpatialPointsDataFrame or SpatialPolygonsDataFrame; layer used to 
+#' get ending points of links. 
+#' If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.
+#' @param df data.frame; df contains the values to plot.
+#' @param spdfid character; id field in spdf, default to the first column 
+#' of the spdf data.frame. (optional)
+#' @param spdf2id character; id field in spdf2, default to the first column 
+#' of the spdf2 data.frame. (optional)
+#' @param dfids character; id field of starting points of links in df, default to the first column 
+#' of df. (optional)
+#' @param dfide character; id field of ending points of links in df, default to the second column 
+#' of df. (optional)
+#' @return A SpatialLinesDataFrame is returned, its data.frame contains two fields (dfid1 and dfid2).
+#' @import sp
+#' @examples 
+#' data("nuts2006")
+#' data_links <- read.csv("/mnt/data/depot/cartography/inst/extdata/data_links.csv", 
+#'                        stringsAsFactors=FALSE)
+#' x <- merge(data_links, data_links, by = "project")
+#' x <- unique(x)
+#' x <- x[x$nuts2.x!=x$nuts2.y,]
+#' x <- unique(x[,2:3])
+#' ll <- getLinkLayer(spdf = nuts2.spdf, spdf2 = nuts2.spdf, df = x)
+#' plot(ll)
 #' @export
-propLinkLayer <- function(spdf, df, spdfid = NULL, dfidi = NULL, dfidj = NULL,
-                          var1 = NULL, var2 = NULL, maxlwd = 40){
+getLinkLayer <- function(spdf, spdf2 = NULL, df, 
+                         spdfid = NULL, spdf2id = NULL, 
+                         dfids = NULL, dfide = NULL){
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfidi)){dfidi <- names(df)[1]}
-  if (is.null(dfidj)){dfidj <- names(df)[2]}
-  if (is.null(var1)){var1 <- names(df)[3]}
-
-  geomOri <- data.frame (sp::coordinates(spdf), spdf@data[,spdfid])
-  names(geomOri) <- c("xOri", "yOri", "idOri")
-  geomDes <- data.frame (sp::coordinates(spdf), spdf@data[,spdfid])
-  names(geomDes) <- c("xDes", "yDes", "idDes")
-
-  df <- df[df[,var1] > 0,]
-  flux <- merge(df, geomOri, by.x = dfidi, by.y = "idOri", all.x = T)
-  flux <- merge(flux, geomDes, by.x =  dfidj, by.y = "idDes", all.x = T)
-
-  flux$lwd <- flux[,var1] / (max(flux[,var1]) / maxlwd)
-
-  if(!is.null(var2)){flux$col <- flux[,var2]}else{flux$col = "grey10"}
-  segments(x0 = flux[,"xOri"], y0 = flux[,"yOri"],
-           x1 = flux[,"xDes"], y1 = flux[,"yDes"],
-           col = flux$col,
-           lwd = flux$lwd)
+  if (is.null(dfids)){dfidi <- names(df)[1]}
+  if (is.null(dfide)){dfidj <- names(df)[2]}
+  
+  origin <- data.frame (sp::coordinates(spdf), id = spdf@data[,spdfid])
+  names(origin) <- c("xOri", "yOri", "idOri")
+  if (!is.null(spdf2)){
+    if (is.null(spdf2id)){spdf2id <- names(spdf2@data)[1]}
+    destination <- data.frame (sp::coordinates(spdf2), id = spdf2@data[,spdf2id])
+  }else{
+    destination <- data.frame (sp::coordinates(spdf), id = spdf@data[,spdfid])
+  }
+  
+  names(destination) <- c("xDes", "yDes", "idDes")
+  
+  link <- merge(df, origin, by.x = dfidi, by.y = "idOri", all.x = TRUE)
+  link <- merge(link, destination, by.x =  dfidj, by.y = "idDes", all.x = TRUE)
+  link <- link[!is.na(link$xOri) & !is.na(link$xDes), ]
+  
+  getMyLines <- function(x){
+    myLine <- Line(matrix(ncol = 2, data = as.numeric(x[3:6]), byrow = TRUE))
+    myLines <- Lines(list(myLine), ID = paste(x[1],x[2], sep = "zorglub" ))
+  }
+  myLinesList <- apply(X = link[,],1,  getMyLines)
+  mySpatialLines <- SpatialLines(LinesList = myLinesList, 
+                                 proj4string = (spdf@proj4string))
+  mySLDF <- SpatialLinesDataFrame(sl = mySpatialLines, data = link[,1:2], 
+                                  match.ID = FALSE)
+  mySLDF <- spChFIDs(obj = mySLDF, x = as.character(1:nrow(mySLDF)) )
+  return(mySLDF)
 }
 
-
-
-
-
-#' @name propLinkChoroLayer
-#' @title Layer of Proportional Links Colored with a Variable
-#' @description Plot a layer of links colors from a discretization
-#' @param spdf Spatial*DataFrame
-#' @param df DataFrame with Ids and Labels
-#' @param spdfid Ids of the obj Spatial*DataFrame
-#' @param dfidi Ids of origins
-#' @param dfidj Ids of destinations
-#' @param var1 name of the variable corresponding to lwd of the links
-#' @param var2 name of the variable corresponding to discretize
-#' @param distr vector of classes
-#' @param col vector of colors
-#' @param nclass number of classes targeted (if null,
-#' the Huntsberger method is used)
-#' @param method discretization method ("sd", "equal",
-#' "quantile", "jenks","q6","geom")
-#' @param maxlwd max lwd of the links
-#' @return a plot
+#' @name propLinkLayer
+#' @title Proportional Links Layer
+#' @description Plot a layer of proportionnal links
+#' @param sldf SpatialLinesDataFrame; a link layer.
+#' @param df DataFrame with identifiers and a variable.
+#' @param sldfid Unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
+#' @param sldfids Identifier of starting points in sldf (sldfid and dfid are not used).
+#' @param sldfide Identifier of ending points in sldf (sldfid and dfid are not used).
+#' @param dfid Unique identifier in df (sldfids, sldfide, dfids and dfide are not used).
+#' @param dfids Identifier of starting points in df (sldfid and dfid are not used).
+#' @param dfide Identifier of ending points in df (sldfid and dfid are not used).
+#' @param var Name of the variable used to plot the links
+#' @param maxlwd Maximum size of the links.
+#' @param col Color of the links.
+#' @param legend.pos character; position of the legend, one of "topleft", "top", 
+#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' legend.pos is "n" then the legend is not plotted.
+#' @param legend.title.txt character; title of the legend.
+#' @param legend.title.cex numeric; size of the legend title.
+#' @param legend.values.cex numeric; size of the values in the legend.
+#' @param legend.values.rnd numeric; number of decimal places of the values 
+#' displayed in the legend.
+#' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
+#' not (FALSE).
+#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' not (FALSE).
+#' @details Unlike most of cartography functions, identifiers fields are mandatory.
+#' @import sp
+#' @examples
+#' data("nuts2006")
+#' data_links <- read.csv("/mnt/data/depot/cartography/inst/extdata/data_links.csv", 
+#'                        stringsAsFactors=FALSE)
+#' x <- merge(data_links, data_links, by = "project")
+#' x <- unique(x)
+#' x <- x[x$nuts2.x!=x$nuts2.y,]
+#' x$cpt <- 1
+#' head(x, 50)
+#' xx <- aggregate(x = data.frame(x[,"cpt"], stringsAsFactors = F), 
+#'                 by = list(x$nuts2.x,x$nuts2.y ), FUN = sum)
+#' names(xx) <- c("i", "j", "fij")
+#' x <- unique(x[,2:3])
+#' ll <- getLinkLayer(spdf = nuts2.spdf, spdf2 = nuts2.spdf, df = x)
+#' xxx <- xx[xx$fij>3,]
+#' propLinkLayer(sldf = ll, df = xxx, 
+#'               sldfids = "nuts2.x", sldfide = "nuts2.y", 
+#'               dfids = "i", dfide = "j",
+#'               var = "fij", maxlwd = 10, col = "#92000050", add = FALSE)
+#' plot(nuts2.spdf, add = TRUE)
+#' title("ESPON Collab")
 #' @export
-propLinkChoroLayer <- function(spdf, df, spdfid = NULL, dfidi = NULL,
-                               dfidj = NULL, var1 = NULL, var2 = NULL,
-                               distr = NULL,
-                               col = carto.pal("kaki.pal", n1 = 6),
-                               nclass = 6,
-                               method = "quantile",
-                               maxlwd = 20){
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfidi)){dfidi <- names(df)[1]}
-  if (is.null(dfidj)){dfidj <- names(df)[2]}
-  if (is.null(var1)){var1 <- names(df)[3]}
-  if (is.null(var2)){var2 <- names(df)[3]}
-
-  geomOri <- data.frame (coordinates(spdf), spdf@data[,spdfid])
-  names(geomOri) <- c("xOri", "yOri", "idOri")
-  geomDes <- data.frame (coordinates(spdf), spdf@data[,spdfid])
-  names(geomDes) <- c("xDes", "yDes", "idDes")
-
-  df <- df[df[,var1] > 0,]
-  flux <- merge(df, geomOri, by.x = dfidi, by.y = "idOri", all.x = T)
-  flux <- merge(flux, geomDes, by.x =  dfidj, by.y = "idDes", all.x = T)
-
-  flux$lwd <- flux[,var] / (max(flux[,var1]) / maxlwd)
-  choroout <- choro(var=flux[,var2], distr = distr,
-                    col = col,
-                    nclass = nclass,
-                    method = method)
-
-  flux$col <- choroout$colMap
-  segments(x0 = flux[,"xOri"], y0 = flux[,"yOri"],
-           x1 = flux[,"xDes"], y1 = flux[,"yDes"],
-           col = flux$col, lwd = flux$lwd)
-  print(choroout$col)
-  print(choroout$distr)
+propLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide, 
+                          dfid = NULL, dfids, dfide,
+                          var, maxlwd = 40, col, 
+                          legend.pos = "bottomleft",  legend.title.txt = var, 
+                          legend.title.cex = 0.8, legend.values.cex = 0.6, 
+                          legend.frame = FALSE, 
+                          legend.values.rnd = 0, add = TRUE){
+  # joint
+  if (is.null(sldfid)){
+    #   sldf@data <- data.frame(sldf@data, df[match(x = paste(sldf@data[,sldfids],sldf@data[,sldfide]), 
+    #                                               table = paste(df[,dfids], df[,dfide])),]) 
+    sldf@data <- data.frame(df[match(x = paste(sldf@data[,sldfids],
+                                                         sldf@data[,sldfide]), 
+                                               table = paste(df[,dfids], 
+                                                             df[,dfide])),]) 
+  } else {
+    sldf@data <- data.frame(df[match(x = sldf@data[,sldfid], 
+                                     table = df[,dfid]),]) 
+  }
+  sldf <- sldf[!is.na(sldf@data[,var]),]
+  maxval <- max(sldf@data[,var])
+  sldf@data$lwd <- sldf@data[,var] * maxlwd / maxval
+  plot(sldf, lwd = sldf@data$lwd, col = col, add = add)
+  
+  legendPropLines(pos = legend.pos, title.txt = legend.title.txt, 
+                  title.cex = legend.title.cex,
+                  values.cex = legend.values.cex, var = sldf@data[,var], 
+                  lwd = sldf@data$lwd, col = col, frame = legend.frame, 
+                  values.rnd = legend.values.rnd)
+  
 }
