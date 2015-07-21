@@ -4,8 +4,8 @@
 \alias{legendText}
 \title{Legend To display only a text}
 \usage{
-legendText(pos = "topleft", txt = "Title of the legend", cex = 0.6,
-  col = "black", frame = FALSE)
+legendText(pos = "topleft", txt = "Text here", cex = 0.6, col = "black",
+  frame = FALSE)
 }
 \arguments{
 \item{pos}{character; position of the legend, one of "topleft", "top",
@@ -27,6 +27,6 @@ Plot legend with a simple textbox
 data("nuts2006")
 plot(nuts0.spdf)
 box()
-legendText(pos = "topleft",txt = "Title of the legend", cex = 0.6,col="black",frame=FALSE)
+legendText(pos = "topleft",txt = "Lorem ipsum dolor sit amet,\\nconsectetur adipiscing elit,\\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\\nUt enim ad minim veniam,nquis nostrud exercitation ullamco\\nlaboris nisi ut aliquip ex ea commodo consequat.", cex = 0.6,col="black",frame=FALSE)
 }
 
