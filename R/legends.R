@@ -1164,3 +1164,73 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
   
 }
 
+
+#' @title Legend To display only a text
+#' @description Plot legend with a simple textbox
+#' @name legendText
+#' @param pos character; position of the legend, one of "topleft", "top", 
+#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
+#' @param txt character; text to be displayed.
+#' @param cex numeric; size of the legend text
+#' @param col character; color of the text.
+#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' not (FALSE).
+#' @export
+#' @examples 
+#' data("nuts2006")
+#' plot(nuts0.spdf)
+#' box()
+#' legendText(pos = "topleft",txt = "Title of the legend", cex = 0.6,col="black",frame=FALSE)
+legendText<- function(pos = "topleft",
+                      txt = "Title of the legend", 
+                      cex = 0.6,
+                      col="black",
+                      frame=FALSE){
+  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
+  if(pos %in% positions){
+    # extent
+    x1 <- par()$usr[1]
+    x2 <- par()$usr[2]
+    y1 <- par()$usr[3]
+    y2 <- par()$usr[4]
+    xextent <- x2 - x1
+    yextent <- y2 - y1
+    
+    # variables internes
+    cex <- cex
+    paramsize1 = 30/cex
+    paramsize2 <- paramsize1*40/25
+    width <- (x2 - x1) / paramsize1
+    height <- width /1.5
+    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
+    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
+    
+    legend_xsize <- strwidth(txt,cex = cex)-delta1
+    legend_ysize <-1 * delta1 + strheight(txt,cex = cex)
+    
+    # Position
+    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
+    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
+    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
+    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
+    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
+    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
+    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
+    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
+    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
+    
+    
+    # Frame
+    if (frame==TRUE){
+      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 *2, border = "black",  col="white")
+    }
+    
+    mycol <- col
+    
+    jump <- delta1
+    
+    text(x=xref ,y=yref + delta1,txt,adj=c(0,0),cex=cex, col=col)
+    
+  }
+}
+
