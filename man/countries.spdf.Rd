@@ -3,7 +3,7 @@
 \docType{data}
 \name{countries.spdf}
 \alias{countries.spdf}
-\title{Countries In The European Area}
+\title{Countries in the European Area}
 \format{SpatialPolygonsDataFrame.}
 \source{
 UMS RIATE

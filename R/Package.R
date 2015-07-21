@@ -74,7 +74,7 @@ NULL
 #' @docType data
 NULL
 
-#' @title Nuts0 dataset
+#' @title Nuts0 Dataset
 #' @name nuts0.df
 #' @description This dataset contains some socio-economic data
 #' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
@@ -97,7 +97,7 @@ NULL
 #' @docType data
 NULL
 
-#' @title Nuts1 dataset
+#' @title Nuts1 Dataset
 #' @name nuts1.df
 #' @description This dataset contains some socio-economic data
 #' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
@@ -120,7 +120,7 @@ NULL
 #' @docType data
 NULL
 
-#' @title Nuts2 dataset
+#' @title Nuts2 Dataset
 #' @name nuts2.df
 #' @description This dataset contains some socio-economic data
 #' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
@@ -143,7 +143,7 @@ NULL
 #' @docType data
 NULL
 
-#' @title Nuts3 dataset
+#' @title Nuts3 Dataset
 #' @name nuts3.df
 #' @description This dataset contains some socio-economic data
 #' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
@@ -161,7 +161,7 @@ NULL
 #' @docType data
 NULL
 
-#' @title Coastline Of Europe
+#' @title Coastline of Europe
 #' @name coasts.spdf
 #' @description Coastline of Europe.
 #' @format SpatialLinesDataFrame.
@@ -186,7 +186,7 @@ NULL
 NULL
 
 
-#' @title Countries In The European Area
+#' @title Countries in the European Area
 #' @name countries.spdf
 #' @description Countries In The European Area.
 #' @format SpatialPolygonsDataFrame.
@@ -199,5 +199,20 @@ NULL
 #' @description World background.
 #' @format SpatialPolygonsDataFrame.
 #' @source UMS RIATE
+#' @docType data
+NULL
+
+#' @title Twin Cities Dataset
+#' @name twincities
+#' @description This dataset contains the number of twinning agreements betwwen 
+#' cities in nuts2 regions.
+#' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
+#' nuts2.spdf
+#' @field i nuts2 identifier
+#' @field j nuts2 identifier
+#' @field fij number of agreements
+#' @source Adam Ploszaj - Centre for European Regional and Local Studies EUROREG, 
+#' University of Warsaw, Poland. 
+#' Primary source: Wikipedia.
 #' @docType data
 NULL

@@ -3,7 +3,7 @@
 \docType{data}
 \name{nuts3.df}
 \alias{nuts3.df}
-\title{Nuts3 dataset}
+\title{Nuts3 Dataset}
 \source{
 UMS RIATE
 }
