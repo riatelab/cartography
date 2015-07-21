@@ -79,8 +79,12 @@ if(legend.pos !="n"){
 
   
   if (is.null(legend.txt)){legend.txt <- paste("1 dot represents ",format(n, scientific = FALSE)," [in ",var," units]",sep="")}
-
-legend(legend = legend.txt,cex = legend.cex, text.col = legend.col, pch=dots.pch ,pt.cex=dots.cex, x=legend.pos)
+  if (legend.frame==TRUE){fill = "white" 
+                          border="black"} else {fill = NA
+                                                border=NA}
+     
+  
+legend(legend = legend.txt,cex = legend.cex, text.col = legend.col, pch=dots.pch ,pt.cex=dots.cex, x=legend.pos, box.col = border,bg = fill)
 
 }
 
