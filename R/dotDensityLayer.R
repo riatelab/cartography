@@ -75,10 +75,19 @@ for (i in 1:nrow(spdf)){
 plot(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = dots.type, iter = iter), pch = dots.pch, cex= dots.cex , col=col, add=TRUE)
 }
 
+if(legend.pos !="n"){
 
-if (is.null(legend.txt)){legend.txt <- paste("1 dot represents ",format(n, scientific = FALSE)," [in ",var," units]",sep="")}
+  
+  if (is.null(legend.txt)){legend.txt <- paste("1 dot represents ",format(n, scientific = FALSE)," [in ",var," units]",sep="")}
+  if (legend.frame==TRUE){fill = "white" 
+                          border="black"} else {fill = NA
+                                                border=NA}
+     
+  
+legend(legend = legend.txt,cex = legend.cex, text.col = legend.col, pch=dots.pch ,pt.cex=dots.cex, x=legend.pos, box.col = border,bg = fill)
 
-legendText(frame=legend.frame, pos = legend.pos , txt = legend.txt, col = legend.col, cex = legend.cex )
+}
+
 
 }
 
