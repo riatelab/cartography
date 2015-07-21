@@ -376,8 +376,10 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
       
       symbols(x = xref + rLeg[1] ,y=yref + delta1 - height/2 + height,circles=height/3,add=TRUE,bg=col,inches=FALSE)
       symbols(x = xref + rLeg[1] ,y=yref + delta1 - height/2,circles=height/3,add=TRUE,bg=col2,inches=FALSE)
-      text(xref + rLeg[1] + height/3 + delta2 ,yref + height/2,paste ("<",breakval),adj=c(0,0.5),cex=values.cex)
-      text(xref + rLeg[1] + height/3 + delta2,yref + height + height/2,paste (">=",breakval),adj=c(0,0.5),cex=values.cex)
+      text(xref + rLeg[1] + height/3 + delta2 ,yref + height/3 ,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
+      text(xref + rLeg[1] + height/3 + delta2,yref + height+ height/3,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
+      
+      
       yref <- yref + height *2 + delta2
       mycol <- "white"
     }
@@ -541,15 +543,15 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
       if (style=="c"){
         symbols(x = xref+height/3,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
         symbols(x = xref+height/3 ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
-        text(xref + height/1.5 + delta2,yref + height/2,paste ("<",breakval),adj=c(0,0.5),cex=values.cex)
-        text(xref + height/1.5 + delta2 , yref + height + height/2,paste (">=",breakval),adj=c(0,0.5),cex=values.cex)
+        text(xref + height/1.5 + delta2,yref + height/4,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
+        text(xref + height/1.5 + delta2 , yref + height + height/4,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
         yref <- yref + height *2 + delta2
       }
       if (style == "e"){
         symbols(x = xref + rLeg[1]/2,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
         symbols(x = xref + rLeg[1]/2 ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
-        text(xref + rLeg[1]/2 + height/3 + delta2,yref + height/2,paste ("<",breakval),adj=c(0,0.5),cex=values.cex)
-        text(xref + rLeg[1]/2 + height/3 + delta2 , yref + height + height/2,paste (">=",breakval),adj=c(0,0.5),cex=values.cex)
+        text(xref + rLeg[1]/2 + height/3 + delta2,yref + height/4,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
+        text(xref + rLeg[1]/2 + height/3 + delta2 , yref + height + height/4,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
         yref <- yref + height *2 + delta2
       }
       
@@ -664,20 +666,20 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
     
     if (style=="c"){
       longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-      if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste(">=",breakval)}}
+      if(!is.null(breakval)){if (strwidth(paste (">=",format(breakval,scientific=FALSE)),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste (">=",format(breakval,scientific=FALSE))}}
       legend_xsize <- max(height/1.5 + strwidth(longVal,cex=values.cex),strwidth(title.txt,cex = title.cex)-delta1)
       
-      legend_ysize <-rLeg[1] + strheight(title.txt,cex = title.cex)
-      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
+      legend_ysize <-rLeg[1] + strheight(title.txt,cex = title.cex) - delta1
+      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2}
     }
     
     if (style=="e"){
       longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-      if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste(">=",breakval)}}
+      if(!is.null(breakval)){if (strwidth(paste (">=",format(breakval,scientific=FALSE)),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <-paste (">=",format(breakval,scientific=FALSE))}}
       legend_xsize <- max(height/1.5 + strwidth(longVal,cex=values.cex)-delta2,strwidth(title.txt,cex = title.cex)-delta1)
       
-      legend_ysize <-rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4] + 3*delta2 + strheight(title.txt,cex = title.cex)
-      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
+      legend_ysize <-rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4] + 3*delta2 + strheight(title.txt,cex = title.cex)- delta1
+      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2}
     }
     
     # Position
@@ -701,12 +703,12 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
     
     if(!is.null(breakval)){
       
-      symbols(x = xref + delta1 - height/1.5  ,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
-      symbols(x = xref + delta1 - height/1.5,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
-      text(xref + height/1.5 + delta2,yref + height/2,paste ("<",breakval),adj=c(0,0.5),cex=values.cex)
-      text(xref + height/1.5 + delta2 , yref + height + height/2,paste (">=",breakval),adj=c(0,0.5),cex=values.cex)
-      yref <- yref + height *2 + delta2
-      
+      yref <- yref - delta1  
+      symbols(x = xref + height/3  ,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
+      symbols(x = xref + height/3  ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
+      text(xref + height/1.5 + delta2,yref + delta1 - height/3 ,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
+      text(xref + height/1.5 + delta2, yref + height + delta1 - height/3 ,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
+      yref <- yref + height *2 + delta1
       mycol <- "white"
     }
     
@@ -726,7 +728,7 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
       }
       
       
-      text(x=xref ,y=yref + rLeg[1] + delta1 ,title.txt,adj=c(0,0),cex=title.cex)
+      text(x=xref ,y=yref + rLeg[1] +delta2,title.txt,adj=c(0,0),cex=title.cex)
       
     }
     if (style=="e"){
@@ -739,7 +741,7 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
         text(xref + height/1.5 + delta2 ,y= yref + jump + rLeg[i]/2,rVal[i],adj=c(0,0.5),cex=values.cex)
         if (i>1){jump <- rLeg[i] + delta2 + jump}
       }
-      text(x=xref ,y=yref + rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4] + 3*delta2 + delta1 ,title.txt,adj=c(0,0),cex=title.cex)
+      text(x=xref ,y=yref + rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4] + 3*delta2 + delta2 ,title.txt,adj=c(0,0),cex=title.cex)
     }
   }
 }
@@ -872,8 +874,8 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
     
     symbols(x = xref + max(rLeg1[1],rLeg2[1])/2,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
     symbols(x = xref + max(rLeg1[1],rLeg2[1])/2 ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
-    text(xref + max(rLeg1[1],rLeg2[1])/2 + height/3 + delta2,yref + height/2,var2.txt,adj=c(0,0.5),cex=values.cex)
-    text(xref + max(rLeg1[1],rLeg2[1])/2 + height/3 + delta2 , yref + height + height/2,var.txt,adj=c(0,0.5),cex=values.cex)
+    text(xref + max(rLeg1[1],rLeg2[1])/2 + height/3 + delta2,yref + delta1/2,var2.txt,adj=c(0,0.5),cex=values.cex)
+    text(xref + max(rLeg1[1],rLeg2[1])/2 + height/3 + delta2 , yref + height + delta1/2,var.txt,adj=c(0,0.5),cex=values.cex)
     yref <- yref + height *2 + delta2
     
     
@@ -898,7 +900,7 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
       mysize <- rLegmin2 ; yadd <-  mysize/2 + yadd + delta2
       polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref+ yadd,yref-mysize/2+yadd,yref+yadd), col = col2)
       segments(xref + xmax/2,yref-mysize/2 + yadd, xref + xmax/2 + delta1 + xmax/2 ,yref-mysize/2 + yadd)
-      text(xref + xmax/2 + delta1 + xmax/2 + delta2 ,yref-mysize/2 + yadd,rValmax2,cex=values.cex,adj=c(0,0.5))
+      text(xref + xmax/2 + delta1 + xmax/2 + delta2 ,yref-mysize/2 + yadd,rValmin2,cex=values.cex,adj=c(0,0.5))
       
       
       mysize <- rLegmin1 ; yadd <-  yadd + delta2
@@ -937,7 +939,7 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
       mysize <- rLegmin2 ;
       polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref+ yadd,yref-mysize/2+yadd,yref+yadd), col = col2)
       segments(xref + xmax/2,yref-mysize/2 + yadd, xref + xmax/2 + delta1 + xmax/2 ,yref-mysize/2 + yadd)
-      text(xref + xmax/2 + delta1 + xmax/2 + delta2 ,yref-mysize/2 + yadd,rValmax2,cex=values.cex,adj=c(0,0.5))
+      text(xref + xmax/2 + delta1 + xmax/2 + delta2 ,yref-mysize/2 + yadd,rValmin2,cex=values.cex,adj=c(0,0.5))
       
       mysize <- rLegmax1
       polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref + rLegmax2/2 + delta2,yref+mysize/2 + rLegmax2/2 + delta2,yref + rLegmax2/2 + delta2), col = col)
@@ -1180,9 +1182,9 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' box()
-#' legendText(pos = "topleft",txt = "Title of the legend", cex = 0.6,col="black",frame=FALSE)
+#' legendText(pos = "topleft",txt = "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam,nquis nostrud exercitation ullamco\nlaboris nisi ut aliquip ex ea commodo consequat.", cex = 0.6,col="black",frame=FALSE)
 legendText<- function(pos = "topleft",
-                      txt = "Title of the legend", 
+                      txt = "Text here", 
                       cex = 0.6,
                       col="black",
                       frame=FALSE){
