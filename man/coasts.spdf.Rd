@@ -3,7 +3,7 @@
 \docType{data}
 \name{coasts.spdf}
 \alias{coasts.spdf}
-\title{Coastline Of Europe}
+\title{Coastline of Europe}
 \format{SpatialLinesDataFrame.}
 \source{
 UMS RIATE
