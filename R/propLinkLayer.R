@@ -28,25 +28,15 @@
 #' @import sp
 #' @examples
 #' data("nuts2006")
-#' data_links <- read.csv("/mnt/data/depot/cartography/inst/extdata/data_links.csv", 
-#'                        stringsAsFactors=FALSE)
-#' x <- merge(data_links, data_links, by = "project")
-#' x <- unique(x)
-#' x <- x[x$nuts2.x!=x$nuts2.y,]
-#' x$cpt <- 1
-#' head(x, 50)
-#' xx <- aggregate(x = data.frame(x[,"cpt"], stringsAsFactors = F), 
-#'                 by = list(x$nuts2.x,x$nuts2.y ), FUN = sum)
-#' names(xx) <- c("i", "j", "fij")
-#' x <- unique(x[,2:3])
-#' ll <- getLinkLayer(spdf = nuts2.spdf, spdf2 = nuts2.spdf, df = x)
-#' xxx <- xx[xx$fij>3,]
-#' propLinkLayer(sldf = ll, df = xxx, 
-#'               sldfids = "nuts2.x", sldfide = "nuts2.y", 
-#'               dfids = "i", dfide = "j",
-#'               var = "fij", maxlwd = 10, col = "#92000050", add = FALSE)
-#' plot(nuts2.spdf, add = TRUE)
-#' title("ESPON Collab")
+#' # Create a link layer
+#' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+#' # plot the links
+#' plot(nuts0.spdf, col = "grey60",border = "grey20")
+#' propLinkLayer(sldf = twincities.spdf, df = twincities[twincities$fij>=5,],maxlwd = 10,
+#'               sldfids = "i", sldfide = "j",
+#'               dfids = "i", dfide = "j",legend.pos = "topright",
+#'               var = "fij", 
+#'               col = "#92000090", add = TRUE)
 #' @export
 propLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide, 
                           dfid = NULL, dfids, dfide,

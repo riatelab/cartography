@@ -16,7 +16,7 @@ If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.}
 get ending points of links.
 If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.}
 
-\item{df}{data.frame; df contains the values to plot.}
+\item{df}{data.frame; df contains identifiers of starting and ending points.}
 
 \item{spdfid}{character; id field in spdf, default to the first column
 of the spdf data.frame. (optional)}
@@ -38,13 +38,11 @@ Create a SpatialLinesDataFrame from a data.frame of links.
 }
 \examples{
 data("nuts2006")
-data_links <- read.csv("/mnt/data/depot/cartography/inst/extdata/data_links.csv",
-                       stringsAsFactors=FALSE)
-x <- merge(data_links, data_links, by = "project")
-x <- unique(x)
-x <- x[x$nuts2.x!=x$nuts2.y,]
-x <- unique(x[,2:3])
-ll <- getLinkLayer(spdf = nuts2.spdf, spdf2 = nuts2.spdf, df = x)
-plot(ll)
+# Create a link layer
+twincitiesHU <- twincities[substr(twincities$i,1,2)=="IE", ]
+twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesHU[,1:2])
+# plot the links
+plot(nuts2.spdf, col = "#6C6870")
+plot(twincities.spdf, col = "#F78194", add = TRUE)
 }
 

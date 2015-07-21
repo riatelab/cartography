@@ -67,7 +67,7 @@ legend.var2.pos is "n" then the legend is not plotted.}
 
 \item{legend.values.cex}{numeric; size of the values in the legend.}
 
-\item{legend.var.style}{character; either "a" or "b". The legend has two display
+\item{legend.var.style}{character; either "c" or "e". The legend has two display
 styles.}
 
 \item{legend.var.frame}{boolean; whether to add a frame to the legend (TRUE) or

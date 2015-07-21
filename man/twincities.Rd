@@ -10,8 +10,8 @@ University of Warsaw, Poland.
 Primary source: Wikipedia.
 }
 \description{
-This dataset contains the number of twinning agreements betwwen
-cities in nuts2 regions.
+This dataset contains the number of international twinning
+agreements betwwen cities. Agreements are aggregated at nuts2 level.
 }
 \details{
 This DataFrame can be used with the SpatialPolygonsDataFrame

@@ -36,7 +36,7 @@
 #' the legend.
 #' @param legend.var2.values.rnd numeric; number of decimal places of the values in 
 #' the legend.
-#' @param legend.var.style character; either "a" or "b". The legend has two display 
+#' @param legend.var.style character; either "c" or "e". The legend has two display 
 #' styles.
 #' @param legend.var.frame boolean; whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).

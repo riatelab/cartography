@@ -61,22 +61,14 @@ Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
 data("nuts2006")
-data_links <- read.csv("/mnt/data/depot/cartography/inst/extdata/data_links.csv",
-                       stringsAsFactors=FALSE)
-x <- merge(data_links, data_links, by = "project")
-x <- unique(x)
-x <- x[x$nuts2.x!=x$nuts2.y,]
-x$cpt <- 1
-xx <- aggregate(x = data.frame(x[,"cpt"], stringsAsFactors = F),
-                by = list(x$nuts2.x,x$nuts2.y ), FUN = sum)
-names(xx) <- c("i", "j", "fij")
-x <- unique(x[,2:3])
-ll <- getLinkLayer(spdf = nuts2.spdf, spdf2 = nuts2.spdf, df = x)
-xxx <- xx
-gradLinkLayer(sldf = ll, df = xxx,
-              sldfids = "nuts2.x", sldfide = "nuts2.y",
-              dfids = "i", dfide = "j",legend.pos = "n",
-              var = "fij", breaks = c(1,2,3,6,8), lwd = c(1,3,7,100),
-              col = "#92000050", add = FALSE)
+# Create a link layer
+twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+# plot the links
+plot(nuts0.spdf, col = "grey60",border = "grey20")
+gradLinkLayer(sldf = twincities.spdf, df = twincities,
+              sldfids = "i", sldfide = "j",
+              dfids = "i", dfide = "j",legend.pos = "topright",
+              var = "fij", breaks = c(2,5,15,20,30), lwd = c(0.1,1,4,10),
+              col = "#92000090", add = TRUE)
 }
 
