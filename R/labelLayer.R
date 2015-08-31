@@ -1,16 +1,16 @@
 #' @title Label Layer
 #' @description Put labels on a map.
 #' @name labelLayer
-#' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
+#' @param spdf  a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame texts are plotted on centroids.
-#' @param df data.frame; df contains the labels to plot.
-#' @param spdfid character; id field in spdf, default to the first column 
+#' @param df a data.frame that contains the labels to plot.
+#' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data.frame. (optional)
-#' @param dfid character; id field in df, default to the first column 
+#' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
-#' @param txt character; labels field in df.
-#' @param col character; labels color.
-#' @param cex numeric; labels cex.
+#' @param txt labels field in df.
+#' @param col labels color.
+#' @param cex labels cex.
 #' @param ... further \link{text} arguments, such as pos or adj.
 #' @export
 #' @import sp

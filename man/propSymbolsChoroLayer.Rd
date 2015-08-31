@@ -18,73 +18,73 @@ propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{data.frame; df contains the values to plot.}
+\item{df}{a data.frame that contains the values to plot.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
+\item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{character; name of the numeric field in df to plot the symbols sizes.}
+\item{var}{name of the numeric field in df to plot the symbols sizes.}
 
-\item{k}{numeric; share of the map occupied by the biggest symbol (see Details).}
+\item{k}{share of the map occupied by the biggest symbol (see \link{propSymbolsLayer} Details).}
 
-\item{fixmax}{numeric; value of the biggest symbol (see Details).}
+\item{fixmax}{value of the biggest symbol (see \link{propSymbolsLayer} Details).}
 
-\item{symbols}{character; type of symbols, one of "circle", "square" or "bar".}
+\item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
-\item{border}{character; color of polygon borders.}
+\item{border}{color of polygons borders.}
 
-\item{lwd}{numeric; borders width.}
+\item{lwd}{borders width.}
 
-\item{var2}{character; name of the numeric field in df to plot the colors.}
+\item{var2}{name of the numeric field in df to plot the colors.}
 
-\item{col}{character; a vector of colors. Note that if breaks is specified there must be one less
+\item{col}{a vector of colors. Note that if breaks is specified there must be one less
 colors specified than the number of break.}
 
-\item{nclass}{numeric; a targeted number of classes. If null, the number of class is automatically defined (see Details).}
+\item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
 
-\item{breaks}{numeric; break points in sorted order to indicate the intervals for assigning the colors.
+\item{breaks}{break points in sorted order to indicate the intervals for assigning the colors.
 Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
 
-\item{method}{character; a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see Details).}
+\item{method}{a discretization method; one of "sd", "equal",
+"quantile", "jenks","q6","geom"  (see \link{choroLayer} Details).}
 
-\item{legend.var.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.var.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.var.pos is "n" then the legend is not plotted.}
 
-\item{legend.var2.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.var2.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.var2.pos is "n" then the legend is not plotted.}
 
-\item{legend.var.title.txt}{character; title of the legend (numeric data).}
+\item{legend.var.title.txt}{title of the legend (proportionnal symbols).}
 
-\item{legend.var2.title.txt}{character; title of the legend (factor data).}
+\item{legend.var2.title.txt}{title of the legend (colors).}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.var.style}{character; either "c" or "e". The legend has two display
+\item{legend.var.style}{either "c" or "e". The legend has two display
 styles.}
 
-\item{legend.var.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.var.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.var2.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.var.values.rnd}{numeric; number of decimal places of the values in
+\item{legend.var.values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{legend.var2.values.rnd}{numeric; number of decimal places of the values in
+\item{legend.var2.values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{legend.var2.nodata}{text for legend.nodata}
+\item{legend.var2.nodata}{text for "no data" values}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{

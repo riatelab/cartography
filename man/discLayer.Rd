@@ -12,61 +12,61 @@ discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
   legend.frame = FALSE, add = FALSE)
 }
 \arguments{
-\item{spdf}{SpatialLinesDataFrame; as outputed by the \link{getBorders} function.}
+\item{spdf}{a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.}
 
-\item{df}{data.frame; df contains the values.}
+\item{df}{a data.frame that contains the values used to compute and plot discontinuities.}
 
-\item{spdfid1}{character; first id of the border, default to the second column
+\item{spdfid1}{first identifier of the border, default to the second column
 of the spdf data.frame. (optional)}
 
-\item{spdfid2}{character; second id of the border, default to the third column
+\item{spdfid2}{second identifier of the border, default to the third column
 of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
+\item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{character; name of the numeric field in df used to compute and plot discontinuities.}
+\item{var}{name of the numeric field in df used to compute and plot discontinuities.}
 
-\item{col}{character; color of lines.}
+\item{col}{color of the discontinuities lines.}
 
-\item{nclass}{numeric; a targeted number of classes. If null, the number of
+\item{nclass}{a targeted number of classes. If null, the number of
 class is automatically defined (see Details).}
 
-\item{method}{character; a discretization method; one of "sd", "equal",
+\item{method}{a discretization method; one of "sd", "equal",
 "quantile", "jenks","q6","geom"  (see Details).}
 
-\item{threshold}{numeric; share of represented borders, value between 0
+\item{threshold}{share of represented borders, value between 0
 (nothing) and 1 (all the discontinuities).}
 
-\item{sizemin}{numeric; thickness of the smaller line.}
+\item{sizemin}{thickness of the smaller line.}
 
-\item{sizemax}{numeric; thickness of the bigger line.}
+\item{sizemax}{thickness of the bigger line.}
 
-\item{type}{character; "rel" or "abs", type of discontinuity measure (see Details).}
+\item{type}{type of discontinuity measure, one of "rel" or "abs" (see Details).}
 
-\item{legend.title.txt}{character; title of the legend.}
+\item{legend.title.txt}{title of the legend.}
 
-\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.values.rnd}{numeric; number of decimal places of the values in
+\item{legend.values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{
 This function computes and plots spatial discontinuities. The
 discontinuities are plotted over the layer outputed by the \link{getBorders} function.
-The line widths reflect the ratio between values of an indicator in neighbouring units.
+The line widths reflect the ratio between values of an indicator in two neighbouring units.
 }
 \details{
 "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method

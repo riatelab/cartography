@@ -2,28 +2,28 @@
 #' @title Proportional Links Layer
 #' @description Plot a layer of proportionnal links
 #' @param sldf SpatialLinesDataFrame; a link layer.
-#' @param df DataFrame with identifiers and a variable.
-#' @param sldfid Unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
-#' @param sldfids Identifier of starting points in sldf (sldfid and dfid are not used).
-#' @param sldfide Identifier of ending points in sldf (sldfid and dfid are not used).
-#' @param dfid Unique identifier in df (sldfids, sldfide, dfids and dfide are not used).
-#' @param dfids Identifier of starting points in df (sldfid and dfid are not used).
-#' @param dfide Identifier of ending points in df (sldfid and dfid are not used).
-#' @param var Name of the variable used to plot the links
-#' @param breaks list des breaks
-#' @param lwd list des lwd
-#' @param col Color of the links.
-#' @param legend.pos character; position of the legend, one of "topleft", "top", 
+#' @param df a data. frame with identifiers and a variable.
+#' @param sldfid unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
+#' @param sldfids identifier of starting points in sldf (sldfid and dfid are not used).
+#' @param sldfide identifier of ending points in sldf (sldfid and dfid are not used).
+#' @param dfid unique identifier in df (sldfids, sldfide, dfids and dfide are not used).
+#' @param dfids identifier of starting points in df (sldfid and dfid are not used).
+#' @param dfide identifier of ending points in df (sldfid and dfid are not used).
+#' @param var name of the variable used to plot the links
+#' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
+#' @param lwd vector of widths. 
+#' @param col color of the links.
+#' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 #' legend.pos is "n" then the legend is not plotted.
-#' @param legend.title.txt character; title of the legend.
-#' @param legend.title.cex numeric; size of the legend title.
-#' @param legend.values.cex numeric; size of the values in the legend.
-#' @param legend.values.rnd numeric; number of decimal places of the values 
+#' @param legend.title.txt title of the legend.
+#' @param legend.title.cex size of the legend title.
+#' @param legend.values.cex size of the values in the legend.
+#' @param legend.values.rnd number of decimal places of the values 
 #' displayed in the legend.
-#' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details Unlike most of cartography functions, identifiers fields are mandatory.
 #' @import sp

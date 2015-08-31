@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendChoro}
 \alias{legendChoro}
-\title{Legend For Choropleth Maps}
+\title{Legend for Choropleth Maps}
 \usage{
 legendChoro(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, values.cex = 0.6, breaks, col, cex = 1,
@@ -10,35 +10,35 @@ legendChoro(pos = "topleft", title.txt = "Title of the legend",
   nodata.col = "white", frame = FALSE, symbol = "box")
 }
 \arguments{
-\item{pos}{character; position of the legend, one of "topleft", "top",
+\item{pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{title.txt}{character; title of the legend.}
+\item{title.txt}{title of the legend.}
 
-\item{title.cex}{numeric; size of the legend title.}
+\item{title.cex}{size of the legend title.}
 
-\item{values.cex}{numeric; size of the values in the legend.}
+\item{values.cex}{size of the values in the legend.}
 
-\item{breaks}{numeric; break points in sorted order to indicate the intervals for assigning the colors.
+\item{breaks}{break points in sorted order to indicate the intervals for assigning the colors.
 Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
 
-\item{col}{character; a vector of colors.}
+\item{col}{a vector of colors.}
 
-\item{cex}{character; size of the legend. 2 means two times bigger.}
+\item{cex}{size of the legend. 2 means two times bigger.}
 
-\item{values.rnd}{numeric; number of decimal places of the values in
+\item{values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{nodata}{boolean; if TRUE a "no data" box or line is plotted.}
+\item{nodata}{if TRUE a "no data" box or line is plotted.}
 
-\item{nodata.txt}{character; label for "no data" values.}
+\item{nodata.txt}{label for "no data" values.}
 
-\item{nodata.col}{character; color of "no data" values.}
+\item{nodata.col}{color of "no data" values.}
 
-\item{frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{symbol}{character; 'line' or 'box'}
+\item{symbol}{type of symbol in the legend 'line' or 'box'}
 }
 \description{
 Plot nice legend adapted to choropleth maps.

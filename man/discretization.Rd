@@ -7,11 +7,11 @@
 discretization(v, nclass = NULL, method = "quantile")
 }
 \arguments{
-\item{v}{numeric; a vector of values.}
+\item{v}{a vector of numeric values.}
 
-\item{nclass}{numeric; a number of classes}
+\item{nclass}{a number of classes}
 
-\item{method}{character; a discretization method; one of "sd", "equal",
+\item{method}{a discretization method; one of "sd", "equal",
 "quantile", "jenks","q6","geom"  (see Details).}
 }
 \value{

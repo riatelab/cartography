@@ -12,55 +12,55 @@ propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
 }
 \arguments{
-\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
+\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{data.frame; df contains the values to plot.}
+\item{df}{a data.frame that contains the values to plot.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
+\item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{character; name of the numeric field in df to plot.}
+\item{var}{name of the numeric field in df to plot.}
 
-\item{symbols}{character; type of symbols, one of "circle", "square" or "bar".}
+\item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
-\item{col}{character; color of symbols.}
+\item{col}{color of symbols.}
 
-\item{col2}{character; second color of symbols (see Details).}
+\item{col2}{second color of symbols (see Details).}
 
-\item{border}{character; color of polygon borders.}
+\item{border}{color of polygon borders.}
 
-\item{lwd}{numeric; borders width.}
+\item{lwd}{borders width.}
 
-\item{breakval}{numeric; breaking value (see Details).}
+\item{breakval}{breaking value (see Details).}
 
-\item{k}{numeric; share of the map occupied by the biggest symbol (see Details).}
+\item{k}{share of the map occupied by the biggest symbol (see Details).}
 
-\item{fixmax}{numeric; value of the biggest symbol (see Details).}
+\item{fixmax}{value of the biggest symbol (see Details).}
 
-\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
 
-\item{legend.title.txt}{character; title of the legend.}
+\item{legend.title.txt}{title of the legend.}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.style}{character; either "c" or "e". The legend has two display
+\item{legend.style}{either "c" or "e". The legend has two display
 styles, "c" stands for compact and "e" for extended.}
 
 \item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.values.rnd}{numeric; number of decimal places of the values
+\item{legend.values.rnd}{number of decimal places of the values
 displayed in the legend.}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{

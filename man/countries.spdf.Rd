@@ -9,6 +9,6 @@
 UMS RIATE
 }
 \description{
-Countries In The European Area.
+Countries in the european area.
 }
 

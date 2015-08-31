@@ -7,12 +7,12 @@
 getBorders(spdf, spdfid = NULL, tol = 1)
 }
 \arguments{
-\item{spdf}{SpatialPolygonsDataFrame.}
+\item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{tol}{numeric; tolerance to detect contiguity (in map units). You may
+\item{tol}{tolerance to detect contiguity (in map units). You may
 not want to change this parameter.}
 }
 \value{

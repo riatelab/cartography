@@ -10,45 +10,45 @@ propLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
   legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
 }
 \arguments{
-\item{sldf}{SpatialLinesDataFrame; a link layer.}
+\item{sldf}{a SpatialLinesDataFrame; a link layer.}
 
-\item{df}{DataFrame with identifiers and a variable.}
+\item{df}{a data.frame with identifiers and a variable.}
 
-\item{sldfid}{Unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).}
+\item{sldfid}{unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).}
 
-\item{sldfids}{Identifier of starting points in sldf (sldfid and dfid are not used).}
+\item{sldfids}{identifier of starting points in sldf (sldfid and dfid are not used).}
 
-\item{sldfide}{Identifier of ending points in sldf (sldfid and dfid are not used).}
+\item{sldfide}{identifier of ending points in sldf (sldfid and dfid are not used).}
 
-\item{dfid}{Unique identifier in df (sldfids, sldfide, dfids and dfide are not used).}
+\item{dfid}{unique identifier in df (sldfids, sldfide, dfids and dfide are not used).}
 
-\item{dfids}{Identifier of starting points in df (sldfid and dfid are not used).}
+\item{dfids}{identifier of starting points in df (sldfid and dfid are not used).}
 
-\item{dfide}{Identifier of ending points in df (sldfid and dfid are not used).}
+\item{dfide}{identifier of ending points in df (sldfid and dfid are not used).}
 
-\item{var}{Name of the variable used to plot the links}
+\item{var}{name of the variable used to plot the links}
 
-\item{maxlwd}{Maximum size of the links.}
+\item{maxlwd}{maximum size of the links.}
 
-\item{col}{Color of the links.}
+\item{col}{color of the links.}
 
-\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
 
-\item{legend.title.txt}{character; title of the legend.}
+\item{legend.title.txt}{title of the legend.}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.values.rnd}{numeric; number of decimal places of the values
+\item{legend.values.rnd}{number of decimal places of the values
 displayed in the legend.}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{

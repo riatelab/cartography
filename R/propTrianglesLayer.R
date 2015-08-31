@@ -1,8 +1,8 @@
 #' @title propTrianglesLayer
-#' @description Plot a "chinese hat" layer
+#' @description Plot a double triangle layer
 #' @name propTrianglesLayer
-#' @param spdf SpatialPolygonsDataFrame
-#' @param df DataFrame with Ids and Labels
+#' @param spdf a SpatialPolygonsDataFrame
+#' @param df a dataFrame with Ids and Labels
 #' @param spdfid Ids of the obj Spatial*DataFrame
 #' @param dfid Ids of the DataFrame
 #' @param var1 Symbols variable 1 (numeric)

@@ -7,9 +7,9 @@
 tilesLayer(x, add = FALSE)
 }
 \arguments{
-\item{x}{OpenStreetMap object; \code{\link{getTiles}} outputs these objects.}
+\item{x}{an OpenStreetMap object; \code{\link{getTiles}} outputs these objects.}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{

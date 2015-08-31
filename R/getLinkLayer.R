@@ -1,20 +1,20 @@
 #' @name getLinkLayer
 #' @title Create a SpatialLinesDataFrame from a data.frame of Links.
 #' @description Create a SpatialLinesDataFrame from a data.frame of links.
-#' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; layer used to 
+#' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to 
 #' get starting points of links. If spdf2 is NULL, spdf is also used to get ending points.  
 #' If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.
-#' @param spdf2 SpatialPointsDataFrame or SpatialPolygonsDataFrame; layer used to 
+#' @param spdf2 a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to 
 #' get ending points of links. 
 #' If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.
-#' @param df data.frame; df contains identifiers of starting and ending points.
-#' @param spdfid character; id field in spdf, default to the first column 
+#' @param df a data.frame that contains identifiers of starting and ending points.
+#' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data.frame. (optional)
-#' @param spdf2id character; id field in spdf2, default to the first column 
+#' @param spdf2id identifier field in spdf2, default to the first column 
 #' of the spdf2 data.frame. (optional)
-#' @param dfids character; id field of starting points of links in df, default to the first column 
+#' @param dfids identifier field of starting points of links in df, default to the first column 
 #' of df. (optional)
-#' @param dfide character; id field of ending points of links in df, default to the second column 
+#' @param dfide identifier field of ending points of links in df, default to the second column 
 #' of df. (optional)
 #' @return A SpatialLinesDataFrame is returned, its data.frame contains two fields (dfid1 and dfid2).
 #' @import sp

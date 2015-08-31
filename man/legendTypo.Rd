@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendTypo}
 \alias{legendTypo}
-\title{Legend For Typology Maps}
+\title{Legend for Typology Maps}
 \usage{
 legendTypo(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, values.cex = 0.6, col, categ, cex = 1, nodata = TRUE,
@@ -10,28 +10,28 @@ legendTypo(pos = "topleft", title.txt = "Title of the legend",
   symbol = "box")
 }
 \arguments{
-\item{pos}{character; position of the legend, one of "topleft", "top",
+\item{pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{title.txt}{character; title of the legend.}
+\item{title.txt}{title of the legend.}
 
-\item{title.cex}{numeric; size of the legend title.}
+\item{title.cex}{size of the legend title.}
 
-\item{values.cex}{numeric; size of the values in the legend.}
+\item{values.cex}{size of the values in the legend.}
 
-\item{col}{character; a vector of colors.}
+\item{col}{a vector of colors.}
 
-\item{categ}{vector; vector of categories.}
+\item{categ}{vector of categories.}
 
-\item{cex}{character; size of the legend. 2 means two times bigger.}
+\item{cex}{size of the legend. 2 means two times bigger.}
 
-\item{nodata}{boolean; if TRUE a "no data" box or line is plotted.}
+\item{nodata}{if TRUE a "no data" box or line is plotted.}
 
-\item{nodata.txt}{character; label for "no data" values.}
+\item{nodata.txt}{label for "no data" values.}
 
-\item{nodata.col}{character; color of "no data" values.}
+\item{nodata.col}{color of "no data" values.}
 
-\item{frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
 \item{symbol}{character; 'line' or 'box'}

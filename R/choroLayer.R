@@ -1,34 +1,34 @@
 #' @title Choropleth Layer
 #' @name choroLayer
 #' @description Plot a chorpoleth layer.
-#' @param spdf SpatialPolygonsDataFrame.
-#' @param df data.frame; df contains the values to plot.
-#' @param spdfid character; id field in spdf, default to the first column 
+#' @param spdf a SpatialPolygonsDataFrame.
+#' @param df a data.frame that contains the values to plot.
+#' @param spdfid name of the identifier field in spdf, default to the first column 
 #' of the spdf data.frame. (optional)
-#' @param dfid character; id field in df, default to the first column 
+#' @param dfid name of the identifier field in df, default to the first column 
 #' of df. (optional)
-#' @param var character; name of the numeric field in df to plot.
-#' @param breaks numeric; break points in sorted order to indicate the intervals for assigning the colors. 
-#' Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).
-#' @param col character; a vector of colors. Note that if breaks is specified there must be one less 
+#' @param var name of the numeric field in df to plot.
+#' @param breaks break values in sorted order to indicate the intervals for assigning the colors. 
+#' Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).
+#' @param col a vector of colors. Note that if breaks is specified there must be one less 
 #' colors specified than the number of break. 
-#' @param nclass numeric; a targeted number of classes. If null, the number of class is automatically defined (see Details).
-#' @param method character; a discretization method; one of "sd", "equal", 
+#' @param nclass a targeted number of classes. If null, the number of class is automatically defined (see Details).
+#' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "jenks","q6","geom"  (see Details).
-#' @param border character; color of polygon borders.
-#' @param lwd numeric; borders width.
-#' @param legend.pos character; position of the legend, one of "topleft", "top", 
+#' @param border color of the polygons borders.
+#' @param lwd borders width.
+#' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 #' legend.pos is "n" then the legend is not plotted.
-#' @param legend.title.txt character; title of the legend.
-#' @param legend.title.cex numeric; size of the legend title.
-#' @param legend.values.cex numeric; size of the values in the legend.
-#' @param legend.values.rnd numeric; number of decimal places of the values in 
+#' @param legend.title.txt title of the legend.
+#' @param legend.title.cex size of the legend title.
+#' @param legend.values.cex size of the values in the legend.
+#' @param legend.values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param legend.nodata character; no data label.
-#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' @param legend.nodata no data label.
+#' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
 #' The optimum number of class depends on the number of geographical objects. If nclass is not defined 

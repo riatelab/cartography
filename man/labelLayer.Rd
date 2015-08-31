@@ -8,22 +8,22 @@ labelLayer(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
   cex = 0.7, ...)
 }
 \arguments{
-\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
+\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame texts are plotted on centroids.}
 
-\item{df}{data.frame; df contains the labels to plot.}
+\item{df}{a data.frame that contains the labels to plot.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
+\item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{txt}{character; labels field in df.}
+\item{txt}{labels field in df.}
 
-\item{col}{character; labels color.}
+\item{col}{labels color.}
 
-\item{cex}{numeric; labels cex.}
+\item{cex}{labels cex.}
 
 \item{...}{further \link{text} arguments, such as pos or adj.}
 }

@@ -12,56 +12,53 @@ propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2,
   legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
 }
 \arguments{
-\item{spdf}{Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame
-symbols are plotted on centroids.}
+\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
+is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{data.frame; \code{df} contains the values to plot.}
+\item{df}{a data.frame that contains the values to plot.}
 
-\item{spdfid}{character; id field in \code{spdf}, default to the first column
-of the \code{spdf} data.frame. (optional)}
+\item{spdfid}{identifier field in spdf, default to the first column
+of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in \code{df}, default to the first column
-of \code{df}. (optional)}
+\item{dfid}{identifier field in df, default to the first column
+of df. (optional)}
 
-\item{var}{character; name of the numeric field in \code{df} to plot.}
+\item{var}{name of the numeric field in df to plot.}
 
-\item{var2}{character; name of the factor field in \code{df} to plot.}
+\item{var2}{name of the factor field in df to plot.}
 
-\item{symbols}{character; type of symbols, one of "circles", "squares" or "height").}
+\item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
-\item{col}{character; a vector of colors (hues).}
+\item{col}{a vector of colors.}
 
-\item{k}{numeric; share of the map occupied by the biggest symbol.}
+\item{k}{share of the map occupied by the biggest symbol.}
 
-\item{fixmax}{numeric; value of the biggest symbol. (optional)}
+\item{fixmax}{value of the biggest symbol. (optional)}
 
-\item{legend.var.pos}{character; position of the legend var, one of "topleft", "top",}
+\item{legend.var.pos}{position of the legend for var, one of "topleft", "top",}
 
-\item{legend.var2.pos}{character; position of the legend var2, one of "topleft", "top",
+\item{legend.var2.pos}{position of the legend for var2, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{legend.title.var.txt}{character; title of the legend (numeric data).}
+\item{legend.title.var.txt}{title of the legend (numeric data).}
 
-\item{legend.title.var2.txt}{character; title of the legend (factor data).}
+\item{legend.title.var2.txt}{title of the legend (factor data).}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.style}{character; either "a" or "b". The legend has two display
+\item{legend.style}{either "a" or "b". The legend has two display
 styles.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.values.rnd}{numeric; number of decimal places of the values in
+\item{legend.values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
-}
-\value{
-A plot is returned.
 }
 \description{
 Plot a proportional symbols layer with a color based on a qualitative data. Various symbols are availables.

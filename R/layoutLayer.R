@@ -2,18 +2,18 @@
 #' @title Layout Layer
 #' @description Plot a layout layer.
 #' @name layoutLayer
-#' @param title character; title of the map.
-#' @param sources character; sources of the map (or something else).
-#' @param author character; author of the map (or something else).
-#' @param scale numeric; size of the scale in kilometers. If set to NULL, no scale is 
+#' @param title title of the map.
+#' @param sources sources of the map (or something else).
+#' @param author author of the map (or something else).
+#' @param scale size of the scale in kilometers. If set to NULL, no scale is 
 #' displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).
-#' @param frame boolean; wheither displaying a frame or not.
-#' @param col character; color of the frame border.
-#' @param coltitle character; color of the title.
-#' @param bg character; color of the frame background.
-#' @param north boolean; wheither displaying a Noth arrow.
-#' @param south boolean; wheither displaying a South arrow.
-#' @param extent SpatialPolygonsDataFrame or SpatialPointsDataFrame; set the extent to the one of a 
+#' @param frame wheither displaying a frame or not.
+#' @param col color of the frame border.
+#' @param coltitle color of the title.
+#' @param bg color of the frame background.
+#' @param north wheither displaying a Noth arrow or not.
+#' @param south wheither displaying a South arrow or not.
+#' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the extent to the one of a 
 #' Spatial object.
 #' @details If extent is not set, plot.new has to be called first.
 #' @export

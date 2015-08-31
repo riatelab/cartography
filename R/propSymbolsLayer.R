@@ -1,35 +1,35 @@
 #' @title Proportional Symbols Layer
 #' @name propSymbolsLayer
 #' @description Plot a proportional symbols layer.
-#' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
+#' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
-#' @param df data.frame; df contains the values to plot.
-#' @param spdfid character; id field in spdf, default to the first column 
+#' @param df a data.frame that contains the values to plot.
+#' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data.frame. (optional)
-#' @param dfid character; id field in df, default to the first column 
+#' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
-#' @param var character; name of the numeric field in df to plot.
-#' @param symbols character; type of symbols, one of "circle", "square" or "bar".
-#' @param col character; color of symbols.
-#' @param col2 character; second color of symbols (see Details).
-#' @param border character; color of polygon borders.
-#' @param lwd numeric; borders width.
-#' @param breakval numeric; breaking value (see Details).
-#' @param k numeric; share of the map occupied by the biggest symbol (see Details).
-#' @param fixmax numeric; value of the biggest symbol (see Details).
-#' @param legend.pos character; position of the legend, one of "topleft", "top", 
+#' @param var name of the numeric field in df to plot.
+#' @param symbols type of symbols, one of "circle", "square" or "bar".
+#' @param col color of symbols.
+#' @param col2 second color of symbols (see Details).
+#' @param border color of polygon borders.
+#' @param lwd borders width.
+#' @param breakval breaking value (see Details).
+#' @param k share of the map occupied by the biggest symbol (see Details).
+#' @param fixmax value of the biggest symbol (see Details).
+#' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 #' legend.pos is "n" then the legend is not plotted.
-#' @param legend.title.txt character; title of the legend.
-#' @param legend.title.cex numeric; size of the legend title.
-#' @param legend.values.cex numeric; size of the values in the legend.
-#' @param legend.values.rnd numeric; number of decimal places of the values 
+#' @param legend.title.txt title of the legend.
+#' @param legend.title.cex size of the legend title.
+#' @param legend.values.cex size of the values in the legend.
+#' @param legend.values.rnd number of decimal places of the values 
 #' displayed in the legend.
-#' @param legend.style character; either "c" or "e". The legend has two display 
+#' @param legend.style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details The breakval parameter allows to plot symbols of two 
 #' colors: the first color (col) for values superior or equal to breakval,

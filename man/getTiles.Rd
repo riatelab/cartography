@@ -7,12 +7,12 @@
 getTiles(spdf, type = "osm", zoom = NULL)
 }
 \arguments{
-\item{spdf}{Spatial*DataFrame; it must have a valid projection attribute.}
+\item{spdf}{a Spatial*DataFrame with a valid projection attribute.}
 
-\item{type}{character; the tile server from which to get the map
+\item{type}{the tile server from which to get the map
 (see Details).}
 
-\item{zoom}{numeric; the zoom level. If null, it is determined automatically
+\item{zoom}{the zoom level. If null, it is determined automatically
 (see Details).}
 }
 \value{

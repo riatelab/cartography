@@ -2,10 +2,10 @@
 #' @name getTiles
 #' @description Get map tiles based on a Spatial*DataFrame extent. Maps can be 
 #' fetched from various open map servers.
-#' @param spdf Spatial*DataFrame; it must have a valid projection attribute.
-#' @param type character; the tile server from which to get the map 
+#' @param spdf  a Spatial*DataFrame with a valid projection attribute.
+#' @param type the tile server from which to get the map 
 #' (see Details).
-#' @param zoom numeric; the zoom level. If null, it is determined automatically 
+#' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @details This function uses rgdal and OpenStreetMap packages. 
 #' 
@@ -75,8 +75,8 @@ getTiles <- function(spdf, type = "osm", zoom = NULL){
 
 #' @title Plot Tiles From Open Map Servers
 #' @name tilesLayer
-#' @param x OpenStreetMap object; \code{\link{getTiles}} outputs these objects.
-#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' @param x an OpenStreetMap object; \code{\link{getTiles}} outputs these objects.
+#' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details This function is a wrapper for \code{plot.OpenStreetMap} from 
 #' OpenStreetMap package.

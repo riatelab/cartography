@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendPropTriangles}
 \alias{legendPropTriangles}
-\title{Legend For Double Proportionnal Triangles Maps}
+\title{Legend for Double Proportionnal Triangles Maps}
 \usage{
 legendPropTriangles(pos = "topleft", title.txt, var.txt, var2.txt,
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, var2, r, r2,
@@ -10,40 +10,40 @@ legendPropTriangles(pos = "topleft", title.txt, var.txt, var2.txt,
   style = "c")
 }
 \arguments{
-\item{pos}{character; position of the legend, one of "topleft", "top",
+\item{pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{title.txt}{character; title of the legend.}
+\item{title.txt}{title of the legend.}
 
-\item{var.txt}{character; name of var.}
+\item{var.txt}{name of var.}
 
-\item{var2.txt}{character; name of var2.}
+\item{var2.txt}{name of var2.}
 
-\item{title.cex}{numeric; size of the legend title.}
+\item{title.cex}{size of the legend title.}
 
-\item{cex}{character; size of the legend. 2 means two times bigger.}
+\item{cex}{size of the legend. 2 means two times bigger.}
 
-\item{values.cex}{numeric; size of the values in the legend.}
+\item{values.cex}{size of the values in the legend.}
 
-\item{var}{numeric; a vector of values.}
+\item{var}{a first vector of values.}
 
-\item{var2}{numeric; a vector of values.}
+\item{var2}{a second vector of values.}
 
-\item{r}{numeric; a vector of sizes.}
+\item{r}{a first vector of sizes.}
 
-\item{r2}{numeric; a vector of sizes.}
+\item{r2}{a second vector of sizes.}
 
-\item{col}{character; color of symbols.}
+\item{col}{color of symbols.}
 
-\item{col2}{character; second color of symbols.}
+\item{col2}{second color of symbols.}
 
-\item{frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{values.rnd}{numeric; number of decimal places of the values in
+\item{values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{style}{character; either "c" or "e". The legend has two display
+\item{style}{either "c" or "e". The legend has two display
 styles, "c" stands for compact and "e" for extended.}
 }
 \description{

@@ -10,60 +10,45 @@ typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   legend.frame = FALSE, legend.nodata = "no data", add = TRUE)
 }
 \arguments{
-\item{spdf}{SpatialPolygonsDataFrame.}
+\item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{df}{data.frame; df contains the values to plot.}
+\item{df}{a data.frame that contains the values to plot.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
+\item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{character; name of the factor field in df to plot.}
+\item{var}{name of the factor field in df to plot.}
 
-\item{col}{character; a vector of colors. Note that if breaks is specified there must be one less
+\item{col}{a vector of colors. Note that if breaks is specified there must be one less
 colors specified than the number of break.}
 
-\item{border}{character; color of polygon borders.}
+\item{border}{color of polygon borders.}
 
-\item{lwd}{numeric; borders width.}
+\item{lwd}{borders width.}
 
-\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
 
-\item{legend.title.txt}{character; title of the legend.}
+\item{legend.title.txt}{title of the legend.}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.nodata}{character; no data label.}
+\item{legend.nodata}{no data label.}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
-}
-\value{
-A plot is returned
 }
 \description{
 Plot a typology layer.
-}
-\details{
-The optimum number of class depends on the number of geographical objects. If nclass is not defined
-an automatic method inspired by Sturges (1926) is used : nclass = 1+3.3*log10(N), where nclass is the number
-of class and N is the variable length.
-
-
-If breaks is used then nclass and method are not.
-
-"sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
-uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.
-The "geom" method consists is based on a geometric progression along the variable values.
 }
 \examples{
 data(nuts2006)

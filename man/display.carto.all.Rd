@@ -7,7 +7,7 @@
 display.carto.all(n = 10)
 }
 \arguments{
-\item{n}{numeric; number of colors by palettes (from 1 to 20).}
+\item{n}{number of colors by palettes (from 1 to 20).}
 }
 \description{
 Display all the available color palettes.

@@ -10,28 +10,28 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   extent = NULL)
 }
 \arguments{
-\item{title}{character; title of the map.}
+\item{title}{title of the map.}
 
-\item{sources}{character; sources of the map (or something else).}
+\item{sources}{sources of the map (or something else).}
 
-\item{author}{character; author of the map (or something else).}
+\item{author}{author of the map (or something else).}
 
-\item{col}{character; color of the frame border.}
+\item{col}{color of the frame border.}
 
-\item{coltitle}{character; color of the title.}
+\item{coltitle}{color of the title.}
 
-\item{bg}{character; color of the frame background.}
+\item{bg}{color of the frame background.}
 
-\item{scale}{numeric; size of the scale in kilometers. If set to NULL, no scale is
+\item{scale}{size of the scale in kilometers. If set to NULL, no scale is
 displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).}
 
-\item{frame}{boolean; wheither displaying a frame or not.}
+\item{frame}{wheither displaying a frame or not.}
 
-\item{north}{boolean; wheither displaying a Noth arrow.}
+\item{north}{wheither displaying a Noth arrow or not.}
 
-\item{south}{boolean; wheither displaying a South arrow.}
+\item{south}{wheither displaying a South arrow or not.}
 
-\item{extent}{SpatialPolygonsDataFrame or SpatialPointsDataFrame; set the extent to the one of a
+\item{extent}{a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the extent to the one of a
 Spatial object.}
 }
 \description{

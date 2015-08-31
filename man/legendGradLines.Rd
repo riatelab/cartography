@@ -2,35 +2,35 @@
 % Please edit documentation in R/legends.R
 \name{legendGradLines}
 \alias{legendGradLines}
-\title{Legend For Graduated Size Lines Maps}
+\title{Legend for Graduated Size Lines Maps}
 \usage{
 legendGradLines(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, values.cex = 0.6, breaks, lwd, col, values.rnd = 2,
   cex = 1, frame = FALSE)
 }
 \arguments{
-\item{pos}{character; position of the legend, one of "topleft", "top",
+\item{pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{title.txt}{character; title of the legend.}
+\item{title.txt}{title of the legend.}
 
-\item{title.cex}{numeric; size of the legend title.}
+\item{title.cex}{size of the legend title.}
 
-\item{values.cex}{numeric; size of the values in the legend.}
+\item{values.cex}{size of the values in the legend.}
 
-\item{breaks}{numeric; break points in sorted order to indicate the intervals
+\item{breaks}{break points in sorted order to indicate the intervals
 for assigning the width of the lines}
 
-\item{lwd}{numeric; a vector giving the width of the lines.}
+\item{lwd}{a vector giving the width of the lines.}
 
-\item{col}{character; color of symbols.}
+\item{col}{color of symbols.}
 
-\item{values.rnd}{numeric; number of decimal places of the values in
+\item{values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{cex}{character; size of the legend. 2 means two times bigger.}
+\item{cex}{size of the legend. 2 means two times bigger.}
 
-\item{frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 }
 \description{

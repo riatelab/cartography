@@ -1,9 +1,9 @@
 #' @title Discretization
 #' @name discretization
 #' @description Discretization Function
-#' @param v numeric; a vector of values.
-#' @param nclass numeric; a number of classes
-#' @param method character; a discretization method; one of "sd", "equal", 
+#' @param v a vector of numeric values.
+#' @param nclass a number of classes
+#' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "jenks","q6","geom"  (see Details).
 #' @details This function is mainly a wrapper around classIntervals function of 
 #' the classInt package + q6 and geom methods. 

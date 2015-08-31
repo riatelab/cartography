@@ -1,35 +1,34 @@
 #' @title Proportional Symbols Typo Layer
 #' @name propSymbolsTypoLayer
 #' @description Plot a proportional symbols layer with a color based on a qualitative data. Various symbols are availables.
-#' @param spdf Spatial*DataFrame; if \code{spdf} is a SpatialPolygonsDataFrame 
-#' symbols are plotted on centroids.
-#' @param df data.frame; \code{df} contains the values to plot.
-#' @param spdfid character; id field in \code{spdf}, default to the first column 
-#' of the \code{spdf} data.frame. (optional)
-#' @param dfid character; id field in \code{df}, default to the first column 
-#' of \code{df}. (optional)
-#' @param var character; name of the numeric field in \code{df} to plot.
-#' @param var2 character; name of the factor field in \code{df} to plot.
-#' @param symbols character; type of symbols, one of "circles", "squares" or "height").
-#' @param col character; a vector of colors (hues).
-#' @param k numeric; share of the map occupied by the biggest symbol.
-#' @param fixmax numeric; value of the biggest symbol. (optional)
-#' @param legend.var.pos character; position of the legend var, one of "topleft", "top", 
-#' @param legend.var2.pos character; position of the legend var2, one of "topleft", "top", 
+#' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
+#' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
+#' @param df a data.frame that contains the values to plot.
+#' @param spdfid identifier field in spdf, default to the first column 
+#' of the spdf data.frame. (optional)
+#' @param dfid identifier field in df, default to the first column 
+#' of df. (optional)
+#' @param var name of the numeric field in df to plot.
+#' @param var2 name of the factor field in df to plot.
+#' @param symbols type of symbols, one of "circle", "square" or "bar".
+#' @param col a vector of colors.
+#' @param k share of the map occupied by the biggest symbol.
+#' @param fixmax value of the biggest symbol. (optional)
+#' @param legend.var.pos position of the legend for var, one of "topleft", "top", 
+#' @param legend.var2.pos position of the legend for var2, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param legend.title.var.txt character; title of the legend (numeric data).
-#' @param legend.title.var2.txt character; title of the legend (factor data).
-#' @param legend.title.cex numeric; size of the legend title.
-#' @param legend.values.cex numeric; size of the values in the legend.
-#' @param legend.values.rnd numeric; number of decimal places of the values in 
+#' @param legend.title.var.txt title of the legend (numeric data).
+#' @param legend.title.var2.txt title of the legend (factor data).
+#' @param legend.title.cex size of the legend title.
+#' @param legend.values.cex size of the values in the legend.
+#' @param legend.values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param legend.style character; either "a" or "b". The legend has two display 
+#' @param legend.style either "a" or "b". The legend has two display 
 #' styles.
-#' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @return A plot is returned.
 #' @export
 #' @import sp
 #' @examples

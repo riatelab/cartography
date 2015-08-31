@@ -1,23 +1,23 @@
-#' @title Legend For Choropleth Maps
+#' @title Legend for Choropleth Maps
 #' @description Plot nice legend adapted to choropleth maps.
 #' @name legendChoro
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param breaks numeric; break points in sorted order to indicate the intervals for assigning the colors. 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param breaks break points in sorted order to indicate the intervals for assigning the colors. 
 #' Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).
-#' @param col character; a vector of colors. 
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param col a vector of colors. 
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param nodata boolean; if TRUE a "no data" box or line is plotted.
-#' @param nodata.txt character; label for "no data" values. 
-#' @param nodata.col character; color of "no data" values.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param nodata if TRUE a "no data" box or line is plotted.
+#' @param nodata.txt label for "no data" values. 
+#' @param nodata.col color of "no data" values.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param symbol character; 'line' or 'box'
+#' @param symbol type of symbol in the legend 'line' or 'box'
 #' @export
 #' @examples
 #' data("nuts2006")
@@ -134,21 +134,21 @@ legendChoro <- function(pos = "topleft",
 }
 
 
-#' @title  Legend For Typology Maps
+#' @title  Legend for Typology Maps
 #' @description Plot legend for typology maps.
 #' @name legendTypo
-#' @param categ vector; vector of categories.
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param categ vector of categories.
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param col character; a vector of colors. 
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param nodata boolean; if TRUE a "no data" box or line is plotted.
-#' @param nodata.txt character; label for "no data" values. 
-#' @param nodata.col character; color of "no data" values.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param col a vector of colors. 
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param nodata if TRUE a "no data" box or line is plotted.
+#' @param nodata.txt label for "no data" values. 
+#' @param nodata.col color of "no data" values.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param symbol character; 'line' or 'box'
 #' @export
@@ -259,25 +259,25 @@ legendTypo <- function(pos = "topleft",
   }
 }
 
-#' @title Legend For Proportionnal Circles Maps
+#' @title Legend for Proportionnal Circles Maps
 #' @description Plot legend for proportional circles maps
 #' @name legendCirclesSymbols
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param var numeric; vector of values.
-#' @param r numeric; a vector giving the radii of the circles.
-#' @param breakval numeric; breaking value (see Details).
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param var vector of values.
+#' @param r a vector giving the radii of the circles.
+#' @param breakval breaking value (see Details).
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param col character; color of symbols.
-#' @param col2 character; second color of symbols (see Details).
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param col color of symbols.
+#' @param col2 second color of symbols (see Details).
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param style character; either "c" or "e". The legend has two display 
+#' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @details The breakval parameter allows to plot symbols of two 
 #' colors: the first color (col) for values superior or equal to breakval,
@@ -422,25 +422,25 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 
 
 
-#' @title Legend For Proportionnal Square Maps
+#' @title Legend for Proportionnal Square Maps
 #' @description Plot legend for proportional square maps
 #' @name legendSquaresSymbols
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param var numeric; vector of values.
-#' @param r numeric; a vector giving the length of the sides of the squares.
-#' @param breakval numeric; breaking value (see Details).
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param var vector of values.
+#' @param r a vector giving the length of the sides of the squares.
+#' @param breakval breaking value (see Details).
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param col character; color of symbols.
-#' @param col2 character; second color of symbols (see Details).
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param col color of symbols.
+#' @param col2 second color of symbols (see Details).
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param style character; either "c" or "e". The legend has two display 
+#' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @details The breakval parameter allows to plot symbols of two 
 #' colors: the first color (col) for values superior or equal to breakval,
@@ -590,25 +590,25 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 
 
 
-#' @title Legend For Proportionnal Bars Maps
+#' @title Legend for Proportionnal Bars Maps
 #' @description Plot legend for proportional bars maps
 #' @name legendBarsSymbols
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param var numeric; vector of values.
-#' @param r numeric; a vector giving the heights of the bars.
-#' @param breakval numeric; breaking value (see Details).
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param var vector of values.
+#' @param r a vector giving the heights of the bars.
+#' @param breakval breaking value (see Details).
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param col character; color of symbols.
-#' @param col2 character; second color of symbols (see Details).
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param col color of symbols.
+#' @param col2 second color of symbols (see Details).
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param style character; either "c" or "e". The legend has two display 
+#' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @details The breakval parameter allows to plot symbols of two 
 #' colors: the first color (col) for values superior or equal to breakval,
@@ -746,28 +746,28 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
   }
 }
 
-#' @title Legend For Double Proportionnal Triangles Maps
+#' @title Legend for Double Proportionnal Triangles Maps
 #' @description Plot legends for double proportionnal triangles maps.
 #' @name legendPropTriangles
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param var numeric; a vector of values.
-#' @param var2 numeric; a vector of values.
-#' @param r numeric; a vector of sizes.
-#' @param r2 numeric; a vector of sizes.
-#' @param var.txt character; name of var.
-#' @param var2.txt character; name of var2.
-#' @param col character; color of symbols.
-#' @param col2 character; second color of symbols.
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param var a first vector of values.
+#' @param var2 a second vector of values.
+#' @param r a first vector of sizes.
+#' @param r2 a second vector of sizes.
+#' @param var.txt name of var.
+#' @param var2.txt name of var2.
+#' @param col color of symbols.
+#' @param col2 second color of symbols.
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param style character; either "c" or "e". The legend has two display 
+#' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
 #' @examples
@@ -961,21 +961,21 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
 }
 
 
-#' @title Legend For Proportionnal Lines Maps
+#' @title Legend for Proportionnal Lines Maps
 #' @description Plot legend for proportionnal lines maps
 #' @name legendPropLines
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param var numeric; vector of values.
-#' @param lwd numeric; a vector giving the width of the lines.
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param var vector of values.
+#' @param lwd a vector giving the width of the lines.
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param col character; color of symbols.
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param col color of symbols.
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @export
 #' @examples
@@ -1061,22 +1061,22 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
   }
 }
 
-#' @title Legend For Graduated Size Lines Maps
+#' @title Legend for Graduated Size Lines Maps
 #' @description Plot legend for graduated size lines maps.
 #' @name legendGradLines
-#' @param pos character; position of the legend, one of "topleft", "top", 
+#' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt character; title of the legend.
-#' @param title.cex numeric; size of the legend title.
-#' @param values.cex numeric; size of the values in the legend.
-#' @param breaks numeric; break points in sorted order to indicate the intervals 
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param breaks break points in sorted order to indicate the intervals 
 #' for assigning the width of the lines
-#' @param lwd numeric; a vector giving the width of the lines.
-#' @param values.rnd numeric; number of decimal places of the values in 
+#' @param lwd  a vector giving the width of the lines.
+#' @param values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param col character; color of symbols.
-#' @param cex character; size of the legend. 2 means two times bigger.
-#' @param frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param col color of symbols.
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @export
 #' @examples 

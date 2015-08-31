@@ -1,10 +1,10 @@
 #' @title Extract SpatialPolygonsDataFrame Borders
 #' @description Extract borders between SpatialPolygonsDataFrame units.
 #' @name getBorders
-#' @param spdf SpatialPolygonsDataFrame.
-#' @param spdfid character; id field in spdf, default to the first column 
+#' @param spdf a SpatialPolygonsDataFrame.
+#' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data.frame. (optional)
-#' @param tol numeric; tolerance to detect contiguity (in map units). You may 
+#' @param tol tolerance to detect contiguity (in map units). You may 
 #' not want to change this parameter.
 #' @return A SpatialLinesDataFrame of borders is returned. This object has three id fields: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id concatenates id1 and id2.

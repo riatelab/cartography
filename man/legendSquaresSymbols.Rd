@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendSquaresSymbols}
 \alias{legendSquaresSymbols}
-\title{Legend For Proportionnal Square Maps}
+\title{Legend for Proportionnal Square Maps}
 \usage{
 legendSquaresSymbols(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, r, breakval = NULL,
@@ -10,34 +10,34 @@ legendSquaresSymbols(pos = "topleft", title.txt = "Title of the legend",
   style = "c")
 }
 \arguments{
-\item{pos}{character; position of the legend, one of "topleft", "top",
+\item{pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{title.txt}{character; title of the legend.}
+\item{title.txt}{title of the legend.}
 
-\item{title.cex}{numeric; size of the legend title.}
+\item{title.cex}{size of the legend title.}
 
-\item{cex}{character; size of the legend. 2 means two times bigger.}
+\item{cex}{size of the legend. 2 means two times bigger.}
 
-\item{values.cex}{numeric; size of the values in the legend.}
+\item{values.cex}{size of the values in the legend.}
 
-\item{var}{numeric; vector of values.}
+\item{var}{vector of values.}
 
-\item{r}{numeric; a vector giving the length of the sides of the squares.}
+\item{r}{a vector giving the length of the sides of the squares.}
 
-\item{breakval}{numeric; breaking value (see Details).}
+\item{breakval}{breaking value (see Details).}
 
-\item{col}{character; color of symbols.}
+\item{col}{color of symbols.}
 
-\item{col2}{character; second color of symbols (see Details).}
+\item{col2}{second color of symbols (see Details).}
 
-\item{frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{values.rnd}{numeric; number of decimal places of the values in
+\item{values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{style}{character; either "c" or "e". The legend has two display
+\item{style}{either "c" or "e". The legend has two display
 styles, "c" stands for compact and "e" for extended.}
 }
 \description{

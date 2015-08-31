@@ -11,52 +11,52 @@ choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   legend.values.rnd = 0, legend.nodata = "no data", add = TRUE)
 }
 \arguments{
-\item{spdf}{SpatialPolygonsDataFrame.}
+\item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{df}{data.frame; df contains the values to plot.}
+\item{df}{a data.frame that contains the values to plot.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{name of the identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
+\item{dfid}{name of the identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{character; name of the numeric field in df to plot.}
+\item{var}{name of the numeric field in df to plot.}
 
-\item{breaks}{numeric; break points in sorted order to indicate the intervals for assigning the colors.
-Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
+\item{breaks}{break values in sorted order to indicate the intervals for assigning the colors.
+Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}
 
-\item{col}{character; a vector of colors. Note that if breaks is specified there must be one less
+\item{col}{a vector of colors. Note that if breaks is specified there must be one less
 colors specified than the number of break.}
 
-\item{nclass}{numeric; a targeted number of classes. If null, the number of class is automatically defined (see Details).}
+\item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
 
-\item{method}{character; a discretization method; one of "sd", "equal",
+\item{method}{a discretization method; one of "sd", "equal",
 "quantile", "jenks","q6","geom"  (see Details).}
 
-\item{border}{character; color of polygon borders.}
+\item{border}{color of the polygons borders.}
 
-\item{lwd}{numeric; borders width.}
+\item{lwd}{borders width.}
 
-\item{legend.pos}{character; position of the legend, one of "topleft", "top",
+\item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
 
-\item{legend.title.txt}{character; title of the legend.}
+\item{legend.title.txt}{title of the legend.}
 
-\item{legend.title.cex}{numeric; size of the legend title.}
+\item{legend.title.cex}{size of the legend title.}
 
-\item{legend.values.cex}{numeric; size of the values in the legend.}
+\item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.values.rnd}{numeric; number of decimal places of the values in
+\item{legend.values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{legend.nodata}{character; no data label.}
+\item{legend.nodata}{no data label.}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{

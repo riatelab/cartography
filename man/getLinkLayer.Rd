@@ -8,26 +8,26 @@ getLinkLayer(spdf, spdf2 = NULL, df, spdfid = NULL, spdf2id = NULL,
   dfids = NULL, dfide = NULL)
 }
 \arguments{
-\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; layer used to
+\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to
 get starting points of links. If spdf2 is NULL, spdf is also used to get ending points.
 If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.}
 
-\item{spdf2}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; layer used to
+\item{spdf2}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to
 get ending points of links.
 If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.}
 
-\item{df}{data.frame; df contains identifiers of starting and ending points.}
+\item{df}{a data.frame that contains identifiers of starting and ending points.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 
-\item{spdf2id}{character; id field in spdf2, default to the first column
+\item{spdf2id}{identifier field in spdf2, default to the first column
 of the spdf2 data.frame. (optional)}
 
-\item{dfids}{character; id field of starting points of links in df, default to the first column
+\item{dfids}{identifier field of starting points of links in df, default to the first column
 of df. (optional)}
 
-\item{dfide}{character; id field of ending points of links in df, default to the second column
+\item{dfide}{identifier field of ending points of links in df, default to the second column
 of df. (optional)}
 }
 \value{

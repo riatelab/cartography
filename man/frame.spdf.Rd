@@ -3,7 +3,7 @@
 \docType{data}
 \name{frame.spdf}
 \alias{frame.spdf}
-\title{Frame Around Europe}
+\title{Frame around Europe}
 \format{SpatialPolygonsDataFrame.}
 \source{
 UMS RIATE

@@ -7,11 +7,11 @@
 getGridLayer(spdf, cellsize, spdfid = NULL)
 }
 \arguments{
-\item{spdf}{SpatialPolygonsDataFrame.}
+\item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{cellsize}{numeric; output cell size in map units.}
+\item{cellsize}{output cell size, in map units.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data.frame. (optional)}
 }
 \value{

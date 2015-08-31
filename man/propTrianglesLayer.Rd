@@ -8,9 +8,9 @@ propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1, var2,
   col1 = "red", col2 = "blue", k, add = TRUE)
 }
 \arguments{
-\item{spdf}{SpatialPolygonsDataFrame}
+\item{spdf}{a SpatialPolygonsDataFrame}
 
-\item{df}{DataFrame with Ids and Labels}
+\item{df}{a dataFrame with Ids and Labels}
 
 \item{spdfid}{Ids of the obj Spatial*DataFrame}
 
@@ -29,7 +29,7 @@ propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1, var2,
 \item{add}{Whether to add the layer to an existing map (TRUE) or not (FALSE)}
 }
 \description{
-Plot a "chinese hat" layer
+Plot a double triangle layer
 }
 \examples{
 data("nuts2006")

@@ -1,38 +1,38 @@
 #' @title Discontinuities Layer
 #' @description This function computes and plots spatial discontinuities. The 
 #' discontinuities are plotted over the layer outputed by the \link{getBorders} function.
-#' The line widths reflect the ratio between values of an indicator in neighbouring units.
+#' The line widths reflect the ratio between values of an indicator in two neighbouring units.
 #' @name discLayer
-#' @param spdf SpatialLinesDataFrame; as outputed by the \link{getBorders} function.
-#' @param df data.frame; df contains the values.
-#' @param spdfid1 character; first id of the border, default to the second column 
+#' @param spdf a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.
+#' @param df a data.frame that contains the values used to compute and plot discontinuities.
+#' @param spdfid1 first identifier of the border, default to the second column 
 #' of the spdf data.frame. (optional)
-#' @param spdfid2 character; second id of the border, default to the third column 
+#' @param spdfid2 second identifier of the border, default to the third column 
 #' of the spdf data.frame. (optional)
-#' @param dfid character; id field in df, default to the first column 
+#' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
-#' @param var character; name of the numeric field in df used to compute and plot discontinuities.
-#' @param col character; color of lines.
-#' @param nclass numeric; a targeted number of classes. If null, the number of 
+#' @param var name of the numeric field in df used to compute and plot discontinuities.
+#' @param col color of the discontinuities lines.
+#' @param nclass a targeted number of classes. If null, the number of 
 #' class is automatically defined (see Details).
-#' @param method character; a discretization method; one of "sd", "equal", 
+#' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "jenks","q6","geom"  (see Details).
-#' @param threshold numeric; share of represented borders, value between 0 
+#' @param threshold share of represented borders, value between 0 
 #' (nothing) and 1 (all the discontinuities).
-#' @param sizemin numeric; thickness of the smaller line.
-#' @param sizemax numeric; thickness of the bigger line.
-#' @param type character; "rel" or "abs", type of discontinuity measure (see Details).
-#' @param legend.pos character; position of the legend, one of "topleft", "top", 
+#' @param sizemin thickness of the smaller line.
+#' @param sizemax thickness of the bigger line.
+#' @param type type of discontinuity measure, one of "rel" or "abs" (see Details).
+#' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 #' legend.pos is "n" then the legend is not plotted.
-#' @param legend.title.txt character; title of the legend.
-#' @param legend.title.cex numeric; size of the legend title.
-#' @param legend.values.cex numeric; size of the values in the legend.
-#' @param legend.values.rnd numeric; number of decimal places of the values in 
+#' @param legend.title.txt title of the legend.
+#' @param legend.title.cex size of the legend title.
+#' @param legend.values.cex size of the values in the legend.
+#' @param legend.values.rnd number of decimal places of the values in 
 #' the legend.
-#' @param legend.frame boolean; whether to add a frame to the legend (TRUE) or 
+#' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
-#' @param add boolean; whether to add the layer to an existing plot (TRUE) or 
+#' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
 #' "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method

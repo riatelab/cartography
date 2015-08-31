@@ -2,12 +2,12 @@
 #' @description Builds sequantial and diverging color palettes. 
 #' Diververging color palettes can be dissymetric (two gradients with different number of colors)
 #' @name carto.pal
-#' @param pal1 character; name of the color gradiant (see Details).
-#' @param n1 numeric; number of colors (up to 20)
-#' @param pal2 character; name of the color gradiant (see Details). 
-#' @param n2 numeric; number of colors (up to 20)
-#' @param middle boolean; if TRUE, add a neutral color ("#F6F6F6") between two gradients.
-#' @param transparency boolean; if TRUE, enhance contrasts by adding opacity variation.
+#' @param pal1 name of the color gradiant (see Details).
+#' @param n1 number of colors (up to 20)
+#' @param pal2 name of the color gradiant (see Details). 
+#' @param n2 number of colors (up to 20)
+#' @param middle  a logical value. If TRUE, a neutral color ("#F6F6F6") between two gradients is added.
+#' @param transparency a logical value. If TRUE, contrasts are enhenced by adding an opacity variation.
 #' @details Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
 #' "pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal". 
 #' Use  \code{display.carto.all(5)} to show all palettes. Use display.carto.pal("PALETTE NAME") to show one palette. 
@@ -87,7 +87,7 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' @title Display All Cartographic Palettes
 #' @description Display all the available color palettes.
 #' @name display.carto.all
-#' @param n numeric; number of colors by palettes (from 1 to 20).
+#' @param n number of colors by palettes (from 1 to 20).
 #' @examples
 #' display.carto.all(1)
 #' display.carto.all(5)
@@ -123,7 +123,7 @@ display.carto.all<-function(n = 10)
 #' @title Display One Cartographic Palette
 #' @description Display one color palette.
 #' @name display.carto.pal
-#' @param name character; name of the palette available in the package (see Details)
+#' @param name name of the palette available in the package (see Details)
 #' @details Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
 #' "pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal". 
 #' @examples

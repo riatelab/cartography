@@ -8,17 +8,17 @@ carto.pal(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
   transparency = FALSE)
 }
 \arguments{
-\item{pal1}{character; name of the color gradiant (see Details).}
+\item{pal1}{name of the color gradiant (see Details).}
 
-\item{n1}{numeric; number of colors (up to 20)}
+\item{n1}{number of colors (up to 20)}
 
-\item{pal2}{character; name of the color gradiant (see Details).}
+\item{pal2}{name of the color gradiant (see Details).}
 
-\item{n2}{numeric; number of colors (up to 20)}
+\item{n2}{number of colors (up to 20)}
 
-\item{middle}{boolean; if TRUE, add a neutral color ("#F6F6F6") between two gradients.}
+\item{middle}{a logical value. If TRUE, a neutral color ("#F6F6F6") between two gradients is added.}
 
-\item{transparency}{boolean; if TRUE, enhance contrasts by adding opacity variation.}
+\item{transparency}{a logical value. If TRUE, contrasts are enhenced by adding an opacity variation.}
 }
 \value{
 A vector of colors is returned.
