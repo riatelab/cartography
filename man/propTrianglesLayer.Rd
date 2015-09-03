@@ -2,42 +2,81 @@
 % Please edit documentation in R/propTrianglesLayer.R
 \name{propTrianglesLayer}
 \alias{propTrianglesLayer}
-\title{propTrianglesLayer}
+\title{Double Proportionnal Triangle Layer}
 \usage{
 propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1, var2,
-  col1 = "red", col2 = "blue", k, add = TRUE)
+  col1 = "#E84923", col2 = "#7DC437", k = 0.02, legend.pos = "topright",
+  legend.title.txt = paste(var1, var2, sep = " / "), legend.var1.txt = var1,
+  legend.var2.txt = var2, legend.title.cex = 0.8, legend.values.cex = 0.6,
+  legend.frame = FALSE, legend.values.rnd = 0, legend.style = "c",
+  add = TRUE)
 }
 \arguments{
-\item{spdf}{a SpatialPolygonsDataFrame}
+\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
+is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{a dataFrame with Ids and Labels}
+\item{df}{a data.frame that contains the values to plot.}
 
-\item{spdfid}{Ids of the obj Spatial*DataFrame}
+\item{spdfid}{identifier field in spdf, default to the first column
+of the spdf data.frame. (optional)}
 
-\item{dfid}{Ids of the DataFrame}
+\item{dfid}{identifier field in df, default to the first column
+of df. (optional)}
 
-\item{var1}{Symbols variable 1 (numeric)}
+\item{var1}{name of the first numeric field in df to plot (top triangle).}
 
-\item{var2}{Symbols variable 2 (numeric)}
+\item{var2}{name of the second  numeric field in df to plot (bottom triangle).}
 
-\item{col1}{Symbols color top}
+\item{col1}{color of top triangles.}
 
-\item{col2}{Symbols color bottom}
+\item{col2}{color of bottom triangles.}
 
-\item{k}{Share of the map occupied by symbols}
+\item{k}{share of the map occupied by the biggest symbol.}
 
-\item{add}{Whether to add the layer to an existing map (TRUE) or not (FALSE)}
+\item{legend.pos}{position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
+legend.pos is "n" then the legend is not plotted.}
+
+\item{legend.title.txt}{title of the legend.}
+
+\item{legend.var1.txt}{label of the top variable.}
+
+\item{legend.var2.txt}{label of the bottom variable.}
+
+\item{legend.title.cex}{size of the legend title.}
+
+\item{legend.values.cex}{size of the values in the legend.}
+
+\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+not (FALSE).}
+
+\item{legend.values.rnd}{number of decimal places of the values
+displayed in the legend.}
+
+\item{legend.style}{either "c" or "e". The legend has two display
+styles, "c" stands for compact and "e" for extended.}
+
+\item{add}{whether to add the layer to an existing plot (TRUE) or
+not (FALSE).}
 }
 \description{
-Plot a double triangle layer
+Plot a double proportionnal triangles layer.
 }
 \examples{
 data("nuts2006")
-nuts0.df$sharepop <- round((nuts0.df$pop2008 / sum(nuts0.df$pop2008))*100,2)
-nuts0.df$sharegdp <- round((nuts0.df$gdppps2008 / sum(nuts0.df$gdppps2008))*100,2)
-plot(countries.spdf,col="#E0E0E0",border="white",lwd=1)
+layoutLayer(title = "Births and Deaths in Europe, 2008",
+            sources = "Eurostat, 2008",
+            scale = NULL,
+            frame = FALSE,
+            col = "black",
+            coltitle = "white",
+
+            extent = nuts0.spdf)
+plot(countries.spdf,col="#E0E0E0",border="white",lwd=1, add=TRUE)
 plot(nuts0.spdf,col="#E5CFC1",border="white",lwd=2,add=TRUE)
-propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df, spdfid=NULL, dfid=NULL,var1 = "sharepop",
-var2 = "sharegdp", col1="#FF9100",col2="#45C945",k = 0.2, add=TRUE)
+propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df, spdfid=NULL, dfid=NULL,
+                   var1 = "birth_2008", legend.style = "e",
+                   var2 = "death_2008", legend.frame = TRUE,
+                   col1="#FF9100",col2="#45C945",k = 0.1, add=TRUE)
 }
 

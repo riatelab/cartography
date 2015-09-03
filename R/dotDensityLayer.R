@@ -40,55 +40,62 @@
 #'             bg = "#E6E6E6", 
 #'             extent = nuts0.spdf)
 #' plot(nuts0.spdf, col = "#B8704D",border = "white", lwd=1.3, add=TRUE)
-#' dotDensityLayer(spdf = nuts3.spdf, df=nuts3.df,var="pop2008", add=TRUE)
+#' dotDensityLayer(spdf = nuts0.spdf[,], df=nuts0.df,var="pop2008", add=TRUE, n = 100000)
 dotDensityLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
-                      n = NULL, # Un point vaut nb units
-                      iter = 5,
-                      dots.pch = 1,
-                      dots.cex = .15,
-                      dots.type = "random",
-                      col = "black",
-                      legend.txt = NULL,
-                      legend.pos = "topright",
-                      legend.cex = 0.6,
-                      legend.col = "black",
-                      legend.frame = TRUE,
-                      add = FALSE){
-
+                            n = NULL, # Un point vaut nb units
+                            iter = 5,
+                            dots.pch = 1,
+                            dots.cex = .15,
+                            dots.type = "random",
+                            col = "black",
+                            legend.txt = NULL,
+                            legend.pos = "topright",
+                            legend.cex = 0.6,
+                            legend.col = "black",
+                            legend.frame = TRUE,
+                            add = FALSE){
   
-if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-if (is.null(dfid)){dfid <- names(df)[1]}
-
-spdf@data <- data.frame(spdf@data, var = df[match(spdf@data[,spdfid], df[,dfid]),var])
-spdf@data[is.na(spdf@data$var),"var"] <- 0
-if (is.null(n)){n <- round(sum(spdf@data$var)/5000,-3)}
-spdf@data$ndots <- as.integer(spdf@data$var/n)
-spdf <- spdf[spdf@data$ndots>0,]
-
-if (add==FALSE){
-  sp::plot(spdf, col = NA, border = NA)
-}
-
-
-for (i in 1:nrow(spdf)){
-#points(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = dots.type), pch = dots.pch, cex= dots.cex)
-plot(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = dots.type, iter = iter), pch = dots.pch, cex= dots.cex , col=col, add=TRUE)
-}
-
-if(legend.pos !="n"){
-
   
-  if (is.null(legend.txt)){legend.txt <- paste("1 dot represents ",format(n, scientific = FALSE)," [in ",var," units]",sep="")}
-  if (legend.frame==TRUE){fill = "white" 
-                          border="black"} else {fill = NA
-                                                border=NA}
-     
+  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
+  if (is.null(dfid)){dfid <- names(df)[1]}
   
-legend(legend = legend.txt,cex = legend.cex, text.col = legend.col, pch=dots.pch ,pt.cex=dots.cex, x=legend.pos, box.col = border,bg = fill)
-
+  spdf@data <- data.frame(spdf@data, var = df[match(spdf@data[,spdfid], 
+                                                    df[,dfid]),var])
+  spdf@data[is.na(spdf@data$var),"var"] <- 0
+  if (is.null(n)){n <- round(sum(spdf@data$var)/5000,-3)}
+  spdf@data$ndots <- as.integer(spdf@data$var/n)
+  spdf <- spdf[spdf@data$ndots>0,]
+  
+  if (add==FALSE){
+    sp::plot(spdf, col = NA, border = NA)
+  }
+  
+  
+  for (i in 1:nrow(spdf)){
+    #points(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = dots.type), pch = dots.pch, cex= dots.cex)
+    plot(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = dots.type, 
+                  iter = iter), pch = dots.pch, cex= dots.cex , col=col, 
+         add=TRUE)
+  }
+  
+  if(legend.pos !="n"){
+    
+    
+    if (is.null(legend.txt)){legend.txt <- paste("1 dot represents ",
+                                                 format(n, scientific = FALSE),
+                                                 " [in ",var," units]",sep="")}
+    if (legend.frame==TRUE){
+      fill <-  "white"
+      border <- "black"
+    } else {
+      fill <- NA
+      border <- NA
+    }
+    
+    
+    legend(legend = legend.txt,cex = legend.cex, text.col = legend.col, 
+           pch=dots.pch ,pt.cex=dots.cex, x=legend.pos, box.col = border,
+           bg = fill)
+    
+  }
 }
-
-
-}
-
-

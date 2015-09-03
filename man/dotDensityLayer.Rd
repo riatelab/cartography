@@ -69,6 +69,6 @@ layoutLayer(title = "Population in Europe, 2008",
             bg = "#E6E6E6",
             extent = nuts0.spdf)
 plot(nuts0.spdf, col = "#B8704D",border = "white", lwd=1.3, add=TRUE)
-dotDensityLayer(spdf = nuts3.spdf, df=nuts3.df,var="pop2008", add=TRUE)
+dotDensityLayer(spdf = nuts0.spdf[,], df=nuts0.df,var="pop2008", add=TRUE, n = 100000)
 }
 
