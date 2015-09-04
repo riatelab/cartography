@@ -22,10 +22,9 @@ of df. (optional)}
 
 \item{var}{name of the factor field in df to plot.}
 
-\item{col}{a vector of colors. Note that if breaks is specified there must be one less
-colors specified than the number of break.}
+\item{col}{a vector of colors.}
 
-\item{border}{color of polygon borders.}
+\item{border}{color of the polygons borders.}
 
 \item{lwd}{borders width.}
 
@@ -52,17 +51,10 @@ Plot a typology layer.
 }
 \examples{
 data(nuts2006)
-nuts0.df$typo <- substr(nuts0.df$id,2,2)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 colours <- c("red","green","blue","yellow")
-
-typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo", col=colours,
+typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo",
           legend.pos = "topright", border="white",
-          legend.title.txt = "Typologie",add=FALSE
-)
-}
-\references{
-Herbert A. Sturges, «
-\emph{The Choice of a Class Interval }», Journal of the American Statistical Association, vol. 21, n° 153, mars 1926, p. 65-66.
+          legend.title.txt = "Just Some Letters",add=FALSE)
 }
 

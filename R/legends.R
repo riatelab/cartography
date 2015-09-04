@@ -157,16 +157,18 @@ legendChoro <- function(pos = "topleft",
 #' plot(nuts0.spdf, col = "grey")
 #' box()
 #' 
-#' jazz <- c("John coltrane","Miles Davis","Maceo Parker",
-#'           "Herbie\nHancock","Julien Lourau")
+#' # Define labels and colors
+#' someLabels <- c("red color", "yellow color", "green color", "black color")
+#' someColors <- c("red", "yellow", "green", "black")
+#' 
+#' # plot legend
 #' legendTypo(pos = "bottomleft", title.txt = "Title of the legend", title.cex = 0.8,
-#'            values.cex = 0.6, categ = jazz, cex = 0.75,
-#'            col = c("red","blue","green","yellow","purple"),
-#'            nodata = TRUE, nodata.txt = "No data\navailable", frame = TRUE, symbol="box")
-#' legendTypo(pos = "topright", title.txt = "Jazzmen", 
+#'            values.cex = 0.6, col = someColors, categ = someLabels, 
+#'            cex = 0.75,
+#'            nodata = TRUE, nodata.txt = "no data", frame = TRUE, symbol="box")
+#' legendTypo(pos = "topright", title.txt = "", 
 #'            title.cex = 1.5, cex = 1.25,
-#'            values.cex = 1, categ = jazz, 
-#'            col = c("red","blue","green","yellow","purple"),
+#'            values.cex = 1, col = someColors, categ = someLabels, 
 #'            nodata = FALSE, frame = FALSE, symbol="line")
 legendTypo <- function(pos = "topleft", 
                        title.txt = "Title of the legend", 
@@ -179,7 +181,8 @@ legendTypo <- function(pos = "topleft",
                        nodata.col = "white",
                        frame=FALSE,
                        symbol="box"){
-  
+  categ <- rev(categ)
+  col <- rev(col)
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
   if(pos %in% positions){
     
@@ -785,9 +788,9 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 #'                         col="green", col2="yellow", frame=TRUE, values.rnd=2, 
 #'                         style="c")
 legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt, 
-                                   title.cex = 0.8, cex = 1,
-                                   values.cex = 0.6, var, var2, r, r2, col="red", 
-                                   col2="blue", frame=FALSE, values.rnd=0, style="c"){
+                               title.cex = 0.8, cex = 1,
+                               values.cex = 0.6, var, var2, r, r2, col="red", 
+                               col2="blue", frame=FALSE, values.rnd=0, style="c"){
   
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
   if(pos %in% positions){
@@ -1144,11 +1147,11 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
     
     # Affichage du bloc de legende
     
-#     if (nodata == TRUE){
-#       rect(xref,yref ,xref + width,yref + height,col=nodata.col,border="black",lwd=0.4)
-#       text(xref + width + delta2 ,yref + height/2 ,nodata.txt,adj=c(0,0.5),cex=values.cex)
-#       yref <- yref + height + delta2
-#     }
+    #     if (nodata == TRUE){
+    #       rect(xref,yref ,xref + width,yref + height,col=nodata.col,border="black",lwd=0.4)
+    #       text(xref + width + delta2 ,yref + height/2 ,nodata.txt,adj=c(0,0.5),cex=values.cex)
+    #       yref <- yref + height + delta2
+    #     }
     
     for (i in 0:(length(breaks)-2)){
       j <- i+1
