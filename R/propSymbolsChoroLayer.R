@@ -1,4 +1,4 @@
-#' @title Proportional and Choropleth Layer
+#' @title Proportional and Choropleth Symbols Layer
 #' @name propSymbolsChoroLayer
 #' @description Plot a proportional symbols layer with color based on a quantitative data discrtization. 
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 

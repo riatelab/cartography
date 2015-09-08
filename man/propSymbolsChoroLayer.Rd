@@ -2,7 +2,7 @@
 % Please edit documentation in R/propSymbolsChoroLayer.R
 \name{propSymbolsChoroLayer}
 \alias{propSymbolsChoroLayer}
-\title{Proportional and Choropleth Layer}
+\title{Proportional and Choropleth Symbols Layer}
 \usage{
 propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
   fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1, var2,
