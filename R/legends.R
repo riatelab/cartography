@@ -757,8 +757,8 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
-#' @param var a first vector of values.
-#' @param var2 a second vector of values.
+#' @param var a first vector of positive values.
+#' @param var2 a second vector of positive values.
 #' @param r a first vector of sizes.
 #' @param r2 a second vector of sizes.
 #' @param var.txt name of var.
@@ -790,9 +790,11 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt, 
                                title.cex = 0.8, cex = 1,
                                values.cex = 0.6, var, var2, r, r2, col="red", 
-                               col2="blue", frame=FALSE, values.rnd=0, style="c"){
+                               col2="blue", frame=FALSE, values.rnd=0, 
+                               style="c"){
   
-  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
+  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", 
+                 "right", "top", "bottom", "middle")
   if(pos %in% positions){
     
     

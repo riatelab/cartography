@@ -25,9 +25,9 @@ legendPropTriangles(pos = "topleft", title.txt, var.txt, var2.txt,
 
 \item{values.cex}{size of the values in the legend.}
 
-\item{var}{a first vector of values.}
+\item{var}{a first vector of positive values.}
 
-\item{var2}{a second vector of values.}
+\item{var2}{a second vector of positive values.}
 
 \item{r}{a first vector of sizes.}
 

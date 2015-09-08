@@ -23,9 +23,9 @@ of the spdf data.frame. (optional)}
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var1}{name of the first numeric field in df to plot (top triangle).}
+\item{var1}{name of the first numeric field in df to plot, positive values only (top triangle).}
 
-\item{var2}{name of the second  numeric field in df to plot (bottom triangle).}
+\item{var2}{name of the second  numeric field in df to plot, positive values only (bottom triangle).}
 
 \item{col1}{color of top triangles.}
 
