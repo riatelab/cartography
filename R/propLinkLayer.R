@@ -40,11 +40,15 @@
 #' @export
 propLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide, 
                           dfid = NULL, dfids, dfide,
-                          var, maxlwd = 40, col, 
-                          legend.pos = "bottomleft",  legend.title.txt = var, 
-                          legend.title.cex = 0.8, legend.values.cex = 0.6, 
+                          var, maxlwd = 40, 
+                          col, 
+                          legend.pos = "bottomleft",  
+                          legend.title.txt = var, 
+                          legend.title.cex = 0.8, 
+                          legend.values.cex = 0.6, 
+                          legend.values.rnd = 0,
                           legend.frame = FALSE, 
-                          legend.values.rnd = 0, add = TRUE){
+                          add = TRUE){
   # joint
   if (is.null(sldfid)){
     sldf@data <- data.frame(df[match(x = paste(sldf@data[,sldfids],

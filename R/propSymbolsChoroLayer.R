@@ -57,16 +57,24 @@
 #' @export
 #' @import sp
 propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
-                                  var, k = 0.02, fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1,
-                                  var2, col = NULL, nclass=NULL, breaks=NULL, method="quantile",
-                                  legend.var.pos = "right",legend.var2.pos = "topright", 
-                                  legend.var.title.txt = var, legend.var2.title.txt = var2,
+                                  var, 
+                                  k = 0.02, fixmax = NULL, 
+                                  symbols = "circle", border = "grey20", lwd = 1,
+                                  var2, 
+                                  breaks=NULL,  method="quantile",  nclass=NULL, 
+                                  col = NULL,
                                   legend.title.cex = 0.8, 
                                   legend.values.cex = 0.6,
+                                  legend.var.pos = "right",
+                                  legend.var.title.txt = var, 
+                                  legend.var.values.rnd = 0, 
                                   legend.var.style = "c",
-                                  legend.var.frame = FALSE, legend.var2.frame = FALSE,
-                                  legend.var.values.rnd = 0, legend.var2.values.rnd = 0,
+                                  legend.var.frame = FALSE, 
+                                  legend.var2.pos = "topright", 
+                                  legend.var2.title.txt = var2,
+                                  legend.var2.values.rnd = 0,  
                                   legend.var2.nodata = "no data",
+                                  legend.var2.frame = FALSE,
                                   add = TRUE){
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}

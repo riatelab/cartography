@@ -58,13 +58,18 @@
 #'           legend.pos = "topright",
 #'           add=TRUE)
 #' @export
-discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL,
-                      var, col = "red", nclass=NULL,
-                      method="quantile", threshold = 0.75, sizemin = 1,
-                      sizemax = 10, type = "rel",
-                      legend.title.txt="legend title", legend.pos = "bottomleft", 
-                      legend.title.cex = 0.8, legend.values.cex = 0.6, 
-                      legend.values.rnd = 2,legend.frame=FALSE,add = FALSE){
+discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var, 
+                      method="quantile", nclass=NULL, threshold = 0.75, 
+                      type = "rel",
+                      sizemin = 1, sizemax = 10,
+                      col = "red", 
+                      legend.pos = "bottomleft",
+                      legend.title.txt="legend title",  
+                      legend.title.cex = 0.8, 
+                      legend.values.cex = 0.6, 
+                      legend.values.rnd = 2,
+                      legend.frame=FALSE,
+                      add = FALSE){
   
   
   if (is.null(spdfid1)){spdfid1 <- names(spdf@data)[2]}

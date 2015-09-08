@@ -83,16 +83,16 @@
 #'             col = "black",
 #'             coltitle = "white")
 choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var, 
-                       breaks = NULL, col = NULL, nclass = NULL, 
-                       method = "quantile",
+                       breaks = NULL, method = "quantile", nclass = NULL,
+                       col = NULL,
                        border = NA, lwd = 1,
                        legend.pos = "bottomleft", 
                        legend.title.txt = var,
                        legend.title.cex = 0.8, 
                        legend.values.cex = 0.6,
-                       legend.frame = FALSE,
                        legend.values.rnd = 0,
                        legend.nodata = "no data",
+                       legend.frame = FALSE,
                        add = TRUE)
 {
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}

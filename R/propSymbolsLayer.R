@@ -107,15 +107,18 @@
 #'                  legend.style = "c",
 #'                  legend.title.txt = "Natural Balance\n(2008)")
 propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
-                             symbols = "circle",
-                             col = "#E84923", col2 = "#7DC437", border = "black", 
-                             lwd = 1,
-                             breakval = NULL,
-                             k = 0.02, fixmax = NULL,
-                             legend.pos = "bottomleft", legend.title.txt = var,
-                             legend.title.cex = 0.8, legend.values.cex = 0.6,
-                             legend.style = "c", legend.frame = FALSE,
-                             legend.values.rnd = 0, add = TRUE){
+                             k = 0.02, fixmax = NULL, breakval = NULL,
+                             symbols = "circle", 
+                             col = "#E84923", col2 = "#7DC437", 
+                             border = "black", lwd = 1,
+                             legend.pos = "bottomleft", 
+                             legend.title.txt = var,
+                             legend.title.cex = 0.8, 
+                             legend.values.cex = 0.6,
+                             legend.values.rnd = 0,
+                             legend.style = "c", 
+                             legend.frame = FALSE,
+                             add = TRUE){
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   dots <- cbind(spdf@data[,spdfid], as.data.frame(sp::coordinates(spdf)))
@@ -167,16 +170,16 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     varvect <- dots[,var]
     if(legend.pos!="n"){
       legendCirclesSymbols(pos = legend.pos, title.txt = legend.title.txt,
-                        title.cex = legend.title.cex,
-                        values.cex = legend.values.cex,
-                        var = varvect,
-                        r = sizevect,
-                        breakval  = breakval,
-                        col = col,
-                        col2 = col2,
-                        frame = legend.frame,
-                        values.rnd =  legend.values.rnd,
-                        style = legend.style)
+                           title.cex = legend.title.cex,
+                           values.cex = legend.values.cex,
+                           var = varvect,
+                           r = sizevect,
+                           breakval  = breakval,
+                           col = col,
+                           col2 = col2,
+                           frame = legend.frame,
+                           values.rnd =  legend.values.rnd,
+                           style = legend.style)
     }
   }
   # SQUARES
@@ -213,16 +216,16 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     varvect <- dots[,var]
     if(legend.pos!="n"){
       legendBarsSymbols(pos = legend.pos, title.txt = legend.title.txt,
-                           title.cex = legend.title.cex,
-                           values.cex = legend.values.cex,
-                           var = varvect,
-                           r = sizevect,
-                           breakval  = breakval,
-                           col = col,
-                           col2 = col2,
-                           frame = legend.frame,
-                           values.rnd =  legend.values.rnd,
-                           style = legend.style)
+                        title.cex = legend.title.cex,
+                        values.cex = legend.values.cex,
+                        var = varvect,
+                        r = sizevect,
+                        breakval  = breakval,
+                        col = col,
+                        col2 = col2,
+                        frame = legend.frame,
+                        values.rnd =  legend.values.rnd,
+                        style = legend.style)
       
     }
   }

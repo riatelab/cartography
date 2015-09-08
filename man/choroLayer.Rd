@@ -5,10 +5,10 @@
 \title{Choropleth Layer}
 \usage{
 choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
-  col = NULL, nclass = NULL, method = "quantile", border = NA,
+  method = "quantile", nclass = NULL, col = NULL, border = NA,
   lwd = 1, legend.pos = "bottomleft", legend.title.txt = var,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.frame = FALSE,
-  legend.values.rnd = 0, legend.nodata = "no data", add = TRUE)
+  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
+  legend.nodata = "no data", legend.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
@@ -26,13 +26,13 @@ of df. (optional)}
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the colors.
 Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}
 
-\item{col}{a vector of colors. Note that if breaks is specified there must be one less
-colors specified than the number of break.}
+\item{method}{a discretization method; one of "sd", "equal",
+"quantile", "jenks","q6","geom"  (see Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
 
-\item{method}{a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see Details).}
+\item{col}{a vector of colors. Note that if breaks is specified there must be one less
+colors specified than the number of break.}
 
 \item{border}{color of the polygons borders.}
 
@@ -48,13 +48,13 @@ legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.frame}{whether to add a frame to the legend (TRUE) or
-not (FALSE).}
-
 \item{legend.values.rnd}{number of decimal places of the values in
 the legend.}
 
 \item{legend.nodata}{no data label.}
+
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
+not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}

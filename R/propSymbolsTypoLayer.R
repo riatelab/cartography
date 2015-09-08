@@ -60,22 +60,21 @@
 #'                      legend.values.rnd = -3,
 #'                      legend.var2.title.txt = "Category",
 #'                      legend.var.style = "c")
-propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
-                                 symbols = "circles",
-                                 col = NULL,
-                                 k = 0.02, fixmax = NULL,
+propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
+                                 k = 0.02, fixmax = NULL, symbols = "circles",
                                  border = "grey20", lwd = 1,
-                                 legend.var.pos = "bottomleft",
-                                 legend.var2.pos = "bottomleft", 
-                                 legend.var.title.txt = var,
-                                 legend.var2.title.txt = var2,
+                                 var2, col = NULL, 
                                  legend.title.cex = 0.8, 
                                  legend.values.cex = 0.6,
+                                 legend.var.pos = "bottomleft",
+                                 legend.var.title.txt = var,
+                                 legend.values.rnd = 0,
                                  legend.var.style = "c", 
                                  legend.var.frame = FALSE,
-                                 legend.var2.frame = FALSE,
-                                 legend.values.rnd = 0,
+                                 legend.var2.pos = "bottomleft", 
+                                 legend.var2.title.txt = var2,
                                  legend.var2.nodata = "no data",
+                                 legend.var2.frame = FALSE,
                                  add = TRUE){
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
@@ -110,7 +109,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
   }
   
   dots$col <- as.factor(dots[, var2])
-
+  
   if (!is.null(col)){
     levels(dots$col) <- col
   } else {
@@ -122,7 +121,6 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
   # for the legend  
   mycols <- as.character(levels(dots$col))
   rVal <- as.character(levels(as.factor(dots[, var2])))
-
   
   # CIRCLES
   if (symbols == "circle"){
@@ -146,13 +144,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
                            style = legend.var.style)
     }
     
-    
-    
-    
   }
-  
-  
-  
   
   # SQUARES
   if (symbols == "square"){
@@ -208,7 +200,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,var2,
   }
   nodata <- FALSE
   if(max(is.na(df[,var])>0)){nodata <- TRUE}
-
+  
   if(legend.var2.pos !="n"){
     legendTypo(pos = legend.var2.pos, 
                title.txt = legend.var2.title.txt,

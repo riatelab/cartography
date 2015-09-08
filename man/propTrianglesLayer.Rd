@@ -4,12 +4,12 @@
 \alias{propTrianglesLayer}
 \title{Double Proportionnal Triangle Layer}
 \usage{
-propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1, var2,
-  col1 = "#E84923", col2 = "#7DC437", k = 0.02, legend.pos = "topright",
-  legend.title.txt = paste(var1, var2, sep = " / "), legend.var1.txt = var1,
-  legend.var2.txt = var2, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.frame = FALSE, legend.values.rnd = 0, legend.style = "c",
-  add = TRUE)
+propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1,
+  col1 = "#E84923", var2, col2 = "#7DC437", k = 0.02,
+  legend.pos = "topright", legend.title.txt = paste(var1, var2, sep =
+  " / "), legend.title.cex = 0.8, legend.var1.txt = var1,
+  legend.var2.txt = var2, legend.values.cex = 0.6, legend.values.rnd = 0,
+  legend.style = "c", legend.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
@@ -25,9 +25,9 @@ of df. (optional)}
 
 \item{var1}{name of the first numeric field in df to plot, positive values only (top triangle).}
 
-\item{var2}{name of the second  numeric field in df to plot, positive values only (bottom triangle).}
-
 \item{col1}{color of top triangles.}
+
+\item{var2}{name of the second  numeric field in df to plot, positive values only (bottom triangle).}
 
 \item{col2}{color of bottom triangles.}
 
@@ -39,22 +39,22 @@ legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.title.txt}{title of the legend.}
 
+\item{legend.title.cex}{size of the legend title.}
+
 \item{legend.var1.txt}{label of the top variable.}
 
 \item{legend.var2.txt}{label of the bottom variable.}
 
-\item{legend.title.cex}{size of the legend title.}
-
 \item{legend.values.cex}{size of the values in the legend.}
-
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
-not (FALSE).}
 
 \item{legend.values.rnd}{number of decimal places of the values
 displayed in the legend.}
 
 \item{legend.style}{either "c" or "e". The legend has two display
 styles, "c" stands for compact and "e" for extended.}
+
+\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}

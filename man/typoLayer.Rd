@@ -7,7 +7,7 @@
 typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   border = NA, lwd = 1, legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.frame = FALSE, legend.nodata = "no data", add = TRUE)
+  legend.nodata = "no data", legend.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
@@ -38,10 +38,10 @@ legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
+\item{legend.nodata}{no data label.}
+
 \item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
-
-\item{legend.nodata}{no data label.}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}

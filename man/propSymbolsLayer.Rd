@@ -4,12 +4,12 @@
 \alias{propSymbolsLayer}
 \title{Proportional Symbols Layer}
 \usage{
-propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
-  symbols = "circle", col = "#E84923", col2 = "#7DC437",
-  border = "black", lwd = 1, breakval = NULL, k = 0.02, fixmax = NULL,
+propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
+  fixmax = NULL, breakval = NULL, symbols = "circle", col = "#E84923",
+  col2 = "#7DC437", border = "black", lwd = 1,
   legend.pos = "bottomleft", legend.title.txt = var,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.style = "c",
-  legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
+  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
+  legend.style = "c", legend.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
@@ -25,6 +25,12 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df to plot.}
 
+\item{k}{share of the map occupied by the biggest symbol (see Details).}
+
+\item{fixmax}{value of the biggest symbol (see Details).}
+
+\item{breakval}{breaking value (see Details).}
+
 \item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
 \item{col}{color of symbols.}
@@ -34,12 +40,6 @@ of df. (optional)}
 \item{border}{color of polygon borders.}
 
 \item{lwd}{borders width.}
-
-\item{breakval}{breaking value (see Details).}
-
-\item{k}{share of the map occupied by the biggest symbol (see Details).}
-
-\item{fixmax}{value of the biggest symbol (see Details).}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
@@ -51,14 +51,14 @@ legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
+\item{legend.values.rnd}{number of decimal places of the values
+displayed in the legend.}
+
 \item{legend.style}{either "c" or "e". The legend has two display
 styles, "c" stands for compact and "e" for extended.}
 
 \item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
 not (FALSE).}
-
-\item{legend.values.rnd}{number of decimal places of the values
-displayed in the legend.}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}

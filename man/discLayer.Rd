@@ -5,11 +5,11 @@
 \title{Discontinuities Layer}
 \usage{
 discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
-  col = "red", nclass = NULL, method = "quantile", threshold = 0.75,
-  sizemin = 1, sizemax = 10, type = "rel",
-  legend.title.txt = "legend title", legend.pos = "bottomleft",
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 2,
-  legend.frame = FALSE, add = FALSE)
+  method = "quantile", nclass = NULL, threshold = 0.75, type = "rel",
+  sizemin = 1, sizemax = 10, col = "red", legend.pos = "bottomleft",
+  legend.title.txt = "legend title", legend.title.cex = 0.8,
+  legend.values.cex = 0.6, legend.values.rnd = 2, legend.frame = FALSE,
+  add = FALSE)
 }
 \arguments{
 \item{spdf}{a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.}
@@ -27,28 +27,28 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df used to compute and plot discontinuities.}
 
-\item{col}{color of the discontinuities lines.}
+\item{method}{a discretization method; one of "sd", "equal",
+"quantile", "jenks","q6","geom"  (see Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of
 class is automatically defined (see Details).}
 
-\item{method}{a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see Details).}
-
 \item{threshold}{share of represented borders, value between 0
 (nothing) and 1 (all the discontinuities).}
+
+\item{type}{type of discontinuity measure, one of "rel" or "abs" (see Details).}
 
 \item{sizemin}{thickness of the smaller line.}
 
 \item{sizemax}{thickness of the bigger line.}
 
-\item{type}{type of discontinuity measure, one of "rel" or "abs" (see Details).}
-
-\item{legend.title.txt}{title of the legend.}
+\item{col}{color of the discontinuities lines.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
+
+\item{legend.title.txt}{title of the legend.}
 
 \item{legend.title.cex}{size of the legend title.}
 

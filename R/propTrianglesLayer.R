@@ -48,14 +48,19 @@
 #'                    var2 = "death_2008", legend.frame = TRUE,
 #'                    col1="#FF9100",col2="#45C945",k = 0.1, add=TRUE)
 #' @export
-propTrianglesLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var1, var2, 
-                               col1 = "#E84923", col2 = "#7DC437", k = 0.02, 
+propTrianglesLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, 
+                               var1, col1 = "#E84923",
+                               var2, col2 = "#7DC437", 
+                               k = 0.02, 
                                legend.pos = "topright", 
                                legend.title.txt = paste(var1,var2,sep=" / "),
-                               legend.var1.txt = var1, legend.var2.txt = var2, 
-                               legend.title.cex = 0.8, legend.values.cex = 0.6,
+                               legend.title.cex = 0.8, 
+                               legend.var1.txt = var1, 
+                               legend.var2.txt = var2, 
+                               legend.values.cex = 0.6,
+                               legend.values.rnd = 0, 
+                               legend.style = "c", 
                                legend.frame = FALSE,
-                               legend.values.rnd = 0, legend.style = "c", 
                                add = TRUE)
 {
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}

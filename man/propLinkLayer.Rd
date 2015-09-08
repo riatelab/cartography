@@ -7,7 +7,7 @@
 propLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
   dfide, var, maxlwd = 40, col, legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
+  legend.values.rnd = 0, legend.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{sldf}{a SpatialLinesDataFrame; a link layer.}
@@ -42,11 +42,11 @@ legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.frame}{whether to add a frame to the legend (TRUE) or
-not (FALSE).}
-
 \item{legend.values.rnd}{number of decimal places of the values
 displayed in the legend.}
+
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
+not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}

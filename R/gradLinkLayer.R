@@ -2,7 +2,7 @@
 #' @title Proportional Links Layer
 #' @description Plot a layer of proportionnal links
 #' @param sldf SpatialLinesDataFrame; a link layer.
-#' @param df a data. frame with identifiers and a variable.
+#' @param df data.frame with identifier(s) and a variable.
 #' @param sldfid unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
 #' @param sldfids identifier of starting points in sldf (sldfid and dfid are not used).
 #' @param sldfide identifier of ending points in sldf (sldfid and dfid are not used).
@@ -43,10 +43,13 @@ gradLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide,
                           dfid = NULL, dfids, dfide,
                           var, breaks, lwd, 
                           col, 
-                          legend.pos = "bottomleft",  legend.title.txt = var, 
-                          legend.title.cex = 0.8, legend.values.cex = 0.6, 
+                          legend.pos = "bottomleft",  
+                          legend.title.txt = var, 
+                          legend.title.cex = 0.8, 
+                          legend.values.cex = 0.6, 
+                          legend.values.rnd = 0,
                           legend.frame = FALSE, 
-                          legend.values.rnd = 0, add = TRUE){
+                          add = TRUE){
   # test
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)

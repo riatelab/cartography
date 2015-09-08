@@ -6,13 +6,13 @@
 \usage{
 propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
   fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1, var2,
-  col = NULL, nclass = NULL, breaks = NULL, method = "quantile",
-  legend.var.pos = "right", legend.var2.pos = "topright",
-  legend.var.title.txt = var, legend.var2.title.txt = var2,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.var.style = "c",
-  legend.var.frame = FALSE, legend.var2.frame = FALSE,
-  legend.var.values.rnd = 0, legend.var2.values.rnd = 0,
-  legend.var2.nodata = "no data", add = TRUE)
+  breaks = NULL, method = "quantile", nclass = NULL, col = NULL,
+  legend.title.cex = 0.8, legend.values.cex = 0.6,
+  legend.var.pos = "right", legend.var.title.txt = var,
+  legend.var.values.rnd = 0, legend.var.style = "c",
+  legend.var.frame = FALSE, legend.var2.pos = "topright",
+  legend.var2.title.txt = var2, legend.var2.values.rnd = 0,
+  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
@@ -40,32 +40,29 @@ of df. (optional)}
 
 \item{var2}{name of the numeric field in df to plot the colors.}
 
-\item{col}{a vector of colors. Note that if breaks is specified there must be one less
-colors specified than the number of break.}
-
-\item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
-
 \item{breaks}{break points in sorted order to indicate the intervals for assigning the colors.
 Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
 
 \item{method}{a discretization method; one of "sd", "equal",
 "quantile", "jenks","q6","geom"  (see \link{choroLayer} Details).}
 
-\item{legend.var.pos}{position of the legend, one of "topleft", "top",
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
-legend.var.pos is "n" then the legend is not plotted.}
+\item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
 
-\item{legend.var2.pos}{position of the legend, one of "topleft", "top",
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
-legend.var2.pos is "n" then the legend is not plotted.}
-
-\item{legend.var.title.txt}{title of the legend (proportionnal symbols).}
-
-\item{legend.var2.title.txt}{title of the legend (colors).}
+\item{col}{a vector of colors. Note that if breaks is specified there must be one less
+colors specified than the number of break.}
 
 \item{legend.title.cex}{size of the legend title.}
 
 \item{legend.values.cex}{size of the values in the legend.}
+
+\item{legend.var.pos}{position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
+legend.var.pos is "n" then the legend is not plotted.}
+
+\item{legend.var.title.txt}{title of the legend (proportionnal symbols).}
+
+\item{legend.var.values.rnd}{number of decimal places of the values in
+the legend.}
 
 \item{legend.var.style}{either "c" or "e". The legend has two display
 styles.}
@@ -73,16 +70,19 @@ styles.}
 \item{legend.var.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or
-not (FALSE).}
+\item{legend.var2.pos}{position of the legend, one of "topleft", "top",
+"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
+legend.var2.pos is "n" then the legend is not plotted.}
 
-\item{legend.var.values.rnd}{number of decimal places of the values in
-the legend.}
+\item{legend.var2.title.txt}{title of the legend (colors).}
 
 \item{legend.var2.values.rnd}{number of decimal places of the values in
 the legend.}
 
 \item{legend.var2.nodata}{text for "no data" values}
+
+\item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or
+not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
