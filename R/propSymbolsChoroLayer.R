@@ -20,8 +20,8 @@
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
 #' @param k share of the map occupied by the biggest symbol (see \link{propSymbolsLayer} Details).
 #' @param fixmax value of the biggest symbol (see \link{propSymbolsLayer} Details).
-#' @param border color of polygons borders.
-#' @param lwd borders width.
+#' @param border color of symbols borders.
+#' @param lwd width of symbols borders.
 #' @param legend.var.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 #' legend.var.pos is "n" then the legend is not plotted.

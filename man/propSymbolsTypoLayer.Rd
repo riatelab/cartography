@@ -6,13 +6,15 @@
 \usage{
 propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2,
   symbols = "circles", col = NULL, k = 0.02, fixmax = NULL,
-  legend.var.pos = "bottomleft", legend.var2.pos = "bottomleft",
-  legend.title.var.txt = var, legend.title.var2.txt = var2,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.style = "a",
-  legend.frame = FALSE, legend.values.rnd = 0, add = TRUE)
+  border = "grey20", lwd = 1, legend.var.pos = "bottomleft",
+  legend.var2.pos = "bottomleft", legend.var.title.txt = var,
+  legend.var2.title.txt = var2, legend.title.cex = 0.8,
+  legend.values.cex = 0.6, legend.var.style = "c",
+  legend.var.frame = FALSE, legend.var2.frame = FALSE,
+  legend.values.rnd = 0, legend.var2.nodata = "no data", add = TRUE)
 }
 \arguments{
-\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
+\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
 \item{df}{a data.frame that contains the values to plot.}
@@ -23,9 +25,9 @@ of the spdf data.frame. (optional)}
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{name of the numeric field in df to plot.}
+\item{var}{name of the numeric field in df to plot the symbols sizes.}
 
-\item{var2}{name of the factor field in df to plot.}
+\item{var2}{name of the factor (or character) field in df to plot.}
 
 \item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
@@ -35,57 +37,66 @@ of df. (optional)}
 
 \item{fixmax}{value of the biggest symbol. (optional)}
 
+\item{border}{color of symbols borders.}
+
+\item{lwd}{width of symbols borders.}
+
 \item{legend.var.pos}{position of the legend for var, one of "topleft", "top",}
 
 \item{legend.var2.pos}{position of the legend for var2, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
-\item{legend.title.var.txt}{title of the legend (numeric data).}
+\item{legend.var.title.txt}{title of the legend (numeric data).}
 
-\item{legend.title.var2.txt}{title of the legend (factor data).}
+\item{legend.var2.title.txt}{title of the legend (factor data).}
 
 \item{legend.title.cex}{size of the legend title.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.style}{either "a" or "b". The legend has two display
-styles.}
+\item{legend.var.style}{either "c" or "e". The legend has two display
+styles, "c" stands for compact and "e" for extended.}
 
-\item{legend.frame}{whether to add a frame to the legend (TRUE) or
+\item{legend.var.frame}{whether to add a frame to the legend (TRUE) or
+not (FALSE).}
+
+\item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
 \item{legend.values.rnd}{number of decimal places of the values in
 the legend.}
 
+\item{legend.var2.nodata}{text for "no data" values}
+
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{
-Plot a proportional symbols layer with a color based on a qualitative data. Various symbols are availables.
+Plot a proportional symbols layer with a color based on a
+qualitative data. Various symbols are availables.
 }
 \examples{
 data("nuts2006")
 # Layout plot
 layoutLayer(title = "Countries Population in Europe",
-           sources = "UMS RIATE, 2015",
-           author = "UMS RIATE",
-           scale = NULL,
-           frame = TRUE,
-           col = "black",
-          coltitle = "white",
-           bg = "#D9F5FF",
-           south = TRUE,
-           extent = nuts0.spdf)
+            sources = "UMS RIATE, 2015",
+            author = "UMS RIATE",
+            scale = NULL,
+            frame = TRUE,
+            col = "black",
+            coltitle = "white",
+            bg = "#D9F5FF",
+            extent = nuts0.spdf)
 #Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
-#Population plot on proportional symbols
-#colours <- palette(rainbow(length(nuts0.spdf)))
-#propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
-#                     var = "pop2008", var2="id", k = 0.01,
-#                     symbols = "circles", col =  colours,
-#                     legend.var.pos = "topleft", legend.var2.pos = "topright",
-#                     legend.title.var.txt = "Total\\npopulation (2008)",
-#                     legend.title.var2.txt = "Types de trucs",
-#                     legend.style = "b")
+nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
+propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
+                     var = "pop2008", var2="typo", k = 0.01,
+                     symbols = "circle",
+                     legend.var.pos = "topright", legend.var2.pos = "right",
+                     legend.var.title.txt = "Total\\npopulation (2008)",
+                     legend.values.rnd = -3,
+                     legend.var2.title.txt = "Category",
+                     legend.var.style = "c")
 }
 

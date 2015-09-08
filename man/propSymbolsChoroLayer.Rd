@@ -34,9 +34,9 @@ of df. (optional)}
 
 \item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
-\item{border}{color of polygons borders.}
+\item{border}{color of symbols borders.}
 
-\item{lwd}{borders width.}
+\item{lwd}{width of symbols borders.}
 
 \item{var2}{name of the numeric field in df to plot the colors.}
 
