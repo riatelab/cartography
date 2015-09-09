@@ -4,13 +4,13 @@
 #' @param v a vector of numeric values.
 #' @param nclass a number of classes
 #' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "jenks","q6","geom"  (see Details).
-#' @details This function is mainly a wrapper around classIntervals function of 
-#' the classInt package + q6 and geom methods. 
-#' 
+#' "quantile", "jenks","q6" or "geom"  (see Details).
+#' @details 
 #' "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
 #' uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.   
-#' The "geom" method consists is based on a geometric progression along the variable values.  
+#' The "geom" method is based on a geometric progression along the variable values.  
+#' @note This function is mainly a wrapper around classIntervals function of 
+#' the classInt package + q6 and geom methods. 
 #' @examples
 #' # create the natality rate
 #' var <- nuts2.df$birth_2008/nuts2.df$pop2008 * 1000
@@ -35,7 +35,7 @@
 #' med <- median(var)
 #' abline(v = moy, col = "red", lwd = 3)
 #' abline(v = med, col = "blue", lwd = 3)
-#' @return numeric
+#' @return A numeric vector of breaks
 #' @import classInt
 #' @import stats
 #' @export

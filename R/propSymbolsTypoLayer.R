@@ -1,12 +1,12 @@
 #' @title Proportional Symbols Typo Layer
 #' @name propSymbolsTypoLayer
 #' @description Plot a proportional symbols layer with a color based on a 
-#' qualitative data. Various symbols are availables.
+#' qualitative data. 
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
-#' @param df a data.frame that contains the values to plot.
+#' @param df a data frame that contains the values to plot.
 #' @param spdfid identifier field in spdf, default to the first column 
-#' of the spdf data.frame. (optional)
+#' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
 #' @param var name of the numeric field in df to plot the symbols sizes.

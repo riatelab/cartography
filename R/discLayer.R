@@ -4,23 +4,23 @@
 #' The line widths reflect the ratio between values of an indicator in two neighbouring units.
 #' @name discLayer
 #' @param spdf a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.
-#' @param df a data.frame that contains the values used to compute and plot discontinuities.
+#' @param df a data frame that contains the values used to compute and plot discontinuities.
 #' @param spdfid1 first identifier of the border, default to the second column 
-#' of the spdf data.frame. (optional)
+#' of the spdf data frame. (optional)
 #' @param spdfid2 second identifier of the border, default to the third column 
-#' of the spdf data.frame. (optional)
+#' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
 #' @param var name of the numeric field in df used to compute and plot discontinuities.
 #' @param col color of the discontinuities lines.
 #' @param nclass a targeted number of classes. If null, the number of 
-#' class is automatically defined (see Details).
+#' class is automatically defined (see \link{choroLayer} Details).
 #' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "jenks","q6","geom"  (see Details).
+#' "quantile", "jenks","q6" or "geom"  (see \link{choroLayer} Details).
 #' @param threshold share of represented borders, value between 0 
 #' (nothing) and 1 (all the discontinuities).
-#' @param sizemin thickness of the smaller line.
-#' @param sizemax thickness of the bigger line.
+#' @param sizemin thickness of the smallest line.
+#' @param sizemax thickness of the biggest line.
 #' @param type type of discontinuity measure, one of "rel" or "abs" (see Details).
 #' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
@@ -35,10 +35,6 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
-#' "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
-#' uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.   
-#' The "geom" method consists is based on a geometric progression along the variable values.  
-#' 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
 #' 

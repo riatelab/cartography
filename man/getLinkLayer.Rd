@@ -2,7 +2,7 @@
 % Please edit documentation in R/getLinkLayer.R
 \name{getLinkLayer}
 \alias{getLinkLayer}
-\title{Create a SpatialLinesDataFrame from a data.frame of Links.}
+\title{Create a SpatialLinesDataFrame from a Data Frame of Links.}
 \usage{
 getLinkLayer(spdf, spdf2 = NULL, df, spdfid = NULL, spdf2id = NULL,
   dfids = NULL, dfide = NULL)
@@ -10,19 +10,19 @@ getLinkLayer(spdf, spdf2 = NULL, df, spdfid = NULL, spdf2id = NULL,
 \arguments{
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to
 get starting points of links. If spdf2 is NULL, spdf is also used to get ending points.
-If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.}
+If spdf is a SpatialPolygonsDataFrame, links start (or end) at centroids.}
 
 \item{spdf2}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to
 get ending points of links.
-If spdf is a SpatialPolygonsDataFrame points start (or end) at centroids.}
+If spdf2 is a SpatialPolygonsDataFrame, links start (or end) at centroids. (optional)}
 
-\item{df}{a data.frame that contains identifiers of starting and ending points.}
+\item{df}{a data frame that contains identifiers of starting and ending points.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{spdf2id}{identifier field in spdf2, default to the first column
-of the spdf2 data.frame. (optional)}
+of the spdf2 data frame. (optional)}
 
 \item{dfids}{identifier field of starting points of links in df, default to the first column
 of df. (optional)}
@@ -31,10 +31,10 @@ of df. (optional)}
 of df. (optional)}
 }
 \value{
-A SpatialLinesDataFrame is returned, its data.frame contains two fields (dfid1 and dfid2).
+A SpatialLinesDataFrame is returned, its data frame contains two fields (dfids and dfide).
 }
 \description{
-Create a SpatialLinesDataFrame from a data.frame of links.
+Create a SpatialLinesDataFrame from a data frame of links.
 }
 \examples{
 data("nuts2006")

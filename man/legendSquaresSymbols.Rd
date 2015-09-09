@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendSquaresSymbols}
 \alias{legendSquaresSymbols}
-\title{Legend for Proportionnal Square Maps}
+\title{Legend for Proportionnal Squares Maps}
 \usage{
 legendSquaresSymbols(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, r, breakval = NULL,
@@ -41,7 +41,7 @@ the legend.}
 styles, "c" stands for compact and "e" for extended.}
 }
 \description{
-Plot legend for proportional square maps
+Plot legend for proportional squares maps
 }
 \details{
 The breakval parameter allows to plot symbols of two

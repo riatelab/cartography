@@ -10,14 +10,14 @@ getBorders(spdf, spdfid = NULL, tol = 1)
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{tol}{tolerance to detect contiguity (in map units). You may
 not want to change this parameter.}
 }
 \value{
 A SpatialLinesDataFrame of borders is returned. This object has three id fields: id, id1 and id2.
-id1 and id2 are ids of units that neighbour a border; id concatenates id1 and id2.
+id1 and id2 are ids of units that neighbour a border; id is the concatenation of id1 and id2.
 }
 \description{
 Extract borders between SpatialPolygonsDataFrame units.

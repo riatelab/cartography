@@ -16,24 +16,33 @@ carto.pal(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 
 \item{n2}{number of colors (up to 20)}
 
-\item{middle}{a logical value. If TRUE, a neutral color ("#F6F6F6") between two gradients is added.}
+\item{middle}{a logical value. If TRUE, a neutral color ("#F6F6F6", almost
+white) between
+two gradients is added.}
 
-\item{transparency}{a logical value. If TRUE, contrasts are enhenced by adding an opacity variation.}
+\item{transparency}{a logical value. If TRUE, contrasts are enhenced by
+adding an opacity variation.}
 }
 \value{
 A vector of colors is returned.
 }
 \description{
 Builds sequantial and diverging color palettes.
-Diververging color palettes can be dissymetric (two gradients with different number of colors)
+Diververging color palettes can be dissymetric (different number of colors in
+each of the two gradients)
 }
 \details{
-Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
-"pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal".
-Use  \code{display.carto.all(5)} to show all palettes. Use display.carto.pal("PALETTE NAME") to show one palette.
+Available palettes are: "blue.pal", "orange.pal", "red.pal",
+"brown.pal", "green.pal", "purple.pal"
+"pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal",
+"kaki.pal" , "harmo.pal".
+}
+\note{
+Use \link{display.carto.all} to show all palettes and use
+\link{display.carto.pal} to show one palette.
 }
 \examples{
-# Simple gradient in blue
+# Simple gradient - blue
 carto.pal(pal1 = "blue.pal" ,n1 = 20)
 
 # double gradient blue / red

@@ -2,14 +2,14 @@
 #' @title Proportional Links Layer
 #' @description Plot a layer of proportionnal links
 #' @param sldf a SpatialLinesDataFrame; a link layer.
-#' @param df a data.frame with identifiers and a variable.
+#' @param df a data frame with identifiers and a variable.
 #' @param sldfid unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
 #' @param sldfids identifier of starting points in sldf (sldfid and dfid are not used).
 #' @param sldfide identifier of ending points in sldf (sldfid and dfid are not used).
 #' @param dfid unique identifier in df (sldfids, sldfide, dfids and dfide are not used).
 #' @param dfids identifier of starting points in df (sldfid and dfid are not used).
 #' @param dfide identifier of ending points in df (sldfid and dfid are not used).
-#' @param var name of the variable used to plot the links
+#' @param var name of the variable used to plot the links widths.
 #' @param maxlwd maximum size of the links.
 #' @param col color of the links.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
@@ -24,7 +24,7 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details Unlike most of cartography functions, identifiers fields are mandatory.
+#' @note Unlike most of cartography functions, identifiers fields are mandatory.
 #' @import sp
 #' @examples
 #' data("nuts2006")

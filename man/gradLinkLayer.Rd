@@ -2,7 +2,7 @@
 % Please edit documentation in R/gradLinkLayer.R
 \name{gradLinkLayer}
 \alias{gradLinkLayer}
-\title{Proportional Links Layer}
+\title{Graduated Links Layer}
 \usage{
 gradLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
   dfide, var, breaks, lwd, col, legend.pos = "bottomleft",
@@ -12,7 +12,7 @@ gradLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
 \arguments{
 \item{sldf}{SpatialLinesDataFrame; a link layer.}
 
-\item{df}{data.frame with identifier(s) and a variable.}
+\item{df}{data frame with identifier(s) and a variable.}
 
 \item{sldfid}{unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).}
 
@@ -26,7 +26,7 @@ gradLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
 
 \item{dfide}{identifier of ending points in df (sldfid and dfid are not used).}
 
-\item{var}{name of the variable used to plot the links}
+\item{var}{name of the variable used to plot the links widths.}
 
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the lines widths.}
 
@@ -54,9 +54,9 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a layer of proportionnal links
+Plot a layer of graduated links
 }
-\details{
+\note{
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{

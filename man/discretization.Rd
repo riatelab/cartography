@@ -12,21 +12,22 @@ discretization(v, nclass = NULL, method = "quantile")
 \item{nclass}{a number of classes}
 
 \item{method}{a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see Details).}
+"quantile", "jenks","q6" or "geom"  (see Details).}
 }
 \value{
-numeric
+A numeric vector of breaks
 }
 \description{
 Discretization Function
 }
 \details{
-This function is mainly a wrapper around classIntervals function of
-the classInt package + q6 and geom methods.
-
 "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
 uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.
-The "geom" method consists is based on a geometric progression along the variable values.
+The "geom" method is based on a geometric progression along the variable values.
+}
+\note{
+This function is mainly a wrapper around classIntervals function of
+the classInt package + q6 and geom methods.
 }
 \examples{
 # create the natality rate

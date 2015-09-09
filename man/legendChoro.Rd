@@ -20,7 +20,7 @@ legendChoro(pos = "topleft", title.txt = "Title of the legend",
 \item{values.cex}{size of the values in the legend.}
 
 \item{breaks}{break points in sorted order to indicate the intervals for assigning the colors.
-Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
+Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.}
 
 \item{col}{a vector of colors.}
 
@@ -41,7 +41,7 @@ not (FALSE).}
 \item{symbol}{type of symbol in the legend 'line' or 'box'}
 }
 \description{
-Plot nice legend adapted to choropleth maps.
+Plot legend for choropleth maps.
 }
 \examples{
 data("nuts2006")

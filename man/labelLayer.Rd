@@ -11,10 +11,10 @@ labelLayer(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame texts are plotted on centroids.}
 
-\item{df}{a data.frame that contains the labels to plot.}
+\item{df}{a data frame that contains the labels to plot.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}

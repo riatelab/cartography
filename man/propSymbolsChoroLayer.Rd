@@ -18,10 +18,10 @@ propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{a data.frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to plot.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
@@ -41,12 +41,14 @@ of df. (optional)}
 \item{var2}{name of the numeric field in df to plot the colors.}
 
 \item{breaks}{break points in sorted order to indicate the intervals for assigning the colors.
-Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).}
+Note that if there are nlevel colors (classes) there should be (nlevel+1)
+breakpoints (see \link{choroLayer} Details).}
 
 \item{method}{a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see \link{choroLayer} Details).}
+"quantile", "jenks", "q6" or "geom"  (see \link{choroLayer} Details).}
 
-\item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
+\item{nclass}{a targeted number of classes. If null, the number of class is
+automatically defined (see \link{choroLayer} Details).}
 
 \item{col}{a vector of colors. Note that if breaks is specified there must be one less
 colors specified than the number of break.}
@@ -88,7 +90,8 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a proportional symbols layer with color based on a quantitative data discrtization.
+Plot a proportional symbols layer with color based on a
+quantitative data discretization.
 }
 \examples{
 data("nuts2006")

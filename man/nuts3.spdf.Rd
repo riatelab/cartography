@@ -12,7 +12,7 @@ UMS RIATE
 Delineations of EU administrative units (level 3, 2006 version).
 }
 \details{
-This SpatialPolygonsDataFrame can be used with the nuts3.df data.frame
+This SpatialPolygonsDataFrame can be used with the nuts3.df data frame
 }
 \section{Fields}{
 

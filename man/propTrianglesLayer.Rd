@@ -15,19 +15,21 @@ propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1,
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{a data.frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to plot.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var1}{name of the first numeric field in df to plot, positive values only (top triangle).}
+\item{var1}{name of the first numeric field in df to plot, positive values
+only (top triangle).}
 
 \item{col1}{color of top triangles.}
 
-\item{var2}{name of the second  numeric field in df to plot, positive values only (bottom triangle).}
+\item{var2}{name of the second  numeric field in df to plot, positive values
+only (bottom triangle).}
 
 \item{col2}{color of bottom triangles.}
 

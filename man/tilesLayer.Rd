@@ -2,31 +2,33 @@
 % Please edit documentation in R/osmLayer.R
 \name{tilesLayer}
 \alias{tilesLayer}
-\title{Plot Tiles From Open Map Servers}
+\title{Plot Tiles from Open Map Servers}
 \usage{
 tilesLayer(x, add = FALSE)
 }
 \arguments{
-\item{x}{an OpenStreetMap object; \code{\link{getTiles}} outputs these objects.}
+\item{x}{an OpenStreetMap object; the \link{getTiles} function outputs these
+objects.}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{
-Plot Tiles From Open Map Servers
+Plot tiles from open map servers.
 }
-\details{
-This function is a wrapper for \code{plot.OpenStreetMap} from
+\note{
+This function is a wrapper for plot.OpenStreetMap from the
 OpenStreetMap package.
 }
 \examples{
+\dontrun{
 data("nuts2006")
-# Do not run:
 # Download the tiles
-#StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
 #Display the tiles Layer
-#tilesLayer(x = StamWatCol)
+tilesLayer(x = StamWatCol)
 #Display countries boundaries
-#plot(nuts0.spdf, add = TRUE)
+plot(nuts0.spdf, add = TRUE)
+}
 }
 

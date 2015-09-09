@@ -7,14 +7,14 @@
 #' @param author author of the map (or something else).
 #' @param scale size of the scale in kilometers. If set to NULL, no scale is 
 #' displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).
-#' @param frame wheither displaying a frame or not.
+#' @param frame wheither displaying a frame (TRUE) or not (FALSE).
 #' @param col color of the frame border.
 #' @param coltitle color of the title.
 #' @param bg color of the frame background.
-#' @param north wheither displaying a Noth arrow or not.
-#' @param south wheither displaying a South arrow or not.
-#' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the extent to the one of a 
-#' Spatial object.
+#' @param north wheither displaying a Noth arrow (TRUE) or not (FALSE).
+#' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
+#' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
+#' extent of the frame to the one of a Spatial object.
 #' @details If extent is not set, plot.new has to be called first.
 #' @export
 #' @examples

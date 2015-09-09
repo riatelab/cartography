@@ -16,10 +16,10 @@ propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{a data.frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to plot.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
@@ -72,7 +72,7 @@ not (FALSE).}
 }
 \description{
 Plot a proportional symbols layer with a color based on a
-qualitative data. Various symbols are availables.
+qualitative data.
 }
 \examples{
 data("nuts2006")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gridLayer.R
 \name{getGridLayer}
 \alias{getGridLayer}
-\title{Build A Regular Grid Layer}
+\title{Build a Regular Grid Layer}
 \usage{
 getGridLayer(spdf, cellsize, spdfid = NULL)
 }
@@ -12,11 +12,11 @@ getGridLayer(spdf, cellsize, spdfid = NULL)
 \item{cellsize}{output cell size, in map units.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 }
 \value{
-A list is returned. The list contains spdf: a SpatialPolygonsDataFrame of
-a regular grid and df;  a data.frame of surface intersection. df fields are id_cell: ids of the grid;
+A list is returned. The list contains "spdf": a SpatialPolygonsDataFrame of
+a regular grid and "df":  a data frame of surface intersection. df fields are id_cell: ids of the grid;
 id_geo: ids of the spdf and area_pct: share of the area of the polygon in the cell
 (a value of 55 means that 55\% of the spdf unit is within the cell).
 }

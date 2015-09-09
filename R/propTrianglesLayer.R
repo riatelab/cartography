@@ -3,13 +3,15 @@
 #' @name propTrianglesLayer
 #' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
-#' @param df a data.frame that contains the values to plot.
+#' @param df a data frame that contains the values to plot.
 #' @param spdfid identifier field in spdf, default to the first column 
-#' of the spdf data.frame. (optional)
+#' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
-#' @param var1 name of the first numeric field in df to plot, positive values only (top triangle).
-#' @param var2 name of the second  numeric field in df to plot, positive values only (bottom triangle).
+#' @param var1 name of the first numeric field in df to plot, positive values 
+#' only (top triangle).
+#' @param var2 name of the second  numeric field in df to plot, positive values 
+#' only (bottom triangle).
 #' @param col1 color of top triangles.
 #' @param col2 color of bottom triangles.
 #' @param k share of the map occupied by the biggest symbol.

@@ -6,22 +6,47 @@
 \alias{cartography-package}
 \title{Cartography Package}
 \description{
-This package proposes various usefull functions in the map creation process.
-It allows various cartographic representation :
+The cartography package proposes thematic mapping functions.
+It allows various cartographic representation:
 \itemize{
-\item{Proportionnal symbols maps (circles, squares, bars)}
-\item{Chroropleth maps (main discretization methods are availables)}
-\item{Flow maps (proportionnal and classified links)}
-\item{Discontinuities maps (variable size and color of borders)}
+\item{Proportionnal symbols maps (circles, squares, bars)\cr
+\link{propSymbolsLayer}, \link{propSymbolsChoroLayer},
+\link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
+\item{Chroropleth maps (main discretization methods are availables)\cr
+\link{choroLayer}}
+\item{Typology maps\cr
+\link{typoLayer}}
+\item{Flow maps (proportionnal and classified links)\cr
+\link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}}
+\item{Discontinuities maps (variable size and color of borders)\cr
+\link{getBorders}, \link{discLayer}}
+\item{...}
 }
 
 It also proposes some additional usefull features like:
 \itemize{
-\item{Cartographic palettes (palettes adapted to cartographic representation)}
-\item{Layout (scale, nort arrow, title...)}
-\item{Nice legends}
-\item{Access to cartographic API (via OpenStreetMap package)}
-\item{Irregular polygons to regular grid transformation with data handling}
+\item{Cartographic palettes (palettes adapted to cartographic representation)\cr
+\link{carto.pal}}
+\item{Layout (scale, north arrow, title...)\cr
+\link{layoutLayer}}
+\item{Labels\cr
+\link{labelLayer}}
+\item{Nice legends \cr
+\link{legendBarsSymbols},
+\link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines},
+\link{legendPropLines}, \link{legendPropTriangles},
+\link{legendSquaresSymbols}, \link{legendTypo}
 }
+\item{Access to cartographic API (via OpenStreetMap package)\cr
+\link{getTiles}, \link{tilesLayer}
+}
+\item{Irregular polygons to regular grid transformation with data handling\cr
+\link{getGridLayer}, \link{getGridData}}
+\item{...}
+}
+
+Functions starting with "get" build R objects.\cr
+Functions ending with "Layer" plot cartographic layers.\cr
+Functions starting with "legend" plot legends.\cr
 }
 

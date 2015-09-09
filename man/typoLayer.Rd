@@ -12,15 +12,15 @@ typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{df}{a data.frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to plot.}
 
 \item{spdfid}{identifier field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
-\item{var}{name of the factor field in df to plot.}
+\item{var}{name of the field in df to plot.}
 
 \item{col}{a vector of colors.}
 

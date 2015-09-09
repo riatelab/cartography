@@ -3,7 +3,7 @@
 \docType{data}
 \name{graticule.spdf}
 \alias{graticule.spdf}
-\title{Graticule Around Europe}
+\title{Graticule around Europe}
 \format{SpatialLinesDataFrame.}
 \source{
 UMS RIATE

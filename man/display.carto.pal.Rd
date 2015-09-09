@@ -2,7 +2,7 @@
 % Please edit documentation in R/palettes.R
 \name{display.carto.pal}
 \alias{display.carto.pal}
-\title{Display One Cartographic Palette}
+\title{Display one Cartographic Palette}
 \usage{
 display.carto.pal(name)
 }

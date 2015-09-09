@@ -1,5 +1,5 @@
 #' @title Legend for Choropleth Maps
-#' @description Plot nice legend adapted to choropleth maps.
+#' @description Plot legend for choropleth maps.
 #' @name legendChoro
 #' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
@@ -7,7 +7,7 @@
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
 #' @param breaks break points in sorted order to indicate the intervals for assigning the colors. 
-#' Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints (see Details).
+#' Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.
 #' @param col a vector of colors. 
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param values.rnd number of decimal places of the values in 
@@ -425,8 +425,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 
 
 
-#' @title Legend for Proportionnal Square Maps
-#' @description Plot legend for proportional square maps
+#' @title Legend for Proportionnal Squares Maps
+#' @description Plot legend for proportional squares maps
 #' @name legendSquaresSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".

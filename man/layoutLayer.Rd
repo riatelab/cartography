@@ -25,14 +25,14 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
 \item{scale}{size of the scale in kilometers. If set to NULL, no scale is
 displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).}
 
-\item{frame}{wheither displaying a frame or not.}
+\item{frame}{wheither displaying a frame (TRUE) or not (FALSE).}
 
-\item{north}{wheither displaying a Noth arrow or not.}
+\item{north}{wheither displaying a Noth arrow (TRUE) or not (FALSE).}
 
-\item{south}{wheither displaying a South arrow or not.}
+\item{south}{wheither displaying a South arrow (TRUE) or not (FALSE).}
 
-\item{extent}{a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the extent to the one of a
-Spatial object.}
+\item{extent}{a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the
+extent of the frame to the one of a Spatial object.}
 }
 \description{
 Plot a layout layer.

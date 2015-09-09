@@ -14,13 +14,13 @@ discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
 \arguments{
 \item{spdf}{a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.}
 
-\item{df}{a data.frame that contains the values used to compute and plot discontinuities.}
+\item{df}{a data frame that contains the values used to compute and plot discontinuities.}
 
 \item{spdfid1}{first identifier of the border, default to the second column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{spdfid2}{second identifier of the border, default to the third column
-of the spdf data.frame. (optional)}
+of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
@@ -28,19 +28,19 @@ of df. (optional)}
 \item{var}{name of the numeric field in df used to compute and plot discontinuities.}
 
 \item{method}{a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6","geom"  (see Details).}
+"quantile", "jenks","q6" or "geom"  (see \link{choroLayer} Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of
-class is automatically defined (see Details).}
+class is automatically defined (see \link{choroLayer} Details).}
 
 \item{threshold}{share of represented borders, value between 0
 (nothing) and 1 (all the discontinuities).}
 
 \item{type}{type of discontinuity measure, one of "rel" or "abs" (see Details).}
 
-\item{sizemin}{thickness of the smaller line.}
+\item{sizemin}{thickness of the smallest line.}
 
-\item{sizemax}{thickness of the bigger line.}
+\item{sizemax}{thickness of the biggest line.}
 
 \item{col}{color of the discontinuities lines.}
 
@@ -69,10 +69,6 @@ discontinuities are plotted over the layer outputed by the \link{getBorders} fun
 The line widths reflect the ratio between values of an indicator in two neighbouring units.
 }
 \details{
-"sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
-uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.
-The "geom" method consists is based on a geometric progression along the variable values.
-
 The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).
 The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
 }

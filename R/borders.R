@@ -3,11 +3,11 @@
 #' @name getBorders
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param spdfid identifier field in spdf, default to the first column 
-#' of the spdf data.frame. (optional)
+#' of the spdf data frame. (optional)
 #' @param tol tolerance to detect contiguity (in map units). You may 
 #' not want to change this parameter.
 #' @return A SpatialLinesDataFrame of borders is returned. This object has three id fields: id, id1 and id2.
-#' id1 and id2 are ids of units that neighbour a border; id concatenates id1 and id2.
+#' id1 and id2 are ids of units that neighbour a border; id is the concatenation of id1 and id2.
 #' @import sp
 #' @import reshape2
 #' @examples

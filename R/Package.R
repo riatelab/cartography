@@ -3,23 +3,49 @@
 #' @title Cartography Package
 #' @name cartography
 #' @description 
-#' This package proposes various usefull functions in the map creation process.
-#' It allows various cartographic representation :  
+#' The cartography package proposes thematic mapping functions.
+#' It allows various cartographic representation:  
 #' \itemize{
-#' \item{Proportionnal symbols maps (circles, squares, bars)}
-#' \item{Chroropleth maps (main discretization methods are availables)}
-#' \item{Flow maps (proportionnal and classified links)}
-#' \item{Discontinuities maps (variable size and color of borders)}
+#' \item{Proportionnal symbols maps (circles, squares, bars)\cr 
+#' \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
+#' \link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
+#' \item{Chroropleth maps (main discretization methods are availables)\cr
+#' \link{choroLayer}}
+#' \item{Typology maps\cr
+#' \link{typoLayer}}
+#' \item{Flow maps (proportionnal and classified links)\cr
+#' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}}
+#' \item{Discontinuities maps (variable size and color of borders)\cr
+#' \link{getBorders}, \link{discLayer}}
+#' \item{...}
 #' }
 #' 
 #' It also proposes some additional usefull features like:
 #' \itemize{
-#' \item{Cartographic palettes (palettes adapted to cartographic representation)}
-#' \item{Layout (scale, nort arrow, title...)}
-#' \item{Nice legends}
-#' \item{Access to cartographic API (via OpenStreetMap package)}
-#' \item{Irregular polygons to regular grid transformation with data handling}
+#' \item{Cartographic palettes (palettes adapted to cartographic representation)\cr
+#' \link{carto.pal}}
+#' \item{Layout (scale, north arrow, title...)\cr
+#' \link{layoutLayer}}
+#' \item{Labels\cr
+#' \link{labelLayer}}
+#' \item{Nice legends \cr
+#' \link{legendBarsSymbols},
+#' \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, 
+#' \link{legendPropLines}, \link{legendPropTriangles}, 
+#' \link{legendSquaresSymbols}, \link{legendTypo}
 #' }
+#' \item{Access to cartographic API (via OpenStreetMap package)\cr
+#' \link{getTiles}, \link{tilesLayer}
+#' }
+#' \item{Irregular polygons to regular grid transformation with data handling\cr
+#' \link{getGridLayer}, \link{getGridData}}
+#' \item{...}
+#' }
+#' 
+#' Functions starting with "get" build R objects.\cr
+#' Functions ending with "Layer" plot cartographic layers.\cr
+#' Functions starting with "legend" plot legends.\cr
+#' 
 #' @docType package
 NULL
 
@@ -34,7 +60,7 @@ NULL
 #' @name nuts3.spdf
 #' @description Delineations of EU administrative units (level 3, 2006 version).
 #' @format SpatialPolygonsDataFrame.
-#' @details This SpatialPolygonsDataFrame can be used with the nuts3.df data.frame 
+#' @details This SpatialPolygonsDataFrame can be used with the nuts3.df data frame 
 #' @field id Unique nuts id (character)
 #' @field name Official name of the administrative unit
 #' @source UMS RIATE
@@ -45,7 +71,7 @@ NULL
 #' @name nuts2.spdf
 #' @description Delineations of EU administrative units (level 2, 2006 version).
 #' @format SpatialPolygonsDataFrame.
-#' @details This SpatialPolygonsDataFrame can be used with the nuts2.df data.frame 
+#' @details This SpatialPolygonsDataFrame can be used with the nuts2.df data frame 
 #' @field id Unique nuts id (character)
 #' @field name Official name of the administrative unit
 #' @source UMS RIATE
@@ -56,7 +82,7 @@ NULL
 #' @name nuts1.spdf
 #' @description Delineations of EU administrative units (level 1, 2006 version).
 #' @format SpatialPolygonsDataFrame.
-#' @details This SpatialPolygonsDataFrame can be used with the nuts1.df data.frame 
+#' @details This SpatialPolygonsDataFrame can be used with the nuts1.df data frame 
 #' @field id Unique nuts id (character)
 #' @field name Official name of the administrative unit
 #' @source UMS RIATE
@@ -67,7 +93,7 @@ NULL
 #' @name nuts0.spdf
 #' @description Delineations of EU administrative units (level 0, 2006 version).
 #' @format SpatialPolygonsDataFrame.
-#' @details This SpatialPolygonsDataFrame can be used with the nuts0.df data.frame 
+#' @details This SpatialPolygonsDataFrame can be used with the nuts0.df data frame 
 #' @field id Unique nuts id (character)
 #' @field name Official name of the administrative unit
 #' @source UMS RIATE
@@ -77,7 +103,7 @@ NULL
 #' @title Nuts0 Dataset
 #' @name nuts0.df
 #' @description This dataset contains some socio-economic data
-#' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
+#' @details This data frame can be used with the SpatialPolygonsDataFrame 
 #' nuts0.spdf
 #' @field id Unique nuts id (character)
 #' @field emp2008 Active population in employment in 2008 (thousands persons) 
@@ -100,7 +126,7 @@ NULL
 #' @title Nuts1 Dataset
 #' @name nuts1.df
 #' @description This dataset contains some socio-economic data
-#' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
+#' @details This data frame can be used with the SpatialPolygonsDataFrame 
 #' nuts1.spdf
 #' @field id Unique nuts id (character)
 #' @field emp2008 Active population in employment in 2008 (thousands persons) 
@@ -123,7 +149,7 @@ NULL
 #' @title Nuts2 Dataset
 #' @name nuts2.df
 #' @description This dataset contains some socio-economic data
-#' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
+#' @details This data frame can be used with the SpatialPolygonsDataFrame 
 #' nuts2.spdf
 #' @field id Unique nuts id (character)
 #' @field emp2008 Active population in employment in 2008 (thousands persons) 
@@ -146,7 +172,7 @@ NULL
 #' @title Nuts3 Dataset
 #' @name nuts3.df
 #' @description This dataset contains some socio-economic data
-#' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
+#' @details This data frame can be used with the SpatialPolygonsDataFrame 
 #' nuts3.spdf
 #' @field id Unique nuts id (character)
 #' @field birth_2008 Number of birth in 2008 (live birth) (numeric)
@@ -177,7 +203,7 @@ NULL
 #' @docType data
 NULL
 
-#' @title Graticule Around Europe
+#' @title Graticule around Europe
 #' @name graticule.spdf
 #' @description Graticule around Europe.
 #' @format SpatialLinesDataFrame.
@@ -206,7 +232,7 @@ NULL
 #' @name twincities
 #' @description This dataset contains the number of international twinning 
 #' agreements betwwen cities. Agreements are aggregated at nuts2 level.
-#' @details This DataFrame can be used with the SpatialPolygonsDataFrame 
+#' @details This data frame can be used with the SpatialPolygonsDataFrame 
 #' nuts2.spdf
 #' @field i nuts2 identifier
 #' @field j nuts2 identifier

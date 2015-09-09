@@ -1,4 +1,4 @@
-#' @title Get Tiles From Open Map Servers
+#' @title Get Tiles from Open Map Servers
 #' @name getTiles
 #' @description Get map tiles based on a Spatial*DataFrame extent. Maps can be 
 #' fetched from various open map servers.
@@ -7,22 +7,23 @@
 #' (see Details).
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
-#' @details This function uses rgdal and OpenStreetMap packages. 
-#' 
-#' Available tile servers are described in the \code{openmap} function of 
+#' @details 
+#' Available tile servers are described in the openmap function of 
 #' the OpenStreetMap package.
 #' 
 #' Zoom levels are descibed on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
+#' @note This function uses rgdal and OpenStreetMap packages. 
 #' @export
 #' @import sp
 #' @return An OpenStreetMap object is returned.
 #' @examples
+#' \dontrun{
 #' data("nuts2006")
 #' # Download the tiles
-#' # Do not run:
-#' #StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
-#' #class(StamWatCol)
+#' StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+#' class(StamWatCol)
+#' }
 getTiles <- function(spdf, type = "osm", zoom = NULL){
   if (!requireNamespace("rgdal", quietly = TRUE)) {
     stop("'rgdal' package needed for this function to work. Please install it.",
@@ -73,23 +74,26 @@ getTiles <- function(spdf, type = "osm", zoom = NULL){
   return(finalOSM)
 }
 
-#' @title Plot Tiles From Open Map Servers
+#' @title Plot Tiles from Open Map Servers
+#' @description Plot tiles from open map servers.
 #' @name tilesLayer
-#' @param x an OpenStreetMap object; \code{\link{getTiles}} outputs these objects.
+#' @param x an OpenStreetMap object; the \link{getTiles} function outputs these 
+#' objects.
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details This function is a wrapper for \code{plot.OpenStreetMap} from 
+#' @note This function is a wrapper for plot.OpenStreetMap from the 
 #' OpenStreetMap package.
 #' @export
 #' @examples
+#' \dontrun{ 
 #' data("nuts2006")
-#' # Do not run: 
 #' # Download the tiles
-#' #StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+#' StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
 #' #Display the tiles Layer
-#' #tilesLayer(x = StamWatCol)
+#' tilesLayer(x = StamWatCol)
 #' #Display countries boundaries
-#' #plot(nuts0.spdf, add = TRUE)
+#' plot(nuts0.spdf, add = TRUE)
+#' }
 tilesLayer <- function(x, add = FALSE){
   if (!requireNamespace("OpenStreetMap", quietly = TRUE)) {
     stop("'OpenStreetMap' package needed for this function to work. Please install it.",

@@ -11,7 +11,7 @@ UMS RIATE
 This dataset contains some socio-economic data
 }
 \details{
-This DataFrame can be used with the SpatialPolygonsDataFrame
+This data frame can be used with the SpatialPolygonsDataFrame
 nuts0.spdf
 }
 \section{Fields}{

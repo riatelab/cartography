@@ -2,7 +2,7 @@
 % Please edit documentation in R/osmLayer.R
 \name{getTiles}
 \alias{getTiles}
-\title{Get Tiles From Open Map Servers}
+\title{Get Tiles from Open Map Servers}
 \usage{
 getTiles(spdf, type = "osm", zoom = NULL)
 }
@@ -23,19 +23,21 @@ Get map tiles based on a Spatial*DataFrame extent. Maps can be
 fetched from various open map servers.
 }
 \details{
-This function uses rgdal and OpenStreetMap packages.
-
-Available tile servers are described in the \code{openmap} function of
+Available tile servers are described in the openmap function of
 the OpenStreetMap package.
 
 Zoom levels are descibed on the OpenStreetMap wiki:
 \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
 }
+\note{
+This function uses rgdal and OpenStreetMap packages.
+}
 \examples{
+\dontrun{
 data("nuts2006")
 # Download the tiles
-# Do not run:
-#StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
-#class(StamWatCol)
+StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+class(StamWatCol)
+}
 }
 

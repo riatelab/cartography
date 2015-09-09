@@ -2,12 +2,12 @@
 % Please edit documentation in R/palettes.R
 \name{display.carto.all}
 \alias{display.carto.all}
-\title{Display All Cartographic Palettes}
+\title{Display all Cartographic Palettes}
 \usage{
 display.carto.all(n = 10)
 }
 \arguments{
-\item{n}{number of colors by palettes (from 1 to 20).}
+\item{n}{number of colors in the gradients (from 1 to 20).}
 }
 \description{
 Display all the available color palettes.

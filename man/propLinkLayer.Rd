@@ -12,7 +12,7 @@ propLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
 \arguments{
 \item{sldf}{a SpatialLinesDataFrame; a link layer.}
 
-\item{df}{a data.frame with identifiers and a variable.}
+\item{df}{a data frame with identifiers and a variable.}
 
 \item{sldfid}{unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).}
 
@@ -26,7 +26,7 @@ propLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
 
 \item{dfide}{identifier of ending points in df (sldfid and dfid are not used).}
 
-\item{var}{name of the variable used to plot the links}
+\item{var}{name of the variable used to plot the links widths.}
 
 \item{maxlwd}{maximum size of the links.}
 
@@ -54,7 +54,7 @@ not (FALSE).}
 \description{
 Plot a layer of proportionnal links
 }
-\details{
+\note{
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
