@@ -26,4 +26,5 @@ Suggests:
     raster,
     rgdal,
     knitr
+VignetteBuilder: knitr
 Encoding: UTF-8

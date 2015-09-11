@@ -1,0 +1,75 @@
+---
+title: "Introduction to the cartography package"
+author: "Timothée Giraud, Nicolas Lambert"
+date:  "`r Sys.Date()`"
+output: 
+  html_document: 
+    theme: cosmo
+vignette: >
+  %\VignetteIndexEntry{cartography}
+  \usepackage[utf8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+# Introduction
+
+BLAH BLAH BLAH
+
+# Un package qui a la classe...
+
+# ... avec des *layouts* stylés...
+
+# ... et des *labels* de déglingos
+
+
+```{r}
+
+data("nuts2006")
+par(mar = c(0,0,1.2,0))
+# Layout plot
+layoutLayer(  title = "Most Populated Countries of Europe",
+              author = "", sources = "",
+              scale = NULL,col = NA, coltitle = "black",
+              frame = FALSE, bg = "#A6CAE0",
+              south = TRUE, extent = nuts0.spdf)
+
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
+
+# Selection of the 10 most populated countries of Europe
+dflab <- nuts0.df[order(nuts0.df$pop2008, decreasing = TRUE),][1:10,]
+
+# Label creation
+dflab$lab <- paste(dflab$id, "\n", round(dflab$pop2008/1000000,0), "M", sep ="")
+
+# Label plot of the 10 most populated countries
+labelLayer(spdf = nuts0.spdf, df = dflab, txt = "lab",
+           col = "#690409", cex = 0.9, font = 2)
+text(x = 5477360, y = 4177311, labels = "The 10 most populated countries of Europe
+Total population 2008, in millions of inhabitants.",
+     cex = 0.7, adj = 0)
+
+```
+
+
+---
+references:
+- id: nystuen
+  title: A graph theory interpretation of nodal flows
+  author:
+  - family: Nystuen
+    given: J.
+  author:
+  - family: Dacey
+    given: M.
+  container-title: Papers and Proceedings of the Regional Science Association
+  volume: 7
+  page: 29-42
+  type: article-journal
+  issued:
+    year: 1961
+---
+
+
+
+
