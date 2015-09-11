@@ -18,7 +18,7 @@ discretization(v, nclass = NULL, method = "quantile")
 A numeric vector of breaks
 }
 \description{
-Discretization Function
+Discretization function.
 }
 \details{
 "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
@@ -30,7 +30,7 @@ This function is mainly a wrapper around classIntervals function of
 the classInt package + q6 and geom methods.
 }
 \examples{
-# create the natality rate
+# Create the natality rate
 var <- nuts2.df$birth_2008/nuts2.df$pop2008 * 1000
 
 # Histogram
@@ -41,12 +41,17 @@ med <- median(var)
 abline(v = moy, col = "red", lwd = 3)
 abline(v = med, col = "blue", lwd = 3)
 
-# Equal intervals
-discretization(v = var, nclass = 6, method = "equal")
+# Quantile intervals
+breaks <- discretization(v = var, nclass = 6, method = "quantile")
+hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9")
+rug(var)
+moy <- mean(var)
+med <- median(var)
+abline(v = moy, col = "red", lwd = 3)
+abline(v = med, col = "blue", lwd = 3)
 
 # Geometric intervals
 breaks <- discretization(v = var, nclass = 8, method = "geom")
-
 hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9")
 rug(var)
 moy <- mean(var)

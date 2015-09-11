@@ -2,64 +2,68 @@
 % Please edit documentation in R/dotDensityLayer.R
 \name{dotDensityLayer}
 \alias{dotDensityLayer}
-\title{Dot density layer}
+\title{Dot Density layer}
 \usage{
 dotDensityLayer(spdf, df, spdfid = NULL, dfid = NULL, var, n = NULL,
-  iter = 5, dots.pch = 1, dots.cex = 0.15, dots.type = "random",
-  col = "black", legend.txt = NULL, legend.pos = "topright",
-  legend.cex = 0.6, legend.col = "black", legend.frame = TRUE,
-  add = FALSE)
+  iter = 5, pch = 1, cex = 0.15, type = "random", col = "black",
+  legend.pos = "topright", legend.txt = NULL, legend.cex = 0.6,
+  legend.col = "black", legend.frame = TRUE, add = TRUE)
 }
 \arguments{
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{data.frame; df contains the values to plot.}
+\item{df}{data frame; df contains the values to plot.}
 
-\item{spdfid}{character; id field in spdf, default to the first column
-of the spdf data.frame. (optional)}
+\item{spdfid}{id field in spdf, default to the first column
+of the spdf data frame. (optional)}
 
-\item{dfid}{character; id field in df, default to the first column
-of df. (optional)}
+\item{dfid}{id field in df, default to the first column of df. (optional)}
 
-\item{var}{character; name of the numeric field in df to plot.}
+\item{var}{name of the numeric field in df to plot.}
 
-\item{n}{numeric; one dot on the map represents n [in var units]}
+\item{n}{one dot on the map represents n (in var units).}
 
-\item{iter}{numeric;  number of times to try to place sample points (see Details)}
+\item{iter}{number of iteration to try to locate sample points (see Details).}
 
-\item{dots.pch}{numeric; Symbol to use:  \link{points}.}
+\item{pch}{symbol to use: \link{points}.}
 
-\item{dots.cex}{numeric; size of the symboles}
+\item{cex}{size of the symbols}
 
-\item{dots.type}{character; Points allocation method: "random", "regular", "stratified", "nonaligned", "hexagonal", "clustered", "Fibonacci". (see Details)}
+\item{type}{points allocation method: "random" or "regular" (see Details).}
 
-\item{col}{character; color of the symbols}
-
-\item{legend.txt}{character; text in the legend.}
+\item{col}{color of the points.}
 
 \item{legend.pos}{"topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.pos is "n" then the legend is not plotted.}
 
-\item{legend.cex}{numeric; size of the legend textes.}
+\item{legend.txt}{text in the legend.}
 
-\item{legend.col}{character; color of the text within the legend textbox.}
+\item{legend.cex}{size of the legend text.}
 
-\item{legend.frame}{boolean; whether to add a frame to the legend (TRUE) or
+\item{legend.col}{color of the text in the legend.}
+
+\item{legend.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{add}{boolean; whether to add the layer to an existing plot (TRUE) or
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
 }
 \description{
 Plot a dot density layer.
 }
 \details{
-The iter parameter is defined within the \link{spsample} function. If an error occurred, increase this value.
-The dots.type parameters is defined within the \link{spsample} function.
+The iter parameter is defined within the \link{spsample} function. If an error occurred, increase this value.\cr
+The type parameters is defined within the \link{spsample} function.
 }
 \examples{
 data("nuts2006")
+# Example 1
+plot(nuts0.spdf)
+dotDensityLayer(spdf = nuts0.spdf, df=nuts0.df,var="pop2008")
+
+
+# Example 2
 layoutLayer(title = "Population in Europe, 2008",
             sources = "Eurostat, 2008",
             scale = NULL,
@@ -68,7 +72,12 @@ layoutLayer(title = "Population in Europe, 2008",
             coltitle = "white",
             bg = "#E6E6E6",
             extent = nuts0.spdf)
-plot(nuts0.spdf, col = "#B8704D",border = "white", lwd=1.3, add=TRUE)
-dotDensityLayer(spdf = nuts0.spdf[,], df=nuts0.df,var="pop2008", add=TRUE, n = 100000)
+plot(nuts1.spdf, col = "#B8704D50",border = "white", add=TRUE)
+dotDensityLayer(spdf = nuts1.spdf, df=nuts1.df,var="pop2008",
+                type = "regular", pch=20, col = "brown",
+                n = 100000)
+}
+\seealso{
+\link{propSymbolsLayer}
 }
 

@@ -21,11 +21,14 @@
 #' @examples 
 #' data("nuts2006")
 #' # Create a link layer
-#' twincitiesHU <- twincities[substr(twincities$i,1,2)=="IE", ]
-#' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesHU[,1:2])
-#' # plot the links
+#' head(twincities)
+#' # Select links from Ireland (IE)
+#' twincitiesIE <- twincities[substr(twincities$i,1,2)=="IE", ]
+#' twincities.sldf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesIE[,1:2])
+#' # Plot the links
 #' plot(nuts2.spdf, col = "#6C6870")
-#' plot(twincities.spdf, col = "#F78194", add = TRUE)
+#' plot(twincities.sldf, col = "#F78194", add = TRUE)
+#' @seealso \link{gradLinkLayer}, \link{propLinkLayer}
 #' @export
 getLinkLayer <- function(spdf, spdf2 = NULL, df, 
                          spdfid = NULL, spdf2id = NULL, 

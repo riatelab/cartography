@@ -19,3 +19,7 @@ It also proposes some additional usefull features like:
 
 
 
+TODO list:  
+* Cut/adapt the tilesLayers to the frame extent.  
+
+

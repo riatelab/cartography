@@ -19,4 +19,7 @@ display.carto.all(8)
 display.carto.all(12)
 display.carto.all(20)
 }
+\seealso{
+\link{carto.pal}, \link{display.carto.pal}
+}
 

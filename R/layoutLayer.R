@@ -17,21 +17,15 @@
 #' extent of the frame to the one of a Spatial object.
 #' @details If extent is not set, plot.new has to be called first.
 #' @export
+#' @seealso \link{labelLayer}
 #' @examples
 #' data("nuts2006")
-#' # Exemple 1
+#' # Example 1
 #' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 #' # Layout plot
-#' layoutLayer(title = "Title", 
-#'             sources = "Sources", 
-#'             author = "Author",
-#'             scale = 0, 
-#'             frame = TRUE,
-#'             col = "black", 
-#'             coltitle = "white",
-#'             south = TRUE)
+#' layoutLayer()
 #' 
-#' # Exemple 2
+#' # Example 2
 #' layoutLayer(scale = NULL,col = NA, coltitle = "black",
 #'             sources = "", author = "",
 #'             frame = FALSE, bg = "#A6CAE0",

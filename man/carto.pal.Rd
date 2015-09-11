@@ -42,10 +42,10 @@ Use \link{display.carto.all} to show all palettes and use
 \link{display.carto.pal} to show one palette.
 }
 \examples{
-# Simple gradient - blue
+# Simple gradient: blue
 carto.pal(pal1 = "blue.pal" ,n1 = 20)
 
-# double gradient blue / red
+# Double gradient: blue & red
 carto.pal(pal1 = "blue.pal", n1 = 10, pal2 = "red.pal", n2 = 10)
 
 # Adding a neutral color
@@ -64,6 +64,9 @@ mypal <- carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15,
                    middle = TRUE, transparency = TRUE)
 k <- length(mypal)
 image(1:k, 1, as.matrix(1:k), col =mypal, xlab = paste(k," classes",sep=""),
-ylab = "", xaxt = "n", yaxt = "n",bty = "n")
+      ylab = "", xaxt = "n", yaxt = "n",bty = "n")
+}
+\seealso{
+\link{display.carto.pal}, \link{display.carto.all}
 }
 

@@ -14,9 +14,9 @@
 #' @param var name of the numeric field in df used to compute and plot discontinuities.
 #' @param col color of the discontinuities lines.
 #' @param nclass a targeted number of classes. If null, the number of 
-#' class is automatically defined (see \link{choroLayer} Details).
+#' class is automatically defined (see \link{discretization} Details).
 #' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "jenks","q6" or "geom"  (see \link{choroLayer} Details).
+#' "quantile", "jenks","q6" or "geom"  (see \link{discretization} Details).
 #' @param threshold share of represented borders, value between 0 
 #' (nothing) and 1 (all the discontinuities).
 #' @param sizemin thickness of the smallest line.
@@ -35,24 +35,24 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
-#' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).
+#' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
-#' 
+#' @seealso \link{getBorders}, \link{gradLinkLayer}, \link{legendGradLines}
 #' @examples
 #' data(nuts2006)
 #' # Get borders
 #' nuts0.contig.spdf <- getBorders(nuts0.spdf)
 #' # GDP per capita
 #' nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008
-#' 
+#' # Plot countries
 #' plot(nuts0.spdf, col="#CCCCCC", lwd=1, border="white")
+#' # Plot discontinuities
 #' discLayer(spdf = nuts0.contig.spdf, df = nuts0.df,
-#'           var = "gdpcap", col="red", nclass=5,  
+#'           var = "gdpcap", col="red", nclass=5,
 #'           method="quantile", threshold = 0.5, sizemin = 1,
 #'           sizemax = 10, type = "rel", legend.frame = TRUE,
-#'           legend.title.txt = "GDP per Capita discontinuities\n(relative)", 
-#'           legend.pos = "topright",
-#'           add=TRUE)
+#'           legend.title.txt = "GDP per Capita discontinuities\n(relative)",
+#'           legend.pos = "topright", add=TRUE)
 #' @export
 discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var, 
                       method="quantile", nclass=NULL, threshold = 0.75, 
@@ -65,7 +65,7 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var,
                       legend.values.cex = 0.6, 
                       legend.values.rnd = 2,
                       legend.frame=FALSE,
-                      add = FALSE){
+                      add = TRUE){
   
   
   if (is.null(spdfid1)){spdfid1 <- names(spdf@data)[2]}

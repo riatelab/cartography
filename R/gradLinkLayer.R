@@ -27,11 +27,12 @@
 #' not (FALSE).
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
 #' @import sp
+#' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}
 #' @examples
 #' data("nuts2006")
 #' # Create a link layer
 #' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
-#' # plot the links
+#' # Plot the links
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
 #' gradLinkLayer(sldf = twincities.spdf, df = twincities,
 #'               sldfids = "i", sldfide = "j",

@@ -19,11 +19,12 @@
 #' @note Use \link{display.carto.all} to show all palettes and use 
 #' \link{display.carto.pal} to show one palette. 
 #' @return A vector of colors is returned.
+#' @seealso \link{display.carto.pal}, \link{display.carto.all}
 #' @examples 
-#' # Simple gradient - blue
+#' # Simple gradient: blue
 #' carto.pal(pal1 = "blue.pal" ,n1 = 20)
 #' 
-#' # double gradient blue / red
+#' # Double gradient: blue & red
 #' carto.pal(pal1 = "blue.pal", n1 = 10, pal2 = "red.pal", n2 = 10)
 #' 
 #' # Adding a neutral color
@@ -34,15 +35,15 @@
 #'           transparency = TRUE)
 #' 
 #' # The double gradient can be asymetric
-#' carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15, middle = TRUE, 
+#' carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15, middle = TRUE,
 #'           transparency = TRUE)
 #' 
 #' # Build and display a palette
-#' mypal <- carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15, 
+#' mypal <- carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15,
 #'                    middle = TRUE, transparency = TRUE)
 #' k <- length(mypal)
 #' image(1:k, 1, as.matrix(1:k), col =mypal, xlab = paste(k," classes",sep=""),
-#' ylab = "", xaxt = "n", yaxt = "n",bty = "n")
+#'       ylab = "", xaxt = "n", yaxt = "n",bty = "n")
 #' @export
 #' 
 carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
@@ -101,6 +102,7 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' display.carto.all(8)
 #' display.carto.all(12)
 #' display.carto.all(20)
+#' @seealso \link{carto.pal}, \link{display.carto.pal}
 #' @import graphics
 #' @export
 display.carto.all<-function(n = 10)
@@ -130,12 +132,13 @@ display.carto.all<-function(n = 10)
 #' @title Display one Cartographic Palette
 #' @description Display one color palette.
 #' @name display.carto.pal
-#' @param name name of the palette available in the package (see Details)
+#' @param name name of the palette available in the package (see Details).
 #' @details Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
 #' "pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal". 
 #' @examples
 #' display.carto.pal("orange.pal")
 #' display.carto.pal("sand.pal")
+#' @seealso \link{carto.pal}, \link{display.carto.all}
 #' @export
 display.carto.pal<-function(name)
 {

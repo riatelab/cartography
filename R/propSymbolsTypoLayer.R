@@ -37,12 +37,21 @@
 #' not (FALSE).
 #' @export
 #' @import sp
+#' @seealso \link{legendBarsSymbols}, \link{legendTypo}, 
+#' \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
+#' \link{typoLayer}, \link{propSymbolsLayer}
 #' @examples
 #' data("nuts2006")
+#' ## Example 1
+#' plot(nuts0.spdf, col = "grey60",border = "grey20")
+#' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
+#' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
+#'                      var = "pop2008", var2="typo")
+#' 
+#' ## Example 2
 #' # Layout plot
-#' layoutLayer(title = "Countries Population in Europe",
+#' layoutLayer(title = "Countries Population & Color in Europe",
 #'             sources = "UMS RIATE, 2015",
-#'             author = "UMS RIATE",
 #'             scale = NULL,
 #'             frame = TRUE,
 #'             col = "black",
@@ -54,14 +63,14 @@
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 #' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
 #'                      var = "pop2008", var2="typo", k = 0.01,
-#'                      symbols = "circle", 
+#'                      symbols = "circle",
 #'                      legend.var.pos = "topright", legend.var2.pos = "right",
 #'                      legend.var.title.txt = "Total\npopulation (2008)",
 #'                      legend.values.rnd = -3,
 #'                      legend.var2.title.txt = "Category",
 #'                      legend.var.style = "c")
 propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
-                                 k = 0.02, fixmax = NULL, symbols = "circles",
+                                 k = 0.02, fixmax = NULL, symbols = "circle",
                                  border = "grey20", lwd = 1,
                                  var2, col = NULL, 
                                  legend.title.cex = 0.8, 
@@ -71,7 +80,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  legend.values.rnd = 0,
                                  legend.var.style = "c", 
                                  legend.var.frame = FALSE,
-                                 legend.var2.pos = "bottomleft", 
+                                 legend.var2.pos = "topright", 
                                  legend.var2.title.txt = var2,
                                  legend.var2.nodata = "no data",
                                  legend.var2.frame = FALSE,

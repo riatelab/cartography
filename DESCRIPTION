@@ -1,14 +1,16 @@
 Package: cartography
-Title: Thematic Cartography and More
+Title: Thematic Cartography 
 Version: 1.0
+Date: 2015-09-09
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@ums-riate.fr", role = c("cre","aut")),
       person("Nicolas", "Lambert", 
         email = "nicolas.lambert@ums-riate.fr", role = c("aut")))
-Description: Create and integrate maps into your R workflow. Classical thematic 
-  maps and more unconventionnal geographical representation are available. 
+Description: Create and integrate maps into your R workflow. It allows various cartographic representation: proportionnal symbols, chroropleth, typology, flow, discontinuities... It also proposes some additional usefull features: cartographic palettes, layout (scale, north arrow, title...), labels, legends, access to cartographic API...
 License: GPL-3
+URL: https://github.com/Groupe-ElementR/cartography/
+BugReports: https://github.com/Groupe-ElementR/cartography/issues/
 LazyData: true
 Depends: 
     R (>= 2.10),

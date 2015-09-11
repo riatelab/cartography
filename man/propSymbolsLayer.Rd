@@ -75,7 +75,7 @@ Two maps with the same spdf, k, and fixmax parameters will be comparable.
 }
 \examples{
 data("nuts2006")
-## Exemple 1
+## Example 1
 # Layout plot
 layoutLayer(title = "Countries Population in Europe",
             sources = "Eurostat, 2008",
@@ -96,7 +96,7 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.title.txt = "Total\\npopulation (2008)",
                  legend.style = "c")
 
-## Exemple 2
+## Example 2
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20")
 # Population plot on proportional symbols
@@ -107,7 +107,7 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.title.txt = "GDP\\nin Millions PPS (2008)",
                  legend.style = "e")
 
-## Exemple 3
+## Example 3
 oldpar <- par(mfrow = c(1,2), mar = c(0,0,0,0))
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
@@ -130,7 +130,7 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.title.txt = "nb of deaths")
 par(oldpar)
 
-## Exemple 4
+## Example 4
 nuts0.df$balance <- nuts0.df$birth_2008-nuts0.df$death_2008
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Population plot on proportional symbols
@@ -141,5 +141,10 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.pos = "right",
                  legend.style = "c",
                  legend.title.txt = "Natural Balance\\n(2008)")
+}
+\seealso{
+\link{legendBarsSymbols}, \link{legendCirclesSymbols},
+\link{legendSquaresSymbols}, \link{propSymbolsChoroLayer},
+\link{propSymbolsTypoLayer}
 }
 

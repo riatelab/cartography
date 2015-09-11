@@ -9,7 +9,7 @@ discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
   sizemin = 1, sizemax = 10, col = "red", legend.pos = "bottomleft",
   legend.title.txt = "legend title", legend.title.cex = 0.8,
   legend.values.cex = 0.6, legend.values.rnd = 2, legend.frame = FALSE,
-  add = FALSE)
+  add = TRUE)
 }
 \arguments{
 \item{spdf}{a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.}
@@ -28,10 +28,10 @@ of df. (optional)}
 \item{var}{name of the numeric field in df used to compute and plot discontinuities.}
 
 \item{method}{a discretization method; one of "sd", "equal",
-"quantile", "jenks","q6" or "geom"  (see \link{choroLayer} Details).}
+"quantile", "jenks","q6" or "geom"  (see \link{discretization} Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of
-class is automatically defined (see \link{choroLayer} Details).}
+class is automatically defined (see \link{discretization} Details).}
 
 \item{threshold}{share of represented borders, value between 0
 (nothing) and 1 (all the discontinuities).}
@@ -69,7 +69,7 @@ discontinuities are plotted over the layer outputed by the \link{getBorders} fun
 The line widths reflect the ratio between values of an indicator in two neighbouring units.
 }
 \details{
-The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).
+The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
 }
 \examples{
@@ -78,14 +78,17 @@ data(nuts2006)
 nuts0.contig.spdf <- getBorders(nuts0.spdf)
 # GDP per capita
 nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008
-
+# Plot countries
 plot(nuts0.spdf, col="#CCCCCC", lwd=1, border="white")
+# Plot discontinuities
 discLayer(spdf = nuts0.contig.spdf, df = nuts0.df,
           var = "gdpcap", col="red", nclass=5,
           method="quantile", threshold = 0.5, sizemin = 1,
           sizemax = 10, type = "rel", legend.frame = TRUE,
           legend.title.txt = "GDP per Capita discontinuities\\n(relative)",
-          legend.pos = "topright",
-          add=TRUE)
+          legend.pos = "topright", add=TRUE)
+}
+\seealso{
+\link{getBorders}, \link{gradLinkLayer}, \link{legendGradLines}
 }
 

@@ -5,11 +5,11 @@
 \title{Proportional Symbols Typo Layer}
 \usage{
 propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
-  fixmax = NULL, symbols = "circles", border = "grey20", lwd = 1, var2,
+  fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1, var2,
   col = NULL, legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.var.pos = "bottomleft", legend.var.title.txt = var,
   legend.values.rnd = 0, legend.var.style = "c", legend.var.frame = FALSE,
-  legend.var2.pos = "bottomleft", legend.var2.title.txt = var2,
+  legend.var2.pos = "topright", legend.var2.title.txt = var2,
   legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
@@ -76,10 +76,16 @@ qualitative data.
 }
 \examples{
 data("nuts2006")
+## Example 1
+plot(nuts0.spdf, col = "grey60",border = "grey20")
+nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
+propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
+                     var = "pop2008", var2="typo")
+
+## Example 2
 # Layout plot
-layoutLayer(title = "Countries Population in Europe",
+layoutLayer(title = "Countries Population & Color in Europe",
             sources = "UMS RIATE, 2015",
-            author = "UMS RIATE",
             scale = NULL,
             frame = TRUE,
             col = "black",
@@ -97,5 +103,10 @@ propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
                      legend.values.rnd = -3,
                      legend.var2.title.txt = "Category",
                      legend.var.style = "c")
+}
+\seealso{
+\link{legendBarsSymbols}, \link{legendTypo},
+\link{legendCirclesSymbols}, \link{legendSquaresSymbols},
+\link{typoLayer}, \link{propSymbolsLayer}
 }
 

@@ -56,4 +56,7 @@ text(x = 5477360, y = 4177311, labels = "The 10 most populated countries of Euro
 Total population 2008, in millions of inhabitants.",
      cex = 0.7, adj = 0)
 }
+\seealso{
+\link{layoutLayer}
+}
 

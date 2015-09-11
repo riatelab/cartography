@@ -22,23 +22,42 @@
 #' @param legend.nodata no data label.
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
 #' @export
 #' @examples
 #' data(nuts2006)
+#' ## Example 1
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 #' colours <- c("red","green","blue","yellow")
-#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo",
-#'           legend.pos = "topright", border="white",
-#'           legend.title.txt = "Just Some Letters",add=FALSE)
+#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo")
+#' 
+#' 
+#' ## Example 2
+#' # Layout plot
+#' layoutLayer(title = "Colors in Europe",
+#'             sources = "UMS RIATE, 2015",
+#'             scale = NULL,
+#'             frame = TRUE,
+#'             col = "black",
+#'             coltitle = "white",
+#'             bg = "#D9F5FF",
+#'             extent = nuts0.spdf)
+#' #Countries plot
+#' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
+#' typoLayer(spdf = nuts0.spdf, df = nuts0.df,
+#'           var="typo", 
+#'           legend.pos = "topright", 
+#'           legend.title.txt = "Category", 
+#'           add=TRUE)
 typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var, 
-                      col = NULL, border = NA, lwd = 1,
+                      col = NULL, border = "grey20", lwd = 1,
                       legend.pos = "bottomleft", 
                       legend.title.txt = var,
                       legend.title.cex = 0.8, 
                       legend.values.cex = 0.6,
                       legend.nodata = "no data",
                       legend.frame = FALSE,
-                      add = TRUE)
+                      add = FALSE)
 {
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}

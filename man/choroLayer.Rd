@@ -5,10 +5,10 @@
 \title{Choropleth Layer}
 \usage{
 choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
-  method = "quantile", nclass = NULL, col = NULL, border = NA,
+  method = "quantile", nclass = NULL, col = NULL, border = "grey20",
   lwd = 1, legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
-  legend.nodata = "no data", legend.frame = FALSE, add = TRUE)
+  legend.nodata = "no data", legend.frame = FALSE, add = FALSE)
 }
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
@@ -75,8 +75,15 @@ uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.
 The "geom" method is based on a geometric progression along the variable values.
 }
 \examples{
-## Exemple 1
 data("nuts2006")
+
+## Example 1
+nuts2.df$unemprate <- nuts2.df$unemp2008/nuts2.df$act2008*100
+choroLayer(spdf = nuts2.spdf,
+           df = nuts2.df,
+           var = "unemprate")
+
+## Example 2
 nuts2.df$unemprate <- nuts2.df$unemp2008/nuts2.df$act2008*100
 choroLayer(spdf = nuts2.spdf,
            df = nuts2.df,
@@ -87,10 +94,10 @@ choroLayer(spdf = nuts2.spdf,
            border = "grey40",
            add = FALSE,
            legend.pos = "topright",
-           legend.title.txt = "unemployement rate\\n(\%)",
+           legend.title.txt = "Unemployement rate\\n(\%)",
            legend.values.rnd = 1)
 
-## Exemple 2
+## Example 3
 # Compute the compound annual growth rate
 nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
 summary(nuts2.df$cagr)
@@ -116,5 +123,8 @@ layoutLayer(title = "Demographic Trends",
 \references{
 Herbert A. Sturges, «
 \emph{The Choice of a Class Interval }», Journal of the American Statistical Association, vol. 21, n° 153, mars 1926, p. 65-66.
+}
+\seealso{
+\link{discretization}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
 }
 

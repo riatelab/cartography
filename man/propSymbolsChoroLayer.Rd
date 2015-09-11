@@ -11,7 +11,7 @@ propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
   legend.var.pos = "right", legend.var.title.txt = var,
   legend.var.values.rnd = 0, legend.var.style = "c",
   legend.var.frame = FALSE, legend.var2.pos = "topright",
-  legend.var2.title.txt = var2, legend.var2.values.rnd = 0,
+  legend.var2.title.txt = var2, legend.var2.values.rnd = 2,
   legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
@@ -95,12 +95,46 @@ quantitative data discretization.
 }
 \examples{
 data("nuts2006")
-## Exemple 1
+## Example 1
+# Growth rate
+nuts0.df$cagr <- (((nuts0.df$pop2008 / nuts0.df$pop1999)^(1/9)) - 1) * 100
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-# Population and growth rate
-nuts0.df$cagr <- (((nuts0.df$pop2008 / nuts0.df$pop1999)^(1/9)) - 1) * 100
-propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,var = "pop2008", var2 = "cagr",
-                      legend.var.values.rnd = -3, legend.var2.values.rnd = 2)
+# Plot the symbols
+propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,
+                      var = "pop2008", var2 = "cagr", )
+
+## Example 2
+# Growth rate at nuts2 level
+nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
+
+# First layout
+layoutLayer(title="Demographic trends, 1999-2008",
+            scale = NULL,col = NA, coltitle = "black",
+            sources = "", author = "",
+            frame = FALSE, bg = "#A6CAE0",
+            south = TRUE, extent = nuts0.spdf)
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
+
+# Plot symbols
+propSymbolsChoroLayer(spdf = nuts2.spdf, df = nuts2.df,
+                      var = "pop2008", var2 = "cagr",
+                      col = carto.pal(pal1 = "blue.pal", n1 = 2,
+                                      pal2 = "red.pal", n2 = 4),
+                      breaks = c(-2.43,-1,0,0.5,1,2,3.1),
+                      border = "grey50", lwd = 0.75,
+                      legend.var.pos = "topright", legend.var2.pos = "right",
+                      legend.var2.title.txt = "Compound annual\\ngrowth rate",
+                      legend.var.title.txt = "Total Population",
+                      legend.var.style = "e", k = 0.002)
+# Second layout
+layoutLayer(title = "", author = "Eurostat, 2011",
+            sources = "", frame ="", col = NA)
+}
+\seealso{
+\link{legendBarsSymbols}, \link{legendChoro},
+\link{legendCirclesSymbols}, \link{legendSquaresSymbols},
+\link{choroLayer}, \link{propSymbolsLayer}
 }
 

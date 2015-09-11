@@ -13,6 +13,7 @@
 #' @param cex labels cex.
 #' @param ... further \link{text} arguments, such as pos or adj.
 #' @export
+#' @seealso \link{layoutLayer}
 #' @import sp
 #' @examples
 #' data("nuts2006")

@@ -66,19 +66,28 @@ Plot a double proportionnal triangles layer.
 }
 \examples{
 data("nuts2006")
+# Example 1
+plot(nuts0.spdf)
+propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df,
+                   var1 = "birth_2008",
+                   var2 = "death_2008")
+
+# Example 2
 layoutLayer(title = "Births and Deaths in Europe, 2008",
-            sources = "Eurostat, 2008",
+            sources = "",author = "",
             scale = NULL,
             frame = FALSE,
             col = "black",
             coltitle = "white",
-
             extent = nuts0.spdf)
 plot(countries.spdf,col="#E0E0E0",border="white",lwd=1, add=TRUE)
 plot(nuts0.spdf,col="#E5CFC1",border="white",lwd=2,add=TRUE)
-propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df, spdfid=NULL, dfid=NULL,
+propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df,
                    var1 = "birth_2008", legend.style = "e",
                    var2 = "death_2008", legend.frame = TRUE,
                    col1="#FF9100",col2="#45C945",k = 0.1, add=TRUE)
+}
+\seealso{
+\link{legendPropTriangles}
 }
 

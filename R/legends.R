@@ -101,7 +101,6 @@ legendChoro <- function(pos = "topleft",
       yref <- yref + height + delta2
     }
     
-    
     if (symbol=="line"){
       
       for (i in 0:(length(breaks)-2)){
@@ -116,9 +115,6 @@ legendChoro <- function(pos = "topleft",
       }
       
     }
-    
-    
-    
     
     # Affichage des textes
     for (i in 1:(length(breaks))){
@@ -457,7 +453,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #'                      title.cex = 0.8, values.cex = 0.6,
 #'                      var = nuts1.df$pop2008,
 #'                      r = sqrt((abs(nuts1.df$pop2008) * 5000)),
-#'                      breakval=10, col="red", col2="blue", frame=TRUE, values.rnd=0, style ="c")
+#'                      breakval=10, col="red", col2="blue", 
+#'                      frame=TRUE, values.rnd=0, style ="c")
 #'
 legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legend", 
                                 title.cex = 0.8, cex = 1,

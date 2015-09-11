@@ -7,7 +7,7 @@
 display.carto.pal(name)
 }
 \arguments{
-\item{name}{name of the palette available in the package (see Details)}
+\item{name}{name of the palette available in the package (see Details).}
 }
 \description{
 Display one color palette.
@@ -19,5 +19,8 @@ Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green
 \examples{
 display.carto.pal("orange.pal")
 display.carto.pal("sand.pal")
+}
+\seealso{
+\link{carto.pal}, \link{display.carto.all}
 }
 
