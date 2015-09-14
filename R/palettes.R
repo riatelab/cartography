@@ -50,7 +50,7 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
                       transparency = FALSE){
 
   
-  data("cartography.colors", envir = environment())
+  utils::data("cartography.colors", envir = environment())
   cartography.colors <- get("cartography.colors", envir  = environment())
   alphainit<-30
   alpha="FF"
@@ -107,7 +107,7 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' @export
 display.carto.all<-function(n = 10)
 {
-  data("cartography.colors", envir = environment())
+  utils::data("cartography.colors", envir = environment())
   cartography.colors <- get("cartography.colors", envir  = environment())
   nbpal <- length(cartography.colors)
   ncol <- 2

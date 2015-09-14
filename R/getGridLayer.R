@@ -45,7 +45,7 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   spatGrid$id <- seq(1, nrow(spatGrid), 1)
   coordinates(spatGrid) <- 1:2 # promote to SpatialPointsDataFrame
   gridded(spatGrid) <- TRUE # promote to SpatialPixelsDataFrame
-  spgrid <-  as(spatGrid, "SpatialPolygonsDataFrame") # promote to SpatialPolygonDataFrame
+  spgrid <-  methods::as(spatGrid, "SpatialPolygonsDataFrame") # promote to SpatialPolygonDataFrame
   proj4string(spgrid) <-proj4string(spdf)
   row.names(spgrid) <- as.character(spgrid$id)
   
@@ -59,7 +59,7 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   spgrid<- rgeos::gIntersection(spgrid, mask, byid=TRUE, 
                                 id=as.character(spgrid@data$id), 
                                 drop_lower_td=FALSE)
-  data<-data.frame(id=sapply(slot(spgrid, "polygons"), slot, "ID"))
+  data<-data.frame(id=sapply(methods::slot(spgrid, "polygons"), methods::slot, "ID"))
   row.names(data)<-data$id
   spgrid<-SpatialPolygonsDataFrame(spgrid, data)
   spgrid@data$cell_area <- rgeos::gArea(spgrid, byid=TRUE)
@@ -68,7 +68,7 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   # On calcul la table de passage
   # intersection
   parts <- rgeos::gIntersection(spgrid, spdf, byid=TRUE,drop_lower_td=TRUE)
-  data <- data.frame(id=sapply(slot(parts, "polygons"), slot, "ID"))
+  data <- data.frame(id=sapply(methods::slot(parts, "polygons"), methods::slot, "ID"))
   tmp <- data.frame(do.call('rbind', (strsplit(as.character(data$id)," "))))
   data$id1 <- as.vector(tmp$X1)
   data$id2 <- as.vector(tmp$X2)
