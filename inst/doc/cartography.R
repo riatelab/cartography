@@ -1,6 +1,6 @@
 ## ------------------------------------------------------------------------
-
-data("nuts2006")
+library(cartography)
+data(nuts2006)
 par(mar = c(0,0,1.2,0))
 # Layout plot
 layoutLayer(  title = "Most Populated Countries of Europe",

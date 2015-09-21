@@ -15,11 +15,11 @@ vignette: >
 
 BLAH BLAH BLAH
 
-# Un package qui a la classe...
+# Un package...
 
-# ... avec des *layouts* stylés...
+# ... avec des *layouts*... 
 
-# ... et des *labels* de déglingos
+# ... et des *labels*
 
 
 ```{r}
@@ -52,23 +52,7 @@ Total population 2008, in millions of inhabitants.",
 ```
 
 
----
-references:
-- id: nystuen
-  title: A graph theory interpretation of nodal flows
-  author:
-  - family: Nystuen
-    given: J.
-  author:
-  - family: Dacey
-    given: M.
-  container-title: Papers and Proceedings of the Regional Science Association
-  volume: 7
-  page: 29-42
-  type: article-journal
-  issued:
-    year: 1961
----
+
 
 
 
