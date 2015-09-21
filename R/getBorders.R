@@ -44,7 +44,7 @@ getBorders <- function(spdf, spdfid = NULL, tol = 1){
 
   spdf@data$id <- as.vector(as.character(spdf@data$id))
   spdf <- sp::spChFIDs(spdf,spdf$id)
-  data<-data.frame(id=sapply(slot(spdf, "polygons"), slot, "ID"))
+  data<-data.frame(id=sapply(methods::slot(spdf, "polygons"), methods::slot, "ID"))
   row.names(data)<-data$id
   spdf<-SpatialPolygonsDataFrame(spdf, data)
 
@@ -84,7 +84,7 @@ getBorders <- function(spdf, spdfid = NULL, tol = 1){
       t=1
     }
   }
-  data<-data.frame(id=sapply(slot(bordures, "polygons"), slot, "ID"))
+  data<-data.frame(id=sapply(methods::slot(bordures, "polygons"), methods::slot, "ID"))
 
   row.names(data)<-data$id
   bordures<-SpatialPolygonsDataFrame(bordures, data)

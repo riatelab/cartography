@@ -19,7 +19,9 @@ Imports:
     classInt,
     reshape2, 
     stats, 
-    graphics
+    graphics, 
+    utils, 
+    methods
 Suggests:
     rgeos,
     OpenStreetMap,
