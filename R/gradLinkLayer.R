@@ -42,8 +42,11 @@
 #' @export
 gradLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide, 
                           dfid = NULL, dfids, dfide,
-                          var, breaks, lwd, 
-                          col, 
+                          var, 
+                          breaks = discretization(v = df[,var],nclass = 4,
+                                                  method = "quantile"), 
+                          lwd = c(1,2,4,6), 
+                          col = "red", 
                           legend.pos = "bottomleft",  
                           legend.title.txt = var, 
                           legend.title.cex = 0.8, 
