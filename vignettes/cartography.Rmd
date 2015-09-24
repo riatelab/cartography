@@ -5,6 +5,7 @@ date:  "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cosmo
+    toc: yes
 vignette: >
   %\VignetteIndexEntry{cartography}
   \usepackage[utf8]{inputenc}
@@ -13,15 +14,10 @@ vignette: >
 
 # Introduction
 
-BLAH BLAH BLAH
 
-# Un package...
+# Some Maps
 
-# ... avec des *layouts*... 
-
-# ... et des *labels*
-
-
+## Label Map 
 ```{r}
 library(cartography)
 data(nuts2006)
@@ -51,6 +47,101 @@ Total population 2008, in millions of inhabitants.",
 
 ```
 
+## Choropleth Map
+```{r}
+library(cartography)
+data(nuts2006)
+par(mar = c(0,0,1.2,0))
+# Compute the compound annual growth rate
+nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
+# Plot the compound annual growth rate
+cols <- carto.pal(pal1 = "green.pal", n1 = 2, pal2 = "red.pal", n2 = 4)
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+choroLayer(spdf = nuts2.spdf,
+           df = nuts2.df,
+           var = "cagr", breaks = c(-2.43,-1,0,0.5,1,2,3.1),
+           col = cols,
+           border = "grey40", lwd = 0.5,
+           add = TRUE,
+           legend.pos = "right",
+           legend.title.txt = "Compound annual\ngrowth rate",
+           legend.values.rnd = 2)
+plot(nuts0.spdf,border = "grey20", lwd=0.75, add=TRUE)
+
+# Layout plot
+layoutLayer(title = "Demographic Trends", 
+            author = "cartography",
+            sources = "Eurostat, 2008",
+            scale = NULL,
+            south = TRUE,
+            frame = TRUE,
+            col = NA, 
+            coltitle = "black")
+```
+
+## Link/Flow Map
+```{r, cache=TRUE}
+library(cartography)
+data(nuts2006)
+par(mar = c(0,0,1.2,0))
+data("nuts2006")
+# Create a link layer
+twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+# Plot the links
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts2.spdf, col = "#D1914D",border = "grey80", add=TRUE)
+gradLinkLayer(sldf = twincities.spdf, df = twincities,
+              sldfids = "i", sldfide = "j",
+              dfids = "i", dfide = "j",
+              legend.pos = "right", legend.frame = TRUE,
+              legend.title.txt = "Number of aggrements\n(regional level)",
+              var = "fij", breaks = c(2,5,15,20,30), lwd = c(0.1,1,4,10),
+              col = "#92000090", add = TRUE)
+layoutLayer(title = "International Twinning Agreements Betwwen Cities", 
+            author = "cartography",
+            sources = "Adam Ploszaj & Wikipedia, 2011",
+            scale = NULL,
+            south = TRUE,
+            frame = TRUE,
+            col = NA, 
+            coltitle = "black")
+```
+
+## Proportionnal Symbols and Choropleth Map
+
+```{r}
+library(cartography)
+data(nuts2006)
+par(mar = c(0,0,1.2,0))
+# Growth rate at nuts2 level
+nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
+
+# First layout
+layoutLayer(title="Demographic trends, 1999-2008",
+            scale = NULL,col = NA, coltitle = "black",
+            sources = "", author = "",
+            frame = FALSE, bg = "#A6CAE0",
+            south = TRUE, extent = nuts0.spdf)
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
+
+# Plot symbols
+propSymbolsChoroLayer(spdf = nuts2.spdf, df = nuts2.df,
+                      var = "pop2008", var2 = "cagr",
+                      col = carto.pal(pal1 = "blue.pal", n1 = 2,
+                                      pal2 = "red.pal", n2 = 4),
+                      breaks = c(-2.43,-1,0,0.5,1,2,3.1),
+                      border = "grey50", lwd = 0.75,
+                      legend.var.pos = "topright", legend.var2.pos = "right",
+                      legend.var2.title.txt = "Compound annual\ngrowth rate",
+                      legend.var.title.txt = "Total Population",
+                      legend.var.style = "e", k = 0.002)
+# Second layout
+layoutLayer(title = "", sources = "Eurostat, 2011", scale = NULL,
+            author = "cartography", frame ="", col = NA)
+```
 
 
 
