@@ -1,25 +1,70 @@
-# cartography
-**Cartographic package for R / Package de cartographie pour R**
+# `cartography`
 
-This package proposes various functions usefull in the map creation process.  
-It allows various cartographic representation :   
+***Create and integrate maps into your R workflow.***   
 
-* Proportionnal symbols maps (circles, squares, bars)  
+
+## Features  
+`cartography` allows various **cartographic representations**: 
+
+* Proportionnal symbols maps (circles, squares, bars)   
+`propSymbolsLayer`, `propSymbolsChoroLayer`, `propSymbolsTypoLayer`, `propTrianglesLayer`  
+
 * Chroropleth maps (main discretization methods are availables)  
-* Flow maps (proportionnal and classified links)  
-* Discontinuities maps (variable size and color of borders)  
+`choroLayer`  
 
-It also proposes some additional usefull features like:  
+* Typology maps  
+`typoLayer`  
 
-* Cartographic palettes (palettes adapted to the cartographic representation)  
-* Layout (scale, nort arrow, title...)  
+* Flow maps (proportionnal and classified links)   
+`getLinkLayer`, `propLinkLayer`, `gradLinkLayer`  
+
+* Discontinuities maps (variable size and color of borders)
+`getBorders`, `discLayer`
+
+* ...
+
+It also proposes some **additional usefull features** like:
+
+* Cartographic palettes (palettes adapted to cartographic representation)  
+`carto.pal`  
+
+* Layout (scale, north arrow, title...)  
+`layoutLayer`  
+
+* Labels  
+`labelLayer`  
+
 * Nice legends   
+`legendBarsSymbols`, `legendChoro`, `legendCirclesSymbols`, `legendGradLines`, `legendPropLines`, `legendPropTriangles`, `legendSquaresSymbols`, `legendTypo`  
+
 * Access to cartographic API (via OpenStreetMap package)  
-* Irregular polygons to regular grid transformation with data handling
+`getTiles`, `tilesLayer`  
+
+* Irregular polygons to regular grid transformation with data handling  
+`getGridLayer`, `getGridData`  
+
+* ...
 
 
 
-TODO list:  
-* Cut/adapt the tilesLayers to the frame extent.  
+Functions starting with `get` **build** R objects.  
+Functions ending with `Layer` **plot** cartographic layers.  
+Functions starting with `legend` **plot** legends.  
+
+
+## Installation
+
+```{r}
+require(devtools)
+install_github("Groupe-ElementR/cartography")
+```
+
+## Demo
+
+```{r}
+vignette(topic = "cartography")
+```
+
+
 
 
