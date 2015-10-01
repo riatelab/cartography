@@ -18,7 +18,7 @@
 * Flow maps (proportionnal and classified links)   
 `getLinkLayer`, `propLinkLayer`, `gradLinkLayer`  
 
-* Discontinuities maps (variable size and color of borders)
+* Discontinuities maps (variable size and color of borders)  
 `getBorders`, `discLayer`
 
 * ...
@@ -56,7 +56,7 @@ Functions starting with `legend` **plot** legends.
 
 ```{r}
 require(devtools)
-install_github("Groupe-ElementR/cartography")
+devtools::install_github("Groupe-ElementR/cartography")
 ```
 
 ## Demo

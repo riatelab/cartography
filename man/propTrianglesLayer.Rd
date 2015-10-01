@@ -68,6 +68,7 @@ Plot a double proportionnal triangles layer.
 data("nuts2006")
 # Example 1
 plot(nuts0.spdf)
+# There is no data for deaths in Turkey
 propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df,
                    var1 = "birth_2008",
                    var2 = "death_2008")
@@ -82,6 +83,7 @@ layoutLayer(title = "Births and Deaths in Europe, 2008",
             extent = nuts0.spdf)
 plot(countries.spdf,col="#E0E0E0",border="white",lwd=1, add=TRUE)
 plot(nuts0.spdf,col="#E5CFC1",border="white",lwd=2,add=TRUE)
+# There is no data for deaths in Turkey
 propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df,
                    var1 = "birth_2008", legend.style = "e",
                    var2 = "death_2008", legend.frame = TRUE,

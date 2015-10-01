@@ -1,6 +1,6 @@
 #' @name propLinkLayer
 #' @title Proportional Links Layer
-#' @description Plot a layer of proportionnal links
+#' @description Plot a layer of proportionnal links. Links widths are directly proportionnal to values of a variable.
 #' @param sldf a SpatialLinesDataFrame; a link layer.
 #' @param df a data frame with identifiers and a variable.
 #' @param sldfid unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
@@ -29,9 +29,9 @@
 #' @seealso \link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
 #' @examples
 #' data("nuts2006")
-#' # Create a link layer
+#' # Create a link layer of the twin cities agreements
 #' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
-#' # Plot the links
+#' # Plot the links - Twin cities agreements between regions 
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
 #' propLinkLayer(sldf = twincities.spdf, df = twincities[twincities$fij>=5,],maxlwd = 10,
 #'               sldfids = "i", sldfide = "j",

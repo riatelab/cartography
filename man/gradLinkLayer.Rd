@@ -32,7 +32,7 @@ gradLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
 
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the lines widths.}
 
-\item{lwd}{vector of widths.}
+\item{lwd}{vector of widths (classes of widths).}
 
 \item{col}{color of the links.}
 
@@ -56,7 +56,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a layer of graduated links
+Plot a layer of graduated links. Links are plotted according to discrete classes of widths.
 }
 \note{
 Unlike most of cartography functions, identifiers fields are mandatory.
@@ -65,7 +65,7 @@ Unlike most of cartography functions, identifiers fields are mandatory.
 data("nuts2006")
 # Create a link layer
 twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
-# Plot the links
+# Plot the links - Twin cities agreements between regions
 plot(nuts0.spdf, col = "grey60",border = "grey20")
 gradLinkLayer(sldf = twincities.spdf, df = twincities,
               sldfids = "i", sldfide = "j",

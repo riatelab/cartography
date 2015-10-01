@@ -1,6 +1,6 @@
 #' @name gradLinkLayer
 #' @title Graduated Links Layer
-#' @description Plot a layer of graduated links
+#' @description Plot a layer of graduated links. Links are plotted according to discrete classes of widths.
 #' @param sldf SpatialLinesDataFrame; a link layer.
 #' @param df data frame with identifier(s) and a variable.
 #' @param sldfid unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
@@ -11,7 +11,7 @@
 #' @param dfide identifier of ending points in df (sldfid and dfid are not used).
 #' @param var name of the variable used to plot the links widths.
 #' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
-#' @param lwd vector of widths. 
+#' @param lwd vector of widths (classes of widths). 
 #' @param col color of the links.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
@@ -32,7 +32,7 @@
 #' data("nuts2006")
 #' # Create a link layer
 #' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
-#' # Plot the links
+#' # Plot the links - Twin cities agreements between regions 
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
 #' gradLinkLayer(sldf = twincities.spdf, df = twincities,
 #'               sldfids = "i", sldfide = "j",
