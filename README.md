@@ -1,6 +1,7 @@
 # `cartography`
+***Create and integrate maps in your R workflow!***   
 
-***Create and integrate maps into your R workflow.***   
+## **[Demo](https://rawgit.com/Groupe-ElementR/cartography/master/inst/doc/cartography.html)**
 
 
 ## Features  
