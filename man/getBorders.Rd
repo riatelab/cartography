@@ -16,11 +16,16 @@ of the spdf data frame. (optional)}
 not want to change this parameter.}
 }
 \value{
-A SpatialLinesDataFrame of borders is returned. This object has three id fields: id, id1 and id2.
-id1 and id2 are ids of units that neighbour a border; id is the concatenation of id1 and id2.
+A SpatialLinesDataFrame of borders is returned. This object has three
+id fields: id, id1 and id2.
+id1 and id2 are ids of units that neighbour a border; id is the concatenation
+of id1 and id2 (with "_" as separator).
 }
 \description{
 Extract borders between SpatialPolygonsDataFrame units.
+}
+\note{
+This function uses the rgeos package.
 }
 \examples{
 data(nuts2006)

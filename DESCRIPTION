@@ -17,7 +17,6 @@ Depends:
     sp
 Imports:
     classInt,
-    reshape2, 
     stats, 
     graphics, 
     utils, 
