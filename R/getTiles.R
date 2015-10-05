@@ -23,12 +23,15 @@
 #' \dontrun{
 #' data("nuts2006")
 #' # Download the tiles, nuts0.spdf extent
-#' StamWatCol <- getTiles(spdf = nuts0.spdf, type = "osm")
-#' class(StamWatCol)
+#' EuropeOsm <- getTiles(spdf = nuts0.spdf, type = "osm")
+#' class(EuropeOsm)
 #' # Plot the tiles
-#' tilesLayer(StamWatCol)
+#' tilesLayer(EuropeOsm)
 #' # Plot countries
 #' plot(nuts0.spdf, add=TRUE)
+#' # Map tiles sources
+#' mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.", 
+#'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 getTiles <- function(spdf, type = "osm", zoom = NULL){
   if (!requireNamespace("rgdal", quietly = TRUE)) {

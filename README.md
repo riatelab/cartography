@@ -47,6 +47,9 @@ It also proposes some **additional usefull features** like:
 * ...
 
 
+## Principles
+
+`cartography` uses R base graphics. 
 
 Functions starting with `get` **build** R objects.  
 Functions ending with `Layer` **plot** cartographic layers.  
@@ -54,13 +57,21 @@ Functions starting with `legend` **plot** legends.
 
 
 ## Installation
-
+### From GitHub
+Development version
 ```{r}
 require(devtools)
 devtools::install_github("Groupe-ElementR/cartography")
 ```
 
+### From CRAN
+Stable version
+```{r}
+install.packages("cartography")
+```
+
 ## Demo
+The vignette contains commented scripts on how to build various types of maps with `cartography`
 
 ```{r}
 vignette(topic = "cartography")

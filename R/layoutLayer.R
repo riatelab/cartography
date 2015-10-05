@@ -14,7 +14,7 @@
 #' @param north wheither displaying a Noth arrow (TRUE) or not (FALSE).
 #' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
 #' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
-#' extent of the frame to the one of a Spatial object.
+#' extent of the frame to the one of a Spatial object. (optional)
 #' @details If extent is not set, plot.new has to be called first.
 #' @export
 #' @seealso \link{labelLayer}

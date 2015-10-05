@@ -12,7 +12,6 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts3.df data frame 
 #' @field id Unique nuts id (character)
-#' @field name Official name of the administrative unit
 #' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
 #' @docType data
 NULL
@@ -23,7 +22,6 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts2.df data frame 
 #' @field id Unique nuts id (character)
-#' @field name Official name of the administrative unit
 #' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
 #' @docType data
 NULL
@@ -34,7 +32,6 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts1.df data frame 
 #' @field id Unique nuts id (character)
-#' @field name Official name of the administrative unit
 #' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
 #' @docType data
 NULL
@@ -45,7 +42,6 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts0.df data frame 
 #' @field id Unique nuts id (character)
-#' @field name Official name of the administrative unit
 #' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
 #' @docType data
 NULL

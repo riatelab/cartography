@@ -48,5 +48,9 @@ It also proposes some additional usefull features like:
 Functions starting with "get" build R objects.\cr
 Functions ending with "Layer" plot cartographic layers.\cr
 Functions starting with "legend" plot legends.\cr
+
+The vignette contains commented scripts on how to build various types of maps
+with \code{cartography}:
+\code{vignette(topic = "cartography")}
 }
 

@@ -4,27 +4,27 @@
 \alias{propLinkLayer}
 \title{Proportional Links Layer}
 \usage{
-propLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
+propLinkLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL, dfids,
   dfide, var, maxlwd = 40, col, legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.values.rnd = 0, legend.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{sldf}{a SpatialLinesDataFrame; a link layer.}
+\item{spdf}{a SpatialLinesDataFrame; a link layer.}
 
 \item{df}{a data frame with identifiers and a variable.}
 
-\item{sldfid}{unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).}
+\item{spdfid}{unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).}
 
-\item{sldfids}{identifier of starting points in sldf (sldfid and dfid are not used).}
+\item{spdfids}{identifier of starting points in spdf (spdfid and dfid are not used).}
 
-\item{sldfide}{identifier of ending points in sldf (sldfid and dfid are not used).}
+\item{spdfide}{identifier of ending points in spdf (spdfid and dfid are not used).}
 
-\item{dfid}{unique identifier in df (sldfids, sldfide, dfids and dfide are not used).}
+\item{dfid}{unique identifier in df (spdfids, spdfide, dfids and dfide are not used).}
 
-\item{dfids}{identifier of starting points in df (sldfid and dfid are not used).}
+\item{dfids}{identifier of starting points in df (spdfid and dfid are not used).}
 
-\item{dfide}{identifier of ending points in df (sldfid and dfid are not used).}
+\item{dfide}{identifier of ending points in df (spdfid and dfid are not used).}
 
 \item{var}{name of the variable used to plot the links widths.}
 
@@ -63,8 +63,8 @@ data("nuts2006")
 twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
 # Plot the links - Twin cities agreements between regions
 plot(nuts0.spdf, col = "grey60",border = "grey20")
-propLinkLayer(sldf = twincities.spdf, df = twincities[twincities$fij>=5,],maxlwd = 10,
-              sldfids = "i", sldfide = "j",
+propLinkLayer(spdf = twincities.spdf, df = twincities[twincities$fij>=5,],maxlwd = 10,
+              spdfids = "i", spdfide = "j",
               dfids = "i", dfide = "j",legend.pos = "topright",
               var = "fij",
               col = "#92000090", add = TRUE)

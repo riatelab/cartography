@@ -4,7 +4,7 @@
 \alias{gradLinkLayer}
 \title{Graduated Links Layer}
 \usage{
-gradLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
+gradLinkLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL, dfids,
   dfide, var, breaks = discretization(v = df[, var], nclass = 4, method =
   "quantile"), lwd = c(1, 2, 4, 6), col = "red",
   legend.pos = "bottomleft", legend.title.txt = var,
@@ -12,21 +12,21 @@ gradLinkLayer(sldf, df, sldfid = NULL, sldfids, sldfide, dfid = NULL, dfids,
   legend.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{sldf}{SpatialLinesDataFrame; a link layer.}
+\item{spdf}{SpatialLinesDataFrame; a link layer.}
 
 \item{df}{data frame with identifier(s) and a variable.}
 
-\item{sldfid}{unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).}
+\item{spdfid}{unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).}
 
-\item{sldfids}{identifier of starting points in sldf (sldfid and dfid are not used).}
+\item{spdfids}{identifier of starting points in spdf (spdfid and dfid are not used).}
 
-\item{sldfide}{identifier of ending points in sldf (sldfid and dfid are not used).}
+\item{spdfide}{identifier of ending points in spdf (spdfid and dfid are not used).}
 
-\item{dfid}{unique identifier in df (sldfids, sldfide, dfids and dfide are not used).}
+\item{dfid}{unique identifier in df (spdfids, spdfide, dfids and dfide are not used).}
 
-\item{dfids}{identifier of starting points in df (sldfid and dfid are not used).}
+\item{dfids}{identifier of starting points in df (spdfid and dfid are not used).}
 
-\item{dfide}{identifier of ending points in df (sldfid and dfid are not used).}
+\item{dfide}{identifier of ending points in df (spdfid and dfid are not used).}
 
 \item{var}{name of the variable used to plot the links widths.}
 
@@ -67,8 +67,8 @@ data("nuts2006")
 twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
 # Plot the links - Twin cities agreements between regions
 plot(nuts0.spdf, col = "grey60",border = "grey20")
-gradLinkLayer(sldf = twincities.spdf, df = twincities,
-              sldfids = "i", sldfide = "j",
+gradLinkLayer(spdf = twincities.spdf, df = twincities,
+              spdfids = "i", spdfide = "j",
               dfids = "i", dfide = "j",legend.pos = "topright",
               var = "fij", breaks = c(2,5,15,20,30), lwd = c(0.1,1,4,10),
               col = "#92000090", add = TRUE)

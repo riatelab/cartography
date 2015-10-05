@@ -42,10 +42,10 @@ data("nuts2006")
 head(twincities)
 # Select links from Ireland (IE)
 twincitiesIE <- twincities[substr(twincities$i,1,2)=="IE", ]
-twincities.sldf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesIE[,1:2])
+twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesIE[,1:2])
 # Plot the links
 plot(nuts2.spdf, col = "#6C6870")
-plot(twincities.sldf, col = "#F78194", add = TRUE)
+plot(twincities.spdf, col = "#F78194", add = TRUE)
 }
 \seealso{
 \link{gradLinkLayer}, \link{propLinkLayer}

@@ -24,12 +24,15 @@ OpenStreetMap package.
 \dontrun{
 data("nuts2006")
 # Download the tiles, nuts0.spdf extent
-StamWatCol <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
-class(StamWatCol)
+EuropeStamen <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+class(EuropeStamen)
 # Plot the tiles
-tilesLayer(StamWatCol)
+tilesLayer(EuropeStamen)
 # Plot countries
 plot(nuts0.spdf, add=TRUE)
+# Map tiles sources
+mtext(text = "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
+      side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }
 \seealso{

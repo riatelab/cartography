@@ -18,7 +18,5 @@ This SpatialPolygonsDataFrame can be used with the nuts0.df data frame
 
 \describe{
 \item{\code{id}}{Unique nuts id (character)}
-
-\item{\code{name}}{Official name of the administrative unit}
 }}
 

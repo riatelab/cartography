@@ -1,4 +1,4 @@
-## ----labelMap------------------------------------------------------------
+## ----labelMap, fig.height=5, fig.width=7---------------------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -40,7 +40,7 @@ Total population 2008, in millions of inhabitants.", cex = 0.7, adj = 0)
 
 par(opar)
 
-## ----choroMap------------------------------------------------------------
+## ----choroMap, fig.height=5, fig.width=7---------------------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -84,7 +84,41 @@ layoutLayer(title = "Demographic Trends", author = "cartography",
             south = TRUE) # add a south arrow
 par(opar)
 
-## ----linkMap-------------------------------------------------------------
+## ----propMap, fig.height=5, fig.width=7----------------------------------
+library(cartography)
+# Load data
+data(nuts2006)
+# set margins
+opar <- par(mar = c(0.1,0.1,1.3,0.1))
+
+## Plot Stamen tiles (using OpenStreetMap data) as basemap 
+# Download the tiles, nuts0.spdf extent
+EuropeStamen <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+# Plot the tiles
+tilesLayer(EuropeStamen)
+
+# Plot countries
+plot(nuts0.spdf, border = "grey65", lwd = 2, add=TRUE)
+
+# Plot countries population 
+nuts0.df$pop <- nuts0.df$pop2008 / 1000
+propSymbolsLayer(spdf = nuts0.spdf, # SpatialPolygonsDataFrame of the countries
+                 df = nuts0.df,  # data frame of the regions
+                 var = "pop",  # population
+                 symbols = "circle", # type of symbol
+                 border = "white", # color of the symbols borders
+                 lwd = 1.5, # width of the symbols borders
+                 legend.pos = "topleft", 
+                 legend.title.txt = "Total population\n(in thousands)")
+# Layout plot
+layoutLayer(title = "Countries Population in Europe",
+            sources = "Data: Eurostat, 2008",
+            author = "Base map: Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
+            scale = NULL, frame = TRUE,
+            col = "#688994") # color of the frame
+par(opar)
+
+## ----linkMap, fig.height=5, fig.width=7----------------------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -107,10 +141,10 @@ plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 plot(nuts2.spdf, col = "#D1914D",border = "grey80", add=TRUE)
 
 # Plot links with graduated sizes
-gradLinkLayer(sldf = twincities.spdf, # SpatialLinesdataFrame of the links
+gradLinkLayer(spdf = twincities.spdf, # SpatialLinesdataFrame of the links
               df = twincities, # data frame of the links
-              sldfids = "i", # identifier of starting points in sldf 
-              sldfide = "j", # identifier of ending points in sldf 
+              spdfids = "i", # identifier of starting points in spdf 
+              spdfide = "j", # identifier of ending points in spdf 
               dfids = "i", # identifier of starting points in df 
               dfide = "j", # identifier of starting points in df 
               var = "fij", # name of the variable used to plot the links widths
@@ -128,7 +162,7 @@ layoutLayer(title = "International Twinning Agreements Betwwen Cities",
             coltitle = "black")
 par(opar)
 
-## ----propchoroLayer------------------------------------------------------
+## ----propchoroLayer, fig.height=5, fig.width=7---------------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -171,7 +205,7 @@ layoutLayer(title = "Demographic trends, 1999-2008", coltitle = "black",
             author = "cartography", frame ="", col = NA)
 par(opar)
 
-## ----discLayer-----------------------------------------------------------
+## ----discLayer, fig.height=5, fig.width=7--------------------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -221,7 +255,7 @@ layoutLayer(title = "Wealth Disparities in Europe", coltitle = "black",
             author = "cartography", frame ="", col = NA)
 par(opar)
 
-## ----gridLayer-----------------------------------------------------------
+## ----gridLayer, fig.height=5, fig.width=7--------------------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -243,7 +277,7 @@ plot(mygrid$spdf)
 datagrid.df <- getGridData(x = mygrid, # list outputed by getGridLayer
                            df = nuts2.df, # a data frame matching the spdf SpatialdataFrame in getGridLayer
                            var = "pop2008") # name of the variable to distribute on the grid 
-                           
+
 # Plot dentsity of population
 ## conversion from square meter to square kilometers
 datagrid.df$densitykm <- datagrid.df$pop2008_density*1000*1000

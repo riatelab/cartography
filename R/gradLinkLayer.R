@@ -1,14 +1,14 @@
 #' @name gradLinkLayer
 #' @title Graduated Links Layer
 #' @description Plot a layer of graduated links. Links are plotted according to discrete classes of widths.
-#' @param sldf SpatialLinesDataFrame; a link layer.
+#' @param spdf SpatialLinesDataFrame; a link layer.
 #' @param df data frame with identifier(s) and a variable.
-#' @param sldfid unique identifier in sldf (sldfids, sldfide, dfids and dfide are not used).
-#' @param sldfids identifier of starting points in sldf (sldfid and dfid are not used).
-#' @param sldfide identifier of ending points in sldf (sldfid and dfid are not used).
-#' @param dfid unique identifier in df (sldfids, sldfide, dfids and dfide are not used).
-#' @param dfids identifier of starting points in df (sldfid and dfid are not used).
-#' @param dfide identifier of ending points in df (sldfid and dfid are not used).
+#' @param spdfid unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).
+#' @param spdfids identifier of starting points in spdf (spdfid and dfid are not used).
+#' @param spdfide identifier of ending points in spdf (spdfid and dfid are not used).
+#' @param dfid unique identifier in df (spdfids, spdfide, dfids and dfide are not used).
+#' @param dfids identifier of starting points in df (spdfid and dfid are not used).
+#' @param dfide identifier of ending points in df (spdfid and dfid are not used).
 #' @param var name of the variable used to plot the links widths.
 #' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
 #' @param lwd vector of widths (classes of widths). 
@@ -34,13 +34,13 @@
 #' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
 #' # Plot the links - Twin cities agreements between regions 
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
-#' gradLinkLayer(sldf = twincities.spdf, df = twincities,
-#'               sldfids = "i", sldfide = "j",
+#' gradLinkLayer(spdf = twincities.spdf, df = twincities,
+#'               spdfids = "i", spdfide = "j",
 #'               dfids = "i", dfide = "j",legend.pos = "topright",
 #'               var = "fij", breaks = c(2,5,15,20,30), lwd = c(0.1,1,4,10),
 #'               col = "#92000090", add = TRUE)
 #' @export
-gradLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide, 
+gradLinkLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide, 
                           dfid = NULL, dfids, dfide,
                           var, 
                           breaks = discretization(v = df[,var],nclass = 4,
@@ -60,23 +60,23 @@ gradLinkLayer <- function(sldf, df, sldfid = NULL, sldfids, sldfide,
   }
   
   # joint
-  if (is.null(sldfid)){
-    sldf@data <- data.frame(df[match(x = paste(sldf@data[,sldfids],
-                                               sldf@data[,sldfide]), 
+  if (is.null(spdfid)){
+    spdf@data <- data.frame(df[match(x = paste(spdf@data[,spdfids],
+                                               spdf@data[,spdfide]), 
                                      table = paste(df[,dfids], 
                                                    df[,dfide])),]) 
   } else {
-    sldf@data <- data.frame(df[match(x = sldf@data[,sldfid], 
+    spdf@data <- data.frame(df[match(x = spdf@data[,spdfid], 
                                      table = df[,dfid]),]) 
   }
-  sldf <- sldf[!is.na(sldf@data[,var]),]
-  sldf <- sldf[sldf@data[,var]>=min(breaks) & sldf@data[,var]<=max(breaks), ]
+  spdf <- spdf[!is.na(spdf@data[,var]),]
+  spdf <- spdf[spdf@data[,var]>=min(breaks) & spdf@data[,var]<=max(breaks), ]
   
   # lwd
-  lwdMap <- lwd[findInterval(x = sldf@data[,var], vec = breaks, all.inside = TRUE)]
+  lwdMap <- lwd[findInterval(x = spdf@data[,var], vec = breaks, all.inside = TRUE)]
   
   # map
-  plot(sldf, col=col,lwd = lwdMap, add = add)
+  plot(spdf, col=col,lwd = lwdMap, add = add)
   
   # legend
   if(legend.pos !="n"){
