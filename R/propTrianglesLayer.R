@@ -1,5 +1,5 @@
-#' @title Double Proportionnal Triangle Layer
-#' @description Plot a double proportionnal triangles layer.
+#' @title Double Proportional Triangle Layer
+#' @description Plot a double proportional triangles layer.
 #' @name propTrianglesLayer
 #' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.

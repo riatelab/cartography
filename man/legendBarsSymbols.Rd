@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendBarsSymbols}
 \alias{legendBarsSymbols}
-\title{Legend for Proportionnal Bars Maps}
+\title{Legend for Proportional Bars Maps}
 \usage{
 legendBarsSymbols(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, r, breakval = NULL,

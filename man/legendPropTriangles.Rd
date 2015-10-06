@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendPropTriangles}
 \alias{legendPropTriangles}
-\title{Legend for Double Proportionnal Triangles Maps}
+\title{Legend for Double Proportional Triangles Maps}
 \usage{
 legendPropTriangles(pos = "topleft", title.txt, var.txt, var2.txt,
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, var2, r, r2,
@@ -47,7 +47,7 @@ the legend.}
 styles, "c" stands for compact and "e" for extended.}
 }
 \description{
-Plot legends for double proportionnal triangles maps.
+Plot legends for double proportional triangles maps.
 }
 \examples{
 data("nuts2006")

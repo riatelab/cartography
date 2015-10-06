@@ -105,7 +105,7 @@ layoutLayer(title = "Demographic Trends", author = "cartography",
 par(opar)
 ```
 
-# Base Map and Proportionnal Symbols
+# Base Map and Proportional Symbols
 
 ```{r propMap, fig.height=5, fig.width=7}
 library(cartography)
@@ -192,7 +192,7 @@ layoutLayer(title = "International Twinning Agreements Betwwen Cities",
 par(opar)
 ```
 
-# Proportionnal Symbols and Choropleth Map
+# Proportional Symbols and Choropleth Map
 
 ```{r propchoroLayer, fig.height=5, fig.width=7}
 library(cartography)

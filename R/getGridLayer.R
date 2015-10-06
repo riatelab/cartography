@@ -13,12 +13,14 @@
 #' @import sp
 #' @seealso \link{getGridData}
 #' @examples
+#' \dontrun{
 #' data(nuts2006)
 #' # Get a grid layer
 #' mygrid <- getGridLayer(spdf = nuts2.spdf, cellsize = 200000)
 #' # Plot the grid
 #' plot(mygrid$spdf)
 #' head(mygrid$df)
+#'        }
 #' @export
 getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   if (!requireNamespace("rgeos", quietly = TRUE)) {

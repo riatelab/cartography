@@ -52,7 +52,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a layer of proportionnal links. Links widths are directly proportionnal to values of a variable.
+Plot a layer of proportional links. Links widths are directly proportional to values of a variable.
 }
 \note{
 Unlike most of cartography functions, identifiers fields are mandatory.

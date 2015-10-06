@@ -1,6 +1,6 @@
 #' @name propLinkLayer
 #' @title Proportional Links Layer
-#' @description Plot a layer of proportionnal links. Links widths are directly proportionnal to values of a variable.
+#' @description Plot a layer of proportional links. Links widths are directly proportional to values of a variable.
 #' @param spdf a SpatialLinesDataFrame; a link layer.
 #' @param df a data frame with identifiers and a variable.
 #' @param spdfid unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).

@@ -7,7 +7,7 @@ Authors@R: c(
         email = "timothee.giraud@ums-riate.fr", role = c("cre","aut")),
       person("Nicolas", "Lambert", 
         email = "nicolas.lambert@ums-riate.fr", role = c("aut")))
-Description: Create and integrate maps in your R workflow. This package allows various cartographic representations: proportionnal symbols, chroropleth, typology, flows, discontinuities... It also proposes some additional usefull features: cartographic palettes, layout (scale, north arrow, title...), labels, legends, access to cartographic API...
+Description: Create and integrate maps in your R workflow. This package allows various cartographic representations: proportional symbols, chroropleth, typology, flows, discontinuities... It also proposes some additional useful features: cartographic palettes, layout (scale, north arrow, title...), labels, legends, access to cartographic API...
 License: GPL-3
 URL: https://github.com/Groupe-ElementR/cartography/
 BugReports: https://github.com/Groupe-ElementR/cartography/issues/

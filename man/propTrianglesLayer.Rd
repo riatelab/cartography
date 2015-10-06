@@ -2,7 +2,7 @@
 % Please edit documentation in R/propTrianglesLayer.R
 \name{propTrianglesLayer}
 \alias{propTrianglesLayer}
-\title{Double Proportionnal Triangle Layer}
+\title{Double Proportional Triangle Layer}
 \usage{
 propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1,
   col1 = "#E84923", var2, col2 = "#7DC437", k = 0.02,
@@ -62,7 +62,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a double proportionnal triangles layer.
+Plot a double proportional triangles layer.
 }
 \examples{
 data("nuts2006")

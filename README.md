@@ -7,7 +7,7 @@
 ## Features  
 `cartography` allows various **cartographic representations**: 
 
-* Proportionnal symbols maps (circles, squares, bars)   
+* Proportional symbols maps (circles, squares, bars)   
 `propSymbolsLayer`, `propSymbolsChoroLayer`, `propSymbolsTypoLayer`, `propTrianglesLayer`  
 
 * Chroropleth maps (main discretization methods are availables)  
@@ -16,7 +16,7 @@
 * Typology maps  
 `typoLayer`  
 
-* Flow maps (proportionnal and classified links)   
+* Flow maps (proportional and classified links)   
 `getLinkLayer`, `propLinkLayer`, `gradLinkLayer`  
 
 * Discontinuities maps (variable size and color of borders)  
@@ -24,7 +24,7 @@
 
 * ...
 
-It also proposes some **additional usefull features** like:
+It also proposes some **additional useful features** like:
 
 * Cartographic palettes (palettes adapted to cartographic representation)  
 `carto.pal`  

@@ -14,6 +14,7 @@
 #' variable in each cell divided by its area (in map units).
 #' @seealso \link{getGridLayer}
 #' @examples
+#' \dontrun{
 #' data(nuts2006)
 #' # Create a grid layer
 #' mygrid <- getGridLayer(spdf=nuts2.spdf,cellsize = 200000)
@@ -34,6 +35,7 @@
 #'            border = "grey80",col=cols,
 #'            legend.pos = "right", method = "q6",
 #'            legend.title.txt = "Population density")
+#'            }
 #' @export
 getGridData <- function(x, df, dfid=NULL, var) {
   if (is.null(dfid)){dfid <- names(df)[1]}

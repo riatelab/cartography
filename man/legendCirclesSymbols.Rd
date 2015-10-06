@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendCirclesSymbols}
 \alias{legendCirclesSymbols}
-\title{Legend for Proportionnal Circles Maps}
+\title{Legend for Proportional Circles Maps}
 \usage{
 legendCirclesSymbols(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, r, breakval = NULL,

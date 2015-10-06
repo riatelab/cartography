@@ -258,7 +258,7 @@ legendTypo <- function(pos = "topleft",
   }
 }
 
-#' @title Legend for Proportionnal Circles Maps
+#' @title Legend for Proportional Circles Maps
 #' @description Plot legend for proportional circles maps
 #' @name legendCirclesSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
@@ -421,7 +421,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 
 
 
-#' @title Legend for Proportionnal Squares Maps
+#' @title Legend for Proportional Squares Maps
 #' @description Plot legend for proportional squares maps
 #' @name legendSquaresSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
@@ -590,7 +590,7 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 
 
 
-#' @title Legend for Proportionnal Bars Maps
+#' @title Legend for Proportional Bars Maps
 #' @description Plot legend for proportional bars maps
 #' @name legendBarsSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
@@ -746,8 +746,8 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
   }
 }
 
-#' @title Legend for Double Proportionnal Triangles Maps
-#' @description Plot legends for double proportionnal triangles maps.
+#' @title Legend for Double Proportional Triangles Maps
+#' @description Plot legends for double proportional triangles maps.
 #' @name legendPropTriangles
 #' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
@@ -963,8 +963,8 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
 }
 
 
-#' @title Legend for Proportionnal Lines Maps
-#' @description Plot legend for proportionnal lines maps
+#' @title Legend for Proportional Lines Maps
+#' @description Plot legend for proportional lines maps
 #' @name legendPropLines
 #' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright".

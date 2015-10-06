@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendPropLines}
 \alias{legendPropLines}
-\title{Legend for Proportionnal Lines Maps}
+\title{Legend for Proportional Lines Maps}
 \usage{
 legendPropLines(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, lwd, col = "red",
@@ -33,7 +33,7 @@ not (FALSE).}
 the legend.}
 }
 \description{
-Plot legend for proportionnal lines maps
+Plot legend for proportional lines maps
 }
 \examples{
 data("nuts2006")

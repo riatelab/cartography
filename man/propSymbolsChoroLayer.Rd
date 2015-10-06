@@ -61,7 +61,7 @@ colors specified than the number of break.}
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If
 legend.var.pos is "n" then the legend is not plotted.}
 
-\item{legend.var.title.txt}{title of the legend (proportionnal symbols).}
+\item{legend.var.title.txt}{title of the legend (proportional symbols).}
 
 \item{legend.var.values.rnd}{number of decimal places of the values in
 the legend.}

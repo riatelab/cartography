@@ -31,7 +31,7 @@
 #' @param legend.var2.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 #' legend.var2.pos is "n" then the legend is not plotted.
-#' @param legend.var.title.txt title of the legend (proportionnal symbols).
+#' @param legend.var.title.txt title of the legend (proportional symbols).
 #' @param legend.var2.title.txt title of the legend (colors).
 #' @param legend.title.cex size of the legend title.
 #' @param legend.values.cex size of the values in the legend.

@@ -4,21 +4,21 @@
 #' The cartography package proposes thematic mapping functions.
 #' It allows various cartographic representation:  
 #' \itemize{
-#' \item{Proportionnal symbols maps (circles, squares, bars)\cr 
+#' \item{Proportional symbols maps (circles, squares, bars)\cr 
 #' \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
 #' \link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
 #' \item{Chroropleth maps (main discretization methods are availables)\cr
 #' \link{choroLayer}}
 #' \item{Typology maps\cr
 #' \link{typoLayer}}
-#' \item{Flow maps (proportionnal and classified links)\cr
+#' \item{Flow maps (proportional and classified links)\cr
 #' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}}
 #' \item{Discontinuities maps (variable size and color of borders)\cr
 #' \link{getBorders}, \link{discLayer}}
 #' \item{...}
 #' }
 #' 
-#' It also proposes some additional usefull features like:
+#' It also proposes some additional useful features like:
 #' \itemize{
 #' \item{Cartographic palettes (palettes adapted to cartographic representation)\cr
 #' \link{carto.pal}}

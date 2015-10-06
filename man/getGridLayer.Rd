@@ -25,12 +25,14 @@ Build a regular grid based on a SpatialPolygonsDataFrame.
 Provide also a table of surface intersections.
 }
 \examples{
+\dontrun{
 data(nuts2006)
 # Get a grid layer
 mygrid <- getGridLayer(spdf = nuts2.spdf, cellsize = 200000)
 # Plot the grid
 plot(mygrid$spdf)
 head(mygrid$df)
+       }
 }
 \seealso{
 \link{getGridData}

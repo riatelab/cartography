@@ -2,7 +2,7 @@
 % Please edit documentation in R/legends.R
 \name{legendSquaresSymbols}
 \alias{legendSquaresSymbols}
-\title{Legend for Proportionnal Squares Maps}
+\title{Legend for Proportional Squares Maps}
 \usage{
 legendSquaresSymbols(pos = "topleft", title.txt = "Title of the legend",
   title.cex = 0.8, cex = 1, values.cex = 0.6, var, r, breakval = NULL,

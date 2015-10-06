@@ -28,6 +28,7 @@ by \link{getGridLayer} )
 according to the surface intersections.
 }
 \examples{
+\dontrun{
 data(nuts2006)
 # Create a grid layer
 mygrid <- getGridLayer(spdf=nuts2.spdf,cellsize = 200000)
@@ -48,6 +49,7 @@ choroLayer(spdf = mygrid$spdf,df = datagrid.df,var = "densitykm", add=FALSE,
            border = "grey80",col=cols,
            legend.pos = "right", method = "q6",
            legend.title.txt = "Population density")
+           }
 }
 \seealso{
 \link{getGridLayer}
