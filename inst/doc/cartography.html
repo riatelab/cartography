@@ -10,7 +10,7 @@
 
 <meta name="author" content="Timothée Giraud, Nicolas Lambert" />
 
-<meta name="date" content="2015-10-06" />
+<meta name="date" content="2015-10-07" />
 
 <title>Commented Scripts to Build Maps with cartography</title>
 
@@ -54,7 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title"><strong><em>Commented Scripts to Build Maps with <code>cartography</code></em></strong></h1>
 <h4 class="author"><em>Timothée Giraud, Nicolas Lambert</em></h4>
-<h4 class="date"><em>2015-10-06</em></h4>
+<h4 class="date"><em>2015-10-07</em></h4>
 </div>
 
 <div id="TOC">
@@ -71,9 +71,8 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 <div id="label-map" class="section level1">
 <h1>Label Map</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cartography)</code></pre>
-<pre><code>## Loading required package: sp</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load data</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cartography)
+<span class="co"># Load data</span>
 <span class="kw">data</span>(nuts2006)
 <span class="co"># set margins</span>
 opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))
