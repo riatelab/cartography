@@ -26,12 +26,13 @@
 #' layoutLayer()
 #' 
 #' # Example 2
-#' layoutLayer(scale = NULL,col = NA, coltitle = "black",
-#'             sources = "", author = "",
-#'             frame = FALSE, bg = "#A6CAE0",
-#'             south = TRUE, extent = nuts0.spdf)
+#' plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
 #' plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 #' plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
+#' layoutLayer(col = NA, coltitle = "black",
+#'             sources = "", author = "",
+#'             frame = FALSE,
+#'             south = TRUE)
 layoutLayer <- function(title = "Title of the map, year",
                         sources = "Source(s)", author = "Author(s)",
                         col = "black", coltitle = "white", bg = NULL,
@@ -83,8 +84,8 @@ layoutLayer <- function(title = "Title of the map, year",
     yarrow <- y2-delta*2
     xx <- c(xarrow,xarrow + delta / 2, xarrow + delta * 1)
     yy <- c(yarrow, yarrow + delta * 1.5, yarrow)
-    polygon(xx, yy, col = "#DDDDDD", border = "#DDDDDD")
-    text(xarrow+delta*.5,yarrow,"N",adj=c(0.5,1.5),cex=0.8,font=2,col="#DDDDDD")
+    polygon(xx, yy, col = "grey20", border = "grey20")
+    text(xarrow+delta*.5,yarrow,"N",adj=c(0.5,1.5),cex=0.8,font=2,col="grey20")
   }
   
   if(south==T){
@@ -92,8 +93,8 @@ layoutLayer <- function(title = "Title of the map, year",
     yarrow <- y2 - delta * 2
     xx <- c(xarrow, xarrow + delta / 2, xarrow + delta * 1)
     yy <- c(yarrow + delta * 1.5,yarrow, yarrow + delta * 1.5)
-    polygon(xx, yy, col = "#DDDDDD", border = "#DDDDDD")
-    text(xarrow+delta*.5,yarrow,"S",adj=c(0.5,1.5),cex=0.8,font=2,col="#DDDDDD")
+    polygon(xx, yy, col = "grey20", border = "grey20")
+    text(xarrow+delta*.5,yarrow,"S",adj=c(0.5,1.5),cex=0.8,font=2,col="grey20")
   }
   
   

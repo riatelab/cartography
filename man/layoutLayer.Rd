@@ -48,12 +48,13 @@ plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 layoutLayer()
 
 # Example 2
-layoutLayer(scale = NULL,col = NA, coltitle = "black",
-            sources = "", author = "",
-            frame = FALSE, bg = "#A6CAE0",
-            south = TRUE, extent = nuts0.spdf)
+plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
+layoutLayer(col = NA, coltitle = "black",
+            sources = "", author = "",
+            frame = FALSE,
+            south = TRUE)
 }
 \seealso{
 \link{labelLayer}
