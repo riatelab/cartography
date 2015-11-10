@@ -1,6 +1,8 @@
 # `cartography`
 ***Create and integrate maps in your R workflow!***   
 
+![Cartographic Composition ](http://f.hypotheses.org/wp-content/blogs.dir/2209/files/2015/10/cartocomp.png)
+
 ## **[Demo](https://rawgit.com/Groupe-ElementR/cartography/master/inst/doc/cartography.html)**
 
 
