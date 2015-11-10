@@ -45,7 +45,6 @@
 #' image(1:k, 1, as.matrix(1:k), col =mypal, xlab = paste(k," classes",sep=""),
 #'       ylab = "", xaxt = "n", yaxt = "n",bty = "n")
 #' @export
-#' 
 carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
                       transparency = FALSE){
 

@@ -326,8 +326,11 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     rLegmin <- min(r,na.rm = TRUE)
     rLegextent <- rLegmax - rLegmin
     
-    rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
+    # rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
     rLeg <- c(rLegmax,rLegmax - rLegextent/3 , rLegmax - 2*(rLegextent/3),rLegmin)
+    
+    sleg <- rLeg * rLeg * pi
+    rVal <- sleg * rValmax / sleg[1]
     rVal <- round(rVal,values.rnd)
     
     
@@ -489,12 +492,12 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     rLegmin <- min(r,na.rm = TRUE)
     rLegextent <- rLegmax - rLegmin
     
-    rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
+    # rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
     rLeg <- c(rLegmax,rLegmax - rLegextent/3 , rLegmax - 2*(rLegextent/3),rLegmin)
+    
+    sleg <- rLeg * rLeg
+    rVal <- sleg * rValmax / sleg[1]
     rVal <- round(rVal,values.rnd)
-    
-    
-    
     
     
     # xsize & ysize
@@ -819,8 +822,11 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
     rLegmax1 <- max(r,na.rm = TRUE)
     rLegmin1 <- min(r,na.rm = TRUE)
     rLegextent1 <- rLegmax1 - rLegmin1
-    rVal1 <- c(rValmax1,rValmax1 - rValextent1/3 , rValmax1 - 2*(rValextent1/3),rValmin1)
+    # rVal1 <- c(rValmax1,rValmax1 - rValextent1/3 , rValmax1 - 2*(rValextent1/3),rValmin1)
     rLeg1 <- c(rLegmax1,rLegmax1 - rLegextent1/3 , rLegmax1 - 2*(rLegextent1/3),rLegmin1)
+    
+    sleg <- (rLeg1 * rLeg1)/2
+    rVal1 <- sleg * rValmax1 / sleg[1]
     rVal1 <- round(rVal1,values.rnd)
     
     # BOTTOM
@@ -832,6 +838,9 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
     rLegextent2 <- rLegmax2 - rLegmin2
     rVal2 <- c(rValmax2,rValmax2 - rValextent2/3 , rValmax2 - 2*(rValextent2/3),rValmin2)
     rLeg2 <- c(rLegmax2,rLegmax2 - rLegextent2/3 , rLegmax2 - 2*(rLegextent2/3),rLegmin2)
+    
+#     sleg <- (rLeg2 * rLeg2)/2 
+#     rVal2 <- sleg * rValmax2 / sleg[1]
     rVal2 <- round(rVal2,values.rnd)
     
     
@@ -889,7 +898,8 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
            + 4*delta1,adj=c(0,0),title.txt,cex=title.cex)
       
       
-      mysize <- rLegmax2 ;  yadd <-  mysize/2
+      mysize <- rLegmax2
+      yadd <-  mysize/2
       polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref + yadd,yref-mysize/2 + yadd,yref + yadd), col = col2)
       segments(xref + xmax/2,yref-mysize/2 + yadd, xref + xmax/2 + delta1 + xmax/2 ,yref-mysize/2 + yadd)
       text(xref + xmax/2 + delta1 + xmax/2 + delta2 ,yref-mysize/2 + yadd,rValmax2,cex=values.cex,adj=c(0,0.5))
@@ -905,18 +915,34 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
       text(xref + xmax/2 + delta1 + xmax/2 + delta2 ,yref-mysize/2 + yadd,rValmin2,cex=values.cex,adj=c(0,0.5))
       
       
-      mysize <- rLegmin1 ; yadd <-  yadd + delta2
-      polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref + delta2 + yadd,yref+mysize/2 + delta2 + yadd,yref + delta2 + yadd), col = col)
-      segments(xref + xmax/2,yref+mysize/2 + delta2 + yadd, xref + xmax/2 + delta1 + xmax/2 ,yref+mysize/2 + delta2 + yadd)
-      text(xref + xmax/2 + delta1 + delta2 + xmax/2 ,yref+mysize/2 + delta2 + yadd,rValmin1,cex=values.cex,adj=c(0,0.5))
+      mysize <- rLegmin1
+      yadd <-  yadd + delta2
+      polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), 
+              c(yref + delta2 + yadd,yref+mysize/2 + delta2 + yadd,yref + delta2 + yadd), 
+              col = col)
+      segments(xref + xmax/2,
+               yref+mysize/2 + delta2 + yadd, 
+               xref + xmax/2 + delta1 + xmax/2 ,
+               yref+mysize/2 + delta2 + yadd)
+      text(xref + xmax/2 + delta1 + delta2 + xmax/2 ,
+           yref+mysize/2 + delta2 + yadd,
+           rValmin1,
+           cex=values.cex,
+           adj=c(0,0.5))
       
-      yadd <-  mysize/2 + yadd + delta2 ; mysize <- (rLegmax1 - rLegmin1)/2
-      polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref + delta2 + yadd,yref+mysize/2 + delta2  + yadd,yref + delta2 + yadd), col = col )
+      yadd <-  mysize/2 + yadd + delta2
+      mysize <- (rLegmax1 - rLegmin1)/2
+      polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), 
+              c(yref + delta2 + yadd,yref+mysize/2 + delta2  + yadd,yref + delta2 + yadd), 
+              col = col )
       segments(xref + xmax/2,yref+mysize/2 + delta2  + yadd, xref + xmax/2 + delta1 + xmax/2 ,yref+mysize/2 + delta2  + yadd)
       text(xref + xmax/2 + delta1 + delta2 + xmax/2 ,yref+mysize/2 + delta2  + yadd,round((rValmin1 +rValmax1)/2,values.rnd) ,cex=values.cex,adj=c(0,0.5))
       
-      yadd <-  mysize/2 + yadd  + delta2 ; mysize <- rLegmax1
-      polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), c(yref + delta2 + yadd,yref+mysize/2 + delta2 + yadd,yref + delta2 + yadd), col = col)
+      yadd <-  mysize/2 + yadd  + delta2 
+      mysize <- rLegmax1
+      polygon(c(xref-mysize/2 + xmax/2,xref + xmax/2,xref+mysize/2 + xmax/2), 
+              c(yref + delta2 + yadd,yref+mysize/2 + delta2 + yadd,yref + delta2 + yadd), 
+              col = col)
       segments(xref + xmax/2,yref+mysize/2 + delta2 + yadd, xref + xmax/2 + delta1 + xmax/2 ,yref+mysize/2 + delta2 + yadd)
       text(xref + xmax/2 + delta1 + delta2 + xmax/2 ,yref+mysize/2 + delta2 + yadd,rValmax1,cex=values.cex,adj=c(0,0.5))
       
