@@ -312,12 +312,11 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     
     # variables internes
     paramsize1 = 30/cex
-    paramsize2 <- paramsize1*40/25
-    width <- (x2 - x1) / paramsize1
-    height <- width /1.5
-    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
-    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
-    #rect(x1, y1, x2, y2, border = "black")
+    paramsize2 <- paramsize1 * 40 / 25
+    width <- xextent / paramsize1
+    height <- width / 1.5
+    delta1 <- min(yextent / paramsize2, xextent / paramsize2) # Gros eccart entre les objets
+    delta2 <- delta1 / 2 # Petit eccart entre les objets
     
     rValmax <- max(var,na.rm = TRUE)
     rValmin <- min(var,na.rm = TRUE)
@@ -327,7 +326,11 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     rLegextent <- rLegmax - rLegmin
     
     # rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
-    rLeg <- c(rLegmax,rLegmax - rLegextent/3 , rLegmax - 2*(rLegextent/3),rLegmin)
+    #     rLeg <- c(rLegmax, 
+    #               rLegmax - rLegextent/3, 
+    #               rLegmax - 2*(rLegextent/3), 
+    #               rLegmin)
+    rLeg <- seq(from = rLegmax, to = rLegmin, length.out = 4)
     
     sleg <- rLeg * rLeg * pi
     rVal <- sleg * rValmax / sleg[1]
@@ -338,49 +341,104 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     
     if (style=="c"){
       longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-      if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste(">=",breakval)}}
-      legend_xsize <- max(rLeg[1]*2 + strwidth(longVal,cex=values.cex),strwidth(title.txt,cex = title.cex)-delta1)
+      if(!is.null(breakval)){
+        if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){
+          longVal <- paste(">=",breakval)}
+      }
+      legend_xsize <- max(rLeg[1]*2 + strwidth(longVal,cex=values.cex),
+                          strwidth(title.txt,cex = title.cex)-delta1)
       
       legend_ysize <-rLeg[1]*2 + strheight(title.txt,cex = title.cex)
-      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
+      if(!is.null(breakval)){
+        legend_ysize <- legend_ysize + height*2+ delta2
+      }
     }
+    
     
     if (style=="e"){
       longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-      if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste(">=",breakval)}}
-      legend_xsize <- max(rLeg[1]*2 + strwidth(longVal,cex=values.cex),strwidth(title.txt,cex = title.cex)-delta1)
+      if(!is.null(breakval)){
+        if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){
+          longVal <- paste(">=",breakval)}
+      }
+      legend_xsize <- max(rLeg[1]*2 + strwidth(longVal,cex=values.cex),
+                          strwidth(title.txt,cex = title.cex)-delta1)
       
-      legend_ysize <-(rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4])*2 + 3*delta2/2 + strheight(title.txt,cex = title.cex)
-      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2+ delta2}
+      legend_ysize <-(rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4])*2 + 3*delta2 / 2 + strheight(title.txt,cex = title.cex)
+      if(!is.null(breakval)){
+        legend_ysize <- legend_ysize + height*2+ delta2
+      }
     }
     
     
     # Position
-    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
-    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
-    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
-    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
-    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
+    if (pos == "bottomleft") {
+      xref <- x1 + delta1 
+      yref <- y1 + delta1
+    }
+    if (pos == "topleft") {
+      xref <- x1 + delta1 
+      yref <- y2 - 2*delta1 - legend_ysize
+    }
+    if (pos == "topright") {
+      xref <- x2 - 2*delta1 - legend_xsize 
+      yref <- y2 -2*delta1 - legend_ysize
+    }
+    if (pos == "bottomright") {
+      xref <- x2 - 2*delta1 - legend_xsize 
+      yref <- y1 + delta1
+    }
+    if (pos == "left") {
+      xref <- x1 + delta1 
+      yref <- (y1+y2)/2-legend_ysize/2 - delta2
+    }
+    if (pos == "right") {
+      xref <- x2 - 2*delta1 - legend_xsize 
+      yref <- (y1+y2)/2-legend_ysize/2 - delta2
+    }
+    if (pos == "top") {
+      xref <- (x1+x2)/2 - legend_xsize/2 
+      yref <- y2 - 2*delta1 - legend_ysize
+    }
+    if (pos == "bottom") {
+      xref <- (x1+x2)/2 - legend_xsize/2 
+      yref <- y1 + delta1
+    }
+    if (pos == "middle") {
+      xref <- (x1+x2)/2 - legend_xsize/2 
+      yref <- (y1+y2)/2-legend_ysize/2 - delta2
+    }
     
     
     # Frame
     if (frame==TRUE){
-      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 *2, border = "black",  col="white")
+      rect(xref-delta1, 
+           yref-delta1, 
+           xref+legend_xsize + delta1*2, 
+           yref+legend_ysize + delta1 *2, 
+           border = "black",  col="white")
     }
     
     mycol <- col
     
     if(!is.null(breakval)){
       
-      symbols(x = xref + rLeg[1] ,y=yref + delta1 - height/2 + height,circles=height/3,add=TRUE,bg=col,inches=FALSE)
-      symbols(x = xref + rLeg[1] ,y=yref + delta1 - height/2,circles=height/3,add=TRUE,bg=col2,inches=FALSE)
-      text(xref + rLeg[1] + height/3 + delta2 ,yref + height/3 ,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
-      text(xref + rLeg[1] + height/3 + delta2,yref + height+ height/3,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
-      
+      symbols(x = xref + rLeg[1] ,
+              y=yref + delta1 - height/2 + height,
+              circles=height/3,
+              add = TRUE, bg = col, inches = FALSE)
+      symbols(x = xref + rLeg[1] ,
+              y=yref + delta1 - height/2,
+              circles=height/3,
+              add = TRUE, bg= col2, inches = FALSE)
+      text(xref + rLeg[1] + height/3 + delta2, 
+           yref + height/3 ,
+           paste ("<",format(breakval,scientific=FALSE)),
+           adj=c(0,0.5),cex=values.cex)
+      text(xref + rLeg[1] + height/3 + delta2,
+           yref + height+ height/3,
+           paste (">=",format(breakval,scientific=FALSE)),
+           adj=c(0,0.5),cex=values.cex)
       
       yref <- yref + height *2 + delta2
       mycol <- "white"
@@ -389,13 +447,27 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     
     if (style=="c"){
       # cercles (V1)
-      for(i in 1:4){
-        symbols(x = xref + rLeg[1] ,y=yref + rLeg[i],circles=rLeg[i],add=TRUE,bg=mycol,inches=FALSE)
-      }
       
+      print(rLeg)
       for(i in 1:4){
-        segments(xref+rLeg[1],yref+rLeg[i]*2,xref+rLeg[1]*2+delta2,yref +rLeg[i]*2)
-        text(xref+rLeg[1]*2+delta1 ,y= yref+rLeg[i]*2,rVal[i],adj=c(0,0.5),cex=values.cex)
+        symbols(x = xref + rLeg[1],
+                y = yref + rLeg[i],
+                circles = rLeg[i],
+                add = TRUE,
+                bg = mycol,
+                inches = FALSE)
+      }
+      for(i in 1:4){
+        
+        segments(xref + rLeg[1],
+                 yref + rLeg[i] * 2,
+                 xref + rLeg[1] * 2 + delta2,
+                 yref + rLeg[i] * 2)
+        text(x = xref + rLeg[1] * 2 + delta1,
+             y = yref + rLeg[i] * 2,
+             labels = rVal[i],
+             adj = c(0,0.5),
+             cex = values.cex)
       }
       
       
@@ -420,6 +492,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     }
     
   }
+  
 }
 
 
@@ -824,7 +897,7 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
     rLegextent1 <- rLegmax1 - rLegmin1
     # rVal1 <- c(rValmax1,rValmax1 - rValextent1/3 , rValmax1 - 2*(rValextent1/3),rValmin1)
     rLeg1 <- c(rLegmax1,rLegmax1 - (rLegmax1 - rLegmin1)/2 ,rLegmin1)
-
+    
     
     sleg <- (rLeg1 * rLeg1)/2
     rVal1 <- sleg * rValmax1 / sleg[1]
