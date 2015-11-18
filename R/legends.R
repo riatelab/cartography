@@ -448,7 +448,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     if (style=="c"){
       # cercles (V1)
       
-      print(rLeg)
+
       for(i in 1:4){
         symbols(x = xref + rLeg[1],
                 y = yref + rLeg[i],

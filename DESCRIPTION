@@ -1,7 +1,7 @@
 Package: cartography
 Title: Thematic Cartography
 Version: 1.1
-Date: 2015-09-09
+Date: 2015-11-18
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@ums-riate.fr", role = c("cre","aut")),
