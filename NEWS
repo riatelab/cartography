@@ -2,14 +2,11 @@ cartography version 1.1 (Release date: 2015-11-18)
 ==============
 
 Major changes:
-* Correction of the proportionnal symbols legends (square, bar, circle, triangle). The previous version was incorrect (size proportionnal to raddi and not surfaces).
-* Add a gradLinkTypoLayer function to plot a layer of colored and graduated links
-
-
+* Correction of the proportionnal symbols legends (square, bar, circle, triangle). The previous version was incorrect (size proportionnal to radii and not surfaces).
+* Add a gradLinkTypoLayer function to plot a layer of colored and graduated links.
 
 Minor changes:
-
 * choroLayer: small correction to allow to plot variable named "x" or "y".
 * vignette: correct the name entry, incorrectly named "SpatialPosition"", to "cartography".
-* Update of the figure in the README file
-* Darker, and more visible, south and north arrows
+* Update of the figure in the README file.
+* Darker, and more visible, south and north arrows.
