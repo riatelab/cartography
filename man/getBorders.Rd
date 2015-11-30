@@ -7,7 +7,8 @@
 getBorders(spdf, spdfid = NULL, tol = 1)
 }
 \arguments{
-\item{spdf}{a SpatialPolygonsDataFrame.}
+\item{spdf}{a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
+has to be projected (planar coordinates).}
 
 \item{spdfid}{identifier field in spdf, default to the first column 
 of the spdf data frame. (optional)}

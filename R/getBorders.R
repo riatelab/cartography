@@ -1,7 +1,8 @@
 #' @title Extract SpatialPolygonsDataFrame Borders
 #' @description Extract borders between SpatialPolygonsDataFrame units.
 #' @name getBorders
-#' @param spdf a SpatialPolygonsDataFrame.
+#' @param spdf a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
+#'  has to be projected (planar coordinates).
 #' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
 #' @param tol tolerance to detect contiguity (in map units). You may 
