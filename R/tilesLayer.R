@@ -32,6 +32,32 @@ tilesLayer <- function(x, add = FALSE){
 }
 
 
-
-
+#' @title Plot Tiles from Open Map Servers 2
+#' @description Plot tiles from open map servers 2.
+#' @name tilesLayer2
+#' @param x a RasterBrick object; the \link{getTiles2} function outputs these 
+#' objects.
+#' @param add whether to add the layer to an existing plot (TRUE) or 
+#' not (FALSE).
+#' @note This function is a wrapper for plotRGB from the 
+#' raster package.
+#' @export
+#' @seealso \link{getTiles}
+tilesLayer2 <- function(x, add = FALSE){
+  if (!requireNamespace("raster", quietly = TRUE)) {
+    stop("'raster' package needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+  if (add == FALSE) {
+    plot.new()
+    plot.window(xlim = c(x@extent@xmin, x@extent@xmax), 
+                ylim = c(x@extent@ymin, x@extent@ymax), 
+                xaxs = "i", yaxs = "i", asp = T)
+  }
+  
+  raster::plotRGB(x = x, 
+                  interpolate = T, 
+                  maxpixels = raster::ncell(x), 
+                  add  = TRUE)
+}
 

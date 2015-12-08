@@ -28,9 +28,10 @@ Imports:
 Suggests:
     rgeos,
     OpenStreetMap,
+    rosm,
     raster,
     rgdal,
     knitr
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1
