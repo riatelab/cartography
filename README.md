@@ -1,4 +1,9 @@
-# `cartography`
+# cartography
+
+[![Version](http://www.r-pkg.org/badges/version/cartography)](https://cran.rstudio.com/web/packages/cartography/)
+![](http://cranlogs.r-pkg.org/badges/grand-total/cartography?color=brightgreen)  
+
+
 ***Create and integrate maps in your R workflow!***   
 
 ![Cartographic Composition ](http://f.hypotheses.org/wp-content/blogs.dir/2209/files/2015/10/cartocomp.png)
