@@ -31,6 +31,7 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @param inches fix max in inches
 #' @details The breakval parameter allows to plot symbols of two 
 #' colors: the first color (col) for values superior or equal to breakval,
 #' second color (col2) for values inferior to breakval.
@@ -110,7 +111,10 @@
 #'                  legend.style = "c",
 #'                  legend.title.txt = "Natural Balance\n(2008)")
 propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
-                             k = 0.02, fixmax = NULL, breakval = NULL,
+                             k = NULL,
+                             fixmax = NULL, 
+                             inches = 1/cm(1),
+                             breakval = NULL,
                              symbols = "circle", 
                              col = "#E84923", col2 = "#7DC437", 
                              border = "black", lwd = 1,
@@ -122,115 +126,134 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                              legend.style = "c", 
                              legend.frame = FALSE,
                              add = TRUE){
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  dots <- cbind(spdf@data[,spdfid], as.data.frame(sp::coordinates(spdf)))
-  colnames(dots)[1] <- c(spdfid)
-  dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
-  dots <- dots[order(abs(dots[, var]), decreasing = TRUE),]
   
-  x1 <- sp::bbox(spdf)[1]
-  y1 <- sp::bbox(spdf)[2]
-  x2 <- sp::bbox(spdf)[3]
-  y2 <- sp::bbox(spdf)[4]
-  hfdc <- (x2-x1)
-  sfdc <- (x2-x1)*(y2-y1)
-  #   sc <- sum(abs(dots[,var]),na.rm = TRUE)
-  sc <- max(abs(dots[,var]),na.rm = TRUE)
-  if (is.null(fixmax)){
-    dots$circleSize <- sqrt((abs(dots[, var]) * k * sfdc / sc) / pi)
-    dots$squareSize <-  sqrt(abs(dots[, var]) * k * sfdc / sc)
-    dots$heightSize <- abs(dots[,var]) * k * hfdc / sc * 10
-  }
   
-  if (!is.null(fixmax)){
-    dots$circleSize <- sqrt((abs(dots[, var]) * k * sfdc / fixmax) / pi)
-    dots$squareSize <-  sqrt(abs(dots[, var]) * k * sfdc / fixmax)
-    dots$heightSize <- abs(dots[, var]) * k * hfdc / fixmax * 10
-  }
-  
-  if (!is.null(breakval)){
-    dots$col <- col2
-    dots[dots[,var] >= breakval & !is.na(dots[,var]), "col"] <- col
-    mycols <- as.character(dots$col)
-    # nbCols <- length(levels(as.factor(dots$var2)))
+  if(!is.null(k)){
+    warning("Argument k is deprecated; please use inches instead.", 
+            call. = FALSE)
+    propSymbolsLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid, 
+                      var = var, k = k, fixmax = fixmax, breakval = breakval,
+                      symbols = symbols, col = col, col2 = col2, 
+                      border = border, lwd = lwd, legend.pos = legend.pos,
+                      legend.title.txt = legend.title.txt, 
+                      legend.title.cex = legend.title.cex, 
+                      legend.values.cex = legend.values.cex, 
+                      legend.values.rnd = legend.values.rnd,
+                      legend.style = legend.style,
+                      legend.frame = legend.frame, add = add)
   }else{
-    mycols <- rep(col, nrow(dots))
-  }
-  
-  if (add==FALSE){
-    sp::plot(spdf, col = NA, border = NA)
-  }
-  
-  
-  # CIRCLES
-  if (symbols == "circle"){
-    symbols(dots[, 2:3], circles = dots$circleSize, bg = mycols, 
-            fg = border, lwd = lwd,
-            add = TRUE,
-            inches = FALSE, asp = 1	)
-    sizevect <- dots$circleSize
-    varvect <- dots[,var]
-    if(legend.pos!="n"){
-      legendCirclesSymbols(pos = legend.pos, title.txt = legend.title.txt,
-                           title.cex = legend.title.cex,
-                           values.cex = legend.values.cex,
-                           var = varvect,
-                           r = sizevect,
-                           breakval  = breakval,
-                           col = col,
-                           col2 = col2,
-                           frame = legend.frame,
-                           values.rnd =  legend.values.rnd,
-                           style = legend.style)
+    # check merge and order spdf & df
+    dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid, 
+                            df = df, dfid = dfid, var = var)
+    
+    # Color management
+    if (!is.null(breakval)){
+      mycols <- rep(NA,nrow(dots))
+      mycols <- ifelse(test = dots[,var] >= breakval, 
+                       yes = col,
+                       no = col2)
+    }else{
+      mycols<- rep(col, nrow(dots))
     }
-  }
-  # SQUARES
-  if (symbols == "square"){
-    symbols(dots[, 2:3], squares = dots$squareSize, bg = mycols,
-            fg = border, lwd = lwd,
-            add = TRUE, inches = FALSE, asp = 1)
-    sizevect <- dots$squareSize
-    varvect <- dots[,var]
-    if(legend.pos!="n"){
-      legendSquaresSymbols(pos = legend.pos, title.txt = legend.title.txt,
-                           title.cex = legend.title.cex,
-                           values.cex = legend.values.cex,
-                           var = varvect,
-                           r = sizevect,
-                           breakval  = breakval,
-                           col = col,
-                           col2 = col2,
-                           frame = legend.frame,
-                           values.rnd =  legend.values.rnd,
-                           style = legend.style)
+    
+    if (is.null(fixmax)){
+      fixmax <- max(dots[,var])
     }
-  }
-  
-  #BARRES
-  if (symbols == "bar"){
-    width<-min((par()$usr[4] - par()$usr[3]) / 40, (par()$usr[2] - par()$usr[1]) / 40)
-    tmp <- as.matrix(data.frame(width, dots$heightSize))
-    dots[,3] <- dots[,3] + dots$heightSize / 2
-    symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = mycols,
-            fg = border, lwd = lwd,
-            inches = FALSE, asp = 1)
-    sizevect <- dots$heightSize
-    varvect <- dots[,var]
-    if(legend.pos!="n"){
-      legendBarsSymbols(pos = legend.pos, title.txt = legend.title.txt,
-                        title.cex = legend.title.cex,
-                        values.cex = legend.values.cex,
-                        var = varvect,
-                        r = sizevect,
-                        breakval  = breakval,
-                        col = col,
-                        col2 = col2,
-                        frame = legend.frame,
-                        values.rnd =  legend.values.rnd,
-                        style = legend.style)
-      
+    
+    # size management
+    sizes <- sizer(dots = dots, inches = inches, var = var, 
+                   fixmax = fixmax, symbols = "circle")
+    sizeMax <- max(sizes)
+    
+    if (inches <= sizeMax){
+      sizevect <- xinch(seq(inches, inches/9, length.out = 4))
+      varvect <- seq(fixmax,0,length.out = 4 )
+      inches <- sizeMax
+    }else{
+      mycols <- c(NA, mycols)
+      border <- c(NA, rep(border, nrow(dots)))
+      dots <- rbind(dots[1,],dots)
+      dots[1,var] <- fixmax
+      sizes <- c(inches, sizes)
+      sizevect <- xinch(seq(inches, inches/9, length.out = 4))
+      varvect <- seq(fixmax, 0,length.out = 4 )
     }
+    
+    
+    
+    if (add==FALSE){
+      sp::plot(spdf, col = NA, border = NA)
+    }
+    
+    switch(symbols, 
+           circle = {
+             symbols(dots[, 2:3], circles = sizes, bg = mycols, fg = border, 
+                     lwd = lwd, add = TRUE, inches = inches, asp = 1)
+             if(legend.pos!="n"){
+               legendCirclesSymbols(pos = "topleft", 
+                                    title.txt = legend.title.txt,
+                                    title.cex = legend.title.cex,
+                                    values.cex = legend.values.cex,
+                                    var = varvect,
+                                    r = sizevect,
+                                    breakval  = breakval,
+                                    col = col,
+                                    col2 = col2,
+                                    frame = legend.frame,
+                                    values.rnd =  legend.values.rnd,
+                                    style = legend.style)
+             }
+           }, 
+           square = {
+             symbols(dots[, 2:3], squares = sizes, bg = mycols, fg = border, 
+                     lwd = lwd, add = TRUE, inches = inches, asp = 1)
+             if(legend.pos!="n"){
+               legendSquaresSymbols(pos = legend.pos,
+                                    title.txt = legend.title.txt,
+                                    title.cex = legend.title.cex,
+                                    values.cex = legend.values.cex,
+                                    var = varvect,
+                                    r = sizevect,
+                                    breakval  = breakval,
+                                    col = col,
+                                    col2 = col2,
+                                    frame = legend.frame,
+                                    values.rnd =  legend.values.rnd,
+                                    style = legend.style)
+             }
+           }, 
+           bar = {
+             tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
+             dots[,3] <- dots[,3] + yinch(sizes/2)
+             symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = mycols,
+                     fg = border, lwd = lwd, inches = inches, asp = 1)
+             if(legend.pos!="n"){
+               legendBarsSymbols(pos = legend.pos, 
+                                 title.txt = legend.title.txt,
+                                 title.cex = legend.title.cex,
+                                 values.cex = legend.values.cex,
+                                 var = varvect,
+                                 r = sizevect,
+                                 breakval  = breakval,
+                                 col = col,
+                                 col2 = col2,
+                                 frame = legend.frame,
+                                 values.rnd =  legend.values.rnd,
+                                 style = legend.style)
+             }
+           })
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

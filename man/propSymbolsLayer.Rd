@@ -4,9 +4,9 @@
 \alias{propSymbolsLayer}
 \title{Proportional Symbols Layer}
 \usage{
-propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
-  fixmax = NULL, breakval = NULL, symbols = "circle", col = "#E84923",
-  col2 = "#7DC437", border = "black", lwd = 1,
+propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = NULL,
+  fixmax = NULL, inches = 1/cm(1), breakval = NULL, symbols = "circle",
+  col = "#E84923", col2 = "#7DC437", border = "black", lwd = 1,
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
   legend.style = "c", legend.frame = FALSE, add = TRUE)
@@ -28,6 +28,8 @@ of df. (optional)}
 \item{k}{share of the map occupied by the biggest symbol (see Details).}
 
 \item{fixmax}{value of the biggest symbol (see Details).}
+
+\item{inches}{fix max in inches}
 
 \item{breakval}{breaking value (see Details).}
 
