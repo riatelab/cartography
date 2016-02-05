@@ -34,6 +34,7 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @return An invisible (\link{invisible}) SpatialLinesDataFrame is returned with the discontinuity measure. 
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
@@ -89,6 +90,7 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var,
   if (type == "abs") {spdf@data$disc <- pmax(spdf@data$var1-spdf@data$var2,
                                              spdf@data$var2-spdf@data$var1)}
   
+  spdf.out <- spdf
   # Valeur muinimal
   minvar <- as.numeric(quantile(spdf@data$disc,probs = c(1-threshold)))
   
@@ -117,5 +119,7 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var,
                   col = col, values.rnd = legend.values.rnd,
                   frame = legend.frame)
   }
+  
+  invisible(spdf.out)
 }
 
