@@ -1,7 +1,7 @@
 Package: cartography
 Title: Thematic Cartography
-Version: 1.1
-Date: 2015-11-18
+Version: 1.1.9000
+Date: 2016-02-10
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@ums-riate.fr", role = c("cre","aut")),
@@ -27,7 +27,6 @@ Imports:
     methods
 Suggests:
     rgeos,
-    OpenStreetMap,
     rosm,
     raster,
     rgdal,

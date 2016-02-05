@@ -4,12 +4,12 @@
 \alias{propSymbolsLayer}
 \title{Proportional Symbols Layer}
 \usage{
-propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = NULL,
-  fixmax = NULL, inches = 1/cm(1), breakval = NULL, symbols = "circle",
-  col = "#E84923", col2 = "#7DC437", border = "black", lwd = 1,
+propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, inches = 0.3,
+  fixmax = NULL, breakval = NULL, symbols = "circle", col = "#E84923",
+  col2 = "#7DC437", border = "black", lwd = 1,
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
-  legend.style = "c", legend.frame = FALSE, add = TRUE)
+  legend.style = "c", legend.frame = FALSE, add = TRUE, k = NULL)
 }
 \arguments{
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
@@ -25,11 +25,7 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df to plot.}
 
-\item{k}{share of the map occupied by the biggest symbol (see Details).}
-
 \item{fixmax}{value of the biggest symbol (see Details).}
-
-\item{inches}{fix max in inches}
 
 \item{breakval}{breaking value (see Details).}
 
@@ -73,40 +69,40 @@ The breakval parameter allows to plot symbols of two
 colors: the first color (col) for values superior or equal to breakval,
 second color (col2) for values inferior to breakval.
 
-Two maps with the same spdf, k, and fixmax parameters will be comparable.
+Two maps with the same inches and fixmax parameters will be comparable.
 }
 \examples{
 data("nuts2006")
 ## Example 1
 # Layout plot
-layoutLayer(title = "Countries Population in Europe", 
-            sources = "Eurostat, 2008", 
-            scale = NULL, 
+layoutLayer(title = "Countries Population in Europe",
+            sources = "Eurostat, 2008",
+            scale = NULL,
             frame = TRUE,
-            col = "black", 
+            col = "black",
             coltitle = "white",
             bg = "#D9F5FF",
-            south = TRUE, 
+            south = TRUE,
             extent = nuts0.spdf)
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
 # Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                 var = "pop2008", k = 0.01,
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
+                 var = "pop2008", 
                  symbols = "square", col =  "#920000",
-                 legend.pos = "right", 
-                 legend.title.txt = "Total\\npopulation (2008)", 
+                 legend.pos = "right",
+                 legend.title.txt = "Total\\npopulation (2008)",
                  legend.style = "c")
 
 ## Example 2
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20")
 # Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                 var = "gdppps2008", k = 0.01,
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
+                 var = "gdppps2008",
                  symbols = "bar", col =  "#B00EF0",
-                 legend.pos = "right", 
-                 legend.title.txt = "GDP\\nin Millions PPS (2008)", 
+                 legend.pos = "right",
+                 legend.title.txt = "GDP\\nin Millions PPS (2008)",
                  legend.style = "e")
 
 ## Example 3
@@ -114,20 +110,22 @@ oldpar <- par(mfrow = c(1,2), mar = c(0,0,0,0))
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                 var = "birth_2008", k = 0.01,
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
+                 var = "birth_2008", 
                  fixmax = max(nuts0.df$birth_2008),
+                 inches = 0.2,
                  symbols = "circle", col =  "orange",
-                 legend.pos = "right", 
-                 legend.title.txt = "nb of births", 
+                 legend.pos = "right",
+                 legend.title.txt = "nb of births",
                  legend.style = "e")
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                 var = "death_2008", k = 0.01,
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
+                 var = "death_2008",
                  symbols = "circle", col =  "pink",
                  fixmax = max(nuts0.df$birth_2008),
-                 legend.pos = "right", 
+                 inches = 0.2,
+                 legend.pos = "right",
                  legend.style = "e",
                  legend.title.txt = "nb of deaths")
 par(oldpar)
@@ -136,11 +134,11 @@ par(oldpar)
 nuts0.df$balance <- nuts0.df$birth_2008-nuts0.df$death_2008
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                 var = "balance", k = 0.01,
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, inches = 0.3,
+                 var = "balance",
                  symbols = "circle",
                  col = "orange", col2 = "green", breakval=0,
-                 legend.pos = "right", 
+                 legend.pos = "right",
                  legend.style = "c",
                  legend.title.txt = "Natural Balance\\n(2008)")
 }

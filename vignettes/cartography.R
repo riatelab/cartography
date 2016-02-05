@@ -84,7 +84,7 @@ layoutLayer(title = "Demographic Trends", author = "cartography",
             south = TRUE) # add a south arrow
 par(opar)
 
-## ----propMap, fig.height=5, fig.width=7----------------------------------
+## ----propMap, fig.height=5, fig.width=7, message=FALSE-------------------
 library(cartography)
 # Load data
 data(nuts2006)
@@ -93,9 +93,9 @@ opar <- par(mar = c(0.1,0.1,1.3,0.1))
 
 ## Plot Stamen tiles (using OpenStreetMap data) as basemap 
 # Download the tiles, nuts0.spdf extent
-EuropeStamen <- getTiles(spdf = nuts0.spdf, type = "stamen-watercolor")
+EUosm <- getTiles(spdf = nuts0.spdf, type = "osm", zoom = 4)
 # Plot the tiles
-tilesLayer(EuropeStamen)
+tilesLayer(EUosm)
 
 # Plot countries
 plot(nuts0.spdf, border = "grey65", lwd = 2, add=TRUE)
@@ -113,7 +113,7 @@ propSymbolsLayer(spdf = nuts0.spdf, # SpatialPolygonsDataFrame of the countries
 # Layout plot
 layoutLayer(title = "Countries Population in Europe",
             sources = "Data: Eurostat, 2008",
-            author = "Base map: Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
+            author = "Base map: OpenStreetMap, under CC BY SA.",
             scale = NULL, frame = TRUE,
             col = "#688994") # color of the frame
 par(opar)

@@ -4,29 +4,32 @@
 \alias{propSymbolsTypoLayer}
 \title{Proportional Symbols Typo Layer}
 \usage{
-propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
-  fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1, var2,
-  col = NULL, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.var.pos = "bottomleft", legend.var.title.txt = var,
-  legend.values.rnd = 0, legend.var.style = "c", legend.var.frame = FALSE,
+propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
+  inches = 0.3, fixmax = NULL, symbols = "circle", border = "grey20",
+  lwd = 1, var2, col = NULL, legend.title.cex = 0.8,
+  legend.values.cex = 0.6, legend.var.pos = "bottomleft",
+  legend.var.title.txt = var, legend.values.rnd = 0,
+  legend.var.style = "c", legend.var.frame = FALSE,
   legend.var2.pos = "topright", legend.var2.title.txt = var2,
-  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
+  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE,
+  k = NULL)
 }
 \arguments{
-\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
+\item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
 \item{df}{a data frame that contains the values to plot.}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
+\item{spdfid}{identifier field in spdf, default to the first column
 of the spdf data frame. (optional)}
 
-\item{dfid}{identifier field in df, default to the first column 
+\item{dfid}{identifier field in df, default to the first column
 of df. (optional)}
 
 \item{var}{name of the numeric field in df to plot the symbols sizes.}
 
-\item{k}{share of the map occupied by the biggest symbol.}
+\item{inches}{size of the biggest symbol (radius for circles, width for
+squares, height for bars) in inches.}
 
 \item{fixmax}{value of the biggest symbol. (optional)}
 
@@ -48,30 +51,33 @@ of df. (optional)}
 
 \item{legend.var.title.txt}{title of the legend (numeric data).}
 
-\item{legend.values.rnd}{number of decimal places of the values in 
+\item{legend.values.rnd}{number of decimal places of the values in
 the legend.}
 
-\item{legend.var.style}{either "c" or "e". The legend has two display 
+\item{legend.var.style}{either "c" or "e". The legend has two display
 styles, "c" stands for compact and "e" for extended.}
 
-\item{legend.var.frame}{whether to add a frame to the legend (TRUE) or 
+\item{legend.var.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.var2.pos}{position of the legend for var2, one of "topleft", "top", 
+\item{legend.var2.pos}{position of the legend for var2, one of "topleft", "top",
 "topright", "left", "right", "bottomleft", "bottom", "bottomright".}
 
 \item{legend.var2.title.txt}{title of the legend (factor data).}
 
 \item{legend.var2.nodata}{text for "no data" values}
 
-\item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or 
+\item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{add}{whether to add the layer to an existing plot (TRUE) or 
+\item{add}{whether to add the layer to an existing plot (TRUE) or
 not (FALSE).}
+
+\item{k}{share of the map occupied by the biggest symbol (this argument
+is deprecated; please use inches instead.).}
 }
 \description{
-Plot a proportional symbols layer with a color based on a 
+Plot a proportional symbols layer with a color based on a
 qualitative data.
 }
 \examples{
@@ -105,8 +111,8 @@ propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
                      legend.var.style = "c")
 }
 \seealso{
-\link{legendBarsSymbols}, \link{legendTypo}, 
-\link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
+\link{legendBarsSymbols}, \link{legendTypo},
+\link{legendCirclesSymbols}, \link{legendSquaresSymbols},
 \link{typoLayer}, \link{propSymbolsLayer}
 }
 

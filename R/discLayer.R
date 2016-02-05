@@ -34,7 +34,7 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @return An invisible (\link{invisible}) SpatialLinesDataFrame is returned with the discontinuity measure. 
+#' @return An invisible (\link{invisible}) SpatialLinesDataFrame with the discontinuity measure is returned. 
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).

@@ -17,7 +17,7 @@ propSymbolsLayer2 <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   colnames(dots)[1] <- c(spdfid)
   dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
   dots <- dots[order(abs(dots[, var]), decreasing = TRUE),]
-
+  
   x1 <- sp::bbox(spdf)[1]
   y1 <- sp::bbox(spdf)[2]
   x2 <- sp::bbox(spdf)[3]
@@ -31,13 +31,13 @@ propSymbolsLayer2 <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     dots$squareSize <-  sqrt(abs(dots[, var]) * k * sfdc / sc)
     dots$heightSize <- abs(dots[,var]) * k * hfdc / sc * 10
   }
-
+  
   if (!is.null(fixmax)){
     dots$circleSize <- sqrt((abs(dots[, var]) * k * sfdc / fixmax) / pi)
     dots$squareSize <-  sqrt(abs(dots[, var]) * k * sfdc / fixmax)
     dots$heightSize <- abs(dots[, var]) * k * hfdc / fixmax * 10
   }
-
+  
   if (!is.null(breakval)){
     dots$col <- col2
     dots[dots[,var] >= breakval & !is.na(dots[,var]), "col"] <- col
@@ -46,12 +46,12 @@ propSymbolsLayer2 <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   }else{
     mycols <- rep(col, nrow(dots))
   }
-
+  
   if (add==FALSE){
     sp::plot(spdf, col = NA, border = NA)
   }
-
-
+  
+  
   # CIRCLES
   if (symbols == "circle"){
     symbols(dots[, 2:3], circles = dots$circleSize, bg = mycols,
@@ -95,7 +95,7 @@ propSymbolsLayer2 <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                            style = legend.style)
     }
   }
-
+  
   #BARRES
   if (symbols == "bar"){
     width<-min((par()$usr[4] - par()$usr[3]) / 40, (par()$usr[2] - par()$usr[1]) / 40)
@@ -118,7 +118,7 @@ propSymbolsLayer2 <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                         frame = legend.frame,
                         values.rnd =  legend.values.rnd,
                         style = legend.style)
-
+      
     }
   }
 }
