@@ -9,6 +9,8 @@
 #' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
+#' @param inches size of the biggest symbol (radius for circles, width for
+#' squares, height for bars) in inches.
 #' @param var name of the numeric field in df to plot the symbols sizes.
 #' @param var2 name of the numeric field in df to plot the colors.
 #' @param breaks break points in sorted order to indicate the intervals for assigning the colors. 
@@ -21,7 +23,8 @@
 #' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "jenks", "q6" or "geom"  (see \link{choroLayer} Details).
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
-#' @param k share of the map occupied by the biggest symbol (see \link{propSymbolsLayer} Details).
+#' @param k share of the map occupied by the biggest symbol (this argument
+#' is deprecated; please use inches instead.).
 #' @param fixmax value of the biggest symbol (see \link{propSymbolsLayer} Details).
 #' @param border color of symbols borders.
 #' @param lwd width of symbols borders.
@@ -56,8 +59,8 @@
 #' # Countries plot
 #' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 #' # Plot the symbols
-#' propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df, 
-#'                       var = "pop2008", var2 = "cagr", )
+#' propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle", 
+#'                       var = "pop2008", var2 = "cagr")
 #' 
 #' ## Example 2
 #' # Growth rate at nuts2 level
@@ -72,17 +75,22 @@
 #' plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 #' plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
 #' 
+#' # Add some NA values
+#' nuts2.df[1:10,"pop2008"] <- NA
+#' nuts2.df[100:110,"cagr"] <- NA
+#' 
 #' # Plot symbols
 #' propSymbolsChoroLayer(spdf = nuts2.spdf, df = nuts2.df, 
 #'                       var = "pop2008", var2 = "cagr", 
+#'                       inches = 0.1,
 #'                       col = carto.pal(pal1 = "blue.pal", n1 = 2, 
 #'                                       pal2 = "red.pal", n2 = 4), 
 #'                       breaks = c(-2.43,-1,0,0.5,1,2,3.1),
-#'                       border = "grey50", lwd = 0.75,
+#'                       border = "grey50", lwd = 1,
 #'                       legend.var.pos = "topright", legend.var2.pos = "right",
 #'                       legend.var2.title.txt = "Compound annual\ngrowth rate",
 #'                       legend.var.title.txt = "Total Population",
-#'                       legend.var.style = "e", k = 0.002)
+#'                       legend.var.style = "e")
 #' # Second layout
 #' layoutLayer(title = "", author = "Eurostat, 2011", 
 #'             sources = "", frame ="", col = NA)
@@ -93,7 +101,7 @@
 #' @import sp
 propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                   var, 
-                                  k = 0.02, fixmax = NULL, 
+                                  inches = 0.3, fixmax = NULL, 
                                   symbols = "circle", border = "grey20", lwd = 1,
                                   var2, 
                                   breaks=NULL,  method="quantile",  nclass=NULL, 
@@ -110,125 +118,139 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                   legend.var2.values.rnd = 2,  
                                   legend.var2.nodata = "no data",
                                   legend.var2.frame = FALSE,
-                                  add = TRUE){
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  dots <- cbind(spdf@data[,spdfid], as.data.frame(sp::coordinates(spdf)))
-  colnames(dots)[1] <- c(spdfid)
-  dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
-  dots <- dots[order(abs(dots[, var]), decreasing = TRUE),]
+                                  add = TRUE, k = NULL){
   
-  x1 <- sp::bbox(spdf)[1]
-  y1 <- sp::bbox(spdf)[2]
-  x2 <- sp::bbox(spdf)[3]
-  y2 <- sp::bbox(spdf)[4]
-  hfdc <- (x2-x1)
-  sfdc <- (x2-x1)*(y2-y1)
-  #   sc <- sum(abs(dots[,var]),na.rm = TRUE)
-  sc <- max(abs(dots[,var]),na.rm = TRUE)
-  if (is.null(fixmax)){
-    dots$circleSize <- sqrt((abs(dots[, var]) * k * sfdc / sc) / pi)
-    dots$squareSize <-  sqrt(abs(dots[, var]) * k * sfdc / sc)
-    dots$heightSize <- abs(dots[,var]) * k * hfdc / sc * 10
-  }
-  
-  if (!is.null(fixmax)){
-    dots$circleSize <- sqrt((abs(dots[, var]) * k * sfdc / fixmax) / pi)
-    dots$squareSize <-  sqrt(abs(dots[, var]) * k * sfdc / fixmax)
-    dots$heightSize <- abs(dots[, var]) * k * hfdc / fixmax * 10
-  }
-  
-  if (add==FALSE){
-    sp::plot(spdf, col = NA, border = NA)
-  }
-  
-  # get the colors and distr
-  layer <- choro(var=dots[,var2], distr = breaks, col = col,
-                 nclass = nclass, method = method)
-  
-  # CIRCLES
-  if (symbols == "circle"){
-    symbols(dots[, 2:3], circles = dots$circleSize, bg = as.vector(layer$colMap), 
-            fg = border, lwd = lwd,
-            add = TRUE,
-            inches = FALSE, asp = 1	)
-    sizevect <- dots$circleSize
-    varvect <- dots[,var]
-    if(legend.var.pos!="n"){
-      legendCirclesSymbols(pos = legend.var.pos, 
-                           title.txt = legend.var.title.txt,
-                           title.cex = legend.title.cex,
-                           values.cex = legend.values.cex,
-                           var = varvect,
-                           r = sizevect,
-                           col = "grey",
-                           frame = legend.var.frame,
-                           values.rnd =  legend.var.values.rnd,
-                           style = legend.var.style)
-    }
-  }
-  # SQUARES
-  if (symbols == "square"){
-    symbols(dots[, 2:3], squares = dots$squareSize, bg = as.vector(layer$colMap),
-            fg = border, lwd = lwd,
-            add = TRUE, inches = FALSE, asp = 1)
-    sizevect <- dots$squareSize
-    varvect <- dots[,var]
-    if(legend.var.pos!="n"){
-      legendSquaresSymbols(pos = legend.var.pos, 
-                           title.txt = legend.var.title.txt,
-                           title.cex = legend.title.cex,
-                           values.cex = legend.values.cex,
-                           var = varvect,
-                           r = sizevect,
-                           col = "grey",
-                           frame = legend.var.frame,
-                           values.rnd =  legend.var.values.rnd,
-                           style = legend.var.style)
-    }
-  }
-  
-  #BARRES
-  if (symbols == "bar"){
-    width<-min((par()$usr[4] - par()$usr[3]) / 40, (par()$usr[2] - par()$usr[1]) / 40)
-    tmp <- as.matrix(data.frame(width, dots$heightSize))
-    dots[,3] <- dots[,3] + dots$heightSize / 2
-    symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = as.vector(layer$colMap),
-            fg = border, lwd = lwd,
-            inches = FALSE, asp = 1)
-    sizevect <- dots$heightSize
-    varvect <- dots[,var]
-    if(legend.var.pos!="n"){
-      legendBarsSymbols(pos = legend.var.pos, 
-                        title.txt = legend.var.title.txt,
-                        title.cex = legend.title.cex,
-                        values.cex = legend.values.cex,
-                        var = varvect,
-                        r = sizevect,
-                        col = "grey",
-                        frame = legend.var.frame,
-                        values.rnd =  legend.var.values.rnd,
-                        style = legend.var.style)
-      
-    }
-  }
-  
-  nodata <- FALSE
-  if(max(is.na(dots[,var2])>0)){nodata <- TRUE}
-  if(legend.var2.pos !="n"){
-    legendChoro(pos = legend.var2.pos, 
-                title.txt = legend.var2.title.txt,
-                title.cex = legend.title.cex,
-                values.cex = legend.values.cex,
-                breaks = layer$distr, 
-                col = layer$col, 
-                values.rnd = legend.var2.values.rnd,
-                frame = legend.var2.frame, 
-                symbol="box", 
-                nodata = nodata, 
-                nodata.txt = legend.var2.nodata)
+  if(!is.null(k)){
+    warning("Argument k is deprecated; please use inches instead.",
+            call. = FALSE)
+    propSymbolsChoroLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid,
+                          var = var,
+                          k = k, fixmax = fixmax, symbols = symbols,
+                          breaks = breaks, method = method, nclass = class,
+                          border = border, lwd = lwd,
+                          var2 = var2, col = col,
+                          legend.title.cex = legend.title.cex,
+                          legend.values.cex = legend.values.cex,
+                          legend.var.pos = legend.var.pos,
+                          legend.var.title.txt = legend.var.title.txt,
+                          legend.var.values.rnd = legend.var.values.rnd,
+                          legend.var.style = legend.var.style,
+                          legend.var.frame = legend.var.frame,
+                          legend.var2.pos = legend.var2.pos,
+                          legend.var2.title.txt = legend.var2.title.txt,
+                          legend.var2.values.rnd = legend.var2.values.rnd,
+                          legend.var2.nodata = legend.var2.nodata,
+                          legend.var2.frame = legend.var2.frame,
+                          add = add)
+  }else{
+    # check merge and order spdf & df
+    dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid,
+                            df = df, dfid = dfid, var = var)
     
+    
+    # Color Management
+    layer <- choro(var=dots[,var2], distr = breaks, col = col,
+                   nclass = nclass, method = method)
+    
+    mycols <- layer$colMap
+    print(layer$colMap)
+    
+    if (is.null(fixmax)){
+      fixmax <- max(dots[,var])
+    }
+    
+    # size management
+    sizes <- sizer(dots = dots, inches = inches, var = var,
+                   fixmax = fixmax, symbols = symbols)
+    sizeMax <- max(sizes)
+    
+    if (inches <= sizeMax){
+      sizevect <- xinch(seq(inches, inches/9, length.out = 4))
+      varvect <- seq(fixmax,0,length.out = 4 )
+      inches <- sizeMax
+    }else{
+      mycols <- c(NA, mycols)
+      border <- c(NA, rep(border, nrow(dots)))
+      dots <- rbind(dots[1,],dots)
+      dots[1,var] <- fixmax
+      sizes <- c(inches, sizes)
+      sizevect <- xinch(seq(inches, inches/9, length.out = 4))
+      varvect <- seq(fixmax, 0,length.out = 4 )
+    }
+    
+    if (add==FALSE){
+      sp::plot(spdf, col = NA, border = NA)
+    }
+    switch(symbols, 
+           circle = {
+             symbols(dots[, 2:3], circles = sizes, bg = as.vector(mycols), 
+                     fg = border, 
+                     lwd = lwd, add = TRUE, inches = inches, asp = 1)
+             if(legend.var.pos!="n"){
+               legendCirclesSymbols(pos = legend.var.pos, 
+                                    title.txt = legend.var.title.txt,
+                                    title.cex = legend.title.cex,
+                                    values.cex = legend.values.cex,
+                                    var = varvect,
+                                    r = sizevect,
+                                    col = "grey",
+                                    frame = legend.var.frame,
+                                    values.rnd =  legend.var.values.rnd,
+                                    style = legend.var.style)
+             }
+           }, 
+           square = {
+             symbols(dots[, 2:3], squares = sizes, bg = as.vector(mycols), 
+                     fg = border, 
+                     lwd = lwd, add = TRUE, inches = inches, asp = 1)
+             if(legend.var.pos!="n"){
+               legendSquaresSymbols(pos = legend.var.pos, 
+                                    title.txt = legend.var.title.txt,
+                                    title.cex = legend.title.cex,
+                                    values.cex = legend.values.cex,
+                                    var = varvect,
+                                    r = sizevect,
+                                    col = "grey",
+                                    frame = legend.var.frame,
+                                    values.rnd =  legend.var.values.rnd,
+                                    style = legend.var.style)
+             }
+           }, 
+           bar = {
+             tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
+             dots[,3] <- dots[,3] + yinch(sizes/2)
+             symbols(dots[,2:3], rectangles = tmp, add = TRUE, 
+                     bg = as.vector(mycols),
+                     fg = border, lwd = lwd, inches = inches, asp = 1)
+             if(legend.var.pos!="n"){
+               legendBarsSymbols(pos = legend.var.pos, 
+                                 title.txt = legend.var.title.txt,
+                                 title.cex = legend.title.cex,
+                                 values.cex = legend.values.cex,
+                                 var = varvect,
+                                 r = sizevect,
+                                 col = "grey",
+                                 frame = legend.var.frame,
+                                 values.rnd =  legend.var.values.rnd,
+                                 style = legend.var.style)
+             }
+           })
+    nodata <- FALSE
+    if(max(is.na(dots[,var2])>0)){nodata <- TRUE}
+    
+    if(legend.var2.pos !="n"){
+      legendChoro(pos = legend.var2.pos, 
+                  title.txt = legend.var2.title.txt,
+                  title.cex = legend.title.cex,
+                  values.cex = legend.values.cex,
+                  breaks = layer$distr, 
+                  col = layer$col, 
+                  values.rnd = legend.var2.values.rnd,
+                  frame = legend.var2.frame, 
+                  symbol="box", 
+                  nodata = nodata, nodata.col = NA,
+                  nodata.txt = legend.var2.nodata)
+    }
   }
-  
 }
 

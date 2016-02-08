@@ -64,7 +64,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \value{
-An invisible (\link{invisible}) SpatialLinesDataFrame with the discontinuity measure is returned.
+An invisible (\link{invisible}) SpatialLinesDataFrame with the discontinuity measures is returned.
 }
 \description{
 This function computes and plots spatial discontinuities. The 

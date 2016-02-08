@@ -22,7 +22,7 @@ choro <- function(var, distr = NULL, col = NULL, nclass = NULL,
   
   # Affectation des couleurs au spdf
   colMap <- col[findInterval(var,distr,all.inside=TRUE)]
-  colMap[is.na(colMap)] <- "white"
+  colMap[is.na(colMap)] <- NA
 
   return(list(colMap = colMap, distr = distr, col = col))
 }

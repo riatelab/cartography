@@ -34,7 +34,7 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @return An invisible (\link{invisible}) SpatialLinesDataFrame with the discontinuity measure is returned. 
+#' @return  An invisible (\link{invisible}) SpatialLinesDataFrame with the discontinuity measures is returned. 
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
@@ -91,6 +91,7 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var,
                                              spdf@data$var2-spdf@data$var1)}
   
   spdf.out <- spdf
+  colnames(spdf.out@data)[4:5] <- c(paste(var, 1, sep=""), paste(var, 2, sep=""))
   # Valeur muinimal
   minvar <- as.numeric(quantile(spdf@data$disc,probs = c(1-threshold)))
   
@@ -112,14 +113,13 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var,
   
   # Legend
   if(legend.pos !="n"){
-  legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 
-                  title.cex = legend.title.cex ,
-                  values.cex = legend.values.cex, 
-                  breaks = distr, lwd = sizes, 
-                  col = col, values.rnd = legend.values.rnd,
-                  frame = legend.frame)
+    legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 
+                    title.cex = legend.title.cex ,
+                    values.cex = legend.values.cex, 
+                    breaks = distr, lwd = sizes, 
+                    col = col, values.rnd = legend.values.rnd,
+                    frame = legend.frame)
   }
   
   invisible(spdf.out)
 }
-

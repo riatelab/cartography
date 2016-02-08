@@ -101,10 +101,13 @@ layoutLayer(title = "Countries Population & Color in Europe",
 #Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
-                     var = "pop2008", var2="typo", k = 0.01,
+nuts0.df$typo[1:3] <- NA
+nuts0.df$pop2008[4:6] <- NA
+propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df, 
+                     var = "pop2008", var2="typo", 
                      symbols = "circle",
-                     legend.var.pos = "topright", legend.var2.pos = "right",
+                     legend.var.pos = "topright", 
+                     legend.var2.pos = "right",
                      legend.var.title.txt = "Total\\npopulation (2008)",
                      legend.values.rnd = -3,
                      legend.var2.title.txt = "Category",

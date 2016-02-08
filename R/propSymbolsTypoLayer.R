@@ -50,7 +50,7 @@
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 #' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
 #'                      var = "pop2008", var2="typo")
-#'
+#' 
 #' ## Example 2
 #' # Layout plot
 #' layoutLayer(title = "Countries Population & Color in Europe",
@@ -64,10 +64,13 @@
 #' #Countries plot
 #' plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-#' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
-#'                      var = "pop2008", var2="typo", k = 0.01,
+#' nuts0.df$typo[1:3] <- NA
+#' nuts0.df$pop2008[4:6] <- NA
+#' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df, 
+#'                      var = "pop2008", var2="typo", 
 #'                      symbols = "circle",
-#'                      legend.var.pos = "topright", legend.var2.pos = "right",
+#'                      legend.var.pos = "topright", 
+#'                      legend.var2.pos = "right",
 #'                      legend.var.title.txt = "Total\npopulation (2008)",
 #'                      legend.values.rnd = -3,
 #'                      legend.var2.title.txt = "Category",
@@ -127,14 +130,14 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     mycolsleg <- as.character(levels(mycols))
     rVal <- as.character(levels(as.factor(dots[, var2])))
     mycols <- as.character(mycols)
-    print(mycols)
+
     if (is.null(fixmax)){
       fixmax <- max(dots[,var])
     }
     
     # size management
     sizes <- sizer(dots = dots, inches = inches, var = var,
-                   fixmax = fixmax, symbols = "circle")
+                   fixmax = fixmax, symbols = symbols)
     sizeMax <- max(sizes)
     
     if (inches <= sizeMax){
@@ -158,7 +161,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
            circle = {
              symbols(dots[, 2:3], circles = sizes, bg = mycols, fg = border, 
                      lwd = lwd, add = TRUE, inches = inches, asp = 1)
-             if(legend.pos!="n"){
+             if(legend.var.pos!="n"){
                legendCirclesSymbols(pos = legend.var.pos, 
                                     title.txt = legend.var.title.txt,
                                     title.cex = legend.title.cex,
@@ -174,7 +177,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
            square = {
              symbols(dots[, 2:3], squares = sizes, bg = mycols, fg = border, 
                      lwd = lwd, add = TRUE, inches = inches, asp = 1)
-             if(legend.pos!="n"){
+             if(legend.var.pos!="n"){
                legendSquaresSymbols(pos = legend.var.pos, 
                                     title.txt = legend.var.title.txt,
                                     title.cex = legend.title.cex,
@@ -192,7 +195,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
              dots[,3] <- dots[,3] + yinch(sizes/2)
              symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = mycols,
                      fg = border, lwd = lwd, inches = inches, asp = 1)
-             if(legend.pos!="n"){
+             if(legend.var.pos!="n"){
                legendBarsSymbols(pos = legend.var.pos, 
                                  title.txt = legend.var.title.txt,
                                  title.cex = legend.title.cex,
@@ -206,7 +209,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
              }
            })
     nodata <- FALSE
-    if(max(is.na(df[,var2])>0)){nodata <- TRUE}
+    if(max(is.na(dots[,var2])>0)){nodata <- TRUE}
     
     if(legend.var2.pos !="n"){
       legendTypo(pos = legend.var2.pos,
@@ -217,9 +220,8 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                  col = mycolsleg,
                  frame = legend.var2.frame,
                  symbol="box",
-                 nodata = nodata,
+                 nodata = nodata,nodata.col = NA,
                  nodata.txt = legend.var2.nodata)
-      
     }
   }
 }

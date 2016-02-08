@@ -4,15 +4,16 @@
 \alias{propSymbolsChoroLayer}
 \title{Proportional and Choropleth Symbols Layer}
 \usage{
-propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, k = 0.02,
-  fixmax = NULL, symbols = "circle", border = "grey20", lwd = 1, var2,
-  breaks = NULL, method = "quantile", nclass = NULL, col = NULL,
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
+propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
+  inches = 0.3, fixmax = NULL, symbols = "circle", border = "grey20",
+  lwd = 1, var2, breaks = NULL, method = "quantile", nclass = NULL,
+  col = NULL, legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.var.pos = "right", legend.var.title.txt = var,
   legend.var.values.rnd = 0, legend.var.style = "c",
   legend.var.frame = FALSE, legend.var2.pos = "topright",
   legend.var2.title.txt = var2, legend.var2.values.rnd = 2,
-  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
+  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE,
+  k = NULL)
 }
 \arguments{
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
@@ -28,7 +29,8 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df to plot the symbols sizes.}
 
-\item{k}{share of the map occupied by the biggest symbol (see \link{propSymbolsLayer} Details).}
+\item{inches}{size of the biggest symbol (radius for circles, width for
+squares, height for bars) in inches.}
 
 \item{fixmax}{value of the biggest symbol (see \link{propSymbolsLayer} Details).}
 
@@ -88,6 +90,9 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{k}{share of the map occupied by the biggest symbol (this argument
+is deprecated; please use inches instead.).}
 }
 \description{
 Plot a proportional symbols layer with color based on a 
@@ -101,8 +106,8 @@ nuts0.df$cagr <- (((nuts0.df$pop2008 / nuts0.df$pop1999)^(1/9)) - 1) * 100
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Plot the symbols
-propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                      var = "pop2008", var2 = "cagr", )
+propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle", 
+                      var = "pop2008", var2 = "cagr")
 
 ## Example 2
 # Growth rate at nuts2 level
@@ -117,17 +122,22 @@ layoutLayer(title="Demographic trends, 1999-2008",
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
 
+# Add some NA values
+nuts2.df[1:10,"pop2008"] <- NA
+nuts2.df[100:110,"cagr"] <- NA
+
 # Plot symbols
 propSymbolsChoroLayer(spdf = nuts2.spdf, df = nuts2.df, 
                       var = "pop2008", var2 = "cagr", 
+                      inches = 0.1,
                       col = carto.pal(pal1 = "blue.pal", n1 = 2, 
                                       pal2 = "red.pal", n2 = 4), 
                       breaks = c(-2.43,-1,0,0.5,1,2,3.1),
-                      border = "grey50", lwd = 0.75,
+                      border = "grey50", lwd = 1,
                       legend.var.pos = "topright", legend.var2.pos = "right",
                       legend.var2.title.txt = "Compound annual\\ngrowth rate",
                       legend.var.title.txt = "Total Population",
-                      legend.var.style = "e", k = 0.002)
+                      legend.var.style = "e")
 # Second layout
 layoutLayer(title = "", author = "Eurostat, 2011", 
             sources = "", frame ="", col = NA)
