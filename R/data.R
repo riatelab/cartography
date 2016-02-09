@@ -152,7 +152,7 @@ NULL
 #' @title Graticule around Europe
 #' @name graticule.spdf
 #' @description Graticule around Europe.
-#' @format SpatialLinesDataFrame.
+#' @format SpatialLines.
 #' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
 #' @docType data
 NULL
