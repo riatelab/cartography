@@ -1,7 +1,7 @@
 # cartography
 
 [![Version](http://www.r-pkg.org/badges/version/cartography)](https://cran.rstudio.com/web/packages/cartography/)
-![](http://cranlogs.r-pkg.org/badges/grand-total/cartography?color=brightgreen)  
+![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)  
 
 
 ***Create and integrate maps in your R workflow!***   

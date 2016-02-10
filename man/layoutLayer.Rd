@@ -38,7 +38,8 @@ extent of the frame to the one of a Spatial object. (optional)}
 Plot a layout layer.
 }
 \details{
-If extent is not set, plot.new has to be called first.
+If extent is not set, plot.new has to be called first.\cr
+The size of the title box in layoutLayer is fixed to 1.2 lines height.
 }
 \examples{
 data("nuts2006")
