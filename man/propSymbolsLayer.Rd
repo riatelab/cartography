@@ -25,6 +25,9 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df to plot.}
 
+\item{inches}{size of the biggest symbol (radius for circles, width for
+squares, height for bars) in inches.}
+
 \item{fixmax}{value of the biggest symbol (see Details).}
 
 \item{breakval}{breaking value (see Details).}
@@ -60,6 +63,9 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{k}{share of the map occupied by the biggest symbol (this argument
+is deprecated; please use inches instead.).}
 }
 \description{
 Plot a proportional symbols layer.

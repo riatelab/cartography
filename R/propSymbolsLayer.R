@@ -9,7 +9,11 @@
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
 #' @param var name of the numeric field in df to plot.
+#' @param inches size of the biggest symbol (radius for circles, width for
+#' squares, height for bars) in inches.
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
+#' @param k share of the map occupied by the biggest symbol (this argument
+#' is deprecated; please use inches instead.).
 #' @param col color of symbols.
 #' @param col2 second color of symbols (see Details).
 #' @param border color of polygon borders.

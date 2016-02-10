@@ -108,7 +108,7 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # Join
   spdf@data <- data.frame(spdf@data[,spdfid], df[match(spdf@data[,spdfid], df[,dfid]),])
-  print(spdf@data)
+
   spdf <- spdf[!is.na(spdf@data[,dfid]),]
   
   # get the colors and breaks

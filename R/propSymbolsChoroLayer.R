@@ -153,8 +153,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                    nclass = nclass, method = method)
     
     mycols <- layer$colMap
-    print(layer$colMap)
-    
+
     if (is.null(fixmax)){
       fixmax <- max(dots[,var])
     }

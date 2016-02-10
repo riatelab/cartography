@@ -1,4 +1,3 @@
-#### Methods wrappers
 #' @title Layout Layer
 #' @description Plot a layout layer.
 #' @name layoutLayer
@@ -15,7 +14,8 @@
 #' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
 #' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
 #' extent of the frame to the one of a Spatial object. (optional)
-#' @details If extent is not set, plot.new has to be called first.
+#' @details If extent is not set, plot.new has to be called first.\cr
+#' The size of the title box in layoutLayer is fixed to 1.2 lines height.
 #' @export
 #' @seealso \link{labelLayer}
 #' @examples
@@ -46,7 +46,6 @@ layoutLayer <- function(title = "Title of the map, year",
     }else {
       mapExtent <- par()$usr
     }
-
   x1 <- mapExtent[1]
   x2 <- mapExtent[2]
   y1 <- mapExtent[3]
@@ -58,6 +57,7 @@ layoutLayer <- function(title = "Title of the map, year",
   # FRAME
   if(frame == TRUE){colf <- col}else{colf <- NA}
   rect(x1, y1, x2, y2, border = colf, col = bg)
+
   
   # SCALE
   if (!is.null(scale)){
@@ -94,23 +94,25 @@ layoutLayer <- function(title = "Title of the map, year",
     xx <- c(xarrow, xarrow + delta / 2, xarrow + delta * 1)
     yy <- c(yarrow + delta * 1.5,yarrow, yarrow + delta * 1.5)
     polygon(xx, yy, col = "grey20", border = "grey20")
-    text(xarrow+delta*.5,yarrow,"S",adj=c(0.5,1.5),cex=0.8,font=2,col="grey20")
+    text(xarrow+delta*.5,yarrow,"S",adj=c(0.5,1.5),cex=0.8,
+         font = 2, col = "grey20")
   }
   
   
   # TITLE
-  size<-0.8
+  size <- 0.8
   par(xpd = TRUE)
-  rect(x1, y2, x2, y2+delta+strheight(title,cex = size),border = col, col = col)
-  text(x1+delta/2,y2+delta/2,title,adj=c(0,0),cex=size, col = coltitle,font=2)
+  rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2+(xinch(1.2)*0.2), 
+       border = col, col = col)
+  text(x = x1+delta/2, 
+       y = y2 + ((xinch(1.2) * 0.2) - 
+                   xinch(strheight(title, cex = 0.8, units = "inches"))) / 2,
+       labels = title, adj=c(0,0),
+       cex = size, col = coltitle,font=2)
   par(xpd = FALSE)
-  
+
   
   # SOURCES
-  text(x1+delta/2,y1+delta/2,paste(sources,author,sep="\n"),adj=c(0,0),
-       cex=0.6,font=3)
-  
-  
+  text(x1+delta/2, y1+delta/2, paste(sources,author,sep="\n"),
+       adj = c(0,0), cex = 0.6, font = 3)
 }
-
-
