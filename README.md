@@ -17,7 +17,7 @@
 * Proportional symbols maps (circles, squares, bars)   
 `propSymbolsLayer`, `propSymbolsChoroLayer`, `propSymbolsTypoLayer`, `propTrianglesLayer`  
 
-* Chroropleth maps (main discretization methods are availables)  
+* Chroropleth maps (main discretization methods are available)  
 `choroLayer`  
 
 * Typology maps  
@@ -45,7 +45,7 @@ It also proposes some **additional useful features** like:
 * Nice legends   
 `legendBarsSymbols`, `legendChoro`, `legendCirclesSymbols`, `legendGradLines`, `legendPropLines`, `legendPropTriangles`, `legendSquaresSymbols`, `legendTypo`  
 
-* Access to cartographic API (via OpenStreetMap package)  
+* Access to cartographic API (via rosm package)  
 `getTiles`, `tilesLayer`  
 
 * Irregular polygons to regular grid transformation with data handling  

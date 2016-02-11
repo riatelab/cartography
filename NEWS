@@ -1,12 +1,12 @@
-cartography version 1.2 (Release date: 2016-02-10)
+cartography version 1.2 (Release date: 2016-02-11)
 ==============
 Major changes:
 * The OpenStreetMap package used to display OpenStreetMap tiles has been replaced by the rosm package. rosm installation is lighter and easier (no Java dependency).
 * The k parameter is deprecated in propSymbolsLayer, propSymbolsTypoLayer and propSymbolsChoroLayer. The inches parameter is to be used instead. This modification allows to compare proportionnal symbols maps. 
 
 Minor changes:
-* Introduce the getFigDim function that help to find output figure dimension that fit a Spatial object dimension ratio.
-* the discLayer function now returns a (invisible) SpatialLinesDataFrame of discontinuities.
+* Introduce the getFigDim function that helps to find output figure dimension that fit a Spatial object dimension ratio.
+* The discLayer function now returns a (invisible) SpatialLinesDataFrame of discontinuities.
 * NAs are better managed in choroLayer.
 * The graticule.spdf SpatialLinesDataFrame has been expanded. 
 * The size of the title box in layoutLayer is fixed to 1.2 lines height.

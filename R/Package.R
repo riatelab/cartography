@@ -7,7 +7,7 @@
 #' \item{Proportional symbols maps (circles, squares, bars)\cr 
 #' \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
 #' \link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
-#' \item{Chroropleth maps (main discretization methods are availables)\cr
+#' \item{Chroropleth maps (main discretization methods are available)\cr
 #' \link{choroLayer}}
 #' \item{Typology maps\cr
 #' \link{typoLayer}}
@@ -32,7 +32,7 @@
 #' \link{legendPropLines}, \link{legendPropTriangles}, 
 #' \link{legendSquaresSymbols}, \link{legendTypo}
 #' }
-#' \item{Access to cartographic API (via OpenStreetMap package)\cr
+#' \item{Access to cartographic API (via rosm package)\cr
 #' \link{getTiles}, \link{tilesLayer}
 #' }
 #' \item{Irregular polygons to regular grid transformation with data handling\cr

@@ -218,7 +218,7 @@ cols <- carto.pal(pal1 = "blue.pal", n1 = 2, pal2 = "red.pal", n2 = 4)
 propSymbolsChoroLayer(spdf = nuts2.spdf, 
                       df = nuts2.df, 
                       var = "pop2008", #  field in df to plot the symbols sizes
-                      k = 0.002, # set the symbols sizes
+                      inches = 0.1, # set the symbols sizes
                       var2 = "cagr", #  field in df to plot the colors
                       col = cols, # symbols colors
                       breaks = c(-2.43,-1,0,0.5,1,2,3.1), # breaks

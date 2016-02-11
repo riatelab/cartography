@@ -20,6 +20,23 @@ Plot tiles from open map servers.
 This function is a wrapper for plotRGB from the 
 raster package.
 }
+\examples{
+\dontrun{
+data("nuts2006")
+# extract Denmark
+spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]   
+# Download the tiles, extent = Denmark 
+den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
+class(den)
+# Plot the tiles
+tilesLayer(den)
+# Plot countries
+plot(spdf, add=TRUE)
+# Map tiles sources
+mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.",
+      side = 1, adj = 0, cex = 0.7, font = 3)
+}
+}
 \seealso{
 \link{getTiles}
 }
