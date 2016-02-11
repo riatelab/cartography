@@ -4,6 +4,9 @@ language: r
 warnings_are_errors: true
 sudo: required
 before_install:
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y
-  - sudo apt-get update
-  - sudo apt-get install libgdal-dev libproj-dev
+  - sudo apt-get install aptitude -y
+  - sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+  - sudo apt-get update -qq
+  - sudo aptitude install -y gdal-bin
+  - sudo aptitude install -y libgdal1-dev
+  - sudo aptitude install -y libproj-dev
