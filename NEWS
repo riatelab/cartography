@@ -1,5 +1,6 @@
 cartography version 1.2 (Release date: 2016-02-11)
 ==============
+
 Major changes:
 * The OpenStreetMap package used to display OpenStreetMap tiles has been replaced by the rosm package. rosm installation is lighter and easier (no Java dependency).
 * The k parameter is deprecated in propSymbolsLayer, propSymbolsTypoLayer and propSymbolsChoroLayer. The inches parameter is to be used instead. This modification allows to compare proportionnal symbols maps. 
