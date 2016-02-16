@@ -24,7 +24,8 @@ Imports:
     stats,
     graphics,
     utils,
-    methods
+    methods, 
+    devtools
 Suggests:
     rgeos,
     rosm,
