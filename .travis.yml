@@ -1,6 +1,7 @@
-# Sample .travis.yml for R projects
+language: r
+warnings_are_errors: true
 
-language: R
+before_install: echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
 
 r_binary_packages:
   - rgdal
