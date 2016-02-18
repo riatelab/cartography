@@ -1,8 +1,8 @@
 # cartography
 
 [![Version](http://www.r-pkg.org/badges/version/cartography)](https://cran.rstudio.com/web/packages/cartography/)
-![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)  
-
+![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
+[![Travis-CI Build Status](https://travis-ci.org/Groupe-ElementR/cartography.svg?branch=master)](https://travis-ci.org/Groupe-ElementR/cartography)
 
 ## *Create and integrate maps in your R workflow!*
 
