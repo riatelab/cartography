@@ -1,8 +1,6 @@
 # Sample .travis.yml for R projects
 
 language: R
-warnings_are_errors: true
-sudo: required
 
 r_binary_packages:
   - rgdal
