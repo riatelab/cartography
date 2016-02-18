@@ -1,4 +1,5 @@
 language: r
+sudo: required
 warnings_are_errors: true
 
 before_install: echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
