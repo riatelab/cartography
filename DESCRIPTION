@@ -30,8 +30,7 @@ Suggests:
     rosm,
     raster,
     rgdal,
-    knitr, 
-    rmarkdown
+    knitr
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 5.0.1
