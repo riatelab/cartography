@@ -1,6 +1,8 @@
 language: R
-sudo: false
+sudo: required
+warnings_are_errors: true
 cache: packages
 
-r_binary_packages:
-  - rgdal
+apt_packages:
+ - libproj-dev
+ - gdal-bin
