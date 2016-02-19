@@ -1,17 +1,9 @@
-before_install:
-  - pwd
-  - export CURWD=`pwd`
-  - cd
-  - sudo apt-get install libproj-dev
-  - wget http://download.osgeo.org/gdal/1.11.2/gdal-1.11.2.tar.gz
-  - tar zxf gdal-1.11.2.tar.gz
-  - cd gdal-1.11.2
-  - ./configure
-  - make
-  - sudo make install
-  - cd $CURWD
+
+# Sample .travis.yml for R projects
 
 language: r
+warnings_are_errors: true
 sudo: required
 
-warnings_are_errors: true
+r_binary_packages:
+  - rgdal
