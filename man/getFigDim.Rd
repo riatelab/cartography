@@ -4,7 +4,7 @@
 \alias{getFigDim}
 \title{Get Figure Dimensions}
 \usage{
-getFigDim(spdf, width = NULL, height = NULL, mar = par()$mar, res = 72)
+getFigDim(spdf, width = NULL, height = NULL, mar = par("mar"), res = 72)
 }
 \arguments{
 \item{spdf}{a Spatial*DataFrame.}
@@ -39,15 +39,16 @@ The function can be used to export vector or raster files (see examples).
 \dontrun{
 data("nuts2006")
 spdf <- nuts0.spdf[nuts0.spdf$id=="IT",]
+
 ## PNG export
 # get figure dimension
 sizes <- getFigDim(spdf = spdf, width = 450, mar = c(0,0,1.2,0))
 # export the map
 png(filename = "Italy.png", width = sizes[1], height = sizes[2])
 par(mar = c(0,0,1.2,0))
-plot(spdf, col  = NA, border=NA, bg = "#A6CAE0")
-plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
-plot(spdf, col  = "#D1914D", border="white", add=T)
+plot(spdf, col = NA, border=NA, bg = "#A6CAE0")
+plot(world.spdf, col = "#E3DEBF", border = NA, add = TRUE)
+plot(spdf, col = "#D1914D", border = "white", add = TRUE)
 layoutLayer(title = "Map of Italy")
 dev.off()
 
@@ -57,9 +58,9 @@ sizes <- getFigDim(spdf = spdf, width = 450, mar = c(1,1,2.2,1))
 # export the map
 pdf(file = "Italy.pdf", width = sizes[1]/72, height = sizes[2]/72)
 par(mar = c(1,1,2.2,1))
-plot(spdf, col  = NA, border=NA, bg = "#A6CAE0")
-plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
-plot(spdf, col  = "#D1914D", border="white", add=T)
+plot(spdf, col = NA, border = NA, bg = "#A6CAE0")
+plot(world.spdf, col = "#E3DEBF", border = NA, add = TRUE)
+plot(spdf, col = "#D1914D", border = "white", add = TRUE)
 layoutLayer(title = "Map of Italy")
 dev.off()
 }

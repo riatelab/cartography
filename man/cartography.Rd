@@ -6,8 +6,17 @@
 \alias{cartography-package}
 \title{Cartography Package}
 \description{
-The cartography package proposes thematic mapping functions.
-It allows various cartographic representation:  
+The cartography package allows various cartographic representations 
+such as proportional symbols, chroropleth, typology, flows or discontinuities. 
+In addition it also proposes some useful features like cartographic palettes, 
+layout (scale, north arrow, title…), labels, legends or access to cartographic 
+API to ease the graphic presentation of maps.
+
+A vignette contains commented scripts on how to build various types of maps 
+with \code{cartography}: \cr
+\code{vignette(topic = "cartography")}
+
+Main functions : 
 \itemize{
 \item{Proportional symbols maps (circles, squares, bars)\cr 
 \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
@@ -20,18 +29,13 @@ It allows various cartographic representation:
 \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}}
 \item{Discontinuities maps (variable size and color of borders)\cr
 \link{getBorders}, \link{discLayer}}
-\item{...}
-}
-
-It also proposes some additional useful features like:
-\itemize{
 \item{Cartographic palettes (palettes adapted to cartographic representation)\cr
 \link{carto.pal}}
 \item{Layout (scale, north arrow, title...)\cr
 \link{layoutLayer}}
 \item{Labels\cr
 \link{labelLayer}}
-\item{Nice legends \cr
+\item{Legends \cr
 \link{legendBarsSymbols},
 \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, 
 \link{legendPropLines}, \link{legendPropTriangles}, 
@@ -42,15 +46,6 @@ It also proposes some additional useful features like:
 }
 \item{Irregular polygons to regular grid transformation with data handling\cr
 \link{getGridLayer}, \link{getGridData}}
-\item{...}
 }
-
-Functions starting with "get" build R objects.\cr
-Functions ending with "Layer" plot cartographic layers.\cr
-Functions starting with "legend" plot legends.\cr
-
-The vignette contains commented scripts on how to build various types of maps 
-with \code{cartography}: 
-\code{vignette(topic = "cartography")}
 }
 

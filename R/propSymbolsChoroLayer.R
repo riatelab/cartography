@@ -164,7 +164,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
     sizeMax <- max(sizes)
     
     if (inches <= sizeMax){
-      sizevect <- xinch(seq(inches, inches/9, length.out = 4))
+      sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
       varvect <- seq(fixmax,0,length.out = 4 )
       inches <- sizeMax
     }else{
@@ -173,7 +173,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
       dots <- rbind(dots[1,],dots)
       dots[1,var] <- fixmax
       sizes <- c(inches, sizes)
-      sizevect <- xinch(seq(inches, inches/9, length.out = 4))
+      sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
       varvect <- seq(fixmax, 0,length.out = 4 )
     }
     

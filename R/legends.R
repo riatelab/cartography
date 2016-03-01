@@ -732,10 +732,15 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
     rLegmax <- max(r,na.rm = TRUE)
     rLegmin <- min(r,na.rm = TRUE)
     rLegextent <- rLegmax - rLegmin
-    
-    rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
+
     rLeg <- c(rLegmax,rLegmax - rLegextent/3 , rLegmax - 2*(rLegextent/3),rLegmin)
+    
+    sleg <- rLeg 
+    rVal <- sleg * rValmax / sleg[1]
     rVal <- round(rVal,values.rnd)
+    
+    
+    
     
     
     # xsize & ysize
@@ -780,8 +785,10 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
     if(!is.null(breakval)){
       
       yref <- yref - delta1  
-      symbols(x = xref + height/3  ,y=yref + delta1 - height/2 + height,squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
-      symbols(x = xref + height/3  ,y=yref + delta1 - height/2,squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
+      symbols(x = xref + height/3, y=yref + delta1 - height/2 + height, 
+              squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
+      symbols(x = xref + height/3, y=yref + delta1 - height/2, 
+              squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
       text(xref + height/1.5 + delta2,yref + delta1 - height/3 ,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
       text(xref + height/1.5 + delta2, yref + height + delta1 - height/3 ,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
       yref <- yref + height *2 + delta1
@@ -795,7 +802,7 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
       
       for(i in 1:4){
         
-        rect(xref, yref, xref+height/1.5, yref+rLeg[i] ,col=mycol)
+        rect(xref, yref, xref + height/1.5, yref + rLeg[i] ,col=mycol)
       }
       
       for(i in 1:4){
