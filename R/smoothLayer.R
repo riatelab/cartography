@@ -43,6 +43,7 @@
 #' the SpatialPosition package and choroLayer.
 #' @export
 #' @examples
+#' \dontrun{
 #' data("nuts2006")
 #' 
 #' # Potential of GDP
@@ -61,6 +62,7 @@
 #'             mask = nuts0.spdf, 
 #'             legend.title.txt = "GDP PER CAPITA", 
 #'             legend.pos = "topright", legend.values.rnd = -2)  
+#'}             
 smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, 
                         var, 
                         var2 = NULL, 

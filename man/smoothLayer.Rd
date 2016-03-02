@@ -80,6 +80,7 @@ This function is a wrapper around the quickStewart function in
 the SpatialPosition package and choroLayer.
 }
 \examples{
+\dontrun{
 data("nuts2006")
 
 # Potential of GDP
@@ -98,5 +99,6 @@ smoothLayer(spdf = nuts3.spdf, df = nuts3.df,
             mask = nuts0.spdf, 
             legend.title.txt = "GDP PER CAPITA", 
             legend.pos = "topright", legend.values.rnd = -2)  
+}             
 }
 
