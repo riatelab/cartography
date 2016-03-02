@@ -26,6 +26,7 @@ Imports:
     utils,
     methods
 Suggests:
+    SpatialPosition,
     rgeos,
     rosm,
     raster,

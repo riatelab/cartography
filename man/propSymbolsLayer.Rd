@@ -38,9 +38,9 @@ squares, height for bars) in inches.}
 
 \item{col2}{second color of symbols (see Details).}
 
-\item{border}{color of polygon borders.}
+\item{border}{color of symbols borders.}
 
-\item{lwd}{borders width.}
+\item{lwd}{width of symbols borders.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 

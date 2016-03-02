@@ -16,8 +16,8 @@
 #' is deprecated; please use inches instead.).
 #' @param col color of symbols.
 #' @param col2 second color of symbols (see Details).
-#' @param border color of polygon borders.
-#' @param lwd borders width.
+#' @param border color of symbols borders.
+#' @param lwd width of symbols borders.
 #' @param breakval breaking value (see Details).
 #' @param fixmax value of the biggest symbol (see Details).
 #' @param legend.pos position of the legend, one of "topleft", "top", 

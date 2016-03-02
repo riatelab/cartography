@@ -5,5 +5,7 @@ language: r
 warnings_are_errors: true
 sudo: required
 
+r_github_packages:
+  - SpatialPosition
 r_binary_packages:
   - rgdal
