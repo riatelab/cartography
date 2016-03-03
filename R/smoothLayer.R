@@ -1,14 +1,21 @@
 #' @title Smooth Layer
 #' @name smoothLayer
-#' @description Plot a smoothed layer.
+#' @description Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
+#' This function is a wrapper around the \code{\link[SpatialPosition]{quickStewart}} function in 
+#' \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
+#' The SpatialPosition package also provides: \itemize{
+#' \item{vignettes to explain the computation of potentials;} 
+#' \item{more customizable inputs and outputs (custom distance matrix, raster output...);}
+#' \item{other functions related to spatial interactions (Reilly  and Huff catchment areas).}}
 #' @param spdf a SpatialPolygonsDataFrame.
-#' @param df a data frame that contains the values to plot.
+#' @param df a data frame that contains the values to compute
 #' @param spdfid name of the identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
 #' @param dfid name of the identifier field in df, default to the first column 
 #' of df. (optional)
 #' @param var name of the numeric field in df used to compute potentials.
-#' @param var2 name of the numeric field in df used to compute potentials, used for ratio (numerator).
+#' @param var2 name of the numeric field in df used to compute potentials. 
+#' This field is used for ratio computation (see Details).
 #' @param typefct character; spatial interaction function. Options are "pareto" 
 #' (means power law) or "exponential".
 #' If "pareto" the interaction is defined as: (1 + alpha * mDistance) ^ (-beta).
@@ -21,8 +28,8 @@
 #' @param beta numeric; impedance factor for the spatial interaction function.  
 #' @param resolution numeric; resolution of the output SpatialPointsDataFrame
 #'  (in map units). 
-#' @param breaks numeric; a vector of break values. 
-#' @param mask SpatialPolygonsDataFrame; mask used to clip contour shapes.
+#' @param breaks numeric; a vector of values used to discretize the potentials. 
+#' @param mask SpatialPolygonsDataFrame; mask used to clip contours of potentials.
 #' @param col a vector of colors. Note that if breaks is specified there must be one less 
 #' colors specified than the number of break. 
 #' @param border color of the polygons borders.
@@ -39,9 +46,11 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details This function is a wrapper around the quickStewart function in 
-#' the SpatialPosition package and choroLayer.
+#' @details 
+#' If var2 is provided the ratio between the potentials of var (numerator) 
+#' and var2 (denominator) is computed.
 #' @export
+#' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples
 #' \dontrun{
 #' data("nuts2006")
@@ -81,7 +90,6 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                         legend.values.rnd = 0,
                         legend.frame = FALSE,
                         add = FALSE){
-  
   if (!requireNamespace("SpatialPosition", quietly = TRUE)) {
     stop("'SpatialPosition' package needed for this function to work. Please install it.",
          call. = FALSE)
@@ -89,6 +97,7 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   if(!'package:SpatialPosition' %in% search()){
     attachNamespace('SpatialPosition')
   }
+  # Potential
   pot.spdf <- SpatialPosition::quickStewart(spdf = spdf, df = df, 
                                             spdfid = spdfid, dfid = dfid, 
                                             var = var, var2 = var2, 
@@ -97,11 +106,11 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                             resolution = resolution, 
                                             beta = beta, mask = mask, 
                                             breaks = breaks)
-  
+  # breaks
   if(is.null(breaks)){
-    breaks <- unique(c(pot.spdf$min, max(pot.spdf$max)))
+    breaks <- c(unique(pot.spdf$min), max(pot.spdf$max))
   }
-  print(breaks)
+  # map
   choroLayer(spdf = pot.spdf, df = pot.spdf@data, var = "mean", 
              breaks = breaks, col = col, border = border, lwd = lwd, 
              legend.pos = legend.pos, legend.title.txt = legend.title.txt, 
@@ -109,7 +118,4 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
              legend.values.cex = legend.values.cex,
              legend.values.rnd = legend.values.rnd, 
              legend.frame = legend.frame, add = add)
-  
 }
-
-

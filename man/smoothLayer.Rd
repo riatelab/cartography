@@ -14,7 +14,7 @@ smoothLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2 = NULL,
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{df}{a data frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to compute}
 
 \item{spdfid}{name of the identifier field in spdf, default to the first column 
 of the spdf data frame. (optional)}
@@ -24,7 +24,8 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df used to compute potentials.}
 
-\item{var2}{name of the numeric field in df used to compute potentials, used for ratio (numerator).}
+\item{var2}{name of the numeric field in df used to compute potentials. 
+This field is used for ratio computation (see Details).}
 
 \item{typefct}{character; spatial interaction function. Options are "pareto" 
 (means power law) or "exponential".
@@ -42,9 +43,9 @@ interaction function equals 0.5.}
 \item{resolution}{numeric; resolution of the output SpatialPointsDataFrame
 (in map units).}
 
-\item{mask}{SpatialPolygonsDataFrame; mask used to clip contour shapes.}
+\item{mask}{SpatialPolygonsDataFrame; mask used to clip contours of potentials.}
 
-\item{breaks}{numeric; a vector of break values.}
+\item{breaks}{numeric; a vector of values used to discretize the potentials.}
 
 \item{col}{a vector of colors. Note that if breaks is specified there must be one less 
 colors specified than the number of break.}
@@ -73,11 +74,17 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a smoothed layer.
+Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
+This function is a wrapper around the \code{\link[SpatialPosition]{quickStewart}} function in 
+\code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
+The SpatialPosition package also provides: \itemize{
+\item{vignettes to explain the computation of potentials;} 
+\item{more customizable inputs and outputs (custom distance matrix, raster output...);}
+\item{other functions related to spatial interactions (Reilly  and Huff catchment areas).}}
 }
 \details{
-This function is a wrapper around the quickStewart function in 
-the SpatialPosition package and choroLayer.
+If var2 is provided the ratio between the potentials of var (numerator) 
+and var2 (denominator) is computed.
 }
 \examples{
 \dontrun{
@@ -100,5 +107,8 @@ smoothLayer(spdf = nuts3.spdf, df = nuts3.df,
             legend.title.txt = "GDP PER CAPITA", 
             legend.pos = "topright", legend.values.rnd = -2)  
 }             
+}
+\seealso{
+\link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 }
 
