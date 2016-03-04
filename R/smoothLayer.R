@@ -28,6 +28,7 @@
 #' @param beta numeric; impedance factor for the spatial interaction function.  
 #' @param resolution numeric; resolution of the output SpatialPointsDataFrame
 #'  (in map units). 
+#' @param nclass	numeric; a targeted number of classes (default to 8). Not used if breaks is set.
 #' @param breaks numeric; a vector of values used to discretize the potentials. 
 #' @param mask SpatialPolygonsDataFrame; mask used to clip contours of potentials.
 #' @param col a vector of colors. Note that if breaks is specified there must be one less 
@@ -80,6 +81,7 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                         beta, 
                         resolution = NULL, 
                         mask = NULL, 
+                        nclass = 8,
                         breaks = NULL, 
                         col = NULL,
                         border = "grey20", lwd = 1,
@@ -105,6 +107,7 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                             span = span, 
                                             resolution = resolution, 
                                             beta = beta, mask = mask, 
+                                            nclass=nclass,
                                             breaks = breaks)
   # breaks
   if(is.null(breaks)){

@@ -6,7 +6,7 @@
 \usage{
 smoothLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2 = NULL,
   typefct = "exponential", span, beta, resolution = NULL, mask = NULL,
-  breaks = NULL, col = NULL, border = "grey20", lwd = 1,
+  nclass = 8, breaks = NULL, col = NULL, border = "grey20", lwd = 1,
   legend.pos = "bottomleft", legend.title.txt = "Potential",
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
   legend.frame = FALSE, add = FALSE)
@@ -44,6 +44,8 @@ interaction function equals 0.5.}
 (in map units).}
 
 \item{mask}{SpatialPolygonsDataFrame; mask used to clip contours of potentials.}
+
+\item{nclass}{numeric; a targeted number of classes (default to 8). Not used if breaks is set.}
 
 \item{breaks}{numeric; a vector of values used to discretize the potentials.}
 
