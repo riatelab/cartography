@@ -75,6 +75,9 @@ not (FALSE).}
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
 }
+\value{
+An (\code{\link{invisible}}) SpatialPolygonsDataFrame is returned (see  )
+}
 \description{
 Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
 This function is a wrapper around the \code{\link[SpatialPosition]{quickStewart}} function in 

@@ -50,6 +50,7 @@
 #' @details 
 #' If var2 is provided the ratio between the potentials of var (numerator) 
 #' and var2 (denominator) is computed.
+#' @return An \code{\link{invisible}} SpatialPolygonsDataFrame is returned (see \code{\link{quickStewart}}).
 #' @export
 #' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples
@@ -114,11 +115,12 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
     breaks <- c(unique(pot.spdf$min), max(pot.spdf$max))
   }
   # map
-  choroLayer(spdf = pot.spdf, df = pot.spdf@data, var = "mean", 
+  choroLayer(spdf = pot.spdf, df = pot.spdf@data, var = "center", 
              breaks = breaks, col = col, border = border, lwd = lwd, 
              legend.pos = legend.pos, legend.title.txt = legend.title.txt, 
              legend.title.cex = legend.title.cex, 
              legend.values.cex = legend.values.cex,
              legend.values.rnd = legend.values.rnd, 
              legend.frame = legend.frame, add = add)
+  return(invisible(pot.spdf))
 }
