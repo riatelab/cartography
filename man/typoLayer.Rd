@@ -7,7 +7,8 @@
 typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   border = "grey20", lwd = 1, legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.nodata = "no data", legend.frame = FALSE, add = FALSE)
+  legend.values.order = NULL, legend.nodata = "no data",
+  legend.frame = FALSE, add = FALSE)
 }
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
@@ -38,6 +39,9 @@ legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
+\item{legend.values.order}{values order in the legend, a character vector 
+that matches var modalities. Colors will be affected following this order.}
+
 \item{legend.nodata}{no data label.}
 
 \item{legend.frame}{whether to add a frame to the legend (TRUE) or 
@@ -53,12 +57,8 @@ Plot a typology layer.
 data(nuts2006)
 ## Example 1
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-colours <- c("red","green","blue","yellow")
-typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo")
+typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo") 
 
-
-## Example 2
-# Layout plot
 layoutLayer(title = "Colors in Europe",
             sources = "UMS RIATE, 2015",
             scale = NULL,
@@ -70,7 +70,8 @@ layoutLayer(title = "Colors in Europe",
 #Countries plot
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 typoLayer(spdf = nuts0.spdf, df = nuts0.df,
-          var="typo", 
+          var="typo",  col = c("red","black","grey","yellow"),
+          legend.values.order = c("D", "B", "A", "C"),
           legend.pos = "topright", 
           legend.title.txt = "Category", 
           add=TRUE)

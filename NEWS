@@ -5,8 +5,9 @@ Major changes:
 * Introduce the smoothLayer function, this function computes smoothed maps of potentials. It uses quickStewart from SpatialPosition package.
 
 Minor changes:
+* Introduce the legend.*.values.order parameter in typoLayer, propSymbolsTypoLayer and gradLinkTypoLayer. This parameter allows to order modalities in the legend and eases the color assignement. 
 * Change min value in prop*Layer legends
-* typos in the doc
+* typos in doc
 
 
 cartography version 1.2 (Release date: 2016-02-11)

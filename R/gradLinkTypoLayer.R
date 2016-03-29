@@ -29,6 +29,8 @@
 #' @param legend.var2.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param legend.var2.nodata text for "no data" values
+#' @param legend.var2.values.order values order in the legend, a character vector 
+#' that matches var modalities. Colors will be affected following this order. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
@@ -38,12 +40,16 @@
 #' data("nuts2006")
 #' # Create a link layer
 #' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+#' 
 #' # Plot the links - Twin cities agreements between regions
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
+#' 
 #' # Countries of agreements
 #' twincities$ctry <- substr(twincities$j,1,2)
+#' 
 #' # Agreements with german cities
 #' twincitiesok <- twincities[substr(twincities$i,1,2)=="DE",]
+#' 
 #' # plot the colored and graduated links
 #' gradLinkTypoLayer(spdf = twincities.spdf, df = twincitiesok,
 #'                   spdfids = "i", spdfide = "j",
@@ -68,6 +74,7 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
                               legend.var.frame = FALSE,
                               legend.var2.pos = "topright", 
                               legend.var2.title.txt = var2,
+                              legend.var2.values.order = NULL,
                               legend.var2.nodata = "no data",
                               legend.var2.frame = FALSE,
                               add = TRUE){
@@ -95,22 +102,25 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
   lwdMap <- lwd[findInterval(x = spdf@data[,var], vec = breaks, 
                              all.inside = TRUE)]
   
+  # modalities
+  mod <- unique(spdf@data[, var2])
+  mod <- mod[!is.na(mod)]
+  # check nb col vs nb mod
+  col <- checkCol(col, mod)
+  # check legend.var2.values.order vs mod values
+  legend.var2.values.order <- checkOrder(legend.var2.values.order, mod)
   # get the colors 
-  spdf$cols <- as.factor(spdf@data[, var2])
-  if (!is.null(col)){
-    levels(spdf$cols) <- col
-  } else {
-    cols <- grDevices::rainbow(nlevels(spdf$cols))
-    levels(spdf$cols) <- cols
-  }
+  refcol <- data.frame(mod = legend.var2.values.order, 
+                       col = col[1:length(legend.var2.values.order)], 
+                       stringsAsFactors = FALSE)
+  colvec <- refcol[match(spdf@data[,var2], refcol[,1]),2]
+  # for the legend  
+  mycols <- refcol[,2]
+  rVal <- refcol[,1]
   
   # map
-  plot(spdf, col= as.vector(spdf$cols),lwd = lwdMap, add = add)
-  
-  # for the legend  
-  mycols <- as.character(levels(spdf$cols))
-  rVal <- as.character(levels(as.factor(spdf@data[, var2])))
-  
+  plot(spdf, col = colvec ,lwd = lwdMap, add = add)
+    
   nodata <- FALSE
   if(max(is.na(df[,var2])>0)){nodata <- TRUE}
   

@@ -83,7 +83,7 @@ require(devtools)
 devtools::install_github("Groupe-ElementR/cartography")
 ```
 
-* Stable version on [CRAN](https://cran.r-project.org/web/packages/cartography/)
+* Stable version on [CRAN](https://CRAN.R-project.org/package=cartography/)
 ```{r}
 install.packages("cartography")
 ```

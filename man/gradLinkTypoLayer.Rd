@@ -10,8 +10,8 @@ gradLinkTypoLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
   legend.var.pos = "bottomleft", legend.var.title.txt = var,
   legend.var.frame = FALSE, legend.var2.pos = "topright",
-  legend.var2.title.txt = var2, legend.var2.nodata = "no data",
-  legend.var2.frame = FALSE, add = TRUE)
+  legend.var2.title.txt = var2, legend.var2.values.order = NULL,
+  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
 \item{spdf}{SpatialLinesDataFrame; a link layer.}
@@ -60,6 +60,9 @@ not (FALSE).}
 
 \item{legend.var2.title.txt}{title of the legend (factor data).}
 
+\item{legend.var2.values.order}{values order in the legend, a character vector 
+that matches var modalities. Colors will be affected following this order.}
+
 \item{legend.var2.nodata}{text for "no data" values}
 
 \item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or 
@@ -78,12 +81,16 @@ Unlike most of cartography functions, identifiers fields are mandatory.
 data("nuts2006")
 # Create a link layer
 twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+
 # Plot the links - Twin cities agreements between regions
 plot(nuts0.spdf, col = "grey60",border = "grey20")
+
 # Countries of agreements
 twincities$ctry <- substr(twincities$j,1,2)
+
 # Agreements with german cities
 twincitiesok <- twincities[substr(twincities$i,1,2)=="DE",]
+
 # plot the colored and graduated links
 gradLinkTypoLayer(spdf = twincities.spdf, df = twincitiesok,
                   spdfids = "i", spdfide = "j",

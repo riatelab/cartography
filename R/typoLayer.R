@@ -17,6 +17,8 @@
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
 #' @param legend.values.cex size of the values in the legend.
+#' @param legend.values.order values order in the legend, a character vector 
+#' that matches var modalities. Colors will be affected following this order.  
 #' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param legend.nodata no data label.
@@ -28,12 +30,8 @@
 #' data(nuts2006)
 #' ## Example 1
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-#' colours <- c("red","green","blue","yellow")
-#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo")
+#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo") 
 #' 
-#' 
-#' ## Example 2
-#' # Layout plot
 #' layoutLayer(title = "Colors in Europe",
 #'             sources = "UMS RIATE, 2015",
 #'             scale = NULL,
@@ -45,7 +43,8 @@
 #' #Countries plot
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 #' typoLayer(spdf = nuts0.spdf, df = nuts0.df,
-#'           var="typo", 
+#'           var="typo",  col = c("red","black","grey","yellow"),
+#'           legend.values.order = c("D", "B", "A", "C"),
 #'           legend.pos = "topright", 
 #'           legend.title.txt = "Category", 
 #'           add=TRUE)
@@ -55,6 +54,7 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                       legend.title.txt = var,
                       legend.title.cex = 0.8, 
                       legend.values.cex = 0.6,
+                      legend.values.order = NULL,
                       legend.nodata = "no data",
                       legend.frame = FALSE,
                       add = FALSE)
@@ -63,28 +63,32 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   if (is.null(dfid)){dfid <- names(df)[1]}
   
   # Join
-  spdf@data <- data.frame(spdf@data[,spdfid], df[match(spdf@data[,spdfid], df[,dfid]),])
+  spdf@data <- data.frame(spdf@data[,spdfid], 
+                          df[match(spdf@data[,spdfid], df[,dfid]),])
   
+  # modalities
+  mod <- unique(spdf@data[, var])
+  mod <- mod[!is.na(mod)]
+  # check nb col vs nb mod
+  col <- checkCol(col, mod)
+  # check legend.values.order vs mod values
+  legend.values.order <- checkOrder(legend.values.order, mod)
   # get the colors 
-  
-  spdf@data$col <- as.factor(spdf@data[, var])
-
-  if (!is.null(col)){
-    levels(spdf@data$col) <- col
-  } else {
-    col <- grDevices::rainbow(nlevels(spdf@data$col))
-    levels(spdf@data$col) <- col
-  }
-
-  # poly
-  plot(spdf, col = as.vector(spdf@data$col), border = border, lwd = lwd, add = add)
-
+  refcol <- data.frame(mod = legend.values.order, 
+                       col = col[1:length(legend.values.order)], 
+                       stringsAsFactors = FALSE)
+  colvec <- refcol[match(spdf@data[,var], refcol[,1]),2]
   # for the legend  
-  mycols <- as.character(levels(spdf@data$col))
-  rVal <- as.character(levels(as.factor(spdf@data[, var])))
+  mycols <- refcol[,2]
+  rVal <- refcol[,1]
+  
+    
+  # plot
+  plot(spdf, col = colvec, border = border, lwd = lwd, add = add)
+  
   
   nodata <- FALSE
-  if(max(is.na(df[,var])>0)){nodata <- TRUE}
+  if(max(is.na(df[,var]) > 0)){nodata <- TRUE}
   
   if(legend.pos !="n"){
     legendTypo(pos = legend.pos, title.txt = legend.title.txt,
@@ -95,8 +99,5 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                symbol="box", 
                nodata = nodata, 
                nodata.txt = legend.nodata)
-    
   }
-  
-  
 }

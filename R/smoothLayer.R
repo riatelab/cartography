@@ -1,7 +1,7 @@
 #' @title Smooth Layer
 #' @name smoothLayer
 #' @description Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
-#' This function is a wrapper around the \code{\link[SpatialPosition]{quickStewart}} function in 
+#' This function is a wrapper around the \code{\link[SpatialPosition:quickStewart]{quickStewart}} function in 
 #' \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
 #' The SpatialPosition package also provides: \itemize{
 #' \item{vignettes to explain the computation of potentials;} 
@@ -50,7 +50,7 @@
 #' @details 
 #' If var2 is provided the ratio between the potentials of var (numerator) 
 #' and var2 (denominator) is computed.
-#' @return An \code{\link{invisible}} SpatialPolygonsDataFrame is returned (see \code{\link{quickStewart}}).
+#' @return An \code{\link{invisible}} SpatialPolygonsDataFrame is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 #' @export
 #' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples

@@ -35,6 +35,8 @@
 #' not (FALSE).
 #' @param legend.var2.frame whether to add a frame to the legend (TRUE) or
 #' not (FALSE).
+#' @param legend.var2.values.order values order in the legend, a character vector 
+#' that matches var modalities. Colors will be affected following this order.  
 #' @param legend.var2.nodata text for "no data" values
 #' @param add whether to add the layer to an existing plot (TRUE) or
 #' not (FALSE).
@@ -66,14 +68,16 @@
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 #' nuts0.df$typo[1:3] <- NA
 #' nuts0.df$pop2008[4:6] <- NA
-#' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df, 
-#'                      var = "pop2008", var2="typo", 
+#' propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
+#'                      var = "pop2008", var2="typo",
 #'                      symbols = "circle",
-#'                      legend.var.pos = "topright", 
+#'                      legend.var.pos = "topright",
 #'                      legend.var2.pos = "right",
 #'                      legend.var.title.txt = "Total\npopulation (2008)",
 #'                      legend.values.rnd = -3,
 #'                      legend.var2.title.txt = "Category",
+#'                      col = c("red","green","blue","yellow"),
+#'                      legend.var2.values.order = c("D", "A", "B", "C"),
 #'                      legend.var.style = "c")
 propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  inches = 0.3, fixmax = NULL, symbols = "circle",
@@ -88,6 +92,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  legend.var.frame = FALSE,
                                  legend.var2.pos = "topright",
                                  legend.var2.title.txt = var2,
+                                 legend.var2.values.order = NULL,
                                  legend.var2.nodata = "no data",
                                  legend.var2.frame = FALSE,
                                  add = TRUE, k = NULL){
@@ -117,19 +122,23 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                             df = df, dfid = dfid, var = var)
     
     
-    # Color Management
-    mycols <- as.factor(dots[, var2])
-    if (!is.null(col)){
-      levels(mycols) <- col
-    } else {
-      col <- grDevices::rainbow(nlevels(mycols))
-      levels(mycols) <- col
-    }
-
-    # for the legend
-    mycolsleg <- as.character(levels(mycols))
-    rVal <- as.character(levels(as.factor(dots[, var2])))
-    mycols <- as.character(mycols)
+    # modalities
+    mod <- unique(dots[, var2])
+    mod <- mod[!is.na(mod)]
+    # check nb col vs nb mod
+    col <- checkCol(col, mod)
+    # check legend.var2.values.order vs mod values
+    legend.var2.values.order <- checkOrder(legend.var2.values.order, mod)
+    # get the colors 
+    refcol <- data.frame(mod = legend.var2.values.order, 
+                         col = col[1:length(legend.var2.values.order)], 
+                         stringsAsFactors = FALSE)
+    mycols <- refcol[match(dots[, var2], refcol[,1]),2]
+    
+    # for the legend  
+    mycolsleg <- refcol[,2]
+    rVal <- refcol[,1]
+    
 
     if (is.null(fixmax)){
       fixmax <- max(dots[,var])

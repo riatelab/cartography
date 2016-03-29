@@ -76,11 +76,11 @@ not (FALSE).}
 not (FALSE).}
 }
 \value{
-An (\code{\link{invisible}}) SpatialPolygonsDataFrame is returned (see  )
+An \code{\link{invisible}} SpatialPolygonsDataFrame is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 }
 \description{
 Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
-This function is a wrapper around the \code{\link[SpatialPosition]{quickStewart}} function in 
+This function is a wrapper around the \code{\link[SpatialPosition:quickStewart]{quickStewart}} function in 
 \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
 The SpatialPosition package also provides: \itemize{
 \item{vignettes to explain the computation of potentials;} 

@@ -11,8 +11,8 @@ propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.var.title.txt = var, legend.values.rnd = 0,
   legend.var.style = "c", legend.var.frame = FALSE,
   legend.var2.pos = "topright", legend.var2.title.txt = var2,
-  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE,
-  k = NULL)
+  legend.var2.values.order = NULL, legend.var2.nodata = "no data",
+  legend.var2.frame = FALSE, add = TRUE, k = NULL)
 }
 \arguments{
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
@@ -65,6 +65,9 @@ not (FALSE).}
 
 \item{legend.var2.title.txt}{title of the legend (factor data).}
 
+\item{legend.var2.values.order}{values order in the legend, a character vector 
+that matches var modalities. Colors will be affected following this order.}
+
 \item{legend.var2.nodata}{text for "no data" values}
 
 \item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or
@@ -103,14 +106,16 @@ plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 nuts0.df$typo[1:3] <- NA
 nuts0.df$pop2008[4:6] <- NA
-propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                     var = "pop2008", var2="typo", 
+propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
+                     var = "pop2008", var2="typo",
                      symbols = "circle",
-                     legend.var.pos = "topright", 
+                     legend.var.pos = "topright",
                      legend.var2.pos = "right",
                      legend.var.title.txt = "Total\\npopulation (2008)",
                      legend.values.rnd = -3,
                      legend.var2.title.txt = "Category",
+                     col = c("red","green","blue","yellow"),
+                     legend.var2.values.order = c("D", "A", "B", "C"),
                      legend.var.style = "c")
 }
 \seealso{
