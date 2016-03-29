@@ -52,11 +52,11 @@ propSymbolsChoroLayer(spdf = nuts2.spdf,
                       breaks = c(-2.43,-1,0,0.5,1,2,3.1), # breaks
                       border = "grey50",  # border colors of the symbols
                       lwd = 0.75, # symbols width
-                      legend.var.pos = "topright", # size legend position
-                      legend.var.values.rnd = -3, # size legend value roundinf
+                      legend.var.pos = "topright", # legend position
+                      legend.var.values.rnd = -3, # legend value 
                       legend.var.title.txt = "Total Population", # size legend title
-                      legend.var.style = "e", # size legend type
-                      legend.var2.pos = "right", # color legend position
+                      legend.var.style = "e", # legend type
+                      legend.var2.pos = "right", # legend position
                       legend.var2.title.txt = "Compound Annual\nGrowth Rate") # legend title
 
 # layout
