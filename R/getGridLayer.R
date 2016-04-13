@@ -23,68 +23,84 @@
 #'        }
 #' @export
 getGridLayer <- function(spdf, cellsize, spdfid = NULL){
+  # rgeos requirement
   if (!requireNamespace("rgeos", quietly = TRUE)) {
     stop("'rgeos' package needed for this function to work. Please install it.",
          call. = FALSE)
   }
+  
+  # id check
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   
+  # spdf management/area
   spdf@data <- spdf@data[spdfid]
-  row.names(spdf@data)<-spdf@data[,spdfid]
-  spdf <- spChFIDs(spdf, spdf@data[,spdfid])
-  spdf@data$area <- rgeos::gArea(spdf, byid=TRUE)
+  row.names(spdf) <- spdf@data[,spdfid]
+  spdf$area <- rgeos::gArea(spdf, byid=TRUE)
   
+  # get a grid
+  spgrid <- getGrid(spdf, cellsize)
+  
+  # keep only intersecting cells
+  over <- rgeos::gIntersects(spgrid, spdf, byid = TRUE)
+  x <- colSums(over)
+  spgrid <- spgrid[spgrid$id %in% names(x[x>0]),]
+  
+  # intersection
+  parts <- rgeos::gIntersection(spgrid, spdf, byid = TRUE)
+  data <- data.frame(id=sapply(methods::slot(parts, "polygons"), 
+                               methods::slot, "ID"))
+  tmp <- data.frame(do.call('rbind', (strsplit(as.character(data$id)," "))))
+  
+  data$id1 <- as.vector(tmp$X1)
+  data$id2 <- as.vector(tmp$X2)
+  row.names(data) <- data$id
+  parts <- SpatialPolygonsDataFrame(parts, data)
+  proj4string(parts) <- proj4string(spdf)
+  
+  # 
+  x <- gBuffer(gUnaryUnion(parts, id = parts$id1), byid=T)
+  data <- data.frame(id = sapply(methods::slot(x, "polygons"),
+                                 methods::slot, "ID"))
+  row.names(data) <- data$id
+  spgrid <- SpatialPolygonsDataFrame(x, data)
+  spgrid@data$cell_area <- rgeos::gArea(spgrid, byid = TRUE)
+  proj4string(spgrid) <-proj4string(spdf)
+  
+  #
+  areas <- data.frame(parts@data, area_part = rgeos::gArea(parts, byid=TRUE), 
+                      area_full = spdf@data[match(parts@data$id2, 
+                                                  spdf@data[,spdfid]),"area"])
+  areas$area_pct <- (areas$area_part/areas$area_full) * 100
+  areas <- areas[,c("id1","id2","area_pct")]
+  colnames(areas) <- c("id_cell","id_geo","area_pct")
+  
+  return(list(spdf = spgrid, df = areas))
+}
+
+
+
+
+
+
+getGrid <- function(spdf, cellsize){
   boundingBox <- bbox(spdf)
   rounder <- boundingBox %% cellsize
   boundingBox[,1] <- boundingBox[,1] - rounder[,1]
   roundermax <- cellsize - rounder[,2]
   boundingBox[,2] <- boundingBox[,2] + cellsize - rounder[,2]
-  boxCoordX <- seq(from = boundingBox[1,1], to = boundingBox[1,2], 
+  boxCoordX <- seq(from = boundingBox[1,1], 
+                   to = boundingBox[1,2], 
                    by = cellsize)
-  boxCoordY <- seq(from = boundingBox[2,1], to = boundingBox[2,2], 
+  boxCoordY <- seq(from = boundingBox[2,1], 
+                   to = boundingBox[2,2], 
                    by = cellsize)
   spatGrid <- expand.grid(boxCoordX, boxCoordY)
   spatGrid$id <- seq(1, nrow(spatGrid), 1)
-  coordinates(spatGrid) <- 1:2 # promote to SpatialPointsDataFrame
-  gridded(spatGrid) <- TRUE # promote to SpatialPixelsDataFrame
-  spgrid <-  methods::as(spatGrid, "SpatialPolygonsDataFrame") # promote to SpatialPolygonDataFrame
+  
+  coordinates(spatGrid) <- 1:2 
+  gridded(spatGrid) <- TRUE 
+  spgrid <-  methods::as(spatGrid, "SpatialPolygonsDataFrame") 
   proj4string(spgrid) <-proj4string(spdf)
   row.names(spgrid) <- as.character(spgrid$id)
-  
-  # On ne garde que ce qui touche le fond de carte initial
-  over <- rgeos::gIntersects(spgrid, spdf, byid = TRUE)
-  x <- colSums(over)
-  spgrid <- spgrid[spgrid$id %in% names(x[x>0]),]
-  
-  mask <- rgeos:: gBuffer(spdf, byid=FALSE, id=NULL, width=1.0, quadsegs=5, 
-                          capStyle="ROUND",joinStyle="ROUND", mitreLimit=1.0)
-  spgrid<- rgeos::gIntersection(spgrid, mask, byid=TRUE, 
-                                id=as.character(spgrid@data$id), 
-                                drop_lower_td=FALSE)
-  data<-data.frame(id=sapply(methods::slot(spgrid, "polygons"), methods::slot, "ID"))
-  row.names(data)<-data$id
-  spgrid<-SpatialPolygonsDataFrame(spgrid, data)
-  spgrid@data$cell_area <- rgeos::gArea(spgrid, byid=TRUE)
-  proj4string(spgrid) <-proj4string(spdf)
-  
-  # On calcul la table de passage
-  # intersection
-  parts <- rgeos::gIntersection(spgrid, spdf, byid=TRUE,drop_lower_td=TRUE)
-  data <- data.frame(id=sapply(methods::slot(parts, "polygons"), methods::slot, "ID"))
-  tmp <- data.frame(do.call('rbind', (strsplit(as.character(data$id)," "))))
-  data$id1 <- as.vector(tmp$X1)
-  data$id2 <- as.vector(tmp$X2)
-  row.names(data)<-data$id
-  parts<-SpatialPolygonsDataFrame(parts, data)
-  proj4string(parts) <-proj4string(spdf)
-  
-  # Part de surface intersectée
-  parts@data$area_part <- rgeos::gArea(parts, byid=TRUE)
-  parts@data <- data.frame(parts@data, 
-                           area_full=spdf@data[match(
-                             parts@data$id2, spdf@data[,spdfid]),"area"])
-  parts@data$area_pct <- (parts@data$area_part/parts@data$area_full)*100
-  areas <- parts@data[,c("id1","id2","area_pct")]
-  colnames(areas) <- c("id_cell","id_geo","area_pct")
-  return(list(spdf = spgrid, df = areas))
+  return(spgrid)
 }
