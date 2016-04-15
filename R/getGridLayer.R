@@ -58,7 +58,7 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   proj4string(parts) <- proj4string(spdf)
   
   # 
-  x <- gBuffer(gUnaryUnion(parts, id = parts$id1), byid=T)
+  x <- rgeos::gBuffer(rgeos::gUnaryUnion(parts, id = parts$id1), byid=T)
   data <- data.frame(id = sapply(methods::slot(x, "polygons"),
                                  methods::slot, "ID"))
   row.names(data) <- data$id

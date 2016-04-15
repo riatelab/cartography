@@ -31,8 +31,8 @@
 #' @seealso \link{gradLinkLayer}, \link{propLinkLayer}
 #' @export
 getLinkLayer <- function(spdf, spdf2 = NULL, df, 
-                         spdfid = NULL, spdf2id = NULL, 
-                         dfids = NULL, dfide = NULL){
+                          spdfid = NULL, spdf2id = NULL, 
+                          dfids = NULL, dfide = NULL){
   
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfids)){dfids <- names(df)[1]}
@@ -53,17 +53,33 @@ getLinkLayer <- function(spdf, spdf2 = NULL, df,
   link <- merge(df, origin, by.x = dfids, by.y = "idOri", all.x = TRUE)
   link <- merge(link, destination, by.x =  dfide, by.y = "idDes", all.x = TRUE)
   link <- link[!is.na(link$xOri) & !is.na(link$xDes), ]
+  link$id <- paste(link[,dfids],link[,dfide], sep = "zorglub" )
   
-  getMyLines <- function(x){
-    myLine <- Line(matrix(ncol = 2, data = as.numeric(x[3:6]), byrow = TRUE))
-    myLines <- Lines(list(myLine), ID = paste(x[dfids],x[dfide], sep = "zorglub" ))
+  if (requireNamespace("rgeos", quietly = TRUE)) {
+    wkt <- paste("GEOMETRYCOLLECTION(",
+                 paste("LINESTRING(",
+                       link[,3]," ",link[,4],",",
+                       link[,5]," ",link[,6], 
+                       sep="", collapse = "),"),
+                 "))", sep ="")
+    sl <- rgeos::readWKT(wkt)
+    sl@proj4string <- spdf@proj4string
+  }else{
+    getMyLines <- function(x){
+      myLine <- Line(matrix(ncol = 2, data = as.numeric(x[3:6]), byrow = TRUE))
+      myLines <- Lines(list(myLine), ID = paste(x[dfids],x[dfide], sep = "zorglub" ))
+    }
+    myLinesList <- apply(X = link,1,  getMyLines)
+    sl <- SpatialLines(LinesList = myLinesList, 
+                       proj4string = (spdf@proj4string))
+    cat("'rgeos' is not installed.\n")
+    cat("'getLinkLayer' works much faster with 'rgeos' installed.")
   }
-  myLinesList <- apply(X = link,1,  getMyLines)
-  mySpatialLines <- SpatialLines(LinesList = myLinesList, 
-                                 proj4string = (spdf@proj4string))
-  myspdf <- SpatialLinesDataFrame(sl = mySpatialLines, data = link[,1:2], 
+  
+  
+  myspdf <- SpatialLinesDataFrame(sl = sl, data = link[,2:1],
                                   match.ID = FALSE)
-  myspdf <- spChFIDs(obj = myspdf, x = as.character(1:nrow(myspdf)) )
+  head(myspdf@data)
+  dim(myspdf)
   return(myspdf)
 }
-
