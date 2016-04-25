@@ -7,5 +7,5 @@ sudo: required
 
 r_github_packages:
   - Groupe-ElementR/SpatialPosition
-# r_binary_packages:
-#   - rgdal
+r_binary_packages:
+  - rgdal
