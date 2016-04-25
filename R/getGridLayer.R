@@ -24,10 +24,10 @@
 #' @export
 getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   # rgeos requirement
-  if (!requireNamespace("rgeos", quietly = TRUE)) {
-    stop("'rgeos' package needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
+  # if (!requireNamespace("rgeos", quietly = TRUE)) {
+  #   stop("'rgeos' package needed for this function to work. Please install it.",
+  #        call. = FALSE)
+  # }
   
   # id check
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}

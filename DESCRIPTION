@@ -24,13 +24,12 @@ Imports:
     stats,
     graphics,
     utils,
-    methods
-Suggests:
-    SpatialPosition,
+    methods,
     rgeos,
     rosm,
     raster,
-    rgdal,
+    SpatialPosition
+Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr

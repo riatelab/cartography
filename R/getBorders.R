@@ -11,7 +11,7 @@
 #' id fields: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 #' of id1 and id2 (with "_" as separator).
-#' @note This function uses the rgeos package.
+# @note This function uses the rgeos package.
 #' @import sp
 #' @examples
 #' data(nuts2006)
@@ -27,13 +27,13 @@
 #' @export
 getBorders <- function(spdf, spdfid = NULL, tol = 1){
   # Package check and loading
-  if (!requireNamespace("rgeos", quietly = TRUE)) {
-    stop("'rgeos' package needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
-  if(!'package:rgeos' %in% search()){
-    attachNamespace('rgeos')
-  }
+  # if (!requireNamespace("rgeos", quietly = TRUE)) {
+  #   stop("'rgeos' package needed for this function to work. Please install it.",
+  #        call. = FALSE)
+  # }
+  # if(!'package:rgeos' %in% search()){
+  #   attachNamespace('rgeos')
+  # }
   
   # Distance : tolerance /2
   distance <- tol/2

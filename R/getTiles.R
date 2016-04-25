@@ -13,7 +13,7 @@
 #' @details 
 #' Zoom levels are descibed on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
-#' @note This function is a wrapper around the \code{osrm.raster} function 
+#' @note This function is a wrapper around the \code{osm.raster} function 
 #' from the \code{rosm} package. \cr
 #' Use directly the \href{http://cran.r-project.org/package=rosm}{rosm} package to have a finer control over  
 #' extraction and display parameters.
@@ -38,17 +38,17 @@
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 getTiles <- function(spdf, type = "osm", zoom = NULL, crop = FALSE){
-  if (!requireNamespace("rosm", quietly = TRUE)) {
-    stop("'rosm' package needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
-  if(!'package:rosm' %in% search()){
-    
-    attachNamespace('rosm')
-  }
-  if(!'package:raster' %in% search()){
-    attachNamespace('raster')
-  }
+  # if (!requireNamespace("rosm", quietly = TRUE)) {
+  #   stop("'rosm' package needed for this function to work. Please install it.",
+  #        call. = FALSE)
+  # }
+  # if(!'package:rosm' %in% search()){
+  #   
+  #   attachNamespace('rosm')
+  # }
+  # if(!'package:raster' %in% search()){
+  #   attachNamespace('raster')
+  # }
   
   if (is.na(sp::proj4string(spdf))){
     stop("The Spatial object must contain information on its projection.",
@@ -66,6 +66,6 @@ getTiles <- function(spdf, type = "osm", zoom = NULL, crop = FALSE){
   
   finalOSM@data@max <- rep(255,3)
   
-  detach(name = package:rosm)
+  # detach(name = package:rosm)
   return(finalOSM)
 }

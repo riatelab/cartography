@@ -26,10 +26,10 @@
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 tilesLayer <- function(x, add = FALSE){
-  if (!requireNamespace("raster", quietly = TRUE)) {
-    stop("'raster' package needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
+  # if (!requireNamespace("raster", quietly = TRUE)) {
+  #   stop("'raster' package needed for this function to work. Please install it.",
+  #        call. = FALSE)
+  # }
   if (add == FALSE) {
     plot.new()
     plot.window(xlim = c(x@extent@xmin, x@extent@xmax), 

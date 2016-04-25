@@ -55,7 +55,7 @@ getLinkLayer <- function(spdf, spdf2 = NULL, df,
   link <- link[!is.na(link$xOri) & !is.na(link$xDes), ]
   link$id <- paste(link[,dfids],link[,dfide], sep = "zorglub" )
   
-  if (requireNamespace("rgeos", quietly = TRUE)) {
+  # if (requireNamespace("rgeos", quietly = TRUE)) {
     wkt <- paste("GEOMETRYCOLLECTION(",
                  paste("LINESTRING(",
                        link[,3]," ",link[,4],",",
@@ -64,22 +64,20 @@ getLinkLayer <- function(spdf, spdf2 = NULL, df,
                  "))", sep ="")
     sl <- rgeos::readWKT(wkt)
     sl@proj4string <- spdf@proj4string
-  }else{
-    getMyLines <- function(x){
-      myLine <- Line(matrix(ncol = 2, data = as.numeric(x[3:6]), byrow = TRUE))
-      myLines <- Lines(list(myLine), ID = paste(x[dfids],x[dfide], sep = "zorglub" ))
-    }
-    myLinesList <- apply(X = link,1,  getMyLines)
-    sl <- SpatialLines(LinesList = myLinesList, 
-                       proj4string = (spdf@proj4string))
-    cat("'rgeos' is not installed.\n")
-    cat("'getLinkLayer' works much faster with 'rgeos' installed.")
-  }
+  # }else{
+  #   getMyLines <- function(x){
+  #     myLine <- Line(matrix(ncol = 2, data = as.numeric(x[3:6]), byrow = TRUE))
+  #     myLines <- Lines(list(myLine), ID = paste(x[dfids],x[dfide], sep = "zorglub" ))
+  #   }
+  #   myLinesList <- apply(X = link, 1, getMyLines)
+  #   sl <- SpatialLines(LinesList = myLinesList, 
+  #                      proj4string = (spdf@proj4string))
+  #   cat("'rgeos' is not installed.\n")
+  #   cat("'getLinkLayer' works much faster with 'rgeos' installed.")
+  # }
   
   
   myspdf <- SpatialLinesDataFrame(sl = sl, data = link[,2:1],
                                   match.ID = FALSE)
-  head(myspdf@data)
-  dim(myspdf)
   return(myspdf)
 }

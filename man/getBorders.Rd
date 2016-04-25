@@ -25,9 +25,6 @@ of id1 and id2 (with "_" as separator).
 \description{
 Extract borders between SpatialPolygonsDataFrame units.
 }
-\note{
-This function uses the rgeos package.
-}
 \examples{
 data(nuts2006)
 # Get units borders

@@ -248,7 +248,6 @@ data(nuts2006)
 opar <- par(mar = c(0,0,1.2,0))
 
 # Get a SpatialLinesDataFrame of countries borders
-## The getBorders function needs the rgeos package to work
 nuts0.contig.spdf <- getBorders(nuts0.spdf)
 class(nuts0.contig.spdf)
 head(nuts0.contig.spdf@data)
@@ -302,7 +301,6 @@ data(nuts2006)
 opar <- par(mar = c(0,0,1.2,0))
 
 # Create a grid layer
-## The getGridLayer function needs the rgeos package to work
 mygrid <- getGridLayer(spdf=nuts2.spdf, # SpatialPolygonsDataFrame
                        cellsize = 200000) # output cell size, in map units (200 km)
 # getGridLayer outputs a list
