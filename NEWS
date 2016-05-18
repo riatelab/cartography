@@ -1,40 +1,45 @@
 cartography version 1.3 (Release date: 2016-)
 ==============
 
-Major changes:
-* Introduce the smoothLayer function, this function computes smoothed maps of potentials. It uses quickStewart from SpatialPosition package.
+Major changes:  
 
-Minor changes:
-* Introduce the legend.*.values.order parameter in typoLayer, propSymbolsTypoLayer and gradLinkTypoLayer. This parameter allows to order modalities in the legend and eases the color assignement. 
-* Change min value in prop*Layer legends
-* typos in doc
+* Introduce the smoothLayer function, this function computes smoothed maps of potentials. It uses quickStewart from SpatialPosition package.  
+
+Minor changes:    
+
+* Introduce the legend.*.values.order parameter in typoLayer, propSymbolsTypoLayer and gradLinkTypoLayer. This parameter allows to order modalities in the legend and eases the color assignement.   
+* Change min value in prop*Layer legends  
 
 
 cartography version 1.2 (Release date: 2016-02-11)
 ==============
 
-Major changes:
-* The OpenStreetMap package used to display OpenStreetMap tiles has been replaced by the rosm package. rosm installation is lighter and easier (no Java dependency).
-* The k parameter is deprecated in propSymbolsLayer, propSymbolsTypoLayer and propSymbolsChoroLayer. The inches parameter is to be used instead. This modification allows to compare proportionnal symbols maps. 
+Major changes:  
 
-Minor changes:
-* Introduce the getFigDim function that helps to find output figure dimension that fit a Spatial object dimension ratio.
-* The discLayer function now returns a (invisible) SpatialLinesDataFrame of discontinuities.
-* NAs are better managed in choroLayer.
-* The graticule.spdf SpatialLinesDataFrame has been expanded. 
-* The size of the title box in layoutLayer is fixed to 1.2 lines height.
+* The OpenStreetMap package used to display OpenStreetMap tiles has been replaced by the rosm package. rosm installation is lighter and easier (no Java dependency).  
+* The k parameter is deprecated in propSymbolsLayer, propSymbolsTypoLayer and propSymbolsChoroLayer. The inches parameter is to be used instead. This modification allows to compare proportionnal symbols maps.   
+
+Minor changes:  
+
+* Introduce the getFigDim function that helps to find output figure dimension that fit a Spatial object dimension ratio.  
+* The discLayer function now returns a (invisible) SpatialLinesDataFrame of discontinuities.  
+* NAs are better managed in choroLayer.  
+* The graticule.spdf SpatialLinesDataFrame has been expanded.   
+* The size of the title box in layoutLayer is fixed to 1.2 lines height.  
 
 
 
-cartography version 1.1 (Release date: 2015-11-18)
+cartography version 1.1 (Release date: 2015-11-18)  
 ==============
 
-Major changes:
-* Correction of the proportionnal symbols legends (square, bar, circle, triangle). The previous version was incorrect (size proportionnal to radii and not surfaces).
-* Add a gradLinkTypoLayer function to plot a layer of colored and graduated links.
+Major changes:  
 
-Minor changes:
-* choroLayer: small correction to allow to plot variable named "x" or "y".
-* vignette: correct the name entry, incorrectly named "SpatialPosition"", to "cartography".
-* Update of the figure in the README file.
-* Darker, and more visible, south and north arrows.
+* Correction of the proportionnal symbols legends (square, bar, circle, triangle). The previous version was incorrect (size proportionnal to radii and not surfaces).  
+* Add a gradLinkTypoLayer function to plot a layer of colored and graduated links.  
+
+Minor changes:  
+
+* choroLayer: small correction to allow to plot variable named "x" or "y".  
+* vignette: correct the name entry, incorrectly named "SpatialPosition"", to "cartography".  
+* Update of the figure in the README file.  
+* Darker, and more visible, south and north arrows.  

@@ -112,7 +112,7 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                             breaks = breaks)
   # breaks
   if(is.null(breaks)){
-    breaks <- c(unique(pot.spdf$min), max(pot.spdf$max))
+    breaks <- sort(c(unique(pot.spdf$min), max(pot.spdf$max)))
   }
   # map
   choroLayer(spdf = pot.spdf, df = pot.spdf@data, var = "center", 
