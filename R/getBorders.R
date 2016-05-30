@@ -1,6 +1,6 @@
 #' @title Extract SpatialPolygonsDataFrame Borders
 #' @description Extract borders between SpatialPolygonsDataFrame units.
-#' @name getBorders
+#' @name getBorders2
 #' @param spdf a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 #'  has to be projected (planar coordinates).
 #' @param spdfid identifier field in spdf, default to the first column 
@@ -25,7 +25,7 @@
 #' plot(nuts0.contig.spdf, col = nuts0.contig.spdf$col, lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}
 #' @export
-getBorders <- function(spdf, spdfid = NULL, tol = 1){
+getBorders2 <- function(spdf, spdfid = NULL, tol = 1){
   # Package check and loading
   # if (!requireNamespace("rgeos", quietly = TRUE)) {
   #   stop("'rgeos' package needed for this function to work. Please install it.",
@@ -34,6 +34,8 @@ getBorders <- function(spdf, spdfid = NULL, tol = 1){
   # if(!'package:rgeos' %in% search()){
   #   attachNamespace('rgeos')
   # }
+
+  
   
   # Distance : tolerance /2
   distance <- tol/2
@@ -51,13 +53,14 @@ getBorders <- function(spdf, spdfid = NULL, tol = 1){
   
   # Create a Buffer around polygons
   geombuff <- rgeos::gBuffer(spdf, byid = TRUE, width = distance, quadsegs = 1, 
-                             capStyle = "SQUARE")
-  
+                              capStyle = "SQUARE")
+
   # Create intersecions table between polygons
   intergeom <- rgeos::gIntersects(geombuff, byid = TRUE, returnDense = F)
   b1 <- length(intergeom)
   t <- 0
-  
+  i <- 4
+  j <- 5
   for (i in 1:b1) {
     # Intersection
     tmp1 <- geombuff[geombuff@data$id==names(intergeom[i]),]
@@ -65,7 +68,8 @@ getBorders <- function(spdf, spdfid = NULL, tol = 1){
       if (i != j){
         # create a spdf for each intersection
         tmp2 <- geombuff[j,]
-        frontArea <- rgeos::gIntersection(tmp1, tmp2)
+
+        frontArea <- rgeos::gIntersection(tmp1, tmp2 )
         row.names(frontArea) <- paste(tmp1@data$id,tmp2@data$id,sep=mysep)
         if(class(frontArea)=="SpatialPolygons"){
           if(t==1){
@@ -95,5 +99,6 @@ getBorders <- function(spdf, spdfid = NULL, tol = 1){
                                bordersline@data$id2,sep="_")
   row.names(bordersline@data) <- bordersline@data$id
   bordersline@data <- bordersline@data[, c("id", "id1", "id2")] 
+
   return(bordersline)
 }
