@@ -1,4 +1,4 @@
-#' @title Topology Layer
+#' @title Typology Layer
 #' @name typoLayer
 #' @description Plot a typology layer.
 #' @param spdf a SpatialPolygonsDataFrame.
