@@ -4,11 +4,18 @@ cartography version 1.3 (Release date: 2016-)
 Major changes:  
 
 * Introduce the smoothLayer function, this function computes smoothed maps of potentials. It uses quickStewart from SpatialPosition package.  
+* Most of previously suggested packages are now imported.
 
 Minor changes:    
 
 * Introduce the legend.*.values.order parameter in typoLayer, propSymbolsTypoLayer and gradLinkTypoLayer. This parameter allows to order modalities in the legend and eases the color assignement.   
-* Change min value in prop*Layer legends  
+* Change min value in prop*Layer legends.  
+* Suppress zero values in propSymb*Layer.
+* getGridLayer is faster.
+* getLinkLayer is faster.
+* getBorders is faster.
+
+
 
 
 cartography version 1.2 (Release date: 2016-02-11)

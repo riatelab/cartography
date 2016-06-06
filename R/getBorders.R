@@ -1,18 +1,17 @@
 #' @title Extract SpatialPolygonsDataFrame Borders
 #' @description Extract borders between SpatialPolygonsDataFrame units.
-#' @name getBorders2
+#' @name getBorders
 #' @param spdf a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 #'  has to be projected (planar coordinates).
 #' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
-#' @param tol tolerance to detect contiguity (in map units). You may 
-#' not want to change this parameter.
 #' @return A SpatialLinesDataFrame of borders is returned. This object has three 
 #' id fields: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 #' of id1 and id2 (with "_" as separator).
 # @note This function uses the rgeos package.
 #' @import sp
+#' @import rgeos
 #' @examples
 #' data(nuts2006)
 #' # Get units borders
@@ -25,80 +24,91 @@
 #' plot(nuts0.contig.spdf, col = nuts0.contig.spdf$col, lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}
 #' @export
-getBorders2 <- function(spdf, spdfid = NULL, tol = 1){
-  # Package check and loading
-  # if (!requireNamespace("rgeos", quietly = TRUE)) {
-  #   stop("'rgeos' package needed for this function to work. Please install it.",
-  #        call. = FALSE)
-  # }
-  # if(!'package:rgeos' %in% search()){
-  #   attachNamespace('rgeos')
-  # }
-
+getBorders <- function(spdf, spdfid = NULL){
   
-  
-  # Distance : tolerance /2
-  distance <- tol/2
-  mysep <- "_ksfh88ql_"
-  
-  # create comments for polygons with holes
-  spdf <- rgeos::createSPComment(sppoly = spdf)
-  
-  # spdf and spdfid check
   id <- spdfid
-  if (is.null(id)){id <- names(spdf@data)[1]}
+  if (is.null(id)) {
+    id <- names(spdf@data)[1]
+  }
   spdf@data <- spdf@data[id]
-  colnames(spdf@data)[1]<-"id"
+  colnames(spdf@data)[1] <- "id"
   row.names(spdf) <- as.character(spdf@data$id)
   
-  # Create a Buffer around polygons
-  geombuff <- rgeos::gBuffer(spdf, byid = TRUE, width = distance, quadsegs = 1, 
-                              capStyle = "SQUARE")
-
-  # Create intersecions table between polygons
-  intergeom <- rgeos::gIntersects(geombuff, byid = TRUE, returnDense = F)
-  b1 <- length(intergeom)
-  t <- 0
-  i <- 4
-  j <- 5
-  for (i in 1:b1) {
-    # Intersection
-    tmp1 <- geombuff[geombuff@data$id==names(intergeom[i]),]
-    for (j in intergeom[[i]]){
-      if (i != j){
-        # create a spdf for each intersection
-        tmp2 <- geombuff[j,]
-
-        frontArea <- rgeos::gIntersection(tmp1, tmp2 )
-        row.names(frontArea) <- paste(tmp1@data$id,tmp2@data$id,sep=mysep)
-        if(class(frontArea)=="SpatialPolygons"){
-          if(t==1){
-            borders <- rbind(borders, frontArea)
-          } else { 
-            borders <- frontArea
-            t <- 1
-          }
+  spdf <- gBuffer(spdf, width = 1, byid = T)
+  
+  df <- data.frame(id = sapply(methods::slot(spdf, "polygons"),
+                               methods::slot, "ID"))
+  row.names(df) <- df$id
+  spdf <- SpatialPolygonsDataFrame(Sr = spdf, data = df)
+  sldf <- methods::as(object = spdf, Class = "SpatialLines")
+  df <- data.frame(id = sapply(methods::slot(sldf, "lines"),
+                               methods::slot, "ID"))
+  row.names(df) <- df$id
+  sldf <- SpatialLinesDataFrame(sl = sldf, data = df)
+  l <-gIntersects(spdf,
+                  checkValidity = TRUE,
+                  byid = T,
+                  returnDense = T)
+  l <- lower.tri(l) * l
+  gna <- function(x) {
+    y <- x[x == 1]
+    if (length(y) > 0) {
+      names(y)
+    } else{
+      NA
+    }
+  }
+  myl <- as.list(apply(l, 1, gna))
+  myl <- myl[!is.na(myl)]
+  
+  long <- sum(sapply(myl, length))
+  df <- data.frame(
+    id = rep(NA, long),
+    id1 = rep(NA, long),
+    id2 = rep(NA, long)
+  )
+  ind <- 1
+  wkt <- rep(NA, long)
+  for (i in 1:length(myl)) {
+    id1 <- names(myl[i])
+    li <- sldf[sldf$id == id1, ]
+    for (j in 1:length(myl[[i]])) {
+      id2 <- myl[[i]][[j]]
+      po <- spdf[spdf$id == id2, ]
+      Inter <- rgeos::gIntersection(li, po, byid = T)
+      if (class(Inter) != "SpatialLines") {
+        if (class(Inter) == "SpatialPoints") {
+          rm(Inter)
+        } else{
+          Inter <- Inter@lineobj
+          row.names(Inter) <- paste(id1, id2, sep = "_")
+          wkt[ind] <- rgeos::writeWKT(Inter)
+          df[ind,] <- c(paste(id1, id2, sep = "_"), id1, id2)
+          ind <- ind + 1
         }
+      } else{
+        row.names(Inter) <- paste(id1, id2, sep = "_")
+        wkt[ind] <- rgeos::writeWKT(Inter)
+        df[ind,] <- c(paste(id1, id2, sep = "_"), id1, id2)
+        ind <- ind + 1
       }
     }
   }
+  wkt <- wkt[!is.na(wkt)]
+  wkt <- paste("GEOMETRYCOLLECTION(",
+               paste(wkt, collapse = ","), ")", sep = "")
   
-  # From spatialpolygonsdataframe to spatiallinesdataframe  
-  df <- data.frame(id = sapply(methods::slot(borders, "polygons"), 
-                               methods::slot, "ID"))
+  b <- readWKT(wkt, id = df$id)
   row.names(df) <- df$id
-  borders <- SpatialPolygonsDataFrame(Sr = borders, data = df)
-  bordersline <- rgeos::gBoundary(borders, byid=TRUE, id = borders@data$id)
-  bordersline <- SpatialLinesDataFrame(bordersline, df)
-  
-  # Ids management
-  bordersline@data <- data.frame(
-    do.call('rbind',strsplit(as.character(bordersline@data$id), mysep)))
-  colnames(bordersline@data) <- c("id1","id2")
-  bordersline@data$id <- paste(bordersline@data$id1, 
-                               bordersline@data$id2,sep="_")
-  row.names(bordersline@data) <- bordersline@data$id
-  bordersline@data <- bordersline@data[, c("id", "id1", "id2")] 
-
-  return(bordersline)
+  b <- SpatialLinesDataFrame(sl = b,
+                             data = df,
+                             match.ID = T)
+  b2 <- b
+  b2@data <- b2@data[, c(1, 3, 2)]
+  names(b2) <- c("id", "id1", "id2")
+  b2$id <- paste(b2$id1, b2$id2, sep = "_")
+  row.names(b2) <- b2$id
+  borderlines <- rbind(b, b2)
+  borderlines@proj4string <- sldf@proj4string
+  return(borderlines)
 }

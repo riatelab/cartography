@@ -116,7 +116,7 @@ opar <- par(mar = c(0.1,0.1,1.3,0.1))
 
 ## Plot Stamen tiles (using OpenStreetMap data) as basemap 
 # Download the tiles, nuts0.spdf extent
-EUosm <- getTiles(spdf = nuts0.spdf, type = "osm", zoom = 4)
+EUosm <- getTiles(spdf = nuts0.spdf, type = "osmtransport", zoom = 4)
 # Plot the tiles
 tilesLayer(EUosm)
 

@@ -9,6 +9,7 @@ checkMergeOrder <- function(spdf = spdf, spdfid = spdfid,
   colnames(dots)[1] <- c(spdfid)
   dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
   dots <- dots[!is.na(x = dots[,var]),]
+  dots <- dots[dots[,var]!=0, ]
   # names(dots)[4] <- var
   # Order the dots
   dots <- dots[order(abs(dots[, var]), decreasing = TRUE),]
