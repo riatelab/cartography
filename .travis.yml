@@ -1,11 +1,30 @@
 
-# Sample .travis.yml for R projects
+# from https://github.com/MartinRoth/knmiR/blob/master/.travis.yml
+
+#language: r
+#warnings_are_errors: true
+#sudo: required
+
+#r_github_packages:
+#  - Groupe-ElementR/SpatialPosition
+#r_binary_packages:
+#  - rgdal
+  
+  
+# whitelist
+branches:
+  only:
+    - master
+    - develop
 
 language: r
-warnings_are_errors: true
 sudo: required
+dist: trusty
+cache: packages
+warnings_are_errors: true
 
-r_github_packages:
-  - Groupe-ElementR/SpatialPosition
-r_binary_packages:
-  - rgdal
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev

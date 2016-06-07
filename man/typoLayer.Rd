@@ -2,7 +2,7 @@
 % Please edit documentation in R/typoLayer.R
 \name{typoLayer}
 \alias{typoLayer}
-\title{Topology Layer}
+\title{Typology Layer}
 \usage{
 typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   border = "grey20", lwd = 1, legend.pos = "bottomleft",
