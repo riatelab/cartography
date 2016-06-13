@@ -93,13 +93,13 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                         legend.values.rnd = 0,
                         legend.frame = FALSE,
                         add = FALSE){
-  # if (!requireNamespace("SpatialPosition", quietly = TRUE)) {
-  #   stop("'SpatialPosition' package needed for this function to work. Please install it.",
-  #        call. = FALSE)
-  # }
-  # if(!'package:SpatialPosition' %in% search()){
-  #   attachNamespace('SpatialPosition')
-  # }
+  if (!requireNamespace("SpatialPosition", quietly = TRUE)) {
+    stop("'SpatialPosition' package needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+  if(!'package:SpatialPosition' %in% search()){
+    attachNamespace('SpatialPosition')
+  }
   # Potential
   pot.spdf <- SpatialPosition::quickStewart(spdf = spdf, df = df, 
                                             spdfid = spdfid, dfid = dfid, 
