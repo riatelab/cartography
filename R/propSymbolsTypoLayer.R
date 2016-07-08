@@ -115,6 +115,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                           legend.var2.frame = legend.var2.frame,
                           add = add)
   }else{
+    if (missing(df)){df <- spdf@data}
     # check merge and order spdf & df
     dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid,
                             df = df, dfid = dfid, var = var)

@@ -100,6 +100,7 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   if(!'package:SpatialPosition' %in% search()){
     attachNamespace('SpatialPosition')
   }
+  if (missing(df)){df <- spdf@data}
   # Potential
   pot.spdf <- SpatialPosition::quickStewart(spdf = spdf, df = df, 
                                             spdfid = spdfid, dfid = dfid, 

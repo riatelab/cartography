@@ -42,6 +42,7 @@
 #'      cex = 0.7, adj = 0)
 labelLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
                        cex = 0.7, ...){
+  if (missing(df)){df <- spdf@data}
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   if (class(spdf) %in% c("SpatialPolygonsDataFrame", "SpatialPointsDataFrame")){

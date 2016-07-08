@@ -62,8 +62,8 @@ dotDensityLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                             legend.col = "black",
                             legend.frame = TRUE,
                             add = TRUE){
-  
-  
+
+  if (missing(df)){df <- spdf@data}
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   
