@@ -92,15 +92,6 @@ propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
                      var = "pop2008", var2="typo")
 
 ## Example 2
-# Layout plot
-layoutLayer(title = "Countries Population & Color in Europe",
-            sources = "UMS RIATE, 2015",
-            scale = NULL,
-            frame = TRUE,
-            col = "black",
-            coltitle = "white",
-            bg = "#D9F5FF",
-            extent = nuts0.spdf)
 #Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
@@ -114,9 +105,16 @@ propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
                      legend.var.title.txt = "Total\\npopulation (2008)",
                      legend.values.rnd = -3,
                      legend.var2.title.txt = "Category",
-                     col = c("red","green","blue","yellow"),
+                     col = carto.pal(pal1 = "pastel.pal", 4),
                      legend.var2.values.order = c("D", "A", "B", "C"),
                      legend.var.style = "c")
+# Layout plot
+layoutLayer(title = "Countries Population & Color in Europe",
+            sources = "UMS RIATE, 2015",
+            scale = NULL,
+            frame = TRUE,
+            col = "black",
+            coltitle = "white")
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendTypo},

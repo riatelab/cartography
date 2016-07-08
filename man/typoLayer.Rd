@@ -59,22 +59,20 @@ data(nuts2006)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo") 
 
+
+## Example 2
+nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
+typoLayer(spdf = nuts0.spdf, df = nuts0.df,
+          var="typo",  col = carto.pal(pal1 = "multi.pal", 4),
+          legend.values.order = c("D", "B", "A", "C"),
+          legend.pos = "topright", 
+          legend.title.txt = "Category")
 layoutLayer(title = "Colors in Europe",
             sources = "UMS RIATE, 2015",
             scale = NULL,
             frame = TRUE,
             col = "black",
-            coltitle = "white",
-            bg = "#D9F5FF",
-            extent = nuts0.spdf)
-#Countries plot
-nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-typoLayer(spdf = nuts0.spdf, df = nuts0.df,
-          var="typo",  col = c("red","black","grey","yellow"),
-          legend.values.order = c("D", "B", "A", "C"),
-          legend.pos = "topright", 
-          legend.title.txt = "Category", 
-          add=TRUE)
+            coltitle = "white")
 }
 \seealso{
 \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}

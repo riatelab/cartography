@@ -14,9 +14,16 @@ checkOrder <- function(legend.values.order, mod){
   return(legend.values.order)
 }
 
+
 checkCol <- function(col, mod){
   if (is.null(col)){
-    col <- grDevices::rainbow(length(mod))
+    lm <- length(mod)
+    if (lm<=20){
+      col <- carto.pal(pal1 = "pastel.pal", n1 = lm)
+    }else{
+      lc <- carto.pal(pal1 = "pastel.pal", 20)
+      col <- sample(x = lc, size = lm , replace = T)
+    } 
   }else{
     if (length(col) < length(mod)){
       stop(paste("'col' length (",length(col),

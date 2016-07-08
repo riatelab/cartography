@@ -27,15 +27,33 @@ adding an opacity variation.}
 A vector of colors is returned.
 }
 \description{
-Builds sequantial and diverging color palettes. 
+Build sequantial, diverging and qualitative color palettes. 
 Diververging color palettes can be dissymetric (different number of colors in 
-each of the two gradients)
+each of the two gradients).
 }
 \details{
-Available palettes are: "blue.pal", "orange.pal", "red.pal", 
-"brown.pal", "green.pal", "purple.pal"
-"pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", 
-"kaki.pal" , "harmo.pal".
+Sequential palettes: 
+\itemize{
+\item{blue.pal}
+\item{orange.pal}
+\item{red.pal}
+\item{brown.pal}
+\item{green.pal}
+\item{purple.pal}
+\item{pink.pal}
+\item{wine.pal}
+\item{grey.pal}
+\item{turquoise.pal}
+\item{sand.pal}
+\item{taupe.pal}
+\item{kaki.pal}
+\item{harmo.pal}}
+ 
+Qualitative palettes: 
+\itemize{
+\item{pastel.pal}
+\item{multi.pal}
+}
 }
 \note{
 Use \link{display.carto.all} to show all palettes and use 
@@ -65,6 +83,11 @@ mypal <- carto.pal(pal1 = "blue.pal", n1 = 5, pal2 = "red.pal", n2 = 15,
 k <- length(mypal)
 image(1:k, 1, as.matrix(1:k), col =mypal, xlab = paste(k," classes",sep=""),
       ylab = "", xaxt = "n", yaxt = "n",bty = "n")
+}
+\references{
+Qualitative palettes were generated with "i want hue" 
+(\url{http://tools.medialab.sciences-po.fr/iwanthue/}) by Mathieu Jacomy at 
+the Sciences-Po Medialab.
 }
 \seealso{
 \link{display.carto.pal}, \link{display.carto.all}

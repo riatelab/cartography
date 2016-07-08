@@ -1,7 +1,7 @@
 #' @title Proportional Symbols Typo Layer
 #' @name propSymbolsTypoLayer
-#' @description Plot a proportional symbols layer with a color based on a
-#' qualitative data.
+#' @description Plot a proportional symbols layer with colors based on
+#'  qualitative data.
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot.
@@ -54,15 +54,6 @@
 #'                      var = "pop2008", var2="typo")
 #' 
 #' ## Example 2
-#' # Layout plot
-#' layoutLayer(title = "Countries Population & Color in Europe",
-#'             sources = "UMS RIATE, 2015",
-#'             scale = NULL,
-#'             frame = TRUE,
-#'             col = "black",
-#'             coltitle = "white",
-#'             bg = "#D9F5FF",
-#'             extent = nuts0.spdf)
 #' #Countries plot
 #' plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
@@ -76,9 +67,16 @@
 #'                      legend.var.title.txt = "Total\npopulation (2008)",
 #'                      legend.values.rnd = -3,
 #'                      legend.var2.title.txt = "Category",
-#'                      col = c("red","green","blue","yellow"),
+#'                      col = carto.pal(pal1 = "pastel.pal", 4),
 #'                      legend.var2.values.order = c("D", "A", "B", "C"),
 #'                      legend.var.style = "c")
+#' # Layout plot
+#' layoutLayer(title = "Countries Population & Color in Europe",
+#'             sources = "UMS RIATE, 2015",
+#'             scale = NULL,
+#'             frame = TRUE,
+#'             col = "black",
+#'             coltitle = "white")
 propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  inches = 0.3, fixmax = NULL, symbols = "circle",
                                  border = "grey20", lwd = 1,

@@ -13,8 +13,28 @@ display.carto.pal(name)
 Display one color palette.
 }
 \details{
-Available palettes are: "blue.pal", "orange.pal", "red.pal", "brown.pal", "green.pal", "purple.pal"
-"pink.pal", "wine.pal", "grey.pal", "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" , "harmo.pal".
+Sequential palettes: 
+\itemize{
+\item{blue.pal}
+\item{orange.pal}
+\item{red.pal}
+\item{brown.pal}
+\item{green.pal}
+\item{purple.pal}
+\item{pink.pal}
+\item{wine.pal}
+\item{grey.pal}
+\item{turquoise.pal}
+\item{sand.pal}
+\item{taupe.pal}
+\item{kaki.pal}
+\item{harmo.pal}}
+ 
+Qualitative palettes: 
+\itemize{
+\item{pastel.pal}
+\item{multi.pal}
+}
 }
 \examples{
 display.carto.pal("orange.pal")
