@@ -21,7 +21,7 @@
 #' @param nclass a targeted number of classes. If null, the number of class is 
 #' automatically defined (see \link{choroLayer} Details).
 #' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "jenks", "q6" or "geom"  (see \link{choroLayer} Details).
+#' "quantile", "fisher-jenks", "q6" or "geom"  (see \link{choroLayer} Details).
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
 #' @param k share of the map occupied by the biggest symbol (this argument
 #' is deprecated; please use inches instead.).

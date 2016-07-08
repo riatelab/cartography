@@ -5,7 +5,7 @@
 #' @param distr vector of classes
 #' @param col vector of colors
 #' @param nclass number of classes targeted (if null, the Huntsberger method is used)
-#' @param method discretization method ("sd", "equal", "quantile", "jenks","q6","geom")
+#' @param method discretization method ("sd", "equal", "quantile", "fisher-jenks","q6","geom")
 #' @return List: a vector of colors, colors and distr
 #' @noRd
 choro <- function(var, distr = NULL, col = NULL, nclass = NULL,

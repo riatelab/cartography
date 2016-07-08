@@ -4,10 +4,12 @@
 #' @param v a vector of numeric values.
 #' @param nclass a number of classes
 #' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "jenks","q6" or "geom"  (see Details).
+#' "quantile", "fisher-jenks","q6" or "geom"  (see Details).
 #' @details 
-#' "sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
-#' uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.   
+#' "sd", "equal", "quantile" and "fisher-jenks" are \link{classIntervals} methods. 
+#' Jenks and Fisher-Jenks algorithms are based on the same principle and give 
+#' quite similar results but Fisher-Jenks is much faster. \cr
+#' The "q6" method uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr   
 #' The "geom" method is based on a geometric progression along the variable values.  
 #' @note This function is mainly a wrapper around classIntervals function of 
 #' the classInt package + q6 and geom methods. 
@@ -46,11 +48,13 @@
 #' @export
 discretization <- function(v, nclass = NULL, method = "quantile"){
   v <- as.vector(na.omit(v))
-  classIntMethods <- c("sd", "equal", "quantile", "jenks")
+  classIntMethods <- c("sd", "equal", "quantile", "fisher-jenks")
+  
   if(is.null(nclass)){
     nclass <- round(1+3.3*log10(length(v)),0)
   }
   if (method %in% classIntMethods){
+    if (method=="fisher-jenks"){method <- "fisher"}
     intervals <- classInt::classIntervals(v,nclass,style=method)$brks
     
   } else {

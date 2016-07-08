@@ -47,7 +47,7 @@ Note that if there are nlevel colors (classes) there should be (nlevel+1)
 breakpoints (see \link{choroLayer} Details).}
 
 \item{method}{a discretization method; one of "sd", "equal", 
-"quantile", "jenks", "q6" or "geom"  (see \link{choroLayer} Details).}
+"quantile", "fisher-jenks", "q6" or "geom"  (see \link{choroLayer} Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of class is 
 automatically defined (see \link{choroLayer} Details).}

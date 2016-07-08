@@ -80,8 +80,8 @@ not (FALSE).}
 is deprecated; please use inches instead.).}
 }
 \description{
-Plot a proportional symbols layer with a color based on a
-qualitative data.
+Plot a proportional symbols layer with colors based on
+ qualitative data.
 }
 \examples{
 data("nuts2006")

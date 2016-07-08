@@ -27,7 +27,7 @@ of df. (optional)}
 Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}
 
 \item{method}{a discretization method; one of "sd", "equal", 
-"quantile", "jenks","q6" or "geom"  (see Details).}
+"quantile", "fisher-jenks","q6" or "geom"  (see Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
 
@@ -65,13 +65,16 @@ Plot a chorpoleth layer.
 \details{
 The optimum number of class depends on the number of geographical objects. If nclass is not defined, 
 an automatic method inspired by Sturges (1926) is used : nclass = 1+3.3*log10(N), where nclass is the number 
-of class and N is the variable length.
+of class and N is the variable length.\cr
 
 
-If breaks is used then nclass and method are not.
+If breaks is used then nclass and method are not. \cr
 
-"sd", "equal", "quantile" and "jenks" are \link{classIntervals} methods. The "q6" method
-uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.   
+
+"sd", "equal", "quantile" and "fisher-jenks" are \link{classIntervals} methods. 
+Jenks and Fisher-Jenks algorithms are based on the same principle and give 
+quite similar results but Fisher-Jenks is much faster. \cr
+The "q6" method uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr   
 The "geom" method is based on a geometric progression along the variable values.
 }
 \examples{
