@@ -22,18 +22,23 @@ of id1 and id2 (with "_" as separator).
 \description{
 Extract borders between SpatialPolygonsDataFrame units.
 }
+\note{
+getBorders and getOuterBorders can be combined with rbind.
+}
 \examples{
 data(nuts2006)
 # Get units borders
 nuts0.contig.spdf <- getBorders(nuts0.spdf)
 # Random colors
-nuts0.contig.spdf$col <- sample(x = rainbow(length(nuts0.contig.spdf)))
+nuts0.contig.spdf$col <- 
 # Plot Countries
 plot(nuts0.spdf, border = NA, col = "grey60")
 # Plot borders
-plot(nuts0.contig.spdf, col = nuts0.contig.spdf$col, lwd = 3, add = TRUE)
+plot(nuts0.contig.spdf, col = 
+       sample(x = rainbow(nrow(nuts0.contig.spdf))), 
+     lwd = 3, add = TRUE)
 }
 \seealso{
-\link{discLayer}
+\link{discLayer}, \link{getOuterBorders}
 }
 

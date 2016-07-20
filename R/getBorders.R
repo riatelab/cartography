@@ -5,24 +5,26 @@
 #'  has to be projected (planar coordinates).
 #' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
+#' @note getBorders and getOuterBorders can be combined with rbind. 
 #' @return A SpatialLinesDataFrame of borders is returned. This object has three 
 #' id fields: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 #' of id1 and id2 (with "_" as separator).
-# @note This function uses the rgeos package.
-#' @import sp
-#' @import rgeos
 #' @examples
 #' data(nuts2006)
 #' # Get units borders
 #' nuts0.contig.spdf <- getBorders(nuts0.spdf)
 #' # Random colors
-#' nuts0.contig.spdf$col <- sample(x = rainbow(length(nuts0.contig.spdf)))
+#' nuts0.contig.spdf$col <- 
 #' # Plot Countries
 #' plot(nuts0.spdf, border = NA, col = "grey60")
 #' # Plot borders
-#' plot(nuts0.contig.spdf, col = nuts0.contig.spdf$col, lwd = 3, add = TRUE)
-#' @seealso \link{discLayer}
+#' plot(nuts0.contig.spdf, col = 
+#'        sample(x = rainbow(nrow(nuts0.contig.spdf))), 
+#'      lwd = 3, add = TRUE)
+#' @seealso \link{discLayer}, \link{getOuterBorders}
+#' @import rgeos
+#' @import sp
 #' @export
 getBorders <- function(spdf, spdfid = NULL){
   

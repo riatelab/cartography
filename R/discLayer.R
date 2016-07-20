@@ -56,7 +56,7 @@
 #'           legend.pos = "topright", add=TRUE)
 #' @export
 discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var, 
-                      method="quantile", nclass=NULL, threshold = 0.75, 
+                      method="quantile", nclass = 4, threshold = 0.75, 
                       type = "rel",
                       sizemin = 1, sizemax = 10,
                       col = "red", 
