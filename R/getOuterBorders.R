@@ -108,4 +108,4 @@ getOuterBorders <- function(spdf,
   return(result)                           
 }                            
 
-# https://stackoverflow.com/questions/27562076/if-raster-value-na-search-and-extract-the-nearest-non-na-pixel
+

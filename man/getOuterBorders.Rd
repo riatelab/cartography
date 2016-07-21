@@ -26,8 +26,8 @@ of id1 and id2 (with "_" as separator).
 }
 \description{
 Extract outer borders between SpatialPolygonsDataFrame units. 
-Outer borders are non-contiguous SpatialPolygonsDataFrame borders. (e.g. 
-maritim borders)
+Outer borders are non-contiguous SpatialPolygonsDataFrame borders (e.g. 
+maritim borders).
 }
 \note{
 getBorders and getOuterBorders can be combined with rbind.
