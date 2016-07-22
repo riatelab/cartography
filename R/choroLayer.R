@@ -113,7 +113,8 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   
   
   # Join
-  spdf@data <- data.frame(spdf@data[,spdfid], df[match(spdf@data[,spdfid], df[,dfid]),])
+  spdf@data <- data.frame(spdf@data[,spdfid], df[match(spdf@data[,spdfid], 
+                                                       df[,dfid]),])
   
   spdf <- spdf[!is.na(spdf@data[,dfid]),]
   
