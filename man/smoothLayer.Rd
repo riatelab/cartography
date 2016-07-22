@@ -14,7 +14,8 @@ smoothLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2 = NULL,
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{df}{a data frame that contains the values to compute}
+\item{df}{a data frame that contains the values to compute If df is missing 
+spdf@data is used instead.}
 
 \item{spdfid}{name of the identifier field in spdf, default to the first column 
 of the spdf data frame. (optional)}

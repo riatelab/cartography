@@ -3,7 +3,8 @@
 #' @description Plot a dot density layer.
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
-#' @param df data frame; df contains the values to plot.
+#' @param df a data frame that contains the values to plot. If df is missing 
+#' spdf@data is used instead. 
 #' @param spdfid id field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
 #' @param dfid id field in df, default to the first column of df. (optional)
@@ -24,7 +25,8 @@
 #' @param legend.col color of the text in the legend.
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details The iter parameter is defined within the \link{spsample} function. If an error occurred, increase this value.\cr
+#' @details The iter parameter is defined within the \link{spsample} function. 
+#' If an error occurred, increase this value.\cr
 #' The type parameters is defined within the \link{spsample} function.
 #' @export
 #' @import sp

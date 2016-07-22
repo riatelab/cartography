@@ -8,7 +8,8 @@
 #' \item{more customizable inputs and outputs (custom distance matrix, raster output...);}
 #' \item{other functions related to spatial interactions (Reilly  and Huff catchment areas).}}
 #' @param spdf a SpatialPolygonsDataFrame.
-#' @param df a data frame that contains the values to compute
+#' @param df a data frame that contains the values to compute If df is missing 
+#' spdf@data is used instead. 
 #' @param spdfid name of the identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
 #' @param dfid name of the identifier field in df, default to the first column 

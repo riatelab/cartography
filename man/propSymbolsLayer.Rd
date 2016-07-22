@@ -15,7 +15,8 @@ propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, inches = 0.3,
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{a data frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to plot. If df is missing 
+spdf@data is used instead.}
 
 \item{spdfid}{identifier field in spdf, default to the first column 
 of the spdf data frame. (optional)}

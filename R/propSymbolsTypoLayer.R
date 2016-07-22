@@ -4,7 +4,8 @@
 #'  qualitative data.
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
-#' @param df a data frame that contains the values to plot.
+#' @param df a data frame that contains the values to plot. If df is missing 
+#' spdf@data is used instead. 
 #' @param spdfid identifier field in spdf, default to the first column
 #' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column

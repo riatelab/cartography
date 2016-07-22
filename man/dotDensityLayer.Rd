@@ -13,7 +13,8 @@ dotDensityLayer(spdf, df, spdfid = NULL, dfid = NULL, var, n = NULL,
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
-\item{df}{data frame; df contains the values to plot.}
+\item{df}{a data frame that contains the values to plot. If df is missing 
+spdf@data is used instead.}
 
 \item{spdfid}{id field in spdf, default to the first column 
 of the spdf data frame. (optional)}
@@ -53,7 +54,8 @@ not (FALSE).}
 Plot a dot density layer.
 }
 \details{
-The iter parameter is defined within the \link{spsample} function. If an error occurred, increase this value.\cr
+The iter parameter is defined within the \link{spsample} function. 
+If an error occurred, increase this value.\cr
 The type parameters is defined within the \link{spsample} function.
 }
 \examples{

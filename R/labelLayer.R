@@ -3,7 +3,8 @@
 #' @name labelLayer
 #' @param spdf  a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame texts are plotted on centroids.
-#' @param df a data frame that contains the labels to plot.
+#' @param df a data frame that contains the labels to plot. If df is missing 
+#' spdf@data is used instead. 
 #' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column 
