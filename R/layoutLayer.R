@@ -7,13 +7,15 @@
 #' @param scale size of the scale in kilometers. If set to NULL, no scale is 
 #' displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).
 #' @param frame wheither displaying a frame (TRUE) or not (FALSE).
-#' @param col color of the frame border.
+#' @param col color of the title box and frame border.
 #' @param coltitle color of the title.
 #' @param bg color of the frame background.
 #' @param north wheither displaying a Noth arrow (TRUE) or not (FALSE).
 #' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
 #' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
 #' extent of the frame to the one of a Spatial object. (optional)
+#' @param theme name of a cartographic palette (see \link{carto.pal.info}). 
+#' col and coltitle are set according to the chosen palette. 
 #' @details If extent is not set, plot.new has to be called first.\cr
 #' The size of the title box in layoutLayer is fixed to 1.2 lines height.
 #' @export
@@ -33,12 +35,20 @@
 #'             sources = "", author = "",
 #'             frame = FALSE,
 #'             south = TRUE)
+#'             
+#' # Example 3
+#' nuts3.df$gdphab <- 1000000 * nuts3.df$gdppps2008 / nuts3.df$pop2008
+#' choroLayer(spdf = nuts3.spdf, df = nuts3.df, var = "gdphab",
+#'            legend.pos = "right", border = NA, nclass = 6,
+#'            col = carto.pal('green.pal', 6))
+#' # Layout plot
+#' layoutLayer(title = "GDP per Inhabitants", sources = "",
+#'             author = "Eurostat, 2008", theme = "green.pal")
 layoutLayer <- function(title = "Title of the map, year",
                         sources = "Source(s)", author = "Author(s)",
-                        col = "black", coltitle = "white", bg = NULL,
-                        scale = 0, frame = TRUE, north = FALSE, 
-                        south = FALSE,
-                        extent = NULL){
+                        col = "black", coltitle = "white", theme = NULL, 
+                        bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
+                        south = FALSE, extent = NULL){
   
     if (!is.null(extent)){
       sp::plot(extent, border = NA, col = NA, add = FALSE)
@@ -53,6 +63,19 @@ layoutLayer <- function(title = "Title of the map, year",
   yextent <- (y2 - y1) / 3
   xextent <- (x2 - x1) / 3
   delta <- min((y2 - y1) / 40, (x2 - x1) / 40)
+
+  
+  # Manage themes
+  if(!is.null(theme)){
+    pals <- carto.pal.info()[1:14]
+    if (theme %in% pals){
+      pal <- carto.pal(theme, 20)
+      col <- pal[7]
+      coltitle <-pal[19]
+    }
+  }
+  
+  
   
   # FRAME
   if(frame == TRUE){colf <- col}else{colf <- NA}

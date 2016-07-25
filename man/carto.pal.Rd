@@ -90,6 +90,6 @@ Qualitative palettes were generated with "i want hue"
 the Sciences-Po Medialab.
 }
 \seealso{
-\link{display.carto.pal}, \link{display.carto.all}
+\link{display.carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
 }
 

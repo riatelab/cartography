@@ -5,8 +5,8 @@
 \title{Layout Layer}
 \usage{
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
-  author = "Author(s)", col = "black", coltitle = "white", bg = NULL,
-  scale = 0, frame = TRUE, north = FALSE, south = FALSE,
+  author = "Author(s)", col = "black", coltitle = "white", theme = NULL,
+  bg = NULL, scale = 0, frame = TRUE, north = FALSE, south = FALSE,
   extent = NULL)
 }
 \arguments{
@@ -16,9 +16,12 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
 
 \item{author}{author of the map (or something else).}
 
-\item{col}{color of the frame border.}
+\item{col}{color of the title box and frame border.}
 
 \item{coltitle}{color of the title.}
+
+\item{theme}{name of a cartographic palette (see \link{carto.pal.info}). 
+col and coltitle are set according to the chosen palette.}
 
 \item{bg}{color of the frame background.}
 
@@ -56,6 +59,15 @@ layoutLayer(col = NA, coltitle = "black",
             sources = "", author = "",
             frame = FALSE,
             south = TRUE)
+            
+# Example 3
+nuts3.df$gdphab <- 1000000 * nuts3.df$gdppps2008 / nuts3.df$pop2008
+choroLayer(spdf = nuts3.spdf, df = nuts3.df, var = "gdphab",
+           legend.pos = "right", border = NA, nclass = 6,
+           col = carto.pal('green.pal', 6))
+# Layout plot
+layoutLayer(title = "GDP per Inhabitants", sources = "",
+            author = "Eurostat, 2008", theme = "green.pal")
 }
 \seealso{
 \link{labelLayer}

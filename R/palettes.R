@@ -40,7 +40,7 @@
 #' (\url{http://tools.medialab.sciences-po.fr/iwanthue/}) by Mathieu Jacomy at 
 #' the Sciences-Po Medialab.
 #' @return A vector of colors is returned.
-#' @seealso \link{display.carto.pal}, \link{display.carto.all}
+#' @seealso \link{display.carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
 #' @examples 
 #' # Simple gradient: blue
 #' carto.pal(pal1 = "blue.pal" ,n1 = 20)
@@ -122,10 +122,10 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' display.carto.all(8)
 #' display.carto.all(12)
 #' display.carto.all(20)
-#' @seealso \link{carto.pal}, \link{display.carto.pal}
+#' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{carto.pal.info}
 #' @import graphics
 #' @export
-display.carto.all<-function(n = 10)
+display.carto.all <- function(n = 10)
 {
   utils::data("cartography.colors", envir = environment())
   cartography.colors <- get("cartography.colors", envir  = environment())
@@ -147,6 +147,26 @@ display.carto.all<-function(n = 10)
   }
   par(old.par)
 }
+
+
+#' @title Display the Names of all Cartographic Palettes
+#' @description Display the names of all the available color palettes.
+#' @name carto.pal.info
+#' @return A vector of palettes names is returned. 
+#' @examples
+#' carto.pal.info
+#' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{display.carto.all}
+#' @export
+carto.pal.info <- function(){
+  utils::data("cartography.colors", envir = environment())
+  cartography.colors <- get("cartography.colors", envir  = environment())
+  names(cartography.colors)
+}
+
+  
+
+
+
 
 
 #' @title Display one Cartographic Palette
@@ -178,7 +198,7 @@ display.carto.all<-function(n = 10)
 #' @examples
 #' display.carto.pal("orange.pal")
 #' display.carto.pal("sand.pal")
-#' @seealso \link{carto.pal}, \link{display.carto.all}
+#' @seealso \link{carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
 #' @export
 display.carto.pal<-function(name)
 {
@@ -196,3 +216,7 @@ display.carto.pal<-function(name)
   }
   par(old.par)
 }
+
+
+
+

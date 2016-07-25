@@ -20,6 +20,6 @@ display.carto.all(12)
 display.carto.all(20)
 }
 \seealso{
-\link{carto.pal}, \link{display.carto.pal}
+\link{carto.pal}, \link{display.carto.pal}, \link{carto.pal.info}
 }
 
