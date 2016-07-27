@@ -5,7 +5,7 @@
 \title{Graduated Links Layer}
 \usage{
 gradLinkLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL, dfids,
-  dfide, var, breaks = discretization(v = df[, var], nclass = 4, method =
+  dfide, var, breaks = getBreaks(v = df[, var], nclass = 4, method =
   "quantile"), lwd = c(1, 2, 4, 6), col = "red",
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,

@@ -129,6 +129,6 @@ Herbert A. Sturges, «
 \emph{The Choice of a Class Interval }», Journal of the American Statistical Association, vol. 21, n° 153, mars 1926, p. 65-66.
 }
 \seealso{
-\link{discretization}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
+\link{getBreaks}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
 }
 

@@ -1,10 +1,12 @@
 #' @title Discretization
-#' @name discretization
+#' @name getBreaks
 #' @description Discretization function.
 #' @param v a vector of numeric values.
 #' @param nclass a number of classes
 #' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "fisher-jenks","q6" or "geom"  (see Details).
+#' @param k number of standard deviation for "msd" method.
+#' @param middle if FALSE, v is a break
 #' @details 
 #' "sd", "equal", "quantile" and "fisher-jenks" are \link{classIntervals} methods. 
 #' Jenks and Fisher-Jenks algorithms are based on the same principle and give 
@@ -26,7 +28,7 @@
 #' abline(v = med, col = "blue", lwd = 3)
 #' 
 #' # Quantile intervals
-#' breaks <- discretization(v = var, nclass = 6, method = "quantile")
+#' breaks <- getBreaks(v = var, nclass = 6, method = "quantile")
 #' hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9")
 #' rug(var)
 #' moy <- mean(var)
@@ -35,7 +37,7 @@
 #' abline(v = med, col = "blue", lwd = 3)
 #' 
 #' # Geometric intervals
-#' breaks <- discretization(v = var, nclass = 8, method = "geom")
+#' breaks <- getBreaks(v = var, nclass = 8, method = "geom")
 #' hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9")
 #' rug(var)
 #' moy <- mean(var)
@@ -46,7 +48,8 @@
 #' @import classInt
 #' @import stats
 #' @export
-discretization <- function(v, nclass = NULL, method = "quantile"){
+getBreaks <- function(v, nclass = NULL, method = "quantile", 
+                      k = 1, middle = FALSE){
   v <- as.vector(na.omit(v))
   classIntMethods <- c("sd", "equal", "quantile", "fisher-jenks")
   
@@ -73,6 +76,33 @@ discretization <- function(v, nclass = NULL, method = "quantile"){
     if (method == "q6")
     {
       intervals <- as.vector(quantile(v,probs = c(0, 5, 27.5, 50, 72.5, 95, 100)/100))
+    }
+    if (method == "msd"){
+
+      minVec <- min(v)
+      maxVec <- max(v)
+      avgVec <- mean(v)
+      sdVec <- sqrt(sum((v - avgVec) ^ 2)  / length(v))
+      
+      if (middle == FALSE){
+        pose <- ceiling((maxVec - avgVec) / (sdVec * k))
+        nege <- ceiling((avgVec - minVec) / (sdVec *k))
+        
+        avgVec + (1:pose) * (sdVec * k)
+        bks <- c(avgVec - (1:nege) * (sdVec * k), 
+                 avgVec, 
+                 avgVec + (1:pose) * (sdVec * k) )
+        intervals <- c(minVec, bks[bks> minVec & bks <maxVec], maxVec)
+      }else{
+        pose <- ceiling((maxVec - (avgVec + 0.5 * sdVec * k)) / (sdVec * k))
+        nege <- ceiling(((avgVec - 0.5 * sdVec * k ) - minVec) / (sdVec *k))
+        
+        bks <- c((avgVec -  0.5 * sdVec * k) - (1:nege) * (sdVec * k), 
+                 (avgVec -  0.5 * sdVec * k), 
+                 (avgVec +  0.5 * sdVec * k), 
+                 (avgVec + 0.5 * sdVec * k) + (1:pose) * (sdVec * k))
+        intervals <- c(minVec, bks[bks> minVec & bks <maxVec], maxVec)
+      }
     }
   }
   return(intervals)

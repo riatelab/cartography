@@ -16,7 +16,7 @@
 #' @param nclass a targeted number of classes. If null, the number of 
 #' class is automatically defined (see \link{discretization} Details).
 #' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "fisher-jenks","q6" or "geom"  (see \link{discretization} Details).
+#' "quantile", "fisher-jenks","q6" or "geom"  (see \link{getBreaks} Details).
 #' @param threshold share of represented borders, value between 0 
 #' (nothing) and 1 (all the discontinuities).
 #' @param sizemin thickness of the smallest line.
@@ -97,7 +97,7 @@ discLayer <- function(spdf, df, spdfid1 = NULL, spdfid2=NULL, dfid=NULL, var,
   
   # Discretisation
   spdf <- spdf[spdf@data$disc >= minvar,]
-  distr <- discretization(v = spdf@data$disc, nclass = nclass, method = method)
+  distr <- getBreaks(v = spdf@data$disc, nclass = nclass, method = method)
   
   # Classes de tailles
   x <- (sizemax-sizemin)/nclass

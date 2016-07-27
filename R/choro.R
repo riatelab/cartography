@@ -18,7 +18,7 @@ choro <- function(var, distr = NULL, col = NULL, nclass = NULL,
   
   # Discretization
   if (is.null(distr)){
-    distr <- discretization(v = var, nclass = nclass, method = method)
+    distr <- getBreaks(v = var, nclass = nclass, method = method)
     
     # Colors
     if(is.null(col)){

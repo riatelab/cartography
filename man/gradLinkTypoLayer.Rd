@@ -5,8 +5,8 @@
 \title{Graduated and Colored Links Layer}
 \usage{
 gradLinkTypoLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL,
-  dfids, dfide, var, breaks = discretization(v = df[, var], nclass = 4, method
-  = "quantile"), lwd = c(1, 2, 4, 6), var2, col = NULL,
+  dfids, dfide, var, breaks = getBreaks(v = df[, var], nclass = 4, method =
+  "quantile"), lwd = c(1, 2, 4, 6), var2, col = NULL,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
   legend.var.pos = "bottomleft", legend.var.title.txt = var,
   legend.var.frame = FALSE, legend.var2.pos = "topright",

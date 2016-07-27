@@ -61,7 +61,7 @@
 gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide, 
                               dfid = NULL, dfids, dfide,
                               var, 
-                              breaks = discretization(v = df[,var],nclass = 4,
+                              breaks = getBreaks(v = df[,var],nclass = 4,
                                                       method = "quantile"), 
                               lwd = c(1,2,4,6),
                               var2,
