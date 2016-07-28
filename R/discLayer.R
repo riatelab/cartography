@@ -14,7 +14,7 @@
 #' @param var name of the numeric field in df used to compute and plot discontinuities.
 #' @param col color of the discontinuities lines.
 #' @param nclass a targeted number of classes. If null, the number of 
-#' class is automatically defined (see \link{discretization} Details).
+#' class is automatically defined (see \link{getBreaks} Details).
 #' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "fisher-jenks","q6" or "geom"  (see \link{getBreaks} Details).
 #' @param threshold share of represented borders, value between 0 

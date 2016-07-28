@@ -31,7 +31,7 @@ of df. (optional)}
 "quantile", "fisher-jenks","q6" or "geom"  (see \link{getBreaks} Details).}
 
 \item{nclass}{a targeted number of classes. If null, the number of 
-class is automatically defined (see \link{discretization} Details).}
+class is automatically defined (see \link{getBreaks} Details).}
 
 \item{threshold}{share of represented borders, value between 0 
 (nothing) and 1 (all the discontinuities).}
