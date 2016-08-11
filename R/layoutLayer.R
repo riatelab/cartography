@@ -54,7 +54,7 @@ layoutLayer <- function(title = "Title of the map, year",
                         bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
                         south = FALSE, extent = NULL,sizetitle=0.8,
                         sizesources=0.8,fonttitle=2,
-                        sizesources=0.8){
+                        fontsources=0.8){
   
     if (!is.null(extent)){
       sp::plot(extent, border = NA, col = NA, add = FALSE)
