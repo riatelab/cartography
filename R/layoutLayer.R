@@ -16,10 +16,6 @@
 #' extent of the frame to the one of a Spatial object. (optional)
 #' @param theme name of a cartographic palette (see \link{carto.pal.info}). 
 #' col and coltitle are set according to the chosen palette. 
-#' @param sizetitle Size parameter for text of titles. 
-#' @param sizesources Size parameter for text of sources. 
-#' @param fonttitle Font parameter for text of titles. 
-#' @param fontsources Font parameter for text of sources. 
 #' @details If extent is not set, plot.new has to be called first.\cr
 #' The size of the title box in layoutLayer is fixed to 1.2 lines height.
 #' @export
@@ -52,9 +48,7 @@ layoutLayer <- function(title = "Title of the map, year",
                         sources = "Source(s)", author = "Author(s)",
                         col = "black", coltitle = "white", theme = NULL, 
                         bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
-                        south = FALSE, extent = NULL,sizetitle=0.8,
-                        sizesources=0.8,fonttitle=2,
-                        fontsources=0.8){
+                        south = FALSE, extent = NULL){
   
     if (!is.null(extent)){
       sp::plot(extent, border = NA, col = NA, add = FALSE)
@@ -129,6 +123,7 @@ layoutLayer <- function(title = "Title of the map, year",
   
   
   # TITLE
+  size <- 0.8
   par(xpd = TRUE)
   rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2+(xinch(1.2)*0.2), 
        border = col, col = col)
@@ -136,11 +131,11 @@ layoutLayer <- function(title = "Title of the map, year",
        y = y2 + ((xinch(1.2) * 0.2) - 
                    xinch(strheight(title, cex = 0.8, units = "inches"))) / 2,
        labels = title, adj=c(0,0),
-       cex = sizetitle, col = coltitle,font=fonttitle)
+       cex = size, col = coltitle,font=2)
   par(xpd = FALSE)
 
   
   # SOURCES
   text(x1+delta/2, y1+delta/2, paste(sources,author,sep="\n"),
-       adj = c(0,0), cex = sizesources, font = fontsources)
+       adj = c(0,0), cex = 0.6, font = 3)
 }
