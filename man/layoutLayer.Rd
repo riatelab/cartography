@@ -7,7 +7,8 @@
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   author = "Author(s)", col = "black", coltitle = "white", theme = NULL,
   bg = NULL, scale = 0, frame = TRUE, north = FALSE, south = FALSE,
-  extent = NULL)
+  extent = NULL, sizetitle = 0.8, sizesources = 0.8, fonttitle = 2,
+  fontsources = 0.8)
 }
 \arguments{
 \item{title}{title of the map.}
@@ -36,6 +37,14 @@ displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).}
 
 \item{extent}{a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
 extent of the frame to the one of a Spatial object. (optional)}
+
+\item{sizetitle}{Size parameter for text of titles.}
+
+\item{sizesources}{Size parameter for text of sources.}
+
+\item{fonttitle}{Font parameter for text of titles.}
+
+\item{fontsources}{Font parameter for text of sources.}
 }
 \description{
 Plot a layout layer.
