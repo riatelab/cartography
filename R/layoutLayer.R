@@ -135,6 +135,16 @@ layoutLayer <- function(title = "Title of the map, year",
   par(xpd = FALSE)
 
   
+  
+  
+  # 
+  # cc <- 0.8
+  # th <- strheight(title, cex = cc, units = "user", font = 3)
+  # th <- strheight(title, cex = cc, units = "inches", font = 3)
+  # text(x = x1 + delta/2, y = y2 + th, labels = title, adj = c(0,0), cex = cc)
+  # rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2 + 3 * th )
+  
+  
   # SOURCES
   text(x1+delta/2, y1+delta/2, paste(sources,author,sep="\n"),
        adj = c(0,0), cex = 0.6, font = 3)

@@ -31,6 +31,7 @@
 #' @param legend.var2.nodata text for "no data" values
 #' @param legend.var2.values.order values order in the legend, a character vector 
 #' that matches var modalities. Colors will be affected following this order. 
+#' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
@@ -65,7 +66,7 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
                                                       method = "quantile"), 
                               lwd = c(1,2,4,6),
                               var2,
-                              col = NULL, 
+                              col = NULL, colNA = "white",
                               legend.title.cex = 0.8, 
                               legend.values.cex = 0.6, 
                               legend.values.rnd = 0,
@@ -118,11 +119,18 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
   mycols <- refcol[,2]
   rVal <- refcol[,1]
   
+  # for NA values
+  nodata <- FALSE
+  if(max(is.na(df[,var2]) > 0)){
+    nodata <- TRUE
+    colvec[is.na(colvec)] <- colNA
+  }
+  
+  
   # map
   plot(spdf, col = colvec ,lwd = lwdMap, add = add)
     
-  nodata <- FALSE
-  if(max(is.na(df[,var2])>0)){nodata <- TRUE}
+
   
   # legend links
   if(legend.var.pos !="n"){
@@ -145,7 +153,7 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
                col = mycols, 
                frame = legend.var2.frame, 
                symbol="line", 
-               nodata = nodata, 
+               nodata = nodata,nodata.col = colNA, 
                nodata.txt = legend.var2.nodata)
   }
 }

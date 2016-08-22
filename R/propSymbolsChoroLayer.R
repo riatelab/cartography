@@ -50,6 +50,7 @@
 #' @param legend.var2.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param legend.var2.nodata text for "no data" values
+#' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @examples
@@ -105,8 +106,10 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                   inches = 0.3, fixmax = NULL, 
                                   symbols = "circle", border = "grey20", lwd = 1,
                                   var2, 
-                                  breaks=NULL,  method="quantile",  nclass=NULL, 
+                                  breaks = NULL,  method="quantile",  
+                                  nclass= NULL, 
                                   col = NULL,
+                                  colNA = "white",
                                   legend.title.cex = 0.8, 
                                   legend.values.cex = 0.6,
                                   legend.var.pos = "right",
@@ -122,27 +125,27 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                   add = TRUE, k = NULL){
   
   if(!is.null(k)){
-    warning("Argument k is deprecated; please use inches instead.",
-            call. = FALSE)
-    propSymbolsChoroLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid,
-                          var = var,
-                          k = k, fixmax = fixmax, symbols = symbols,
-                          breaks = breaks, method = method, nclass = class,
-                          border = border, lwd = lwd,
-                          var2 = var2, col = col,
-                          legend.title.cex = legend.title.cex,
-                          legend.values.cex = legend.values.cex,
-                          legend.var.pos = legend.var.pos,
-                          legend.var.title.txt = legend.var.title.txt,
-                          legend.var.values.rnd = legend.var.values.rnd,
-                          legend.var.style = legend.var.style,
-                          legend.var.frame = legend.var.frame,
-                          legend.var2.pos = legend.var2.pos,
-                          legend.var2.title.txt = legend.var2.title.txt,
-                          legend.var2.values.rnd = legend.var2.values.rnd,
-                          legend.var2.nodata = legend.var2.nodata,
-                          legend.var2.frame = legend.var2.frame,
-                          add = add)
+    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
+         call. = FALSE)
+    # propSymbolsChoroLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid,
+    #                       var = var,
+    #                       k = k, fixmax = fixmax, symbols = symbols,
+    #                       breaks = breaks, method = method, nclass = class,
+    #                       border = border, lwd = lwd,
+    #                       var2 = var2, col = col,
+    #                       legend.title.cex = legend.title.cex,
+    #                       legend.values.cex = legend.values.cex,
+    #                       legend.var.pos = legend.var.pos,
+    #                       legend.var.title.txt = legend.var.title.txt,
+    #                       legend.var.values.rnd = legend.var.values.rnd,
+    #                       legend.var.style = legend.var.style,
+    #                       legend.var.frame = legend.var.frame,
+    #                       legend.var2.pos = legend.var2.pos,
+    #                       legend.var2.title.txt = legend.var2.title.txt,
+    #                       legend.var2.values.rnd = legend.var2.values.rnd,
+    #                       legend.var2.nodata = legend.var2.nodata,
+    #                       legend.var2.frame = legend.var2.frame,
+    #                       add = add)
   }else{
     if (missing(df)){df <- spdf@data}
     # check merge and order spdf & df
@@ -155,7 +158,14 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                    nclass = nclass, method = method)
     
     mycols <- layer$colMap
-
+    
+    nodata <- FALSE
+    if(max(is.na(dots[,var2])>0)){
+      nodata <- TRUE
+      mycols[is.na(mycols)] <- colNA
+    }
+    
+    
     if (is.null(fixmax)){
       fixmax <- max(dots[,var])
     }
@@ -178,6 +188,10 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
       sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
       varvect <- seq(fixmax, 0,length.out = 4 )
     }
+    
+    
+
+    
     
     if (add==FALSE){
       sp::plot(spdf, col = NA, border = NA)
@@ -236,8 +250,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                  style = legend.var.style)
              }
            })
-    nodata <- FALSE
-    if(max(is.na(dots[,var2])>0)){nodata <- TRUE}
+    
     
     if(legend.var2.pos !="n"){
       legendChoro(pos = legend.var2.pos, 
@@ -249,7 +262,7 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                   values.rnd = legend.var2.values.rnd,
                   frame = legend.var2.frame, 
                   symbol="box", 
-                  nodata = nodata, nodata.col = NA,
+                  nodata = nodata, nodata.col = colNA,
                   nodata.txt = legend.var2.nodata)
     }
   }

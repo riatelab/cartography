@@ -5,8 +5,9 @@
 \title{Typology Layer}
 \usage{
 typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
-  border = "grey20", lwd = 1, legend.pos = "bottomleft",
-  legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
+  border = "grey20", lwd = 1, colNA = "white",
+  legend.pos = "bottomleft", legend.title.txt = var,
+  legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.values.order = NULL, legend.nodata = "no data",
   legend.frame = FALSE, add = FALSE)
 }
@@ -28,6 +29,8 @@ of df. (optional)}
 \item{border}{color of the polygons borders.}
 
 \item{lwd}{borders width.}
+
+\item{colNA}{no data color.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 

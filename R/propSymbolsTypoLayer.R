@@ -41,6 +41,7 @@
 #' @param legend.var2.nodata text for "no data" values
 #' @param add whether to add the layer to an existing plot (TRUE) or
 #' not (FALSE).
+#' @param colNA no data color. 
 #' @export
 #' @import sp
 #' @seealso \link{legendBarsSymbols}, \link{legendTypo},
@@ -56,7 +57,7 @@
 #' 
 #' ## Example 2
 #' #Countries plot
-#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
+#' plot(nuts0.spdf, col = "grey60",border = "grey20", add = FALSE)
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 #' nuts0.df$typo[1:3] <- NA
 #' nuts0.df$pop2008[4:6] <- NA
@@ -81,7 +82,7 @@
 propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  inches = 0.3, fixmax = NULL, symbols = "circle",
                                  border = "grey20", lwd = 1,
-                                 var2, col = NULL,
+                                 var2, col = NULL, colNA = "white",
                                  legend.title.cex = 0.8,
                                  legend.values.cex = 0.6,
                                  legend.var.pos = "bottomleft",
@@ -96,25 +97,25 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  legend.var2.frame = FALSE,
                                  add = TRUE, k = NULL){
   if(!is.null(k)){
-    warning("Argument k is deprecated; please use inches instead.",
-            call. = FALSE)
-    propSymbolsTypoLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid,
-                          var = var,
-                          k = k, fixmax = fixmax, symbols = symbols,
-                          border = border, lwd = lwd,
-                          var2 = var2, col = col,
-                          legend.title.cex = legend.title.cex,
-                          legend.values.cex = legend.values.cex,
-                          legend.var.pos = legend.var.pos,
-                          legend.var.title.txt = legend.var.title.txt,
-                          legend.values.rnd = legend.values.rnd,
-                          legend.var.style = legend.var.style,
-                          legend.var.frame = legend.var.frame,
-                          legend.var2.pos = legend.var2.pos,
-                          legend.var2.title.txt = legend.var2.title.txt,
-                          legend.var2.nodata = legend.var2.nodata,
-                          legend.var2.frame = legend.var2.frame,
-                          add = add)
+    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
+         call. = FALSE)
+    # propSymbolsTypoLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid,
+    #                       var = var,
+    #                       k = k, fixmax = fixmax, symbols = symbols,
+    #                       border = border, lwd = lwd,
+    #                       var2 = var2, col = col,
+    #                       legend.title.cex = legend.title.cex,
+    #                       legend.values.cex = legend.values.cex,
+    #                       legend.var.pos = legend.var.pos,
+    #                       legend.var.title.txt = legend.var.title.txt,
+    #                       legend.values.rnd = legend.values.rnd,
+    #                       legend.var.style = legend.var.style,
+    #                       legend.var.frame = legend.var.frame,
+    #                       legend.var2.pos = legend.var2.pos,
+    #                       legend.var2.title.txt = legend.var2.title.txt,
+    #                       legend.var2.nodata = legend.var2.nodata,
+    #                       legend.var2.frame = legend.var2.frame,
+    #                       add = add)
   }else{
     if (missing(df)){df <- spdf@data}
     # check merge and order spdf & df
@@ -138,6 +139,12 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     # for the legend  
     mycolsleg <- refcol[,2]
     rVal <- refcol[,1]
+    
+    nodata <- FALSE
+    if(max(is.na(dots[,var2])>0)){
+      nodata <- TRUE
+      mycols[is.na(mycols)] <- colNA
+    }
     
 
     if (is.null(fixmax)){
@@ -217,8 +224,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  style = legend.var.style)
              }
            })
-    nodata <- FALSE
-    if(max(is.na(dots[,var2])>0)){nodata <- TRUE}
+
     
     if(legend.var2.pos !="n"){
       legendTypo(pos = legend.var2.pos,
@@ -229,7 +235,7 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                  col = mycolsleg,
                  frame = legend.var2.frame,
                  symbol="box",
-                 nodata = nodata,nodata.col = NA,
+                 nodata = nodata,nodata.col = colNA,
                  nodata.txt = legend.var2.nodata)
     }
   }

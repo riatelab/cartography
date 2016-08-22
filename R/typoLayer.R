@@ -22,6 +22,7 @@
 #' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param legend.nodata no data label.
+#' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
@@ -48,6 +49,7 @@
 #'             coltitle = "white")
 typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var, 
                       col = NULL, border = "grey20", lwd = 1,
+                      colNA = "white",
                       legend.pos = "bottomleft", 
                       legend.title.txt = var,
                       legend.title.cex = 0.8, 
@@ -76,17 +78,23 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                        col = col[1:length(legend.values.order)], 
                        stringsAsFactors = FALSE)
   colvec <- refcol[match(spdf@data[,var], refcol[,1]),2]
+
   # for the legend  
   mycols <- refcol[,2]
   rVal <- refcol[,1]
   
-    
+  # for NA values
+  nodata <- FALSE
+  if(max(is.na(df[,var]) > 0)){
+    nodata <- TRUE
+    colvec[is.na(colvec)] <- colNA
+  }
+
   # plot
   plot(spdf, col = colvec, border = border, lwd = lwd, add = add)
   
   
-  nodata <- FALSE
-  if(max(is.na(df[,var]) > 0)){nodata <- TRUE}
+
   
   if(legend.pos !="n"){
     legendTypo(pos = legend.pos, title.txt = legend.title.txt,
@@ -95,7 +103,8 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                col = mycols, 
                frame = legend.frame, 
                symbol="box", 
-               nodata = nodata, 
+               nodata = nodata,
+               nodata.col = colNA,
                nodata.txt = legend.nodata)
   }
 }

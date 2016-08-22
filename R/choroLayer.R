@@ -29,6 +29,7 @@
 #' @param legend.frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param legend.nodata no data label.
+#' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
@@ -101,6 +102,7 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                        breaks = NULL, method = "quantile", nclass = NULL,
                        col = NULL,
                        border = "grey20", lwd = 1,
+                       colNA = "white",
                        legend.pos = "bottomleft", 
                        legend.title.txt = var,
                        legend.title.cex = 0.8, 
@@ -114,23 +116,28 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   
-  
-  
   # Join
-  spdf@data <- data.frame(spdf@data[,spdfid], df[match(spdf@data[,spdfid], 
-                                                       df[,dfid]),])
-  
+  spdf@data <- data.frame(spdf@data[,spdfid], 
+                          df[match(spdf@data[,spdfid], df[,dfid]),])
+
   spdf <- spdf[!is.na(spdf@data[,dfid]),]
   
   # get the colors and breaks
   layer <- choro(var=spdf@data[,var], distr = breaks, col = col,
                  nclass = nclass, method = method)
-  # poly
-  plot(spdf, col = as.vector(layer$colMap), border = border, lwd = lwd, 
-       add = add)
+  
+  colVec <- as.vector(layer$colMap)
   
   nodata <- FALSE
-  if(max(is.na(df[,var])>0)){nodata <- TRUE}
+  if(max(is.na(df[,var])>0)){
+    nodata <- TRUE
+    colVec[is.na(colVec)] <- colNA
+    }
+  # poly
+  plot(spdf, col = colVec, border = border, lwd = lwd, 
+       add = add)
+  
+
   
   if(legend.pos !="n"){
     legendChoro(pos = legend.pos, 
@@ -141,7 +148,7 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                 col = layer$col, 
                 values.rnd = legend.values.rnd,
                 frame = legend.frame, 
-                symbol="box",  nodata.col = NA,
+                symbol="box",  nodata.col = colNA,
                 nodata = nodata, 
                 nodata.txt = legend.nodata)
     

@@ -6,9 +6,10 @@
 \usage{
 choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   method = "quantile", nclass = NULL, col = NULL, border = "grey20",
-  lwd = 1, legend.pos = "bottomleft", legend.title.txt = var,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
-  legend.nodata = "no data", legend.frame = FALSE, add = FALSE)
+  lwd = 1, colNA = "white", legend.pos = "bottomleft",
+  legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
+  legend.values.rnd = 0, legend.nodata = "no data", legend.frame = FALSE,
+  add = FALSE)
 }
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
@@ -38,6 +39,8 @@ colors specified than the number of break.}
 \item{border}{color of the polygons borders.}
 
 \item{lwd}{borders width.}
+
+\item{colNA}{no data color.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
 "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 

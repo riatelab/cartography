@@ -6,7 +6,7 @@
 \usage{
 gradLinkTypoLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL,
   dfids, dfide, var, breaks = getBreaks(v = df[, var], nclass = 4, method =
-  "quantile"), lwd = c(1, 2, 4, 6), var2, col = NULL,
+  "quantile"), lwd = c(1, 2, 4, 6), var2, col = NULL, colNA = "white",
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
   legend.var.pos = "bottomleft", legend.var.title.txt = var,
   legend.var.frame = FALSE, legend.var2.pos = "topright",
@@ -39,6 +39,8 @@ gradLinkTypoLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL,
 \item{var2}{name of the variable used to plot the links colors.}
 
 \item{col}{color of the links.}
+
+\item{colNA}{no data color.}
 
 \item{legend.title.cex}{size of the legend title.}
 

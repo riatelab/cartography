@@ -131,18 +131,18 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                              add = TRUE, k = NULL){
 
   if(!is.null(k)){
-    warning("Argument k is deprecated; please use inches instead.", 
-            call. = FALSE)
-    propSymbolsLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid, 
-                      var = var, k = k, fixmax = fixmax, breakval = breakval,
-                      symbols = symbols, col = col, col2 = col2, 
-                      border = border, lwd = lwd, legend.pos = legend.pos,
-                      legend.title.txt = legend.title.txt, 
-                      legend.title.cex = legend.title.cex, 
-                      legend.values.cex = legend.values.cex, 
-                      legend.values.rnd = legend.values.rnd,
-                      legend.style = legend.style,
-                      legend.frame = legend.frame, add = add)
+    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
+         call. = FALSE)
+    # propSymbolsLayer2(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid, 
+    #                   var = var, k = k, fixmax = fixmax, breakval = breakval,
+    #                   symbols = symbols, col = col, col2 = col2, 
+    #                   border = border, lwd = lwd, legend.pos = legend.pos,
+    #                   legend.title.txt = legend.title.txt, 
+    #                   legend.title.cex = legend.title.cex, 
+    #                   legend.values.cex = legend.values.cex, 
+    #                   legend.values.rnd = legend.values.rnd,
+    #                   legend.style = legend.style,
+    #                   legend.frame = legend.frame, add = add)
   }else{
     if (missing(df)){df <- spdf@data}
     # check merge and order spdf & df

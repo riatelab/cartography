@@ -6,7 +6,7 @@
 \usage{
 propSymbolsTypoLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
   inches = 0.3, fixmax = NULL, symbols = "circle", border = "grey20",
-  lwd = 1, var2, col = NULL, legend.title.cex = 0.8,
+  lwd = 1, var2, col = NULL, colNA = "white", legend.title.cex = 0.8,
   legend.values.cex = 0.6, legend.var.pos = "bottomleft",
   legend.var.title.txt = var, legend.values.rnd = 0,
   legend.var.style = "c", legend.var.frame = FALSE,
@@ -43,6 +43,8 @@ squares, height for bars) in inches.}
 \item{var2}{name of the factor (or character) field in df to plot.}
 
 \item{col}{a vector of colors.}
+
+\item{colNA}{no data color.}
 
 \item{legend.title.cex}{size of the legend title.}
 
@@ -94,7 +96,7 @@ propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
 
 ## Example 2
 #Countries plot
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
+plot(nuts0.spdf, col = "grey60",border = "grey20", add = FALSE)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 nuts0.df$typo[1:3] <- NA
 nuts0.df$pop2008[4:6] <- NA
