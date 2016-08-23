@@ -1276,3 +1276,183 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
   }
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 
+# 
+# 
+# 
+# pos = "topleft"
+# title.txt = "Title of the legend"
+# title.cex = 0.8
+# values.cex = 0.6
+# breaks = c(0,1,10,100,125,6.2)
+# col = carto.pal(pal1 = "red.pal", 5)
+# cex = 1
+# values.rnd =2
+# nodata = TRUE
+# nodata.txt = "No data"
+# nodata.col = "white"
+# frame=FALSE
+# symbol="box"
+# 
+# plot(nuts0.spdf)
+# pos <- "n"
+# 
+# positions <- c("bottomleft", "topleft", 
+#                "topright", "bottomright", "left", 
+#                "right", "top", "bottom", "middle")
+# if(!pos %in% positions){
+#   return()
+# }
+# 
+# # extent
+# parusr <- par()$usr
+# x1 <- parusr[1]
+# x2 <- parusr[2]
+# y1 <- parusr[3]
+# y2 <- parusr[4]
+# xextent <- x2 - x1
+# yextent <- y2 - y1
+# 
+# # constant to set spaces and box dimensions
+# paramsize1 <- 30 / cex
+# paramsize2 <- paramsize1 * 40 / 25
+# 
+# # box size
+# width <- xextent / paramsize1
+# height <- width / 1.5
+# 
+# # ecarts
+# delta1 <- min(yextent / paramsize2, xextent / paramsize2) 
+# delta2 <- delta1 / 2
+# 
+# # Legend size
+# breaks <- as.numeric(round(breaks, values.rnd))
+# longVal <- breaks[which.max(strwidth(breaks, cex = values.cex))]
+# if (nodata == TRUE & 
+#     strwidth(nodata.txt, cex = values.cex) > 
+#     strwidth(longVal, cex = values.cex)){
+#   longVal <- nodata.txt
+# }
+# legend_xsize <- max(width + strwidth(longVal, cex = values.cex),
+#                     strwidth(title.txt,cex = title.cex) - delta2) - delta2
+# legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt,cex = title.cex)
+# if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
+# 
+# # legend position
+# poscoord <- positioner(pos = pos, x1 = x1, y1 = y1, x2 = x2, y2 = y2, 
+#                        legend_xsize = legend_xsize, 
+#                        legend_ysize = legend_ysize, 
+#                        delta1 = delta1, delta2 = delta2)
+# xref <- poscoord[1]
+# yref <- poscoord[2]
+# 
+# # Frame
+# if (frame==TRUE){
+#   rect(xleft = xref - delta1, ybottom = yref - delta1, 
+#        xright = xref + legend_xsize + delta1 * 2, 
+#        ytop = yref + legend_ysize + delta1 * 2,
+#        border = "black",  col="white")
+# }
+# 
+# 
+# # Display no data
+# if (nodata == TRUE){
+#   rect(xref, yref, xref + width, yref + height, col = nodata.col, 
+#        border = "black", lwd = 0.4)
+#   text(xref + width + delta2 , yref + height / 2 , labels = nodata.txt,
+#        adj = c(0,0.5), cex = values.cex)
+#   yref <- yref + height + delta2
+# }
+# 
+# # display boxes or lines
+# if (symbol=="line"){
+#   for (i in 0:(length(breaks)-2)){
+#     segments(x0 = xref, y0 = yref + height / 2+ i * height, x1 = xref + width, 
+#              y1 = yref + i*height + height/2, lwd = 5, 
+#              col = col[i+1], lend = 1)
+#   }
+# } else {
+#   for (i in 0:(length(breaks)-2)){
+#     rect(xref, yref + i * height, xref + width, yref + height + i*height, 
+#          col = col[i+1], border = "black", lwd = 0.4)
+#   }
+# }
+# 
+# # display texts
+# for (i in 1:(length(breaks))){
+#   j <- i -1
+#   text(xref + width + delta2, y = yref + j * height,
+#        labels = breaks[i], adj = c(0,0.5), cex = values.cex)
+# }
+# 
+# # display titles
+# text(x = xref, y = yref + (length(breaks)-1) * height + delta1, 
+#      labels = title.txt,
+#      adj = c(0,0), cex = title.cex)
+# }
+# 
+# }
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# # Position
+# positioner <- function(pos, x1, y1, x2, y2, 
+#                        legend_xsize, legend_ysize, 
+#                        delta1, delta2){
+#   if (pos == "bottomleft") {
+#     xref <- x1 + delta1 
+#     yref <- y1 + delta1
+#   }
+#   if (pos == "topleft") {
+#     xref <- x1 + delta1 
+#     yref <- y2 - 2 * delta1 - legend_ysize
+#   }
+#   if (pos == "topright") {
+#     xref <- x2 - 2 * delta1 - legend_xsize 
+#     yref <- y2 - 2 * delta1 - legend_ysize
+#   }
+#   if (pos == "bottomright") {
+#     xref <- x2 - 2 * delta1 - legend_xsize 
+#     yref <- y1 + delta1
+#   }
+#   if (pos == "left") {
+#     xref <- x1 + delta1 
+#     yref <- (y1 + y2) / 2 - legend_ysize / 2 - delta2
+#   }
+#   if (pos == "right") {
+#     xref <- x2 - 2 * delta1 - legend_xsize 
+#     yref <- (y1 + y2) / 2 - legend_ysize / 2 - delta2
+#   }
+#   if (pos == "top") {
+#     xref <- (x1 + x2) / 2 - legend_xsize / 2 
+#     yref <- y2 - 2 * delta1 - legend_ysize
+#   }
+#   if (pos == "bottom") {
+#     xref <- (x1 + x2) / 2 - legend_xsize / 2 
+#     yref <- y1 + delta1
+#   }
+#   if (pos == "middle") { 
+#     xref <- (x1 + x2) / 2 - legend_xsize / 2 
+#     yref <- (y1 + y2) / 2 - legend_ysize / 2 - delta2
+#   }
+#   return(c(xref, yref))
+# }

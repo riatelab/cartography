@@ -14,7 +14,8 @@ typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
-\item{df}{a data frame that contains the values to plot.}
+\item{df}{a data frame that contains the values to plot. If df is missing 
+spdf@data is used instead.}
 
 \item{spdfid}{identifier field in spdf, default to the first column 
 of the spdf data frame. (optional)}

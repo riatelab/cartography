@@ -1,16 +1,12 @@
 checkMergeOrder <- function(spdf = spdf, spdfid = spdfid, 
                             df = df, dfid = dfid, var = var){
-  # Check identifier field
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  
-  # Merge spdf & df
+  # Create dots by merging spdf coordinates & df data
   dots <- cbind(spdf@data[,spdfid], as.data.frame(sp::coordinates(spdf)))
-  colnames(dots)[1] <- c(spdfid)
+  colnames(dots)[1] <- spdfid
   dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
+  # remove NAs and 0 values
   dots <- dots[!is.na(x = dots[,var]),]
   dots <- dots[dots[,var]!=0, ]
-  # names(dots)[4] <- var
   # Order the dots
   dots <- dots[order(abs(dots[, var]), decreasing = TRUE),]
   return(dots)

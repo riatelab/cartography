@@ -2,7 +2,8 @@
 #' @name typoLayer
 #' @description Plot a typology layer.
 #' @param spdf a SpatialPolygonsDataFrame.
-#' @param df a data frame that contains the values to plot.
+#' @param df a data frame that contains the values to plot. If df is missing 
+#' spdf@data is used instead. 
 #' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
 #' @param dfid identifier field in df, default to the first column 
@@ -59,6 +60,8 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                       legend.frame = FALSE,
                       add = FALSE)
 {
+  # Check missing df and NULL identifiers 
+  if (missing(df)){df <- spdf@data}
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   
