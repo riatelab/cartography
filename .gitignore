@@ -13,4 +13,4 @@ vignettes/*.pdf
 inst/doc
 
 # paper for JOSS
-paper
+#paper
