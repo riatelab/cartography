@@ -1,5 +1,5 @@
 ---
-title: 'cartography: Thematic Cartography'
+title: 'cartography: Create and Integrate Maps in your R Workflow'
 bibliography: paper.bib
 date: "25 August 2016"
 tags:
