@@ -25,7 +25,6 @@ contains commented scripts on how to build various types of maps with `cartograp
 vignette(topic = "cartography")
 ```
 
-
 ## Blog posts, tutorials
 
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
@@ -47,12 +46,6 @@ devtools::install_github("Groupe-ElementR/cartography")
 ```{r}
 install.packages("cartography")
 ```
-
-
-
-
-
-
 
 ## Demo
 
@@ -106,7 +99,9 @@ par(opar)
 
 
 
+## Community Guidelines
 
+One can contribute to the package through [pull requests](https://github.com/Groupe-ElementR/cartography/pulls) and report issues or ask questions [here](https://github.com/Groupe-ElementR/cartography/issues).
 
 
 

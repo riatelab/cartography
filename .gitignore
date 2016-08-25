@@ -11,3 +11,6 @@ vignettes/*.html
 vignettes/*.pdf
 .Rproj.user
 inst/doc
+
+# paper for JOSS
+paper
