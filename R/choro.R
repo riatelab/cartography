@@ -11,11 +11,6 @@
 choro <- function(var, distr = NULL, col = NULL, nclass = NULL,
                   method="quantile")
 {
-  
-  # var <- nuts2.df$unemp2008/nuts2.df$act2008*100
-  # distr <- quantile(var, seq(0,1,by = 0.1))
-  # distr <- distr[2:8]
-  
   # Discretization
   if (is.null(distr)){
     distr <- getBreaks(v = var, nclass = nclass, method = method)
