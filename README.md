@@ -51,9 +51,9 @@ install.packages("cartography")
 
 ## Demo
 
-* You can access the code used to create the cartographic mix [here](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68).
+* You can access the code used to create the cartographic mix [here](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68).  
 
-* This script creates a map of symbols that are proportional to values of a 
+* The following script creates a map of symbols that are proportional to values of a 
 first variable and colored to reflect the discretization of a second variable.  
 
 ```r
