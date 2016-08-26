@@ -1,9 +1,11 @@
 # cartography
 
 [![Version](http://www.r-pkg.org/badges/version/cartography)](https://CRAN.R-project.org/package=cartography/)
-![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
+![](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat) 
 [![Travis-CI Build Status](https://travis-ci.org/Groupe-ElementR/cartography.svg?branch=master)](https://travis-ci.org/Groupe-ElementR/cartography)
-![](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)  
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Groupe-ElementR/cartography?branch=master&svg=true)](https://ci.appveyor.com/project/Groupe-ElementR/cartography)
+![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)  
+ 
 
 ## *Create and integrate maps in your R workflow!*
 
@@ -49,7 +51,9 @@ install.packages("cartography")
 
 ## Demo
 
-This script creates a map of symbols that are proportional to values of a 
+* You can access the code used to create the cartographic mix [here](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68).
+
+* This script creates a map of symbols that are proportional to values of a 
 first variable and colored to reflect the discretization of a second variable.  
 
 ```r
