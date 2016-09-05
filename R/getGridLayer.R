@@ -6,6 +6,7 @@
 #' @param cellsize output cell size, in map units.
 #' @param spdfid identifier field in spdf, default to the first column 
 #' of the spdf data frame. (optional)
+#' @param type shape of the cell, "regular" for squares, "hexagonal" for hexagons. 
 #' @return A list is returned. The list contains "spdf": a SpatialPolygonsDataFrame of 
 #' a regular grid and "df":  a data frame of surface intersection. df fields are id_cell: ids of the grid; 
 #' id_geo: ids of the spdf and area_pct: share of the area of the polygon in the cell 
@@ -22,7 +23,7 @@
 #' head(mygrid$df)
 #'        }
 #' @export
-getGridLayer <- function(spdf, cellsize, spdfid = NULL){
+getGridLayer <- function(spdf, cellsize, type = "regular", spdfid = NULL){
   # rgeos requirement
   # if (!requireNamespace("rgeos", quietly = TRUE)) {
   #   stop("'rgeos' package needed for this function to work. Please install it.",
@@ -36,10 +37,16 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
   spdf@data <- spdf@data[spdfid]
   row.names(spdf) <- spdf@data[,spdfid]
   spdf$area <- rgeos::gArea(spdf, byid=TRUE)
-  
+
   # get a grid
-  spgrid <- getGrid(spdf, cellsize)
-  
+  if(type %in% c("regular", "hexagonal")){
+    spgrid <- switch(type, 
+                     regular = getGridSquare(spdf, cellsize), 
+                     hexagonal = getGridHexa(spdf, cellsize))
+  }else{
+    stop("type should be either 'regular' or 'hexagonal'", call. = F)
+  }
+
   # keep only intersecting cells
   over <- rgeos::gIntersects(spgrid, spdf, byid = TRUE)
   x <- colSums(over)
@@ -82,7 +89,7 @@ getGridLayer <- function(spdf, cellsize, spdfid = NULL){
 
 
 
-getGrid <- function(spdf, cellsize){
+getGridSquare <- function(spdf, cellsize){
   boundingBox <- bbox(spdf)
   rounder <- boundingBox %% cellsize
   boundingBox[,1] <- boundingBox[,1] - rounder[,1]
@@ -104,3 +111,27 @@ getGrid <- function(spdf, cellsize){
   row.names(spgrid) <- as.character(spgrid$id)
   return(spgrid)
 }
+
+
+getGridHexa <- function(spdf, cellsize){
+  bbox <- bbox(spdf)
+  bbox[, 1] <- bbox[, 1] - cellsize
+  bbox[, 2] <- bbox[, 2] + cellsize
+  bboxMat <- rbind( c(bbox[1,'min'] , bbox[2,'min']), 
+                    c(bbox[1,'min'],bbox[2,'max']),
+                    c(bbox[1,'max'],bbox[2,'max']), 
+                    c(bbox[1,'max'],bbox[2,'min']), 
+                    c(bbox[1,'min'],bbox[2,'min']) ) 
+  bboxSP <- sp::SpatialPolygons(Srl = list(sp::Polygons(list(sp::Polygon(bboxMat)),"bbox")), 
+                                proj4string=sp::CRS(sp::proj4string(spdf)))
+  x <- sp::spsample(x = bboxSP, type = "hexagonal", 
+                cellsize = cellsize, bb = bbox(spdf))
+  grid <- sp::HexPoints2SpatialPolygons(x)
+  grid <- sp::SpatialPolygonsDataFrame(Sr = grid, 
+                                   data = data.frame(id = 1: length(grid)), 
+                                   match.ID = FALSE)
+  row.names(grid) <- as.character(grid$id)
+  return(grid)
+}
+
+

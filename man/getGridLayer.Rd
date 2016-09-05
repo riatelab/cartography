@@ -4,12 +4,14 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(spdf, cellsize, spdfid = NULL)
+getGridLayer(spdf, cellsize, type = "regular", spdfid = NULL)
 }
 \arguments{
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
 \item{cellsize}{output cell size, in map units.}
+
+\item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
 
 \item{spdfid}{identifier field in spdf, default to the first column 
 of the spdf data frame. (optional)}

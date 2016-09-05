@@ -25,7 +25,7 @@
 #' plot(mygrid$spdf, col="#CCCCCC",border="white")
 #' propSymbolsLayer(spdf = mygrid$spdf, df = datagrid.df, legend.style = "e",
 #'                  legend.pos = "right", border = "white",legend.title.txt = "Total population",
-#'                  var = "pop2008", k=0.005, col="black", add=TRUE)
+#'                  var = "pop2008", inches=0.01, col="black", add=TRUE)
 #' 
 #' # Plot dentsity of population 
 #' ## conversion from square meter to square kilometers
