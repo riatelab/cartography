@@ -1,0 +1,15 @@
+citHeader("To cite package cartography in publications use:")
+
+citEntry(entry = "Article",
+  doi = "10.21105/joss.00054",
+  url = "http://dx.doi.org/10.21105/joss.00054",
+  year  = "2016",
+  month = "aug",
+  publisher = "The Open Journal",
+  volume = "1",
+  number = "4",
+  author = "Timothée Giraud and Nicolas Lambert",
+  title = "cartography: Create and Integrate Maps in your R Workflow",
+  journal = "JOSS", 
+  textVersion = "Giraud, T. and Lambert, N. (2016). cartography: Create and Integrate Maps in your R Workflow. JOSS, 1(4). doi:
+10.21105/joss.00054.")
