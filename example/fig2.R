@@ -1,3 +1,6 @@
+cartography.colors
+
+data("nuts2006")
 library(cartography)
 
 opar <- par(mar = c(0,0,1.2,0), mfrow = c(1,1))
@@ -18,17 +21,15 @@ v <- getBreaks(v = df1$cagr ,method = "quantile",nclass = 10)
 v <- v[order(v)]
 v[5] <- 0
 
-<<<<<<< HEAD
-cols <- carto.pal(pal1 = "turquoise.pal", n1 = 4,pal2 = "wine.pal", n2 = 6, middle = F )
-=======
+
 #cols <- carto.pal(pal1 = "pink.pal", n1 = 4,pal2 = "taupe.pal", n2 = 6, middle = F )
 cols <- c("#f18b61","#f7b48c","#f3d9b7","#f1eccd","#c0dec2","#91caa4","#63b285","#329966","#26734d","#1a4c33")
 
 plot.new()
 sizes <- getFigDim(spdf = nuts0.spdf, width = 18, mar = c(0,0,0,0))
 
-png(filename = "RegularGrid", width = sizes[1], height = sizes[2],units = "cm",res = 150)
->>>>>>> 8ed7787eb424c3441b78ea9e8ed3e53fd57e300b
+# png(filename = "RegularGrid", width = sizes[1], height = sizes[2],units = "cm",res = 150)
+
 
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
@@ -50,7 +51,7 @@ layoutLayer(title = "Demographic Trends, 1999-2008", author = "cartography",
             scale = 500, coltitle = "black",
             north = TRUE, theme = "taupe.pal") 
 
-dev.off()
+# dev.off()
 
 
 

@@ -4,7 +4,7 @@ data(nuts2006)
 
 # Create a grid layer
 mygrid <- getGridLayer(spdf = nuts3.spdf, cellsize = 50000, type = "regular")
-saveRDS(mygrid, 'example/mygrid.rds')
+# saveRDS(mygrid, 'example/mygrid.rds')
 
 plot(mygrid$spdf)
 
@@ -15,7 +15,7 @@ df2 <- getGridData(x = mygrid, df = nuts3.df, var = "gdp" )
 df1$gdp <- df2$gdp
 
 v <- c(seq(2800, 23500, 2000), seq(23500,59000, 4000))
-y <- smoothLayer(spdf = mygrid$spdf, df = df1, var = "gdp", var2 = "pop2008",breaks = v, 
+y <- smoothLayer(spdf = mygrid$spdf, df = df1, var = "gdp", var2 = "pop2008", 
                  span = 50000, beta = 2, mask = nuts0.spdf, resolution = 49000)
 
 cols <- c(rev(carto.pal("green.pal", 11)), carto.pal("wine.pal", 8))
@@ -27,7 +27,7 @@ plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
 # Plot non european space
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 
-choroLayer(spdf = y, var = "center", breaks = bks, col=cols,
+choroLayer(spdf = y, var = "center", col=cols, nclass=8,
            border = "grey80", lwd = 0.5, add=T, legend.pos = "topright")
 
 plot(nuts0.spdf, border = "grey20", col = NA, bg = NA, add=T)

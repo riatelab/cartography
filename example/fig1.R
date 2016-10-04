@@ -29,11 +29,7 @@ layoutLayer(title = "propSymbolsLayer()", author = "cartography",
             scale = 500, coltitle = "black",
             north = TRUE) # add a south arrow
 
-
-
-
 nuts0.df$gdpinh <- nuts0.df$gdppps2008 * 1000000 / nuts0.df$pop2008
-
 
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
@@ -41,21 +37,16 @@ plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
 # Plot non european space
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 
-
 choroLayer(spdf = nuts0.spdf, df = nuts0.df, var = "gdpinh", 
            col = carto.pal(pal1 = "green.pal", n1 = 4), 
            method = "quantile",nclass = 4,  border = "white", lwd = 0.5,  
            legend.pos = "right", legend.title.txt = "GDP per inh.\n(euros)", 
            add=T)
 
-
 layoutLayer(title = "choroLayer()", author = "cartography", 
             sources = "Eurostat, 2008", frame = TRUE, col = "white", 
             scale = 500, coltitle = "black",
             north = TRUE) 
-
-
-
 
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
