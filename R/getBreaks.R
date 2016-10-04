@@ -112,6 +112,7 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
                  (avgVec + 0.5 * sdVec * k) + (1:pose) * (sdVec * k))
         intervals <- c(minVec, bks[bks> minVec & bks <maxVec], maxVec)
       }
+      intervals <- intervals[order(intervals)]
     }
   }
   return(intervals)

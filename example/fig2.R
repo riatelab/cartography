@@ -16,8 +16,7 @@ v <- getBreaks(v = df1$cagr ,method = "quantile",nclass = 10)
 v <- v[order(v)]
 v[5] <- 0
 
-cols <- carto.pal(pal1 = "pink.pal", n1 = 4,pal2 = "taupe.pal", n2 = 6, middle = F )
-
+cols <- carto.pal(pal1 = "turquoise.pal", n1 = 4,pal2 = "wine.pal", n2 = 6, middle = F )
 
 opar <- par(mar = c(0,0,1.2,0))
 # Plot a layer with the extent of the EU28 countries with only a background color
