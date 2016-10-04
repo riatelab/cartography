@@ -57,10 +57,6 @@ layoutLayer(title = "choroLayer()", author = "cartography",
 
 
 
-
-
-
-
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
 
@@ -97,3 +93,4 @@ layoutLayer(title = "propSymbolsChoroLayer()", author = "cartography",
 
 
 # dev.off()
+
