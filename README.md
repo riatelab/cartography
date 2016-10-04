@@ -30,7 +30,7 @@ vignette(topic = "cartography")
 
 ## Blog posts, tutorials
 
-[Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)
+[Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)  
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
 [Cartographie avec R : le package cartography](http://rgeomatic.hypotheses.org/659) (FR)  
 [R pour les cartographes](http://neocarto.hypotheses.org/1859) (FR)    
