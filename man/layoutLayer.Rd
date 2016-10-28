@@ -25,8 +25,8 @@ col and coltitle are set according to the chosen palette.}
 
 \item{bg}{color of the frame background.}
 
-\item{scale}{size of the scale in kilometers. If set to NULL, no scale is 
-displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).}
+\item{scale}{size of the scale bar in kilometers. If set to NULL, no scale bar is 
+displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map width).}
 
 \item{frame}{wheither displaying a frame (TRUE) or not (FALSE).}
 

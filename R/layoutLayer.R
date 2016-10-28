@@ -4,8 +4,8 @@
 #' @param title title of the map.
 #' @param sources sources of the map (or something else).
 #' @param author author of the map (or something else).
-#' @param scale size of the scale in kilometers. If set to NULL, no scale is 
-#' displayed, if set to 0 an automatic scale is displayed (1/10 of the map width).
+#' @param scale size of the scale bar in kilometers. If set to NULL, no scale bar is 
+#' displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map width).
 #' @param frame wheither displaying a frame (TRUE) or not (FALSE).
 #' @param col color of the title box and frame border.
 #' @param coltitle color of the title.
@@ -60,8 +60,6 @@ layoutLayer <- function(title = "Title of the map, year",
   x2 <- mapExtent[2]
   y1 <- mapExtent[3]
   y2 <- mapExtent[4]
-  yextent <- (y2 - y1) / 3
-  xextent <- (x2 - x1) / 3
   delta <- min((y2 - y1) / 40, (x2 - x1) / 40)
 
   
@@ -71,54 +69,35 @@ layoutLayer <- function(title = "Title of the map, year",
     if (theme %in% pals){
       pal <- carto.pal(theme, 20)
       col <- pal[7]
-      coltitle <-pal[19]
+      coltitle <- pal[19]
     }
   }
   
   
   
   # FRAME
-  if(frame == TRUE){colf <- col}else{colf <- NA}
+  if(frame == TRUE){
+    colf <- col
+  }else{
+      colf <- NA
+  }
   rect(x1, y1, x2, y2, border = colf, col = bg)
 
   
   # SCALE
   if (!is.null(scale)){
-    if(scale == 0){
-      scalesize <- (x2-x1)/10
-      scalesize <- signif(scalesize, digits = 0)
-    }
-    if(scale != 0){scalesize <- scale * 1000}
-    labelscale <- paste(scalesize / 1000,"km", sep = " ")
-    rect(x2 - scalesize - delta/2, y1+delta, x2-delta/2, y1+(y2-y1)/200+delta/2,
-         col = "black", border = "black")
-    rect(x2 - scalesize - delta/2, y1+delta, x2-delta/2-scalesize/2,
-         y1+(y2-y1)/200+delta/2, col = "white", border = "black")
-    rect(x2 - scalesize - delta/2, y1+delta, x2-delta/2-scalesize+
-           scalesize/4, y1+(y2-y1)/200+delta/2, col = "black", border = "black")
-    rect(x2 - scalesize / 4 - delta/2, y1+delta, x2-delta/2, y1+(y2-y1)/200+
-           delta/2, col = "white", border = "black")
-    text(x2 - scalesize / 2 - delta/2,y1+(y2-y1)/200+delta,
-         paste(labelscale,"\n",sep=""),cex=0.6)
+    barscale(size = scale, style = "oldschool")
   }
+  
+  
+  
   # NORTH
   if(north==T){
-    xarrow<-x2-delta*1.5
-    yarrow <- y2-delta*2
-    xx <- c(xarrow,xarrow + delta / 2, xarrow + delta * 1)
-    yy <- c(yarrow, yarrow + delta * 1.5, yarrow)
-    polygon(xx, yy, col = "grey20", border = "grey20")
-    text(xarrow+delta*.5,yarrow,"N",adj=c(0.5,1.5),cex=0.8,font=2,col="grey20")
+    north(pos = "topleft")
   }
   
   if(south==T){
-    xarrow <- x2 - delta * 1.5
-    yarrow <- y2 - delta * 2
-    xx <- c(xarrow, xarrow + delta / 2, xarrow + delta * 1)
-    yy <- c(yarrow + delta * 1.5,yarrow, yarrow + delta * 1.5)
-    polygon(xx, yy, col = "grey20", border = "grey20")
-    text(xarrow+delta*.5,yarrow,"S",adj=c(0.5,1.5),cex=0.8,
-         font = 2, col = "grey20")
+    north(pos = "topleft", south = TRUE)
   }
   
   
