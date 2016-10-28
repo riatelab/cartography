@@ -65,7 +65,8 @@ NULL
 #' 2008 (million euros) (numeric)
 #' @field pop1999 Total population in 1999 (inhabitants) (numeric)
 #' @field pop2008 Total population in 2008 (inhabitants) (numeric)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}
+#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}. 
+#' Data extraction: 2011; data validity: 2008.
 #' @docType data
 NULL
 
@@ -88,7 +89,8 @@ NULL
 #' (million euros) (numeric)
 #' @field pop1999 Total population in 1999 (inhabitants) (numeric)
 #' @field pop2008 Total population in 2008 (inhabitants) (numeric)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}
+#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}. 
+#' Data extraction: 2011; data validity: 2008.
 #' @docType data
 NULL
 
@@ -111,7 +113,8 @@ NULL
 #' (million euros) (numeric)
 #' @field pop1999 Total population in 1999 (inhabitants) (numeric)
 #' @field pop2008 Total population in 2008 (inhabitants) (numeric)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}
+#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}. 
+#' Data extraction: 2011; data validity: 2008.
 #' @docType data
 NULL
 
@@ -129,7 +132,8 @@ NULL
 #' (million euros) (numeric)
 #' @field pop1999 Total population in 1999 (inhabitants) (numeric)
 #' @field pop2008 Total population in 2008 (inhabitants) (numeric)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}
+#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}. 
+#' Data extraction: 2011; data validity: 2008.
 #' @docType data
 NULL
 
