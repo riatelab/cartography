@@ -179,7 +179,7 @@ NULL
 NULL
 
 #' @title Twin Cities Dataset
-#' @name twincities
+#' @name twincities.df
 #' @description This dataset contains the number of international twinning 
 #' agreements betwwen cities. Agreements are aggregated at nuts2 level.
 #' @details This data frame can be used with the SpatialPolygonsDataFrame 

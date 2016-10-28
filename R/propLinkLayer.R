@@ -30,10 +30,10 @@
 #' @examples
 #' data("nuts2006")
 #' # Create a link layer of the twin cities agreements
-#' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+#' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities.df[,1:2])
 #' # Plot the links - Twin cities agreements between regions 
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
-#' propLinkLayer(spdf = twincities.spdf, df = twincities[twincities$fij>=5,],maxlwd = 10,
+#' propLinkLayer(spdf = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],maxlwd = 10,
 #'               spdfids = "i", spdfide = "j",
 #'               dfids = "i", dfide = "j",legend.pos = "topright",
 #'               var = "fij", 

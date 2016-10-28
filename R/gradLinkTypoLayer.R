@@ -40,16 +40,16 @@
 #' @examples 
 #' data("nuts2006")
 #' # Create a link layer
-#' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities[,1:2])
+#' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities.df[,1:2])
 #' 
 #' # Plot the links - Twin cities agreements between regions
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
 #' 
 #' # Countries of agreements
-#' twincities$ctry <- substr(twincities$j,1,2)
+#' twincities.df$ctry <- substr(twincities.df$j,1,2)
 #' 
 #' # Agreements with german cities
-#' twincitiesok <- twincities[substr(twincities$i,1,2)=="DE",]
+#' twincitiesok <- twincities.df[substr(twincities.df$i,1,2)=="DE",]
 #' 
 #' # plot the colored and graduated links
 #' gradLinkTypoLayer(spdf = twincities.spdf, df = twincitiesok,

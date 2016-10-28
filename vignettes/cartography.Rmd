@@ -155,11 +155,11 @@ data(nuts2006)
 opar <- par(mar = c(0,0,1.2,0))
 
 # Create a link layer from the twincities data frame
-head(twincities)
+head(twincities.df)
 # twincities contains links between Nuts 2 regions
-# ?twincities
+# ?twincities.df
 twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, # SpatialPolygonsDataFrame of Nuts2
-                                df = twincities) # links data frame
+                                df = twincities.df) # links data frame
 class(twincities.spdf)
 
 # Plot a layer with the extent of the EU28 countries with only a background color
@@ -171,7 +171,7 @@ plot(nuts2.spdf, col = "#D1914D",border = "grey80", add=TRUE)
 
 # Plot links with graduated sizes
 gradLinkLayer(spdf = twincities.spdf, # SpatialLinesdataFrame of the links
-              df = twincities, # data frame of the links
+              df = twincities.df, # data frame of the links
               spdfids = "i", # identifier of starting points in spdf 
               spdfide = "j", # identifier of ending points in spdf 
               dfids = "i", # identifier of starting points in df 

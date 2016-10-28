@@ -21,9 +21,9 @@
 #' @examples 
 #' data("nuts2006")
 #' # Create a link layer
-#' head(twincities)
+#' head(twincities.df)
 #' # Select links from Ireland (IE)
-#' twincitiesIE <- twincities[substr(twincities$i,1,2)=="IE", ]
+#' twincitiesIE <- twincities.df[substr(twincities.df$i,1,2)=="IE", ]
 #' twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesIE[,1:2])
 #' # Plot the links
 #' plot(nuts2.spdf, col = "#6C6870")
