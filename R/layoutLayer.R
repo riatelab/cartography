@@ -50,18 +50,18 @@ layoutLayer <- function(title = "Title of the map, year",
                         bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
                         south = FALSE, extent = NULL){
   
-    if (!is.null(extent)){
-      sp::plot(extent, border = NA, col = NA, add = FALSE)
-      mapExtent <- par()$usr
-    }else {
-      mapExtent <- par()$usr
-    }
+  if (!is.null(extent)){
+    sp::plot(extent, border = NA, col = NA, add = FALSE)
+    mapExtent <- par()$usr
+  }else {
+    mapExtent <- par()$usr
+  }
   x1 <- mapExtent[1]
   x2 <- mapExtent[2]
   y1 <- mapExtent[3]
   y2 <- mapExtent[4]
   delta <- min((y2 - y1) / 40, (x2 - x1) / 40)
-
+  
   
   # Manage themes
   if(!is.null(theme)){
@@ -79,13 +79,16 @@ layoutLayer <- function(title = "Title of the map, year",
   if(frame == TRUE){
     colf <- col
   }else{
-      colf <- NA
+    colf <- NA
   }
   rect(x1, y1, x2, y2, border = colf, col = bg)
-
+  
   
   # SCALE
   if (!is.null(scale)){
+    if(scale==0){
+      scale <- NULL
+    }
     barscale(size = scale, style = "oldschool")
   }
   
@@ -112,7 +115,7 @@ layoutLayer <- function(title = "Title of the map, year",
        labels = title, adj=c(0,0),
        cex = size, col = coltitle,font=2)
   par(xpd = FALSE)
-
+  
   
   
   
