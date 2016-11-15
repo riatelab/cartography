@@ -24,18 +24,13 @@
 #'        }
 #' @export
 getGridLayer <- function(spdf, cellsize, type = "regular", spdfid = NULL){
-  # rgeos requirement
-  # if (!requireNamespace("rgeos", quietly = TRUE)) {
-  #   stop("'rgeos' package needed for this function to work. Please install it.",
-  #        call. = FALSE)
-  # }
-  
   # id check
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   
   # spdf management/area
   spdf@data <- spdf@data[spdfid]
-  row.names(spdf) <- spdf@data[,spdfid]
+  row.names(spdf) <- as.character(spdf@data[,spdfid])
+
   spdf$area <- rgeos::gArea(spdf, byid=TRUE)
 
   # get a grid
