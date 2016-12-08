@@ -4,7 +4,7 @@
 #' @param pos position of the north arrow. It can be one of "topleft", "top", 
 #' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
 #' vector of two coordinates (c(x, y)).
-#' @param south plot a south arrow instead
+#' @param south plot a south arrow instead.
 #' @param col arrow color.
 #' @export
 #' @seealso \link{layoutLayer}
@@ -36,7 +36,7 @@ north <- function(pos = "topright", col = "grey20", south = FALSE){
   }else{
     switch(pos, 
            topleft={
-             xarrow <- x[2] - inset * 1.5
+             xarrow <- x[1] + inset * .5
              yarrow <- y[2] - inset * 2
            }, 
            bottomright={
@@ -44,7 +44,7 @@ north <- function(pos = "topright", col = "grey20", south = FALSE){
              yarrow <- y[1] + inset * 2
            },  
            topright={
-             xarrow <- x[1] + inset * .5
+             xarrow <- x[2] - inset * 1.5
              yarrow <- y[2] - inset * 2
            },
            bottomleft={

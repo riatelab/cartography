@@ -13,7 +13,7 @@ vector of two coordinates (c(x, y)).}
 
 \item{col}{arrow color.}
 
-\item{south}{plot a south arrow instead}
+\item{south}{plot a south arrow instead.}
 }
 \description{
 Plot a north arrow.
