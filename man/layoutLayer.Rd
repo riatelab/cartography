@@ -6,7 +6,7 @@
 \usage{
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   author = "Author(s)", col = "black", coltitle = "white", theme = NULL,
-  bg = NULL, scale = 0, frame = TRUE, north = FALSE, south = FALSE,
+  bg = NULL, scale = 0, frame = TRUE, north = TRUE, south = FALSE,
   extent = NULL)
 }
 \arguments{

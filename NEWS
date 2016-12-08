@@ -3,10 +3,18 @@
 cartography version 1.4.9000 (Release date:)
 ==============
 
-* Addition of the hexagonal regular grid. 
+Major changes:  
 
+* Addition of the hexagonal regular grid in getGridLayer.  
+* Addition of barscale function to plot a custom scalebar.  
+* Addition of north function to plot a custom north (or south) arrow.  
 
+Minor changes:  
 
+* small fix on the msd method (breaks order) in getBreaks function.  
+* more precise sources for datasets
+* renaming twincities data frame to twincities.df
+* small fix for ids in getGridLayer
 
 
 cartography version 1.4.0 (Release date: 2016-08-25)
