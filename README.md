@@ -22,7 +22,7 @@ the graphic presentation of maps.
 
 
 ## Vignette
-The [vignette](https://cran.r-project.org/web/packages/cartography/vignettes/cartography.html) 
+The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 
 contains commented scripts on how to build various types of maps with `cartography`
 ```{r}
 vignette(topic = "cartography")
