@@ -33,7 +33,7 @@ Zoom levels are descibed on the OpenStreetMap wiki:
 \note{
 This function is a wrapper around the \code{osm.raster} function 
 from the \code{rosm} package. \cr
-Use directly the \href{http://cran.r-project.org/package=rosm}{rosm} package to have a finer control over  
+Use directly the \href{https://CRAN.R-project.org/package=rosm}{rosm} package to have a finer control over  
 extraction and display parameters.
 }
 \examples{

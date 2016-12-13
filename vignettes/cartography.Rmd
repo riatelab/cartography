@@ -3,14 +3,17 @@ title: '***Commented Scripts to Build Maps with `cartography`*** '
 author: "Timothée Giraud, Nicolas Lambert"
 date: '`r Sys.Date()`'
 output: 
-  rmarkdown::html_vignette: 
-    toc: yes
+ rmarkdown::html_vignette: 
+    toc: true
 vignette: >
   %\VignetteIndexEntry{cartography}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
 
 
 # Label Map 
