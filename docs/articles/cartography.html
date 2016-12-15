@@ -38,7 +38,7 @@
       <h1><strong><em>Commented Scripts to Build Maps with <code>cartography</code></em></strong></h1>
                         <h4 class="author">Timoth&eacute;e Giraud, Nicolas Lambert</h4>
             
-            <h4 class="date">2016-10-31</h4>
+            <h4 class="date">2016-12-15</h4>
           </div>
 
     
@@ -85,7 +85,8 @@ dflab$lab &lt;-<span class="st"> </span><span class="kw">paste</span>(dflab$id, 
 <span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">5477360</span>, <span class="dt">y =</span> <span class="dv">4177311</span>, <span class="dt">labels =</span> <span class="st">"The 10 most populated countries of Europe</span>
 <span class="st">Total population 2008, in millions of inhabitants."</span>, <span class="dt">cex =</span> <span class="fl">0.7</span>, <span class="dt">adj =</span> <span class="dv">0</span>)</code></pre></div>
 <p><img src="cartography_files/figure-html/labelMap-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(opar)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw">par</span>(opar)</code></pre></div>
 </div>
 <div id="choropleth-map" class="section level1">
 <h1 class="hasAnchor"><html><body><a href="#choropleth-map" class="anchor"> </a></body></html>Choropleth Map</h1>
@@ -178,23 +179,24 @@ nuts0.df$pop &lt;-<span class="st"> </span>nuts0.df$pop2008 /<span class="st"> <
 opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))
 
 <span class="co"># Create a link layer from the twincities data frame</span>
-<span class="kw">head</span>(twincities.df)</code></pre></div>
-<pre><code>##      i    j fij
+<span class="kw">head</span>(twincities.df)
+##      i    j fij
 ## 1 DE14 AT11   1
 ## 2 DE21 AT11   1
 ## 3 DE23 AT11   1
 ## 4 DE26 AT11   2
 ## 5 DE91 AT11   1
-## 6 DEB3 AT11   1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># twincities contains links between Nuts 2 regions</span>
+## 6 DEB3 AT11   1
+<span class="co"># twincities contains links between Nuts 2 regions</span>
 <span class="co"># ?twincities.df</span>
 twincities.spdf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getLinkLayer.html">getLinkLayer</a></span>(<span class="dt">spdf =</span> nuts2.spdf, <span class="co"># SpatialPolygonsDataFrame of Nuts2</span>
                                 <span class="dt">df =</span> twincities.df) <span class="co"># links data frame</span>
-<span class="kw">class</span>(twincities.spdf)</code></pre></div>
-<pre><code>## [1] "SpatialLinesDataFrame"
+<span class="kw">class</span>(twincities.spdf)
+## [1] "SpatialLinesDataFrame"
 ## attr(,"package")
-## [1] "sp"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot a layer with the extent of the EU28 countries with only a background color</span>
+## [1] "sp"
+
+<span class="co"># Plot a layer with the extent of the EU28 countries with only a background color</span>
 <span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#A6CAE0"</span>)
 <span class="co"># Plot non european space</span>
 <span class="kw">plot</span>(world.spdf, <span class="dt">col  =</span> <span class="st">"#E3DEBF"</span>, <span class="dt">border=</span><span class="ot">NA</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
@@ -279,19 +281,20 @@ opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">
 
 <span class="co"># Get a SpatialLinesDataFrame of countries borders</span>
 nuts0.contig.spdf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getBorders.html">getBorders</a></span>(nuts0.spdf)
-<span class="kw">class</span>(nuts0.contig.spdf)</code></pre></div>
-<pre><code>## [1] "SpatialLinesDataFrame"
+<span class="kw">class</span>(nuts0.contig.spdf)
+## [1] "SpatialLinesDataFrame"
 ## attr(,"package")
-## [1] "sp"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nuts0.contig.spdf@data)</code></pre></div>
-<pre><code>##          id id1 id2
+## [1] "sp"
+<span class="kw">head</span>(nuts0.contig.spdf@data)
+##          id id1 id2
 ## CH_AT CH_AT  CH  AT
 ## CZ_AT CZ_AT  CZ  AT
 ## DE_AT DE_AT  DE  AT
 ## DE_BE DE_BE  DE  BE
 ## DE_CH DE_CH  DE  CH
-## DE_CZ DE_CZ  DE  CZ</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the GDP per capita</span>
+## DE_CZ DE_CZ  DE  CZ
+
+<span class="co"># Get the GDP per capita</span>
 nuts0.df$gdpcap &lt;-<span class="st"> </span>nuts0.df$gdppps2008/nuts0.df$pop2008*<span class="dv">1000000</span>
 
 <span class="co"># Plot a layer with the extent of the EU28 countries with only a background color</span>
@@ -341,21 +344,22 @@ opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">
 mygrid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getGridLayer.html">getGridLayer</a></span>(<span class="dt">spdf=</span>nuts2.spdf, <span class="co"># SpatialPolygonsDataFrame</span>
                        <span class="dt">cellsize =</span> <span class="dv">200000</span>) <span class="co"># output cell size, in map units (200 km)</span>
 <span class="co"># getGridLayer outputs a list</span>
-<span class="kw">ls</span>(mygrid)</code></pre></div>
-<pre><code>## [1] "df"   "spdf"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Data frame of surface intersection</span>
-<span class="kw">head</span>(mygrid$df)</code></pre></div>
-<pre><code>##         id_cell id_geo   area_pct
+<span class="kw">ls</span>(mygrid)
+## [1] "df"   "spdf"
+<span class="co"># Data frame of surface intersection</span>
+<span class="kw">head</span>(mygrid$df)
+##         id_cell id_geo   area_pct
 ## 4 ES64        4   ES64 100.000000
 ## 12 MT00      12   MT00 100.000000
 ## 16 GR43      16   GR43  55.982681
 ## 17 GR43      17   GR43  33.653855
 ## 27 ES61      27   ES61   3.803508
-## 28 ES61      28   ES61  19.314112</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The grid</span>
+## 28 ES61      28   ES61  19.314112
+<span class="co"># The grid</span>
 <span class="kw">plot</span>(mygrid$spdf)</code></pre></div>
 <p><img src="cartography_files/figure-html/gridLayer-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute data for the grid layer</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># Compute data for the grid layer</span>
 datagrid.df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getGridData.html">getGridData</a></span>(<span class="dt">x =</span> mygrid, <span class="co"># list outputed by getGridLayer</span>
                            <span class="dt">df =</span> nuts2.df, <span class="co"># a data frame matching the spdf SpatialdataFrame in getGridLayer</span>
                            <span class="dt">var =</span> <span class="st">"pop2008"</span>) <span class="co"># name of the variable to distribute on the grid </span>
@@ -383,7 +387,8 @@ cols &lt;-<span class="st"> </span><span class="kw"><a href="../reference/carto.
             <span class="dt">sources =</span> <span class="st">"Eurostat, 2011"</span>, <span class="dt">scale =</span> <span class="ot">NULL</span>, 
             <span class="dt">author =</span> <span class="st">"cartography"</span>, <span class="dt">frame =</span><span class="st">""</span>, <span class="dt">col =</span> <span class="ot">NA</span>)</code></pre></div>
 <p><img src="cartography_files/figure-html/gridLayer-2.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(opar)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw">par</span>(opar)</code></pre></div>
 </div>
 </div>
   </div>

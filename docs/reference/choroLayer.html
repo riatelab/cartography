@@ -168,10 +168,7 @@ Association, vol. 21, n° 153, mars 1926, p. 65-66.</p>
     <p><a href='getBreaks.html'>getBreaks</a>, <a href='carto.pal.html'>carto.pal</a>,  <a href='legendChoro.html'>legendChoro</a>, <a href='propSymbolsChoroLayer.html'>propSymbolsChoroLayer</a></p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"nuts2006"</span>)
 
 <span class='co'>## Example 1</span>
@@ -196,8 +193,7 @@ Association, vol. 21, n° 153, mars 1926, p. 65-66.</p>
 <span class='co'># Compute the compound annual growth rate</span>
 <span class='no'>nuts2.df</span>$<span class='no'>cagr</span> <span class='kw'>&lt;-</span> (((<span class='no'>nuts2.df</span>$<span class='no'>pop2008</span> / <span class='no'>nuts2.df</span>$<span class='no'>pop1999</span>)^(<span class='fl'>1</span>/<span class='fl'>9</span>)) - <span class='fl'>1</span>) * <span class='fl'>100</span>
 <span class='fu'>summary</span>(<span class='no'>nuts2.df</span>$<span class='no'>cagr</span>)</div><div class='output co'>#&gt;     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-#&gt; -2.42900 -0.08116  0.27750  0.31550  0.65960  3.02800 
-#&gt; </div><div class='input'><span class='co'># Plot the compound annual growth rate</span>
+#&gt; -2.42900 -0.08116  0.27750  0.31550  0.65960  3.02800 </div><div class='input'><span class='co'># Plot the compound annual growth rate</span>
 <span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='carto.pal.html'>carto.pal</a></span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 <span class='fu'>choroLayer</span>(<span class='kw'>spdf</span> <span class='kw'>=</span> <span class='no'>nuts2.spdf</span>,
            <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>nuts2.df</span>,

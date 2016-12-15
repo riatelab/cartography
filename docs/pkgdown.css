@@ -30,6 +30,10 @@ footer p {
   margin-bottom: 0;
 }
 
+img.icon {
+  float: right;
+}
+
 /* Section anchors ---------------------------------*/
 
 .hasAnchor {
@@ -63,11 +67,6 @@ a.anchor {
 
 #sidebar {
   margin-top: 30px;
-  word-wrap: break-word;
-
-  hyphens: auto;
-  -ms-hyphens: auto;
-  -webkit-hyphens: auto;
 }
 #sidebar h2 {
   font-size: 1.5em;
@@ -91,6 +90,10 @@ code {
 code a {
   color: #375f84;
 }
+
+.warning { color: red; }
+.message { font-weight: bolder; }
+.error   { color: red; font-weight: bolder; }
 
 .fl,.number {color:rgb(21,20,181);}
 .fu,.functioncall {color:#264D66 ;}

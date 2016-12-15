@@ -165,40 +165,32 @@ the Sciences-Po Medialab.</p>
     <p><a href='display.carto.pal.html'>display.carto.pal</a>, <a href='display.carto.all.html'>display.carto.all</a>, <a href='carto.pal.info.html'>carto.pal.info</a></p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Simple gradient: blue</span>
 <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span> ,<span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt;  [1] &quot;#DCF0F8&quot; &quot;#D0E8F2&quot; &quot;#C4E0EC&quot; &quot;#B9D8E7&quot; &quot;#ADD0E1&quot; &quot;#A1C8DC&quot; &quot;#96C0D6&quot;
 #&gt;  [8] &quot;#8AB8D0&quot; &quot;#7EB0CB&quot; &quot;#6EA6C3&quot; &quot;#5F9BBC&quot; &quot;#4F91B4&quot; &quot;#4086AD&quot; &quot;#307BA5&quot;
-#&gt; [15] &quot;#236F9A&quot; &quot;#1E6085&quot; &quot;#19506F&quot; &quot;#14405A&quot; &quot;#0F3045&quot; &quot;#0B2130&quot;
-#&gt; </div><div class='input'>
+#&gt; [15] &quot;#236F9A&quot; &quot;#1E6085&quot; &quot;#19506F&quot; &quot;#14405A&quot; &quot;#0F3045&quot; &quot;#0B2130&quot;</div><div class='input'>
 <span class='co'># Double gradient: blue &amp; red</span>
 <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1] &quot;#0F4464&quot; &quot;#17577C&quot; &quot;#206A94&quot; &quot;#317DA7&quot; &quot;#4B90B5&quot; &quot;#64A3C4&quot; &quot;#79B3CF&quot;
 #&gt;  [8] &quot;#8CC1DA&quot; &quot;#9FCFE5&quot; &quot;#B2DEF0&quot; &quot;#FCDACA&quot; &quot;#F8BCAE&quot; &quot;#F59F93&quot; &quot;#F28278&quot;
-#&gt; [15] &quot;#EE625B&quot; &quot;#EA3B36&quot; &quot;#E71312&quot; &quot;#D00002&quot; &quot;#A60007&quot; &quot;#7C000C&quot;
-#&gt; </div><div class='input'>
+#&gt; [15] &quot;#EE625B&quot; &quot;#EA3B36&quot; &quot;#E71312&quot; &quot;#D00002&quot; &quot;#A60007&quot; &quot;#7C000C&quot;</div><div class='input'>
 <span class='co'># Adding a neutral color</span>
 <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] &quot;#0F4464&quot;   &quot;#17577C&quot;   &quot;#206A94&quot;   &quot;#317DA7&quot;   &quot;#4B90B5&quot;   &quot;#64A3C4&quot;  
 #&gt;  [7] &quot;#79B3CF&quot;   &quot;#8CC1DA&quot;   &quot;#9FCFE5&quot;   &quot;#B2DEF0&quot;   &quot;#F6F6F6FF&quot; &quot;#FCDACA&quot;  
 #&gt; [13] &quot;#F8BCAE&quot;   &quot;#F59F93&quot;   &quot;#F28278&quot;   &quot;#EE625B&quot;   &quot;#EA3B36&quot;   &quot;#E71312&quot;  
-#&gt; [19] &quot;#D00002&quot;   &quot;#A60007&quot;   &quot;#7C000C&quot;  
-#&gt; </div><div class='input'>
+#&gt; [19] &quot;#D00002&quot;   &quot;#A60007&quot;   &quot;#7C000C&quot;  </div><div class='input'>
 <span class='co'># Enhancing contrasts with transparency</span>
 <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span><span class='kw'>=</span><span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
           <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] &quot;#0F4464&quot;   &quot;#17577Ce8&quot; &quot;#206A94d2&quot; &quot;#317DA7bb&quot; &quot;#4B90B5a5&quot; &quot;#64A3C48e&quot;
 #&gt;  [7] &quot;#79B3CF78&quot; &quot;#8CC1DA61&quot; &quot;#9FCFE54b&quot; &quot;#B2DEF034&quot; &quot;#F6F6F61e&quot; &quot;#FCDACA34&quot;
 #&gt; [13] &quot;#F8BCAE4b&quot; &quot;#F59F9361&quot; &quot;#F2827878&quot; &quot;#EE625B8e&quot; &quot;#EA3B36a5&quot; &quot;#E71312bb&quot;
-#&gt; [19] &quot;#D00002d2&quot; &quot;#A60007e8&quot; &quot;#7C000C&quot;  
-#&gt; </div><div class='input'>
+#&gt; [19] &quot;#D00002d2&quot; &quot;#A60007e8&quot; &quot;#7C000C&quot;  </div><div class='input'>
 <span class='co'># The double gradient can be asymetric</span>
 <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
           <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] &quot;#8FBFD769&quot; &quot;#9DC9DE5a&quot; &quot;#ABD3E54b&quot; &quot;#B9DDEC3c&quot; &quot;#C7E7F42d&quot; &quot;#F6F6F61e&quot;
 #&gt;  [7] &quot;#FCDACA2d&quot; &quot;#F9C7B83c&quot; &quot;#F7B4A74b&quot; &quot;#F5A1955a&quot; &quot;#F38F8469&quot; &quot;#F17C7378&quot;
 #&gt; [13] &quot;#EF686087&quot; &quot;#EC4E4996&quot; &quot;#EA3531a5&quot; &quot;#E71C1Ab4&quot; &quot;#E50302c3&quot; &quot;#CD0002d2&quot;
-#&gt; [19] &quot;#B20005e1&quot; &quot;#970008f0&quot; &quot;#7C000C&quot;  
-#&gt; </div><div class='input'>
+#&gt; [19] &quot;#B20005e1&quot; &quot;#970008f0&quot; &quot;#7C000C&quot;  </div><div class='input'>
 <span class='co'># Build and display a palette</span>
 <span class='no'>mypal</span> <span class='kw'>&lt;-</span> <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>15</span>,
                    <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
