@@ -81,6 +81,17 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
         tmp <- tmp*r
         intervals <- sort(intervals)
       }
+     if (method=="arith")
+    {
+      intervals <- min(v)
+      intervals <- c(intervals,max(v))
+      r <- (max(v) - min(v)) / sum(1:nclass) # raison
+      tmp <- min(v)
+      for ( i in 1:(nclass-1)) {
+        intervals <- c(intervals,tmp+r)
+        tmp <- tmp+r
+        intervals <- sort(intervals)
+      }
     }
     if (method == "q6")
     {
