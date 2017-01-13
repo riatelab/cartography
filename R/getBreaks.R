@@ -81,7 +81,8 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
         tmp <- tmp*r
         intervals <- sort(intervals)
       }
-     if (method=="arith")
+    }
+    if (method=="arith")
     {
       intervals <- min(v)
       intervals <- c(intervals,max(v))
