@@ -98,6 +98,33 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
     {
       intervals <- as.vector(quantile(v,probs = c(0, 5, 27.5, 50, 72.5, 95, 100)/100))
     }
+    if (method == "em"){
+      t <- bitwAnd(nclass,(nclass-1))
+      if(t != 0){
+        stop("The number of classes must be a power of 2")
+      }else{
+        min <- min(v)
+        max <- max(v)
+        it <- log2(nclass)
+        
+        int <- c(min,max)
+        
+        for (a in 1:it){
+          valprv <- c()
+          for (i in 1:(length(int)-1)){
+            if (i == 1){
+              sub <- v[v >= int[i] & v <= int[i+1]]
+            }else{
+              sub <- v[v > int[i] & v <= int[i+1]]
+            }
+            valprv <- c(valprv, mean(sub))
+          }
+          int <- c(int, valprv)
+          int <-int[order(int)]
+        }
+        intervals <- int
+      }
+    }
     if (method == "msd"){
 
       minVec <- min(v)
