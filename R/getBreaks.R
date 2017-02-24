@@ -147,9 +147,9 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
         pose <- ceiling((maxVec - (avgVec + 0.5 * sdVec * k)) / (sdVec * k))
         nege <- ceiling(((avgVec - 0.5 * sdVec * k ) - minVec) / (sdVec *k))
         
-        bks <- c((avgVec -  0.5 * sdVec * k) - (1:nege) * (sdVec * k), 
-                 (avgVec -  0.5 * sdVec * k), 
-                 (avgVec +  0.5 * sdVec * k), 
+        bks <- c((avgVec - 0.5 * sdVec * k) - (1:nege) * (sdVec * k), 
+                 (avgVec - 0.5 * sdVec * k), 
+                 (avgVec + 0.5 * sdVec * k), 
                  (avgVec + 0.5 * sdVec * k) + (1:pose) * (sdVec * k))
         intervals <- c(minVec, bks[bks> minVec & bks <maxVec], maxVec)
       }
