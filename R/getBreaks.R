@@ -105,21 +105,21 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
       if(t != 0){
         stop("The number of classes must be a power of 2")
       }else{
-        min <- min(v)
-        max <- max(v)
+        minVec <- min(v)
+        maxVec <- max(v)
         it <- log2(nclass)
         
-        int <- c(min,max)
+        int <- c(minVec,maxVec)
         
         for (a in 1:it){
           valprv <- c()
           for (i in 1:(length(int)-1)){
             if (i == 1){
-              sub <- v[v >= int[i] & v <= int[i+1]]
+              subVec <- v[v >= int[i] & v <= int[i+1]]
             }else{
-              sub <- v[v > int[i] & v <= int[i+1]]
+              subVec <- v[v > int[i] & v <= int[i+1]]
             }
-            valprv <- c(valprv, mean(sub))
+            valprv <- c(valprv, mean(subVec))
           }
           int <- c(int, valprv)
           int <-int[order(int)]
