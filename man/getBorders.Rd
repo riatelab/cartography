@@ -39,4 +39,3 @@ plot(nuts0.contig.spdf,
 \seealso{
 \link{discLayer}, \link{getOuterBorders}
 }
-

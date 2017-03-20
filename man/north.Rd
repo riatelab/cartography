@@ -37,4 +37,3 @@ for (i in list("topleft", "top", "topright", "right", "bottomright",
 \seealso{
 \link{layoutLayer}
 }
-

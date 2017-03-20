@@ -72,4 +72,3 @@ layoutLayer(title = "GDP per Inhabitants", sources = "",
 \seealso{
 \link{labelLayer}
 }
-

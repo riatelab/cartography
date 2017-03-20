@@ -81,4 +81,3 @@ layoutLayer(title = "Colors in Europe",
 \seealso{
 \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
 }
-

@@ -47,4 +47,3 @@ plot(nuts0.outer, col = sample(x = rainbow(nrow(nuts0.outer))),
 \seealso{
 \link{discLayer}, \link{getBorders}
 }
-

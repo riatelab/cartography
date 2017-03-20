@@ -60,4 +60,3 @@ legendSquaresSymbols(pos = "bottomright", title.txt = "Title of\\nthe legend ",
                      frame=TRUE, values.rnd=0, style ="c")
 
 }
-

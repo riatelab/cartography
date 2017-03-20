@@ -64,4 +64,3 @@ legendPropTriangles(pos = "topright", var.txt = "population totale (habs)",
                         col="green", col2="yellow", frame=TRUE, values.rnd=2, 
                         style="c")
 }
-

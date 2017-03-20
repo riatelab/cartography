@@ -54,4 +54,3 @@ choroLayer(spdf = mygrid$spdf,df = datagrid.df,var = "densitykm", add=FALSE,
 \seealso{
 \link{getGridLayer}
 }
-

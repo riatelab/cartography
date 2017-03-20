@@ -50,4 +50,3 @@ plot(twincities.spdf, col = "#F78194", add = TRUE)
 \seealso{
 \link{gradLinkLayer}, \link{propLinkLayer}
 }
-

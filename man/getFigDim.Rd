@@ -65,4 +65,3 @@ layoutLayer(title = "Map of Italy")
 dev.off()
 }
 }
-

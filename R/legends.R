@@ -336,7 +336,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     rVal <- sleg * rValmax / sleg[1]
     rVal <- round(rVal,values.rnd)
     
-    
+
     # xsize & ysize
     
     if (style=="c"){

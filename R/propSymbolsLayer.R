@@ -185,6 +185,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     sp::plot(spdf, col = NA, border = NA)
   }
   
+
   switch(symbols, 
          circle = {
            symbols(dots[, 2:3], circles = sizes, bg = mycols, fg = border, 

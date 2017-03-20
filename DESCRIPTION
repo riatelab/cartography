@@ -21,4 +21,4 @@ Imports: classInt, stats, graphics, utils, methods, rgeos, rosm, raster
 Suggests: SpatialPosition, knitr, rmarkdown
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

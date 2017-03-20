@@ -82,4 +82,3 @@ dotDensityLayer(spdf = nuts1.spdf, df=nuts1.df,var="pop2008",
 \seealso{
 \link{propSymbolsLayer}
 }
-

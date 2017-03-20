@@ -36,4 +36,3 @@ barscale(style = "oldschool")
 \seealso{
 \link{layoutLayer}
 }
-

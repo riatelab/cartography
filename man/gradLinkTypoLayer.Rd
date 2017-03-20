@@ -104,4 +104,3 @@ gradLinkTypoLayer(spdf = twincities.spdf, df = twincitiesok,
 \seealso{
 \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
 }
-

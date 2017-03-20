@@ -93,4 +93,3 @@ propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df,
 \seealso{
 \link{legendPropTriangles}
 }
-

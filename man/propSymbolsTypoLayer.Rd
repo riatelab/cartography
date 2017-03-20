@@ -124,4 +124,3 @@ layoutLayer(title = "Countries Population & Color in Europe",
 \link{legendCirclesSymbols}, \link{legendSquaresSymbols},
 \link{typoLayer}, \link{propSymbolsLayer}
 }
-

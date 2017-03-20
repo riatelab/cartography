@@ -59,4 +59,3 @@ legendCirclesSymbols(pos = "topleft", title.txt = "Title of\\nthe legend",
                      col = "pink", frame = TRUE, 
                      values.rnd=0, style ="c")
 }
-
