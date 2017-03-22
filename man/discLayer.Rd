@@ -94,4 +94,3 @@ discLayer(spdf = nuts0.contig.spdf, df = nuts0.df,
 \seealso{
 \link{getBorders}, \link{gradLinkLayer}, \link{legendGradLines}
 }
-

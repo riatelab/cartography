@@ -58,4 +58,3 @@ legendTypo(pos = "topright", title.txt = "",
            values.cex = 1, col = someColors, categ = someLabels, 
            nodata = FALSE, frame = FALSE, symbol="line")
 }
-

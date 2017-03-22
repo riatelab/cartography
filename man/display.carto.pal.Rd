@@ -43,4 +43,3 @@ display.carto.pal("sand.pal")
 \seealso{
 \link{carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
 }
-

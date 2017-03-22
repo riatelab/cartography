@@ -59,4 +59,3 @@ legendBarsSymbols(pos = "topleft", title.txt = "Title of\\nthe legend",
                      col = "purple",
                      values.rnd=0, style ="e")
 }
-

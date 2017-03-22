@@ -150,4 +150,3 @@ layoutLayer(title = "", author = "Eurostat, 2011",
 \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
 \link{choroLayer}, \link{propSymbolsLayer}
 }
-

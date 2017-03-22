@@ -39,4 +39,3 @@ head(mygrid$df)
 \seealso{
 \link{getGridData}
 }
-

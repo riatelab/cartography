@@ -4,7 +4,7 @@
 \alias{typoLayer}
 \title{Typology Layer}
 \usage{
-typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
+typoLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   border = "grey20", lwd = 1, colNA = "white",
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6,
@@ -12,6 +12,8 @@ typoLayer(spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   legend.frame = FALSE, add = FALSE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
 \item{df}{a data frame that contains the values to plot. If df is missing 
@@ -81,4 +83,3 @@ layoutLayer(title = "Colors in Europe",
 \seealso{
 \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
 }
-

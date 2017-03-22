@@ -45,4 +45,3 @@ legendPropLines(pos = "topleft", title.txt = "Title",
                 lwd = nuts1.df$pop2008/1000000,
                 col="red", frame=TRUE, values.rnd=2)
 }
-

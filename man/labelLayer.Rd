@@ -60,4 +60,3 @@ Total population 2008, in millions of inhabitants.",
 \seealso{
 \link{layoutLayer}
 }
-

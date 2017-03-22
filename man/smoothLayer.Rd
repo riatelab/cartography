@@ -117,4 +117,3 @@ smoothLayer(spdf = nuts3.spdf, df = nuts3.df,
 \seealso{
 \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 }
-

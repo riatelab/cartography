@@ -154,4 +154,3 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, inches = 0.3,
 \link{legendSquaresSymbols}, \link{propSymbolsChoroLayer}, 
 \link{propSymbolsTypoLayer}
 }
-

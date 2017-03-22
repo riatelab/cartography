@@ -18,4 +18,3 @@ carto.pal.info
 \seealso{
 \link{carto.pal}, \link{display.carto.pal}, \link{display.carto.all}
 }
-

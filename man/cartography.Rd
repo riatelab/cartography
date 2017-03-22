@@ -48,4 +48,3 @@ Main functions :
 \link{getGridLayer}, \link{getGridData}}
 }
 }
-

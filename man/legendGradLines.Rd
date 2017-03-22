@@ -47,4 +47,3 @@ legendGradLines(title.txt = "Title of the legend",
                 lwd = c(0.2,2,4,5,10),
                 col ="blue", values.rnd =2)
 }
-

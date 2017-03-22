@@ -74,4 +74,3 @@ abline(v = moy, col = "red", lwd = 3)
 abline(v = moy + 0.5 * sd, col = "blue", lwd = 3)
 abline(v = moy - 0.5 * sd, col = "blue", lwd = 3)
 }
-

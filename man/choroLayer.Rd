@@ -4,7 +4,7 @@
 \alias{choroLayer}
 \title{Choropleth Layer}
 \usage{
-choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
+choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   method = "quantile", nclass = NULL, col = NULL, border = "grey20",
   lwd = 1, colNA = "white", legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
@@ -12,6 +12,8 @@ choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   add = FALSE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
 \item{df}{a data frame that contains the values to plot. If df is missing 
@@ -137,4 +139,3 @@ Association, vol. 21, n° 153, mars 1926, p. 65-66.
 \seealso{
 \link{getBreaks}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
 }
-

@@ -11,4 +11,3 @@ UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
 \description{
 Coastline of Europe.
 }
-

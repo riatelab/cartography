@@ -13,4 +13,3 @@ List of color gradients adapted to thematic cartography.
 \seealso{
 \link{display.carto.pal}, \link{display.carto.all}, \link{carto.pal}
 }
-

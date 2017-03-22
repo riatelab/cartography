@@ -92,4 +92,3 @@ the Sciences-Po Medialab.
 \seealso{
 \link{display.carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
 }
-

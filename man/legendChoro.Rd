@@ -57,4 +57,3 @@ legendChoro(pos = "bottomright", title.txt = "Title of the legend", title.cex = 
             nodata = TRUE, nodata.txt = "NA",nodata.col = "black",
             frame = TRUE, symbol="line")
 }
-

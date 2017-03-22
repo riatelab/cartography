@@ -72,4 +72,3 @@ propLinkLayer(spdf = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],
 \seealso{
 \link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
 }
-

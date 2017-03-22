@@ -40,4 +40,3 @@ mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.",
 \seealso{
 \link{getTiles}
 }
-
