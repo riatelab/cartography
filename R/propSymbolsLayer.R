@@ -129,41 +129,12 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                              legend.style = "c", 
                              legend.frame = FALSE,
                              add = TRUE, k = NULL){
-  
-  library(sf)
-  
-  library(cartography) 
-  data(nuts2006)
-  nuts0.spdf@data <- nuts0.df
-   x <- sf::st_as_sf(nuts0.spdf)
-  dev.off()
-   plot(x = x, border = "green")
-  
-   
-   str(x)
-  plot(gc, cex = gc$a, col = gc$a, border = rev(gc$a) + 2, lwd = 2)
-  sf.colors(10)
-  
-  # spdf management
-  if (missing(sf)){
-    # Check missing df and NULL identifiers 
-    if (missing(df)){df <- spdf@data}
-    if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-    if (is.null(dfid)){dfid <- names(df)[1]}
-    spdf@data <- data.frame(spdf@data, df[match(spdf[[spdfid]], df[[dfid]]),])
-    x <- sf::st_as_sf(spdf)
-  }
-  
-  
-  
-  
-  
   # info about k
   if(!is.null(k)){
     stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
          call. = FALSE)
   }
-
+  
   # Check missing df and NULL identifiers 
   if (missing(df)){df <- spdf@data}
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
@@ -174,7 +145,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid, 
                           df = df, dfid = dfid, var = var)
   
-
+  
   # Double color management
   if (!is.null(breakval)){
     mycols <- rep(NA,nrow(dots))
@@ -208,11 +179,12 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
     varvect <- seq(fixmax, 0,length.out = 4 )
   }
-
+  
   # plot
   if (add==FALSE){
     sp::plot(spdf, col = NA, border = NA)
   }
+  
   
   switch(symbols, 
          circle = {

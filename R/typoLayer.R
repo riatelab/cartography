@@ -29,6 +29,7 @@
 #' not (FALSE).
 #' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
 #' @export
+#' @import sf
 #' @examples
 #' data(nuts2006)
 #' ## Example 1

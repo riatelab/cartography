@@ -105,14 +105,14 @@ plot(nuts0.spdf, border = "grey65", lwd = 2, add=TRUE)
 
 # Plot countries population 
 nuts0.df$pop <- nuts0.df$pop2008 / 1000
-# propSymbolsLayer(spdf = nuts0.spdf, # SpatialPolygonsDataFrame of the countries
-#                  df = nuts0.df,  # data frame of the regions
-#                  var = "pop",  # population
-#                  symbols = "circle", # type of symbol
-#                  border = "white", # color of the symbols borders
-#                  lwd = 1.5, # width of the symbols borders
-#                  legend.pos = "topleft",
-#                  legend.title.txt = "Total population\n(in thousands)")
+propSymbolsLayer(spdf = nuts0.spdf, # SpatialPolygonsDataFrame of the countries
+                 df = nuts0.df,  # data frame of the regions
+                 var = "pop",  # population
+                 symbols = "circle", # type of symbol
+                 border = "white", # color of the symbols borders
+                 lwd = 1.5, # width of the symbols borders
+                 legend.pos = "topleft",
+                 legend.title.txt = "Total population\n(in thousands)")
 # # Layout plot
 layoutLayer(title = "Countries Population in Europe",
             sources = "Data: Eurostat, 2008",

@@ -51,7 +51,7 @@ layoutLayer <- function(title = "Title of the map, year",
                         south = FALSE, extent = NULL){
   # EXTENT
   if (!is.null(extent)){
-    if(is(extent, 'Spatial')){
+    if(methods::is(extent, 'Spatial')){
       extent <- sf::st_as_sf(extent)
       }
     plot(sf::st_geometry(extent), border = NA, col = NA, add = FALSE)
