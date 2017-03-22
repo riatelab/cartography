@@ -1,6 +1,7 @@
 #' @title Choropleth Layer
 #' @name choroLayer
 #' @description Plot a chorpoleth layer.
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param df a data frame that contains the values to plot. If df is missing 
 #' spdf@data is used instead. 
@@ -98,7 +99,7 @@
 #'             frame = TRUE,
 #'             col = "black",
 #'             coltitle = "white")
-choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var, 
+choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                        breaks = NULL, method = "quantile", nclass = NULL,
                        col = NULL,
                        border = "grey20", lwd = 1,
@@ -110,35 +111,27 @@ choroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                        legend.values.rnd = 0,
                        legend.nodata = "no data",
                        legend.frame = FALSE,
-                       add = FALSE)
-{
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
+                       add = FALSE){
   
-  # Join
-  spdf@data <- data.frame(spdf@data[,spdfid], 
-                          df[match(spdf@data[,spdfid], df[,dfid]),])
-
-  spdf <- spdf[!is.na(spdf@data[,dfid]),]
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
+  }
   
   # get the colors and breaks
-  layer <- choro(var=spdf@data[,var], distr = breaks, col = col,
-                 nclass = nclass, method = method)
+  layer <- choro(var = x[[var]], distr = breaks, col = col, nclass = nclass, 
+                 method = method)
   
   colVec <- as.vector(layer$colMap)
   
   nodata <- FALSE
-  if(max(is.na(df[,var])>0)){
+  if(max(is.na(x[[var]])>0)){
     nodata <- TRUE
     colVec[is.na(colVec)] <- colNA
-    }
+  }
+  
   # poly
-  plot(spdf, col = colVec, border = border, lwd = lwd, 
-       add = add)
-  
+  plot(sf::st_geometry(x), col = colVec, border = border, lwd = lwd, add = add)
 
-  
   if(legend.pos !="n"){
     legendChoro(pos = legend.pos, 
                 title.txt = legend.title.txt,
