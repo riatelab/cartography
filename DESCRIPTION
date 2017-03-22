@@ -16,9 +16,9 @@ License: GPL-3
 URL: https://github.com/Groupe-ElementR/cartography/
 BugReports: https://github.com/Groupe-ElementR/cartography/issues/
 LazyData: true
-Depends: R (>= 2.10), sp
-Imports: classInt, stats, graphics, utils, methods, rgeos, rosm, raster, sf
+Depends: R (>= 2.10), sp, sf
+Imports: classInt, stats, graphics, utils, methods, rgeos, rosm, raster
 Suggests: SpatialPosition, knitr, rmarkdown
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
