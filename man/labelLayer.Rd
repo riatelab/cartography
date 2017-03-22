@@ -4,10 +4,12 @@
 \alias{labelLayer}
 \title{Label Layer}
 \usage{
-labelLayer(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
+labelLayer(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
   cex = 0.7, ...)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame texts are plotted on centroids.}
 
