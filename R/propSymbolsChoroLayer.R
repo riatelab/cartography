@@ -2,6 +2,7 @@
 #' @name propSymbolsChoroLayer
 #' @description Plot a proportional symbols layer with color based on a 
 #' quantitative data discretization. 
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 
@@ -24,8 +25,6 @@
 #' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "fisher-jenks", "q6" or "geom"  (see \link{choroLayer} Details).
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
-#' @param k share of the map occupied by the biggest symbol (this argument
-#' is deprecated; please use inches instead.).
 #' @param fixmax value of the biggest symbol (see \link{propSymbolsLayer} Details).
 #' @param border color of symbols borders.
 #' @param lwd width of symbols borders.
@@ -101,7 +100,7 @@
 #' \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
 #' \link{choroLayer}, \link{propSymbolsLayer}
 #' @import sp
-propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
+propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   var, 
                                   inches = 0.3, fixmax = NULL, 
                                   symbols = "circle", border = "grey20", lwd = 1,
@@ -122,69 +121,61 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                   legend.var2.values.rnd = 2,  
                                   legend.var2.nodata = "no data",
                                   legend.var2.frame = FALSE,
-                                  add = TRUE, k = NULL){
-  # info about k
-  if(!is.null(k)){
-    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
-         call. = FALSE)
+                                  add = TRUE){
+
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
   
-  # Check missing df and NULL identifiers 
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  
   # check merge and order spdf & df
-  dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid,
-                          df = df, dfid = dfid, var = var)
-  
+  dots <- checkMergeOrder(x = x, var = var)
   
   # Color Management
-  layer <- choro(var=dots[,var2], distr = breaks, col = col,
-                 nclass = nclass, method = method)
-  
-  mycols <- layer$colMap
+  layer <- choro(var = dots[[var2]], distr = breaks, col = col, nclass = nclass, 
+                 method = method)
+
+  mycols <- as.vector(layer$colMap)
   
   nodata <- FALSE
-  if(max(is.na(dots[,var2])>0)){
+  if(max(is.na(dots[[var2]]) > 0)){
     nodata <- TRUE
     mycols[is.na(mycols)] <- colNA
   }
   
-  
   if (is.null(fixmax)){
-    fixmax <- max(dots[,var])
+    fixmax <- max(dots[[var]])
   }
   
-  # size management
-  sizes <- sizer(dots = dots, inches = inches, var = var,
+  # compute sizes
+  sizes <- sizer(dots = dots, inches = inches, var = var, 
                  fixmax = fixmax, symbols = symbols)
-  sizeMax <- max(sizes)
+ 
+  # size and values for legend, hollow circle (fixmax case)
+   sizeMax <- max(sizes)
+   if (inches <= sizeMax){
+     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
+     varvect <- seq(fixmax, 0, length.out = 4)
+     inches <- sizeMax
+   }else{
+     mycols <- c(NA, mycols)
+     border <- c(NA, rep(border, nrow(dots)))
+     dots <- rbind(dots[1,],dots)
+     dots[1,var] <- fixmax
+     sizes <- c(inches, sizes)
+     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
+     varvect <- seq(fixmax, 0,length.out = 4 )
+   }
   
-  if (inches <= sizeMax){
-    sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-    varvect <- seq(fixmax,0,length.out = 4 )
-    inches <- sizeMax
-  }else{
-    mycols <- c(NA, mycols)
-    border <- c(NA, rep(border, nrow(dots)))
-    dots <- rbind(dots[1,],dots)
-    dots[1,var] <- fixmax
-    sizes <- c(inches, sizes)
-    sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-    varvect <- seq(fixmax, 0,length.out = 4 )
-  }
-  
-  
-  
-  
-  
-  if (add==FALSE){
-    sp::plot(spdf, col = NA, border = NA)
-  }
+   # plot
+   if (add==FALSE){
+     plot(sf::st_geometry(x), col = NA, border = NA)
+   }
+   
+   
   switch(symbols, 
          circle = {
-           symbols(dots[, 2:3], circles = sizes, bg = as.vector(mycols), 
+           symbols(dots[, 1:2, drop = TRUE], circles = sizes, 
+                   bg = as.vector(mycols), 
                    fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
@@ -201,7 +192,8 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
            }
          }, 
          square = {
-           symbols(dots[, 2:3], squares = sizes, bg = as.vector(mycols), 
+           symbols(dots[, 1:2, drop = TRUE], squares = sizes, 
+                   bg = as.vector(mycols), 
                    fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
@@ -219,8 +211,8 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
          }, 
          bar = {
            tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
-           dots[,3] <- dots[,3] + yinch(sizes/2)
-           symbols(dots[,2:3], rectangles = tmp, add = TRUE, 
+           dots[[2]] <- dots[[2]] + yinch(sizes/2)
+           symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
                    bg = as.vector(mycols),
                    fg = border, lwd = lwd, inches = inches, asp = 1)
            if(legend.var.pos!="n"){

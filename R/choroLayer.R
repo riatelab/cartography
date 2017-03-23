@@ -124,7 +124,7 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   colVec <- as.vector(layer$colMap)
   
   nodata <- FALSE
-  if(max(is.na(x[[var]])>0)){
+  if(max(is.na(x[[var]]) > 0)){
     nodata <- TRUE
     colVec[is.na(colVec)] <- colNA
   }

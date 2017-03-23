@@ -4,7 +4,7 @@
 \alias{propSymbolsChoroLayer}
 \title{Proportional and Choropleth Symbols Layer}
 \usage{
-propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
+propSymbolsChoroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   inches = 0.3, fixmax = NULL, symbols = "circle", border = "grey20",
   lwd = 1, var2, breaks = NULL, method = "quantile", nclass = NULL,
   col = NULL, colNA = "white", legend.title.cex = 0.8,
@@ -13,9 +13,11 @@ propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.var.style = "c", legend.var.frame = FALSE,
   legend.var2.pos = "topright", legend.var2.title.txt = var2,
   legend.var2.values.rnd = 2, legend.var2.nodata = "no data",
-  legend.var2.frame = FALSE, add = TRUE, k = NULL)
+  legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
@@ -93,9 +95,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{k}{share of the map occupied by the biggest symbol (this argument
-is deprecated; please use inches instead.).}
 }
 \description{
 Plot a proportional symbols layer with color based on a 
