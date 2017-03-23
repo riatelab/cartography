@@ -3,6 +3,7 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 ## ----labelMap, fig.height=5, fig.width=7---------------------------------
 library(cartography)
+library(sp)
 # Load data
 data(nuts2006)
 # set margins
@@ -96,7 +97,7 @@ opar <- par(mar = c(0.1,0.1,1.3,0.1))
 
 ## Plot Stamen tiles (using OpenStreetMap data) as basemap 
 # Download the tiles, nuts0.spdf extent
-EUosm <- getTiles(spdf = nuts0.spdf, type = "osmtransport", zoom = 4)
+EUosm <- getTiles(spdf = nuts0.spdf, type = "stamenwatercolor", zoom = 4)
 # Plot the tiles
 tilesLayer(EUosm)
 
