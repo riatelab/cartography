@@ -3,6 +3,7 @@ branches:
   only:
     - master
     - develop
+    - devsf
 
 language: r
 sudo: required
