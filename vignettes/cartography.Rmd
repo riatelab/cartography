@@ -119,7 +119,7 @@ opar <- par(mar = c(0.1,0.1,1.3,0.1))
 
 ## Plot Stamen tiles (using OpenStreetMap data) as basemap 
 # Download the tiles, nuts0.spdf extent
-EUosm <- getTiles(spdf = nuts0.spdf, type = "osmtransport", zoom = 4)
+EUosm <- getTiles(spdf = nuts0.spdf, type = "stamenwatercolor", zoom = 4)
 # Plot the tiles
 tilesLayer(EUosm)
 
@@ -139,7 +139,7 @@ propSymbolsLayer(spdf = nuts0.spdf, # SpatialPolygonsDataFrame of the countries
 # Layout plot
 layoutLayer(title = "Countries Population in Europe",
             sources = "Data: Eurostat, 2008",
-            author = "Base map: OpenStreetMap, under CC BY SA.",
+            author = "Base map: Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
             scale = NULL, frame = TRUE,
             col = "#688994") # color of the frame
 par(opar)

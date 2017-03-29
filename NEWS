@@ -1,7 +1,11 @@
 
-cartography version 1.4.9000 (Release date: )
+cartography version 1.4.2 (Release date: 2017-03-29)
 ==============
 
+Minor changes:
+
+* Addition of 2 discretization methods (thanks to @MBunel): 'em' and 'arith'. The "arith" method is based on a arithmetic progression along the variable values. The "em" method is based on subset defined by the mean of a numeric vector.
+* Update the list of the available tiles servers (getTiles). This list is reduced and could be extended again depanding on the rosm package evolution.
 
 
 

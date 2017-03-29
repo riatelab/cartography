@@ -32,6 +32,8 @@ vignette(topic = "cartography")
 
 [Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)  
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
+[De superbes cartes thématiques...](http://rgeomatic.hypotheses.org/1086)(FR)
+[Le package cartography a un an](http://rgeomatic.hypotheses.org/1016)(FR)    
 [Cartographie avec R : le package cartography](http://rgeomatic.hypotheses.org/659) (FR)  
 [R pour les cartographes](http://neocarto.hypotheses.org/1859) (FR)    
 [Comment faire un carton avec R?](http://rgeomatic.hypotheses.org/category/cartography) (FR - *How to build inset maps*)  

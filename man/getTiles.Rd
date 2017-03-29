@@ -10,9 +10,8 @@ getTiles(spdf, type = "osm", zoom = NULL, crop = FALSE)
 \item{spdf}{a Spatial*DataFrame with a valid projection attribute.}
 
 \item{type}{the tile server from which to get the map, one of "hikebike", 
-"hotstyle", "lovinacycle", "lovinahike", "mapquestosm", "mapquestsat", "opencycle", 
-"openpiste", "osm", "osmgrayscale", "osmtransport", "stamenbw", "stamenwatercolor",
-"thunderforestlandscape" and "thunderforestoutdoors".}
+"hotstyle", "lovinacycle", "lovinahike", "osmgrayscale", "stamenbw" and 
+"stamenwatercolor".}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}
@@ -42,14 +41,14 @@ data("nuts2006")
 # extract Denmark
 spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]   
 # Download the tiles, extent = Denmark 
-den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
+den <- getTiles(spdf = spdf, type = "stamenwatercolor", crop = TRUE)
 class(den)
 # Plot the tiles
 tilesLayer(den)
 # Plot countries
 plot(spdf, add=TRUE)
 # Map tiles sources
-mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.",
+mtext(text = "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
       side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }
