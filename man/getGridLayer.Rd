@@ -4,26 +4,26 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(spdf, cellsize, type = "regular", spdfid = NULL)
+getGridLayer(x, id = NULL, cellsize, type = "regular")
 }
 \arguments{
-\item{spdf}{a SpatialPolygonsDataFrame.}
+\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
 
-\item{cellsize}{output cell size, in map units.}
+\item{id}{identifier field in x, default to the first column. (optional)}
+
+\item{cellsize}{targeted area of the cell, in map units.}
 
 \item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
-
-\item{spdfid}{identifier field in spdf, default to the first column 
-of the spdf data frame. (optional)}
 }
 \value{
-A list is returned. The list contains "spdf": a SpatialPolygonsDataFrame of 
-a regular grid and "df":  a data frame of surface intersection. df fields are id_cell: ids of the grid; 
-id_geo: ids of the spdf and area_pct: share of the area of the polygon in the cell 
-(a value of 55 means that 55\% of the spdf unit is within the cell).
+A list is returned. The list contains "grid": a polygon sf object of 
+a regular grid and "df":  a data frame of surface intersection. df fields are 
+id_cell: ids of the grid; id_geo: ids of x objects and area_pct: share of the 
+area of the polygon in the cell (a value of 55 means that 55\% of the sf unit area 
+is within the cell).
 }
 \description{
-Build a regular grid based on a SpatialPolygonsDataFrame. 
+Build a regular grid based on an sf object or a SpatialPolygonsDataFrame. 
 Provide also a table of surface intersections.
 }
 \examples{
