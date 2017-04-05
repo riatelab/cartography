@@ -4,23 +4,19 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(x, id = NULL, cellsize, type = "regular")
+getGridLayer(x, cellsize, type = "regular", var)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
 
-\item{id}{identifier field in x, default to the first column. (optional)}
-
 \item{cellsize}{targeted area of the cell, in map units.}
 
 \item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
+
+\item{var}{name of the numeric field(s) in x to adapt to the grid (a vector).}
 }
 \value{
-A list is returned. The list contains "grid": a polygon sf object of 
-a regular grid and "df":  a data frame of surface intersection. df fields are 
-id_cell: ids of the grid; id_geo: ids of x objects and area_pct: share of the 
-area of the polygon in the cell (a value of 55 means that 55\% of the sf unit area 
-is within the cell).
+A grid is returned as an sf object.
 }
 \description{
 Build a regular grid based on an sf object or a SpatialPolygonsDataFrame. 
@@ -28,14 +24,25 @@ Provide also a table of surface intersections.
 }
 \examples{
 \dontrun{
-data(nuts2006)
-# Get a grid layer
-mygrid <- getGridLayer(spdf = nuts2.spdf, cellsize = 200000)
-# Plot the grid
-plot(mygrid$spdf)
-head(mygrid$df)
-       }
+  library(sf)
+  data(nuts2006)
+  nuts2.spdf@data = nuts2.df
+  mygrid <- getGridLayer(x = sf::st_as_sf(nuts2.spdf), cellsize = 200000 * 200000, 
+                         type = "regular", var = "pop2008")
+  # Plot total population
+  plot(st_geometry(mygrid), col="#CCCCCC",border="white")
+  propSymbolsLayer(x = mygrid, var = "pop2008", 
+                   legend.style = "e", legend.pos = "right", border = "white",
+                   legend.title.txt = "Total population",
+                   inches=0.1, col="black", add=TRUE)
+  
+  # Plot dentsity of population 
+  ## conversion from square meter to square kilometers
+  mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
+  cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
+  choroLayer(spdf = mygrid, var = "densitykm", 
+             border = "grey80",col=cols, add=FALSE,
+             legend.pos = "right", method = "q6", legend.values.rnd = 1,
+             legend.title.txt = "Population density")
 }
-\seealso{
-\link{getGridData}
 }

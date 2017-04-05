@@ -3,35 +3,38 @@
 #' @description Build a regular grid based on an sf object or a SpatialPolygonsDataFrame. 
 #' Provide also a table of surface intersections. 
 #' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
-#' @param id  identifier field in x, default to the first column. (optional)
 #' @param cellsize targeted area of the cell, in map units.
 #' @param type shape of the cell, "regular" for squares, "hexagonal" for hexagons. 
-#' @return A list is returned. The list contains "grid": a polygon sf object of 
-#' a regular grid and "df":  a data frame of surface intersection. df fields are 
-#' id_cell: ids of the grid; id_geo: ids of x objects and area_pct: share of the 
-#' area of the polygon in the cell (a value of 55 means that 55\% of the sf unit area 
-#' is within the cell).
+#' @param var name of the numeric field(s) in x to adapt to the grid (a vector).
+#' @return A grid is returned as an sf object.
 #' @import sp
 #' @import sf
-#' @seealso \link{getGridData}
 #' @examples
 #' \dontrun{
-#' data(nuts2006)
-#' # Get a grid layer
-#' mygrid <- getGridLayer(spdf = nuts2.spdf, cellsize = 200000)
-#' # Plot the grid
-#' plot(mygrid$spdf)
-#' head(mygrid$df)
-#'        }
+#'   library(sf)
+#'   data(nuts2006)
+#'   nuts2.spdf@data = nuts2.df
+#'   mygrid <- getGridLayer(x = sf::st_as_sf(nuts2.spdf), cellsize = 200000 * 200000, 
+#'                          type = "regular", var = "pop2008")
+#'   # Plot total population
+#'   plot(st_geometry(mygrid), col="#CCCCCC",border="white")
+#'   propSymbolsLayer(x = mygrid, var = "pop2008", 
+#'                    legend.style = "e", legend.pos = "right", border = "white",
+#'                    legend.title.txt = "Total population",
+#'                    inches=0.1, col="black", add=TRUE)
+#'   
+#'   # Plot dentsity of population 
+#'   ## conversion from square meter to square kilometers
+#'   mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
+#'   cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
+#'   choroLayer(spdf = mygrid, var = "densitykm", 
+#'              border = "grey80",col=cols, add=FALSE,
+#'              legend.pos = "right", method = "q6", legend.values.rnd = 1,
+#'              legend.title.txt = "Population density")
+#' }
 #' @export
-getGridLayer <- function(x, id = NULL, cellsize, type = "regular"){
-  # data(nuts2006)
-  # nuts0.spdf@data  =  nuts0.df
-  # x = nuts0.spdf
-  # id = NULL
-  # cellsize =  1000000 * 1000000
-  # type = "regular"
-  
+getGridLayer <- function(x, cellsize, type = "regular", var){
+
   # sp check
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
@@ -39,7 +42,7 @@ getGridLayer <- function(x, id = NULL, cellsize, type = "regular"){
   
   # id check
   if (is.null(id)){id <- names(x)[1]}
-  x <- x[, id]
+  # x <- x[, id]
   x$area <- sf::st_area(x)
   # row.names(x) <- as.character(x[[id]])
   
@@ -59,29 +62,35 @@ getGridLayer <- function(x, id = NULL, cellsize, type = "regular"){
   
   # predicted warning, we don't care...
   options(warn = -1)
-  parts <- sf::st_intersection(x = grid[,"id_cell"], y = x[,id])
+  parts <- sf::st_intersection(x = grid[,"id_cell"], y = x)
   options(warn = 0)
+  parts$area_part <- sf::st_area(parts)
 
+  lvar <- vector(mode = "list", length = length(var))
+  names(lvar) <- var
+  for (i in 1:length(lvar)){
+    # print(names(lvar)[i])
+    lvar[[i]] <- as.vector(parts[[names(lvar)[i]]] * parts$area_part / parts$area)
+  }
+  v <- aggregate(do.call(cbind,lvar), by = list(id = parts[['id_cell']]), 
+                 FUN = sum, na.rm=TRUE)
+  
+  # grid agg
   # split parts
   l <- split(parts,  parts[[1]])
   # aggregate each parts
   a <- lapply(l, FUN = function(x){st_buffer(st_union(x), dist = 0.0000001)})
   # only polygons on   # bind all parts
-  p <- st_cast(do.call(c, a))
-  
-  
+  geometry <- st_cast(do.call(c, a))
   # full sf 
-  grid <- st_sf(p, id = names(l))
+  grid <- st_sf(geometry, id = names(l))
   grid$gridarea <- st_area(x = grid)
   
-  areas <- data.frame(parts[,1:2, drop = TRUE], area_part = sf::st_area(parts), 
-                      area_full = x[match(parts[[2]], x[[id]]),]$area)
   
-  areas$area_pct <- as.vector((areas$area_part/areas$area_full) * 100)
-  areas <- areas[, c(1,2,5)]
-  colnames(areas) <- c("id_cell","id_geo","area_pct")
+  grid <- merge(grid, v, by = "id", all.x = T)
   
-  return(list(x = grid, df = areas))
+  return(grid)
+
 }
 
 
