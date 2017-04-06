@@ -4,14 +4,12 @@
 \alias{getBorders}
 \title{Extract SpatialPolygonsDataFrame Borders}
 \usage{
-getBorders(spdf, spdfid = NULL)
+getBorders(x, id = NULL)
 }
 \arguments{
-\item{spdf}{a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-has to be projected (planar coordinates).}
+\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
-of the spdf data frame. (optional)}
+\item{id}{identifier field in x, default to the first column. (optional)}
 }
 \value{
 A SpatialLinesDataFrame of borders is returned. This object has three 
@@ -28,11 +26,11 @@ getBorders and getOuterBorders can be combined with rbind.
 \examples{
 data(nuts2006)
 # Get units borders
-nuts0.contig.spdf <- getBorders(nuts0.spdf)
+nuts0.contig.spdf <- getBorders(st_as_sf(nuts0.spdf))
 # Plot Countries
 plot(nuts0.spdf, border = NA, col = "grey60")
 # Plot borders
-plot(nuts0.contig.spdf, 
+plot(st_geometry(nuts0.contig.spdf), 
      col = sample(x = rainbow(nrow(nuts0.contig.spdf))), 
      lwd = 3, add = TRUE)
 }
