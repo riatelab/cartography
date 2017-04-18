@@ -16,31 +16,40 @@
 #' \item{Proportional symbols maps (circles, squares, bars)\cr 
 #' \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
 #' \link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
+#' 
 #' \item{Chroropleth maps (main discretization methods are available)\cr
 #' \link{choroLayer}}
+#' 
 #' \item{Typology maps\cr
 #' \link{typoLayer}}
+#' 
 #' \item{Flow maps (proportional and classified links)\cr
 #' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}}
+#' 
 #' \item{Discontinuities maps (variable size and color of borders)\cr
 #' \link{getBorders}, \link{discLayer}}
+#' 
 #' \item{Cartographic palettes (palettes adapted to cartographic representation)\cr
 #' \link{carto.pal}}
+#' 
 #' \item{Layout (scale, north arrow, title...)\cr
 #' \link{layoutLayer}}
+#' 
 #' \item{Labels\cr
 #' \link{labelLayer}}
+#' 
 #' \item{Legends \cr
 #' \link{legendBarsSymbols},
 #' \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, 
 #' \link{legendPropLines}, \link{legendPropTriangles}, 
-#' \link{legendSquaresSymbols}, \link{legendTypo}
-#' }
-#' \item{Access to cartographic API (via rosm package)\cr
-#' \link{getTiles}, \link{tilesLayer}
-#' }
+#' \link{legendSquaresSymbols}, \link{legendTypo}}
+#' 
+#' \item{Access to cartographic APIs (via rosm package)\cr
+#' \link{getTiles}, \link{tilesLayer}}
+#' 
 #' \item{Irregular polygons to regular grid transformation with data handling\cr
-#' \link{getGridLayer}, \link{getGridData}}
+#' \link{getGridLayer}}
+#' 
 #' }
 #' 
 #' @docType package
