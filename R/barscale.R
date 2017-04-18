@@ -1,5 +1,5 @@
 #' @title Scale Bar
-#' @description Plot a scale bar.
+#' @description Plot a scale bar. 
 #' @name barscale
 #' @param size size of the scale bar in kilometers. If set to NULL, an 
 #' automatic scale bar is displayed (1/10 of the map width).
@@ -9,6 +9,7 @@
 #' A vector of two coordinates (c(x, y) is possible.
 #' @param style style of the legend, either "pretty" or "oldschool". The 
 #' "oldschool" style only uses the "size" parameter.   
+#' @note This scale bar is not accurate on unprojected (long/lat) maps.
 #' @export
 #' @seealso \link{layoutLayer}
 #' @examples

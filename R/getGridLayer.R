@@ -41,7 +41,7 @@ getGridLayer <- function(x, cellsize, type = "regular", var){
   }
   
   # id check
-  if (is.null(id)){id <- names(x)[1]}
+  # if (is.null(id)){id <- names(x)[1]}
   # x <- x[, id]
   x$area <- sf::st_area(x)
   # row.names(x) <- as.character(x[[id]])

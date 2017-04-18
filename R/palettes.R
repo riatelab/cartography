@@ -154,7 +154,7 @@ display.carto.all <- function(n = 10)
 #' @name carto.pal.info
 #' @return A vector of palettes names is returned. 
 #' @examples
-#' carto.pal.info
+#' carto.pal.info()
 #' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{display.carto.all}
 #' @export
 carto.pal.info <- function(){
