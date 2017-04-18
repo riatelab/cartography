@@ -1,11 +1,11 @@
 #' @title Cartography Package
 #' @name cartography
 #' @description 
-#' The cartography package allows various cartographic representations 
-#' such as proportional symbols, chroropleth, typology, flows or discontinuities. 
-#' In addition it also proposes some useful features like cartographic palettes, 
-#' layout (scale, north arrow, title…), labels, legends or access to cartographic 
-#' API to ease the graphic presentation of maps.
+#' The cartography package allows allows various cartographic representations 
+#' such as proportional symbols, chroropleth, typology, flows or discontinuities 
+#' maps. It also offers several features enhancing the graphic presentation of 
+#' maps: cartographic palettes, layout elements (scale, north arrow, title...), 
+#' labels, legends or access to some cartographic APIs.
 #' 
 #' A vignette contains commented scripts on how to build various types of maps 
 #' with \code{cartography}: \cr

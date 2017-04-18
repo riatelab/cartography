@@ -13,10 +13,11 @@
 [![Cartographic Mix](http://rgeomatic.hypotheses.org/files/2016/02/cartomix.png "click on the map to see the code")](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68)  
 
 This package allows various **cartographic representations** such as proportional 
-symbols, chroropleth, typology, flows or discontinuities. In addition, it also 
-proposes some useful features like cartographic palettes, layout (scale,
-north arrow, title...), labels, legends or access to cartographic API to ease 
-the graphic presentation of maps.  
+symbols, chroropleth, typology, flows or discontinuities maps. It also offers 
+several features enhancing the graphic presentation of maps: cartographic palettes, 
+layout elements (scale, north arrow, title...), labels, legends or access to 
+some cartographic APIs.
+
 
 `cartography` uses R base graphics to map spatial information.  
 
