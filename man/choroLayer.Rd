@@ -120,7 +120,7 @@ choroLayer(spdf = nuts2.spdf,
            col = cols,
            border = "grey40",
            add = FALSE,
-           legend.pos = "topright",
+           legend.pos = "topleft",
            legend.title.txt = "Compound annual\\ngrowth rate",
            legend.values.rnd = 2)
 # Layout plot

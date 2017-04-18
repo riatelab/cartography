@@ -12,7 +12,7 @@ getBreaks(v, nclass = NULL, method = "quantile", k = 1, middle = FALSE)
 \item{nclass}{a number of classes}
 
 \item{method}{a discretization method; one of "sd", "equal", 
-"quantile", "fisher-jenks","q6", "geom"  or "msd" (see Details).}
+"quantile", "fisher-jenks","q6", "geom", "arith", "em" or "msd" (see Details).}
 
 \item{k}{number of standard deviation for "msd" method (see Details)..}
 
@@ -30,6 +30,8 @@ Jenks and Fisher-Jenks algorithms are based on the same principle and give
 quite similar results but Fisher-Jenks is much faster. \cr\cr
 The "q6" method uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr\cr   
 The "geom" method is based on a geometric progression along the variable values.\cr\cr
+The "arith" method is based on an arithmetic progression along the variable values.\cr\cr
+The "em" method is based on nested averages computation.\cr\cr 
 The "msd" method is based on the mean and the standard deviation of a numeric vector. 
 The nclass parameter is not relevant, use k and middle instead. k indicates 
 the extent of each class in share of standard deviation. If middle=TRUE then 

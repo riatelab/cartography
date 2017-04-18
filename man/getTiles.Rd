@@ -4,15 +4,17 @@
 \alias{getTiles}
 \title{Get Tiles from Open Map Servers}
 \usage{
-getTiles(spdf, type = "osm", zoom = NULL, crop = FALSE)
+getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a Spatial*DataFrame with a valid projection attribute.}
 
-\item{type}{the tile server from which to get the map, one of "hikebike", 
-"hotstyle", "lovinacycle", "lovinahike", "mapquestosm", "mapquestsat", "opencycle", 
-"openpiste", "osm", "osmgrayscale", "osmtransport", "stamenbw", "stamenwatercolor",
-"thunderforestlandscape" and "thunderforestoutdoors".}
+\item{type}{the tile server from which to get the map, one of "osm", 
+"opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
+"stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
+"thunderforestoutdoors", "cartodark", "cartolight".}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}

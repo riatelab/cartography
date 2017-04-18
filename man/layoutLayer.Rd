@@ -34,8 +34,8 @@ displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map widt
 
 \item{south}{wheither displaying a South arrow (TRUE) or not (FALSE).}
 
-\item{extent}{a sf objectn a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; 
-set the extent of the frame to the one of a spatial object. (optional)}
+\item{extent}{sf object or Spatial*DataFrame; sets the extent of the frame to 
+the one of a spatial object. (optional)}
 }
 \description{
 Plot a layout layer.

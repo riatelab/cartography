@@ -24,6 +24,9 @@ A vector of two coordinates (c(x, y) is possible.}
 \description{
 Plot a scale bar.
 }
+\note{
+This scale bar is not accurate on unprojected (long/lat) maps.
+}
 \examples{
 data("nuts2006")
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)

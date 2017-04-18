@@ -4,9 +4,12 @@
 \alias{getFigDim}
 \title{Get Figure Dimensions}
 \usage{
-getFigDim(spdf, width = NULL, height = NULL, mar = par("mar"), res = 72)
+getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"),
+  res = 72)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a Spatial*DataFrame.}
 
 \item{width}{width of the figure (in pixels), either width or height 
