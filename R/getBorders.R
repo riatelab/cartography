@@ -2,33 +2,34 @@
 #' @description Extract borders between SpatialPolygonsDataFrame units.
 #' @name getBorders
 #' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
-#' @param id identifier field in x, default to the first column. (optional)
+#' @param spdf a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
+#'  has to be projected (planar coordinates).
+#' @param id identifier field in x or spdf, default to the first column. (optional)
 #' @note getBorders and getOuterBorders can be combined with rbind. 
-#' @return A SpatialLinesDataFrame of borders is returned. This object has three 
+#' @return A sf object (MULTILINESTRING) of borders is returned. This object has three 
 #' id fields: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 #' of id1 and id2 (with "_" as separator).
 #' @examples
 #' data(nuts2006)
 #' # Get units borders
-#' nuts0.contig.spdf <- getBorders(st_as_sf(nuts0.spdf))
+#' nuts0.contig <- getBorders(x = st_as_sf(nuts0.spdf))
 #' # Plot Countries
 #' plot(nuts0.spdf, border = NA, col = "grey60")
 #' # Plot borders
-#' plot(st_geometry(nuts0.contig.spdf), 
-#'      col = sample(x = rainbow(nrow(nuts0.contig.spdf))), 
+#' plot(st_geometry(nuts0.contig), 
+#'      col = sample(x = rainbow(nrow(nuts0.contig))), 
 #'      lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}, \link{getOuterBorders}
 #' @import rgeos
 #' @import sp
 #' @import sf
 #' @export
-getBorders <- function(x, id = NULL){
-  # library(sf)
-  # data(nuts2006)
-  # 
-  # x = st_as_sf(nuts0.spdf)
-  # id = NULL
+getBorders <- function(x, spdf, id = NULL){
+
+  if(missing(x)){
+    x <- sf::st_as_sf(spdf)
+  }
   
   if(is.null(id)){id <- names(x)[1]}
   

@@ -12,8 +12,8 @@
 #' @param bg color of the frame background.
 #' @param north wheither displaying a Noth arrow (TRUE) or not (FALSE).
 #' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
-#' @param extent a sf objectn a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; 
-#' set the extent of the frame to the one of a spatial object. (optional)
+#' @param extent sf object or Spatial*DataFrame; sets the extent of the frame to 
+#' the one of a spatial object. (optional)
 #' @param theme name of a cartographic palette (see \link{carto.pal.info}). 
 #' col and coltitle are set according to the chosen palette. 
 #' @details If extent is not set, plot.new has to be called first.\cr
@@ -101,7 +101,7 @@ layoutLayer <- function(title = "Title of the map, year",
   # TITLE
   size <- 0.8
   par(xpd = TRUE)
-  rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2+(xinch(1.2)*0.2), 
+  rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2 + (xinch(1.2) * 0.2), 
        border = col, col = col)
   text(x = x1 + delta / 2, 
        y = y2 + ((xinch(1.2) * 0.2) - 
@@ -111,6 +111,6 @@ layoutLayer <- function(title = "Title of the map, year",
   par(xpd = FALSE)
 
   # SOURCES
-  text(x1+delta/2, y1+delta/2, paste(sources,author,sep="\n"),
+  text(x1 + delta / 2, y1 + delta / 2, paste(sources, author, sep = "\n"),
        adj = c(0,0), cex = 0.6, font = 3)
 }

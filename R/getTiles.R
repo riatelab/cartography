@@ -2,11 +2,12 @@
 #' @name getTiles
 #' @description Get map tiles based on a Spatial*DataFrame extent. Maps can be 
 #' fetched from various open map servers.
+#' @param x an sf object, a simple feature collection.
 #' @param spdf  a Spatial*DataFrame with a valid projection attribute.
-#' @param type the tile server from which to get the map, one of "hikebike", 
-#' "hotstyle", "lovinacycle", "lovinahike", "mapquestosm", "mapquestsat", "opencycle", 
-#' "openpiste", "osm", "osmgrayscale", "osmtransport", "stamenbw", "stamenwatercolor",
-#' "thunderforestlandscape" and "thunderforestoutdoors". 
+#' @param type the tile server from which to get the map, one of "osm", 
+#' "opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
+#' "stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
+#' "thunderforestoutdoors", "cartodark", "cartolight".  
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified spdf extent, FALSE otherwise.
@@ -37,18 +38,11 @@
 #' mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.",
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
-getTiles <- function(spdf, type = "osm", zoom = NULL, crop = FALSE){
-  # if (!requireNamespace("rosm", quietly = TRUE)) {
-  #   stop("'rosm' package needed for this function to work. Please install it.",
-  #        call. = FALSE)
-  # }
-  # if(!'package:rosm' %in% search()){
-  #   
-  #   attachNamespace('rosm')
-  # }
-  # if(!'package:raster' %in% search()){
-  #   attachNamespace('raster')
-  # }
+getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
+
+  if(!missing(x)){
+    spdf <- methods::as(x, "Spatial")
+  }
   
   if (is.na(sp::proj4string(spdf))){
     stop("The Spatial object must contain information on its projection.",
@@ -56,8 +50,8 @@ getTiles <- function(spdf, type = "osm", zoom = NULL, crop = FALSE){
   }
   
   if (!is.null(zoom)){zoom <- zoom + 1}
-  
-  finalOSM <- rosm::osm.raster(x = spdf, 
+
+  finalOSM <- rosm::osm.raster(x = spdf, progress = "none", 
                                zoom = zoom, 
                                zoomin = -1,
                                cachedir = tempdir(), 

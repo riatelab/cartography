@@ -5,6 +5,7 @@
 #' dimension ratio, the margins of the figure, a targeted width or height
 #' of the figure and its resolution. 
 #' @name getFigDim
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf a Spatial*DataFrame.
 #' @param width width of the figure (in pixels), either width or height 
 #' must be set.
@@ -47,11 +48,16 @@
 #' layoutLayer(title = "Map of Italy")
 #' dev.off()
 #' }
-getFigDim <- function(spdf, width = NULL, height = NULL, 
+getFigDim <- function(x, spdf, width = NULL, height = NULL, 
                       mar = par('mar'), res = 72){
-  bb <- sp::bbox(obj = spdf)
-  iw <- bb[1,2] - bb[1,1]
-  ih <- bb[2,2] - bb[2,1]
+  
+  if(missing(x)){
+    x <- sf::st_as_sf(spdf)
+  }
+  
+  bb <- sf::st_bbox(x)
+  iw <- bb[3] - bb[1]
+  ih <- bb[4] - bb[2]
   if (is.null(width) & is.null(height)){width <- 474}
   if(!is.null(width)){
     wh <- iw / ih
