@@ -120,7 +120,7 @@ opar <- par(mar = c(0.1,0.1,1.3,0.1))
 
 ## Plot Stamen tiles (using OpenStreetMap data) as basemap 
 # Download the tiles, nuts0.spdf extent
-EUosm <- getTiles(spdf = nuts0.spdf, type = "stamenwatercolor", zoom = 4)
+EUosm <- getTiles(spdf = nuts0.spdf, type = "osm", zoom = 4)
 # Plot the tiles
 tilesLayer(EUosm)
 
@@ -252,9 +252,9 @@ data(nuts2006)
 opar <- par(mar = c(0,0,1.2,0))
 
 # Get a SpatialLinesDataFrame of countries borders
-nuts0.contig.spdf <- getBorders(nuts0.spdf)
-class(nuts0.contig.spdf)
-head(nuts0.contig.spdf@data)
+nuts0.contig <- getBorders(spdf = nuts0.spdf)
+class(nuts0.contig)
+head(nuts0.contig)
 
 # Get the GDP per capita
 nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008*1000000
@@ -272,7 +272,7 @@ choroLayer(spdf = nuts0.spdf, df = nuts0.df, var = "gdpcap", border = "grey80",
            legend.title.txt = "GDP per Capita\n(in euros)")
 
 # Plot discontinuities
-discLayer(spdf = nuts0.contig.spdf, # SpatialLinesDataFrame of borders
+discLayer(x = nuts0.contig, # sf of borders
           df = nuts0.df, # data frame on countries
           var = "gdpcap", # variable used to compute discontinuties 
           type = "rel", # type of discontinuity measure 
@@ -305,23 +305,15 @@ data(nuts2006)
 opar <- par(mar = c(0,0,1.2,0))
 
 # Create a grid layer
-mygrid <- getGridLayer(spdf=nuts2.spdf, # SpatialPolygonsDataFrame
-                       cellsize = 200000) # output cell size, in map units (200 km)
-# getGridLayer outputs a list
-ls(mygrid)
-# Data frame of surface intersection
-head(mygrid$df)
-# The grid
-plot(mygrid$spdf)
-
-# Compute data for the grid layer
-datagrid.df <- getGridData(x = mygrid, # list outputed by getGridLayer
-                           df = nuts2.df, # a data frame matching the spdf SpatialdataFrame in getGridLayer
-                           var = "pop2008") # name of the variable to distribute on the grid 
+nuts2.spdf@data <- nuts2.df
+mygrid <- getGridLayer(x = nuts2.spdf, # SpatialPolygonsDataFrame
+                       cellsize = 200000 * 200000, # output cell size, in map units (200 km)
+                       var = "pop2008") # variable to adapt to the grid
+                       
 
 # Plot dentsity of population
 ## conversion from square meter to square kilometers
-datagrid.df$densitykm <- datagrid.df$pop2008_density*1000*1000
+mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea
 
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
@@ -332,9 +324,9 @@ plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 cols <- carto.pal(pal1 = "wine.pal", n1 = 6)
 
 # Plot the gridded population density
-choroLayer(spdf = mygrid$spdf,df = datagrid.df,var = "densitykm", 
+choroLayer(x = mygrid, var = "densitykm", 
            border = "grey80", col = cols, legend.pos = "topright",
-           method = "q6", add = TRUE,
+           method = "q6", add = TRUE, legend.values.rnd = 1,
            legend.title.txt = "Population Density\n(inhabitant/km²)")
 
 # Layout
