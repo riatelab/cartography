@@ -38,5 +38,5 @@ plot(st_geometry(nuts0.contig),
      lwd = 3, add = TRUE)
 }
 \seealso{
-\link{discLayer}, \link{getOuterBorders}
+\link{discLayer}
 }

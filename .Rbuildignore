@@ -5,5 +5,3 @@
 ^LICENSE$
 ^appveyor\.yml$
 ^example$
-^docs$
-^_pkgdown.yaml
