@@ -4,7 +4,7 @@
 \alias{smoothLayer}
 \title{Smooth Layer}
 \usage{
-smoothLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2 = NULL,
+smoothLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, var2 = NULL,
   typefct = "exponential", span, beta, resolution = NULL, mask = NULL,
   nclass = 8, breaks = NULL, col = NULL, border = "grey20", lwd = 1,
   legend.pos = "bottomleft", legend.title.txt = "Potential",
@@ -12,6 +12,8 @@ smoothLayer(spdf, df, spdfid = NULL, dfid = NULL, var, var2 = NULL,
   legend.frame = FALSE, add = FALSE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
 \item{df}{a data frame that contains the values to compute If df is missing 
