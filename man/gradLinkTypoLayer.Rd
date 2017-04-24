@@ -82,7 +82,7 @@ Unlike most of cartography functions, identifiers fields are mandatory.
 \examples{
 data("nuts2006")
 # Create a link layer
-twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities.df[,1:2])
+twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
 
 # Plot the links - Twin cities agreements between regions
 plot(nuts0.spdf, col = "grey60",border = "grey20")

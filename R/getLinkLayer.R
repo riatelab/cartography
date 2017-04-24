@@ -1,13 +1,12 @@
 #' @name getLinkLayer
 #' @title Create a SpatialLinesDataFrame from a Data Frame of Links.
 #' @description Create a SpatialLinesDataFrame from a data frame of links.
-#' @param x ...
+#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
 #' @param df a data frame that contains identifiers of starting and ending points.
-#' @param xid identifier field in spdf, default to the first column 
-#' of the spdf data frame. (optional)
-#' @param dfid identifier field in spdf2, default to the first column 
-#' of the spdf2 data frame. (optional)
-#' @return A SpatialLinesDataFrame is returned, its data frame contains two fields (dfids and dfide).
+#' @param xid identifier field in x, default to the first column (optional)
+#' @param dfid identifier fields in df, default to the two first columns, character 
+#' vector of length 2. (optional)
+#' @return An sf LINESTRING is returned, it contains two fields (origins and destinations).
 #' @import sp
 #' @examples 
 #' data("nuts2006")
@@ -36,7 +35,7 @@ getLinkLayer <- function(x, xid = NULL, df, dfid = NULL){
 
   stringo <- paste0('LINESTRING(', link$xi, " ",link$yi, ", ", 
                     link$xj, " ", link$yj, ")")
-  link <- sf::st_sf(link[,c('i','j')], 
+  link <- sf::st_sf(link[, dfid], 
                 geometry = sf::st_as_sfc(stringo, crs = sf::st_crs(x)))
   return(link)
 }
