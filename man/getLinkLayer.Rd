@@ -4,31 +4,18 @@
 \alias{getLinkLayer}
 \title{Create a SpatialLinesDataFrame from a Data Frame of Links.}
 \usage{
-getLinkLayer(spdf, spdf2 = NULL, df, spdfid = NULL, spdf2id = NULL,
-  dfids = NULL, dfide = NULL)
+getLinkLayer(x, xid = NULL, df, dfid = NULL)
 }
 \arguments{
-\item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to 
-get starting points of links. If spdf2 is NULL, spdf is also used to get ending points.  
-If spdf is a SpatialPolygonsDataFrame, links start (or end) at centroids.}
+\item{x}{...}
 
-\item{spdf2}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; layer used to 
-get ending points of links. 
-If spdf2 is a SpatialPolygonsDataFrame, links start (or end) at centroids. (optional)}
+\item{xid}{identifier field in spdf, default to the first column 
+of the spdf data frame. (optional)}
 
 \item{df}{a data frame that contains identifiers of starting and ending points.}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
-of the spdf data frame. (optional)}
-
-\item{spdf2id}{identifier field in spdf2, default to the first column 
+\item{dfid}{identifier field in spdf2, default to the first column 
 of the spdf2 data frame. (optional)}
-
-\item{dfids}{identifier field of starting points of links in df, default to the first column 
-of df. (optional)}
-
-\item{dfide}{identifier field of ending points of links in df, default to the second column 
-of df. (optional)}
 }
 \value{
 A SpatialLinesDataFrame is returned, its data frame contains two fields (dfids and dfide).
@@ -42,10 +29,10 @@ data("nuts2006")
 head(twincities.df)
 # Select links from Ireland (IE)
 twincitiesIE <- twincities.df[substr(twincities.df$i,1,2)=="IE", ]
-twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincitiesIE[,1:2])
+twincities.sf <- getLinkLayer(x = nuts2.spdf, df = twincitiesIE, dfid = c("i", "j"))
 # Plot the links
 plot(nuts2.spdf, col = "#6C6870")
-plot(twincities.spdf, col = "#F78194", add = TRUE)
+plot(twincities.sf, col = "#F78194", add = TRUE)
 }
 \seealso{
 \link{gradLinkLayer}, \link{propLinkLayer}

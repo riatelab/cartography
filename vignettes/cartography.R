@@ -133,7 +133,7 @@ opar <- par(mar = c(0,0,1.2,0))
 head(twincities.df)
 # twincities contains links between Nuts 2 regions
 # ?twincities.df
-twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, # SpatialPolygonsDataFrame of Nuts2
+twincities.spdf <- getLinkLayer(x = nuts2.spdf, # SpatialPolygonsDataFrame of Nuts2
                                 df = twincities.df) # links data frame
 class(twincities.spdf)
 
@@ -144,20 +144,20 @@ plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 # Plot Nuts2 regions
 plot(nuts2.spdf, col = "#D1914D",border = "grey80", add=TRUE)
 
-# Plot links with graduated sizes
-gradLinkLayer(spdf = twincities.spdf, # SpatialLinesdataFrame of the links
-              df = twincities.df, # data frame of the links
-              spdfids = "i", # identifier of starting points in spdf 
-              spdfide = "j", # identifier of ending points in spdf 
-              dfids = "i", # identifier of starting points in df 
-              dfide = "j", # identifier of starting points in df 
-              var = "fij", # name of the variable used to plot the links widths
-              breaks = c(2,5,15,20,30), # list of breaks
-              lwd = c(0.1,1,4,10), # list of widths
-              col = "#92000090", # color of the links
-              legend.pos = "right", legend.frame = TRUE,
-              legend.title.txt = "Number of Aggreements\n(regional level)",
-              add = TRUE)
+# # Plot links with graduated sizes
+# gradLinkLayer(spdf = twincities.spdf, # SpatialLinesdataFrame of the links
+#               df = twincities.df, # data frame of the links
+#               spdfids = "i", # identifier of starting points in spdf 
+#               spdfide = "j", # identifier of ending points in spdf 
+#               dfids = "i", # identifier of starting points in df 
+#               dfide = "j", # identifier of starting points in df 
+#               var = "fij", # name of the variable used to plot the links widths
+#               breaks = c(2,5,15,20,30), # list of breaks
+#               lwd = c(0.1,1,4,10), # list of widths
+#               col = "#92000090", # color of the links
+#               legend.pos = "right", legend.frame = TRUE,
+#               legend.title.txt = "Number of Aggreements\n(regional level)",
+#               add = TRUE)
 
 # Plot the layout
 layoutLayer(title = "International Twinning Agreements Between Cities", 
