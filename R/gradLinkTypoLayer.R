@@ -1,14 +1,12 @@
 #' @name gradLinkTypoLayer
 #' @title Graduated and Colored Links Layer
 #' @description Plot a layer of colored and graduated links. Links are plotted according to discrete classes of widths. Colors depends on a discrete variable of categories.
-#' @param spdf SpatialLinesDataFrame; a link layer.
-#' @param df data frame with identifier(s) and a variable.
-#' @param spdfid unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).
-#' @param spdfids identifier of starting points in spdf (spdfid and dfid are not used).
-#' @param spdfide identifier of ending points in spdf (spdfid and dfid are not used).
-#' @param dfid unique identifier in df (spdfids, spdfide, dfids and dfide are not used).
-#' @param dfids identifier of starting points in df (spdfid and dfid are not used).
-#' @param dfide identifier of ending points in df (spdfid and dfid are not used).
+#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
+#' @param df a data frame that contains identifiers of starting and ending points.
+#' @param xid identifier fields in x, default to the 2 first columns, character 
+#' vector of length 2. (optional)
+#' @param dfid identifier fields in df, default to the two first columns, character 
+#' vector of length 2. (optional)
 #' @param var name of the variable used to plot the links widths.
 #' @param var2 name of the variable used to plot the links colors.
 #' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
@@ -40,7 +38,7 @@
 #' @examples 
 #' data("nuts2006")
 #' # Create a link layer
-#' twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
+#' twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df)
 #' 
 #' # Plot the links - Twin cities agreements between regions
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
@@ -52,18 +50,15 @@
 #' twincitiesok <- twincities.df[substr(twincities.df$i,1,2)=="DE",]
 #' 
 #' # plot the colored and graduated links
-#' gradLinkTypoLayer(spdf = twincities.spdf, df = twincitiesok,
-#'                   spdfids = "i", spdfide = "j",
-#'                   dfids = "i", dfide = "j",
+#' gradLinkTypoLayer(xx = twincities.spdf, df = twincitiesok,
 #'                   var = "fij", breaks = c(5,10,15,20), 
 #'                   lwd = c(1,4,8),
 #'                   var2 = "ctry",  add = TRUE)
 #' @export
-gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide, 
-                              dfid = NULL, dfids, dfide,
+gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                               var, 
                               breaks = getBreaks(v = df[,var],nclass = 4,
-                                                      method = "quantile"), 
+                                                 method = "quantile"), 
                               lwd = c(1,2,4,6),
                               var2,
                               col = NULL, colNA = "white",
@@ -83,55 +78,44 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)
   }
+
+  if (is.null(xid)){xid <- names(x)[1:2]}
+  if (is.null(dfid)){dfid <- names(df)[1:2]}
   
   # joint
-  if (is.null(spdfid)){
-    spdf@data <- data.frame(df[match(x = paste(spdf@data[,spdfids],
-                                               spdf@data[,spdfide]), 
-                                     table = paste(df[,dfids], 
-                                                   df[,dfide])),]) 
-  } else {
-    spdf@data <- data.frame(df[match(x = spdf@data[,spdfid], 
-                                     table = df[,dfid]),]) 
-  }
+  link <- merge(x = x, y = df, by.x = xid, by.y = dfid)
   
-  
-  spdf <- spdf[!is.na(spdf@data[,var]),]
-  spdf <- spdf[spdf@data[,var]>=min(breaks) & spdf@data[,var]<=max(breaks), ]
+  # clean 
+  link <- link[!is.na(link[[var]]), ]
+  link <- link[link[[var]] >= min(breaks) & link[[var]] <= max(breaks), ]
   
   # lwd
-  lwdMap <- lwd[findInterval(x = spdf@data[,var], vec = breaks, 
-                             all.inside = TRUE)]
+  lwdMap <- lwd[findInterval(x = link[[var]], vec = breaks, all.inside = TRUE)]
   
-  # modalities
-  mod <- unique(spdf@data[, var2])
+  mod <- unique(link[[var2]])
   mod <- mod[!is.na(mod)]
+  
   # check nb col vs nb mod
   col <- checkCol(col, mod)
+
   # check legend.var2.values.order vs mod values
   legend.var2.values.order <- checkOrder(legend.var2.values.order, mod)
+  
   # get the colors 
   refcol <- data.frame(mod = legend.var2.values.order, 
                        col = col[1:length(legend.var2.values.order)], 
                        stringsAsFactors = FALSE)
-  colvec <- refcol[match(spdf@data[,var2], refcol[,1]),2]
-  # for the legend  
-  mycols <- refcol[,2]
-  rVal <- refcol[,1]
-  
-  # for NA values
-  nodata <- FALSE
-  if(max(is.na(df[,var2]) > 0)){
-    nodata <- TRUE
-    colvec[is.na(colvec)] <- colNA
-  }
-  
-  
-  # map
-  plot(spdf, col = colvec ,lwd = lwdMap, add = add)
-    
+  mycols <- refcol[match(link[[var2]], refcol[,1]),2]
 
-  
+  nodata <- FALSE
+  if(max(is.na(link[[var2]])>0)){
+    nodata <- TRUE
+    mycols[is.na(mycols)] <- colNA
+  }
+
+  # map
+  plot(st_geometry(link), col = mycols ,lwd = lwdMap, add = add)
+
   # legend links
   if(legend.var.pos !="n"){
     legendGradLines(pos = legend.var.pos, 
@@ -149,8 +133,8 @@ gradLinkTypoLayer <- function(spdf, df, spdfid = NULL, spdfids, spdfide,
                title.txt = legend.var2.title.txt,
                title.cex = legend.title.cex, 
                values.cex = legend.values.cex,
-               categ = rVal, 
-               col = mycols, 
+               categ = refcol[,1], 
+               col = refcol[,2], 
                frame = legend.var2.frame, 
                symbol="line", 
                nodata = nodata,nodata.col = colNA, 

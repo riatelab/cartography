@@ -54,31 +54,15 @@ gradLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)
   }
-  # x <- getLinkLayer(x = nuts2.spdf, df = twincities.df)
-  # xid = NULL
-  # dfid = NULL
-  # df <- twincities.df
-  # plot(x)
-  # var <- "fij"
-  # breaks = c(2,5,15,20,30)
-  # lwd = c(0.1,1,4,10)
-  # col = "red"
-  # add=T
-  # plot(nuts0.spdf)
-  
+
   if (is.null(xid)){xid <- names(x)[1:2]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   
-  
-  
   # joint
   link <- merge(x = x, y = df, by.x = xid, by.y = dfid)
-  head(link)
-  link <- link[!is.na(link[[var]]), ]
 
+  # clean
   link <- link[!is.na(link[[var]]), ]
-  
-  
   link <- link[link[[var]] >= min(breaks) & link[[var]] <= max(breaks), ]
   
   
