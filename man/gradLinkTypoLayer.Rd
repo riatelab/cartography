@@ -88,7 +88,7 @@ twincities.df$ctry <- substr(twincities.df$j,1,2)
 twincitiesok <- twincities.df[substr(twincities.df$i,1,2)=="DE",]
 
 # plot the colored and graduated links
-gradLinkTypoLayer(xx = twincities.spdf, df = twincitiesok,
+gradLinkTypoLayer(x = twincities.spdf, df = twincitiesok,
                   var = "fij", breaks = c(5,10,15,20), 
                   lwd = c(1,4,8),
                   var2 = "ctry",  add = TRUE)

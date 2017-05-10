@@ -4,27 +4,21 @@
 \alias{propLinkLayer}
 \title{Proportional Links Layer}
 \usage{
-propLinkLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL, dfids,
-  dfide, var, maxlwd = 40, col, legend.pos = "bottomleft",
-  legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.values.rnd = 0, legend.frame = FALSE, add = TRUE)
+propLinkLayer(x, df, xid = NULL, dfid = NULL, var, maxlwd = 40, col,
+  legend.pos = "bottomleft", legend.title.txt = var,
+  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
+  legend.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{spdf}{a SpatialLinesDataFrame; a link layer.}
+\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
 
-\item{df}{a data frame with identifiers and a variable.}
+\item{df}{a data frame that contains identifiers of starting and ending points.}
 
-\item{spdfid}{unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).}
+\item{xid}{identifier fields in x, default to the 2 first columns, character 
+vector of length 2. (optional)}
 
-\item{spdfids}{identifier of starting points in spdf (spdfid and dfid are not used).}
-
-\item{spdfide}{identifier of ending points in spdf (spdfid and dfid are not used).}
-
-\item{dfid}{unique identifier in df (spdfids, spdfide, dfids and dfide are not used).}
-
-\item{dfids}{identifier of starting points in df (spdfid and dfid are not used).}
-
-\item{dfide}{identifier of ending points in df (spdfid and dfid are not used).}
+\item{dfid}{identifier fields in df, default to the two first columns, character 
+vector of length 2. (optional)}
 
 \item{var}{name of the variable used to plot the links widths.}
 
@@ -60,12 +54,11 @@ Unlike most of cartography functions, identifiers fields are mandatory.
 \examples{
 data("nuts2006")
 # Create a link layer of the twin cities agreements
-twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities.df[,1:2])
+twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
 # Plot the links - Twin cities agreements between regions 
 plot(nuts0.spdf, col = "grey60",border = "grey20")
-propLinkLayer(spdf = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],maxlwd = 10,
-              spdfids = "i", spdfide = "j",
-              dfids = "i", dfide = "j",legend.pos = "topright",
+propLinkLayer(x = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],maxlwd = 10,
+              legend.pos = "topright",
               var = "fij", 
               col = "#92000090", add = TRUE)
 }
