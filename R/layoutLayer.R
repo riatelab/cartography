@@ -47,7 +47,7 @@
 layoutLayer <- function(title = "Title of the map, year",
                         sources = "Source(s)", author = "Author(s)",
                         col = "black", coltitle = "white", theme = NULL, 
-                        bg = NULL, scale = 0, frame = TRUE, north = TRUE, 
+                        bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
                         south = FALSE, extent = NULL){
   # EXTENT
   if (!is.null(extent)){
