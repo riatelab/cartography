@@ -89,6 +89,7 @@ getGridLayer <- function(x, cellsize, type = "regular", var){
   
   grid <- merge(grid, v, by = "id", all.x = T)
   
+  
   return(grid)
 
 }
@@ -111,8 +112,8 @@ getGridSquare <- function(x, cellsize){
                 ceiling(diff(boundingBox[c(2, 4)]) / cellsize)))
   grid <- st_make_grid(cellsize = cellsize, offset = boundingBox[1:2], n = n,
                        crs = st_crs(x))
-  grid <- st_sf(grid)
-  grid$id_cell <- 1:nrow(grid)
+  grid <- st_sf(id_cell=1:length(grid), geometry = grid)
+  # grid$id_cell <- 1:nrow(grid)
   row.names(grid) <- grid$id_cell
   return(grid)
 }
