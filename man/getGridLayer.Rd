@@ -40,7 +40,7 @@ Provide also a table of surface intersections.
   ## conversion from square meter to square kilometers
   mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
   cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
-  choroLayer(spdf = mygrid, var = "densitykm", 
+  choroLayer(x = mygrid, var = "densitykm", 
              border = "grey80",col=cols, add=FALSE,
              legend.pos = "right", method = "q6", legend.values.rnd = 1,
              legend.title.txt = "Population density")

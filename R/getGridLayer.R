@@ -27,25 +27,19 @@
 #'   ## conversion from square meter to square kilometers
 #'   mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
 #'   cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
-#'   choroLayer(spdf = mygrid, var = "densitykm", 
+#'   choroLayer(x = mygrid, var = "densitykm", 
 #'              border = "grey80",col=cols, add=FALSE,
 #'              legend.pos = "right", method = "q6", legend.values.rnd = 1,
 #'              legend.title.txt = "Population density")
 #' }
 #' @export
 getGridLayer <- function(x, cellsize, type = "regular", var){
-
   # sp check
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
   }
-  
-  # id check
-  # if (is.null(id)){id <- names(x)[1]}
-  # x <- x[, id]
+
   x$area <- sf::st_area(x)
-  # row.names(x) <- as.character(x[[id]])
-  
   
   # get a grid
   if(type %in% c("regular", "hexagonal")){
@@ -86,19 +80,10 @@ getGridLayer <- function(x, cellsize, type = "regular", var){
   grid <- st_sf(geometry, id = names(l))
   grid$gridarea <- st_area(x = grid)
   
-  
   grid <- merge(grid, v, by = "id", all.x = T)
-  
-  
   return(grid)
 
 }
-
-
-
-
-
-
 
 
 getGridSquare <- function(x, cellsize){
@@ -153,3 +138,26 @@ getGridHexa <- function(x, cellsize){
 }
 
 
+# getGridLayer2 <- function(x, cellsize, type = "regular", var){
+#   # sp check
+#   if (methods::is(x, 'Spatial')){
+#     x <- sf::st_as_sf(x)
+#   }
+#   # get a grid
+#   if(type %in% c("regular", "hexagonal")){
+#     grid <- switch(type, 
+#                    regular = getGridSquare(x, cellsize), 
+#                    hexagonal = getGridHexa(x, cellsize))
+#   }else{
+#     stop("type should be either 'regular' or 'hexagonal'", call. = F)
+#   }
+#   # predicted warning, we don't care...
+#   options(warn = -1)
+#   x <- sf::st_buffer(x=x,dist=0.0000001, nQuadSegs = 5)
+#   xx <- st_interpolate_aw(x = x[var], to = grid, extensive = T)
+#   parts <- sf::st_intersection(x = xx, y = st_union(x))
+#   options(warn = 0)
+#   grid <- st_cast(parts, to = "MULTIPOLYGON")
+#   names(grid)[1] <- "id"
+#   return(grid)
+# }
