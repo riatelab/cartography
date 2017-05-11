@@ -135,7 +135,7 @@ checkOrder <- function(legend.values.order, mod){
 #' @noRd
 checkMergeOrder <- function(x = x, var = var){
   # get centroid coords
-  x <- cbind(do.call(rbind, sf::st_geometry(sf::st_centroid(x))), x)
+  x <- cbind(sf::st_coordinates(sf::st_centroid(x)), x)
   # remove NAs and 0 values
   x <- x[!is.na(x = x[[var]]),]
   x <- x[x[[var]]!=0, ]

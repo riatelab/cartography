@@ -25,9 +25,9 @@ getLinkLayer <- function(x, xid = NULL, df, dfid = NULL){
   if(is.null(xid)){xid <- names(x)[1]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   x2 <- data.frame(id = x[[xid]], 
-                   do.call(rbind, sf::st_geometry(sf::st_centroid(x))), 
+                   sf::st_coordinates(sf::st_centroid(x)), 
                    stringsAsFactors = F)
-  names(x2)[2:3] <- c('X', 'Y')
+  # names(x2)[2:3] <- c('X', 'Y')
   df <- df[,dfid]
   link <- merge(df, x2, by.x = dfid[2], by.y = "id", all.x = TRUE)
   link <- merge(link, x2, by.x =  dfid[1], by.y = "id", all.x = TRUE)
