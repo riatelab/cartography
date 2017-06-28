@@ -24,14 +24,20 @@ raster package.
 \dontrun{
 data("nuts2006")
 # extract Denmark
-spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]   
-# Download the tiles, extent = Denmark 
+spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
+# Download the tiles, extent = Denmark
 den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
 class(den)
 # Plot the tiles
 tilesLayer(den)
+
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+# Download the tiles, extent = Martinique
+mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
+# Plot the tiles
+tilesLayer(mtqOSM)
 # Plot countries
-plot(spdf, add=TRUE)
+plot(st_geometry(mtq), add=TRUE)
 # Map tiles sources
 mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.",
       side = 1, adj = 0, cex = 0.7, font = 3)

@@ -6,3 +6,4 @@
 ^appveyor\.yml$
 ^example$
 ^notes\.md$
+^data-raw$

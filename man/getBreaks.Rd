@@ -39,7 +39,7 @@ the mean value is the center of a class else the mean is a break value.
 }
 \note{
 This function is mainly a wrapper around classIntervals function of 
-the classInt package + q6, geom and msd methods.
+the classInt package + arith, em, q6, geom and msd methods.
 }
 \examples{
 data("nuts2006")

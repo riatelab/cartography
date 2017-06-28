@@ -27,10 +27,11 @@ for (i in list("topleft", "top", "topright", "right", "bottomright",
   north(i)
 }
 
-plot(nuts0.spdf)
+mtq <- st_read(system.file("extdata/martinique.shp", package="cartography"))
+plot(st_geometry(mtq))
 box()
 for (i in list("topleft", "top", "topright", "right", "bottomright", 
-               "bottom", "bottomleft", "left", c(3502127, 4770427))){
+               "bottom", "bottomleft", "left", c(746368, 1632993))){
   north(i, south = TRUE)
 }
 }

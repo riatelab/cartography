@@ -18,9 +18,14 @@
 #' @seealso \link{layoutLayer}
 #' @import sp
 #' @examples
-#' data("nuts2006")
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' plot(st_geometry(mtq), col = "olivedrab1", border = "olivedrab4", 
+#'      bg = "lightsteelblue3")
+#' labelLayer(x = mtq[mtq$STATUT != "Commune simple",], txt = "LIBGEO")
 #' 
-#' # Layout plot
+#' 
+#' data("nuts2006")
+#' #' # Layout plot
 #' layoutLayer(  title = "Most Populated Countries of Europe", 
 #'               author = "", sources = "",
 #'               scale = NULL,col = NA, coltitle = "black",
