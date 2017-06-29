@@ -10,9 +10,9 @@
 #' @param var name of the numeric field in df used to compute and plot discontinuities.
 #' @param col color of the discontinuities lines.
 #' @param nclass a targeted number of classes. If null, the number of 
-#' class is automatically defined (see \link{getBreaks} Details).
-#' @param method a discretization method; one of "sd", "equal", 
-#' "quantile", "fisher-jenks","q6" or "geom"  (see \link{getBreaks} Details).
+#' class is automatically defined (see \link{getBreaks}).
+#' @param method a discretization method; one of "sd", "equal", "quantile", "fisher-jenks","
+#' q6", "geom", "arith", "em" or "msd" (see \link{getBreaks}).
 #' @param threshold share of represented borders, value between 0 
 #' (nothing) and 1 (all the discontinuities).
 #' @param sizemin thickness of the smallest line.
@@ -65,7 +65,7 @@ discLayer <- function(x, df, dfid = NULL, var,
                       add = TRUE){
   
   if (is.null(dfid)){dfid <- names(df)[1]}
-  
+  df <- data.frame(df)
   # Join (1 and 2)
   x <- merge(x, df[,c(dfid, var)], by.x = names(x)[3], by.y = dfid, all.x = TRUE)
   x <- merge(x, df[,c(dfid, var)], by.x = names(x)[3], by.y = dfid, all.x = TRUE)
