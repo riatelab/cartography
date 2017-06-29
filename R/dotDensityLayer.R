@@ -87,7 +87,7 @@ dotDensityLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
     sp::plot(spdf, col = NA, border = NA)
   }
   
-    for (i in 1:nrow(spdf)){
+  for (i in 1:nrow(spdf)){
     plot(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = type, 
                   iter = iter), pch = pch, cex= cex , col=col, 
          add=TRUE)
