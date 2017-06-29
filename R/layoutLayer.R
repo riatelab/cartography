@@ -12,8 +12,8 @@
 #' @param bg color of the frame background.
 #' @param north wheither displaying a Noth arrow (TRUE) or not (FALSE).
 #' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
-#' @param extent a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
-#' extent of the frame to the one of a Spatial object. (optional)
+#' @param extent sf object or Spatial*DataFrame; sets the extent of the frame to 
+#' the one of a spatial object. (optional)
 #' @param theme name of a cartographic palette (see \link{carto.pal.info}). 
 #' col and coltitle are set according to the chosen palette. 
 #' @details If extent is not set, plot.new has to be called first.\cr
@@ -21,13 +21,14 @@
 #' @export
 #' @seealso \link{labelLayer}
 #' @examples
-#' data("nuts2006")
 #' # Example 1
-#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' plot(st_geometry(mtq), col = "grey60",border = "grey20")
 #' # Layout plot
 #' layoutLayer()
 #' 
 #' # Example 2
+#' data("nuts2006")
 #' plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
 #' plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 #' plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
@@ -47,13 +48,16 @@
 layoutLayer <- function(title = "Title of the map, year",
                         sources = "Source(s)", author = "Author(s)",
                         col = "black", coltitle = "white", theme = NULL, 
-                        bg = NULL, scale = 0, frame = TRUE, north = TRUE, 
+                        bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
                         south = FALSE, extent = NULL){
-  
+  # EXTENT
   if (!is.null(extent)){
-    sp::plot(extent, border = NA, col = NA, add = FALSE)
+    if(methods::is(extent, 'Spatial')){
+      extent <- sf::st_as_sf(extent)
+      }
+    plot(sf::st_geometry(extent), border = NA, col = NA, add = FALSE, bg = bg)
     mapExtent <- par()$usr
-  }else {
+  } else {
     mapExtent <- par()$usr
   }
   x1 <- mapExtent[1]
@@ -62,8 +66,7 @@ layoutLayer <- function(title = "Title of the map, year",
   y2 <- mapExtent[4]
   delta <- min((y2 - y1) / 40, (x2 - x1) / 40)
   
-  
-  # Manage themes
+  # COLOR THEME
   if(!is.null(theme)){
     pals <- carto.pal.info()[1:14]
     if (theme %in% pals){
@@ -73,61 +76,42 @@ layoutLayer <- function(title = "Title of the map, year",
     }
   }
   
-  
-  
   # FRAME
   if(frame == TRUE){
-    colf <- col
-  }else{
-    colf <- NA
+    rect(x1, y1, x2, y2, border = col, col = bg)
   }
-  rect(x1, y1, x2, y2, border = colf, col = bg)
-  
-  
+
   # SCALE
   if (!is.null(scale)){
-    if(scale==0){
+    if(scale == 0){
       scale <- NULL
     }
-    barscale(size = scale, style = "oldschool")
+    barscale(size = scale, style = "pretty")
   }
-  
-  
   
   # NORTH
-  if(north==T){
-    north(pos = "topright")
-  }
-  
-  if(south==T){
+  if(south == T){
+    north <- FALSE
     north(pos = "topright", south = TRUE)
   }
-  
+  if(north == T){
+    north(pos = "topright")
+  }
+
   
   # TITLE
   size <- 0.8
   par(xpd = TRUE)
-  rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2+(xinch(1.2)*0.2), 
+  rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2 + (xinch(1.2) * 0.2), 
        border = col, col = col)
-  text(x = x1+delta/2, 
+  text(x = x1 + delta / 2, 
        y = y2 + ((xinch(1.2) * 0.2) - 
                    xinch(strheight(title, cex = 0.8, units = "inches"))) / 2,
-       labels = title, adj=c(0,0),
-       cex = size, col = coltitle,font=2)
+       labels = title, adj = c(0,0),
+       cex = size, col = coltitle, font = 2)
   par(xpd = FALSE)
-  
-  
-  
-  
-  # 
-  # cc <- 0.8
-  # th <- strheight(title, cex = cc, units = "user", font = 3)
-  # th <- strheight(title, cex = cc, units = "inches", font = 3)
-  # text(x = x1 + delta/2, y = y2 + th, labels = title, adj = c(0,0), cex = cc)
-  # rect(xleft = x1, ybottom = y2, xright = x2, ytop = y2 + 3 * th )
-  
-  
+
   # SOURCES
-  text(x1+delta/2, y1+delta/2, paste(sources,author,sep="\n"),
+  text(x1 + delta / 2, y1 + delta / 2, paste(sources, author, sep = "\n"),
        adj = c(0,0), cex = 0.6, font = 3)
 }

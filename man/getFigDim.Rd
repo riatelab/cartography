@@ -4,9 +4,12 @@
 \alias{getFigDim}
 \title{Get Figure Dimensions}
 \usage{
-getFigDim(spdf, width = NULL, height = NULL, mar = par("mar"), res = 72)
+getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"),
+  res = 72)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a Spatial*DataFrame.}
 
 \item{width}{width of the figure (in pixels), either width or height 
@@ -54,14 +57,13 @@ dev.off()
 
 ## PDF export
 # get figure dimension
-sizes <- getFigDim(spdf = spdf, width = 450, mar = c(1,1,2.2,1))
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+sizes <- getFigDim(x = mtq, width = 450, mar = c(1,1,2.2,1))
 # export the map
-pdf(file = "Italy.pdf", width = sizes[1]/72, height = sizes[2]/72)
+pdf(file = "Martinique.pdf", width = sizes[1]/72, height = sizes[2]/72)
 par(mar = c(1,1,2.2,1))
-plot(spdf, col = NA, border = NA, bg = "#A6CAE0")
-plot(world.spdf, col = "#E3DEBF", border = NA, add = TRUE)
-plot(spdf, col = "#D1914D", border = "white", add = TRUE)
-layoutLayer(title = "Map of Italy")
+plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
+layoutLayer(title = "Map of Martinique")
 dev.off()
 }
 }

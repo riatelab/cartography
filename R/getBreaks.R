@@ -13,14 +13,14 @@
 #' quite similar results but Fisher-Jenks is much faster. \cr\cr
 #' The "q6" method uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr\cr   
 #' The "geom" method is based on a geometric progression along the variable values.\cr\cr
-#' The "arith" method is based on a arithmetic progression along the variable values.\cr\cr
-#' The "em" method is based on subset defined by the mean of a numeric vector. 
+#' The "arith" method is based on an arithmetic progression along the variable values.\cr\cr
+#' The "em" method is based on nested averages computation.\cr\cr 
 #' The "msd" method is based on the mean and the standard deviation of a numeric vector. 
 #' The nclass parameter is not relevant, use k and middle instead. k indicates 
 #' the extent of each class in share of standard deviation. If middle=TRUE then 
 #' the mean value is the center of a class else the mean is a break value. 
 #' @note This function is mainly a wrapper around classIntervals function of 
-#' the classInt package + q6, geom and msd methods. 
+#' the classInt package + arith, em, q6, geom and msd methods. 
 #' @examples
 #' data("nuts2006")
 #' # Create the natality rate
@@ -128,7 +128,7 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
       }
     }
     if (method == "msd"){
-
+      
       minVec <- min(v)
       maxVec <- max(v)
       avgVec <- mean(v)
@@ -158,4 +158,3 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
   }
   return(intervals)
 }
-

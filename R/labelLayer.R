@@ -1,6 +1,7 @@
 #' @title Label Layer
 #' @description Put labels on a map.
 #' @name labelLayer
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf  a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame texts are plotted on centroids.
 #' @param df a data frame that contains the labels to plot. If df is missing 
@@ -17,9 +18,14 @@
 #' @seealso \link{layoutLayer}
 #' @import sp
 #' @examples
-#' data("nuts2006")
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' plot(st_geometry(mtq), col = "olivedrab1", border = "olivedrab4", 
+#'      bg = "lightsteelblue3")
+#' labelLayer(x = mtq[mtq$STATUT != "Commune simple",], txt = "LIBGEO")
 #' 
-#' # Layout plot
+#' 
+#' data("nuts2006")
+#' #' # Layout plot
 #' layoutLayer(  title = "Most Populated Countries of Europe", 
 #'               author = "", sources = "",
 #'               scale = NULL,col = NA, coltitle = "black",
@@ -41,16 +47,20 @@
 #' text(x = 5477360, y = 4177311, labels = "The 10 most populated countries of Europe
 #' Total population 2008, in millions of inhabitants.",
 #'      cex = 0.7, adj = 0)
-labelLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
+labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
                        cex = 0.7, ...){
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  if (class(spdf) %in% c("SpatialPolygonsDataFrame", "SpatialPointsDataFrame")){
-    dots <- data.frame(id = spdf@data[, spdfid],coordinates(spdf))
-    colnames(dots) <- c(spdfid,"x","y")
-    dots <- data.frame(dots[,c("x", "y")], 
-                       txt = df[match(dots[ ,spdfid], df[ , dfid]), txt])
-    text(dots$x, dots$y, labels = dots[,"txt"], cex=cex, col=col, ...)
+  
+  
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
+  
+  text(st_coordinates(st_centroid(x)), labels = x[[txt]], cex = cex,
+       col = col, ...)
+
 }
+
+
+
+
+

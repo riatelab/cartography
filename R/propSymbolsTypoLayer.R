@@ -2,6 +2,7 @@
 #' @name propSymbolsTypoLayer
 #' @description Plot a proportional symbols layer with colors based on
 #'  qualitative data.
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 
@@ -16,8 +17,6 @@
 #' @param col a vector of colors.
 #' @param inches size of the biggest symbol (radius for circles, width for
 #' squares, height for bars) in inches.
-#' @param k share of the map occupied by the biggest symbol (this argument
-#' is deprecated; please use inches instead.).
 #' @param fixmax value of the biggest symbol. (optional)
 #' @param border color of symbols borders.
 #' @param lwd width of symbols borders.
@@ -79,7 +78,7 @@
 #'             frame = TRUE,
 #'             col = "black",
 #'             coltitle = "white")
-propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
+propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                  inches = 0.3, fixmax = NULL, symbols = "circle",
                                  border = "grey20", lwd = 1,
                                  var2, col = NULL, colNA = "white",
@@ -95,61 +94,58 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                                  legend.var2.values.order = NULL,
                                  legend.var2.nodata = "no data",
                                  legend.var2.frame = FALSE,
-                                 add = TRUE, k = NULL){
+                                 add = TRUE){
   
-  # info about k
-  if(!is.null(k)){
-    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
-         call. = FALSE)
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
   
-  # Check missing df and NULL identifiers 
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  
   # check merge and order spdf & df
-  dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid,
-                          df = df, dfid = dfid, var = var)
+  dots <- checkMergeOrder(x = x, var = var)
+  
+  
   
   
   # modalities
-  mod <- unique(dots[, var2])
+  mod <- unique(dots[[var2]])
   mod <- mod[!is.na(mod)]
   
   # check nb col vs nb mod
   col <- checkCol(col, mod)
+  
+  
   # check legend.var2.values.order vs mod values
   legend.var2.values.order <- checkOrder(legend.var2.values.order, mod)
+  
   # get the colors 
   refcol <- data.frame(mod = legend.var2.values.order, 
                        col = col[1:length(legend.var2.values.order)], 
                        stringsAsFactors = FALSE)
-  mycols <- refcol[match(dots[, var2], refcol[,1]),2]
+  mycols <- refcol[match(dots[[var2]], refcol[,1]),2]
   
-  # for the legend  
-  mycolsleg <- refcol[,2]
-  rVal <- refcol[,1]
+
   
   nodata <- FALSE
-  if(max(is.na(dots[,var2])>0)){
+  if(max(is.na(dots[[var2]])>0)){
     nodata <- TRUE
     mycols[is.na(mycols)] <- colNA
   }
   
   
   if (is.null(fixmax)){
-    fixmax <- max(dots[,var])
+    fixmax <- max(dots[[var]])
   }
   
-  # size management
-  sizes <- sizer(dots = dots, inches = inches, var = var,
+  # compute sizes
+  sizes <- sizer(dots = dots, inches = inches, var = var, 
                  fixmax = fixmax, symbols = symbols)
-  sizeMax <- max(sizes)
   
+  
+  # size and values for legend, hollow circle (fixmax case)
+  sizeMax <- max(sizes)
   if (inches <= sizeMax){
     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-    varvect <- seq(fixmax,0,length.out = 4 )
+    varvect <- seq(fixmax, 0, length.out = 4)
     inches <- sizeMax
   }else{
     mycols <- c(NA, mycols)
@@ -161,12 +157,15 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     varvect <- seq(fixmax, 0,length.out = 4 )
   }
   
+  # plot
   if (add==FALSE){
-    sp::plot(spdf, col = NA, border = NA)
+    plot(sf::st_geometry(x), col = NA, border = NA)
   }
+  
   switch(symbols, 
          circle = {
-           symbols(dots[, 2:3], circles = sizes, bg = mycols, fg = border, 
+           symbols(dots[, 1:2, drop = TRUE], circles = sizes, bg = mycols, 
+                   fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
              legendCirclesSymbols(pos = legend.var.pos, 
@@ -182,7 +181,8 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
            }
          }, 
          square = {
-           symbols(dots[, 2:3], squares = sizes, bg = mycols, fg = border, 
+           symbols(dots[, 1:2, drop = TRUE], squares = sizes, bg = mycols, 
+                   fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
              legendSquaresSymbols(pos = legend.var.pos, 
@@ -199,8 +199,9 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
          }, 
          bar = {
            tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
-           dots[,3] <- dots[,3] + yinch(sizes/2)
-           symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = mycols,
+           dots[[2]] <- dots[[2]] + yinch(sizes/2)
+           symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
+                   bg = mycols,
                    fg = border, lwd = lwd, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
              legendBarsSymbols(pos = legend.var.pos, 
@@ -222,13 +223,12 @@ propSymbolsTypoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                title.txt = legend.var2.title.txt,
                title.cex = legend.title.cex,
                values.cex = legend.values.cex,
-               categ = rVal,
-               col = mycolsleg,
+               categ = refcol[,1],
+               col = refcol[,2],
                frame = legend.var2.frame,
                symbol="box",
                nodata = nodata,nodata.col = colNA,
                nodata.txt = legend.var2.nodata)
   }
 }
-
 

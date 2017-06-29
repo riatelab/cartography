@@ -4,7 +4,7 @@
 \alias{propSymbolsChoroLayer}
 \title{Proportional and Choropleth Symbols Layer}
 \usage{
-propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
+propSymbolsChoroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   inches = 0.3, fixmax = NULL, symbols = "circle", border = "grey20",
   lwd = 1, var2, breaks = NULL, method = "quantile", nclass = NULL,
   col = NULL, colNA = "white", legend.title.cex = 0.8,
@@ -13,9 +13,11 @@ propSymbolsChoroLayer(spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.var.style = "c", legend.var.frame = FALSE,
   legend.var2.pos = "topright", legend.var2.title.txt = var2,
   legend.var2.values.rnd = 2, legend.var2.nodata = "no data",
-  legend.var2.frame = FALSE, add = TRUE, k = NULL)
+  legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
@@ -93,9 +95,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{k}{share of the map occupied by the biggest symbol (this argument
-is deprecated; please use inches instead.).}
 }
 \description{
 Plot a proportional symbols layer with color based on a 
@@ -109,41 +108,31 @@ nuts0.df$cagr <- (((nuts0.df$pop2008 / nuts0.df$pop1999)^(1/9)) - 1) * 100
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Plot the symbols
-propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle", 
+propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle",
                       var = "pop2008", var2 = "cagr")
 
 ## Example 2
-# Growth rate at nuts2 level
-nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
+# Share of farmers in Martinique
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
+plot(st_geometry(mtq), col = "grey60",border = "white", 
+     lwd=0.4, bg = "lightsteelblue1")
+propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1", 
+                      col = carto.pal(pal1 = "blue.pal", n1 = 3,
+                                      pal2 = "red.pal", n2 = 3),
+                      inches = 0.2, method = "q6",
+                      border = "grey50", lwd = 1,
+                      legend.var.pos = "topright", legend.var2.pos = "left",
+                      legend.var2.title.txt = 
+                        "Share of \\nthe population\\nworking in\\nagriculture (\%)",
+                      legend.var.title.txt = "Population aged\\n15 and over",
+                      legend.var.style = "e")
 
 # First layout
-layoutLayer(title="Demographic trends, 1999-2008",
+layoutLayer(title="Farmers in Martinique, 2013",
             scale = NULL,col = NA, coltitle = "black",
-            sources = "", author = "",
-            frame = FALSE, bg = "#A6CAE0",
-            south = TRUE, extent = nuts0.spdf)
-plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
-plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
-
-# Add some NA values
-nuts2.df[1:10,"pop2008"] <- NA
-nuts2.df[100:110,"cagr"] <- NA
-
-# Plot symbols
-propSymbolsChoroLayer(spdf = nuts2.spdf, df = nuts2.df, 
-                      var = "pop2008", var2 = "cagr", 
-                      inches = 0.1,
-                      col = carto.pal(pal1 = "blue.pal", n1 = 2, 
-                                      pal2 = "red.pal", n2 = 4), 
-                      breaks = c(-2.43,-1,0,0.5,1,2,3.1),
-                      border = "grey50", lwd = 1,
-                      legend.var.pos = "topright", legend.var2.pos = "right",
-                      legend.var2.title.txt = "Compound annual\\ngrowth rate",
-                      legend.var.title.txt = "Total Population",
-                      legend.var.style = "e")
-# Second layout
-layoutLayer(title = "", author = "Eurostat, 2011", 
-            sources = "", frame ="", col = NA)
+            author = "INSEE, 2016", sources = "",
+            frame = FALSE)
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendChoro}, 

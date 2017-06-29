@@ -68,10 +68,6 @@
 #' @export
 carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
                       transparency = FALSE){
-
-  
-  utils::data("cartography.colors", envir = environment())
-  cartography.colors <- get("cartography.colors", envir  = environment())
   alphainit<-30
   alpha="FF"
   middlecol<-"#F6F6F6"
@@ -127,8 +123,6 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' @export
 display.carto.all <- function(n = 10)
 {
-  utils::data("cartography.colors", envir = environment())
-  cartography.colors <- get("cartography.colors", envir  = environment())
   nbpal <- length(cartography.colors)
   ncol <- 2
   nrow <- round(nbpal/ncol+0.1)
@@ -154,12 +148,10 @@ display.carto.all <- function(n = 10)
 #' @name carto.pal.info
 #' @return A vector of palettes names is returned. 
 #' @examples
-#' carto.pal.info
+#' carto.pal.info()
 #' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{display.carto.all}
 #' @export
 carto.pal.info <- function(){
-  utils::data("cartography.colors", envir = environment())
-  cartography.colors <- get("cartography.colors", envir  = environment())
   names(cartography.colors)
 }
 
@@ -208,7 +200,7 @@ display.carto.pal<-function(name)
   for ( i in 1:20) {
     mypal <- carto.pal(name,i)
     k<-length(mypal)
-    image(1:k, 1, as.matrix(1:k), col =mypal, xlab = paste(k," classes",sep=""), 
+    image(1:k, 1, as.matrix(1:k), col = mypal, xlab = paste(k," classes",sep=""), 
           ylab = "", xaxt = "n", yaxt = "n",bty = "n")
     
     if (i==1){cl <- "classe"}else{cl <- "classes"}

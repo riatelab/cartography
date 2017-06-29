@@ -7,6 +7,7 @@
 #' \item{vignettes to explain the computation of potentials;} 
 #' \item{more customizable inputs and outputs (custom distance matrix, raster output...);}
 #' \item{other functions related to spatial interactions (Reilly  and Huff catchment areas).}}
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param df a data frame that contains the values to compute If df is missing 
 #' spdf@data is used instead. 
@@ -75,7 +76,7 @@
 #'             legend.title.txt = "GDP PER CAPITA", 
 #'             legend.pos = "topright", legend.values.rnd = -2)  
 #'}             
-smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, 
+smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, 
                         var, 
                         var2 = NULL, 
                         typefct = "exponential", 
@@ -101,7 +102,16 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   if(!'package:SpatialPosition' %in% search()){
     attachNamespace('SpatialPosition')
   }
-  if (missing(df)){df <- spdf@data}
+
+  
+  if(!missing(x)){
+    spdf <- methods::as(x, "Spatial")
+    df <- spdf@data
+  }
+  
+  if(missing(df)){df <- spdf@data}
+  
+  
   # Potential
   pot.spdf <- SpatialPosition::quickStewart(spdf = spdf, df = df, 
                                             spdfid = spdfid, dfid = dfid, 
@@ -117,12 +127,12 @@ smoothLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
     breaks <- sort(c(unique(pot.spdf$min), max(pot.spdf$max)))
   }
   # map
-  choroLayer(spdf = pot.spdf, df = pot.spdf@data, var = "center", 
+  choroLayer(spdf = pot.spdf, var = "center", 
              breaks = breaks, col = col, border = border, lwd = lwd, 
              legend.pos = legend.pos, legend.title.txt = legend.title.txt, 
              legend.title.cex = legend.title.cex, 
              legend.values.cex = legend.values.cex,
              legend.values.rnd = legend.values.rnd, 
              legend.frame = legend.frame, add = add)
-  return(invisible(pot.spdf))
+  return(invisible(sf::st_as_sf(pot.spdf)))
 }

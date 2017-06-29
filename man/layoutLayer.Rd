@@ -6,7 +6,7 @@
 \usage{
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   author = "Author(s)", col = "black", coltitle = "white", theme = NULL,
-  bg = NULL, scale = 0, frame = TRUE, north = TRUE, south = FALSE,
+  bg = NULL, scale = 0, frame = TRUE, north = FALSE, south = FALSE,
   extent = NULL)
 }
 \arguments{
@@ -34,8 +34,8 @@ displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map widt
 
 \item{south}{wheither displaying a South arrow (TRUE) or not (FALSE).}
 
-\item{extent}{a SpatialPolygonsDataFrame or a SpatialPointsDataFrame; set the 
-extent of the frame to the one of a Spatial object. (optional)}
+\item{extent}{sf object or Spatial*DataFrame; sets the extent of the frame to 
+the one of a spatial object. (optional)}
 }
 \description{
 Plot a layout layer.
@@ -45,13 +45,14 @@ If extent is not set, plot.new has to be called first.\cr
 The size of the title box in layoutLayer is fixed to 1.2 lines height.
 }
 \examples{
-data("nuts2006")
 # Example 1
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+plot(st_geometry(mtq), col = "grey60",border = "grey20")
 # Layout plot
 layoutLayer()
 
 # Example 2
+data("nuts2006")
 plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)

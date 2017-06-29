@@ -4,38 +4,45 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(spdf, cellsize, type = "regular", spdfid = NULL)
+getGridLayer(x, cellsize, type = "regular", var)
 }
 \arguments{
-\item{spdf}{a SpatialPolygonsDataFrame.}
+\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
 
-\item{cellsize}{output cell size, in map units.}
+\item{cellsize}{targeted area of the cell, in map units.}
 
 \item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
-of the spdf data frame. (optional)}
+\item{var}{name of the numeric field(s) in x to adapt to the grid (a vector).}
 }
 \value{
-A list is returned. The list contains "spdf": a SpatialPolygonsDataFrame of 
-a regular grid and "df":  a data frame of surface intersection. df fields are id_cell: ids of the grid; 
-id_geo: ids of the spdf and area_pct: share of the area of the polygon in the cell 
-(a value of 55 means that 55\% of the spdf unit is within the cell).
+A grid is returned as an sf object.
 }
 \description{
-Build a regular grid based on a SpatialPolygonsDataFrame. 
+Build a regular grid based on an sf object or a SpatialPolygonsDataFrame. 
 Provide also a table of surface intersections.
 }
 \examples{
 \dontrun{
-data(nuts2006)
-# Get a grid layer
-mygrid <- getGridLayer(spdf = nuts2.spdf, cellsize = 200000)
-# Plot the grid
-plot(mygrid$spdf)
-head(mygrid$df)
-       }
+  library(sf)
+  data(nuts2006)
+  nuts2.spdf@data = nuts2.df
+  mygrid <- getGridLayer(x = sf::st_as_sf(nuts2.spdf), cellsize = 200000 * 200000, 
+                         type = "regular", var = "pop2008")
+  # Plot total population
+  plot(st_geometry(mygrid), col="#CCCCCC",border="white")
+  propSymbolsLayer(x = mygrid, var = "pop2008", 
+                   legend.style = "e", legend.pos = "right", border = "white",
+                   legend.title.txt = "Total population",
+                   inches=0.1, col="black", add=TRUE)
+  
+  # Plot dentsity of population 
+  ## conversion from square meter to square kilometers
+  mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
+  cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
+  choroLayer(x = mygrid, var = "densitykm", 
+             border = "grey80",col=cols, add=FALSE,
+             legend.pos = "right", method = "q6", legend.values.rnd = 1,
+             legend.title.txt = "Population density")
 }
-\seealso{
-\link{getGridData}
 }

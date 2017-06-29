@@ -4,23 +4,17 @@
 \alias{discLayer}
 \title{Discontinuities Layer}
 \usage{
-discLayer(spdf, df, spdfid1 = NULL, spdfid2 = NULL, dfid = NULL, var,
-  method = "quantile", nclass = 4, threshold = 0.75, type = "rel",
-  sizemin = 1, sizemax = 10, col = "red", legend.pos = "bottomleft",
+discLayer(x, df, dfid = NULL, var, method = "quantile", nclass = 4,
+  threshold = 0.75, type = "rel", sizemin = 1, sizemax = 10,
+  col = "red", legend.pos = "bottomleft",
   legend.title.txt = "legend title", legend.title.cex = 0.8,
   legend.values.cex = 0.6, legend.values.rnd = 2, legend.frame = FALSE,
   add = TRUE)
 }
 \arguments{
-\item{spdf}{a SpatialLinesDataFrame, as outputed by the \link{getBorders} function.}
+\item{x}{an sf object, a simple feature collection, as outputed by the \link{getBorders} function.}
 
 \item{df}{a data frame that contains the values used to compute and plot discontinuities.}
-
-\item{spdfid1}{first identifier of the border, default to the second column 
-of the spdf data frame. (optional)}
-
-\item{spdfid2}{second identifier of the border, default to the third column 
-of the spdf data frame. (optional)}
 
 \item{dfid}{identifier field in df, default to the first column 
 of df. (optional)}
@@ -64,7 +58,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \value{
-An invisible (\link{invisible}) SpatialLinesDataFrame with the discontinuity measures is returned.
+An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is returned.
 }
 \description{
 This function computes and plots spatial discontinuities. The 
@@ -78,13 +72,13 @@ The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 
 \examples{
 data(nuts2006)
 # Get borders
-nuts0.contig.spdf <- getBorders(nuts0.spdf)
+nuts0.contig <- getBorders(x = st_as_sf(nuts0.spdf))
 # GDP per capita
 nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008
 # Plot countries
 plot(nuts0.spdf, col="#CCCCCC", lwd=1, border="white")
 # Plot discontinuities
-discLayer(spdf = nuts0.contig.spdf, df = nuts0.df,
+discLayer(x = nuts0.contig, df = nuts0.df,
           var = "gdpcap", col="red", nclass=5,
           method="quantile", threshold = 0.5, sizemin = 1,
           sizemax = 10, type = "rel", legend.frame = TRUE,

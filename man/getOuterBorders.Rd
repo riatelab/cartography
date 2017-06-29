@@ -4,29 +4,31 @@
 \alias{getOuterBorders}
 \title{Extract SpatialPolygonsDataFrame Outer Borders}
 \usage{
-getOuterBorders(spdf, spdfid = NULL, res = NULL, width = NULL)
+getOuterBorders(x, spdf, id = NULL, res = NULL, width = NULL)
 }
 \arguments{
-\item{spdf}{a SpatialPolygonsDataFrame.}
+\item{x}{an sf object, a simple feature collection.}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
-of the spdf data frame. (optional)}
+\item{spdf}{a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
+has to be projected (planar coordinates).}
 
-\item{res}{resolution of the grid used to compute borders (in spdf units). 
+\item{id}{identifier field in x or spdf, default to the first column. (optional)}
+
+\item{res}{resolution of the grid used to compute borders (in spdf units).
 A high resolution will give more detailed borders. (optional)}
 
-\item{width}{maximum distance between used to compute borders (in spdf units). 
+\item{width}{maximum distance between used to compute borders (in spdf units).
 A higher width will build borders between units that are farther apart. (optional)}
 }
 \value{
-A SpatialLinesDataFrame of borders is returned. This object has three 
+A SpatialLinesDataFrame of borders is returned. This object has three
 id fields: id, id1 and id2.
-id1 and id2 are ids of units that neighbour a border; id is the concatenation 
+id1 and id2 are ids of units that neighbour a border; id is the concatenation
 of id1 and id2 (with "_" as separator).
 }
 \description{
-Extract outer borders between SpatialPolygonsDataFrame units. 
-Outer borders are non-contiguous SpatialPolygonsDataFrame borders (e.g. 
+Extract outer borders between SpatialPolygonsDataFrame units.
+Outer borders are non-contiguous SpatialPolygonsDataFrame borders (e.g.
 maritim borders).
 }
 \note{
@@ -40,7 +42,7 @@ nuts0.outer <- getOuterBorders(nuts0.spdf)
 # Plot Countries
 plot(nuts0.spdf, border = NA, col = "grey60")
 # Plot borders
-plot(nuts0.outer, col = sample(x = rainbow(nrow(nuts0.outer))), 
+plot(nuts0.outer, col = sample(x = rainbow(nrow(nuts0.outer))),
      lwd = 3, add = TRUE)
 }
 }

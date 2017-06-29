@@ -4,9 +4,9 @@
 \alias{gradLinkTypoLayer}
 \title{Graduated and Colored Links Layer}
 \usage{
-gradLinkTypoLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL,
-  dfids, dfide, var, breaks = getBreaks(v = df[, var], nclass = 4, method =
-  "quantile"), lwd = c(1, 2, 4, 6), var2, col = NULL, colNA = "white",
+gradLinkTypoLayer(x, df, xid = NULL, dfid = NULL, var,
+  breaks = getBreaks(v = df[, var], nclass = 4, method = "quantile"),
+  lwd = c(1, 2, 4, 6), var2, col = NULL, colNA = "white",
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
   legend.var.pos = "bottomleft", legend.var.title.txt = var,
   legend.var.frame = FALSE, legend.var2.pos = "topright",
@@ -14,21 +14,15 @@ gradLinkTypoLayer(spdf, df, spdfid = NULL, spdfids, spdfide, dfid = NULL,
   legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{spdf}{SpatialLinesDataFrame; a link layer.}
+\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
 
-\item{df}{data frame with identifier(s) and a variable.}
+\item{df}{a data frame that contains identifiers of starting and ending points.}
 
-\item{spdfid}{unique identifier in spdf (spdfids, spdfide, dfids and dfide are not used).}
+\item{xid}{identifier fields in x, default to the 2 first columns, character 
+vector of length 2. (optional)}
 
-\item{spdfids}{identifier of starting points in spdf (spdfid and dfid are not used).}
-
-\item{spdfide}{identifier of ending points in spdf (spdfid and dfid are not used).}
-
-\item{dfid}{unique identifier in df (spdfids, spdfide, dfids and dfide are not used).}
-
-\item{dfids}{identifier of starting points in df (spdfid and dfid are not used).}
-
-\item{dfide}{identifier of ending points in df (spdfid and dfid are not used).}
+\item{dfid}{identifier fields in df, default to the two first columns, character 
+vector of length 2. (optional)}
 
 \item{var}{name of the variable used to plot the links widths.}
 
@@ -82,7 +76,7 @@ Unlike most of cartography functions, identifiers fields are mandatory.
 \examples{
 data("nuts2006")
 # Create a link layer
-twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities.df[,1:2])
+twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df)
 
 # Plot the links - Twin cities agreements between regions
 plot(nuts0.spdf, col = "grey60",border = "grey20")
@@ -94,9 +88,7 @@ twincities.df$ctry <- substr(twincities.df$j,1,2)
 twincitiesok <- twincities.df[substr(twincities.df$i,1,2)=="DE",]
 
 # plot the colored and graduated links
-gradLinkTypoLayer(spdf = twincities.spdf, df = twincitiesok,
-                  spdfids = "i", spdfide = "j",
-                  dfids = "i", dfide = "j",
+gradLinkTypoLayer(x = twincities.spdf, df = twincitiesok,
                   var = "fij", breaks = c(5,10,15,20), 
                   lwd = c(1,4,8),
                   var2 = "ctry",  add = TRUE)

@@ -1,6 +1,7 @@
 #' @title Typology Layer
 #' @name typoLayer
 #' @description Plot a typology layer.
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param df a data frame that contains the values to plot. If df is missing 
 #' spdf@data is used instead. 
@@ -28,27 +29,28 @@
 #' not (FALSE).
 #' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
 #' @export
+#' @import sf
 #' @examples
 #' data(nuts2006)
 #' ## Example 1
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo") 
+#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo")
 #' 
 #' 
 #' ## Example 2
-#' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-#' typoLayer(spdf = nuts0.spdf, df = nuts0.df,
-#'           var="typo",  col = carto.pal(pal1 = "multi.pal", 4),
-#'           legend.values.order = c("D", "B", "A", "C"),
-#'           legend.pos = "topright", 
-#'           legend.title.txt = "Category")
-#' layoutLayer(title = "Colors in Europe",
-#'             sources = "UMS RIATE, 2015",
-#'             scale = NULL,
-#'             frame = TRUE,
-#'             col = "black",
-#'             coltitle = "white")
-typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var, 
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' typoLayer(x = mtq, var="STATUT",  
+#'           col = c("aquamarine4", "yellow3","wheat"),
+#'           legend.values.order = c("Préfecture de région",
+#'                                   "Sous-préfecture", 
+#'                                   "Commune simple"),
+#'           legend.pos = "topright",
+#'           legend.title.txt = "Status")
+#' layoutLayer(title = "Commune Status",
+#'             author = "UMS RIATE, 2017",
+#'             sources = "IGN, 2016",
+#'             scale = NULL)
+typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                       col = NULL, border = "grey20", lwd = 1,
                       colNA = "white",
                       legend.pos = "bottomleft", 
@@ -60,50 +62,43 @@ typoLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                       legend.frame = FALSE,
                       add = FALSE)
 {
-  # Check missing df and NULL identifiers 
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  
-  # Join
-  spdf@data <- data.frame(spdf@data[,spdfid], 
-                          df[match(spdf@data[,spdfid], df[,dfid]),])
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
+  }
   
   # modalities
-  mod <- unique(spdf@data[, var])
+  mod <- unique(x[[var]])
   mod <- mod[!is.na(mod)]
+  
   # check nb col vs nb mod
   col <- checkCol(col, mod)
+  
   # check legend.values.order vs mod values
   legend.values.order <- checkOrder(legend.values.order, mod)
+  
+  
   # get the colors 
   refcol <- data.frame(mod = legend.values.order, 
                        col = col[1:length(legend.values.order)], 
                        stringsAsFactors = FALSE)
-  colvec <- refcol[match(spdf@data[,var], refcol[,1]),2]
+  colvec <- refcol[match(x[[var]], refcol[,1]),2]
 
-  # for the legend  
-  mycols <- refcol[,2]
-  rVal <- refcol[,1]
-  
   # for NA values
   nodata <- FALSE
-  if(max(is.na(df[,var]) > 0)){
+  if(max(is.na(x[[var]]) > 0)){
     nodata <- TRUE
     colvec[is.na(colvec)] <- colNA
   }
 
   # plot
-  plot(spdf, col = colvec, border = border, lwd = lwd, add = add)
+  plot(sf::st_geometry(x), col = colvec, border = border, lwd = lwd, add = add)
   
-  
-
   
   if(legend.pos !="n"){
     legendTypo(pos = legend.pos, title.txt = legend.title.txt,
                title.cex = legend.title.cex, values.cex = legend.values.cex,
-               categ = rVal, 
-               col = mycols, 
+               categ = refcol[,1], 
+               col = refcol[,2], 
                frame = legend.frame, 
                symbol="box", 
                nodata = nodata,

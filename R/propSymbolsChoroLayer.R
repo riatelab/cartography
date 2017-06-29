@@ -2,6 +2,7 @@
 #' @name propSymbolsChoroLayer
 #' @description Plot a proportional symbols layer with color based on a 
 #' quantitative data discretization. 
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 
@@ -24,8 +25,6 @@
 #' @param method a discretization method; one of "sd", "equal", 
 #' "quantile", "fisher-jenks", "q6" or "geom"  (see \link{choroLayer} Details).
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
-#' @param k share of the map occupied by the biggest symbol (this argument
-#' is deprecated; please use inches instead.).
 #' @param fixmax value of the biggest symbol (see \link{propSymbolsLayer} Details).
 #' @param border color of symbols borders.
 #' @param lwd width of symbols borders.
@@ -61,47 +60,37 @@
 #' # Countries plot
 #' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 #' # Plot the symbols
-#' propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle", 
+#' propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle",
 #'                       var = "pop2008", var2 = "cagr")
 #' 
 #' ## Example 2
-#' # Growth rate at nuts2 level
-#' nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
+#' # Share of farmers in Martinique
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
+#' plot(st_geometry(mtq), col = "grey60",border = "white", 
+#'      lwd=0.4, bg = "lightsteelblue1")
+#' propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1", 
+#'                       col = carto.pal(pal1 = "blue.pal", n1 = 3,
+#'                                       pal2 = "red.pal", n2 = 3),
+#'                       inches = 0.2, method = "q6",
+#'                       border = "grey50", lwd = 1,
+#'                       legend.var.pos = "topright", legend.var2.pos = "left",
+#'                       legend.var2.title.txt = 
+#'                         "Share of \nthe population\nworking in\nagriculture (%)",
+#'                       legend.var.title.txt = "Population aged\n15 and over",
+#'                       legend.var.style = "e")
 #' 
 #' # First layout
-#' layoutLayer(title="Demographic trends, 1999-2008",
+#' layoutLayer(title="Farmers in Martinique, 2013",
 #'             scale = NULL,col = NA, coltitle = "black",
-#'             sources = "", author = "",
-#'             frame = FALSE, bg = "#A6CAE0",
-#'             south = TRUE, extent = nuts0.spdf)
-#' plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
-#' plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
-#' 
-#' # Add some NA values
-#' nuts2.df[1:10,"pop2008"] <- NA
-#' nuts2.df[100:110,"cagr"] <- NA
-#' 
-#' # Plot symbols
-#' propSymbolsChoroLayer(spdf = nuts2.spdf, df = nuts2.df, 
-#'                       var = "pop2008", var2 = "cagr", 
-#'                       inches = 0.1,
-#'                       col = carto.pal(pal1 = "blue.pal", n1 = 2, 
-#'                                       pal2 = "red.pal", n2 = 4), 
-#'                       breaks = c(-2.43,-1,0,0.5,1,2,3.1),
-#'                       border = "grey50", lwd = 1,
-#'                       legend.var.pos = "topright", legend.var2.pos = "right",
-#'                       legend.var2.title.txt = "Compound annual\ngrowth rate",
-#'                       legend.var.title.txt = "Total Population",
-#'                       legend.var.style = "e")
-#' # Second layout
-#' layoutLayer(title = "", author = "Eurostat, 2011", 
-#'             sources = "", frame ="", col = NA)
+#'             author = "INSEE, 2016", sources = "",
+#'             frame = FALSE)
 #' @export
 #' @seealso \link{legendBarsSymbols}, \link{legendChoro}, 
 #' \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
 #' \link{choroLayer}, \link{propSymbolsLayer}
 #' @import sp
-propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
+propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   var, 
                                   inches = 0.3, fixmax = NULL, 
                                   symbols = "circle", border = "grey20", lwd = 1,
@@ -122,69 +111,61 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
                                   legend.var2.values.rnd = 2,  
                                   legend.var2.nodata = "no data",
                                   legend.var2.frame = FALSE,
-                                  add = TRUE, k = NULL){
-  # info about k
-  if(!is.null(k)){
-    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
-         call. = FALSE)
+                                  add = TRUE){
+
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
   
-  # Check missing df and NULL identifiers 
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
-  
   # check merge and order spdf & df
-  dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid,
-                          df = df, dfid = dfid, var = var)
-  
+  dots <- checkMergeOrder(x = x, var = var)
   
   # Color Management
-  layer <- choro(var=dots[,var2], distr = breaks, col = col,
-                 nclass = nclass, method = method)
-  
-  mycols <- layer$colMap
+  layer <- choro(var = dots[[var2]], distr = breaks, col = col, nclass = nclass, 
+                 method = method)
+
+  mycols <- as.vector(layer$colMap)
   
   nodata <- FALSE
-  if(max(is.na(dots[,var2])>0)){
+  if(max(is.na(dots[[var2]]) > 0)){
     nodata <- TRUE
     mycols[is.na(mycols)] <- colNA
   }
   
-  
   if (is.null(fixmax)){
-    fixmax <- max(dots[,var])
+    fixmax <- max(dots[[var]])
   }
   
-  # size management
-  sizes <- sizer(dots = dots, inches = inches, var = var,
+  # compute sizes
+  sizes <- sizer(dots = dots, inches = inches, var = var, 
                  fixmax = fixmax, symbols = symbols)
-  sizeMax <- max(sizes)
+ 
+  # size and values for legend, hollow circle (fixmax case)
+   sizeMax <- max(sizes)
+   if (inches <= sizeMax){
+     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
+     varvect <- seq(fixmax, 0, length.out = 4)
+     inches <- sizeMax
+   }else{
+     mycols <- c(NA, mycols)
+     border <- c(NA, rep(border, nrow(dots)))
+     dots <- rbind(dots[1,],dots)
+     dots[1,var] <- fixmax
+     sizes <- c(inches, sizes)
+     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
+     varvect <- seq(fixmax, 0,length.out = 4 )
+   }
   
-  if (inches <= sizeMax){
-    sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-    varvect <- seq(fixmax,0,length.out = 4 )
-    inches <- sizeMax
-  }else{
-    mycols <- c(NA, mycols)
-    border <- c(NA, rep(border, nrow(dots)))
-    dots <- rbind(dots[1,],dots)
-    dots[1,var] <- fixmax
-    sizes <- c(inches, sizes)
-    sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-    varvect <- seq(fixmax, 0,length.out = 4 )
-  }
-  
-  
-  
-  
-  
-  if (add==FALSE){
-    sp::plot(spdf, col = NA, border = NA)
-  }
+   # plot
+   if (add==FALSE){
+     plot(sf::st_geometry(x), col = NA, border = NA)
+   }
+   
+   
   switch(symbols, 
          circle = {
-           symbols(dots[, 2:3], circles = sizes, bg = as.vector(mycols), 
+           symbols(dots[, 1:2, drop = TRUE], circles = sizes, 
+                   bg = as.vector(mycols), 
                    fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
@@ -201,7 +182,8 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
            }
          }, 
          square = {
-           symbols(dots[, 2:3], squares = sizes, bg = as.vector(mycols), 
+           symbols(dots[, 1:2, drop = TRUE], squares = sizes, 
+                   bg = as.vector(mycols), 
                    fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.var.pos!="n"){
@@ -219,8 +201,8 @@ propSymbolsChoroLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
          }, 
          bar = {
            tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
-           dots[,3] <- dots[,3] + yinch(sizes/2)
-           symbols(dots[,2:3], rectangles = tmp, add = TRUE, 
+           dots[[2]] <- dots[[2]] + yinch(sizes/2)
+           symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
                    bg = as.vector(mycols),
                    fg = border, lwd = lwd, inches = inches, asp = 1)
            if(legend.var.pos!="n"){

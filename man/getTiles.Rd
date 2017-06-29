@@ -4,14 +4,17 @@
 \alias{getTiles}
 \title{Get Tiles from Open Map Servers}
 \usage{
-getTiles(spdf, type = "osm", zoom = NULL, crop = FALSE)
+getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a Spatial*DataFrame with a valid projection attribute.}
 
-\item{type}{the tile server from which to get the map, one of "hikebike", 
-"hotstyle", "lovinacycle", "lovinahike", "osmgrayscale", "stamenbw" and 
-"stamenwatercolor".}
+\item{type}{the tile server from which to get the map, one of "osm", 
+"opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
+"stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
+"thunderforestoutdoors", "cartodark", "cartolight".}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}
@@ -39,14 +42,20 @@ extraction and display parameters.
 \dontrun{
 data("nuts2006")
 # extract Denmark
-spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]   
-# Download the tiles, extent = Denmark 
-den <- getTiles(spdf = spdf, type = "stamenwatercolor", crop = TRUE)
+spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
+# Download the tiles, extent = Denmark
+den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
 class(den)
 # Plot the tiles
 tilesLayer(den)
+
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+# Download the tiles, extent = Martinique
+mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
+# Plot the tiles
+tilesLayer(mtqOSM)
 # Plot countries
-plot(spdf, add=TRUE)
+plot(st_geometry(mtq), add=TRUE)
 # Map tiles sources
 mtext(text = "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
       side = 1, adj = 0, cex = 0.7, font = 3)

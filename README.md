@@ -1,7 +1,6 @@
 # cartography
 
 [![Version](http://www.r-pkg.org/badges/version/cartography)](https://CRAN.R-project.org/package=cartography/)
-![](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat) 
 [![Travis-CI Build Status](https://travis-ci.org/Groupe-ElementR/cartography.svg?branch=master)](https://travis-ci.org/Groupe-ElementR/cartography)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Groupe-ElementR/cartography?branch=master&svg=true)](https://ci.appveyor.com/project/Groupe-ElementR/cartography)
 ![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
@@ -13,10 +12,11 @@
 [![Cartographic Mix](http://rgeomatic.hypotheses.org/files/2016/02/cartomix.png "click on the map to see the code")](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68)  
 
 This package allows various **cartographic representations** such as proportional 
-symbols, chroropleth, typology, flows or discontinuities. In addition, it also 
-proposes some useful features like cartographic palettes, layout (scale,
-north arrow, title...), labels, legends or access to cartographic API to ease 
-the graphic presentation of maps.  
+symbols, chroropleth, typology, flows or discontinuities maps. It also offers 
+several features enhancing the graphic presentation of maps: cartographic palettes, 
+layout elements (scale, north arrow, title...), labels, legends or access to 
+some cartographic APIs.
+
 
 `cartography` uses R base graphics to map spatial information.  
 

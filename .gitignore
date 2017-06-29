@@ -11,6 +11,6 @@ vignettes/*.html
 vignettes/*.pdf
 .Rproj.user
 inst/doc
-
+data-raw
 # paper for JOSS
 #paper

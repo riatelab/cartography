@@ -1,6 +1,7 @@
 #' @title Proportional Symbols Layer
 #' @name propSymbolsLayer
 #' @description Plot a proportional symbols layer.
+#' @param x an sf object, a simple feature collection. 
 #' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 
@@ -13,8 +14,6 @@
 #' @param inches size of the biggest symbol (radius for circles, width for
 #' squares, height for bars) in inches.
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
-#' @param k share of the map occupied by the biggest symbol (this argument
-#' is deprecated; please use inches instead.).
 #' @param col color of symbols.
 #' @param col2 second color of symbols (see Details).
 #' @param border color of symbols borders.
@@ -115,7 +114,7 @@
 #'                  legend.pos = "right",
 #'                  legend.style = "c",
 #'                  legend.title.txt = "Natural Balance\n(2008)")
-propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
+propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              inches = 0.3, fixmax = NULL, 
                              breakval = NULL,
                              symbols = "circle", 
@@ -128,28 +127,20 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
                              legend.values.rnd = 0,
                              legend.style = "c", 
                              legend.frame = FALSE,
-                             add = TRUE, k = NULL){
-  # info about k
-  if(!is.null(k)){
-    stop("Argument k is deprecated (last used in version 1.3.0); please use inches instead.",
-         call. = FALSE)
-  }
-
-  # Check missing df and NULL identifiers 
-  if (missing(df)){df <- spdf@data}
-  if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
-  if (is.null(dfid)){dfid <- names(df)[1]}
+                             add = TRUE){
   
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
+  }
   
   # check merge and order spdf & df
-  dots <- checkMergeOrder(spdf = spdf, spdfid = spdfid, 
-                          df = df, dfid = dfid, var = var)
+  dots <- checkMergeOrder(x = x, var = var)
   
-
+  
   # Double color management
   if (!is.null(breakval)){
     mycols <- rep(NA,nrow(dots))
-    mycols <- ifelse(test = dots[,var] >= breakval, 
+    mycols <- ifelse(test = dots[[var]] >= breakval, 
                      yes = col,
                      no = col2)
   }else{
@@ -157,7 +148,7 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
   }
   
   if (is.null(fixmax)){
-    fixmax <- max(dots[,var])
+    fixmax <- max(dots[[var]])
   }
   
   # compute sizes
@@ -179,17 +170,17 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
     varvect <- seq(fixmax, 0,length.out = 4 )
   }
-
+  
   # plot
   if (add==FALSE){
-    sp::plot(spdf, col = NA, border = NA)
+    plot(sf::st_geometry(x), col = NA, border = NA)
   }
   
 
   switch(symbols, 
          circle = {
-           symbols(dots[, 2:3], circles = sizes, bg = mycols, fg = border, 
-                   lwd = lwd, add = TRUE, inches = inches, asp = 1)
+           symbols(dots[, 1:2, drop = TRUE], circles = sizes, bg = mycols, 
+                   fg = border, lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.pos!="n"){
              legendCirclesSymbols(pos = legend.pos, 
                                   title.txt = legend.title.txt,
@@ -206,8 +197,8 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
            }
          }, 
          square = {
-           symbols(dots[, 2:3], squares = sizes, bg = mycols, fg = border, 
-                   lwd = lwd, add = TRUE, inches = inches, asp = 1)
+           symbols(dots[, 1:2, drop = TRUE], squares = sizes, bg = mycols, 
+                   fg = border, lwd = lwd, add = TRUE, inches = inches, asp = 1)
            if(legend.pos!="n"){
              legendSquaresSymbols(pos = legend.pos,
                                   title.txt = legend.title.txt,
@@ -225,9 +216,9 @@ propSymbolsLayer <- function(spdf, df, spdfid = NULL, dfid = NULL, var,
          }, 
          bar = {
            tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
-           dots[,3] <- dots[,3] + yinch(sizes/2)
-           symbols(dots[,2:3], rectangles = tmp, add = TRUE, bg = mycols,
-                   fg = border, lwd = lwd, inches = inches, asp = 1)
+           dots[[2]] <- dots[[2]] + yinch(sizes/2)
+           symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
+                   bg = mycols,fg = border, lwd = lwd, inches = inches, asp = 1)
            if(legend.pos!="n"){
              legendBarsSymbols(pos = legend.pos, 
                                title.txt = legend.title.txt,

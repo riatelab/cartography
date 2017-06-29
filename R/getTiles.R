@@ -2,10 +2,12 @@
 #' @name getTiles
 #' @description Get map tiles based on a Spatial*DataFrame extent. Maps can be 
 #' fetched from various open map servers.
+#' @param x an sf object, a simple feature collection.
 #' @param spdf  a Spatial*DataFrame with a valid projection attribute.
-#' @param type the tile server from which to get the map, one of "hikebike", 
-#' "hotstyle", "lovinacycle", "lovinahike", "osmgrayscale", "stamenbw" and 
-#' "stamenwatercolor". 
+#' @param type the tile server from which to get the map, one of "osm", 
+#' "opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
+#' "stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
+#' "thunderforestoutdoors", "cartodark", "cartolight".  
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified spdf extent, FALSE otherwise.
@@ -24,30 +26,29 @@
 #' \dontrun{
 #' data("nuts2006")
 #' # extract Denmark
-#' spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]   
-#' # Download the tiles, extent = Denmark 
-#' den <- getTiles(spdf = spdf, type = "stamenwatercolor", crop = TRUE)
+#' spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
+#' # Download the tiles, extent = Denmark
+#' den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
 #' class(den)
 #' # Plot the tiles
 #' tilesLayer(den)
+#' 
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' # Download the tiles, extent = Martinique
+#' mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
+#' # Plot the tiles
+#' tilesLayer(mtqOSM)
 #' # Plot countries
-#' plot(spdf, add=TRUE)
+#' plot(st_geometry(mtq), add=TRUE)
 #' # Map tiles sources
 #' mtext(text = "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
-getTiles <- function(spdf, type = "osm", zoom = NULL, crop = FALSE){
-  # if (!requireNamespace("rosm", quietly = TRUE)) {
-  #   stop("'rosm' package needed for this function to work. Please install it.",
-  #        call. = FALSE)
-  # }
-  # if(!'package:rosm' %in% search()){
-  #   
-  #   attachNamespace('rosm')
-  # }
-  # if(!'package:raster' %in% search()){
-  #   attachNamespace('raster')
-  # }
+getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
+
+  if(!missing(x)){
+    spdf <- methods::as(x, "Spatial")
+  }
   
   if (is.na(sp::proj4string(spdf))){
     stop("The Spatial object must contain information on its projection.",
@@ -55,8 +56,8 @@ getTiles <- function(spdf, type = "osm", zoom = NULL, crop = FALSE){
   }
   
   if (!is.null(zoom)){zoom <- zoom + 1}
-  
-  finalOSM <- rosm::osm.raster(x = spdf, 
+
+  finalOSM <- rosm::osm.raster(x = spdf, progress = "none", 
                                zoom = zoom, 
                                zoomin = -1,
                                cachedir = tempdir(), 

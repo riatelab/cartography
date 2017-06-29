@@ -4,14 +4,16 @@
 \alias{propSymbolsLayer}
 \title{Proportional Symbols Layer}
 \usage{
-propSymbolsLayer(spdf, df, spdfid = NULL, dfid = NULL, var, inches = 0.3,
-  fixmax = NULL, breakval = NULL, symbols = "circle", col = "#E84923",
-  col2 = "#7DC437", border = "black", lwd = 1,
+propSymbolsLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
+  inches = 0.3, fixmax = NULL, breakval = NULL, symbols = "circle",
+  col = "#E84923", col2 = "#7DC437", border = "black", lwd = 1,
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
-  legend.style = "c", legend.frame = FALSE, add = TRUE, k = NULL)
+  legend.style = "c", legend.frame = FALSE, add = TRUE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
@@ -64,9 +66,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{k}{share of the map occupied by the biggest symbol (this argument
-is deprecated; please use inches instead.).}
 }
 \description{
 Plot a proportional symbols layer.

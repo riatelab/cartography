@@ -4,7 +4,7 @@
 \alias{choroLayer}
 \title{Choropleth Layer}
 \usage{
-choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
+choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   method = "quantile", nclass = NULL, col = NULL, border = "grey20",
   lwd = 1, colNA = "white", legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
@@ -12,6 +12,8 @@ choroLayer(spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   add = FALSE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection.}
+
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
 \item{df}{a data frame that contains the values to plot. If df is missing 
@@ -28,8 +30,8 @@ of df. (optional)}
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the colors. 
 Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}
 
-\item{method}{a discretization method; one of "sd", "equal", 
-"quantile", "fisher-jenks","q6" or "geom"  (see Details).}
+\item{method}{a discretization method; one of "sd", "equal", "quantile", "fisher-jenks","q6", "geom", "arith", 
+"em" or "msd" (see \link{getBreaks}).}
 
 \item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
 
@@ -74,14 +76,6 @@ of class and N is the variable length.\cr
 
 
 If breaks is used then nclass and method are not. \cr
-
-
-"sd", "equal", "quantile" and "fisher-jenks" are \link{classIntervals} methods. 
-Jenks and Fisher-Jenks algorithms are based on the same principle and give 
-quite similar results but Fisher-Jenks is much faster. \cr
-The "q6" method uses the following \link{quantile} probabilities: 0, 0.05, 
-0.275, 0.5, 0.725, 0.95, 1.\cr   
-The "geom" method is based on a geometric progression along the variable values.
 }
 \examples{
 data("nuts2006")
@@ -107,23 +101,24 @@ choroLayer(spdf = nuts2.spdf,
            legend.values.rnd = 1)
 
 ## Example 3
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Compute the compound annual growth rate
-nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
-summary(nuts2.df$cagr)
+mtq$cagr <- (((mtq$P13_POP / mtq$P08_POP)^(1/4)) - 1) * 100
+summary(mtq$cagr)
+
 # Plot the compound annual growth rate
-cols <- carto.pal(pal1 = "blue.pal", n1 = 2, pal2 = "red.pal", n2 = 4)
-choroLayer(spdf = nuts2.spdf,
-           df = nuts2.df,
-           var = "cagr", breaks = c(-2.43,-1,0,0.5,1,2,3.1),
+cols <- carto.pal(pal1 = "blue.pal", n1 = 3, pal2 = "red.pal", n2 = 2)
+choroLayer(x = mtq, 
+           var = "cagr", breaks = c(-6.14,-2,-1,0,1,2),
            col = cols,
            border = "grey40",
            add = FALSE,
-           legend.pos = "topright",
+           legend.pos = "topleft",
            legend.title.txt = "Compound annual\\ngrowth rate",
            legend.values.rnd = 2)
 # Layout plot
-layoutLayer(title = "Demographic Trends",
-            sources = "Eurostat, 2008",
+layoutLayer(title = "Demographic Trends in Martinique, 2008-2013",
+            author = "INSEE, 2016", sources = "",
             scale = NULL,
             frame = TRUE,
             col = "black",
