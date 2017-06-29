@@ -1,19 +1,6 @@
 ** Don't break old deprecaded functions, allow old arg usage
 ** Add something on sf/sp support in the package description
 
-
-* getFigDim
-sf and sp support!
-add sf based example
-
-* typoLayer
-sf and sp support !
-add sf based example
-
-* propSymbolsChoroLayer
-sf and sp support !
-add sf based example
-
 * propSymbolsLayer
 sf and sp support !
 add sf based example

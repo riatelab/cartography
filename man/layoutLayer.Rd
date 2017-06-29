@@ -45,13 +45,14 @@ If extent is not set, plot.new has to be called first.\cr
 The size of the title box in layoutLayer is fixed to 1.2 lines height.
 }
 \examples{
-data("nuts2006")
 # Example 1
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+plot(st_geometry(mtq), col = "grey60",border = "grey20")
 # Layout plot
 layoutLayer()
 
 # Example 2
+data("nuts2006")
 plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)

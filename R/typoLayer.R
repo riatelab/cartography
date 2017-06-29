@@ -34,22 +34,22 @@
 #' data(nuts2006)
 #' ## Example 1
 #' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo") 
+#' typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo")
 #' 
 #' 
 #' ## Example 2
-#' nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-#' typoLayer(spdf = nuts0.spdf, df = nuts0.df,
-#'           var="typo",  col = carto.pal(pal1 = "multi.pal", 4),
-#'           legend.values.order = c("D", "B", "A", "C"),
-#'           legend.pos = "topright", 
-#'           legend.title.txt = "Category")
-#' layoutLayer(title = "Colors in Europe",
-#'             sources = "UMS RIATE, 2015",
-#'             scale = NULL,
-#'             frame = TRUE,
-#'             col = "black",
-#'             coltitle = "white")
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' typoLayer(x = mtq, var="STATUT",  
+#'           col = c("aquamarine4", "yellow3","wheat"),
+#'           legend.values.order = c("Préfecture de région",
+#'                                   "Sous-préfecture", 
+#'                                   "Commune simple"),
+#'           legend.pos = "topright",
+#'           legend.title.txt = "Status")
+#' layoutLayer(title = "Commune Status",
+#'             author = "UMS RIATE, 2017",
+#'             sources = "IGN, 2016",
+#'             scale = NULL)
 typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                       col = NULL, border = "grey20", lwd = 1,
                       colNA = "white",

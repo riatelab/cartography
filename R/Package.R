@@ -1,7 +1,7 @@
 #' @title Cartography Package
 #' @name cartography
 #' @description 
-#' The cartography package allows allows various cartographic representations 
+#' The cartography package allows various cartographic representations 
 #' such as proportional symbols, chroropleth, typology, flows or discontinuities 
 #' maps. It also offers several features enhancing the graphic presentation of 
 #' maps: cartographic palettes, layout elements (scale, north arrow, title...), 
@@ -51,6 +51,8 @@
 #' \link{getGridLayer}}
 #' 
 #' }
+#' 
+#' Since its 2.0.0 version cartography makes use of sf package. 
 #' 
 #' @docType package
 NULL
