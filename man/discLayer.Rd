@@ -21,11 +21,11 @@ of df. (optional)}
 
 \item{var}{name of the numeric field in df used to compute and plot discontinuities.}
 
-\item{method}{a discretization method; one of "sd", "equal", 
-"quantile", "fisher-jenks","q6" or "geom"  (see \link{getBreaks} Details).}
+\item{method}{a discretization method; one of "sd", "equal", "quantile", "fisher-jenks","
+q6", "geom", "arith", "em" or "msd" (see \link{getBreaks}).}
 
 \item{nclass}{a targeted number of classes. If null, the number of 
-class is automatically defined (see \link{getBreaks} Details).}
+class is automatically defined (see \link{getBreaks}).}
 
 \item{threshold}{share of represented borders, value between 0 
 (nothing) and 1 (all the discontinuities).}

@@ -58,7 +58,7 @@ vignette(topic = "cartography")
 * Development version on GitHub
 ```{r}
 require(devtools)
-install_github("Groupe-ElementR/cartography")
+install_github("riatelab/cartography")
 ```
 
 * Stable version on [CRAN](https://CRAN.R-project.org/package=cartography/)

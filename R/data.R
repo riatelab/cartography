@@ -1,11 +1,3 @@
-#' @title Color Palettes
-#' @name cartography.colors
-#' @description List of color gradients adapted to thematic cartography.
-#' @source UMS RIATE
-#' @seealso \link{display.carto.pal}, \link{display.carto.all}, \link{carto.pal}
-#' @docType data
-NULL
-
 #' @title Nuts3 Regions
 #' @name nuts3.spdf
 #' @description Delineations of EU administrative units (level 3, 2006 version).

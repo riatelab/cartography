@@ -12,7 +12,7 @@ choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,
   add = FALSE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
 
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
@@ -25,7 +25,7 @@ of the spdf data frame. (optional)}
 \item{dfid}{name of the identifier field in df, default to the first column 
 of df. (optional)}
 
-\item{var}{name of the numeric field in df to plot.}
+\item{var}{name of the numeric field in x or df to plot.}
 
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the colors. 
 Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}

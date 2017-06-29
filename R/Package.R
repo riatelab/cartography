@@ -1,11 +1,12 @@
 #' @title Cartography Package
 #' @name cartography
 #' @description 
-#' The cartography package allows various cartographic representations 
-#' such as proportional symbols, chroropleth, typology, flows or discontinuities 
-#' maps. It also offers several features enhancing the graphic presentation of 
-#' maps: cartographic palettes, layout elements (scale, north arrow, title...), 
-#' labels, legends or access to some cartographic APIs.
+#' Create and integrate maps in your R workflow. This package allows
+#' various cartographic representations such as proportional symbols, chroropleth,
+#' typology, flows or discontinuities maps. It also offers several features enhancing 
+#' the graphic presentation of maps like cartographic palettes, layout 
+#' elements (scale, north arrow, title...), labels, legends or access to some 
+#' cartographic APIs.
 #' 
 #' A vignette contains commented scripts on how to build various types of maps 
 #' with \code{cartography}: \cr
@@ -24,7 +25,7 @@
 #' \link{typoLayer}}
 #' 
 #' \item{Flow maps (proportional and classified links)\cr
-#' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}}
+#' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}, \link{gradLinkTypoLayer}}
 #' 
 #' \item{Discontinuities maps (variable size and color of borders)\cr
 #' \link{getBorders}, \link{discLayer}}
@@ -33,7 +34,7 @@
 #' \link{carto.pal}}
 #' 
 #' \item{Layout (scale, north arrow, title...)\cr
-#' \link{layoutLayer}}
+#' \link{layoutLayer}, \link{north}, \link{barscale}}
 #' 
 #' \item{Labels\cr
 #' \link{labelLayer}}
@@ -52,7 +53,11 @@
 #' 
 #' }
 #' 
-#' Since its 2.0.0 version cartography makes use of sf package. 
+#' @note Up to version 1.4.2 \code{cartography} was mainly based on \code{sp} and and \code{rgeos} 
+#' for its spatial data management and geoprocessing operations. These dependancies 
+#' are as much as possible replaced by \code{sf} functions since version 2.0.0.\cr
+#' Most functions are kept unchanged except for the addition of an \code{x} argument 
+#' used to take \code{sf} objects as inputs.
 #' 
 #' @docType package
 NULL

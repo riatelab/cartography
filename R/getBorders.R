@@ -70,7 +70,7 @@ getBorders <- function(x, spdf, id = NULL){
   }
   
   df <- st_sf(df, geometry = st_sfc(lgeo))
-  df <-  st_cast(x = df, to = "MULTILINESTRING")
+  df <- st_cast(x = df, to = "MULTILINESTRING")
   st_crs(df) <- st_crs(x)
   
   df2 <- df[, c(1,3,2)]
