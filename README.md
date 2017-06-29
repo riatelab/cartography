@@ -20,6 +20,19 @@ some cartographic APIs.
 
 `cartography` uses R base graphics to map spatial information.  
 
+-----------
+
+**Up to version 1.4.2 `cartography` was mainly based on `sp` and and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/edzer/sfr) functions since version 2.0.0.**    
+
+**Most functions are kept unchanged except for the addition of an `x` argument used to take `sf` objects as inputs.**  
+
+**See the [NEWS](https://raw.githubusercontent.com/Groupe-ElementR/cartography/master/NEWS) file for the full list of changes.**   
+
+**For now (2017-06-30) `cartography` v2.0.0 is hosted on GitHub, but will soon make it to the CRAN.** 
+
+-----------
+
+
 
 ## Vignette
 The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 
@@ -45,7 +58,7 @@ vignette(topic = "cartography")
 * Development version on GitHub
 ```{r}
 require(devtools)
-devtools::install_github("Groupe-ElementR/cartography")
+install_github("Groupe-ElementR/cartography")
 ```
 
 * Stable version on [CRAN](https://CRAN.R-project.org/package=cartography/)

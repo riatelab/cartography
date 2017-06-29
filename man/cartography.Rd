@@ -59,4 +59,3 @@ Main functions :
 
 Since its 2.0.0 version cartography makes use of sf package.
 }
-
