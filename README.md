@@ -26,7 +26,7 @@ some cartographic APIs.
 
 **Most functions are kept unchanged except for the addition of an `x` argument used to take `sf` objects as inputs.**  
 
-**See the [NEWS](https://raw.githubusercontent.com/Groupe-ElementR/cartography/master/NEWS) file for the full list of changes.**   
+**See the [NEWS](https://raw.githubusercontent.com/riatelab/cartography/master/NEWS) file for the full list of changes.**   
 
 **For now (2017-06-30) `cartography` v2.0.0 is hosted on GitHub, but will soon make it to the CRAN.** 
 
@@ -43,7 +43,8 @@ vignette(topic = "cartography")
 
 ## Blog posts, tutorials
 
-[Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)  
+[SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)      
+[Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)    
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
 [De superbes cartes thématiques...](http://rgeomatic.hypotheses.org/1086)(FR)
 [Le package cartography a un an](http://rgeomatic.hypotheses.org/1016)(FR)    
