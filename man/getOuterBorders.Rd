@@ -2,7 +2,7 @@
 % Please edit documentation in R/getOuterBorders.R
 \name{getOuterBorders}
 \alias{getOuterBorders}
-\title{Extract SpatialPolygonsDataFrame Outer Borders}
+\title{Extract Polygons Outer Borders}
 \usage{
 getOuterBorders(x, spdf, id = NULL, res = NULL, width = NULL)
 }
@@ -21,14 +21,14 @@ A high resolution will give more detailed borders. (optional)}
 A higher width will build borders between units that are farther apart. (optional)}
 }
 \value{
-A SpatialLinesDataFrame of borders is returned. This object has three
+An sf object (MULTILINESTRING) of borders is returned. This object has three
 id fields: id, id1 and id2.
 id1 and id2 are ids of units that neighbour a border; id is the concatenation
 of id1 and id2 (with "_" as separator).
 }
 \description{
-Extract outer borders between SpatialPolygonsDataFrame units.
-Outer borders are non-contiguous SpatialPolygonsDataFrame borders (e.g.
+Extract outer borders between polygons.
+Outer borders are non-contiguous polygons borders (e.g.
 maritim borders).
 }
 \note{

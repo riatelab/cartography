@@ -1,7 +1,7 @@
 #' @name gradLinkLayer
 #' @title Graduated Links Layer
 #' @description Plot a layer of graduated links. Links are plotted according to discrete classes of widths.
-#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
+#' @param x an sf object, a simple feature collection.
 #' @param df a data frame that contains identifiers of starting and ending points.
 #' @param xid identifier fields in x, default to the 2 first columns, character 
 #' vector of length 2. (optional)

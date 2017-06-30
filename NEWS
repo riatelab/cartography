@@ -1,3 +1,21 @@
+cartography version 2.0.0 (Release date: 2017-07-XX)
+==============
+
+Major changes: --A lot of--
+
+* choroLayer, typoLayer, propSymbolsLayer, propSymbolsChoroLayer, propSymbolsTypoLayer, dotDensityLayer, getTiles, getFigDim, labelLayer, smoothLayer: an x argument is added in first position of all these functions. x is added to take sf objects as inputs, if x is used then spdf, df, spdfid, id are not used.
+
+* getBorders, getOuterBorders: an x argument is added in first position,x is added to take sf objects as inputs, if x is used then spdf is not used. spdfid is replaced by id. An sf object (MULTILINESTRING) of borders is returned.
+
+* discLayer: spdf, spdfid1, spdfid2 and dfid are replaced by x (an sf object as outputed by getBorders). 
+
+* getGridLayer: getGridLayer replaces getGridLayer + getGridData, x argument replaces spdf and can take an sf object or an sp object. var is added to enter the name(s) of numeric field(s) to compute into the grid. cellsize refers to the targeted area of the cells. The function returns an sf object
+
+* getLinkLayer: spdf, spdf2, df, spdfid, spdf2id, dfids and dfide arguments are replaced by x, xid, df and dfid. x can be either a Spatial*DataFrame or an sf object. The function returns an sf LINESTRING instead of a SpatialLinesDataFrame.
+
+* propLinkLayer, gradLinkLayer, gradLinkTypoLayer: spdf, df, spdfid, spdfids, spdfide, dfid, dfids and dfide arguments are replaced by x, df, xid and dfid. x must be an sf object (as outputed by getLinkLayer).
+
+* layoutLayer: the extent argument can take an sf object.
 
 
 

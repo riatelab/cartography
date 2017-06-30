@@ -2,7 +2,7 @@
 % Please edit documentation in R/getLinkLayer.R
 \name{getLinkLayer}
 \alias{getLinkLayer}
-\title{Create a SpatialLinesDataFrame from a Data Frame of Links.}
+\title{Create a Links Layer from a Data Frame of Links.}
 \usage{
 getLinkLayer(x, xid = NULL, df, dfid = NULL)
 }
@@ -20,7 +20,7 @@ vector of length 2. (optional)}
 An sf LINESTRING is returned, it contains two fields (origins and destinations).
 }
 \description{
-Create a SpatialLinesDataFrame from a data frame of links.
+Create a links layer from a data frame of links.
 }
 \examples{
 data("nuts2006")

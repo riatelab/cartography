@@ -1,7 +1,7 @@
 #' @name propLinkLayer
 #' @title Proportional Links Layer
 #' @description Plot a layer of proportional links. Links widths are directly proportional to values of a variable.
-#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
+#' @param x an sf object, a simple feature collection.
 #' @param df a data frame that contains identifiers of starting and ending points.
 #' @param xid identifier fields in x, default to the 2 first columns, character 
 #' vector of length 2. (optional)

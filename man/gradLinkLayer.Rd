@@ -11,7 +11,7 @@ gradLinkLayer(x, df, xid = NULL, dfid = NULL, var, breaks = getBreaks(v =
   legend.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
+\item{x}{an sf object, a simple feature collection.}
 
 \item{df}{a data frame that contains identifiers of starting and ending points.}
 

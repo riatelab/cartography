@@ -4,6 +4,7 @@
 #' The line widths reflect the ratio between values of an indicator in two neighbouring units.
 #' @name discLayer
 #' @param x an sf object, a simple feature collection, as outputed by the \link{getBorders} function. 
+#' The two first columns are identifiers.  
 #' @param df a data frame that contains the values used to compute and plot discontinuities.
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)
@@ -63,7 +64,6 @@ discLayer <- function(x, df, dfid = NULL, var,
                       legend.values.rnd = 2,
                       legend.frame=FALSE,
                       add = TRUE){
-  
   if (is.null(dfid)){dfid <- names(df)[1]}
   df <- data.frame(df)
   # Join (1 and 2)

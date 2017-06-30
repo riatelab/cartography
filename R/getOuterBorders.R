@@ -1,6 +1,6 @@
-#' @title Extract SpatialPolygonsDataFrame Outer Borders
-#' @description Extract outer borders between SpatialPolygonsDataFrame units.
-#' Outer borders are non-contiguous SpatialPolygonsDataFrame borders (e.g.
+#' @title Extract Polygons Outer Borders
+#' @description Extract outer borders between polygons.
+#' Outer borders are non-contiguous polygons borders (e.g.
 #' maritim borders).
 #' @name getOuterBorders
 #' @param x an sf object, a simple feature collection.
@@ -11,7 +11,7 @@
 #' A high resolution will give more detailed borders. (optional)
 #' @param width maximum distance between used to compute borders (in spdf units).
 #' A higher width will build borders between units that are farther apart. (optional)
-#' @return A SpatialLinesDataFrame of borders is returned. This object has three
+#' @return An sf object (MULTILINESTRING) of borders is returned. This object has three
 #' id fields: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation
 #' of id1 and id2 (with "_" as separator).

@@ -14,7 +14,7 @@ gradLinkTypoLayer(x, df, xid = NULL, dfid = NULL, var,
   legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
+\item{x}{an sf object, a simple feature collection.}
 
 \item{df}{a data frame that contains identifiers of starting and ending points.}
 

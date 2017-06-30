@@ -1,7 +1,7 @@
 #' @name gradLinkTypoLayer
 #' @title Graduated and Colored Links Layer
 #' @description Plot a layer of colored and graduated links. Links are plotted according to discrete classes of widths. Colors depends on a discrete variable of categories.
-#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
+#' @param x an sf object, a simple feature collection.
 #' @param df a data frame that contains identifiers of starting and ending points.
 #' @param xid identifier fields in x, default to the 2 first columns, character 
 #' vector of length 2. (optional)
