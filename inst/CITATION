@@ -1,4 +1,4 @@
-citHeader("To cite package cartography in publications use:")
+citHeader("To cite package cartography in publications use one of these:")
 
 citEntry(entry = "Article",
   doi = "10.21105/joss.00054",
@@ -28,7 +28,7 @@ citEntry(entry = "InProceedings",
          year = "2017",
          pages = "173-183",
          doi = "10.1007/978-3-319-57336-6_13", 
-         textVersion = "Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson MP (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp.
+         textVersion = "Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson M. (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp.
 173-183. doi: 10.1007/978-3-319-57336-6_13.")
 
 

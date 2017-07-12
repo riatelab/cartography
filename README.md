@@ -22,7 +22,7 @@ some cartographic APIs.
 
 -----------
 
-**Up to version 1.4.2 `cartography` was mainly based on `sp` and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/edzer/sfr) functions since version 2.0.0.**    
+**Up to version 1.4.2 `cartography` was mainly based on `sp` and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/r-spatial/sf) functions since version 2.0.0.**    
 
 **Most functions are kept unchanged except for the addition of an `x` argument used to take `sf` objects as inputs.**  
 
@@ -37,22 +37,44 @@ some cartographic APIs.
 ## Vignette
 The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 
 contains commented scripts on how to build various types of maps with `cartography`
+
+<table>
+<tbody>
+<tr>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map1.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map2.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map3.png" /></td>
+</tr>
+<tr>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map4.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map5.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map6.png" /></td>
+</tr>
+</tbody>
+</table>
+
+
 ```{r}
 vignette(topic = "cartography")
 ```
 
-## Blog posts, tutorials, papers
+
+
+
+
+## Blog Posts, Tutorials & Papers
 
 
 [Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson MP (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp.
-173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography)(EN)  
+173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography)  (EN)    
 
 
-[SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)      
+    
 [Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)    
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
+[SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)  
 [De superbes cartes thématiques...](http://rgeomatic.hypotheses.org/1086) (FR)  
-[Le package cartography a un an](http://rgeomatic.hypotheses.org/1016)(FR)    
+[Le package cartography a un an](http://rgeomatic.hypotheses.org/1016) (FR)    
 [Cartographie avec R : le package cartography](http://rgeomatic.hypotheses.org/659) (FR)  
 [R pour les cartographes](http://neocarto.hypotheses.org/1859) (FR)    
 [Comment faire un carton avec R?](http://rgeomatic.hypotheses.org/category/cartography) (FR - *How to build inset maps*)  
@@ -60,17 +82,6 @@ vignette(topic = "cartography")
 [Cartographie et traitement de l’information géographique avec R](http://wukan.ums-riate.fr/RUSS/RUSS_2016/) (FR)  
 [R pour les cartographes : le package cartography](https://osgeo-fr.github.io/presentations_foss4gfr/2016/J1/R_Cartography_T_Giraud_FOSS4G-fr-2016/FOSS4G-fr-2016.html) (FR)
 
-## Installation
-* Development version on GitHub
-```{r}
-require(devtools)
-install_github("riatelab/cartography")
-```
-
-* Stable version on [CRAN](https://CRAN.R-project.org/package=cartography/)
-```{r}
-install.packages("cartography")
-```
 
 ## Demo
 
@@ -125,10 +136,30 @@ par(opar)
 ![](http://rgeomatic.hypotheses.org/files/2015/10/propchoro.png)
 
 
+## Installation
+* Development version on GitHub
+```{r}
+require(devtools)
+install_github("riatelab/cartography")
+```
+
+* Stable version on [CRAN](https://CRAN.R-project.org/package=cartography/)
+```{r}
+install.packages("cartography")
+```
+
+
+
+## Alternatives Packages
+* [tmap](https://github.com/mtennekes/tmap)    
+* [ggplot2](https://github.com/tidyverse/ggplot2)     
+* [ggmap](https://github.com/dkahle/ggmap)    
+* [rworldmap](https://github.com/AndySouth/rworldmap/)
+
 
 ## Community Guidelines
 
-One can contribute to the package through [pull requests](https://github.com/Groupe-ElementR/cartography/pulls) and report issues or ask questions [here](https://github.com/Groupe-ElementR/cartography/issues).
+One can contribute to the package through [pull requests](https://github.com/riatelab/cartography/pulls) and report issues or ask questions [here](https://github.com/riatelab/cartography/issues).
 
 
 
