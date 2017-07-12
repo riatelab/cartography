@@ -22,7 +22,7 @@ some cartographic APIs.
 
 -----------
 
-**Up to version 1.4.2 `cartography` was mainly based on `sp` and and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/edzer/sfr) functions since version 2.0.0.**    
+**Up to version 1.4.2 `cartography` was mainly based on `sp` and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/edzer/sfr) functions since version 2.0.0.**    
 
 **Most functions are kept unchanged except for the addition of an `x` argument used to take `sf` objects as inputs.**  
 
@@ -41,12 +41,17 @@ contains commented scripts on how to build various types of maps with `cartograp
 vignette(topic = "cartography")
 ```
 
-## Blog posts, tutorials
+## Blog posts, tutorials, papers
+
+
+[Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson MP (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp.
+173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography)(EN)  
+
 
 [SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)      
 [Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)    
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
-[De superbes cartes thématiques...](http://rgeomatic.hypotheses.org/1086)(FR)
+[De superbes cartes thématiques...](http://rgeomatic.hypotheses.org/1086) (FR)  
 [Le package cartography a un an](http://rgeomatic.hypotheses.org/1016)(FR)    
 [Cartographie avec R : le package cartography](http://rgeomatic.hypotheses.org/659) (FR)  
 [R pour les cartographes](http://neocarto.hypotheses.org/1859) (FR)    

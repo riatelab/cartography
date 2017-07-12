@@ -11,5 +11,26 @@ citEntry(entry = "Article",
   author = "Timothée Giraud and Nicolas Lambert",
   title = "cartography: Create and Integrate Maps in your R Workflow",
   journal = "JOSS", 
-  textVersion = "Giraud, T. and Lambert, N. (2016). cartography: Create and Integrate Maps in your R Workflow. JOSS, 1(4). doi:
-10.21105/joss.00054.")
+  textVersion = "Giraud, T. and Lambert, N. (2016). cartography: Create and Integrate Maps in your R Workflow. JOSS, 1(4). doi: 10.21105/joss.00054.")
+
+citEntry(entry = "InProceedings",
+         booktitle = "Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography.",
+         author = c(person(given = "Timothée",
+                           family = "Giraud"),
+                    person(given = "Nicolas",
+                           family = "Lambert")),
+         editor = person(given = "Michael",
+                         family = "Peterson"),
+         title = "Reproducible Cartography",
+         chapter = "13",
+         publisher = "Springer",
+         address = "Cham, Switzerland",
+         year = "2017",
+         pages = "173-183",
+         doi = "10.1007/978-3-319-57336-6_13", 
+         textVersion = "Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson MP (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp.
+173-183. doi: 10.1007/978-3-319-57336-6_13.")
+
+
+
+
