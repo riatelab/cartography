@@ -15,10 +15,8 @@
 #' squares, height for bars) in inches.
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
 #' @param col color of symbols.
-#' @param col2 second color of symbols (see Details).
 #' @param border color of symbols borders.
 #' @param lwd width of symbols borders.
-#' @param breakval breaking value (see Details).
 #' @param fixmax value of the biggest symbol (see Details).
 #' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
@@ -34,10 +32,7 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details The breakval parameter allows to plot symbols of two 
-#' colors: the first color (col) for values superior or equal to breakval,
-#' second color (col2) for values inferior to breakval.
-#' 
+#' @details  
 #' Two maps with the same inches and fixmax parameters will be comparable.
 #' @export
 #' @seealso \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 
@@ -103,22 +98,10 @@
 #'                  legend.title.txt = "nb of deaths")
 #' par(oldpar)
 #' 
-#' ## Example 4
-#' nuts0.df$balance <- nuts0.df$birth_2008-nuts0.df$death_2008
-#' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-#' # Population plot on proportional symbols
-#' propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, inches = 0.3,
-#'                  var = "balance",
-#'                  symbols = "circle",
-#'                  col = "orange", col2 = "green", breakval=0,
-#'                  legend.pos = "right",
-#'                  legend.style = "c",
-#'                  legend.title.txt = "Natural Balance\n(2008)")
 propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              inches = 0.3, fixmax = NULL, 
-                             breakval = NULL,
                              symbols = "circle", 
-                             col = "#E84923", col2 = "#7DC437", 
+                             col = "#E84923", 
                              border = "black", lwd = 1,
                              legend.pos = "bottomleft", 
                              legend.title.txt = var,
@@ -138,15 +121,8 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   
   
   # Double color management
-  if (!is.null(breakval)){
-    mycols <- rep(NA,nrow(dots))
-    mycols <- ifelse(test = dots[[var]] >= breakval, 
-                     yes = col,
-                     no = col2)
-  }else{
-    mycols <- rep(col, nrow(dots))
-  }
-  
+  mycols <- rep(col, nrow(dots))
+
   if (is.null(fixmax)){
     fixmax <- max(dots[[var]])
   }
@@ -175,7 +151,8 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   if (add==FALSE){
     plot(sf::st_geometry(x), col = NA, border = NA)
   }
-  
+  print(varvect)
+  print(inches)
 
   switch(symbols, 
          circle = {
@@ -186,11 +163,9 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                   title.txt = legend.title.txt,
                                   title.cex = legend.title.cex,
                                   values.cex = legend.values.cex,
-                                  var = varvect,
-                                  r = sizevect,
-                                  breakval  = breakval,
+                                  var = c(min(dots[[var]]),max(dots[[var]])),
+                                  inches = inches,
                                   col = col,
-                                  col2 = col2,
                                   frame = legend.frame,
                                   values.rnd =  legend.values.rnd,
                                   style = legend.style)
@@ -204,11 +179,9 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                   title.txt = legend.title.txt,
                                   title.cex = legend.title.cex,
                                   values.cex = legend.values.cex,
-                                  var = varvect,
-                                  r = sizevect,
-                                  breakval  = breakval,
+                                  var = c(min(dots[[var]]),max(dots[[var]])),
+                                  inches = inches,
                                   col = col,
-                                  col2 = col2,
                                   frame = legend.frame,
                                   values.rnd =  legend.values.rnd,
                                   style = legend.style)

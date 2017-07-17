@@ -171,3 +171,52 @@ sizer <- function(dots, inches, var, fixmax, symbols){
   return(size)
 }
 
+
+
+
+################################################################################
+### legend utils
+legpos <- function(pos, x1, x2, y1, y2, delta1, delta2, legend_xsize, legend_ysize){
+  # Position
+  if(length(pos) == 2){
+    return(list(xref = pos[1], yref = pos[2]))
+  }
+  if (pos == "bottomleft") {
+    xref <- x1 + delta1
+    yref <- y1 + delta1
+  }
+  if (pos == "topleft") {
+    xref <- x1 + delta1
+    yref <- y2 - 2 * delta1 - legend_ysize
+  }
+  if (pos == "topright") {
+    xref <- x2 - 2 * delta1 - legend_xsize
+    yref <- y2 -2 * delta1 - legend_ysize
+  }
+  if (pos == "bottomright") {
+    xref <- x2 - 2 * delta1 - legend_xsize
+    yref <- y1 + delta1
+  }
+  if (pos == "left") {
+    xref <- x1 + delta1
+    yref <- (y1+y2)/2-legend_ysize/2 - delta2
+  }
+  if (pos == "right") {
+    xref <- x2 - 2*delta1 - legend_xsize
+    yref <- (y1+y2)/2-legend_ysize/2 - delta2
+  }
+  if (pos == "top") {
+    xref <- (x1+x2)/2 - legend_xsize/2
+    yref <- y2 - 2*delta1 - legend_ysize
+  }
+  if (pos == "bottom") {
+    xref <- (x1+x2)/2 - legend_xsize/2
+    yref <- y1 + delta1
+  }
+  if (pos == "center") {
+    xref <- (x1+x2)/2 - legend_xsize/2
+    yref <- (y1+y2)/2-legend_ysize/2 - delta2
+  }
+  return(list(xref = xref, yref = yref))
+}
+

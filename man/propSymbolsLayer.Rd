@@ -5,11 +5,11 @@
 \title{Proportional Symbols Layer}
 \usage{
 propSymbolsLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
-  inches = 0.3, fixmax = NULL, breakval = NULL, symbols = "circle",
-  col = "#E84923", col2 = "#7DC437", border = "black", lwd = 1,
-  legend.pos = "bottomleft", legend.title.txt = var,
-  legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
-  legend.style = "c", legend.frame = FALSE, add = TRUE)
+  inches = 0.3, fixmax = NULL, symbols = "circle", col = "#E84923",
+  border = "black", lwd = 1, legend.pos = "bottomleft",
+  legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
+  legend.values.rnd = 0, legend.style = "c", legend.frame = FALSE,
+  add = TRUE)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection.}
@@ -33,13 +33,9 @@ squares, height for bars) in inches.}
 
 \item{fixmax}{value of the biggest symbol (see Details).}
 
-\item{breakval}{breaking value (see Details).}
-
 \item{symbols}{type of symbols, one of "circle", "square" or "bar".}
 
 \item{col}{color of symbols.}
-
-\item{col2}{second color of symbols (see Details).}
 
 \item{border}{color of symbols borders.}
 
@@ -71,10 +67,6 @@ not (FALSE).}
 Plot a proportional symbols layer.
 }
 \details{
-The breakval parameter allows to plot symbols of two 
-colors: the first color (col) for values superior or equal to breakval,
-second color (col2) for values inferior to breakval.
-
 Two maps with the same inches and fixmax parameters will be comparable.
 }
 \examples{
@@ -136,17 +128,6 @@ propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  legend.title.txt = "nb of deaths")
 par(oldpar)
 
-## Example 4
-nuts0.df$balance <- nuts0.df$birth_2008-nuts0.df$death_2008
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-# Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, inches = 0.3,
-                 var = "balance",
-                 symbols = "circle",
-                 col = "orange", col2 = "green", breakval=0,
-                 legend.pos = "right",
-                 legend.style = "c",
-                 legend.title.txt = "Natural Balance\\n(2008)")
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 
