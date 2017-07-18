@@ -2,7 +2,7 @@
 
 [![Version](http://www.r-pkg.org/badges/version/cartography)](https://CRAN.R-project.org/package=cartography/)
 [![Travis-CI Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/riatelab/cartography?branch=master&svg=true)](https://ci.appveyor.com/project/Groupe-ElementR/cartography)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/riatelab/cartography?branch=master&svg=true)](https://ci.appveyor.com/project/riatelab/cartography)
 ![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
 [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
  
@@ -23,6 +23,8 @@ some cartographic APIs.
 -----------
 
 **Up to version 1.4.2 `cartography` was mainly based on `sp` and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/r-spatial/sf) functions since version 2.0.0.**    
+**See [sf README](https://github.com/r-spatial/sf) in case of installation problems with sf.**  
+
 
 **Most functions are kept unchanged except for the addition of an `x` argument used to take `sf` objects as inputs.**  
 
