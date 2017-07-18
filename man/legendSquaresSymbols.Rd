@@ -46,7 +46,7 @@ legendSquaresSymbols(pos = "bottomright", title.txt = "Title of\\nthe legend ",
                      title.cex = 0.8, values.cex = 0.6,
                      var = c(max(nuts1.df$pop2008), min(nuts1.df$pop2008)),
                      inches = sqrt((abs(nuts1.df$pop2008) * 5000)),
-                     breakval=10, col="red", col2="blue", 
+                     col="red",  
                      frame=TRUE, values.rnd=0, style ="c")
 
 }
