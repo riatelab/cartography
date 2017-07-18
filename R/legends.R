@@ -44,90 +44,83 @@ legendChoro <- function(pos = "topleft",
                         nodata.txt = "No data", 
                         nodata.col = "white",
                         frame=FALSE,symbol="box"){
+  # exit for none
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center")
+  if(length(pos) == 1){if(!pos %in% positions){return()}}
   
-  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", 
-                 "right", "top", "bottom", "middle")
-  if(pos %in% positions){
-    # extent
-    x1 <- par()$usr[1]
-    x2 <- par()$usr[2]
-    y1 <- par()$usr[3]
-    y2 <- par()$usr[4]
-    xextent <- x2 - x1
-    yextent <- y2 - y1
-    
-    paramsize1 = 30/cex
-    paramsize2 <- paramsize1*40/25
-    
-    
-    width <- (x2 - x1) / paramsize1
-    height <- width /1.5
-    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
-    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
-    #rect(x1, y1, x2, y2, border = "black")
-    
-    
-    # Taille du bloc de legende
-    breaks <- as.numeric(round(breaks, values.rnd))
-    longVal <- breaks[strwidth(breaks,cex=values.cex)==max(strwidth(breaks,cex=values.cex))][1]
-    if (nodata == TRUE){if (strwidth(nodata.txt,cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- nodata.txt}}
-    legend_xsize <- max(width + strwidth(longVal,cex=values.cex),strwidth(title.txt,cex = title.cex) - delta2) - delta2
-    legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt,cex = title.cex)
-    
-    # legende_size augmente si un caisson no data
-    if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
-    
-    # Position
-    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
-    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
-    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
-    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
-    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    
-    # Frame
-    if (frame==TRUE){
-      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 * 2, border = "black",  col="white")
-    }
-    
-    # Affichage du bloc de legende
-    
-    if (nodata == TRUE){
-      rect(xref,yref ,xref + width,yref + height,col=nodata.col,border="black",lwd=0.4)
-      text(xref + width + delta2 ,yref + height/2 ,nodata.txt,adj=c(0,0.5),cex=values.cex)
-      yref <- yref + height + delta2
-    }
-    
-    if (symbol=="line"){
-      
-      for (i in 0:(length(breaks)-2)){
-        
-        segments(xref, yref + height/2+ i*height, xref + width, yref + i*height + height/2, lwd=5, col=col[i+1], lend=1)
-        
-        #  rect(xref,yref + i*height,xref + width,yref + height + i*height,col=col[i+1],border="black",lwd=0.4)
-      }
-    } else { #box
-      for (i in 0:(length(breaks)-2)){
-        rect(xref,yref + i*height,xref + width,yref + height + i*height,col=col[i+1],border="black",lwd=0.4)
-      }
-      
-    }
-    
-    # Affichage des textes
-    for (i in 1:(length(breaks))){
-      j <- i -1
-      text(xref + width + delta2 ,y= yref + j * height,breaks[i],adj=c(0,0.5),cex=values.cex)
-    }
-    
-    # Affichage du titre
-    text(x=xref,y=yref + (length(breaks)-1)*height+delta1,title.txt,adj=c(0,0),cex=title.cex)
-    
+  # figdim in geo coordinates
+  x1 <- par()$usr[1]
+  x2 <- par()$usr[2]
+  y1 <- par()$usr[3]
+  y2 <- par()$usr[4]
+  
+  # offsets
+  delta1 <- xinch(0.15) * cex
+  delta2 <- delta1 / 2
+  
+  # variables internes
+  width <- (x2 - x1) / (30/cex)
+  height <- width / 1.5
+  
+  # extent
+  breaks <- as.numeric(round(breaks, values.rnd))
+  
+  if (nodata == FALSE){nodata.txt <- NULL}
+  longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
+  legend_xsize <- max(width + longval,
+                      strwidth(title.txt, cex = title.cex) - delta2) - delta2
+  legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt, cex = title.cex)
+  
+  # legende_size increase if no.data
+  if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
+  
+  # Get legend position
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                     delta1 = delta1, delta2 = delta2,
+                     legend_xsize = legend_xsize,
+                     legend_ysize = legend_ysize)
+  xref <- legcoord$xref
+  yref <- legcoord$yref
+  
+  # Frame
+  if (frame==TRUE){
+    rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
+         yref + legend_ysize + delta1 * 2, border = "black",  col="white")
   }
   
+  # box display
+  if (nodata == TRUE){
+    rect(xref, yref, xref + width, yref + height,
+         col = nodata.col, border = "black", lwd = 0.4)
+    text(xref + width + delta2 , yref + height / 2, labels = nodata.txt,
+         adj = c(0,0.5), cex = values.cex)
+    yref <- yref + height + delta2
+  }
+  
+  if (symbol=="box"){
+    for (i in 0:(length(breaks)-2)){
+      rect(xref, yref + i * height, xref + width, yref + height + i * height,
+           col = col[i+1], border = "black", lwd = 0.4)
+    }
+  }else{
+    for (i in 0:(length(breaks)-2)){
+      segments(xref, yref + height / 2+ i*height, xref + width,
+               yref + i*height + height / 2, lwd = 5, col = col[i+1], lend = 1)
+    }
+  }
+  
+  # text display
+  for (i in 1:(length(breaks))){
+    text(x = xref + width + delta2, y = yref + (i-1) * height,
+         labels = breaks[i], adj = c(0,0.5), cex = values.cex)
+  }
+  
+  # title
+  text(x = xref, y = yref + (length(breaks)-1) * height + delta1,
+       labels = title.txt, adj = c(0,0), cex = title.cex)
 }
+
 
 
 #' @title  Legend for Typology Maps
@@ -179,84 +172,98 @@ legendTypo <- function(pos = "topleft",
                        symbol="box"){
   categ <- rev(categ)
   col <- rev(col)
-  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
-  if(pos %in% positions){
-    
-    x1 <- par()$usr[1]
-    x2 <- par()$usr[2]
-    y1 <- par()$usr[3]
-    y2 <- par()$usr[4]
-    xextent <- x2 - x1
-    yextent <- y2 - y1
-    paramsize1 = 30/cex
-    paramsize2 <- paramsize1*40/25
-    width <- (x2 - x1) / paramsize1
-    height <- width /1.5
-    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
-    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
-    #rect(x1, y1, x2, y2, border = "black")
-    
-    
-    # xsize
-    longVal <- categ[strwidth(categ,cex=values.cex)==max(strwidth(categ,cex=values.cex))][1]
-    if (nodata == TRUE){if (strwidth(nodata.txt,cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- nodata.txt}}
-    
-    legend_xsize <- max(width + delta1 + strwidth(longVal,cex=values.cex) ,strwidth(title.txt,cex = title.cex)) - delta1
-    
-    # ysize
-    legend_ysize <- (length(categ)) * height + delta2 * (length(categ)) + strheight(title.txt,cex = title.cex) - delta2
-    if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
-    
-    
-    
-    # Position
-    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
-    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
-    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
-    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
-    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    
-    # Frame
-    if (frame==TRUE){
-      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 *2, border = "black",  col="white")
-    }
-    
-    
-    if (nodata == TRUE){
-      rect(xref,yref ,xref + width,yref + height,col=nodata.col,border="black",lwd=0.4)
-      text(xref + width + delta2 ,yref + height/2 ,nodata.txt,adj=c(0,0.5),cex=values.cex)
-      yref <- yref + height + delta2
-    }
-    
-    
-    if (symbol=="box"){
-      for (i in 0:(length(categ)-1)){
-        rect(xref,yref + i*height + i*delta2,xref + width,yref + height + i*height + i*delta2,col=col[i+1],border="black",lwd=0.4)
-        j <- i+1
-        text(xref + width + delta2 ,y= yref + height/2 + i * height + i*delta2,categ[j],adj=c(0,0.5),cex=values.cex)
-        
-      }
-    }
-    
-    if (symbol=="line"){
-      for (i in 0:(length(categ)-1)){
-        
-        segments(xref, yref + height/2+ i*height+i*delta2, xref + width, yref + i*height+i*delta2 + height/2, lwd=5, col=col[i+1], lend=1)
-        #rect(xref,yref + i*height + i*delta2,xref + width,yref + height + i*height + i*delta2,col=col[i+1],border="black",lwd=0.4)
-        j <- i+1
-        text(xref + width + delta2 ,y= yref + height/2 + i * height + i*delta2,categ[j],adj=c(0,0.5),cex=values.cex)
-        
-      }
-    }
-    # Affichage du titre
-    text(x=xref,y=yref + length(categ)*height + length(categ)*delta2 + delta2,title.txt,adj=c(0,0),cex=title.cex)
-    
+  
+  # exit for none
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center")
+  if(length(pos) == 1){if(!pos %in% positions){return()}}
+  
+  # figdim in geo coordinates
+  x1 <- par()$usr[1]
+  x2 <- par()$usr[2]
+  y1 <- par()$usr[3]
+  y2 <- par()$usr[4]
+  
+  # offsets
+  delta1 <- xinch(0.15) * cex
+  delta2 <- delta1 / 2
+  
+  # variables internes
+  width <- (x2 - x1) / (30/cex)
+  height <- width / 1.5
+  
+  # xsize
+  if (nodata == FALSE){nodata.txt <- NULL}
+  longVal <- categ[strwidth(categ, cex = values.cex) == 
+                     max(strwidth(categ, cex = values.cex))][1]
+  longVal <- max(strwidth(c(longVal, nodata.txt), cex = values.cex))
+  legend_xsize <- max(width + longVal, 
+                      strwidth(title.txt,cex = title.cex) - delta2) - delta2
+  # ysize
+  legend_ysize <- (length(categ)) * height + delta2 * (length(categ)) + 
+    strheight(title.txt,cex = title.cex) - delta2
+  # legende_size increase if no.data
+  if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
+  
+  
+  
+  # Get legend position
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                     delta1 = delta1, delta2 = delta2,
+                     legend_xsize = legend_xsize,
+                     legend_ysize = legend_ysize)
+  xref <- legcoord$xref
+  yref <- legcoord$yref
+  
+  # Frame
+  if (frame==TRUE){
+    rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
+         yref + legend_ysize + delta1 * 2, border = "black",  col="white")
   }
+  
+  # box display
+  if (nodata == TRUE){
+    rect(xref, yref, xref + width, yref + height,
+         col = nodata.col, border = "black", lwd = 0.4)
+    text(xref + width + delta2 , yref + height / 2, labels = nodata.txt,
+         adj = c(0,0.5), cex = values.cex)
+    yref <- yref + height + delta2
+  }
+  
+  
+  
+  if (symbol=="box"){
+    for (i in 0:(length(categ)-1)){
+      rect(xref, yref + i * height + i * delta2, xref + width, 
+           yref + height + i * height + i * delta2, 
+           col = col[i + 1], border = "black", lwd = 0.4)
+      j <- i+1
+      text(x = xref + width + delta2 , 
+           y = yref + height / 2 + i * height + i * delta2, 
+           labels = categ[j], adj = c(0,0.5), cex = values.cex)
+      
+    }
+  }
+  
+  if (symbol=="line"){
+    for (i in 0:(length(categ)-1)){
+      segments(xref, yref + height / 2 + i * height + i * delta2, xref + width, 
+               yref + i * height + i * delta2 + height / 2, lwd = 5, 
+               col = col[i + 1], lend = 1)
+      j <- i+1
+      text(xref + width + delta2, 
+           y = yref + height / 2 + i * height + i * delta2, labels = categ[j], 
+           adj = c(0,0.5), cex = values.cex)
+      
+    }
+  }
+  # Affichage du titre
+  text(x = xref, 
+       y = yref + length(categ) * height + length(categ) * delta2 + delta2, 
+       labels = title.txt, adj = c(0,0), cex = title.cex)
+  
 }
+
 
 #' @title Legend for Proportional Circles Maps
 #' @description Plot legend for proportional circles maps
@@ -509,160 +516,328 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
-#' @param var vector of values.
-#' @param r a vector giving the heights of the bars.
-#' @param breakval breaking value (see Details).
+#' @param var vector of values (at least min and max).
+#' @param inches height of the higher bar.
 #' @param values.rnd number of decimal places of the values in 
 #' the legend.
 #' @param col color of symbols.
-#' @param col2 second color of symbols (see Details).
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
-#' @details The breakval parameter allows to plot symbols of two 
-#' colors: the first color (col) for values superior or equal to breakval,
-#' second color (col2) for values inferior to breakval.
 #' @export
 #' @examples
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' 
 #' legendBarsSymbols(pos = "topleft", title.txt = "Title of\nthe legend",
-#'                      title.cex = 0.8, values.cex = 0.6,cex = 3,
-#'                      var = nuts1.df$pop2008,
-#'                      r = sqrt((abs(nuts1.df$pop2008) * 100000) / pi),
+#'                      title.cex = 0.8, values.cex = 0.6,cex = 1,
+#'                      var = c(min(nuts0.df$pop2008),max(nuts0.df$pop2008)),
+#'                      inches = 0.5,
 #'                      col = "purple",
 #'                      values.rnd=0, style ="e")
 legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend", 
-                             title.cex = 0.8, cex = 1,
-                             values.cex = 0.6, var, r, breakval = NULL, 
-                             col="red", col2="blue", frame=FALSE, values.rnd=0, style ="c"){
-  
+                             title.cex = 0.8, cex = 1, values.cex = 0.6, 
+                             var, inches, col = "red", frame = FALSE, 
+                             values.rnd = 0, style = "c"){
   var <- abs(var)
-  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
-  if(pos %in% positions){
-    
-    # extent
-    x1 <- par()$usr[1]
-    x2 <- par()$usr[2]
-    y1 <- par()$usr[3]
-    y2 <- par()$usr[4]
-    xextent <- x2 - x1
-    yextent <- y2 - y1
-    
-    # variables internes
-    paramsize1 = 30/cex
-    paramsize2 <- paramsize1*40/25
-    width <- (x2 - x1) / 40
-    height <- width /1.5
-    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
-    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
-    
-    
-    rValmax <- max(var,na.rm = TRUE)
-    rValmin <- min(var,na.rm = TRUE)
-    rValextent <- rValmax - rValmin
-    rLegmax <- max(r,na.rm = TRUE)
-    rLegmin <- min(r,na.rm = TRUE)
-    rLegextent <- rLegmax - rLegmin
-
-    rLeg <- c(rLegmax,rLegmax - rLegextent/3 , rLegmax - 2*(rLegextent/3),rLegmin)
-    
-    sleg <- rLeg 
-    rVal <- sleg * rValmax / sleg[1]
-    rVal <- round(rVal,values.rnd)
-    
-    
-    
-    
-    
-    # xsize & ysize
-    
-    if (style=="c"){
-      longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-      if(!is.null(breakval)){if (strwidth(paste (">=",format(breakval,scientific=FALSE)),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste (">=",format(breakval,scientific=FALSE))}}
-      legend_xsize <- max(height/1.5 + strwidth(longVal,cex=values.cex),strwidth(title.txt,cex = title.cex)-delta1)
-      
-      legend_ysize <-rLeg[1] + strheight(title.txt,cex = title.cex) - delta1
-      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2}
+  # exit for none
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center")
+  if(length(pos) == 1){if(!pos %in% positions){return()}}
+  
+  # figdim in geo coordinates
+  x1 <- par()$usr[1]
+  x2 <- par()$usr[2]
+  y1 <- par()$usr[3]
+  y2 <- par()$usr[4]
+  
+  # offsets
+  delta1 <- xinch(0.15) * cex
+  delta2 <- delta1 / 2
+  
+  bwidth <- xinch(inches / 7) 
+  
+  
+  ## with unknown intermediates values OR with a list of values
+  siz <- var *  inches / max(var)
+  if(length(var) == 2){
+    siz <- seq(from = max(siz), to = min(siz), length.out = 4)
+    sle <- siz 
+    var <- sle * max(var) / sle[1]
+  }
+  size <- xinch(siz)
+  var <- round(var,values.rnd)
+  size <- sort(size, decreasing = T)
+  var <- sort(var, decreasing = T)
+  
+  # xsize & ysize
+  longVal <- var[strwidth(var,cex = values.cex) == 
+                   max(strwidth(var, cex = values.cex))][1]
+  legend_xsize <- max(bwidth + strwidth(longVal, cex = values.cex),
+                      strwidth(title.txt,cex = title.cex) - delta1)
+  if(style == "c"){
+    legend_ysize <- size[1] + strheight(title.txt, cex = title.cex) 
+  }
+  if (style=="e"){
+    legend_ysize <- sum(size) + (length(size) - 1) * delta2 + 
+      strheight(title.txt,cex = title.cex)
+  }
+  
+  # Get legend position
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                     delta1 = delta1, delta2 = delta2,
+                     legend_xsize = legend_xsize, 
+                     legend_ysize = legend_ysize)
+  xref <- legcoord$xref
+  yref <- legcoord$yref
+  
+  # Frame display
+  if(frame == TRUE){
+    rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
+         yref + legend_ysize + delta1 * 2, border = "black",  col="white")
+  }
+  
+  if (style=="c"){
+    for(i in 1:length(size)){
+      rect(xref, yref, xref + bwidth, yref + size[i] ,col = col)
+      segments(xref + bwidth, yref + size[i], 
+               xref + bwidth + delta2, yref + size[i])
+      text(xref + bwidth + delta1, y = yref + size[i], labels = var[i], 
+           adj = c(0,0.5), cex = values.cex)
     }
-    
-    if (style=="e"){
-      longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-      if(!is.null(breakval)){if (strwidth(paste (">=",format(breakval,scientific=FALSE)),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <-paste (">=",format(breakval,scientific=FALSE))}}
-      legend_xsize <- max(height/1.5 + strwidth(longVal,cex=values.cex)-delta2,strwidth(title.txt,cex = title.cex)-delta1)
-      
-      legend_ysize <-rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4] + 3*delta2 + strheight(title.txt,cex = title.cex)- delta1
-      if(!is.null(breakval)){legend_ysize <- legend_ysize + height*2}
+    text(x = xref, y = yref + size[1] + delta1, labels = title.txt, adj = c(0,0),
+         cex = title.cex)
+  }
+  
+  if (style=="e"){
+    jump <- 0
+    for(i in length(size):1){
+      rect(xref, yref + jump, xref + bwidth, yref + size[i] + jump,
+           col = col)
+      text(xref + bwidth + delta2 ,y = yref + jump + size[i]/2,labels = var[i],
+           adj = c(0,0.5), cex = values.cex)
+      jump <- size[i] + delta2 + jump
     }
-    
-    # Position
-    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
-    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
-    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
-    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
-    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    
-    
-    # Frame
-    if (frame==TRUE){
-      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 *2, border = "black",  col="white")
-    }
-    
-    mycol <- col
-    
-    if(!is.null(breakval)){
-      
-      yref <- yref - delta1  
-      symbols(x = xref + height/3, y=yref + delta1 - height/2 + height, 
-              squares=height/1.5,add=TRUE,bg=col,inches=FALSE)
-      symbols(x = xref + height/3, y=yref + delta1 - height/2, 
-              squares=height/1.5,add=TRUE,bg=col2,inches=FALSE)
-      text(xref + height/1.5 + delta2,yref + delta1 - height/3 ,paste ("<",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
-      text(xref + height/1.5 + delta2, yref + height + delta1 - height/3 ,paste (">=",format(breakval,scientific=FALSE)),adj=c(0,0.5),cex=values.cex)
-      yref <- yref + height *2 + delta1
-      mycol <- "white"
-    }
-    
-    
-    if (style=="c"){
-      # (V1)
-      
-      
-      for(i in 1:4){
-        
-        rect(xref, yref, xref + height/1.5, yref + rLeg[i] ,col=mycol)
-      }
-      
-      for(i in 1:4){
-        segments(xref + height/1.5 ,yref+rLeg[i],xref+height/1.5 + delta2,yref +rLeg[i])
-        text(xref+  height/1.5 + delta1 ,y= yref+rLeg[i],rVal[i],adj=c(0,0.5),cex=values.cex)
-      }
-      
-      
-      text(x=xref ,y=yref + rLeg[1] +delta2,title.txt,adj=c(0,0),cex=title.cex)
-      
-    }
-    if (style=="e"){
-      
-      #  (V2)
-      jump <- 0
-      for(i in 4:1){
-        rect(xref, yref+ jump, xref+height/1.5, yref+rLeg[i] + jump ,col=mycol)
-        #symbols(x = xref + rLeg[i]/2 + (rLeg[1]-rLeg[i])/2 ,y=yref + jump,squares=rLeg[i],add=TRUE,bg=mycol,inches=FALSE)
-        text(xref + height/1.5 + delta2 ,y= yref + jump + rLeg[i]/2,rVal[i],adj=c(0,0.5),cex=values.cex)
-        if (i>1){jump <- rLeg[i] + delta2 + jump}
-      }
-      text(x=xref ,y=yref + rLeg[1]+ rLeg[2]+rLeg[3]+rLeg[4] + 3*delta2 + delta2 ,title.txt,adj=c(0,0),cex=title.cex)
-    }
+    text(x = xref ,y = yref + sum(size) + (length(size) - 1) * delta2 + delta1,
+         labels = title.txt, adj = c(0,0), cex = title.cex)
   }
 }
+
+
+
+#' @title Legend for Proportional Lines Maps
+#' @description Plot legend for proportional lines maps
+#' @name legendPropLines
+#' @param pos position of the legend, one of "topleft", "top", 
+#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param var vector of values (at least min and max).
+#' @param lwd width of the larger line.
+#' @param values.rnd number of decimal places of the values in 
+#' the legend.
+#' @param col color of symbols.
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
+#' not (FALSE).
+#' @export
+#' @examples
+#' data("nuts2006")
+#' plot(nuts0.spdf)
+#' box()
+#' legendPropLines(pos = "topleft", title.txt = "Title",
+#'                 title.cex = 0.8, values.cex = 0.6, cex = 2,
+#'                 var = nuts1.df$pop2008,
+#'                 lwd = nuts1.df$pop2008/1000000,
+#'                 col="red", frame=TRUE, values.rnd=2)
+legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend", 
+                           title.cex = 0.8, cex = 1,
+                           values.cex = 0.6, var, lwd, col="red", frame=FALSE, 
+                           values.rnd = 0){
+  var <- abs(var)
+  # exit for none
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center")
+  if(length(pos) == 1){if(!pos %in% positions){return()}}
+  
+  # figdim in geo coordinates
+  x1 <- par()$usr[1]
+  x2 <- par()$usr[2]
+  y1 <- par()$usr[3]
+  y2 <- par()$usr[4]
+  
+  # offsets
+  delta1 <- xinch(0.15) * cex
+  delta2 <- delta1 / 2
+  width <- (x2 - x1) / (30/cex)
+  
+  ## with unknown intermediates values OR with a list of values
+  siz <- var *  lwd / max(var)
+  if(length(var) == 2){
+    siz <- seq(from = max(siz), to = min(siz), length.out = 4)
+    sle <- siz 
+    var <- sle * max(var) / sle[1]
+  }
+  # size <- xinch(siz)
+  size <- siz
+  var <- round(var,values.rnd)
+  size <- sort(size, decreasing = T)
+  var <- sort(var, decreasing = T)
+  
+  # xsize & ysize
+  longVal <- var[strwidth(var, cex = values.cex) == max(strwidth(var, cex = values.cex))][1]
+  legend_xsize <- max(width + strwidth(longVal, cex = values.cex) - delta2, 
+                      strwidth(title.txt, cex = title.cex) - delta1)
+  
+  legend_ysize <- 8 * delta1 + strheight(title.txt,cex = title.cex)
+  
+  # Get legend position
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                     delta1 = delta1, delta2 = delta2,
+                     legend_xsize = legend_xsize, 
+                     legend_ysize = legend_ysize)
+  xref <- legcoord$xref
+  yref <- legcoord$yref
+  
+  # Frame display
+  if(frame == TRUE){
+    rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
+         yref + legend_ysize + delta1 * 2, border = "black",  col="white")
+  }
+  
+  jump <- delta1
+  for(i in 4:1){
+    if (size[i] < 0.2){size[i] <- 0.2} # TAILLE DES LIGNE MINIMALES (A METTRE AUSSI SUR LES CARTES)
+    segments(xref, yref + jump, xref + width, yref + jump, col = col, 
+             lwd = size[i], lend = 1)
+    text(xref + width + delta2 ,y= yref + jump, labels = var[i], adj = c(0,0.5),
+         cex = values.cex)
+    jump <- jump + 2 * delta1 # ICI AMELIORER
+  }
+  text(x=xref ,y=yref + 9 * delta1, labels = title.txt, adj = c(0,0), 
+       cex = title.cex)
+}
+
+#' @title Legend for Graduated Size Lines Maps
+#' @description Plot legend for graduated size lines maps.
+#' @name legendGradLines
+#' @param pos position of the legend, one of "topleft", "top", 
+#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param breaks break points in sorted order to indicate the intervals 
+#' for assigning the width of the lines
+#' @param lwd  a vector giving the width of the lines.
+#' @param values.rnd number of decimal places of the values in 
+#' the legend.
+#' @param col color of symbols.
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param frame whether to add a frame to the legend (TRUE) or 
+#' not (FALSE).
+#' @export
+#' @examples 
+#' data("nuts2006")
+#' plot(nuts0.spdf)
+#' box()
+#' legendGradLines(title.txt = "Title of the legend", 
+#'                 pos = "topright",
+#'                 title.cex = 0.8,
+#'                 values.cex = 0.6, breaks = c(1,2,3,4,10.2,15.2),
+#'                 lwd = c(0.2,2,4,5,10),
+#'                 col ="blue", values.rnd =2)
+legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend", 
+                            title.cex = 0.8, cex = 1, values.cex = 0.6, breaks, 
+                            lwd, col, values.rnd = 2,frame=FALSE){
+  breaks <- abs(breaks)
+  # exit for none
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center")
+  if(length(pos) == 1){if(!pos %in% positions){return()}}
+  
+  # figdim in geo coordinates
+  x1 <- par()$usr[1]
+  x2 <- par()$usr[2]
+  y1 <- par()$usr[3]
+  y2 <- par()$usr[4]
+  
+  # offsets
+  delta1 <- xinch(0.15) * cex
+  delta2 <- delta1 / 2
+  width <- (x2 - x1) / (30/cex)
+  height <- width /1.5
+  
+  
+  # Taille du bloc de legende
+  breaks <- as.numeric(round(breaks, values.rnd))
+  longVal <- breaks[strwidth(breaks, cex = values.cex) == 
+                      max(strwidth(breaks, cex = values.cex))][1]
+  
+  legend_xsize <- max(width + strwidth(longVal, cex = values.cex), 
+                      strwidth(title.txt,cex = title.cex) - delta2) - delta2
+  legend_ysize <- length(breaks) * height + (length(breaks)-2) * delta2 + 
+    strheight(title.txt, cex = title.cex)
+  
+  # Get legend position
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                     delta1 = delta1, delta2 = delta2,
+                     legend_xsize = legend_xsize, 
+                     legend_ysize = legend_ysize)
+  xref <- legcoord$xref
+  yref <- legcoord$yref
+  
+  # Frame display
+  if(frame == TRUE){
+    rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
+         yref + legend_ysize + delta1 * 2, border = "black",  col="white")
+  }
+  
+  # Affichage du bloc de legende
+  for (i in 0:(length(breaks)-2)){
+    j <- i + 1
+    segments(xref, 
+             yref + height / 2 + i * height + i * delta2 + (height + delta2) / 2, 
+             xref + width, 
+             yref + i * height + i * delta2 + height / 2 + (height+delta2) / 2, 
+             lwd = lwd[j], col = col, lend = 1)
+    text(x = xref + width + delta2, 
+         y = yref + height / 2 + i * height + i * delta2, labels = breaks[j],
+         adj = c(0,0.5), cex = values.cex)
+  }
+  
+  text(x = xref + width + delta2 ,
+       y = yref + height/2 + (i+1) * height + (i+1) * delta2, 
+       labels = breaks[j+1], adj = c(0,0.5), cex = values.cex)
+  
+  # Affichage du titre
+  text(x = xref, y = yref + length(breaks) * height + length(breaks) * delta2, 
+       labels = title.txt, adj = c(0,0), cex = title.cex)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #' @title Legend for Double Proportional Triangles Maps
 #' @description Plot legends for double proportional triangles maps.
@@ -905,213 +1080,5 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
     }
   }
 }
-
-
-#' @title Legend for Proportional Lines Maps
-#' @description Plot legend for proportional lines maps
-#' @name legendPropLines
-#' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt title of the legend.
-#' @param title.cex size of the legend title.
-#' @param values.cex size of the values in the legend.
-#' @param var vector of values.
-#' @param lwd a vector giving the width of the lines.
-#' @param values.rnd number of decimal places of the values in 
-#' the legend.
-#' @param col color of symbols.
-#' @param cex size of the legend. 2 means two times bigger.
-#' @param frame whether to add a frame to the legend (TRUE) or 
-#' not (FALSE).
-#' @export
-#' @examples
-#' data("nuts2006")
-#' plot(nuts0.spdf)
-#' box()
-#' legendPropLines(pos = "topleft", title.txt = "Title",
-#'                 title.cex = 0.8, values.cex = 0.6, cex = 2,
-#'                 var = nuts1.df$pop2008,
-#'                 lwd = nuts1.df$pop2008/1000000,
-#'                 col="red", frame=TRUE, values.rnd=2)
-legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend", 
-                           title.cex = 0.8, cex = 1,
-                           values.cex = 0.6, var, lwd, col="red", frame=FALSE, 
-                           values.rnd=0){
-  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
-  if(pos %in% positions){
-    # extent
-    x1 <- par()$usr[1]
-    x2 <- par()$usr[2]
-    y1 <- par()$usr[3]
-    y2 <- par()$usr[4]
-    xextent <- x2 - x1
-    yextent <- y2 - y1
-    
-    # variables internes
-    paramsize1 = 30/cex
-    paramsize2 <- paramsize1*40/25
-    width <- (x2 - x1) / paramsize1
-    height <- width /1.5
-    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
-    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
-    
-    
-    rValmax <- max(var,na.rm = TRUE)
-    rValmin <- min(var,na.rm = TRUE)
-    rValextent <- rValmax - rValmin
-    rLegmax <- max(lwd,na.rm = TRUE)
-    rLegmin <- min(lwd,na.rm = TRUE)
-    rLegextent <- rLegmax - rLegmin
-    
-    rVal <- c(rValmax,rValmax - rValextent/3 , rValmax - 2*(rValextent/3),rValmin)
-    rLeg <- c(rLegmax,rLegmax - rLegextent/3 , rLegmax - 2*(rLegextent/3),rLegmin)
-    rVal <- round(rVal,values.rnd)
-    
-    # xsize & ysize
-    
-    longVal <- rVal[strwidth(rVal,cex=values.cex)==max(strwidth(rVal,cex=values.cex))][1]
-    #if(!is.null(breakval)){if (strwidth(paste(">=",breakval),cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- paste(">=",breakval)}}
-    legend_xsize <- max(width+ strwidth(longVal,cex=values.cex)-delta2,strwidth(title.txt,cex = title.cex)-delta1)
-    
-    legend_ysize <-8*delta1 + strheight(title.txt,cex = title.cex)
-    
-    # Position
-    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
-    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
-    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
-    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
-    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    
-    
-    # Frame
-    if (frame==TRUE){
-      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 *2, border = "black",  col="white")
-    }
-    
-    mycol <- col
-    
-    jump <- delta1
-    for(i in 4:1){
-      
-      if (rLeg[i] < 0.2){rLeg[i] <- 0.2} # TAILLE DES LIGNE MINIMALES (A METTRE AUSSI SUR LES CARTES)
-      
-      segments(xref, yref + jump, xref + width, yref + jump, col=mycol, lwd=rLeg[i],lend=1)
-      text(xref + width + delta2 ,y= yref + jump,rVal[i],adj=c(0,0.5),cex=values.cex)
-      jump <- jump + 2*delta1 # ICI AMELIORER
-    }
-    text(x=xref ,y=yref + 9*delta1,title.txt,adj=c(0,0),cex=title.cex)
-  }
-}
-
-#' @title Legend for Graduated Size Lines Maps
-#' @description Plot legend for graduated size lines maps.
-#' @name legendGradLines
-#' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param title.txt title of the legend.
-#' @param title.cex size of the legend title.
-#' @param values.cex size of the values in the legend.
-#' @param breaks break points in sorted order to indicate the intervals 
-#' for assigning the width of the lines
-#' @param lwd  a vector giving the width of the lines.
-#' @param values.rnd number of decimal places of the values in 
-#' the legend.
-#' @param col color of symbols.
-#' @param cex size of the legend. 2 means two times bigger.
-#' @param frame whether to add a frame to the legend (TRUE) or 
-#' not (FALSE).
-#' @export
-#' @examples 
-#' data("nuts2006")
-#' plot(nuts0.spdf)
-#' box()
-#' legendGradLines(title.txt = "Title of the legend", 
-#'                 pos = "topright",
-#'                 title.cex = 0.8,
-#'                 values.cex = 0.6, breaks = c(1,2,3,4,10.2,15.2),
-#'                 lwd = c(0.2,2,4,5,10),
-#'                 col ="blue", values.rnd =2)
-legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend", 
-                            title.cex = 0.8,
-                            values.cex = 0.6, breaks, lwd, col, values.rnd =2, 
-                            cex = 1,
-                            frame=FALSE){
-  
-  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", "right", "top", "bottom", "middle")
-  if(pos %in% positions){
-    # extent
-    x1 <- par()$usr[1]
-    x2 <- par()$usr[2]
-    y1 <- par()$usr[3]
-    y2 <- par()$usr[4]
-    xextent <- x2 - x1
-    yextent <- y2 - y1
-    
-    
-    # variables internes
-    paramsize1 = 30/cex
-    paramsize2 <- paramsize1*40/25
-    width <- (x2 - x1) / paramsize1
-    height <- width /1.5
-    delta1 <- min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2) # Gros eccart entre les objets
-    delta2 <- (min((y2 - y1) / paramsize2, (x2 - x1) / paramsize2))/2 # Petit eccart entre les objets
-    #rect(x1, y1, x2, y2, border = "black")
-    
-    
-    # Taille du bloc de legende
-    breaks <- as.numeric(round(breaks, values.rnd))
-    longVal <- breaks[strwidth(breaks,cex=values.cex)==max(strwidth(breaks,cex=values.cex))][1]
-    # if (nodata == TRUE){if (strwidth(nodata.txt,cex=values.cex)>strwidth(longVal,cex=values.cex)){longVal <- nodata.txt}}
-    legend_xsize <- max(width + strwidth(longVal,cex=values.cex),strwidth(title.txt,cex = title.cex) - delta2) - delta2
-    legend_ysize <- length(breaks)*height + (length(breaks)-2)*delta2 +  strheight(title.txt,cex = title.cex)
-    
-    # legende_size augmente si un caisson no data
-    # if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
-    
-    # Position
-    if (pos == "bottomleft") {xref <- x1 + delta1 ; yref <- y1 + delta1}
-    if (pos == "topleft") {xref <- x1 + delta1 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "topright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y2 -2*delta1 - legend_ysize}
-    if (pos == "bottomright") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- y1 + delta1}
-    if (pos == "left") {xref <- x1 + delta1 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "right") {xref <- x2 - 2*delta1 - legend_xsize ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    if (pos == "top") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y2 - 2*delta1 - legend_ysize}
-    if (pos == "bottom") {xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- y1 + delta1}
-    if (pos == "middle") { xref <- (x1+x2)/2 - legend_xsize/2 ; yref <- (y1+y2)/2-legend_ysize/2 - delta2}
-    
-    # Frame
-    if (frame==TRUE){
-      rect(xref-delta1, yref-delta1, xref+legend_xsize + delta1*2, yref+legend_ysize + delta1 * 2, border = "black",  col="white")
-    }
-    
-    # Affichage du bloc de legende
-    
-    #     if (nodata == TRUE){
-    #       rect(xref,yref ,xref + width,yref + height,col=nodata.col,border="black",lwd=0.4)
-    #       text(xref + width + delta2 ,yref + height/2 ,nodata.txt,adj=c(0,0.5),cex=values.cex)
-    #       yref <- yref + height + delta2
-    #     }
-    
-    for (i in 0:(length(breaks)-2)){
-      j <- i+1
-      segments(xref, yref + height/2+ i*height+i*delta2 + (height+delta2)/2, xref + width, yref + i*height+i*delta2 + height/2+ (height+delta2)/2, lwd=lwd[j], col=col, lend=1)
-      #rect(xref,yref + i*height + i*delta2,xref + width,yref + height + i*height + i*delta2,col=col[i+1],border="black",lwd=0.4)
-      text(xref + width + delta2 ,y= yref + height/2 + i * height + i*delta2,breaks[j],adj=c(0,0.5),cex=values.cex)
-    }
-    text(xref + width + delta2 ,y= yref + height/2 + (i+1)* height + (i+1)*delta2,breaks[j+1],adj=c(0,0.5),cex=values.cex)
-    
-    # Affichage du titre
-    text(x=xref,y=yref + length(breaks)*height + length(breaks)*delta2,title.txt,adj=c(0,0),cex=title.cex)
-    
-  }
-  
-}
-
-
-
 
 

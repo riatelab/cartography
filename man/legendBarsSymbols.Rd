@@ -5,9 +5,8 @@
 \title{Legend for Proportional Bars Maps}
 \usage{
 legendBarsSymbols(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, cex = 1, values.cex = 0.6, var, r, breakval = NULL,
-  col = "red", col2 = "blue", frame = FALSE, values.rnd = 0,
-  style = "c")
+  title.cex = 0.8, cex = 1, values.cex = 0.6, var, inches, col = "red",
+  frame = FALSE, values.rnd = 0, style = "c")
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
@@ -21,15 +20,11 @@ legendBarsSymbols(pos = "topleft", title.txt = "Title of the legend",
 
 \item{values.cex}{size of the values in the legend.}
 
-\item{var}{vector of values.}
+\item{var}{vector of values (at least min and max).}
 
-\item{r}{a vector giving the heights of the bars.}
-
-\item{breakval}{breaking value (see Details).}
+\item{inches}{height of the higher bar.}
 
 \item{col}{color of symbols.}
-
-\item{col2}{second color of symbols (see Details).}
 
 \item{frame}{whether to add a frame to the legend (TRUE) or 
 not (FALSE).}
@@ -43,19 +38,14 @@ styles, "c" stands for compact and "e" for extended.}
 \description{
 Plot legend for proportional bars maps
 }
-\details{
-The breakval parameter allows to plot symbols of two 
-colors: the first color (col) for values superior or equal to breakval,
-second color (col2) for values inferior to breakval.
-}
 \examples{
 data("nuts2006")
 plot(nuts0.spdf)
 
 legendBarsSymbols(pos = "topleft", title.txt = "Title of\\nthe legend",
-                     title.cex = 0.8, values.cex = 0.6,cex = 3,
-                     var = nuts1.df$pop2008,
-                     r = sqrt((abs(nuts1.df$pop2008) * 100000) / pi),
+                     title.cex = 0.8, values.cex = 0.6,cex = 1,
+                     var = c(min(nuts0.df$pop2008),max(nuts0.df$pop2008)),
+                     inches = 0.5,
                      col = "purple",
                      values.rnd=0, style ="e")
 }

@@ -151,8 +151,6 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   if (add==FALSE){
     plot(sf::st_geometry(x), col = NA, border = NA)
   }
-  print(varvect)
-  print(inches)
 
   switch(symbols, 
          circle = {
@@ -188,7 +186,7 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
            }
          }, 
          bar = {
-           tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
+           tmp <- as.matrix(data.frame(width = inches/7, height = sizes))
            dots[[2]] <- dots[[2]] + yinch(sizes/2)
            symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
                    bg = mycols,fg = border, lwd = lwd, inches = inches, asp = 1)
@@ -197,11 +195,9 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                title.txt = legend.title.txt,
                                title.cex = legend.title.cex,
                                values.cex = legend.values.cex,
-                               var = varvect,
-                               r = sizevect,
-                               breakval  = NA,
+                               var = c(min(dots[[var]]),max(dots[[var]])),
+                               inches = inches,
                                col = col,
-                               col2 = NA,
                                frame = legend.frame,
                                values.rnd =  legend.values.rnd,
                                style = legend.style)

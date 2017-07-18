@@ -64,8 +64,9 @@ propLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   if(legend.pos !="n"){
     legendPropLines(pos = legend.pos, title.txt = legend.title.txt, 
                     title.cex = legend.title.cex,
-                    values.cex = legend.values.cex, var = link[[var]], 
-                    lwd = link$lwd, col = col, frame = legend.frame, 
+                    values.cex = legend.values.cex, 
+                    var = c(min(link[[var]]), max(link[[var]])), 
+                    lwd = maxlwd, col = col, frame = legend.frame, 
                     values.rnd = legend.values.rnd)
   }
 }

@@ -63,7 +63,6 @@ getGridLayer <- function(x, cellsize, type = "regular", var){
   lvar <- vector(mode = "list", length = length(var))
   names(lvar) <- var
   for (i in 1:length(lvar)){
-    # print(names(lvar)[i])
     lvar[[i]] <- as.vector(parts[[names(lvar)[i]]] * parts$area_part / parts$area)
   }
   v <- aggregate(do.call(cbind,lvar), by = list(id = parts[['id_cell']]), 

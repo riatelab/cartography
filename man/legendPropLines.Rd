@@ -20,9 +20,9 @@ legendPropLines(pos = "topleft", title.txt = "Title of the legend",
 
 \item{values.cex}{size of the values in the legend.}
 
-\item{var}{vector of values.}
+\item{var}{vector of values (at least min and max).}
 
-\item{lwd}{a vector giving the width of the lines.}
+\item{lwd}{width of the larger line.}
 
 \item{col}{color of symbols.}
 

@@ -22,7 +22,26 @@ if (before){
 ```
 
 
+<!-- # How to Import a Geospatial Vector Data File -->
 
+<!-- ## The `rgdal` Way -->
+<!-- ```{r} -->
+<!-- library(rgdal) -->
+<!-- # path to the ESRI Shapefile embedded in cartography -->
+<!-- path_to_file <- system.file("shape/martinique.shp", package="cartography") -->
+<!-- mtq <- readOGR(dsn = path_to_file) -->
+<!-- class(mtq) -->
+<!-- plot(mtq) -->
+<!-- ``` -->
+
+
+<!-- ## The `sf` way -->
+<!-- ```{r} -->
+<!-- library(sf) -->
+<!-- mtq <- st_read(dsn = path_to_file) -->
+<!-- class(mtq) -->
+<!-- plot(st_geometry(mtq)) -->
+<!-- ``` -->
 
 
 # Label Map 

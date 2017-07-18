@@ -5,8 +5,8 @@
 \title{Legend for Graduated Size Lines Maps}
 \usage{
 legendGradLines(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, values.cex = 0.6, breaks, lwd, col, values.rnd = 2,
-  cex = 1, frame = FALSE)
+  title.cex = 0.8, cex = 1, values.cex = 0.6, breaks, lwd, col,
+  values.rnd = 2, frame = FALSE)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
@@ -15,6 +15,8 @@ legendGradLines(pos = "topleft", title.txt = "Title of the legend",
 \item{title.txt}{title of the legend.}
 
 \item{title.cex}{size of the legend title.}
+
+\item{cex}{size of the legend. 2 means two times bigger.}
 
 \item{values.cex}{size of the values in the legend.}
 
@@ -27,8 +29,6 @@ for assigning the width of the lines}
 
 \item{values.rnd}{number of decimal places of the values in 
 the legend.}
-
-\item{cex}{size of the legend. 2 means two times bigger.}
 
 \item{frame}{whether to add a frame to the legend (TRUE) or 
 not (FALSE).}

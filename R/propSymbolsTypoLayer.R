@@ -198,7 +198,7 @@ propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
            }
          }, 
          bar = {
-           tmp <- as.matrix(data.frame(width = inches/10, height = sizes))
+           tmp <- as.matrix(data.frame(width = inches/7, height = sizes))
            dots[[2]] <- dots[[2]] + yinch(sizes/2)
            symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
                    bg = mycols,
@@ -208,8 +208,8 @@ propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                title.txt = legend.var.title.txt,
                                title.cex = legend.title.cex,
                                values.cex = legend.values.cex,
-                               var = varvect,
-                               r = sizevect,
+                               var = c(min(dots[[var]]),max(dots[[var]])),
+                               inches = inches,
                                col = "grey",
                                frame = legend.var.frame,
                                values.rnd =  legend.values.rnd,
