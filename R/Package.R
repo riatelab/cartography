@@ -1,5 +1,6 @@
 #' @title Cartography Package
 #' @name cartography
+#' @rdname cartography
 #' @description 
 #' Create and integrate maps in your R workflow. This package allows
 #' various cartographic representations such as proportional symbols, chroropleth,

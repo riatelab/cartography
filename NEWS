@@ -3,7 +3,7 @@ cartography version 2.0.0 (Release date: 2017-07-XX)
 
 Breaking changes:
 
-* getBorders, getOuterBorders: an x argument is added in first position,x is added to take sf objects as inputs, if x is used then spdf is not used. spdfid is replaced by id. An sf object (MULTILINESTRING) of borders is returned.
+* getBorders, getOuterBorders: an x argument is added in first position, x is added to take sf objects as inputs, if x is used then spdf is not used. spdfid is replaced by id. An sf object (MULTILINESTRING) of borders is returned.
 
 * discLayer: spdf, spdfid1, spdfid2 and dfid are replaced by x (an sf object as outputed by getBorders). 
 
@@ -13,8 +13,10 @@ Breaking changes:
 
 * propLinkLayer, gradLinkLayer, gradLinkTypoLayer: spdf, df, spdfid, spdfids, spdfide, dfid, dfids and dfide arguments are replaced by x, df, xid and dfid. x must be an sf object (as outputed by getLinkLayer).
 
+* legend* functions have been enhanced to be more customizable. 
 
-Major changes: --A lot of--
+
+Major changes: 
 
 * choroLayer, typoLayer, propSymbolsLayer, propSymbolsChoroLayer, propSymbolsTypoLayer, dotDensityLayer, getTiles, getFigDim, labelLayer, smoothLayer: an x argument is added in first position of all these functions. x is added to take sf objects as inputs, if x is used then spdf, df, spdfid, id are not used.
 
