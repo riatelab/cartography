@@ -55,7 +55,7 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "blac
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
   
-  text(st_coordinates(st_centroid(x)), labels = x[[txt]], cex = cex,
+  text(sf::st_coordinates(my_centroid(x)), labels = x[[txt]], cex = cex,
        col = col, ...)
 
 }

@@ -135,7 +135,7 @@ checkOrder <- function(legend.values.order, mod){
 #' @noRd
 checkMergeOrder <- function(x = x, var = var){
   # get centroid coords
-  x <- cbind(sf::st_coordinates(sf::st_centroid(x)), x)
+  x <- cbind(sf::st_coordinates(my_centroid(x)), x)
   # remove NAs and 0 values
   x <- x[!is.na(x = x[[var]]),]
   x <- x[x[[var]]!=0, ]
@@ -170,6 +170,22 @@ sizer <- function(dots, inches, var, fixmax, symbols){
          })
   return(size)
 }
+
+
+my_centroid <- function(x){
+  if(sum(sf::st_geometry_type(x)=="MULTIPOLYGON") == nrow(x)){
+    x0 <- sf::st_sf(id = 1:nrow(x), geometry = sf::st_geometry(x))
+    x1 <- sf::st_cast(x = x0, to = "POLYGON", warn = F)
+    x1$area <- sf::st_area(x1)
+    x2 <- stats::aggregate(x1[,c("id", "area"), drop = T],
+                           by = list(x1$id),
+                           FUN = which.max)
+    ind <- match(x0$id, x1$id) + x2$area - 1
+    sf::st_geometry(x) <- sf::st_geometry(x1[ind,])
+  }
+  sf::st_centroid(x)
+}
+
 
 
 
