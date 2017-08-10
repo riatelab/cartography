@@ -2,11 +2,11 @@
 #' @title Proportional Links Layer
 #' @description Plot a layer of proportional links. Links widths are directly proportional to values of a variable.
 #' @param x an sf object, a simple feature collection.
-#' @param df a data frame that contains identifiers of starting and ending points.
-#' @param xid identifier fields in x, default to the 2 first columns, character 
-#' vector of length 2. (optional)
-#' @param dfid identifier fields in df, default to the two first columns, character 
-#' vector of length 2. (optional)
+#' @param df a data frame that contains identifiers of starting and ending points and a variable.
+#' @param xid identifier fields in x, character 
+#' vector of length 2, default to the 2 first columns. (optional)
+#' @param dfid identifier fields in df, character 
+#' vector of length 2, default to the two first columns. (optional)
 #' @param var name of the variable used to plot the links widths.
 #' @param maxlwd maximum size of the links.
 #' @param col color of the links.
@@ -22,6 +22,12 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @param spdf defunct.
+#' @param spdfid defunct.
+#' @param spdfids defunct.
+#' @param spdfide defunct.
+#' @param dfids defunct.
+#' @param dfide defunct.
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
 #' @import sp
 #' @seealso \link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
@@ -45,9 +51,13 @@ propLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
                           legend.values.cex = 0.6, 
                           legend.values.rnd = 0,
                           legend.frame = FALSE, 
-                          add = TRUE){
+                          add = TRUE,
+                          spdf, spdfid, spdfids, spdfide, dfids, dfide){
   
-  
+  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), missing(spdfide), missing(dfids), missing(dfide))) != 6){
+    stop("spdf, spdfid, spdfids, spdfide, dfids and dfide are defunct arguments; last used in version 1.4.2.",
+         call. = FALSE)
+  }
   if (is.null(xid)){xid <- names(x)[1:2]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   

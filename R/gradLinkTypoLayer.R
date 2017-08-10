@@ -1,12 +1,14 @@
 #' @name gradLinkTypoLayer
 #' @title Graduated and Colored Links Layer
-#' @description Plot a layer of colored and graduated links. Links are plotted according to discrete classes of widths. Colors depends on a discrete variable of categories.
+#' @description Plot a layer of colored and graduated links. 
+#' Links are plotted according to discrete classes of widths. 
+#' Colors depend on a discrete variable of categories.
 #' @param x an sf object, a simple feature collection.
-#' @param df a data frame that contains identifiers of starting and ending points.
-#' @param xid identifier fields in x, default to the 2 first columns, character 
-#' vector of length 2. (optional)
-#' @param dfid identifier fields in df, default to the two first columns, character 
-#' vector of length 2. (optional)
+#' @param df a data frame that contains identifiers of starting and ending points and variables.
+#' @param xid identifier fields in x, character 
+#' vector of length 2, default to the 2 first columns. (optional)
+#' @param dfid identifier fields in df, character 
+#' vector of length 2, default to the two first columns. (optional)
 #' @param var name of the variable used to plot the links widths.
 #' @param var2 name of the variable used to plot the links colors.
 #' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
@@ -32,6 +34,12 @@
 #' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @param spdf defunct.
+#' @param spdfid defunct.
+#' @param spdfids defunct.
+#' @param spdfide defunct.
+#' @param dfids defunct.
+#' @param dfide defunct.
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
 #' @import sp
 #' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
@@ -73,7 +81,12 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                               legend.var2.values.order = NULL,
                               legend.var2.nodata = "no data",
                               legend.var2.frame = FALSE,
-                              add = TRUE){
+                              add = TRUE, 
+                              spdf, spdfid, spdfids, spdfide, dfids, dfide){
+  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), missing(spdfide), missing(dfids), missing(dfide))) != 6){
+    stop("spdf, spdfid, spdfids, spdfide, dfids and dfide are defunct arguments; last used in version 1.4.2.",
+         call. = FALSE)
+  }
   # test
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)

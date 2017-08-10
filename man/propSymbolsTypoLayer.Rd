@@ -15,7 +15,7 @@ propSymbolsTypoLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
 
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}

@@ -4,13 +4,10 @@
 \alias{getOuterBorders}
 \title{Extract Polygons Outer Borders}
 \usage{
-getOuterBorders(x, spdf, id = NULL, res = NULL, width = NULL)
+getOuterBorders(x, id, res = NULL, width = NULL, spdf, spdfid = NULL)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
-
-\item{spdf}{a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-has to be projected (planar coordinates).}
+\item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
 
 \item{id}{identifier field in x or spdf, default to the first column. (optional)}
 
@@ -19,6 +16,12 @@ A high resolution will give more detailed borders. (optional)}
 
 \item{width}{maximum distance between used to compute borders (in spdf units).
 A higher width will build borders between units that are farther apart. (optional)}
+
+\item{spdf}{deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
+has to be projected (planar coordinates).}
+
+\item{spdfid}{deprecated, identifier field in spdf, default to the first column 
+of the spdf data frame.  (optional)}
 }
 \value{
 An sf object (MULTILINESTRING) of borders is returned. This object has three

@@ -4,12 +4,11 @@
 #' each of the two gradients).
 #' @name carto.pal
 #' @param pal1 name of the color gradiant (see Details).
-#' @param n1 number of colors (up to 20)
+#' @param n1 number of colors (up to 20).
 #' @param pal2 name of the color gradiant (see Details). 
-#' @param n2 number of colors (up to 20)
-#' @param middle  a logical value. If TRUE, a neutral color ("#F6F6F6", almost 
-#' white) between 
-#' two gradients is added.
+#' @param n2 number of colors (up to 20).
+#' @param middle  a logical value. If TRUE, a neutral color ("#F6F6F6", light 
+#' grey) between two gradients is added.
 #' @param transparency a logical value. If TRUE, contrasts are enhenced by 
 #' adding an opacity variation.
 #' @details Sequential palettes: 
@@ -144,9 +143,9 @@ display.carto.all <- function(n = 10)
 
 
 #' @title Display the Names of all Cartographic Palettes
-#' @description Display the names of all the available color palettes.
+#' @description Display the names of all color palettes.
 #' @name carto.pal.info
-#' @return A vector of palettes names is returned. 
+#' @return A vector of color palettes names is returned. 
 #' @examples
 #' carto.pal.info()
 #' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{display.carto.all}

@@ -4,7 +4,8 @@
 \alias{getLinkLayer}
 \title{Create a Links Layer from a Data Frame of Links.}
 \usage{
-getLinkLayer(x, xid = NULL, df, dfid = NULL)
+getLinkLayer(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL,
+  spdfid = NULL, spdf2id = NULL, dfids = NULL, dfide = NULL)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
@@ -13,8 +14,20 @@ getLinkLayer(x, xid = NULL, df, dfid = NULL)
 
 \item{df}{a data frame that contains identifiers of starting and ending points.}
 
-\item{dfid}{identifier fields in df, default to the two first columns, character 
-vector of length 2. (optional)}
+\item{dfid}{identifier fields in df, character vector of length 2, default to 
+the two first columns. (optional)}
+
+\item{spdf}{defunct.}
+
+\item{spdf2}{defunct.}
+
+\item{spdfid}{defunct.}
+
+\item{spdf2id}{defunct.}
+
+\item{dfids}{defunct.}
+
+\item{dfide}{defunct.}
 }
 \value{
 An sf LINESTRING is returned, it contains two fields (origins and destinations).

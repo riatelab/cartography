@@ -1,7 +1,8 @@
 #' @title Discontinuities Layer
 #' @description This function computes and plots spatial discontinuities. The 
 #' discontinuities are plotted over the layer outputed by the \link{getBorders} function.
-#' The line widths reflect the ratio between values of an indicator in two neighbouring units.
+#' The line widths reflect the ratio or the difference between values of an indicator 
+#' in two neighbouring units.
 #' @name discLayer
 #' @param x an sf object, a simple feature collection, as outputed by the \link{getBorders} function. 
 #' The two first columns are identifiers.  
@@ -31,6 +32,9 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @param spdf defunct.
+#' @param spdfid1 defunct.
+#' @param spdfid2 defunct.
 #' @return  An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is returned. 
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
@@ -63,7 +67,12 @@ discLayer <- function(x, df, dfid = NULL, var,
                       legend.values.cex = 0.6, 
                       legend.values.rnd = 2,
                       legend.frame=FALSE,
-                      add = TRUE){
+                      add = TRUE, spdf, spdfid1, spdfid2){
+  
+  if(sum(c(missing(spdf), missing(spdfid1), missing(spdfid2))) != 3){
+    stop("spdf, spdfid1 and spdfid2 are defunct arguments; last used in version 1.4.2.",
+         call. = FALSE)
+  }
   if (is.null(dfid)){dfid <- names(df)[1]}
   df <- data.frame(df)
   # Join (1 and 2)

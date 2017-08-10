@@ -16,7 +16,7 @@ propSymbolsChoroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.var2.frame = FALSE, add = TRUE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
 
 \item{spdf}{SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
@@ -97,7 +97,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a proportional symbols layer with color based on a 
+Plot a proportional symbols layer with colors based on a 
 quantitative data discretization.
 }
 \examples{

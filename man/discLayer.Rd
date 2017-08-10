@@ -9,7 +9,7 @@ discLayer(x, df, dfid = NULL, var, method = "quantile", nclass = 4,
   col = "red", legend.pos = "bottomleft",
   legend.title.txt = "legend title", legend.title.cex = 0.8,
   legend.values.cex = 0.6, legend.values.rnd = 2, legend.frame = FALSE,
-  add = TRUE)
+  add = TRUE, spdf, spdfid1, spdfid2)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection, as outputed by the \link{getBorders} function. 
@@ -57,6 +57,12 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{spdf}{defunct.}
+
+\item{spdfid1}{defunct.}
+
+\item{spdfid2}{defunct.}
 }
 \value{
 An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is returned.
@@ -64,7 +70,8 @@ An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is r
 \description{
 This function computes and plots spatial discontinuities. The 
 discontinuities are plotted over the layer outputed by the \link{getBorders} function.
-The line widths reflect the ratio between values of an indicator in two neighbouring units.
+The line widths reflect the ratio or the difference between values of an indicator 
+in two neighbouring units.
 }
 \details{
 The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr

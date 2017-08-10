@@ -2,11 +2,11 @@
 #' @description Plot a scale bar. 
 #' @name barscale
 #' @param size size of the scale bar in kilometers. If set to NULL, an 
-#' automatic scale bar is displayed (1/10 of the map width).
+#' automatic size is used (1/10 of the map width).
 #' @param lwd width of the scale bar.
 #' @param cex cex of the text.
 #' @param pos position of the legend, default to the bottom right corner of the map. 
-#' A vector of two coordinates (c(x, y) is possible.
+#' A vector of two coordinates (c(x, y)) is possible.
 #' @param style style of the legend, either "pretty" or "oldschool". The 
 #' "oldschool" style only uses the "size" parameter.   
 #' @note This scale bar is not accurate on unprojected (long/lat) maps.

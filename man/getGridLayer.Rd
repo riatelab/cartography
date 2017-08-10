@@ -4,23 +4,27 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(x, cellsize, type = "regular", var)
+getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid = NULL)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
+\item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
 
 \item{cellsize}{targeted area of the cell, in map units.}
 
 \item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
 
 \item{var}{name of the numeric field(s) in x to adapt to the grid (a vector).}
+
+\item{spdf}{deprecated, a SpatialPolygonsDataFrame.}
+
+\item{spdfid}{deprecated, identifier field in spdf, default to the first column 
+of the spdf data frame.  (optional)}
 }
 \value{
 A grid is returned as an sf object.
 }
 \description{
-Build a regular grid based on an sf object or a SpatialPolygonsDataFrame. 
-Provide also a table of surface intersections.
+Build a regular grid based on an sf object or a SpatialPolygonsDataFrame.
 }
 \examples{
 \dontrun{

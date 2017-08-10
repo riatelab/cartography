@@ -1,7 +1,7 @@
 #' @title Proportional Symbols Layer
 #' @name propSymbolsLayer
 #' @description Plot a proportional symbols layer.
-#' @param x an sf object, a simple feature collection. 
+#' @param x an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.
 #' @param spdf a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 
@@ -32,6 +32,8 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @param breakval defunct.
+#' @param col2 defunct.
 #' @details  
 #' Two maps with the same inches and fixmax parameters will be comparable.
 #' @export
@@ -110,8 +112,12 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              legend.values.rnd = 0,
                              legend.style = "c", 
                              legend.frame = FALSE,
-                             add = TRUE){
-  
+                             add = TRUE, 
+                             breakval = NULL, col2){
+  if(!is.null(breakval)){
+    stop("breakval and col2 are defunct arguments; last used in version 1.4.2.",
+         call. = FALSE)
+  }
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }

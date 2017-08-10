@@ -11,18 +11,19 @@ gradLinkTypoLayer(x, df, xid = NULL, dfid = NULL, var,
   legend.var.pos = "bottomleft", legend.var.title.txt = var,
   legend.var.frame = FALSE, legend.var2.pos = "topright",
   legend.var2.title.txt = var2, legend.var2.values.order = NULL,
-  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE)
+  legend.var2.nodata = "no data", legend.var2.frame = FALSE, add = TRUE,
+  spdf, spdfid, spdfids, spdfide, dfids, dfide)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection.}
 
-\item{df}{a data frame that contains identifiers of starting and ending points.}
+\item{df}{a data frame that contains identifiers of starting and ending points and variables.}
 
-\item{xid}{identifier fields in x, default to the 2 first columns, character 
-vector of length 2. (optional)}
+\item{xid}{identifier fields in x, character 
+vector of length 2, default to the 2 first columns. (optional)}
 
-\item{dfid}{identifier fields in df, default to the two first columns, character 
-vector of length 2. (optional)}
+\item{dfid}{identifier fields in df, character 
+vector of length 2, default to the two first columns. (optional)}
 
 \item{var}{name of the variable used to plot the links widths.}
 
@@ -66,9 +67,23 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{spdf}{defunct.}
+
+\item{spdfid}{defunct.}
+
+\item{spdfids}{defunct.}
+
+\item{spdfide}{defunct.}
+
+\item{dfids}{defunct.}
+
+\item{dfide}{defunct.}
 }
 \description{
-Plot a layer of colored and graduated links. Links are plotted according to discrete classes of widths. Colors depends on a discrete variable of categories.
+Plot a layer of colored and graduated links. 
+Links are plotted according to discrete classes of widths. 
+Colors depend on a discrete variable of categories.
 }
 \note{
 Unlike most of cartography functions, identifiers fields are mandatory.

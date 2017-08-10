@@ -38,8 +38,8 @@ the extent of each class in share of standard deviation. If middle=TRUE then
 the mean value is the center of a class else the mean is a break value.
 }
 \note{
-This function is mainly a wrapper around classIntervals function of 
-the classInt package + arith, em, q6, geom and msd methods.
+This function is mainly a wrapper classInt::classIntervals + 
+arith, em, q6, geom and msd methods.
 }
 \examples{
 data("nuts2006")

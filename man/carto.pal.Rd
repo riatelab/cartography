@@ -10,15 +10,14 @@ carto.pal(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 \arguments{
 \item{pal1}{name of the color gradiant (see Details).}
 
-\item{n1}{number of colors (up to 20)}
+\item{n1}{number of colors (up to 20).}
 
 \item{pal2}{name of the color gradiant (see Details).}
 
-\item{n2}{number of colors (up to 20)}
+\item{n2}{number of colors (up to 20).}
 
-\item{middle}{a logical value. If TRUE, a neutral color ("#F6F6F6", almost 
-white) between 
-two gradients is added.}
+\item{middle}{a logical value. If TRUE, a neutral color ("#F6F6F6", light 
+grey) between two gradients is added.}
 
 \item{transparency}{a logical value. If TRUE, contrasts are enhenced by 
 adding an opacity variation.}

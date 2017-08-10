@@ -4,8 +4,14 @@
 #' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
 #' @param df a data frame that contains identifiers of starting and ending points.
 #' @param xid identifier field in x, default to the first column (optional)
-#' @param dfid identifier fields in df, default to the two first columns, character 
-#' vector of length 2. (optional)
+#' @param dfid identifier fields in df, character vector of length 2, default to 
+#' the two first columns. (optional)
+#' @param spdf defunct.
+#' @param spdf2 defunct. 
+#' @param spdfid defunct.
+#' @param spdf2id defunct.
+#' @param dfids defunct.
+#' @param dfide defunct.
 #' @return An sf LINESTRING is returned, it contains two fields (origins and destinations).
 #' @import sp
 #' @examples 
@@ -20,7 +26,15 @@
 #' plot(twincities.sf, col = "#F78194", add = TRUE)
 #' @seealso \link{gradLinkLayer}, \link{propLinkLayer}
 #' @export
-getLinkLayer <- function(x, xid = NULL, df, dfid = NULL){
+getLinkLayer <- function(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL, 
+                         spdfid = NULL, spdf2id = NULL,
+                         dfids = NULL, dfide = NULL){
+if(sum(missing(spdf), is.null(spdf2), is.null(spdfid), 
+       is.null(spdf2id), is.null(dfids), is.null(dfide)) != 6){
+  stop("spdf, spdf2, spdfid, spdf2id, dfids and dfide are defunct arguments; last used in version 1.4.2.",
+       call. = FALSE)
+}
+  
   if(methods::is(x, "Spatial")){x <- sf::st_as_sf(x)}
   if(is.null(xid)){xid <- names(x)[1]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}

@@ -2,7 +2,7 @@
 #' @name propSymbolsTypoLayer
 #' @description Plot a proportional symbols layer with colors based on
 #'  qualitative data.
-#' @param x an sf object, a simple feature collection. 
+#' @param x an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 

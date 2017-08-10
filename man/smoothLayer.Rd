@@ -46,7 +46,7 @@ interaction function equals 0.5.}
 \item{resolution}{numeric; resolution of the output SpatialPointsDataFrame
 (in map units).}
 
-\item{mask}{SpatialPolygonsDataFrame; mask used to clip contours of potentials.}
+\item{mask}{sf object or SpatialPolygonsDataFrame; mask used to clip contours of potentials.}
 
 \item{nclass}{numeric; a targeted number of classes (default to 8). Not used if breaks is set.}
 
@@ -79,7 +79,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \value{
-An \code{\link{invisible}} SpatialPolygonsDataFrame is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
+An \code{\link{invisible}} sf object (MULTIPOLYGONs) is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 }
 \description{
 Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr

@@ -28,7 +28,7 @@
 #' \item{Flow maps (proportional and classified links)\cr
 #' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}, \link{gradLinkTypoLayer}}
 #' 
-#' \item{Discontinuities maps (variable size and color of borders)\cr
+#' \item{Discontinuities maps\cr
 #' \link{getBorders}, \link{discLayer}}
 #' 
 #' \item{Cartographic palettes (palettes adapted to cartographic representation)\cr
@@ -49,7 +49,7 @@
 #' \item{Access to cartographic APIs (via rosm package)\cr
 #' \link{getTiles}, \link{tilesLayer}}
 #' 
-#' \item{Irregular polygons to regular grid transformation with data handling\cr
+#' \item{Irregular polygons to regular grid, transformation with data handling\cr
 #' \link{getGridLayer}}
 #' 
 #' }
@@ -58,7 +58,8 @@
 #' for its spatial data management and geoprocessing operations. These dependancies 
 #' are as much as possible replaced by \code{sf} functions since version 2.0.0.\cr
 #' Most functions are kept unchanged except for the addition of an \code{x} argument 
-#' used to take \code{sf} objects as inputs.
+#' used to take \code{sf} objects as inputs. See the NEWS file for details: 
+#' \code{print(news(package = 'cartography'))}.
 #' 
 #' @docType package
 NULL

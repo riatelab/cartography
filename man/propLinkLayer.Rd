@@ -7,18 +7,19 @@
 propLinkLayer(x, df, xid = NULL, dfid = NULL, var, maxlwd = 40, col,
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6, legend.values.rnd = 0,
-  legend.frame = FALSE, add = TRUE)
+  legend.frame = FALSE, add = TRUE, spdf, spdfid, spdfids, spdfide, dfids,
+  dfide)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection.}
 
-\item{df}{a data frame that contains identifiers of starting and ending points.}
+\item{df}{a data frame that contains identifiers of starting and ending points and a variable.}
 
-\item{xid}{identifier fields in x, default to the 2 first columns, character 
-vector of length 2. (optional)}
+\item{xid}{identifier fields in x, character 
+vector of length 2, default to the 2 first columns. (optional)}
 
-\item{dfid}{identifier fields in df, default to the two first columns, character 
-vector of length 2. (optional)}
+\item{dfid}{identifier fields in df, character 
+vector of length 2, default to the two first columns. (optional)}
 
 \item{var}{name of the variable used to plot the links widths.}
 
@@ -44,6 +45,18 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{spdf}{defunct.}
+
+\item{spdfid}{defunct.}
+
+\item{spdfids}{defunct.}
+
+\item{spdfide}{defunct.}
+
+\item{dfids}{defunct.}
+
+\item{dfide}{defunct.}
 }
 \description{
 Plot a layer of proportional links. Links widths are directly proportional to values of a variable.

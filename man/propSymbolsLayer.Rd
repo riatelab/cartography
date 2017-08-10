@@ -9,10 +9,10 @@ propSymbolsLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   border = "black", lwd = 1, legend.pos = "bottomleft",
   legend.title.txt = var, legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.values.rnd = 0, legend.style = "c", legend.frame = FALSE,
-  add = TRUE)
+  add = TRUE, breakval = NULL, col2)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
 
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
@@ -62,6 +62,10 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{breakval}{defunct.}
+
+\item{col2}{defunct.}
 }
 \description{
 Plot a proportional symbols layer.

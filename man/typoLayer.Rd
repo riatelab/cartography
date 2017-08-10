@@ -12,7 +12,7 @@ typoLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,
   legend.frame = FALSE, add = FALSE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
 
 \item{spdf}{a SpatialPolygonsDataFrame.}
 

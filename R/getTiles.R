@@ -1,9 +1,9 @@
 #' @title Get Tiles from Open Map Servers
 #' @name getTiles
-#' @description Get map tiles based on a Spatial*DataFrame extent. Maps can be 
+#' @description Get map tiles based on a spatial object extent. Maps can be 
 #' fetched from various open map servers.
-#' @param x an sf object, a simple feature collection.
-#' @param spdf  a Spatial*DataFrame with a valid projection attribute.
+#' @param x an sf object, a simple feature collection or a Spatial*DataFrame.
+#' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
 #' @param type the tile server from which to get the map, one of "osm", 
 #' "opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
 #' "stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
@@ -45,6 +45,10 @@
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
+
+  if(!missing(spdf)){
+    warning("spdf is deprecated; use x instead.", call. = FALSE)
+  }
 
   if(!missing(x)){
     spdf <- methods::as(x, "Spatial")

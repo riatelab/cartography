@@ -1,11 +1,13 @@
 #' @title Build a Regular Grid Layer
 #' @name getGridLayer
 #' @description Build a regular grid based on an sf object or a SpatialPolygonsDataFrame. 
-#' Provide also a table of surface intersections. 
-#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
+#' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
 #' @param cellsize targeted area of the cell, in map units.
 #' @param type shape of the cell, "regular" for squares, "hexagonal" for hexagons. 
 #' @param var name of the numeric field(s) in x to adapt to the grid (a vector).
+#' @param spdf deprecated, a SpatialPolygonsDataFrame.
+#' @param spdfid deprecated, identifier field in spdf, default to the first column 
+#' of the spdf data frame.  (optional)
 #' @return A grid is returned as an sf object.
 #' @import sp
 #' @import sf
@@ -33,12 +35,21 @@
 #'              legend.title.txt = "Population density")
 #' }
 #' @export
-getGridLayer <- function(x, cellsize, type = "regular", var){
+getGridLayer <- function(x, cellsize, type = "regular", var, spdf, spdfid = NULL){
   # sp check
+  if(missing(x)){
+    x <- sf::st_as_sf(spdf)
+  }
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
   }
+  
+  if(sum(missing(spdf), is.null(spdfid)) != 2){
+    warning("spdf and spdfid are deprecated; use x instead.", call. = FALSE)
+  }
 
+  
+  
   x$area <- sf::st_area(x)
   
   # get a grid
@@ -136,27 +147,14 @@ getGridHexa <- function(x, cellsize){
   return(grid)
 }
 
-
-# getGridLayer2 <- function(x, cellsize, type = "regular", var){
-#   # sp check
-#   if (methods::is(x, 'Spatial')){
-#     x <- sf::st_as_sf(x)
-#   }
-#   # get a grid
-#   if(type %in% c("regular", "hexagonal")){
-#     grid <- switch(type, 
-#                    regular = getGridSquare(x, cellsize), 
-#                    hexagonal = getGridHexa(x, cellsize))
-#   }else{
-#     stop("type should be either 'regular' or 'hexagonal'", call. = F)
-#   }
-#   # predicted warning, we don't care...
-#   options(warn = -1)
-#   x <- sf::st_buffer(x=x,dist=0.0000001, nQuadSegs = 5)
-#   xx <- st_interpolate_aw(x = x[var], to = grid, extensive = T)
-#   parts <- sf::st_intersection(x = xx, y = st_union(x))
-#   options(warn = 0)
-#   grid <- st_cast(parts, to = "MULTIPOLYGON")
-#   names(grid)[1] <- "id"
-#   return(grid)
-# }
+#' @title Compute Data for a Grid Layer
+#' @name getGridData
+#' @description Defunct
+#' @param x ...
+#' @param df ...
+#' @param dfid ...
+#' @param var ...
+#' @export
+getGridData <- function(x, df, dfid = NULL, var){
+  .Defunct(msg = "This function is defunct, use getGridLayer instead.")
+}

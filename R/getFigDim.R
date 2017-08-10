@@ -1,9 +1,8 @@
 #' @title Get Figure Dimensions
 #' @description Give the dimension of a map figure to be exported in 
-#' raster of vector format. \cr
-#' Output dimension are based on a Spatial*DataFrame 
-#' dimension ratio, the margins of the figure, a targeted width or height
-#' of the figure and its resolution. 
+#' raster or vector format. \cr
+#' Output dimension are based on a spatial object dimension ratio, margins of 
+#' the figure, a targeted width or height and a resolution. 
 #' @name getFigDim
 #' @param x an sf object, a simple feature collection. 
 #' @param spdf a Spatial*DataFrame.

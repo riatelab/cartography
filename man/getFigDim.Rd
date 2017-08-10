@@ -30,10 +30,9 @@ A vector of width and height in pixels is returned.
 }
 \description{
 Give the dimension of a map figure to be exported in 
-raster of vector format. \cr
-Output dimension are based on a Spatial*DataFrame 
-dimension ratio, the margins of the figure, a targeted width or height
-of the figure and its resolution.
+raster or vector format. \cr
+Output dimension are based on a spatial object dimension ratio, margins of 
+the figure, a targeted width or height and a resolution.
 }
 \details{
 The function can be used to export vector or raster files (see examples).

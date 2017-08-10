@@ -9,14 +9,14 @@ barscale(size = NULL, lwd = 1.5, cex = 0.6, pos = NULL,
 }
 \arguments{
 \item{size}{size of the scale bar in kilometers. If set to NULL, an 
-automatic scale bar is displayed (1/10 of the map width).}
+automatic size is used (1/10 of the map width).}
 
 \item{lwd}{width of the scale bar.}
 
 \item{cex}{cex of the text.}
 
 \item{pos}{position of the legend, default to the bottom right corner of the map. 
-A vector of two coordinates (c(x, y) is possible.}
+A vector of two coordinates (c(x, y)) is possible.}
 
 \item{style}{style of the legend, either "pretty" or "oldschool". The 
 "oldschool" style only uses the "size" parameter.}

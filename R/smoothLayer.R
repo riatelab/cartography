@@ -32,7 +32,7 @@
 #'  (in map units). 
 #' @param nclass	numeric; a targeted number of classes (default to 8). Not used if breaks is set.
 #' @param breaks numeric; a vector of values used to discretize the potentials. 
-#' @param mask SpatialPolygonsDataFrame; mask used to clip contours of potentials.
+#' @param mask sf object or SpatialPolygonsDataFrame; mask used to clip contours of potentials.
 #' @param col a vector of colors. Note that if breaks is specified there must be one less 
 #' colors specified than the number of break. 
 #' @param border color of the polygons borders.
@@ -52,7 +52,7 @@
 #' @details 
 #' If var2 is provided the ratio between the potentials of var (numerator) 
 #' and var2 (denominator) is computed.
-#' @return An \code{\link{invisible}} SpatialPolygonsDataFrame is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
+#' @return An \code{\link{invisible}} sf object (MULTIPOLYGONs) is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 #' @export
 #' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples
@@ -110,6 +110,10 @@ smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   }
   
   if(missing(df)){df <- spdf@data}
+  
+  if(methods::is(mask, "sf")){
+    mask <- methods::as(mask, "Spatial")
+  }
   
   
   # Potential

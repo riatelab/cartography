@@ -2,17 +2,20 @@
 % Please edit documentation in R/getBorders.R
 \name{getBorders}
 \alias{getBorders}
-\title{Extract SpatialPolygonsDataFrame Borders}
+\title{Extract Polygons Borders}
 \usage{
-getBorders(x, spdf, id = NULL)
+getBorders(x, id, spdf, spdfid = NULL)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
-
-\item{spdf}{a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-has to be projected (planar coordinates).}
+\item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
 
 \item{id}{identifier field in x or spdf, default to the first column. (optional)}
+
+\item{spdf}{deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
+has to be projected (planar coordinates).}
+
+\item{spdfid}{deprecated, identifier field in spdf, default to the first column of the 
+spdf data frame. (optional)}
 }
 \value{
 An sf object (MULTILINESTRING) of borders is returned. This object has three 
@@ -21,7 +24,7 @@ id1 and id2 are ids of units that neighbour a border; id is the concatenation
 of id1 and id2 (with "_" as separator).
 }
 \description{
-Extract borders between SpatialPolygonsDataFrame units.
+Extract borders between polygons.
 }
 \note{
 getBorders and getOuterBorders can be combined with rbind.

@@ -7,9 +7,9 @@
 getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
 
-\item{spdf}{a Spatial*DataFrame with a valid projection attribute.}
+\item{spdf}{deprecated, a Spatial*DataFrame with a valid projection attribute.}
 
 \item{type}{the tile server from which to get the map, one of "osm", 
 "opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
@@ -25,7 +25,7 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
 A RatserBrick is returned.
 }
 \description{
-Get map tiles based on a Spatial*DataFrame extent. Maps can be 
+Get map tiles based on a spatial object extent. Maps can be 
 fetched from various open map servers.
 }
 \details{
