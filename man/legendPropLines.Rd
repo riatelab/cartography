@@ -10,7 +10,8 @@ legendPropLines(pos = "topleft", title.txt = "Title of the legend",
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{title.txt}{title of the legend.}
 
@@ -40,8 +41,8 @@ data("nuts2006")
 plot(nuts0.spdf)
 box()
 legendPropLines(pos = "topleft", title.txt = "Title",
-                title.cex = 0.8, values.cex = 0.6, cex = 2,
-                var = nuts1.df$pop2008,
-                lwd = nuts1.df$pop2008/1000000,
-                col="red", frame=TRUE, values.rnd=2)
+                title.cex = 0.8, values.cex = 0.6, cex = 1,
+                var = c(min(nuts1.df$pop2008),max(nuts1.df$pop2008)),
+                lwd = 15,
+                col="red", frame=TRUE, values.rnd=0)
 }

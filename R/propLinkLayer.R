@@ -11,7 +11,8 @@
 #' @param maxlwd maximum size of the links.
 #' @param col color of the links.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
@@ -37,7 +38,8 @@
 #' twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
 #' # Plot the links - Twin cities agreements between regions 
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")
-#' propLinkLayer(x = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],maxlwd = 10,
+#' propLinkLayer(x = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],
+#'               maxlwd = 10,
 #'               legend.pos = "topright",
 #'               var = "fij", 
 #'               col = "#92000090", add = TRUE)
@@ -54,7 +56,8 @@ propLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
                           add = TRUE,
                           spdf, spdfid, spdfids, spdfide, dfids, dfide){
   
-  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), missing(spdfide), missing(dfids), missing(dfide))) != 6){
+  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), 
+           missing(spdfide), missing(dfids), missing(dfide))) != 6){
     stop("spdf, spdfid, spdfids, spdfide, dfids and dfide are defunct arguments; last used in version 1.4.2.",
          call. = FALSE)
   }
@@ -70,13 +73,10 @@ propLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   link$lwd <- link[[var]] * maxlwd / maxval
   plot(st_geometry(link), lwd = link$lwd, col = col, add = add)
   
-  
-  if(legend.pos !="n"){
-    legendPropLines(pos = legend.pos, title.txt = legend.title.txt, 
-                    title.cex = legend.title.cex,
-                    values.cex = legend.values.cex, 
-                    var = c(min(link[[var]]), max(link[[var]])), 
-                    lwd = maxlwd, col = col, frame = legend.frame, 
-                    values.rnd = legend.values.rnd)
-  }
+  legendPropLines(pos = legend.pos, title.txt = legend.title.txt, 
+                  title.cex = legend.title.cex,
+                  values.cex = legend.values.cex, 
+                  var = c(min(link[[var]]), max(link[[var]])), 
+                  lwd = maxlwd, col = col, frame = legend.frame, 
+                  values.rnd = legend.values.rnd)
 }

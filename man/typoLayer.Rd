@@ -36,7 +36,8 @@ of df. (optional)}
 \item{colNA}{no data color.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)). If 
 legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.title.txt}{title of the legend.}

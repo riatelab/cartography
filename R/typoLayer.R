@@ -14,7 +14,8 @@
 #' @param border color of the polygons borders.
 #' @param lwd borders width.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
@@ -82,27 +83,25 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                        col = col[1:length(legend.values.order)], 
                        stringsAsFactors = FALSE)
   colvec <- refcol[match(x[[var]], refcol[,1]),2]
-
+  
   # for NA values
   nodata <- FALSE
   if(max(is.na(x[[var]]) > 0)){
     nodata <- TRUE
     colvec[is.na(colvec)] <- colNA
   }
-
+  
   # plot
   plot(sf::st_geometry(x), col = colvec, border = border, lwd = lwd, add = add)
   
+  legendTypo(pos = legend.pos, title.txt = legend.title.txt,
+             title.cex = legend.title.cex, values.cex = legend.values.cex,
+             categ = refcol[,1], 
+             col = refcol[,2], 
+             frame = legend.frame, 
+             symbol="box", 
+             nodata = nodata,
+             nodata.col = colNA,
+             nodata.txt = legend.nodata)
   
-  if(legend.pos !="n"){
-    legendTypo(pos = legend.pos, title.txt = legend.title.txt,
-               title.cex = legend.title.cex, values.cex = legend.values.cex,
-               categ = refcol[,1], 
-               col = refcol[,2], 
-               frame = legend.frame, 
-               symbol="box", 
-               nodata = nodata,
-               nodata.col = colNA,
-               nodata.txt = legend.nodata)
-  }
 }

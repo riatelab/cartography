@@ -38,7 +38,8 @@
 #' @param border color of the polygons borders.
 #' @param lwd borders width.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
@@ -74,7 +75,18 @@
 #'             span = 75000, beta = 2, 
 #'             mask = nuts0.spdf, 
 #'             legend.title.txt = "GDP PER CAPITA", 
+#'             legend.pos = "topright", legend.values.rnd = -2)
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' smoothLayer(x = mtq, var = 'P13_POP',
+#'             span = 4000, beta = 2, breaks = c(0,5000,seq(10000,110000,10000)),
+#'             mask = mtq, border = NA, 
+#'             col = carto.pal(pal1 = 'wine.pal', n1 = 12),
+#'             legend.title.txt = "Population Potential", 
 #'             legend.pos = "topright", legend.values.rnd = -2)  
+#' propSymbolsLayer(x = mtq, var = "P13_POP", legend.pos = "topleft",
+#'                  legend.title.txt = "Population 2013", 
+#'                  col = NA, border = "#ffffff50")
+#' layoutLayer(title = "Actual and Potential Popultation in Martinique")  
 #'}             
 smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, 
                         var, 

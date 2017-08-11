@@ -42,7 +42,8 @@ squares, height for bars) in inches.}
 \item{lwd}{width of symbols borders.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)). If 
 legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.title.txt}{title of the legend.}
@@ -74,29 +75,23 @@ Plot a proportional symbols layer.
 Two maps with the same inches and fixmax parameters will be comparable.
 }
 \examples{
-data("nuts2006")
 ## Example 1
-# Layout plot
-layoutLayer(title = "Countries Population in Europe",
-            sources = "Eurostat, 2008",
-            scale = NULL,
-            frame = TRUE,
-            col = "black",
-            coltitle = "white",
-            bg = "#D9F5FF",
-            south = TRUE,
-            extent = nuts0.spdf)
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Countries plot
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=TRUE)
+plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3", bg = "lightblue1")
 # Population plot on proportional symbols
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
-                 var = "pop2008", 
-                 symbols = "square", col =  "#920000",
-                 legend.pos = "right",
-                 legend.title.txt = "Total\\npopulation (2008)",
+propSymbolsLayer(x = mtq, var = "P13_POP", 
+                 symbols = "circle", col =  "white",
+                 legend.pos = "right", border = "grey",
+                 legend.title.txt = "Total\\npopulation (2013)",
                  legend.style = "c")
+# Layout plot
+layoutLayer(title = "Population in Martinique",
+            sources = "INSEE, 2016", theme = "blue.pal",
+            scale = NULL, frame = FALSE)
 
 ## Example 2
+data("nuts2006")
 # Countries plot
 plot(nuts0.spdf, col = "grey60",border = "grey20")
 # Population plot on proportional symbols
@@ -115,8 +110,8 @@ plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  var = "birth_2008", 
                  fixmax = max(nuts0.df$birth_2008),
-                 inches = 0.2,
-                 symbols = "circle", col =  "orange",
+                 inches = 0.4,
+                 symbols = "square", col =  "orange",
                  legend.pos = "right",
                  legend.title.txt = "nb of births",
                  legend.style = "e")
@@ -124,14 +119,13 @@ plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 # Population plot on proportional symbols
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,
                  var = "death_2008",
-                 symbols = "circle", col =  "pink",
+                 symbols = "square", col =  "pink",
                  fixmax = max(nuts0.df$birth_2008),
-                 inches = 0.2,
+                 inches = 0.4,
                  legend.pos = "right",
                  legend.style = "e",
                  legend.title.txt = "nb of deaths")
 par(oldpar)
-
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 

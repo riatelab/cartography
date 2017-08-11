@@ -14,10 +14,12 @@
 #' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
 #' @param lwd vector of widths (classes of widths). 
 #' @param col color of the links.
-#' @param legend.var.pos position of the legend for var, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
-#' @param legend.var2.pos position of the legend for var2, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright".
+#' @param legend.var.pos position of the legend, one of "topleft", "top", 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)).
+#' @param legend.var2.pos position of the legend, one of "topleft", "top", 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)).
 #' @param legend.var.title.txt title of the legend (numeric data).
 #' @param legend.var2.title.txt title of the legend (factor data).
 #' @param legend.title.cex size of the legend title.
@@ -91,7 +93,7 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)
   }
-
+  
   if (is.null(xid)){xid <- names(x)[1:2]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   
@@ -110,7 +112,7 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
   
   # check nb col vs nb mod
   col <- checkCol(col, mod)
-
+  
   # check legend.var2.values.order vs mod values
   legend.var2.values.order <- checkOrder(legend.var2.values.order, mod)
   
@@ -119,40 +121,36 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                        col = col[1:length(legend.var2.values.order)], 
                        stringsAsFactors = FALSE)
   mycols <- refcol[match(link[[var2]], refcol[,1]),2]
-
+  
   nodata <- FALSE
   if(max(is.na(link[[var2]])>0)){
     nodata <- TRUE
     mycols[is.na(mycols)] <- colNA
   }
-
+  
   # map
   plot(st_geometry(link), col = mycols ,lwd = lwdMap, add = add)
-
+  
   # legend links
-  if(legend.var.pos !="n"){
-    legendGradLines(pos = legend.var.pos, 
-                    title.txt = legend.var.title.txt, 
-                    title.cex = legend.title.cex ,
-                    values.cex = legend.values.cex, 
-                    breaks = breaks, lwd = lwd, 
-                    col = "grey20", 
-                    values.rnd = legend.values.rnd,
-                    frame = legend.var.frame)
-  }
+  legendGradLines(pos = legend.var.pos, 
+                  title.txt = legend.var.title.txt, 
+                  title.cex = legend.title.cex ,
+                  values.cex = legend.values.cex, 
+                  breaks = breaks, lwd = lwd, 
+                  col = "grey20", 
+                  values.rnd = legend.values.rnd,
+                  frame = legend.var.frame)
   # legend typo
-  if(legend.var2.pos !="n"){
-    legendTypo(pos = legend.var2.pos, 
-               title.txt = legend.var2.title.txt,
-               title.cex = legend.title.cex, 
-               values.cex = legend.values.cex,
-               categ = refcol[,1], 
-               col = refcol[,2], 
-               frame = legend.var2.frame, 
-               symbol="line", 
-               nodata = nodata,nodata.col = colNA, 
-               nodata.txt = legend.var2.nodata)
-  }
+  legendTypo(pos = legend.var2.pos, 
+             title.txt = legend.var2.title.txt,
+             title.cex = legend.title.cex, 
+             values.cex = legend.values.cex,
+             categ = refcol[,1], 
+             col = refcol[,2], 
+             frame = legend.var2.frame, 
+             symbol="line", 
+             nodata = nodata,nodata.col = colNA, 
+             nodata.txt = legend.var2.nodata)
 }
 
 

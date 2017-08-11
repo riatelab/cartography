@@ -28,7 +28,8 @@ vector of length 2, default to the two first columns. (optional)}
 \item{col}{color of the links.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)). If 
 legend.pos is "n" then the legend is not plotted.}
 
 \item{legend.title.txt}{title of the legend.}
@@ -70,7 +71,8 @@ data("nuts2006")
 twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
 # Plot the links - Twin cities agreements between regions 
 plot(nuts0.spdf, col = "grey60",border = "grey20")
-propLinkLayer(x = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],maxlwd = 10,
+propLinkLayer(x = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],
+              maxlwd = 10,
               legend.pos = "topright",
               var = "fij", 
               col = "#92000090", add = TRUE)

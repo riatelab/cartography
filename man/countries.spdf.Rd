@@ -6,7 +6,7 @@
 \title{Countries in the European Area}
 \format{SpatialPolygonsDataFrame.}
 \source{
-UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }
 \description{
 Countries in the european area.

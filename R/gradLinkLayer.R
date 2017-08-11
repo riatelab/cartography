@@ -12,7 +12,8 @@
 #' @param lwd vector of widths (classes of widths). 
 #' @param col color of the links.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
@@ -69,13 +70,13 @@ gradLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)
   }
-
+  
   if (is.null(xid)){xid <- names(x)[1:2]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   
   # joint
   link <- merge(x = x, y = df, by.x = xid, by.y = dfid)
-
+  
   # clean
   link <- link[!is.na(link[[var]]), ]
   link <- link[link[[var]] >= min(breaks) & link[[var]] <= max(breaks), ]
@@ -88,14 +89,12 @@ gradLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   plot(link, col = col, lwd = lwdMap, add = add)
   
   # legend
-  if(legend.pos !="n"){
-    legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 
-                    title.cex = legend.title.cex ,
-                    values.cex = legend.values.cex, 
-                    breaks = breaks, lwd = lwd, 
-                    col = col, values.rnd = legend.values.rnd,
-                    frame = legend.frame)
-  }
+  legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 
+                  title.cex = legend.title.cex ,
+                  values.cex = legend.values.cex, 
+                  breaks = breaks, lwd = lwd, 
+                  col = col, values.rnd = legend.values.rnd,
+                  frame = legend.frame)
 }
 
 

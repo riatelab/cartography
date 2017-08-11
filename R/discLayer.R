@@ -21,7 +21,8 @@
 #' @param sizemax thickness of the biggest line.
 #' @param type type of discontinuity measure, one of "rel" or "abs" (see Details).
 #' @param legend.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
@@ -43,7 +44,7 @@
 #' @examples
 #' data(nuts2006)
 #' # Get borders
-#' nuts0.contig <- getBorders(x = st_as_sf(nuts0.spdf))
+#' nuts0.contig <- getBorders(x = nuts0.spdf)
 #' # GDP per capita
 #' nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008
 #' # Plot countries
@@ -55,6 +56,23 @@
 #'           sizemax = 10, type = "rel", legend.frame = TRUE,
 #'           legend.title.txt = "GDP per Capita discontinuities\n(relative)",
 #'           legend.pos = "topright", add=TRUE)
+#' 
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' # Get borders
+#' mtq.borders <- getBorders(x = mtq)
+#' # Employees share in the pop
+#' mtq$emp_share <- 100 * mtq$C13_CS5/mtq$C13_POP
+#' # Plot this share
+#' choroLayer(x = mtq, var = "emp_share", border = NA, method = 'q6', 
+#'            legend.values.rnd = 1, legend.pos = "topleft", 
+#'            legend.title.txt = "Share of employees\nin the population\n(age > 15 y.o.)" )
+#' # Plot discontinuities
+#' discLayer(x = mtq.borders, df = mtq,
+#'           var = "emp_share", col="darkorange2", nclass=3,
+#'           method="quantile", threshold = 0.5, sizemin = 0.5,
+#'           sizemax = 10, type = "abs", 
+#'           legend.title.txt = "Discontinuities\n(absolute difference)",
+#'           legend.pos = "bottomleft", add=TRUE)
 #' @export
 discLayer <- function(x, df, dfid = NULL, var, 
                       method="quantile", nclass = 4, threshold = 0.75, 
@@ -109,14 +127,12 @@ discLayer <- function(x, df, dfid = NULL, var,
   plot(st_geometry(x), col = col, lwd = x$sizesMap, add = add)
   
   # Legend
-  if(legend.pos !="n"){
-    legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 
-                    title.cex = legend.title.cex ,
-                    values.cex = legend.values.cex, 
-                    breaks = distr, lwd = sizes, 
-                    col = col, values.rnd = legend.values.rnd,
-                    frame = legend.frame)
-  }
+  legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 
+                  title.cex = legend.title.cex ,
+                  values.cex = legend.values.cex, 
+                  breaks = distr, lwd = sizes, 
+                  col = col, values.rnd = legend.values.rnd,
+                  frame = legend.frame)
   
   invisible(x.out)
 }

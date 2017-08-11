@@ -3,7 +3,7 @@
 #' @name north
 #' @param pos position of the north arrow. It can be one of "topleft", "top", 
 #' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates (c(x, y)).
+#' vector of two coordinates in map units (c(x, y)).
 #' @param south plot a south arrow instead.
 #' @param col arrow color.
 #' @export

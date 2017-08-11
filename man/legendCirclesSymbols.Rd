@@ -10,7 +10,8 @@ legendCirclesSymbols(pos = "topleft", title.txt = "Title of the legend",
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{title.txt}{title of the legend.}
 
@@ -41,11 +42,25 @@ Plot legend for proportional circles maps
 \examples{
 data("nuts2006")
 plot(nuts0.spdf)
-propSymbolsLayer(spdf = nuts1.spdf, df = nuts1.df, var = "pop2008", inches = 0.3)
-legendCirclesSymbols(pos = "topleft", title.txt = "Title of\\nthe legend",
-                     title.cex = 0.8, values.cex = 0.6,cex = 1.5,
-                     var = c(min(nuts1.df$pop2008), max(nuts1.df$pop2008)),
-                     inches = 0.3,
-                     col = "pink", frame = TRUE, 
-                     values.rnd=0, style ="c")
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, var = "pop2008", 
+                 inches = 0.2, legend.pos = "n")
+
+legendCirclesSymbols(pos = "topleft", inches = 0.2,
+                     var = c(min(nuts0.df$pop2008), max(nuts0.df$pop2008)))
+
+legendCirclesSymbols(pos = "left", 
+                     var = c(min(nuts0.df$pop2008), max(nuts0.df$pop2008)),
+                     inches = 0.2, style = "e")
+oopt <- options(scipen = 10)
+legendCirclesSymbols(pos = "bottomleft", 
+                     var = c(35e3, 1e7, 4e7, max(nuts0.df$pop2008)),
+                     inches = 0.2, style = "c")
+legendCirclesSymbols(pos = "topright", cex = 2,
+                     var = c(35e3,1e6, 5e6, 1e7, 2e7, 4e7, 6e7,max(nuts0.df$pop2008)),
+                     inches = 0.2, style = "e", frame = TRUE)
+options(oopt)
+
+legendCirclesSymbols(pos = c(5533388, 1570417),
+                     var = c(min(nuts0.df$pop2008),max(nuts0.df$pop2008)),
+                     inches = 0.2, frame = TRUE)
 }

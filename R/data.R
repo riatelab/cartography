@@ -4,7 +4,7 @@
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts3.df data frame 
 #' @field id Unique nuts id (character)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -14,7 +14,7 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts2.df data frame 
 #' @field id Unique nuts id (character)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -24,7 +24,7 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts1.df data frame 
 #' @field id Unique nuts id (character)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -34,7 +34,7 @@ NULL
 #' @format SpatialPolygonsDataFrame.
 #' @details This SpatialPolygonsDataFrame can be used with the nuts0.df data frame 
 #' @field id Unique nuts id (character)
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -133,7 +133,7 @@ NULL
 #' @name coasts.spdf
 #' @description Coastline of Europe.
 #' @format SpatialLinesDataFrame.
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -141,7 +141,7 @@ NULL
 #' @name frame.spdf
 #' @description Frame around European countries.
 #' @format SpatialPolygonsDataFrame.
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -149,7 +149,7 @@ NULL
 #' @name graticule.spdf
 #' @description Graticule around Europe.
 #' @format SpatialLines.
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -158,7 +158,7 @@ NULL
 #' @name countries.spdf
 #' @description Countries in the european area.
 #' @format SpatialPolygonsDataFrame.
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 
@@ -166,7 +166,7 @@ NULL
 #' @name world.spdf
 #' @description World background.
 #' @format SpatialPolygonsDataFrame.
-#' @source UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=153}
+#' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
 NULL
 

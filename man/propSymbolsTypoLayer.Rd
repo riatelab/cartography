@@ -52,7 +52,9 @@ squares, height for bars) in inches.}
 
 \item{legend.values.cex}{size of the values in the legend.}
 
-\item{legend.var.pos}{position of the legend for var, one of "topleft", "top",}
+\item{legend.var.pos}{position of the legend, one of "topleft", "top", 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{legend.var.title.txt}{title of the legend (numeric data).}
 
@@ -65,8 +67,9 @@ styles, "c" stands for compact and "e" for extended.}
 \item{legend.var.frame}{whether to add a frame to the legend (TRUE) or
 not (FALSE).}
 
-\item{legend.var2.pos}{position of the legend for var2, one of "topleft", "top",
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+\item{legend.var2.pos}{position of the legend, one of "topleft", "top", 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{legend.var2.title.txt}{title of the legend (factor data).}
 
@@ -93,30 +96,24 @@ nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
                      var = "pop2008", var2="typo")
 
+
 ## Example 2
-#Countries plot
-plot(nuts0.spdf, col = "grey60",border = "grey20", add = FALSE)
-nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
-nuts0.df$typo[1:3] <- NA
-nuts0.df$pop2008[4:6] <- NA
-propSymbolsTypoLayer(spdf = nuts0.spdf, df = nuts0.df,
-                     var = "pop2008", var2="typo",
-                     symbols = "circle",
-                     legend.var.pos = "topright",
-                     legend.var2.pos = "right",
-                     legend.var.title.txt = "Total\\npopulation (2008)",
-                     legend.values.rnd = -3,
-                     legend.var2.title.txt = "Category",
-                     col = carto.pal(pal1 = "pastel.pal", 4),
-                     legend.var2.values.order = c("D", "A", "B", "C"),
-                     legend.var.style = "c")
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+# Countries plot
+plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3", bg = "lightblue1")
+# Population plot on proportional symbols
+propSymbolsTypoLayer(x = mtq, var = "P13_POP", var2 = "STATUT",
+                     symbols = "circle",          
+                     col = c("aquamarine4", "yellow3","wheat"),
+                     legend.var2.values.order = c("Préfecture de région",
+                                                  "Sous-préfecture", 
+                                                  "Commune simple"),
+                     legend.var.pos = "right", border = "grey",
+                     legend.var.title.txt = "Total\\npopulation (2013)")
 # Layout plot
-layoutLayer(title = "Countries Population & Color in Europe",
-            sources = "UMS RIATE, 2015",
-            scale = NULL,
-            frame = TRUE,
-            col = "black",
-            coltitle = "white")
+layoutLayer(title = "Population in Martinique",
+            sources = "INSEE, 2016", theme = "blue.pal",
+            scale = NULL, frame = FALSE)
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendTypo},

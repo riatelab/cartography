@@ -13,26 +13,48 @@
 #' @import sf
 #' @examples
 #' \dontrun{
-#'   library(sf)
-#'   data(nuts2006)
-#'   nuts2.spdf@data = nuts2.df
-#'   mygrid <- getGridLayer(x = sf::st_as_sf(nuts2.spdf), cellsize = 200000 * 200000, 
-#'                          type = "regular", var = "pop2008")
-#'   # Plot total population
-#'   plot(st_geometry(mygrid), col="#CCCCCC",border="white")
-#'   propSymbolsLayer(x = mygrid, var = "pop2008", 
-#'                    legend.style = "e", legend.pos = "right", border = "white",
-#'                    legend.title.txt = "Total population",
-#'                    inches=0.1, col="black", add=TRUE)
-#'   
-#'   # Plot dentsity of population 
-#'   ## conversion from square meter to square kilometers
-#'   mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
-#'   cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
-#'   choroLayer(x = mygrid, var = "densitykm", 
-#'              border = "grey80",col=cols, add=FALSE,
-#'              legend.pos = "right", method = "q6", legend.values.rnd = 1,
-#'              legend.title.txt = "Population density")
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' # Plot dentsity of population 
+#' mtq$dens <- mtq$P13_POP / (st_area(mtq) / (1000 * 1000)) 
+#' bks <- getBreaks(v = mtq$dens, method = "q6")
+#' cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
+#' opar <- par(mfrow = c(1,2), mar = c(0,0,0,0))
+#' choroLayer(x = mtq, var = "dens", breaks = bks, 
+#'            border = "burlywood3", col = cols, 
+#'            legend.pos = "topright", legend.values.rnd = 1,
+#'            legend.title.txt = "Population density")
+#' 
+#' mygrid <- getGridLayer(x = mtq, cellsize = 4500 * 4500, 
+#'                        type = "regular", var = "P13_POP")
+#' ## conversion from square meter to square kilometers
+#' mygrid$densitykm <- mygrid$P13_POP / (mygrid$gridarea / (1000 * 1000)) 
+#' choroLayer(x = mygrid, var = "densitykm", breaks = bks,
+#'            border = "burlywood3", col = cols, 
+#'            legend.pos = "n", legend.values.rnd = 1,
+#'            legend.title.txt = "Population density")
+#' plot(mtq, lwd = 0.2, add=T, border = "#ffffff75")
+#' 
+#' 
+#' data(nuts2006)
+#' nuts2.spdf@data = nuts2.df
+#' mygrid <- getGridLayer(x = nuts2.spdf, cellsize = 200000 * 200000, 
+#'                        type = "regular", var = "pop2008")
+#' # Plot total population
+#' plot(st_geometry(mygrid), col="#CCCCCC",border="white")
+#' propSymbolsLayer(x = mygrid, var = "pop2008", border = "white",
+#'                  legend.style = "e", legend.pos = "right", 
+#'                  legend.title.txt = "Total population",
+#'                  inches = 0.1, col = "black", add = TRUE)
+#' 
+#' # Plot dentsity of population 
+#' ## conversion from square meter to square kilometers
+#' mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
+#' cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
+#' choroLayer(x = mygrid, var = "densitykm", 
+#'            border = "grey80",col = cols, method = "q6", 
+#'            legend.pos = "right", legend.values.rnd = 1,
+#'            legend.title.txt = "Population density")
+#' par(opar)
 #' }
 #' @export
 getGridLayer <- function(x, cellsize, type = "regular", var, spdf, spdfid = NULL){

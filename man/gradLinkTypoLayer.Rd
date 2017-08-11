@@ -44,16 +44,18 @@ vector of length 2, default to the two first columns. (optional)}
 \item{legend.values.rnd}{number of decimal places of the values in 
 the legend.}
 
-\item{legend.var.pos}{position of the legend for var, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+\item{legend.var.pos}{position of the legend, one of "topleft", "top", 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{legend.var.title.txt}{title of the legend (numeric data).}
 
 \item{legend.var.frame}{whether to add a frame to the legend (TRUE) or 
 not (FALSE).}
 
-\item{legend.var2.pos}{position of the legend for var2, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+\item{legend.var2.pos}{position of the legend, one of "topleft", "top", 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{legend.var2.title.txt}{title of the legend (factor data).}
 

@@ -20,7 +20,8 @@
 #' @param border color of the polygons borders.
 #' @param lwd borders width.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.pos is "n" then the legend is not plotted.
 #' @param legend.title.txt title of the legend.
 #' @param legend.title.cex size of the legend title.
@@ -125,20 +126,18 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # poly
   plot(sf::st_geometry(x), col = colVec, border = border, lwd = lwd, add = add)
-
-  if(legend.pos !="n"){
-    legendChoro(pos = legend.pos, 
-                title.txt = legend.title.txt,
-                title.cex = legend.title.cex,
-                values.cex = legend.values.cex,
-                breaks = layer$distr, 
-                col = layer$col, 
-                values.rnd = legend.values.rnd,
-                frame = legend.frame, 
-                symbol="box",  nodata.col = colNA,
-                nodata = nodata, 
-                nodata.txt = legend.nodata)
-    
-  }
+  
+  legendChoro(pos = legend.pos, 
+              title.txt = legend.title.txt,
+              title.cex = legend.title.cex,
+              values.cex = legend.values.cex,
+              breaks = layer$distr, 
+              col = layer$col, 
+              values.rnd = legend.values.rnd,
+              frame = legend.frame, 
+              symbol="box",  nodata.col = colNA,
+              nodata = nodata, 
+              nodata.txt = legend.nodata)
+  
   
 }

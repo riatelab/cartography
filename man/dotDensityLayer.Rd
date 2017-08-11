@@ -68,18 +68,11 @@ dotDensityLayer(spdf = nuts0.spdf, df=nuts0.df,var="pop2008")
 
 # Example 2
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+plot(st_geometry(mtq), col = "#B8704D50",border = "white")
+dotDensityLayer(x = mtq,  var="P13_POP", pch=20, col = "brown", n = 50)
 layoutLayer(title = "Population in Martinique, 2013", 
-            sources = "INSEE, 2016", 
-            scale = NULL, 
-            frame = TRUE,
-            col = "black", 
-            coltitle = "white",
-            bg = "#E6E6E6", 
-            extent = mtq)
-plot(st_geometry(mtq), col = "#B8704D50",border = "white", add=TRUE)
-dotDensityLayer(x = mtq,  var="P13_POP",
-                pch=20, col = "brown",
-                n = 50)
+            sources = "INSEE, 2016", scale = NULL, frame = FALSE,
+            theme = "brown.pal")
 }
 \seealso{
 \link{propSymbolsLayer}

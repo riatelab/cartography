@@ -10,7 +10,8 @@ legendBarsSymbols(pos = "topleft", title.txt = "Title of the legend",
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{title.txt}{title of the legend.}
 

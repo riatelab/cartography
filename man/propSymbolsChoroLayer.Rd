@@ -65,7 +65,8 @@ colors specified than the number of break.}
 \item{legend.values.cex}{size of the values in the legend.}
 
 \item{legend.var.pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)). If 
 legend.var.pos is "n" then the legend is not plotted.}
 
 \item{legend.var.title.txt}{title of the legend (proportional symbols).}
@@ -80,7 +81,8 @@ styles.}
 not (FALSE).}
 
 \item{legend.var2.pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)). If 
 legend.var2.pos is "n" then the legend is not plotted.}
 
 \item{legend.var2.title.txt}{title of the legend (colors).}

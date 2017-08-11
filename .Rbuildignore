@@ -5,6 +5,5 @@
 ^LICENSE$
 ^appveyor\.yml$
 ^example$
-^notes\.md$
 ^data-raw$
 ^img$

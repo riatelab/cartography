@@ -14,12 +14,22 @@
 #' of id1 and id2 (with "_" as separator).
 #' @examples
 #' data(nuts2006)
-#' # Get units borders
-#' nuts0.contig <- getBorders(x = st_as_sf(nuts0.spdf))
+#' # Get borders
+#' nuts0.contig <- getBorders(x = nuts0.spdf)
 #' # Plot Countries
 #' plot(nuts0.spdf, border = NA, col = "grey60")
 #' # Plot borders
 #' plot(st_geometry(nuts0.contig), 
+#'      col = sample(x = rainbow(nrow(nuts0.contig))), 
+#'      lwd = 3, add = TRUE)
+#' 
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' # Get borders
+#' mtq.borders <- getBorders(x = mtq)
+#' # Plot polygons
+#' plot(st_geometry(mtq), border = NA, col = "grey60")
+#' # Plot borders
+#' plot(st_geometry(mtq.borders), 
 #'      col = sample(x = rainbow(nrow(nuts0.contig))), 
 #'      lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}, \link{getOuterBorders}

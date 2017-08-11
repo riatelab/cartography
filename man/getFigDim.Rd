@@ -8,9 +8,9 @@ getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"),
   res = 72)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
 
-\item{spdf}{a Spatial*DataFrame.}
+\item{spdf}{deprecated, a Spatial*DataFrame.}
 
 \item{width}{width of the figure (in pixels), either width or height 
 must be set.}
@@ -40,17 +40,17 @@ The function can be used to export vector or raster files (see examples).
 \examples{
 \dontrun{
 data("nuts2006")
-spdf <- nuts0.spdf[nuts0.spdf$id=="IT",]
+italy <- nuts0.spdf[nuts0.spdf$id=="IT",]
 
 ## PNG export
 # get figure dimension
-sizes <- getFigDim(spdf = spdf, width = 450, mar = c(0,0,1.2,0))
+sizes <- getFigDim(x = italy, width = 450, mar = c(0,0,1.2,0))
 # export the map
 png(filename = "Italy.png", width = sizes[1], height = sizes[2])
 par(mar = c(0,0,1.2,0))
-plot(spdf, col = NA, border=NA, bg = "#A6CAE0")
+plot(italy, col = NA, border=NA, bg = "#A6CAE0")
 plot(world.spdf, col = "#E3DEBF", border = NA, add = TRUE)
-plot(spdf, col = "#D1914D", border = "white", add = TRUE)
+plot(italy, col = "#D1914D", border = "white", add = TRUE)
 layoutLayer(title = "Map of Italy")
 dev.off()
 

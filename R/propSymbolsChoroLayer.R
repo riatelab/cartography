@@ -29,10 +29,12 @@
 #' @param border color of symbols borders.
 #' @param lwd width of symbols borders.
 #' @param legend.var.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.var.pos is "n" then the legend is not plotted.
 #' @param legend.var2.pos position of the legend, one of "topleft", "top", 
-#' "topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+#' vector of two coordinates in map units (c(x, y)). If 
 #' legend.var2.pos is "n" then the legend is not plotted.
 #' @param legend.var.title.txt title of the legend (proportional symbols).
 #' @param legend.var2.title.txt title of the legend (colors).
@@ -112,7 +114,7 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   legend.var2.nodata = "no data",
                                   legend.var2.frame = FALSE,
                                   add = TRUE){
-
+  
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
@@ -123,7 +125,7 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   # Color Management
   layer <- choro(var = dots[[var2]], distr = breaks, col = col, nclass = nclass, 
                  method = method)
-
+  
   mycols <- as.vector(layer$colMap)
   
   nodata <- FALSE
@@ -139,65 +141,61 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   # compute sizes
   sizes <- sizer(dots = dots, inches = inches, var = var, 
                  fixmax = fixmax, symbols = symbols)
- 
-  # size and values for legend, hollow circle (fixmax case)
-   sizeMax <- max(sizes)
-   if (inches <= sizeMax){
-     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-     varvect <- seq(fixmax, 0, length.out = 4)
-     inches <- sizeMax
-   }else{
-     mycols <- c(NA, mycols)
-     border <- c(NA, rep(border, nrow(dots)))
-     dots <- rbind(dots[1,],dots)
-     dots[1,var] <- fixmax
-     sizes <- c(inches, sizes)
-     sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
-     varvect <- seq(fixmax, 0,length.out = 4 )
-   }
   
-   # plot
-   if (add==FALSE){
-     plot(sf::st_geometry(x), col = NA, border = NA)
-   }
-   
-   
+  # size and values for legend, hollow circle (fixmax case)
+  sizeMax <- max(sizes)
+  if (inches <= sizeMax){
+    sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
+    varvect <- seq(fixmax, 0, length.out = 4)
+    inches <- sizeMax
+  }else{
+    mycols <- c(NA, mycols)
+    border <- c(NA, rep(border, nrow(dots)))
+    dots <- rbind(dots[1,],dots)
+    dots[1,var] <- fixmax
+    sizes <- c(inches, sizes)
+    sizevect <- xinch(seq(inches, min(sizes), length.out = 4))
+    varvect <- seq(fixmax, 0,length.out = 4 )
+  }
+  
+  # plot
+  if (add==FALSE){
+    plot(sf::st_geometry(x), col = NA, border = NA)
+  }
+  
+  
   switch(symbols, 
          circle = {
            symbols(dots[, 1:2, drop = TRUE], circles = sizes, 
                    bg = as.vector(mycols), 
                    fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
-           if(legend.var.pos!="n"){
-             legendCirclesSymbols(pos = legend.var.pos, 
-                                  title.txt = legend.var.title.txt,
-                                  title.cex = legend.title.cex,
-                                  values.cex = legend.values.cex,
-                                  var = c(min(dots[[var]]),max(dots[[var]])),
-                                  inches = inches,
-                                  col = "grey",
-                                  frame = legend.var.frame,
-                                  values.rnd =  legend.var.values.rnd,
-                                  style = legend.var.style)
-           }
+           legendCirclesSymbols(pos = legend.var.pos, 
+                                title.txt = legend.var.title.txt,
+                                title.cex = legend.title.cex,
+                                values.cex = legend.values.cex,
+                                var = c(min(dots[[var]]),max(dots[[var]])),
+                                inches = inches,
+                                col = "grey",
+                                frame = legend.var.frame,
+                                values.rnd =  legend.var.values.rnd,
+                                style = legend.var.style)
          }, 
          square = {
            symbols(dots[, 1:2, drop = TRUE], squares = sizes, 
                    bg = as.vector(mycols), 
                    fg = border, 
                    lwd = lwd, add = TRUE, inches = inches, asp = 1)
-           if(legend.var.pos!="n"){
-             legendSquaresSymbols(pos = legend.var.pos, 
-                                  title.txt = legend.var.title.txt,
-                                  title.cex = legend.title.cex,
-                                  values.cex = legend.values.cex,
-                                  var = c(min(dots[[var]]),max(dots[[var]])),
-                                  inches = inches,
-                                  col = "grey",
-                                  frame = legend.var.frame,
-                                  values.rnd =  legend.var.values.rnd,
-                                  style = legend.var.style)
-           }
+           legendSquaresSymbols(pos = legend.var.pos, 
+                                title.txt = legend.var.title.txt,
+                                title.cex = legend.title.cex,
+                                values.cex = legend.values.cex,
+                                var = c(min(dots[[var]]),max(dots[[var]])),
+                                inches = inches,
+                                col = "grey",
+                                frame = legend.var.frame,
+                                values.rnd =  legend.var.values.rnd,
+                                style = legend.var.style)
          }, 
          bar = {
            tmp <- as.matrix(data.frame(width = inches/7, height = sizes))
@@ -205,34 +203,31 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
            symbols(dots[, 1:2, drop = TRUE], rectangles = tmp, add = TRUE, 
                    bg = as.vector(mycols),
                    fg = border, lwd = lwd, inches = inches, asp = 1)
-           if(legend.var.pos!="n"){
-             legendBarsSymbols(pos = legend.var.pos, 
-                               title.txt = legend.var.title.txt,
-                               title.cex = legend.title.cex,
-                               values.cex = legend.values.cex,
-                               var = c(min(dots[[var]]),max(dots[[var]])),
-                               inches = inches,
-                               col = "grey",
-                               frame = legend.var.frame,
-                               values.rnd =  legend.var.values.rnd,
-                               style = legend.var.style)
-           }
+           
+           legendBarsSymbols(pos = legend.var.pos, 
+                             title.txt = legend.var.title.txt,
+                             title.cex = legend.title.cex,
+                             values.cex = legend.values.cex,
+                             var = c(min(dots[[var]]),max(dots[[var]])),
+                             inches = inches,
+                             col = "grey",
+                             frame = legend.var.frame,
+                             values.rnd =  legend.var.values.rnd,
+                             style = legend.var.style)
          })
   
   
-  if(legend.var2.pos !="n"){
-    legendChoro(pos = legend.var2.pos, 
-                title.txt = legend.var2.title.txt,
-                title.cex = legend.title.cex,
-                values.cex = legend.values.cex,
-                breaks = layer$distr, 
-                col = layer$col, 
-                values.rnd = legend.var2.values.rnd,
-                frame = legend.var2.frame, 
-                symbol="box", 
-                nodata = nodata, nodata.col = colNA,
-                nodata.txt = legend.var2.nodata)
-  }
+  legendChoro(pos = legend.var2.pos, 
+              title.txt = legend.var2.title.txt,
+              title.cex = legend.title.cex,
+              values.cex = legend.values.cex,
+              breaks = layer$distr, 
+              col = layer$col, 
+              values.rnd = legend.var2.values.rnd,
+              frame = legend.var2.frame, 
+              symbol="box", 
+              nodata = nodata, nodata.col = colNA,
+              nodata.txt = legend.var2.nodata)
 }
 
 

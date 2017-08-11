@@ -10,7 +10,8 @@ legendSquaresSymbols(pos = "topleft", title.txt = "Title of the legend",
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
-"topright", "left", "right", "bottomleft", "bottom", "bottomright".}
+"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
+vector of two coordinates in map units (c(x, y)).}
 
 \item{title.txt}{title of the legend.}
 
@@ -41,11 +42,11 @@ Plot legend for proportional squares maps
 \examples{
 data("nuts2006")
 plot(nuts0.spdf)
-rect(par()$usr[1], par()$usr[3], par()$usr[2], par()$usr[4], border = "black")
+box()
 legendSquaresSymbols(pos = "bottomright", title.txt = "Title of\\nthe legend ",
                      title.cex = 0.8, values.cex = 0.6,
                      var = c(max(nuts1.df$pop2008), min(nuts1.df$pop2008)),
-                     inches = sqrt((abs(nuts1.df$pop2008) * 5000)),
+                     inches = 0.5,
                      col="red",  
                      frame=TRUE, values.rnd=0, style ="c")
 
