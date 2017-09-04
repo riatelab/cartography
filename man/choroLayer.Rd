@@ -77,6 +77,8 @@ of class and N is the variable length.\cr
 
 
 If breaks is used then nclass and method are not. \cr
+
+If breaks is defined as \code{c(2, 5, 10, 15, 20)} intervals will be: [2 - 5[, [5 - 10[, [10 - 15[, [15 - 20].
 }
 \examples{
 data("nuts2006")

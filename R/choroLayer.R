@@ -43,6 +43,9 @@
 #' 
 #' If breaks is used then nclass and method are not. \cr
 #' 
+#' If breaks is defined as \code{c(2, 5, 10, 15, 20)} intervals will be: [2 - 5[, [5 - 10[, [10 - 15[, [15 - 20].
+#' 
+#' 
 #' @references Herbert A. Sturges, «
 #' \emph{The Choice of a Class Interval }», Journal of the American Statistical 
 #' Association, vol. 21, n° 153, mars 1926, p. 65-66.
