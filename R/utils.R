@@ -51,10 +51,11 @@ choro <- function(var, distr = NULL, col = NULL,
       col <- carto.pal(pal1 = "blue.pal",n1 = (length(distr) - 1))
     }
     
-    colMap <- col[findInterval(var,distr,all.inside=TRUE)]
+    colMap <- col[findInterval(var, distr, all.inside = TRUE)]
   }else{
-    inter <-findInterval(var,distr,all.inside=FALSE, rightmost.closed	=T)
-    inter[inter==0] <- length(distr)
+    inter <- findInterval(var, distr, all.inside = FALSE, 
+                          rightmost.closed	= TRUE)
+    inter[inter == 0] <- length(distr)
     if(is.null(col)){
       col <- carto.pal(pal1 = "blue.pal",n1 = (length(distr) - 1))
     }
@@ -135,7 +136,8 @@ checkOrder <- function(legend.values.order, mod){
 #' @noRd
 checkMergeOrder <- function(x = x, var = var){
   # get centroid coords
-  x <- cbind(sf::st_coordinates(my_centroid(x)), x)
+  x <- cbind(sf::st_coordinates(
+    sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), x)
   # remove NAs and 0 values
   x <- x[!is.na(x = x[[var]]),]
   x <- x[x[[var]]!=0, ]
@@ -172,19 +174,19 @@ sizer <- function(dots, inches, var, fixmax, symbols){
 }
 
 
-my_centroid <- function(x){
-  if(sum(sf::st_geometry_type(x)=="MULTIPOLYGON") == nrow(x)){
-    x0 <- sf::st_sf(id = 1:nrow(x), geometry = sf::st_geometry(x))
-    x1 <- sf::st_cast(x = x0, to = "POLYGON", warn = F)
-    x1$area <- sf::st_area(x1)
-    x2 <- stats::aggregate(x1[,c("id", "area"), drop = T],
-                           by = list(x1$id),
-                           FUN = which.max)
-    ind <- match(x0$id, x1$id) + x2$area - 1
-    sf::st_geometry(x) <- sf::st_geometry(x1[ind,])
-  }
-  sf::st_centroid(x)
-}
+# my_centroid <- function(x){
+#   if(sum(sf::st_geometry_type(x)=="MULTIPOLYGON") == nrow(x)){
+#     x0 <- sf::st_sf(id = 1:nrow(x), geometry = sf::st_geometry(x))
+#     x1 <- sf::st_cast(x = x0, to = "POLYGON", warn = F)
+#     x1$area <- sf::st_area(x1)
+#     x2 <- stats::aggregate(x1[,c("id", "area"), drop = T],
+#                            by = list(x1$id),
+#                            FUN = which.max)
+#     ind <- match(x0$id, x1$id) + x2$area - 1
+#     sf::st_geometry(x) <- sf::st_geometry(x1[ind,])
+#   }
+#   sf::st_centroid(x)
+# }
 
 
 

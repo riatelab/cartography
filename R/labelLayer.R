@@ -49,18 +49,9 @@
 #'      cex = 0.7, adj = 0)
 labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
                        cex = 0.7, ...){
-  
-  
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
-  
-  text(sf::st_coordinates(my_centroid(x)), labels = x[[txt]], cex = cex,
-       col = col, ...)
-
+  text(sf::st_coordinates(sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), 
+       labels = x[[txt]], cex = cex, col = col, ...)
 }
-
-
-
-
-
