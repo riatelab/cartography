@@ -13,7 +13,7 @@ Breaking changes:
 
 * propLinkLayer, gradLinkLayer, gradLinkTypoLayer: spdf, df, spdfid, spdfids, spdfide, dfid, dfids and dfide arguments are replaced by x, df, xid and dfid. x must be an sf object (as outputed by getLinkLayer).
 
-* legend* functions have been enhanced to be more customizable. 
+* legend* functions have been enhanced to be more customizable. It is now possible to lay legend on specified x & y. 
 
 
 Major changes: 
@@ -22,6 +22,7 @@ Major changes:
 
 * layoutLayer: the extent argument can take an sf object.
 
+* Each function has an example based on sf object. 
 
 
 
