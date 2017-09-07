@@ -55,3 +55,71 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "blac
   text(sf::st_coordinates(sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), 
        labels = x[[txt]], cex = cex, col = col, ...)
 }
+
+#' Title
+#'
+#' @param x t
+#' @param cex t
+#' @param show.lines t
+#' @param ... t
+#' @param spdf c
+#' @param df c
+#' @param spdfid c
+#' @param dfid c
+#' @param txt c
+#' @param col c
+#' @param bg d
+#' @param r d
+#' @param overlap df
+#' @param halo fd
+#'
+#' @return dgjsdfj 
+#' @export
+#' @examples
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' plot(st_geometry(mtq), col = "olivedrab1", border = "olivedrab4", 
+#'      bg = "lightsteelblue3")
+#' labelLayer2(x = mtq, txt = "LIBGEO")
+labelLayer2 <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
+                        cex = 0.7, overlap = TRUE, show.lines = TRUE, 
+                        halo = FALSE, bg = "white", r = 0.1, ...){
+  if (missing(x)){
+    x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
+  }
+  words = x[[txt]]
+  cc <- sf::st_coordinates(sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON"))))
+  
+  if (!overlap){
+    x <- unlist(cc[,1])
+    y <- unlist(cc[,2])
+    lay <- wordlayout(x,y,words,cex)
+    
+    if(show.lines){
+      for(i in 1:length(x)){
+        xl <- lay[i,1]
+        yl <- lay[i,2]
+        w <- lay[i,3]
+        h <- lay[i,4]
+        if(x[i]<xl || x[i]>xl+w ||
+           y[i]<yl || y[i]>yl+h){
+          points(x[i],y[i],pch=16,col="grey",cex=.5)
+          nx <- xl+.5*w
+          ny <- yl+.5*h
+          lines(c(x[i],nx),c(y[i],ny), col="grey", lwd = 1)
+        }
+      }
+    }
+    
+    cc <- matrix(data = c(lay[,1]+.5*lay[,3],  lay[,2]+.5*lay[,4]), ncol = 2, byrow = FALSE)
+    
+  }
+  
+  if (halo){
+    shadowtext(x = cc[,1], y = cc[,2], labels = words,
+             cex = cex, col = col, bg = bg, r = r, ...)
+  }else{
+    text(x = cc[,1], y = cc[,2], labels = words, cex = cex, col = col, ...)
+  }
+
+}
+

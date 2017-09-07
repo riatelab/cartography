@@ -238,3 +238,98 @@ legpos <- function(pos, x1, x2, y1, y2, delta1, delta2, legend_xsize, legend_ysi
   return(list(xref = xref, yref = yref))
 }
 
+
+################################################################################
+### labelLayer utils
+
+#' @useDynLib cartography
+#' @importFrom Rcpp sourceCpp
+NULL
+
+
+
+
+#' Title
+#'
+#' @param x t
+#' @param y t
+#' @param words t
+#' @param cex t
+#' @param rotate90 t
+#' @param xlim t
+#' @param ylim t
+#' @param tstep t
+#' @param rstep t
+#' @param ... t
+#'
+#' @return sdsdss
+#' @import graphics
+#' @import stats
+wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
+                       xlim=c(-Inf,Inf), ylim=c(-Inf,Inf), tstep=.1, rstep=.1, ...){
+  tails <- "g|j|p|q|y"
+  n <- length(words)
+  sdx <- sd(x,na.rm=TRUE)
+  sdy <- sd(y,na.rm=TRUE)
+  if(sdx==0)
+    sdx <- 1
+  if(sdy==0)
+    sdy <- 1
+  if(length(cex)==1)
+    cex <- rep(cex,n)
+  if(length(rotate90)==1)
+    rotate90 <- rep(rotate90,n)	
+  
+  set.seed(666)
+  boxes <- list()
+  for(i in 1:length(words)){
+    rotWord <- rotate90[i]
+    r <-0
+    theta <- runif(1,0,2*pi)
+    x1 <- xo <- x[i]
+    y1 <- yo <- y[i]
+    wid <- strwidth(words[i],cex=cex[i],...)
+    ht <- strheight(words[i],cex=cex[i],...)
+    #mind your ps and qs
+    if(grepl(tails,words[i]))
+      ht <- ht + ht*.2
+    if(rotWord){
+      tmp <- ht
+      ht <- wid
+      wid <- tmp	
+    }
+    isOverlaped <- TRUE
+    while(isOverlaped){
+      if(!is_overlap(x1-.5*wid,y1-.5*ht,wid,ht,boxes) &&
+         x1-.5*wid>xlim[1] && y1-.5*ht>ylim[1] &&
+         x1+.5*wid<xlim[2] && y1+.5*ht<ylim[2]){
+        boxes[[length(boxes)+1]] <- c(x1-.5*wid,y1-.5*ht,wid,ht)
+        isOverlaped <- FALSE
+      }else{
+        theta <- theta+tstep
+        r <- r + rstep*tstep/(2*pi)
+        x1 <- xo+sdx*r*cos(theta)
+        y1 <- yo+sdy*r*sin(theta)
+      }
+    }
+  }
+  result <- do.call(rbind,boxes)
+  colnames(result) <- c("x","y","width","ht")
+  rownames(result) <- words
+  result
+}
+
+shadowtext <- function(x, y=NULL, labels, col='white', bg='black', 
+                       theta= seq(0, 2*pi, length.out=50), r=0.1, ... ) {
+  
+  xy <- xy.coords(x,y)
+  xo <- r*strwidth('A')
+  yo <- r*strheight('A')
+  
+  # draw background text with small shift in x and y in background colour
+  for (i in theta) {
+    text( xy$x + cos(i)*xo, xy$y + sin(i)*yo, labels, col=bg, ... )
+  }
+  # draw actual text in exact xy position in foreground colour
+  text(xy$x, xy$y, labels, col=col, ... )
+}
