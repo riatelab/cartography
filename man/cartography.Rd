@@ -35,7 +35,7 @@ Main functions :
 \item{Discontinuities maps\cr
 \link{getBorders}, \link{discLayer}}
 
-\item{Cartographic palettes (palettes adapted to cartographic representation)\cr
+\item{Cartographic palettes\cr
 \link{carto.pal}}
 
 \item{Layout (scale, north arrow, title...)\cr
