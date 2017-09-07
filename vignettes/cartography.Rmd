@@ -21,36 +21,56 @@ if (before){
 })
 ```
 
+# How to Import a Geospatial Vector Data File
 
-<!-- # How to Import a Geospatial Vector Data File -->
-
-<!-- ## The `rgdal` Way -->
-<!-- ```{r} -->
-<!-- library(rgdal) -->
-<!-- # path to the ESRI Shapefile embedded in cartography -->
-<!-- path_to_file <- system.file("shape/martinique.shp", package="cartography") -->
-<!-- mtq <- readOGR(dsn = path_to_file) -->
-<!-- class(mtq) -->
-<!-- plot(mtq) -->
-<!-- ``` -->
+## The `rgdal` Way
+```{r importRGDAL, margin=TRUE, fig.height=5, fig.width=5}
+library(rgdal)
+# path to the ESRI Shapefile embedded in cartography
+path_to_file <- system.file("shape/martinique.shp", package="cartography")
+mtq <- readOGR(dsn = path_to_file, verbose = FALSE)
+class(mtq)
+plot(mtq)
+```
 
 
-<!-- ## The `sf` way -->
-<!-- ```{r} -->
-<!-- library(sf) -->
-<!-- mtq <- st_read(dsn = path_to_file) -->
-<!-- class(mtq) -->
-<!-- plot(st_geometry(mtq)) -->
-<!-- ``` -->
+## The `sf` Way
+```{r importSF, margin=TRUE,fig.height=5, fig.width=5}
+library(sf)
+# path to the ESRI Shapefile embedded in cartography
+path_to_file <- system.file("shape/martinique.shp", package="cartography")
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+class(mtq)
+plot(st_geometry(mtq))
+```
+
+
+## Europe Dataset 
+```{r importDataSet, margin=TRUE, fig.height=5, fig.width=7}
+library(cartography)
+# Load data
+data(nuts2006)
+
+# Plot a layer with the extent of the EU28 countries with only a background color
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+# Plot non european space
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+# Plot a layer of countries borders
+plot(nuts0.spdf, border = "grey20", lwd = 3, add = TRUE)
+# Plot a layer of NUTS1
+plot(nuts1.spdf, border = "grey30", lwd = 2, add = TRUE)
+# Plot a layer of NUTS2
+plot(nuts2.spdf, border = "grey40", lwd = 0.5, add = TRUE)
+# Plot a layer of NUTS3
+plot(nuts3.spdf, border = "grey20", lwd = 0.1, add = TRUE)
+```
+
+
 
 
 # Label Map 
 
 ```{r labelMap, fig.height=5, fig.width=7, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 # Layout plot
 layoutLayer(title = "Most Populated Countries of Europe", # title of the map
             author = "",  # no author text
@@ -84,15 +104,12 @@ labelLayer(spdf = nuts0.spdf, # SpatialPolygonsDataFrame used to plot he labels
 text(x = 5477360, y = 4177311, labels = "The 10 most populated countries of Europe
 Total population 2008, in millions of inhabitants.", cex = 0.7, adj = 0)
 
+
 ```
 
 # Choropleth Map
 
 ```{r choroMap, fig.height=5, fig.width=7, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 # Compute the compound annual growth rate
 nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
 
@@ -133,10 +150,6 @@ layoutLayer(title = "Demographic Trends", author = "cartography",
 # Base Map and Proportional Symbols
 
 ```{r propMap, fig.height=5, fig.width=7, message=FALSE, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 ## Plot OpenStreetMap tiles as basemap 
 # Download the tiles, nuts0.spdf extent
 EUosm <- getTiles(spdf = nuts0.spdf, type = "osm", zoom = 4)
@@ -170,10 +183,6 @@ layoutLayer(title = "Countries Population in Europe",
 # Link/Flow Map
 
 ```{r linkMap, fig.height=5, fig.width=7, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 # Create a link layer from the twincities data frame
 head(twincities.df)
 # twincities contains links between Nuts 2 regions
@@ -209,10 +218,6 @@ layoutLayer(title = "International Twinning Agreements Between Cities",
 # Proportional Symbols and Choropleth Map
 
 ```{r propchoroLayer, fig.height=5, fig.width=7, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 # Compute the compound annual growth rate
 nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
 
@@ -252,10 +257,6 @@ layoutLayer(title = "Demographic trends, 1999-2008", coltitle = "black",
 # Discontinuities Map
 
 ```{r discLayer, fig.height=5, fig.width=7, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 # Get a SpatialLinesDataFrame of countries borders
 nuts0.contig <- getBorders(spdf = nuts0.spdf)
 class(nuts0.contig)
@@ -301,10 +302,6 @@ layoutLayer(title = "Wealth Disparities in Europe", coltitle = "black",
 # Gridded Map
 
 ```{r gridLayer, fig.height=5, fig.width=7, margin=TRUE}
-library(cartography)
-# Load data
-data(nuts2006)
-
 # Create a grid layer
 nuts2.spdf@data <- nuts2.df
 mygrid <- getGridLayer(x = nuts2.spdf, # SpatialPolygonsDataFrame

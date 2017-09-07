@@ -19,7 +19,7 @@ BugReports: https://github.com/Groupe-ElementR/cartography/issues/
 LazyData: true
 Depends: R (>= 2.10), sp, sf
 Imports: classInt, stats, graphics, methods, rgeos, rosm, raster
-Suggests: SpatialPosition, knitr, rmarkdown
+Suggests: SpatialPosition, knitr, rmarkdown, rgdal
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 6.0.1
