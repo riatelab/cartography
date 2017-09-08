@@ -6,7 +6,9 @@ Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut")),
       person("Nicolas", "Lambert", 
-        email = "nicolas.lambert@cnrs.fr", role = c("aut")))
+        email = "nicolas.lambert@cnrs.fr", role = "aut"), 
+      person("Ian", "Fellows", role = "cph", 
+        comment = "no overlap algorithm for labels, from wordcloud package"))
 Description: Create and integrate maps in your R workflow. This package allows
     various cartographic representations such as proportional symbols, chroropleth,
     typology, flows or discontinuities maps. It also offers several features enhancing 
@@ -18,7 +20,7 @@ URL: https://github.com/Groupe-ElementR/cartography/
 BugReports: https://github.com/Groupe-ElementR/cartography/issues/
 LazyData: true
 Depends: R (>= 2.10), sp, sf
-Imports: classInt, stats, graphics, methods, rgeos, rosm, raster, Rcpp (>= 0.12.12)
+Imports: classInt, stats, graphics, methods, rgeos, rosm, raster, Rcpp
 Suggests: SpatialPosition, knitr, rmarkdown, rgdal
 LinkingTo: Rcpp
 VignetteBuilder: knitr

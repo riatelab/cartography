@@ -242,31 +242,32 @@ legpos <- function(pos, x1, x2, y1, y2, delta1, delta2, legend_xsize, legend_ysi
 ################################################################################
 ### labelLayer utils
 
+# Rcpp stuff
 #' @useDynLib cartography
 #' @importFrom Rcpp sourceCpp
 NULL
 
-
-
-
-#' Title
-#'
-#' @param x t
-#' @param y t
-#' @param words t
-#' @param cex t
-#' @param rotate90 t
-#' @param xlim t
-#' @param ylim t
-#' @param tstep t
-#' @param rstep t
-#' @param ... t
-#'
-#' @return sdsdss
+# Label placement
+#' @name wordlayout
+#' @title wordlayout
+#' @description wordlayout
+#' @param x long
+#' @param y lat
+#' @param words labels
+#' @param cex cex
+#' @param rotate90 rotate
+#' @param xlim xlim
+#' @param ylim ylim
+#' @param tstep tstep
+#' @param rstep rstep
+#' @param ... other stuf
+#' @return coords
 #' @import graphics
 #' @import stats
+#' @noRd
 wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
-                       xlim=c(-Inf,Inf), ylim=c(-Inf,Inf), tstep=.1, rstep=.1, ...){
+                       xlim=c(-Inf,Inf), ylim=c(-Inf,Inf), 
+                       tstep=.1, rstep=.1, ...){
   tails <- "g|j|p|q|y"
   n <- length(words)
   sdx <- sd(x,na.rm=TRUE)
@@ -279,8 +280,7 @@ wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
     cex <- rep(cex,n)
   if(length(rotate90)==1)
     rotate90 <- rep(rotate90,n)	
-  
-  set.seed(666)
+  set.seed(999)
   boxes <- list()
   for(i in 1:length(words)){
     rotWord <- rotate90[i]
@@ -288,8 +288,9 @@ wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
     theta <- runif(1,0,2*pi)
     x1 <- xo <- x[i]
     y1 <- yo <- y[i]
-    wid <- strwidth(words[i],cex=cex[i],...)
-    ht <- strheight(words[i],cex=cex[i],...)
+    wid <- strwidth(words[i],cex=cex[i],...) + 0.4 * strwidth("R",cex=cex[i],...)
+    ht <- strheight(words[i],cex=cex[i],...) + 0.4 * strheight("R",cex=cex[i],...)
+
     #mind your ps and qs
     if(grepl(tails,words[i]))
       ht <- ht + ht*.2
@@ -319,17 +320,27 @@ wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
   result
 }
 
+
+# shadow around the labels
+#' @name shadowtext
+#' @title shadowtext
+#' @description shadowtext
+#' @param x lon
+#' @param y lat
+#' @param labels labels
+#' @param col col
+#' @param bg bg
+#' @param theta number of iteration 
+#' @param r radius
+#' @param ... 
+#' @noRd
 shadowtext <- function(x, y=NULL, labels, col='white', bg='black', 
                        theta= seq(0, 2*pi, length.out=50), r=0.1, ... ) {
-  
-  xy <- xy.coords(x,y)
+  # xy <- xy.coords(x,y)
   xo <- r*strwidth('A')
   yo <- r*strheight('A')
-  
-  # draw background text with small shift in x and y in background colour
   for (i in theta) {
-    text( xy$x + cos(i)*xo, xy$y + sin(i)*yo, labels, col=bg, ... )
+    text(x + cos(i)*xo, y + sin(i)*yo, labels, col=bg, ... )
   }
-  # draw actual text in exact xy position in foreground colour
-  text(xy$x, xy$y, labels, col=col, ... )
+  text(x, y, labels, col=col, ... )
 }
