@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 is_overlap <- function(x11, y11, sw11, sh11, boxes1) {
-    .Call('_cartography_is_overlap', PACKAGE = 'cartography', x11, y11, sw11, sh11, boxes1)
+    .Call(`_cartography_is_overlap`, x11, y11, sw11, sh11, boxes1)
 }
 
