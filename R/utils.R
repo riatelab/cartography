@@ -244,8 +244,9 @@ legpos <- function(pos, x1, x2, y1, y2, delta1, delta2, legend_xsize, legend_ysi
 
 # Rcpp stuff
 #' @useDynLib cartography, .registration = TRUE
-#' @importFrom Rcpp sourceCpp
+#' @importFrom Rcpp evalCpp
 NULL
+
 
 # Label placement
 #' @name wordlayout
