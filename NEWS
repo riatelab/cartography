@@ -20,6 +20,8 @@ Major changes:
 
 * choroLayer, typoLayer, propSymbolsLayer, propSymbolsChoroLayer, propSymbolsTypoLayer, dotDensityLayer, getTiles, getFigDim, labelLayer, smoothLayer: an x argument is added in first position of all these functions. x is added to take sf objects as inputs, if x is used then spdf, df, spdfid, id are not used.
 
+* labelLayer: possibility to add a colored halo around the labels, option to have non-overlapping labels.
+
 * layoutLayer: the extent argument can take an sf object.
 
 * Each function has an example based on sf object. 
