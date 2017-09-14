@@ -48,6 +48,9 @@ den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
 class(den)
 # Plot the tiles
 tilesLayer(den)
+# Map tiles sources
+mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
+      side = 1, adj = 0, cex = 0.7, font = 3)
 
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Download the tiles, extent = Martinique
@@ -56,8 +59,7 @@ mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 tilesLayer(mtqOSM)
 # Plot countries
 plot(st_geometry(mtq), add=TRUE)
-# Map tiles sources
-mtext(text = "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
+mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
       side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }

@@ -32,6 +32,9 @@
 #' class(den)
 #' # Plot the tiles
 #' tilesLayer(den)
+#' # Map tiles sources
+#' mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
+#'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' 
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Download the tiles, extent = Martinique
@@ -40,18 +43,21 @@
 #' tilesLayer(mtqOSM)
 #' # Plot countries
 #' plot(st_geometry(mtq), add=TRUE)
-#' # Map tiles sources
-#' mtext(text = "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.",
+#' mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
-
+  
   if(!missing(spdf)){
     warning("spdf is deprecated; use x instead.", call. = FALSE)
   }
-
+  
   if(!missing(x)){
-    spdf <- methods::as(x, "Spatial")
+    if(methods::is(x,"sf") == TRUE){
+      spdf <- methods::as(x, "Spatial")
+    }else{
+      spdf <- x
+    }
   }
   
   if (is.na(sp::proj4string(spdf))){
@@ -60,7 +66,7 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
   }
   
   if (!is.null(zoom)){zoom <- zoom + 1}
-
+  
   finalOSM <- rosm::osm.raster(x = spdf, progress = "none", 
                                zoom = zoom, 
                                zoomin = -1,
