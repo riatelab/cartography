@@ -313,7 +313,7 @@ legendTypo <- function(pos = "topleft",
 #'                      inches = 0.2, frame = TRUE)
 legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legend", 
                                 title.cex = 0.8, cex = 1,
-                                values.cex = 0.6, var, inches, col="red", 
+                                values.cex = 0.6, var, inches, col="#E84923", 
                                 frame=FALSE, values.rnd=0, style ="c"){
   var <- abs(var)
   # exit for none

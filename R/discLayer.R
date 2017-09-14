@@ -5,7 +5,6 @@
 #' in two neighbouring units.
 #' @name discLayer
 #' @param x an sf object, a simple feature collection, as outputed by the \link{getBorders} function. 
-#' The two first columns are identifiers.  
 #' @param df a data frame that contains the values used to compute and plot discontinuities.
 #' @param dfid identifier field in df, default to the first column 
 #' of df. (optional)

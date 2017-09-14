@@ -12,8 +12,7 @@ discLayer(x, df, dfid = NULL, var, method = "quantile", nclass = 4,
   add = TRUE, spdf, spdfid1, spdfid2)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection, as outputed by the \link{getBorders} function. 
-The two first columns are identifiers.}
+\item{x}{an sf object, a simple feature collection, as outputed by the \link{getBorders} function.}
 
 \item{df}{a data frame that contains the values used to compute and plot discontinuities.}
 
