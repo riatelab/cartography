@@ -65,7 +65,9 @@ legendChoro <- function(pos = "topleft",
   height <- width / 1.5
   
   # extent
-  breaks <- as.numeric(round(breaks, values.rnd))
+  if(is.numeric(breaks)){
+    breaks <- as.numeric(round(breaks, values.rnd))
+  }
   
   if (nodata == FALSE){nodata.txt <- NULL}
   longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
