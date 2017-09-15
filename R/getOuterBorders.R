@@ -4,10 +4,10 @@
 #' maritim borders).
 #' @name getOuterBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
-#' @param id identifier field in x or spdf, default to the first column. (optional)
-#' @param res resolution of the grid used to compute borders (in spdf units).
+#' @param id identifier field in x, default to the first column. (optional)
+#' @param res resolution of the grid used to compute borders (in x units).
 #' A high resolution will give more detailed borders. (optional)
-#' @param width maximum distance between used to compute borders (in spdf units).
+#' @param width maximum distance between used to compute borders (in x units).
 #' A higher width will build borders between units that are farther apart. (optional)
 #' @param spdf deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 #'  has to be projected (planar coordinates).
@@ -19,7 +19,16 @@
 #' of id1 and id2 (with "_" as separator).
 #' @note getBorders and getOuterBorders can be combined with rbind.
 #' @examples
-#' \dontrun{
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' # Get units borders
+#' mtq.outer <- getOuterBorders(x = mtq, res = 500, width = 2500)
+#' # Plot communesa
+#' plot(mtq$geometry, col = "grey60")
+#' # Plot borders
+#' plot(mtq.outer, col = sample(x = rainbow(nrow(mtq.outer))),
+#'      lwd = 3, add = TRUE)
+#'      
+#' \donttest{
 #' data(nuts2006)
 #' # Get units borders
 #' nuts0.outer <- getOuterBorders(x = nuts0.spdf)
