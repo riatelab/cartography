@@ -96,37 +96,38 @@ If var2 is provided the ratio between the potentials of var (numerator)
 and var2 (denominator) is computed.
 }
 \examples{
-\dontrun{
-data("nuts2006")
-
-# Potential of GDP
-smoothLayer(spdf = nuts3.spdf, df = nuts3.df, 
-            var = 'gdppps2008',
-            span = 75000, beta = 2, 
-            mask = nuts0.spdf, 
-            legend.title.txt = "GDP", 
-            legend.pos = "topright", legend.values.rnd = -2)  
-
-# Potential of GDP per Capita
-nuts3.df$gdppps2008 <- nuts3.df$gdppps2008 * 1000000
-smoothLayer(spdf = nuts3.spdf, df = nuts3.df, 
-            var = 'gdppps2008', var2 = 'pop2008',
-            span = 75000, beta = 2, 
-            mask = nuts0.spdf, 
-            legend.title.txt = "GDP PER CAPITA", 
-            legend.pos = "topright", legend.values.rnd = -2)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 smoothLayer(x = mtq, var = 'P13_POP',
             span = 4000, beta = 2, breaks = c(0,5000,seq(10000,110000,10000)),
-            mask = mtq, border = NA, 
+            mask = mtq, border = NA,
             col = carto.pal(pal1 = 'wine.pal', n1 = 12),
-            legend.title.txt = "Population Potential", 
-            legend.pos = "topright", legend.values.rnd = -2)  
-propSymbolsLayer(x = mtq, var = "P13_POP", legend.pos = "topleft",
-                 legend.title.txt = "Population 2013", 
+            legend.title.txt = "Population\\nPotential",
+            legend.pos = "topright", legend.values.rnd = -2)
+propSymbolsLayer(x = mtq, var = "P13_POP", legend.pos = c(690000, 1599950),
+                 legend.title.txt = "Population 2013",
                  col = NA, border = "#ffffff50")
-layoutLayer(title = "Actual and Potential Popultation in Martinique")  
-}             
+layoutLayer(title = "Actual and Potential Popultation in Martinique", 
+            author = "INSEE, 2016", sources = "")
+
+\donttest{
+data("nuts2006")
+# Potential of GDP
+smoothLayer(spdf = nuts3.spdf, df = nuts3.df,
+            var = 'gdppps2008',
+            span = 75000, beta = 2,
+            mask = nuts0.spdf,
+            legend.title.txt = "GDP",
+            legend.pos = "topright", legend.values.rnd = -2)
+
+# Potential of GDP per Capita
+nuts3.df$gdppps2008 <- nuts3.df$gdppps2008 * 1000000
+smoothLayer(spdf = nuts3.spdf, df = nuts3.df,
+            var = 'gdppps2008', var2 = 'pop2008',
+            span = 75000, beta = 2,
+            mask = nuts0.spdf,
+            legend.title.txt = "GDP PER CAPITA",
+            legend.pos = "topright", legend.values.rnd = -2)
+}
 }
 \seealso{
 \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}

@@ -12,7 +12,6 @@
 #' @import sp
 #' @import sf
 #' @examples
-#' \dontrun{
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Plot dentsity of population 
 #' mtq$dens <- mtq$P13_POP / (st_area(mtq) / (1000 * 1000)) 
@@ -24,7 +23,7 @@
 #'            legend.pos = "topright", legend.values.rnd = 1,
 #'            legend.title.txt = "Population density")
 #' 
-#' mygrid <- getGridLayer(x = mtq, cellsize = 4500 * 4500, 
+#' mygrid <- getGridLayer(x = mtq, cellsize = 3000 * 3000, 
 #'                        type = "regular", var = "P13_POP")
 #' ## conversion from square meter to square kilometers
 #' mygrid$densitykm <- mygrid$P13_POP / (mygrid$gridarea / (1000 * 1000)) 
@@ -32,9 +31,9 @@
 #'            border = "burlywood3", col = cols, 
 #'            legend.pos = "n", legend.values.rnd = 1,
 #'            legend.title.txt = "Population density")
-#' plot(mtq, lwd = 0.2, add=T, border = "#ffffff75")
+#' plot(mtq, lwd = 0.2, add=TRUE, border = "#ffffff75")
 #' 
-#' 
+#' \donttest{
 #' data(nuts2006)
 #' nuts2.spdf@data = nuts2.df
 #' mygrid <- getGridLayer(x = nuts2.spdf, cellsize = 200000 * 200000, 
