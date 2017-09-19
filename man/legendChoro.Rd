@@ -21,7 +21,8 @@ vector of two coordinates in map units (c(x, y)).}
 \item{values.cex}{size of the values in the legend.}
 
 \item{breaks}{break points in sorted order to indicate the intervals for assigning the colors. 
-Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.}
+Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.
+It is possible to use a vector of characters.}
 
 \item{col}{a vector of colors.}
 
@@ -57,4 +58,10 @@ legendChoro(pos = "bottomright", title.txt = "Title of the legend", title.cex = 
             col = carto.pal(pal1 = "wine.pal",n1 = 5), values.rnd = 0,
             nodata = TRUE, nodata.txt = "NA",nodata.col = "black",
             frame = TRUE, symbol="line")
+legendChoro(pos = "topright", title.txt = "Title of the legend", title.cex = 0.8,
+            values.cex = 0.6,
+            breaks = c(0,"two","100","1 000","10,000", "1 Million"),
+            col = carto.pal(pal1 = "orange.pal",n1 = 5), values.rnd =2,
+            nodata = TRUE, nodata.txt = "No data available", frame = TRUE,
+            symbol="box")
 }
