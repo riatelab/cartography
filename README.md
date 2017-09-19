@@ -30,8 +30,6 @@ some cartographic APIs.
 
 **See the [NEWS](https://raw.githubusercontent.com/riatelab/cartography/master/NEWS) file for the full list of changes.**   
 
-**For now (2017-06-30) `cartography` v2.0.0 is hosted on GitHub, but will soon make it to the CRAN.** 
-
 -----------
 
 
