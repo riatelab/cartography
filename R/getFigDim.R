@@ -75,5 +75,5 @@ getFigDim <- function(x, spdf, width = NULL, height = NULL,
     heightmar <- height - ( 0.2 * (mar[1] +  mar[3]) * res )
     width <- (heightmar / hw) + ( 0.2 * (mar[2] +  mar[4]) * res )
   }
-  return(floor(c(width, height)))
+  return(unname(floor(c(width, height))))
 }
