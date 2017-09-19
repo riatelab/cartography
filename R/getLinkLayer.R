@@ -1,7 +1,7 @@
 #' @name getLinkLayer
 #' @title Create a Links Layer from a Data Frame of Links.
 #' @description Create a links layer from a data frame of links.
-#' @param x an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).
+#' @param x an sf object, a simple feature collection (or a Spatial*DataFrame).
 #' @param df a data frame that contains identifiers of starting and ending points.
 #' @param xid identifier field in x, default to the first column (optional)
 #' @param dfid identifier fields in df, character vector of length 2, default to 

@@ -8,7 +8,7 @@ getLinkLayer(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL,
   spdfid = NULL, spdf2id = NULL, dfids = NULL, dfide = NULL)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection (or a SpatialPolygonsDataFrame).}
+\item{x}{an sf object, a simple feature collection (or a Spatial*DataFrame).}
 
 \item{xid}{identifier field in x, default to the first column (optional)}
 
