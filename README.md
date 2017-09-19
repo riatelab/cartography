@@ -9,7 +9,7 @@
 
 ## *Create and integrate maps in your R workflow!*
 
-[![Cartographic Mix](http://rgeomatic.hypotheses.org/files/2016/02/cartomix.png "click on the map to see the code")](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68)  
+[![Cartographic Mix](https://raw.githubusercontent.com/riatelab/cartography/master/img/map8.png "click on the map to see the code")](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68)  
 
 This package allows various **cartographic representations** such as proportional 
 symbols, chroropleth, typology, flows or discontinuities maps. It also offers 
@@ -92,48 +92,53 @@ first variable and colored to reflect the discretization of a second variable.
 
 ```r
 library(cartography)
-# Load data
-data(nuts2006)
-# set margins
-opar <- par(mar = c(0,0,1.2,0))
 
-# Compute the compound annual growth rate
-nuts2.df$cagr <- (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) * 100
+# Import a shapefile // this one is distributed within the package
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 
-# Plot a layer with the extent of the EU28 countries with only a background color
-plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
-# Plot non european space
-plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
-# Plot Nuts2 regions
-plot(nuts2.spdf, col = "grey60",border = "white", lwd=0.4, add=TRUE)
+# Share of farmers in the active population
+mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
 
 # Set a custom color palette
-cols <- carto.pal(pal1 = "blue.pal", n1 = 2, pal2 = "red.pal", n2 = 4)
+cols <- carto.pal(pal1 = "wine.pal", n1 = 6)
+
+# set plot margins
+opar <- par(mar = c(0,0,1.2,0))
+
+# Plot the communes
+plot(st_geometry(mtq), col = "#5F799C", border = "white", 
+     bg = "#A6CAE0", lwd = 0.5, add = FALSE)
 
 # Plot symbols with choropleth coloration
-propSymbolsChoroLayer(spdf = nuts2.spdf, 
-                      df = nuts2.df, 
-                      var = "pop2008", #  field in df to plot the symbols sizes
-                      inches = 0.1, # set the symbols sizes
-                      var2 = "cagr", #  field in df to plot the colors
+propSymbolsChoroLayer(x = mtq, # sf object 
+                      var = "C13_POP", # field used to plot the symbols sizes
+                      var2 = "shareCS1", #  field used to plot the colors
                       col = cols, # symbols colors
-                      breaks = c(-2.43,-1,0,0.5,1,2,3.1), # breaks
-                      border = "grey50",  # border colors of the symbols
-                      lwd = 0.75, # symbols width
-                      legend.var.pos = "topright", # legend position
-                      legend.var.values.rnd = -3, # legend value 
-                      legend.var.title.txt = "Total Population", # size legend title
-                      legend.var.style = "e", # legend type
-                      legend.var2.pos = "right", # legend position
-                      legend.var2.title.txt = "Compound Annual\nGrowth Rate") # legend title
+                      inches = 0.4, # radius of the largest circle
+                      method = "quantile", # discretization method (?getBreaks)
+                      border = "grey50", # color of circle borders
+                      lwd = 1, # width of the circle borders
+                      legend.var.pos = "topright", # position of the first legend
+                      legend.var2.pos = "left", # position of the second legend
+                      legend.var2.title.txt =  
+                        "Share of \nthe population\nworking in\nagriculture (%)", 
+                      legend.var.title.txt = "Population aged\n15 and over",
+                      legend.var.style = "c") # legend style
 
-# layout
-layoutLayer(title = "Demographic trends, 1999-2008", coltitle = "black",
-            sources = "Eurostat, 2011", scale = NULL,
-            author = "cartography", frame ="", col = NA)
+# Add a layout
+layoutLayer(title="Farmers in Martinique, 2013", # title of the map
+            scale = 5, # size of the scale bar
+            north = TRUE, # north arrow
+            col = "white",
+            coltitle = "black",
+            author = "cartography 2.0.0",  
+            sources = "INSEE, 2016",
+            frame = TRUE)
+
+# restore graphics parameters
 par(opar)
 ```
-![](http://rgeomatic.hypotheses.org/files/2015/10/propchoro.png)
+![](https://raw.githubusercontent.com/riatelab/cartography/master/img/map7.png)
 
 
 ## Installation
