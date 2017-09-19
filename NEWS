@@ -15,12 +15,11 @@ Breaking changes:
 
 * legend* functions have been enhanced to be more customizable. It is now possible to lay legend on specified x & y. 
 
+* propSymbolsLayer: breakval and col2 arguments are defunct, use propSymbolsTypoLayer if needed. 
 
 Major changes: 
 
 * choroLayer, typoLayer, propSymbolsLayer, propSymbolsChoroLayer, propSymbolsTypoLayer, dotDensityLayer, getTiles, getFigDim, labelLayer, smoothLayer: an x argument is added in first position of all these functions. x is added to take sf objects as inputs, if x is used then spdf, df, spdfid, id are not used. 
-
-* propSymbolsLayer: breakval and col2 arguments are defunct, use propSymbolsTypoLayer if needed. 
 
 * labelLayer: possibility to add a colored halo around the labels, option to have non-overlapping labels.
 
@@ -28,6 +27,7 @@ Major changes:
 
 * Each function has an example based on sf object. 
 
+* possibility to use text labels in legendChoro
 
 
 

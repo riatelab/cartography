@@ -1,6 +1,6 @@
 # cartography
 
-[![Version](http://www.r-pkg.org/badges/version/cartography)](https://CRAN.R-project.org/package=cartography/)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
 [![Travis-CI Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
 [![Build status](https://ci.appveyor.com/api/projects/status/9kjyos8jxicc02xs?svg=true)](https://ci.appveyor.com/project/rCarto/cartography)
 ![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
