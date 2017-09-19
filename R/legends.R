@@ -72,7 +72,7 @@ legendChoro <- function(pos = "topleft",
   height <- width / 1.5
   
   # extent
-  if(is.numeric(breaks)){
+  if(!is.character(breaks)){
     breaks <- as.numeric(round(breaks, values.rnd))
   }
   
