@@ -1,6 +1,6 @@
 Package: cartography
 Title: Thematic Cartography
-Version: 2.0.0
+Version: 2.0.1
 Date: 2017-09-14
 Authors@R: c(
       person("Timothée", "Giraud", 

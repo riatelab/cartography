@@ -21,7 +21,7 @@
 #' @examples
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Get units borders
-#' mtq.outer <- getOuterBorders(x = mtq, res = 500, width = 2500)
+#' mtq.outer <- getOuterBorders(x = mtq, res = 1000, width = 2500)
 #' # Plot communesa
 #' plot(mtq$geometry, col = "grey60")
 #' # Plot borders

@@ -141,6 +141,8 @@ checkMergeOrder <- function(x = x, var = var){
   # remove NAs and 0 values
   x <- x[!is.na(x = x[[var]]),]
   x <- x[x[[var]]!=0, ]
+  # turn to positive values
+  x[[var]] <- abs(x[[var]])
   # Order the dots
   x <- x[order(abs(x[[var]]), decreasing = TRUE),]
   return(x)
