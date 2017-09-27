@@ -66,6 +66,7 @@ vignette(topic = "cartography")
 
 
     
+[New version of the cartography package](https://rgeomatic.hypotheses.org/1205) [EN]     
 [Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)    
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
 [SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)  
