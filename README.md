@@ -22,7 +22,7 @@ some cartographic APIs.
 
 -----------
 
-**Up to version 1.4.2 `cartography` was mainly based on `sp` and `rgeos` for its spatial data management and geoprocessing operations. These dependancies are as much as possible replaced by [`sf`](https://github.com/r-spatial/sf) functions since version 2.0.0.**    
+**Up to version 1.4.2 `cartography` was mainly based on `sp` and `rgeos` for its spatial data management and geoprocessing operations. These dependencies have been as much as possible replaced by [`sf`](https://github.com/r-spatial/sf) functions since version 2.0.0.**    
 
 **Most functions are kept unchanged except for the addition of an `x` argument used to take `sf` objects as inputs.**  
 
@@ -65,8 +65,8 @@ vignette(topic = "cartography")
 173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography)  (EN)    
 
 
-    
-[New version of the cartography package](https://rgeomatic.hypotheses.org/1205) [EN]     
+
+[New version of the cartography package](https://rgeomatic.hypotheses.org/1205) (EN)     
 [Demo codes in the R graph Gallery](http://www.r-graph-gallery.com/portfolio/maps/) (EN)    
 [Create and integrate maps in your R workflow with the cartography package](http://rgeomatic.hypotheses.org/842) (EN)  
 [SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)  
