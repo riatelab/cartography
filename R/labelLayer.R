@@ -66,6 +66,10 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "blac
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
+  if (methods::is(x, 'Spatial')){
+    x <- sf::st_as_sf(x)
+  }
+  
   words = x[[txt]]
   cc <- sf::st_coordinates(sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON"))))
   
