@@ -149,7 +149,9 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   
   # plot
   if (add==FALSE){
-    plot(sf::st_geometry(x), col = NA, border = NA)
+    bbx <- sf::st_bbox(x)
+    plot(0, type='n', axes = FALSE, ann = FALSE, asp = 1, 
+         xlim = bbx[c(1,3)], ylim = bbx[c(2,4)])
   }
   
   switch(symbols, 
