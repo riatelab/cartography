@@ -15,9 +15,9 @@ convertToSf <- function(spdf, df, spdfid, dfid){
     # missing IDs
     if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
     if (is.null(dfid)){dfid <- names(df)[1]}
-    # Join (only on df data)
+    # Join (only on df data), work with tibbls
     spdf@data <- data.frame(spdf@data[,spdfid], 
-                            df[match(spdf@data[,spdfid], df[,dfid]),])
+                            data.frame(df[match(spdf@data[,spdfid], df[[dfid]]),]))
     spdf <- spdf[!is.na(spdf@data[,dfid]),]
   }
   # convert
