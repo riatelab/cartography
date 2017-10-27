@@ -7,7 +7,7 @@
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   author = "Author(s)", col = "black", coltitle = "white", theme = NULL,
   bg = NULL, scale = 0, frame = TRUE, north = FALSE, south = FALSE,
-  extent = NULL)
+  extent = NULL, boxtitle = "full", aligntitle = "left")
 }
 \arguments{
 \item{title}{title of the map.}
@@ -36,6 +36,10 @@ displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map widt
 
 \item{extent}{sf object or Spatial*DataFrame; sets the extent of the frame to 
 the one of a spatial object. (optional)}
+
+\item{boxtitle}{size of the title box either "small" or "full".}
+
+\item{aligntitle}{alignement of the title, one of "left", "center", "right".}
 }
 \description{
 Plot a layout layer.
