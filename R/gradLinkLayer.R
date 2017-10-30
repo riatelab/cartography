@@ -86,7 +86,7 @@ gradLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   lwdMap <- lwd[findInterval(x = link[[var]], vec = breaks, all.inside = TRUE)]
   
   # map
-  plot(link, col = col, lwd = lwdMap, add = add)
+  plot(st_geometry(link), col = col, lwd = lwdMap, add = add)
   
   # legend
   legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 

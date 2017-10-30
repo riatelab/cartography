@@ -46,7 +46,7 @@ choroLayer(x = mygrid, var = "densitykm", breaks = bks,
            border = "burlywood3", col = cols, 
            legend.pos = "n", legend.values.rnd = 1,
            legend.title.txt = "Population density")
-plot(mtq, lwd = 0.2, add=TRUE, border = "#ffffff75")
+plot(st_geometry(mtq), lwd = 0.2, add=TRUE, border = "#ffffff75")
 
 \donttest{
 data(nuts2006)
