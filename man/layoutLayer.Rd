@@ -7,7 +7,7 @@
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",
   author = "Author(s)", col = "black", coltitle = "white", theme = NULL,
   bg = NULL, scale = 0, frame = TRUE, north = FALSE, south = FALSE,
-  extent = NULL, boxtitle = "full", aligntitle = "left")
+  extent = NULL, tabtitle = FALSE, postitle = "left")
 }
 \arguments{
 \item{title}{title of the map.}
@@ -37,9 +37,9 @@ displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map widt
 \item{extent}{sf object or Spatial*DataFrame; sets the extent of the frame to 
 the one of a spatial object. (optional)}
 
-\item{boxtitle}{size of the title box either "small" or "full".}
+\item{tabtitle}{size of the title box either a full banner (FALSE) or a "tab" (TRUE).}
 
-\item{aligntitle}{alignement of the title, one of "left", "center", "right".}
+\item{postitle}{position of the title, one of "left", "center", "right".}
 }
 \description{
 Plot a layout layer.
@@ -62,16 +62,17 @@ plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
 layoutLayer(col = NA, coltitle = "black",
             sources = "", author = "",
-            frame = FALSE,
+            frame = FALSE, postitle = "center",
             south = TRUE)
-            
+
 # Example 3
 nuts3.df$gdphab <- 1000000 * nuts3.df$gdppps2008 / nuts3.df$pop2008
 choroLayer(spdf = nuts3.spdf, df = nuts3.df, var = "gdphab",
            legend.pos = "right", border = NA, nclass = 6,
            col = carto.pal('green.pal', 6))
 # Layout plot
-layoutLayer(title = "GDP per Inhabitants", sources = "",
+layoutLayer(title = "GDP per Inhabitants", sources = "", 
+            tabtitle = TRUE, scale = NULL,
             author = "Eurostat, 2008", theme = "green.pal")
 }
 \seealso{
