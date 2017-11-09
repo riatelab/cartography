@@ -75,7 +75,7 @@ gradLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   
   # joint
-  link <- merge(x = x, y = df, by.x = xid, by.y = dfid)
+  link <- merge(x = x[,xid], y = df, by.x = xid, by.y = dfid)
   
   # clean
   link <- link[!is.na(link[[var]]), ]
