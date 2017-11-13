@@ -1,14 +1,17 @@
-cartography version 2.0.2 (Release date: 2017-11-xx)
+cartography version 2.0.2 (Release date: 2017-11-13)
 ==============
 
 Minor Changes:
 
 - bug fix in labelLayer() when x = SpatialPointsDataFrame.
-- bug fix in propSymbols*Layer() when using a POINT layer with add=F.
-- add R and sp version requirement + sf SystemRequirements
+- bug fix in propSymbols*Layer() when using a POINT layer with add=FALSE.
+- bug fix in *Link*Layer() (df).
+- add R, sf and sp version requirement + sf SystemRequirements
 - allow dataframe AND tibbles as input for df arguùment in relevant functions
 - add postitle to set the position of the title in laoutLayer()
 - add tabtitle to set the size of the title banner in layoutLayer()
+
+
 
 cartography version 2.0.1 (Release date: 2017-09-25)
 ==============
