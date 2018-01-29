@@ -1,7 +1,7 @@
 #' @title Extract Polygons Outer Borders
 #' @description Extract outer borders between polygons.
 #' Outer borders are non-contiguous polygons borders (e.g.
-#' maritim borders).
+#' maritime borders).
 #' @name getOuterBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
 #' @param id identifier field in x, default to the first column. (optional)

@@ -67,7 +67,7 @@ not (FALSE).}
 not (FALSE).}
 }
 \description{
-Plot a chorpoleth layer.
+Plot a choropleth layer.
 }
 \details{
 The optimum number of class depends on the number of geographical objects. 

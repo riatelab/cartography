@@ -29,7 +29,7 @@ Get map tiles based on a spatial object extent. Maps can be
 fetched from various open map servers.
 }
 \details{
-Zoom levels are descibed on the OpenStreetMap wiki: 
+Zoom levels are described on the OpenStreetMap wiki: 
 \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
 }
 \note{

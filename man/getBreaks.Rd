@@ -22,7 +22,7 @@ getBreaks(v, nclass = NULL, method = "quantile", k = 1, middle = FALSE)
 A numeric vector of breaks
 }
 \description{
-A function to discretize continious variables.
+A function to discretize continuous variables.
 }
 \details{
 "sd", "equal", "quantile" and "fisher-jenks" are \link{classIntervals} methods.\cr\cr

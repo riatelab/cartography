@@ -35,7 +35,7 @@ of df. (optional)}
 for those words not covering their x,y coordinate}
 
 \item{halo}{If TRUE, then a 'halo' is printed around the text and additional 
-arguments bg and r can be modified to set the colour and width of the halo.}
+arguments bg and r can be modified to set the color and width of the halo.}
 
 \item{bg}{halo color if halo is TRUE}
 

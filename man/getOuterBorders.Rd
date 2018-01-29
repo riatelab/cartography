@@ -32,7 +32,7 @@ of id1 and id2 (with "_" as separator).
 \description{
 Extract outer borders between polygons.
 Outer borders are non-contiguous polygons borders (e.g.
-maritim borders).
+maritime borders).
 }
 \note{
 getBorders and getOuterBorders can be combined with rbind.

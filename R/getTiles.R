@@ -12,7 +12,7 @@
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified spdf extent, FALSE otherwise.
 #' @details 
-#' Zoom levels are descibed on the OpenStreetMap wiki: 
+#' Zoom levels are described on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
 #' @note This function is a wrapper around the \code{osm.raster} function 
 #' from the \code{rosm} package. \cr

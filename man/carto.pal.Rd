@@ -8,26 +8,26 @@ carto.pal(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
   transparency = FALSE)
 }
 \arguments{
-\item{pal1}{name of the color gradiant (see Details).}
+\item{pal1}{name of the color gradient (see Details).}
 
 \item{n1}{number of colors (up to 20).}
 
-\item{pal2}{name of the color gradiant (see Details).}
+\item{pal2}{name of the color gradient (see Details).}
 
 \item{n2}{number of colors (up to 20).}
 
 \item{middle}{a logical value. If TRUE, a neutral color ("#F6F6F6", light 
 grey) between two gradients is added.}
 
-\item{transparency}{a logical value. If TRUE, contrasts are enhenced by 
+\item{transparency}{a logical value. If TRUE, contrasts are enhanced by 
 adding an opacity variation.}
 }
 \value{
 A vector of colors is returned.
 }
 \description{
-Build sequantial, diverging and qualitative color palettes. 
-Diververging color palettes can be dissymetric (different number of colors in 
+Build sequential, diverging and qualitative color palettes. 
+Diverging color palettes can be dissymmetric (different number of colors in 
 each of the two gradients).
 }
 \details{

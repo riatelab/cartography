@@ -1,6 +1,6 @@
 #' @title Choropleth Layer
 #' @name choroLayer
-#' @description Plot a chorpoleth layer.
+#' @description Plot a choropleth layer.
 #' @param x an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.  
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param df a data frame that contains the values to plot. If df is missing 

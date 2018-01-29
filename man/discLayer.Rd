@@ -12,7 +12,7 @@ discLayer(x, df, dfid = NULL, var, method = "quantile", nclass = 4,
   add = TRUE, spdf, spdfid1, spdfid2)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection, as outputed by the \link{getBorders} function.}
+\item{x}{an sf object, a simple feature collection, as outputted by the \link{getBorders} function.}
 
 \item{df}{a data frame that contains the values used to compute and plot discontinuities.}
 
@@ -69,7 +69,7 @@ An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is r
 }
 \description{
 This function computes and plots spatial discontinuities. The 
-discontinuities are plotted over the layer outputed by the \link{getBorders} function.
+discontinuities are plotted over the layer outputted by the \link{getBorders} function.
 The line widths reflect the ratio or the difference between values of an indicator 
 in two neighbouring units.
 }

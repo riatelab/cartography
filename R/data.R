@@ -156,7 +156,7 @@ NULL
 
 #' @title Countries in the European Area
 #' @name countries.spdf
-#' @description Countries in the european area.
+#' @description Countries in the European area.
 #' @format SpatialPolygonsDataFrame.
 #' @source UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 #' @docType data
@@ -173,7 +173,7 @@ NULL
 #' @title Twin Cities Dataset
 #' @name twincities.df
 #' @description This dataset contains the number of international twinning 
-#' agreements betwwen cities. Agreements are aggregated at nuts2 level.
+#' agreements between cities. Agreements are aggregated at nuts2 level.
 #' @details This data frame can be used with the SpatialPolygonsDataFrame 
 #' nuts2.spdf
 #' @field i nuts2 identifier

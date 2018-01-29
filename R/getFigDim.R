@@ -8,7 +8,7 @@
 #' @param spdf deprecated, a Spatial*DataFrame.
 #' @param width width of the figure (in pixels), either width or height 
 #' must be set.
-#' @param height heigth of the figure (in pixels), either width or height 
+#' @param height height of the figure (in pixels), either width or height 
 #' must be set. 
 #' @param mar a numerical vector of the form c(bottom, left, top, right) 
 #' which gives the number of lines of margin to be specified on the four 

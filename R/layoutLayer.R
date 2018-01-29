@@ -6,14 +6,14 @@
 #' @param author author of the map (or something else).
 #' @param scale size of the scale bar in kilometers. If set to NULL, no scale bar is 
 #' displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map width).
-#' @param frame wheither displaying a frame (TRUE) or not (FALSE).
+#' @param frame whether displaying a frame (TRUE) or not (FALSE).
 #' @param col color of the title box and frame border.
 #' @param coltitle color of the title.
 #' @param tabtitle size of the title box either a full banner (FALSE) or a "tab" (TRUE). 
 #' @param postitle position of the title, one of "left", "center", "right". 
 #' @param bg color of the frame background.
-#' @param north wheither displaying a Noth arrow (TRUE) or not (FALSE).
-#' @param south wheither displaying a South arrow (TRUE) or not (FALSE).
+#' @param north whether displaying a North arrow (TRUE) or not (FALSE).
+#' @param south whether displaying a South arrow (TRUE) or not (FALSE).
 #' @param extent sf object or Spatial*DataFrame; sets the extent of the frame to 
 #' the one of a spatial object. (optional)
 #' @param theme name of a cartographic palette (see \link{carto.pal.info}). 

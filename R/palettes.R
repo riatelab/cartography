@@ -1,15 +1,15 @@
 #' @title Build Cartographic Palettes
-#' @description Build sequantial, diverging and qualitative color palettes. 
-#' Diververging color palettes can be dissymetric (different number of colors in 
+#' @description Build sequential, diverging and qualitative color palettes. 
+#' Diverging color palettes can be dissymmetric (different number of colors in 
 #' each of the two gradients).
 #' @name carto.pal
-#' @param pal1 name of the color gradiant (see Details).
+#' @param pal1 name of the color gradient (see Details).
 #' @param n1 number of colors (up to 20).
-#' @param pal2 name of the color gradiant (see Details). 
+#' @param pal2 name of the color gradient (see Details). 
 #' @param n2 number of colors (up to 20).
 #' @param middle  a logical value. If TRUE, a neutral color ("#F6F6F6", light 
 #' grey) between two gradients is added.
-#' @param transparency a logical value. If TRUE, contrasts are enhenced by 
+#' @param transparency a logical value. If TRUE, contrasts are enhanced by 
 #' adding an opacity variation.
 #' @details Sequential palettes: 
 #' \itemize{

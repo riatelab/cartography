@@ -1,6 +1,6 @@
 #' @title Discretization
 #' @name getBreaks
-#' @description A function to discretize continious variables.
+#' @description A function to discretize continuous variables.
 #' @param v a vector of numeric values.
 #' @param nclass a number of classes
 #' @param method a discretization method; one of "sd", "equal", 

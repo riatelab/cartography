@@ -9,5 +9,5 @@
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }
 \description{
-Countries in the european area.
+Countries in the European area.
 }

@@ -15,7 +15,7 @@ getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"),
 \item{width}{width of the figure (in pixels), either width or height 
 must be set.}
 
-\item{height}{heigth of the figure (in pixels), either width or height 
+\item{height}{height of the figure (in pixels), either width or height 
 must be set.}
 
 \item{mar}{a numerical vector of the form c(bottom, left, top, right) 
