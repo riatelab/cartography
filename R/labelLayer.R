@@ -27,6 +27,7 @@
 #' @import sp
 #' @export
 #' @examples
+#' library(sf)
 #' opar <- par(mar = c(0,0,0,0))
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' plot(st_geometry(mtq), col = "darkseagreen3", border = "darkseagreen4", 
@@ -36,8 +37,8 @@
 #'            overlap = FALSE, show.lines = FALSE)
 #' par(opar)
 #' 
+#' library(sp)
 #' data("nuts2006")
-#' 
 #' plot(nuts0.spdf, border = NA, col = NA, add = FALSE, bg = "#A6CAE0")
 #' plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
 #' plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)

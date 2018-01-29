@@ -103,6 +103,7 @@ Plot a proportional symbols layer with colors based on a
 quantitative data discretization.
 }
 \examples{
+library(sp)
 data("nuts2006")
 ## Example 1
 # Growth rate
@@ -115,6 +116,7 @@ propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle",
 
 ## Example 2
 # Share of farmers in Martinique
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
 plot(st_geometry(mtq), col = "grey60",border = "white", 

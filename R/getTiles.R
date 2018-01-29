@@ -24,6 +24,7 @@
 #' @seealso \link{tilesLayer}
 #' @examples
 #' \dontrun{
+#' library(sp)
 #' data("nuts2006")
 #' # extract Denmark
 #' spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
@@ -36,6 +37,7 @@
 #' mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' 
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Download the tiles, extent = Martinique
 #' mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)

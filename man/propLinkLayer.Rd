@@ -66,6 +66,7 @@ Plot a layer of proportional links. Links widths are directly proportional to va
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
+library(sp)
 data("nuts2006")
 # Create a link layer of the twin cities agreements
 twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])

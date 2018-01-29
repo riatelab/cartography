@@ -46,6 +46,7 @@
 #' @import sp
 #' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
 #' @examples 
+#' library(sp)
 #' data("nuts2006")
 #' # Create a link layer
 #' twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df)

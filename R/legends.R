@@ -22,6 +22,7 @@
 #' @param symbol type of symbol in the legend 'line' or 'box'
 #' @export
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf, col = "grey")
 #' box()
@@ -153,6 +154,7 @@ legendChoro <- function(pos = "topleft",
 #' @param symbol character; 'line' or 'box'
 #' @export
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf, col = "grey")
 #' box()
@@ -297,6 +299,7 @@ legendTypo <- function(pos = "topleft",
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
 #' @examples
+#' library(sp) 
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, var = "pop2008", 
@@ -432,6 +435,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' box()
@@ -556,6 +560,7 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' 
@@ -674,6 +679,7 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 #' not (FALSE).
 #' @export
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' box()
@@ -770,6 +776,7 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
 #' not (FALSE).
 #' @export
 #' @examples 
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' box()
@@ -877,6 +884,7 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf)
 #' box()

@@ -22,6 +22,7 @@ raster package.
 }
 \examples{
 \dontrun{
+library(sp)
 data("nuts2006")
 # extract Denmark
 spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
@@ -31,6 +32,7 @@ class(den)
 # Plot the tiles
 tilesLayer(den)
 
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Download the tiles, extent = Martinique
 mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)

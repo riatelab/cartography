@@ -81,9 +81,9 @@ If breaks is used then nclass and method are not. \cr
 If breaks is defined as \code{c(2, 5, 10, 15, 20)} intervals will be: [2 - 5[, [5 - 10[, [10 - 15[, [15 - 20].
 }
 \examples{
-data("nuts2006")
-
 ## Example 1
+library(sp)
+data("nuts2006")
 nuts2.df$unemprate <- nuts2.df$unemp2008/nuts2.df$act2008*100
 choroLayer(spdf = nuts2.spdf,
            df = nuts2.df,
@@ -104,6 +104,7 @@ choroLayer(spdf = nuts2.spdf,
            legend.values.rnd = 1)
 
 ## Example 3
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Compute the compound annual growth rate
 mtq$cagr <- (((mtq$P13_POP / mtq$P08_POP)^(1/4)) - 1) * 100

@@ -50,12 +50,14 @@ The size of the title box in layoutLayer is fixed to 1.2 lines height.
 }
 \examples{
 # Example 1
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 plot(st_geometry(mtq), col = "grey60",border = "grey20")
 # Layout plot
 layoutLayer()
 
 # Example 2
+library(sp)
 data("nuts2006")
 plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
 plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)

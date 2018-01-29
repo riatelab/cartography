@@ -66,8 +66,9 @@ not (FALSE).}
 Plot a double proportional triangles layer.
 }
 \examples{
-data("nuts2006")
 # Example 1
+library(sp)
+data("nuts2006")
 plot(nuts0.spdf)
 # There is no data for deaths in Turkey
 propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df, 

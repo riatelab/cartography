@@ -20,6 +20,7 @@
 #' @export
 #' @examples
 #' \dontrun{
+#' library(sp)
 #' data("nuts2006")
 #' italy <- nuts0.spdf[nuts0.spdf$id=="IT",]
 #' 
@@ -37,6 +38,7 @@
 #' 
 #' ## PDF export
 #' # get figure dimension
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' sizes <- getFigDim(x = mtq, width = 450, mar = c(1,1,2.2,1))
 #' # export the map

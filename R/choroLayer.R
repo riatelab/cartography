@@ -52,9 +52,9 @@
 #' @seealso \link{getBreaks}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
 #' @export
 #' @examples
-#' data("nuts2006")
-#' 
 #' ## Example 1
+#' library(sp)
+#' data("nuts2006")
 #' nuts2.df$unemprate <- nuts2.df$unemp2008/nuts2.df$act2008*100
 #' choroLayer(spdf = nuts2.spdf,
 #'            df = nuts2.df,
@@ -75,6 +75,7 @@
 #'            legend.values.rnd = 1)
 #' 
 #' ## Example 3
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Compute the compound annual growth rate
 #' mtq$cagr <- (((mtq$P13_POP / mtq$P08_POP)^(1/4)) - 1) * 100

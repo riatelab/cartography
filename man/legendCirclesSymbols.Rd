@@ -40,6 +40,7 @@ styles, "c" stands for compact and "e" for extended.}
 Plot legend for proportional circles maps
 }
 \examples{
+library(sp) 
 data("nuts2006")
 plot(nuts0.spdf)
 propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, var = "pop2008", 

@@ -44,6 +44,7 @@
 #' @import sp
 #' @examples
 #' ## Example 1
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Countries plot
 #' plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3", bg = "lightblue1")
@@ -59,6 +60,7 @@
 #'             scale = NULL, frame = FALSE)
 #' 
 #' ## Example 2
+#' library(sp)
 #' data("nuts2006")
 #' # Countries plot
 #' plot(nuts0.spdf, col = "grey60",border = "grey20")

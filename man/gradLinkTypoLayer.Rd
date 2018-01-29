@@ -91,6 +91,7 @@ Colors depend on a discrete variable of categories.
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
+library(sp)
 data("nuts2006")
 # Create a link layer
 twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df)

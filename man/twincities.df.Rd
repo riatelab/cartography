@@ -11,7 +11,7 @@ Primary source: Wikipedia, 2011.
 }
 \description{
 This dataset contains the number of international twinning 
-agreements betwwen cities. Agreements are aggregated at nuts2 level.
+agreements between cities. Agreements are aggregated at nuts2 level.
 }
 \details{
 This data frame can be used with the SpatialPolygonsDataFrame 

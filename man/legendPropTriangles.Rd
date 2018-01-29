@@ -51,6 +51,7 @@ styles, "c" stands for compact and "e" for extended.}
 Plot legends for double proportional triangles maps.
 }
 \examples{
+library(sp)
 data("nuts2006")
 plot(nuts0.spdf)
 box()

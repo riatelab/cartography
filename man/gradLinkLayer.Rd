@@ -69,6 +69,7 @@ Plot a layer of graduated links. Links are plotted according to discrete classes
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
+library(sp)
 data("nuts2006")
 # Create a link layer
 twincities.sf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])

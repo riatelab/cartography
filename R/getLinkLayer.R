@@ -15,6 +15,7 @@
 #' @return An sf LINESTRING is returned, it contains two fields (origins and destinations).
 #' @import sp
 #' @examples 
+#' library(sp)
 #' data("nuts2006")
 #' # Create a link layer
 #' head(twincities.df)

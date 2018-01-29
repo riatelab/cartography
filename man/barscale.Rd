@@ -29,10 +29,12 @@ This scale bar is not accurate on unprojected (long/lat) maps.
 }
 \examples{
 data("nuts2006")
+library(sp)
 plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 barscale(size = 1000)
 barscale(size = 500, lwd = 3, cex = .9, pos = c(3553000, 1449000))
 
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 plot(st_geometry(mtq), col = "grey60", border = "grey20")
 barscale(style = "oldschool")

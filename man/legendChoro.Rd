@@ -46,6 +46,7 @@ not (FALSE).}
 Plot legend for choropleth maps.
 }
 \examples{
+library(sp)
 data("nuts2006")
 plot(nuts0.spdf, col = "grey")
 box()

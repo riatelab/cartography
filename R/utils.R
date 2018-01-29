@@ -322,7 +322,6 @@ wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
 #' @noRd
 shadowtext <- function(x, y=NULL, labels, col='white', bg='black', 
                        theta= seq(0, 2*pi, length.out=50), r=0.1, ... ) {
-  # xy <- xy.coords(x,y)
   xo <- r*strwidth('A')
   yo <- r*strheight('A')
   for (i in theta) {

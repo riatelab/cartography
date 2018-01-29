@@ -38,6 +38,7 @@ not (FALSE).}
 Plot legend for graduated size lines maps.
 }
 \examples{
+library(sp)
 data("nuts2006")
 plot(nuts0.spdf)
 box()

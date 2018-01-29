@@ -61,13 +61,15 @@ not (FALSE).}
 Plot a typology layer.
 }
 \examples{
-data(nuts2006)
 ## Example 1
+library(sp)
+data(nuts2006)
 nuts0.df$typo <- c(rep("A",10),rep("B",10),rep("C",10),rep("D",4))
 typoLayer(spdf = nuts0.spdf, df = nuts0.df, var = "typo")
 
 
 ## Example 2
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 typoLayer(x = mtq, var="STATUT",  
           col = c("aquamarine4", "yellow3","wheat"),

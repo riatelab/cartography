@@ -38,16 +38,18 @@ maritim borders).
 getBorders and getOuterBorders can be combined with rbind.
 }
 \examples{
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Get units borders
 mtq.outer <- getOuterBorders(x = mtq, res = 1000, width = 2500)
 # Plot communesa
-plot(mtq$geometry, col = "grey60")
+plot(st_geometry(mtq), col = "grey60")
 # Plot borders
-plot(mtq.outer, col = sample(x = rainbow(nrow(mtq.outer))),
+plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
      lwd = 3, add = TRUE)
      
 \donttest{
+library(sp)
 data(nuts2006)
 # Get units borders
 nuts0.outer <- getOuterBorders(x = nuts0.spdf)

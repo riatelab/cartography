@@ -9,6 +9,7 @@
 #' @export
 #' @seealso \link{layoutLayer}
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
 #' box()
@@ -17,6 +18,7 @@
 #'   north(i)
 #' }
 #' 
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' plot(st_geometry(mtq))
 #' box()

@@ -22,6 +22,7 @@
 #' @note This function is mainly a wrapper classInt::classIntervals + 
 #' arith, em, q6, geom and msd methods. 
 #' @examples
+#' library(sp)
 #' data("nuts2006")
 #' # Create the natality rate
 #' var <- nuts2.df$birth_2008/nuts2.df$pop2008 * 1000

@@ -36,6 +36,7 @@ An sf LINESTRING is returned, it contains two fields (origins and destinations).
 Create a links layer from a data frame of links.
 }
 \examples{
+library(sp)
 data("nuts2006")
 # Create a link layer
 head(twincities.df)

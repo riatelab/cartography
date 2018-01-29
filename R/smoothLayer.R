@@ -57,6 +57,7 @@
 #' @export
 #' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' smoothLayer(x = mtq, var = 'P13_POP',
 #'             span = 4000, beta = 2, breaks = c(0,5000,seq(10000,110000,10000)),
@@ -71,6 +72,7 @@
 #'             author = "INSEE, 2016", sources = "")
 #' 
 #' \donttest{
+#' library(sp)
 #' data("nuts2006")
 #' # Potential of GDP
 #' smoothLayer(spdf = nuts3.spdf, df = nuts3.df,

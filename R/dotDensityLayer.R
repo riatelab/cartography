@@ -32,13 +32,14 @@
 #' @import sp
 #' @seealso \link{propSymbolsLayer}
 #' @examples
-#' data("nuts2006")
 #' # Example 1
+#' library(sp)
+#' data("nuts2006")
 #' plot(nuts0.spdf)
 #' dotDensityLayer(spdf = nuts0.spdf, df=nuts0.df,var="pop2008")
 #' 
-#' 
 #' # Example 2
+#' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' plot(st_geometry(mtq), col = "#B8704D50",border = "white")
 #' dotDensityLayer(x = mtq,  var="P13_POP", pch=20, col = "brown", n = 50)

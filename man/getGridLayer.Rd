@@ -27,6 +27,7 @@ A grid is returned as an sf object.
 Build a regular grid based on an sf object or a SpatialPolygonsDataFrame.
 }
 \examples{
+library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Plot dentsity of population 
 mtq$dens <- mtq$P13_POP / (st_area(mtq) / (1000 * 1000)) 
@@ -49,6 +50,7 @@ choroLayer(x = mygrid, var = "densitykm", breaks = bks,
 plot(st_geometry(mtq), lwd = 0.2, add=TRUE, border = "#ffffff75")
 
 \donttest{
+library(sp)
 data(nuts2006)
 nuts2.spdf@data = nuts2.df
 mygrid <- getGridLayer(x = nuts2.spdf, cellsize = 200000 * 200000, 
