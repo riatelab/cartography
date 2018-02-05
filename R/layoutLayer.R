@@ -133,7 +133,9 @@ layoutLayer <- function(title = "Title of the map, year",
          border = col, col = col)
   }
   text(x = x1s + delta / 2, 
-       y = y2 + ((xinch(1.2) * 0.2) - xinch(strheight(title, cex = 0.8, units = "inches", font = 2))) / 2,
+       y = y2 + ((xinch(1.2) * 0.2) - xinch(strheight(title, cex = 0.8, 
+                                                      units = "inches", 
+                                                      font = 2))) / 2,
        labels = title, adj = c(0,0),
        cex = size, col = coltitle, font = 2)
   par(xpd = FALSE)

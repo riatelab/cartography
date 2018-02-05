@@ -97,7 +97,8 @@
 propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   var, 
                                   inches = 0.3, fixmax = NULL, 
-                                  symbols = "circle", border = "grey20", lwd = 1,
+                                  symbols = "circle", border = "grey20", 
+                                  lwd = 1,
                                   var2, 
                                   breaks = NULL,  method="quantile",  
                                   nclass= NULL, 
@@ -125,8 +126,8 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   dots <- checkMergeOrder(x = x, var = var)
   
   # Color Management
-  layer <- choro(var = dots[[var2]], distr = breaks, col = col, nclass = nclass, 
-                 method = method)
+  layer <- choro(var = dots[[var2]], distr = breaks, col = col, 
+                 nclass = nclass, method = method)
   
   mycols <- as.vector(layer$colMap)
   

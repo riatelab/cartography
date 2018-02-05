@@ -99,7 +99,8 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
     }
     if (method == "q6")
     {
-      intervals <- as.vector(quantile(v,probs = c(0, 5, 27.5, 50, 72.5, 95, 100)/100))
+      intervals <- as.vector(quantile(v, probs = 
+                                        c(0, 5, 27.5, 50, 72.5, 95, 100)/100))
     }
     if (method == "em"){
       t <- bitwAnd(nclass,(nclass-1))

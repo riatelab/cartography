@@ -111,9 +111,11 @@ propTrianglesLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   dots$yy1a<-dots$y
   dots$yy1b<-dots$y+dots$size1/2
   dots$yy1c<-dots$y
-  for (i in 1:length(dots$x)){polygon(c(dots$xx1a[i],dots$xx1b[i],dots$xx1c[i]), 
-                                      c(dots$yy1a[i],dots$yy1b[i],dots$yy1c[i]), 
-                                      col = col1, border = "#DDDDDD")}
+  for (i in 1:length(dots$x)){
+    polygon(c(dots$xx1a[i],dots$xx1b[i],dots$xx1c[i]), 
+            c(dots$yy1a[i],dots$yy1b[i],dots$yy1c[i]), 
+            col = col1, border = "#DDDDDD")
+  }
   
   # TRIANGLE BOTTOM
   dots$size2 <-  sqrt(dots[,var2]*k* sfdc / sc /2)
@@ -125,9 +127,11 @@ propTrianglesLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   dots$yy1a<-dots$y
   dots$yy1b<-dots$y-dots$size2/2
   dots$yy1c<-dots$y
-  for (i in 1:length(dots$x)){polygon(c(dots$xx1a[i],dots$xx1b[i],dots$xx1c[i]), 
-                                      c(dots$yy1a[i],dots$yy1b[i],dots$yy1c[i]), 
-                                      col = col2, border = "#DDDDDD")}
+  for (i in 1:length(dots$x)){
+    polygon(c(dots$xx1a[i],dots$xx1b[i],dots$xx1c[i]), 
+            c(dots$yy1a[i],dots$yy1b[i],dots$yy1c[i]), 
+            col = col2, border = "#DDDDDD")
+  }
   
   
   if(legend.pos!="n"){

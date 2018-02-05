@@ -95,8 +95,10 @@ discLayer <- function(x, df, dfid = NULL, var,
   if (is.null(dfid)){dfid <- names(df)[1]}
   df <- data.frame(df)
   # Join (1 and 2)
-  x <- merge(x, df[,c(dfid, var)], by.x = names(x)[3], by.y = dfid, all.x = TRUE)
-  x <- merge(x, df[,c(dfid, var)], by.x = names(x)[3], by.y = dfid, all.x = TRUE)
+  x <- merge(x, df[,c(dfid, var)], by.x = names(x)[3], by.y = dfid, 
+             all.x = TRUE)
+  x <- merge(x, df[,c(dfid, var)], by.x = names(x)[3], by.y = dfid, 
+             all.x = TRUE)
   names(x)[4:5] <- c('var1', 'var2')
   
   # elimination des valeurs manquantes

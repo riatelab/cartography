@@ -86,7 +86,8 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                               legend.var2.frame = FALSE,
                               add = TRUE, 
                               spdf, spdfid, spdfids, spdfide, dfids, dfide){
-  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), missing(spdfide), missing(dfids), missing(dfide))) != 6){
+  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), missing(spdfide), 
+           missing(dfids), missing(dfide))) != 6){
     stop("spdf, spdfid, spdfids, spdfide, dfids and dfide are defunct arguments; last used in version 1.4.2.",
          call. = FALSE)
   }

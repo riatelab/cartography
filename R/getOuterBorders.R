@@ -42,10 +42,12 @@
 #' }
 #' @seealso \link{discLayer}, \link{getBorders}
 #' @export
-getOuterBorders <- function(x, id, res = NULL, width = NULL, spdf, spdfid = NULL){
+getOuterBorders <- function(x, id, res = NULL, width = NULL, 
+                            spdf, spdfid = NULL){
   
   if(sum(missing(spdf), is.null(spdfid)) != 2){
-    warning("spdf and spdfid are deprecated; use x and id instead.", call. = FALSE)
+    warning("spdf and spdfid are deprecated; use x and id instead.", 
+            call. = FALSE)
   }
   
   if(!missing(x)){
@@ -109,7 +111,8 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL, spdf, spdfid = NULL
   
   
   # calculate coordinates of the nearest Non-NA pixel
-  # assume that we have a orthogonal, projected CRS, so we can use (Pythagorean) calculations
+  # assume that we have a orthogonal, projected CRS, 
+  # so we can use (Pythagorean) calculations
   co.x <- na.x + dist * sin(direct)
   co.y <- na.y + dist * cos(direct)
   

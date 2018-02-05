@@ -23,7 +23,8 @@
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' plot(st_geometry(mtq), col = "grey60", border = "grey20")
 #' barscale(style = "oldschool")
-barscale <- function(size = NULL, lwd = 1.5, cex = 0.6, pos = NULL, style="pretty"){
+barscale <- function(size = NULL, lwd = 1.5, cex = 0.6, pos = NULL, 
+                     style="pretty"){
   # size = 10
   mapExtent <- par()$usr
   x <- mapExtent[1:2]
@@ -61,13 +62,16 @@ barscale <- function(size = NULL, lwd = 1.5, cex = 0.6, pos = NULL, style="prett
                 paste(labelscale,"\n",sep=""), cex = cex)
          }, 
          oldschool = {
-           rect(x[2] - size - inset/2, y[1]+inset, x[2]-inset/2, y[1]+(y[2]-y[1])/200+inset/2,
+           rect(x[2] - size - inset/2, y[1]+inset, 
+                x[2]-inset/2, y[1]+(y[2]-y[1])/200+inset/2,
                 col = "black", border = "black")
            rect(x[2] - size - inset/2, y[1]+inset, x[2]-inset/2-size/2, 
                 y[1]+(y[2]-y[1])/200+inset/2, col = "white", border = "black")
            rect(x[2] - size - inset/2, y[1]+inset, x[2]-inset/2-size+
-                  size/4, y[1]+(y[2]-y[1])/200+inset/2, col = "black", border = "black")
-           rect(x[2] - size / 4 - inset/2, y[1]+inset, x[2]-inset/2, y[1]+(y[2]-y[1])/200+
+                  size/4, y[1]+(y[2]-y[1])/200+inset/2, col = "black", 
+                border = "black")
+           rect(x[2] - size / 4 - inset/2, 
+                y[1]+inset, x[2]-inset/2, y[1]+(y[2]-y[1])/200+
                   inset/2, col = "white", border = "black")
            text(x[2] - size / 2 - inset/2,y[1]+(y[2]-y[1])/200+inset,
                 paste(labelscale,"\n",sep=""),cex=0.6)

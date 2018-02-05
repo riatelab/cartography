@@ -61,7 +61,8 @@
 #'             author = "", sources = "",
 #'             scale = NULL, col = NA, coltitle = "black",
 #'             frame = FALSE, south = TRUE)
-labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",
+labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
+                       col = "black",
                         cex = 0.7, overlap = TRUE, show.lines = TRUE, 
                         halo = FALSE, bg = "white", r = 0.1, ...){
   if (missing(x)){
@@ -71,7 +72,7 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "blac
     x <- sf::st_as_sf(x)
   }
   
-  words = x[[txt]]
+  words <- x[[txt]]
   cc <- sf::st_coordinates(sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON"))))
   
   if (!overlap){

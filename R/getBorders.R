@@ -55,7 +55,8 @@ getBorders <- function(x, id, spdf, spdfid = NULL){
   }
   
   if(sum(missing(spdf), is.null(spdfid)) != 2){
-    warning("spdf and spdfid are deprecated; use x and id instead.", call. = FALSE)
+    warning("spdf and spdfid are deprecated; use x and id instead.", 
+            call. = FALSE)
   }
   
   
