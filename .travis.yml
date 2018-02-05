@@ -19,6 +19,7 @@ before_install:
 warnings_are_errors: true
 
 r_packages:
+  - devtools
   - sp
   - rgdal
   - roxygen2
