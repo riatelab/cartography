@@ -166,7 +166,7 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                 values.cex = legend.values.cex,
                                 var = c(min(dots[[var]]),max(dots[[var]])),
                                 inches = inches,
-                                col = col,
+                                col = col, lwd = lwd, border = border,
                                 frame = legend.frame,
                                 values.rnd =  legend.values.rnd,
                                 style = legend.style)

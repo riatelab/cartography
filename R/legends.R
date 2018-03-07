@@ -292,6 +292,8 @@ legendTypo <- function(pos = "topleft",
 #' @param values.rnd number of decimal places of the values in 
 #' the legend.
 #' @param col color of symbols.
+#' @param border color of the borders.
+#' @param lwd width of th borders.
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
@@ -324,7 +326,7 @@ legendTypo <- function(pos = "topleft",
 #'                      var = c(min(nuts0.df$pop2008),max(nuts0.df$pop2008)),
 #'                      inches = 0.2, frame = TRUE)
 legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legend", 
-                                title.cex = 0.8, cex = 1,
+                                title.cex = 0.8, cex = 1, border="black", lwd=1,
                                 values.cex = 0.6, var, inches, col="#E84923", 
                                 frame=FALSE, values.rnd=0, style ="c"){
   var <- abs(var)
@@ -387,9 +389,9 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   if(style=="c"){
     for(i in 1:length(size)){
       symbols(x = xref + size[1], y = yref + size[i], circles = size[i],
-              add = TRUE, bg = col, inches = FALSE)
+              add = TRUE, bg = col, inches = FALSE, lwd=lwd, fg=border)
       segments(xref + size[1], yref + size[i] * 2, xref + size[1] * 2 + delta2,
-               yref + size[i] * 2)
+               yref + size[i] * 2, lwd=0.7)
       text(x = xref + size[1] * 2 + delta1, y = yref + size[i] * 2, 
            labels = var[i], adj = c(0,0.5), cex = values.cex)
     }
@@ -401,7 +403,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     jump <- 0
     for(i in length(size):1){
       symbols(x = xref + size[1], y = yref + size[i] + jump, circles = size[i],
-              add = TRUE, bg = col, inches=FALSE)
+              add = TRUE, bg = col, inches=FALSE, lwd=lwd, fg=border)
       text(xref + size[1] + size[i] + delta2 , y = yref + size[i] + jump,
            labels = var[i], adj = c(0,0.5), cex = values.cex)
       jump <- jump + size[i] * 2 + delta2 / 2

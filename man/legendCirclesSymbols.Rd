@@ -5,8 +5,9 @@
 \title{Legend for Proportional Circles Maps}
 \usage{
 legendCirclesSymbols(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, cex = 1, values.cex = 0.6, var, inches,
-  col = "#E84923", frame = FALSE, values.rnd = 0, style = "c")
+  title.cex = 0.8, cex = 1, border = "black", lwd = 1,
+  values.cex = 0.6, var, inches, col = "#E84923", frame = FALSE,
+  values.rnd = 0, style = "c")
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
@@ -18,6 +19,10 @@ vector of two coordinates in map units (c(x, y)).}
 \item{title.cex}{size of the legend title.}
 
 \item{cex}{size of the legend. 2 means two times bigger.}
+
+\item{border}{color of the borders.}
+
+\item{lwd}{width of th borders.}
 
 \item{values.cex}{size of the values in the legend.}
 
