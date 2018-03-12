@@ -133,6 +133,7 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   sizes <- sizer(dots = dots, inches = inches, var = var, 
                  fixmax = fixmax, symbols = symbols)
   
+  
   # size and values for legend, hollow circle (fixmax case)
   sizeMax <- max(sizes)
   if (inches <= sizeMax){
@@ -166,7 +167,7 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                 values.cex = legend.values.cex,
                                 var = c(min(dots[[var]]),max(dots[[var]])),
                                 inches = inches,
-                                col = col, lwd = lwd, border = border,
+                                col = col, lwd = lwd,
                                 frame = legend.frame,
                                 values.rnd =  legend.values.rnd,
                                 style = legend.style)
@@ -180,7 +181,7 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                 values.cex = legend.values.cex,
                                 var = c(min(dots[[var]]),max(dots[[var]])),
                                 inches = inches,
-                                col = col,
+                                col = col, lwd = lwd, 
                                 frame = legend.frame,
                                 values.rnd =  legend.values.rnd,
                                 style = legend.style)
@@ -196,7 +197,7 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              values.cex = legend.values.cex,
                              var = c(min(dots[[var]]),max(dots[[var]])),
                              inches = inches,
-                             col = col,
+                             col = col, lwd = lwd,
                              frame = legend.frame,
                              values.rnd =  legend.values.rnd,
                              style = legend.style)

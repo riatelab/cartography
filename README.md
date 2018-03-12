@@ -12,7 +12,7 @@
 [![Cartographic Mix](https://raw.githubusercontent.com/riatelab/cartography/master/img/map8.png "click on the map to see the code")](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68)  
 
 This package allows various **cartographic representations** such as proportional 
-symbols, chroropleth, typology, flows or discontinuities maps. It also offers 
+symbols, choropleth, typology, flows or discontinuities maps. It also offers 
 several features enhancing the graphic presentation of maps: cartographic palettes, 
 layout elements (scale, north arrow, title...), labels, legends or access to 
 some cartographic APIs.

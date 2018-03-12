@@ -293,7 +293,7 @@ legendTypo <- function(pos = "topleft",
 #' the legend.
 #' @param col color of symbols.
 #' @param border color of the borders.
-#' @param lwd width of th borders.
+#' @param lwd width of the borders.
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
@@ -372,7 +372,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   }
   
   # Get legend position
-  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, 
+                     y1 = y1, y2 = y2,
                      delta1 = delta1, delta2 = delta2,
                      legend_xsize = legend_xsize, 
                      legend_ysize = legend_ysize)
@@ -391,7 +392,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
       symbols(x = xref + size[1], y = yref + size[i], circles = size[i],
               add = TRUE, bg = col, inches = FALSE, lwd=lwd, fg=border)
       segments(xref + size[1], yref + size[i] * 2, xref + size[1] * 2 + delta2,
-               yref + size[i] * 2, lwd=0.7)
+               yref + size[i] * 2, col = border)
       text(x = xref + size[1] * 2 + delta1, y = yref + size[i] * 2, 
            labels = var[i], adj = c(0,0.5), cex = values.cex)
     }
@@ -430,6 +431,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @param values.rnd number of decimal places of the values in 
 #' the legend.
 #' @param col color of symbols.
+#' @param border color of the borders.
+#' @param lwd width of the borders.
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
@@ -449,7 +452,7 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #'                      frame=TRUE, values.rnd=0, style ="c")
 #'
 legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legend", 
-                                title.cex = 0.8, cex = 1,
+                                title.cex = 0.8, cex = 1,  border="black", lwd=1,
                                 values.cex = 0.6, var, inches, 
                                 col="red", frame=FALSE, values.rnd=0, style ="c"){
   
@@ -514,9 +517,10 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   if (style=="c"){
     for(i in 1:length(size)){
       symbols(x = xref + size[i] / 2 + (size[1]-size[i]), y = yref + size[i] / 2, 
-              squares = size[i], add = TRUE, bg = col, inches = FALSE)
+              squares = size[i], add = TRUE, bg = col, inches = FALSE, lwd=lwd, 
+              fg=border)
       segments(xref + size[1], yref + size[i], xref + size[1] + delta2, 
-               yref + size[i])
+               yref + size[i], lwd = 0.7, col = border)
       text(x = xref + size[1] + delta1 ,y = yref + size[i], labels = var[i], 
            adj = c(0,0.5), cex = values.cex)
     }
@@ -528,7 +532,8 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
     jump <- min(size) / 2
     for(i in length(size):1){
       symbols(x = xref + size[i] / 2 + (size[1] - size[i]) / 2, y = yref + jump, 
-              squares = size[i], add = TRUE, bg = col, inches = FALSE)
+              squares = size[i], add = TRUE, bg = col, inches = FALSE, lwd=lwd, 
+              fg=border)
       text(xref + size[i] + (size[1] - size[i]) / 2 + delta2,
            y = yref + jump, var[i], adj = c(0, 0.5), cex = values.cex)
       jump <- size[i] / 2 +  size[i - 1] / 2 + jump  + delta2
@@ -555,6 +560,8 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @param values.rnd number of decimal places of the values in 
 #' the legend.
 #' @param col color of symbols.
+#' @param border color of the borders.
+#' @param lwd width of the borders.
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
@@ -573,7 +580,8 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #'                      col = "purple",
 #'                      values.rnd=0, style ="e")
 legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend", 
-                             title.cex = 0.8, cex = 1, values.cex = 0.6, 
+                             title.cex = 0.8, cex = 1,  border="black", lwd=1,
+                             values.cex = 0.6, 
                              var, inches, col = "red", frame = FALSE, 
                              values.rnd = 0, style = "c"){
   var <- abs(var)
@@ -636,9 +644,10 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
   
   if (style=="c"){
     for(i in 1:length(size)){
-      rect(xref, yref, xref + bwidth, yref + size[i] ,col = col)
+      rect(xref, yref, xref + bwidth, yref + size[i], col = col, lwd = lwd, 
+           border = border)
       segments(xref + bwidth, yref + size[i], 
-               xref + bwidth + delta2, yref + size[i])
+               xref + bwidth + delta2, yref + size[i], lwd = 0.7, col = border)
       text(xref + bwidth + delta1, y = yref + size[i], labels = var[i], 
            adj = c(0,0.5), cex = values.cex)
     }
@@ -649,8 +658,8 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
   if (style=="e"){
     jump <- 0
     for(i in length(size):1){
-      rect(xref, yref + jump, xref + bwidth, yref + size[i] + jump,
-           col = col)
+      rect(xref, yref + jump, xref + bwidth, yref + size[i] + jump, lwd = lwd, 
+           border = border, col = col)
       text(xref + bwidth + delta2 ,y = yref + jump + size[i]/2,labels = var[i],
            adj = c(0,0.5), cex = values.cex)
       jump <- size[i] + delta2 + jump

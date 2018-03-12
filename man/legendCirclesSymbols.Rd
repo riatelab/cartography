@@ -22,7 +22,7 @@ vector of two coordinates in map units (c(x, y)).}
 
 \item{border}{color of the borders.}
 
-\item{lwd}{width of th borders.}
+\item{lwd}{width of the borders.}
 
 \item{values.cex}{size of the values in the legend.}
 
