@@ -2,7 +2,6 @@
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
 [![Travis-CI Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
-[![Build status](https://ci.appveyor.com/api/projects/status/9kjyos8jxicc02xs?svg=true)](https://ci.appveyor.com/project/rCarto/cartography)
 ![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
 [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
  
