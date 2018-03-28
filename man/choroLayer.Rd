@@ -2,6 +2,7 @@
 % Please edit documentation in R/choroLayer.R
 \name{choroLayer}
 \alias{choroLayer}
+\alias{ct_choro}
 \title{Choropleth Layer}
 \usage{
 choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, breaks = NULL,

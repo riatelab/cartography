@@ -2,6 +2,7 @@
 % Please edit documentation in R/labelLayer.R
 \name{labelLayer}
 \alias{labelLayer}
+\alias{ct_label}
 \title{Label Layer}
 \usage{
 labelLayer(x, spdf, df, spdfid = NULL, dfid = NULL, txt, col = "black",

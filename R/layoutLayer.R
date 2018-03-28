@@ -20,7 +20,8 @@
 #' col and coltitle are set according to the chosen palette. 
 #' @details If extent is not set, plot.new has to be called first.\cr
 #' The size of the title box in layoutLayer is fixed to 1.2 lines height.
-#' @export
+#' @export layoutLayer ct_layout
+#' @aliases ct_layout
 #' @seealso \link{labelLayer}
 #' @examples
 #' # Example 1
@@ -144,3 +145,4 @@ layoutLayer <- function(title = "Title of the map, year",
   text(x1 + delta / 2, y1 + delta / 2, paste(sources, author, sep = "\n"),
        adj = c(0,0), cex = 0.6, font = 3)
 }
+ct_layout <- layoutLayer

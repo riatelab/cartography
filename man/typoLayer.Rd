@@ -2,6 +2,7 @@
 % Please edit documentation in R/typoLayer.R
 \name{typoLayer}
 \alias{typoLayer}
+\alias{ct_typo}
 \title{Typology Layer}
 \usage{
 typoLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, col = NULL,

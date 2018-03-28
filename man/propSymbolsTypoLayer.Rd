@@ -2,6 +2,7 @@
 % Please edit documentation in R/propSymbolsTypoLayer.R
 \name{propSymbolsTypoLayer}
 \alias{propSymbolsTypoLayer}
+\alias{ct_proptypo}
 \title{Proportional Symbols Typo Layer}
 \usage{
 propSymbolsTypoLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
