@@ -44,8 +44,7 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or
 #' not (FALSE).
 #' @param colNA no data color. 
-#' @export propSymbolsTypoLayer ct_proptypo
-#' @aliases ct_proptypo
+#' @export
 #' @import sp
 #' @seealso \link{legendBarsSymbols}, \link{legendTypo},
 #' \link{legendCirclesSymbols}, \link{legendSquaresSymbols},
@@ -227,4 +226,3 @@ propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                nodata.txt = legend.var2.nodata)
   }
 }
-ct_proptypo <- propSymbolsTypoLayer

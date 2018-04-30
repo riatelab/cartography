@@ -2,7 +2,6 @@
 % Please edit documentation in R/layoutLayer.R
 \name{layoutLayer}
 \alias{layoutLayer}
-\alias{ct_layout}
 \title{Layout Layer}
 \usage{
 layoutLayer(title = "Title of the map, year", sources = "Source(s)",

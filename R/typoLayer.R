@@ -29,8 +29,7 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
-#' @export typoLayer ct_typo
-#' @aliases ct_typo
+#' @export
 #' @import sf
 #' @examples
 #' ## Example 1
@@ -108,4 +107,3 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
              nodata.txt = legend.nodata)
   
 }
-ct_typo <- typoLayer

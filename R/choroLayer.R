@@ -50,8 +50,7 @@
 #' \emph{The Choice of a Class Interval }», Journal of the American Statistical 
 #' Association, vol. 21, n° 153, mars 1926, p. 65-66.
 #' @seealso \link{getBreaks}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
-#' @export choroLayer ct_choro
-#' @aliases ct_choro
+#' @export
 #' @examples
 #' ## Example 1
 #' library(sp)
@@ -146,4 +145,3 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   
   
 }
-ct_choro <- choroLayer

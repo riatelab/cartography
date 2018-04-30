@@ -2,7 +2,6 @@
 % Please edit documentation in R/propSymbolsLayer.R
 \name{propSymbolsLayer}
 \alias{propSymbolsLayer}
-\alias{ct_prop}
 \title{Proportional Symbols Layer}
 \usage{
 propSymbolsLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,

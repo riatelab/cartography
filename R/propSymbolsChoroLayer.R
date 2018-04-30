@@ -89,8 +89,7 @@
 #'             scale = NULL,col = NA, coltitle = "black",
 #'             author = "INSEE, 2016", sources = "",
 #'             frame = FALSE)
-#' @export propSymbolsChoroLayer ct_propchoro
-#' @aliases ct_propchoro
+#' @export
 #' @seealso \link{legendBarsSymbols}, \link{legendChoro}, 
 #' \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
 #' \link{choroLayer}, \link{propSymbolsLayer}
@@ -235,4 +234,3 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
               nodata = nodata, nodata.col = colNA,
               nodata.txt = legend.var2.nodata)
 }
-ct_propchoro <- propSymbolsChoroLayer

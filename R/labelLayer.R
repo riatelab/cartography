@@ -25,8 +25,7 @@
 #' for those words not covering their x,y coordinate
 #' @seealso \link{layoutLayer}
 #' @import sp
-#' @export labelLayer ct_label
-#' @aliases ct_label
+#' @export
 #' @examples
 #' library(sf)
 #' opar <- par(mar = c(0,0,0,0))
@@ -106,4 +105,3 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
     text(x = cc[,1], y = cc[,2], labels = words, cex = cex, col = col, ...)
   }
 }
-ct_label <- labelLayer

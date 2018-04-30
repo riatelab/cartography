@@ -2,7 +2,6 @@
 % Please edit documentation in R/propSymbolsChoroLayer.R
 \name{propSymbolsChoroLayer}
 \alias{propSymbolsChoroLayer}
-\alias{ct_propchoro}
 \title{Proportional and Choropleth Symbols Layer}
 \usage{
 propSymbolsChoroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,

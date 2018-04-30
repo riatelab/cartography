@@ -37,8 +37,7 @@
 #' @param col2 defunct.
 #' @details  
 #' Two maps with the same inches and fixmax parameters will be comparable.
-#' @export propSymbolsLayer ct_prop
-#' @aliases ct_prop
+#' @export 
 #' @seealso \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 
 #' \link{legendSquaresSymbols}, \link{propSymbolsChoroLayer}, 
 #' \link{propSymbolsTypoLayer}
@@ -205,4 +204,3 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
          })
   
 }
-ct_prop <- propSymbolsLayer
