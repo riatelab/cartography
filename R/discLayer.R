@@ -127,7 +127,7 @@ discLayer <- function(x, df, dfid = NULL, var,
   x$sizesMap <- sizes[(findInterval(x$disc,distr,all.inside=TRUE))]
   
   # Cartographie
-  plot(st_geometry(x), col = col, lwd = x$sizesMap, add = add)
+  plot(sf::st_geometry(x), col = col, lwd = x$sizesMap, add = add)
   
   # Legend
   legendGradLines(pos = legend.pos, title.txt = legend.title.txt, 

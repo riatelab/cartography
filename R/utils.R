@@ -250,8 +250,6 @@ NULL
 #' @param rstep rstep
 #' @param ... other stuf
 #' @return coords
-#' @import graphics
-#' @import stats
 #' @noRd
 wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
                        xlim=c(-Inf,Inf), ylim=c(-Inf,Inf), 
@@ -333,3 +331,13 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
   }
   text(x, y, labels, col=col, ... )
 }
+
+
+# import stuffs
+#' @importFrom graphics image legend lines par plot.new
+#'             plot.window points polygon rect segments
+#'             strheight strwidth symbols text title 
+#'             xinch yinch plot
+#' @importFrom stats aggregate na.omit quantile runif sd
+
+NULL

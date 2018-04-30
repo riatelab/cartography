@@ -30,7 +30,6 @@
 #' not (FALSE).
 #' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
 #' @export
-#' @import sf
 #' @examples
 #' ## Example 1
 #' library(sp)

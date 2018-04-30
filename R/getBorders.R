@@ -36,9 +36,6 @@
 #'      col = sample(x = rainbow(nrow(nuts0.contig))), 
 #'      lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}, \link{getOuterBorders}
-#' @import rgeos
-#' @import sp
-#' @import sf
 #' @export
 getBorders <- function(x, id, spdf, spdfid = NULL){
   if(missing(x)){
@@ -60,10 +57,10 @@ getBorders <- function(x, id, spdf, spdfid = NULL){
   }
   
   
-  st_geometry(x) <-  st_buffer(x = st_geometry(x), 1, nQuadSegs = 5)
-  lx <- st_cast(x, "MULTILINESTRING")
+  sf::st_geometry(x) <-  sf::st_buffer(x = sf::st_geometry(x), 1, nQuadSegs = 5)
+  lx <- sf::st_cast(x, "MULTILINESTRING")
   
-  l <- st_intersects(x,x, sparse = F)
+  l <- sf::st_intersects(x,x, sparse = F)
   colnames(l) <- x[[id]]
   rownames(l) <- x[[id]]
   l <- lower.tri(l) * l
@@ -90,16 +87,16 @@ getBorders <- function(x, id, spdf, spdfid = NULL){
     for (j in 1:length(myl[[i]])) {
       id2 <- myl[[i]][[j]]
       po <- x[x[[id]] == id2, ]
-      Inter <- st_intersection(st_geometry(li), st_geometry(po))
+      Inter <- sf::st_intersection(sf::st_geometry(li), sf::st_geometry(po))
       df[ind,] <- c(paste0(id1,"_",id2), id1, id2)
       lgeo[[ind]]   <- Inter[[1]]
       ind <- ind + 1
     }
   }
   
-  df <- st_sf(df, geometry = st_sfc(lgeo))
-  df <- st_cast(x = df, to = "MULTILINESTRING")
-  st_crs(df) <- st_crs(x)
+  df <- sf::st_sf(df, geometry = sf::st_sfc(lgeo))
+  df <- sf::st_cast(x = df, to = "MULTILINESTRING")
+  sf::st_set_crs(df, sf::st_crs(x))
   
   df2 <- df[, c(1,3,2)]
   

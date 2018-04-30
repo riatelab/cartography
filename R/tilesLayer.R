@@ -46,3 +46,4 @@ tilesLayer <- function(x, add = FALSE){
                   maxpixels = raster::ncell(x), 
                   add  = TRUE)
 }
+

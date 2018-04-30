@@ -9,8 +9,6 @@
 #' @param spdfid deprecated, identifier field in spdf, default to the first column 
 #' of the spdf data frame.  (optional)
 #' @return A grid is returned as an sf object.
-#' @import sp
-#' @import sf
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
@@ -109,12 +107,12 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
   # split parts
   l <- split(parts,  parts[[1]])
   # aggregate each parts
-  a <- lapply(l, FUN = function(x){st_buffer(st_union(x), dist = 0.0000001)})
+  a <- lapply(l, FUN = function(x){sf::st_buffer(sf::st_union(x), dist = 0.0000001)})
   # only polygons on   # bind all parts
-  geometry <- st_cast(do.call(c, a))
+  geometry <- sf::st_cast(do.call(c, a))
   # full sf 
-  grid <- st_sf(geometry, id = names(l))
-  grid$gridarea <- st_area(x = grid)
+  grid <- sf::st_sf(geometry, id = names(l))
+  grid$gridarea <- sf::st_area(x = grid)
   
   grid <- merge(grid, v, by = "id", all.x = T)
   return(grid)
@@ -125,15 +123,15 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
 getGridSquare <- function(x, cellsize){
   # cellsize transform
   cellsize <- sqrt(cellsize)
-  boundingBox <- st_bbox(x)
+  boundingBox <- sf::st_bbox(x)
   rounder <- boundingBox[1:2] %% cellsize
   boundingBox[1] <- boundingBox[1] - rounder[1]
   boundingBox[2] <- boundingBox[2] - rounder[2]
   n <- unname(c(ceiling(diff(boundingBox[c(1, 3)]) / cellsize), 
                 ceiling(diff(boundingBox[c(2, 4)]) / cellsize)))
-  grid <- st_make_grid(cellsize = cellsize, offset = boundingBox[1:2], n = n,
-                       crs = st_crs(x))
-  grid <- st_sf(id_cell=1:length(grid), geometry = grid)
+  grid <- sf::st_make_grid(cellsize = cellsize, offset = boundingBox[1:2], n = n,
+                       crs = sf::st_crs(x))
+  grid <- sf::st_sf(id_cell=1:length(grid), geometry = grid)
   # grid$id_cell <- 1:nrow(grid)
   row.names(grid) <- grid$id_cell
   return(grid)
@@ -176,6 +174,7 @@ getGridHexa <- function(x, cellsize){
   return(grid)
 }
 
+
 #' @title Compute Data for a Grid Layer
 #' @name getGridData
 #' @description Defunct
@@ -187,3 +186,4 @@ getGridHexa <- function(x, cellsize){
 getGridData <- function(x, df, dfid = NULL, var){
   .Defunct(msg = "This function is defunct, use getGridLayer instead.")
 }
+

@@ -45,7 +45,6 @@
 #' not (FALSE).
 #' @param colNA no data color. 
 #' @export
-#' @import sp
 #' @seealso \link{legendBarsSymbols}, \link{legendTypo},
 #' \link{legendCirclesSymbols}, \link{legendSquaresSymbols},
 #' \link{typoLayer}, \link{propSymbolsLayer}

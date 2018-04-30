@@ -130,7 +130,7 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
   
   
   pBBorder <- getBorders(x = pB, id = "id" )
-  result <- st_simplify(x=pBBorder, dTolerance = res, preserveTopology = F)
+  result <- sf::st_simplify(x=pBBorder, dTolerance = res, preserveTopology = F)
   row.names(result) <- paste0(row.names(result), "_o")
   
   

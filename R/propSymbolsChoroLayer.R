@@ -93,7 +93,6 @@
 #' @seealso \link{legendBarsSymbols}, \link{legendChoro}, 
 #' \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
 #' \link{choroLayer}, \link{propSymbolsLayer}
-#' @import sp
 propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   var, 
                                   inches = 0.3, fixmax = NULL, 

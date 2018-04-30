@@ -29,7 +29,6 @@
 #' If an error occurred, increase this value.\cr
 #' The type parameters is defined within the \link{spsample} function.
 #' @export
-#' @import sp
 #' @seealso \link{propSymbolsLayer}
 #' @examples
 #' # Example 1
@@ -82,7 +81,7 @@ dotDensityLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   }
   
   for (i in 1:nrow(spdf)){
-    plot(spsample(spdf[i,], n = spdf@data[i,"ndots"], type = type, 
+    sp::plot(sp::spsample(spdf[i,], n = spdf@data[i,"ndots"], type = type, 
                   iter = iter), pch = pch, cex= cex , col=col, 
          add=TRUE)
   }

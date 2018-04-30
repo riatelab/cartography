@@ -57,8 +57,6 @@
 #' abline(v = moy + 0.5 * sd, col = "blue", lwd = 3)
 #' abline(v = moy - 0.5 * sd, col = "blue", lwd = 3)
 #' @return A numeric vector of breaks
-#' @import classInt
-#' @import stats
 #' @export
 getBreaks <- function(v, nclass = NULL, method = "quantile", 
                       k = 1, middle = FALSE){

@@ -43,7 +43,6 @@
 #' @param dfids defunct.
 #' @param dfide defunct.
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
-#' @import sp
 #' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
 #' @examples 
 #' library(sp)
@@ -131,7 +130,7 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
   }
   
   # map
-  plot(st_geometry(link), col = mycols ,lwd = lwdMap, add = add)
+  plot(sf::st_geometry(link), col = mycols ,lwd = lwdMap, add = add)
   
   # legend links
   legendGradLines(pos = legend.var.pos, 

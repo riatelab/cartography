@@ -41,7 +41,6 @@
 #' @seealso \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 
 #' \link{legendSquaresSymbols}, \link{propSymbolsChoroLayer}, 
 #' \link{propSymbolsTypoLayer}
-#' @import sp
 #' @examples
 #' ## Example 1
 #' library(sf)

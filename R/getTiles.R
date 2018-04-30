@@ -19,7 +19,6 @@
 #' Use directly the \href{https://CRAN.R-project.org/package=rosm}{rosm} package to have a finer control over  
 #' extraction and display parameters.
 #' @export
-#' @import sp
 #' @return A RatserBrick is returned.
 #' @seealso \link{tilesLayer}
 #' @examples

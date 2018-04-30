@@ -24,7 +24,6 @@
 #' @param show.lines if TRUE, then lines are plotted between x,y and the word, 
 #' for those words not covering their x,y coordinate
 #' @seealso \link{layoutLayer}
-#' @import sp
 #' @export
 #' @examples
 #' library(sf)

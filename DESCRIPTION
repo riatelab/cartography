@@ -1,7 +1,6 @@
 Package: cartography
 Title: Thematic Cartography
 Version: 2.0.3
-Date: 2018-04-30
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut")),
@@ -15,10 +14,10 @@ URL: https://github.com/riatelab/cartography/
 BugReports: https://github.com/riatelab/cartography/issues/
 LazyData: true
 Depends: R (>= 3.3.0)
-Imports: classInt, stats, graphics, methods, rgeos, rosm, raster, Rcpp, sp (>= 1.2-4), sf (>= 0.5-4) 
+Imports: classInt, stats, graphics, methods, rosm, raster, Rcpp, sp (>= 1.2-4), sf (>= 0.5-4) 
 Suggests: SpatialPosition, knitr, rmarkdown, rgdal
 LinkingTo: Rcpp
 VignetteBuilder: knitr
-SystemRequirements: GDAL (>= 2.0.0), GEOS (>= 3.3.0), PROJ.4 (>= 4.8.0)
+SystemRequirements: GDAL (>= 2.0.0), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
 Encoding: UTF-8
 RoxygenNote: 6.0.1

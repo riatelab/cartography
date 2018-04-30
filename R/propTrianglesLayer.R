@@ -33,7 +33,6 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @export
-#' @import sp
 #' @seealso \link{legendPropTriangles}
 #' @examples
 #' # Example 1
@@ -80,7 +79,7 @@ propTrianglesLayer <- function(spdf, df, spdfid = NULL, dfid = NULL,
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
   
-  dots <- cbind(spdf@data[, spdfid], as.data.frame(coordinates(spdf)))
+  dots <- cbind(spdf@data[, spdfid], as.data.frame(sp::coordinates(spdf)))
   colnames(dots) <- c(spdfid,"x","y")
   dots <- data.frame(dots, df[match(dots[,spdfid], df[,dfid]),])
   dots <- dots[,c(spdfid,"x","y", var1, var2)]
