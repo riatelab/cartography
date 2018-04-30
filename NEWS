@@ -1,3 +1,21 @@
+cartography version 2.1.0 (Release date: 2018-04-29)
+==============
+
+Major changes:
+
+- sp and sf goes from Depends to Import, this implies the need to use library(sf) or library(sp) before using most of cartography functions. 
+- rgeos is not used anymore
+- packages sp, sf, graphics, stats, classInt and graphics are no more fully imported in the namespace
+
+Minor changes:
+
+- a lot of typos and mis-spelled words have been corrected
+- propSymbols*Layer legends use the lwd argument
+- LegendProp* have gained a border and an lwd argument
+
+
+
+
 cartography version 2.0.2 (Release date: 2017-11-13)
 ==============
 
