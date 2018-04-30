@@ -1,7 +1,7 @@
 Package: cartography
 Title: Thematic Cartography
-Version: 2.0.2.9000
-Date: 2018-01-30
+Version: 2.0.3
+Date: 2018-04-30
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut")),

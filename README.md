@@ -138,7 +138,6 @@ install.packages("cartography")
 * [tmap](https://github.com/mtennekes/tmap)    
 * [ggplot2](https://github.com/tidyverse/ggplot2)     
 * [ggmap](https://github.com/dkahle/ggmap)    
-* [rworldmap](https://github.com/AndySouth/rworldmap/)
 
 
 ## Community Guidelines
