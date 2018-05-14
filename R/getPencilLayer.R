@@ -1,0 +1,41 @@
+#' @title Pencil Layer
+#' @name getPencilLayer
+#' @description Create a pencil layer. This function transforms a POLYGON or 
+#' MULTIPOLYGON sf object into a MULTILINESTRING.
+#' @param x an sf object, a simple feature collection (POLYGON or MULTIPOLYGON).  
+#' @param size density of the penciling.
+#' @param buffer buffer around each polygon. This buffer is used to take sample 
+#' points
+#' @param lefthanded if TRUE the penciling is done left-handed style. 
+#' @examples 
+#' library(sf)
+#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' mtq_pencil <- getPencilLayer(x = mtq)
+#' plot(st_geometry(mtq_pencil), col = 1:8)
+#' plot(st_geometry(mtq), add = TRUE)
+#' @export
+getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
+  a <- median(sf::st_area(x))
+  size <- size * size
+  . <- lapply(sf::st_geometry(x), makelines, size = size, buffer = buffer, 
+              lefthanded = lefthanded, a = a)
+  . <- sf::st_sfc(do.call(rbind,.))
+  . <- sf::st_sf(geometry = ., x[,,drop=TRUE], sf_column_name = "geometry")
+  . <- sf::st_set_crs(., sf::st_crs(x))
+  return(.)
+}
+
+makelines <- function(x, size, buffer, lefthanded, a){
+  size <- round(sqrt(as.numeric((sf::st_area(x)*size / a))), 0) 
+  if (size <= 10){size = 10}
+  pt <- sf::st_sample(sf::st_buffer(x, buffer), size = size)
+  if(lefthanded){
+    pt <- sf::st_sf(pt, x = sf::st_coordinates(pt)[,2] + 
+                      sf::st_coordinates(pt)[,1])
+  } else{ 
+    pt <- sf::st_sf(pt, x = sf::st_coordinates(pt)[,2] - 
+                      sf::st_coordinates(pt)[,1])
+  }
+  pt <- sf::st_combine(pt[order(pt$x),])
+  r <- sf::st_intersection(sf::st_cast(pt, "LINESTRING"), x)
+}

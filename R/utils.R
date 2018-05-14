@@ -338,6 +338,6 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
 #'             plot.window points polygon rect segments
 #'             strheight strwidth symbols text title 
 #'             xinch yinch plot
-#' @importFrom stats aggregate na.omit quantile runif sd
+#' @importFrom stats aggregate na.omit quantile runif sd median
 #' @importFrom rgeos createSPComment
 NULL
