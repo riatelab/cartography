@@ -128,8 +128,13 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
     colVec[is.na(colVec)] <- colNA
   }
   
-  # poly
-  plot(sf::st_geometry(x), col = colVec, border = border, lwd = lwd, add = add)
+  # plot
+  if(max(class(sf::st_geometry(x)) %in% c("sfc_MULTILINESTRING"))==1){
+    plot(sf::st_geometry(x), col = colVec, lwd = lwd, add = add)
+  }else{
+    plot(sf::st_geometry(x), col = colVec, border = border, lwd = lwd, 
+         add = add)
+  }
   
   legendChoro(pos = legend.pos, 
               title.txt = legend.title.txt,

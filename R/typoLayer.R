@@ -93,8 +93,13 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   }
   
   # plot
-  plot(sf::st_geometry(x), col = colvec, border = border, lwd = lwd, add = add)
-  
+  if(max(class(sf::st_geometry(x)) %in% c("sfc_MULTILINESTRING"))==1){
+    plot(sf::st_geometry(x), col = colvec, lwd = lwd, add = add)
+  }else{
+    plot(sf::st_geometry(x), col = colvec, border = border, lwd = lwd, 
+         add = add)
+  }
+
   legendTypo(pos = legend.pos, title.txt = legend.title.txt,
              title.cex = legend.title.cex, values.cex = legend.values.cex,
              categ = refcol[,1], 
