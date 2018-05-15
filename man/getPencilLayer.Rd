@@ -9,16 +9,20 @@ getPencilLayer(x, size = 100, buffer = 1000, lefthanded = TRUE)
 \arguments{
 \item{x}{an sf object, a simple feature collection (POLYGON or MULTIPOLYGON).}
 
-\item{size}{density of the penciling.}
+\item{size}{density of the penciling. Median number of points used to build 
+the MULTILINESTRING.}
 
-\item{buffer}{buffer around each polygon. This buffer is used to take sample 
-points}
+\item{buffer}{buffer around each polygon. This buffer (in map units) is used 
+to take sample points}
 
 \item{lefthanded}{if TRUE the penciling is done left-handed style.}
 }
+\value{
+A MULTILINESTRING sf object is returned.
+}
 \description{
 Create a pencil layer. This function transforms a POLYGON or 
-MULTIPOLYGON sf object into a MULTILINESTRING.
+MULTIPOLYGON sf object into a MULTILINESTRING one.
 }
 \examples{
 library(sf)

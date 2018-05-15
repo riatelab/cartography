@@ -1,12 +1,14 @@
 #' @title Pencil Layer
 #' @name getPencilLayer
 #' @description Create a pencil layer. This function transforms a POLYGON or 
-#' MULTIPOLYGON sf object into a MULTILINESTRING.
+#' MULTIPOLYGON sf object into a MULTILINESTRING one.
 #' @param x an sf object, a simple feature collection (POLYGON or MULTIPOLYGON).  
-#' @param size density of the penciling.
-#' @param buffer buffer around each polygon. This buffer is used to take sample 
-#' points
+#' @param size density of the penciling. Median number of points used to build 
+#' the MULTILINESTRING. 
+#' @param buffer buffer around each polygon. This buffer (in map units) is used 
+#' to take sample points
 #' @param lefthanded if TRUE the penciling is done left-handed style. 
+#' @return A MULTILINESTRING sf object is returned. 
 #' @examples 
 #' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
@@ -22,6 +24,7 @@ getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
   . <- sf::st_sfc(do.call(rbind,.))
   . <- sf::st_sf(geometry = ., x[,,drop=TRUE], sf_column_name = "geometry")
   . <- sf::st_set_crs(., sf::st_crs(x))
+  . <- sf::st_cast(. , "MULTILINESTRING")
   return(.)
 }
 
