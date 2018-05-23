@@ -6,7 +6,8 @@
 #' @param size density of the penciling. Median number of points used to build 
 #' the MULTILINESTRING. 
 #' @param buffer buffer around each polygon. This buffer (in map units) is used 
-#' to take sample points
+#' to take sample points. A negative value adds a margin between the penciling 
+#' and the original polygons borders
 #' @param lefthanded if TRUE the penciling is done left-handed style. 
 #' @return A MULTILINESTRING sf object is returned. 
 #' @examples 
@@ -15,6 +16,19 @@
 #' mtq_pencil <- getPencilLayer(x = mtq)
 #' plot(st_geometry(mtq_pencil), col = 1:8)
 #' plot(st_geometry(mtq), add = TRUE)
+#' 
+#' typoLayer(x = mtq_pencil, var="STATUT", add = FALSE,
+#'           col = c("aquamarine4", "yellow3","wheat"),
+#'           legend.values.order = c("Préfecture de région",
+#'                                   "Sous-préfecture", 
+#'                                   "Commune simple"),
+#'           legend.pos = "topright",
+#'           legend.title.txt = "Status")
+#' plot(st_geometry(mtq), add = TRUE, ldy=2)
+#' layoutLayer(title = "Commune Status",
+#'             author = "UMS RIATE, 2017",
+#'             sources = "IGN, 2016",
+#'             scale = NULL)
 #' @export
 getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
   a <- median(sf::st_area(x))
