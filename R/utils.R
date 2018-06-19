@@ -138,7 +138,7 @@ checkOrder <- function(legend.values.order, mod){
 checkMergeOrder <- function(x = x, var = var){
   # get centroid coords
   x <- cbind(sf::st_coordinates(
-    sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), x)
+    sf::st_centroid(x = sf::st_geometry(x), of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), x)
   # remove NAs and 0 values
   x <- x[!is.na(x = x[[var]]),]
   x <- x[x[[var]]!=0, ]
