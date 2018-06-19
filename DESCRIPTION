@@ -18,6 +18,6 @@ Imports: classInt, stats, graphics, methods, rosm, raster, Rcpp, rgeos, sp (>= 1
 Suggests: SpatialPosition, knitr, rmarkdown, rgdal
 LinkingTo: Rcpp
 VignetteBuilder: knitr
-SystemRequirements: GDAL (>= 2.0.0), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
+SystemRequirements: GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
 Encoding: UTF-8
 RoxygenNote: 6.0.1
