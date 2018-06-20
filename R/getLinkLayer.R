@@ -15,6 +15,7 @@
 #' @return An sf LINESTRING is returned, it contains two fields (origins and destinations).
 #' @examples 
 #' library(sp)
+#' library(sf)
 #' data("nuts2006")
 #' # Create a link layer
 #' head(twincities.df)
@@ -23,7 +24,7 @@
 #' twincities.sf <- getLinkLayer(x = nuts2.spdf, df = twincitiesIE, dfid = c("i", "j"))
 #' # Plot the links
 #' plot(nuts2.spdf, col = "#6C6870")
-#' plot(twincities.sf, col = "#F78194", add = TRUE)
+#' plot(st_geometry(twincities.sf), col = "#F78194", add = TRUE)
 #' @seealso \link{gradLinkLayer}, \link{propLinkLayer}
 #' @export
 getLinkLayer <- function(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL, 
@@ -39,7 +40,7 @@ if(sum(missing(spdf), is.null(spdf2), is.null(spdfid),
   if(is.null(xid)){xid <- names(x)[1]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   x2 <- data.frame(id = x[[xid]], 
-                   sf::st_coordinates(sf::st_centroid(x = x, of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), 
+                   sf::st_coordinates(sf::st_centroid(x = sf::st_geometry(x), of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON")))), 
                    stringsAsFactors = F)
   # names(x2)[2:3] <- c('X', 'Y')
   df <- df[,dfid]

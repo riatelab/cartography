@@ -37,7 +37,7 @@
 #' # Plot Countries
 #' plot(nuts0.spdf, border = NA, col = "grey60")
 #' # Plot borders
-#' plot(nuts0.outer, col = sample(x = rainbow(nrow(nuts0.outer))),
+#' plot(st_geometry(nuts0.outer), col = sample(x = rainbow(nrow(nuts0.outer))),
 #'      lwd = 3, add = TRUE)
 #' }
 #' @seealso \link{discLayer}, \link{getBorders}

@@ -37,6 +37,7 @@ Create a links layer from a data frame of links.
 }
 \examples{
 library(sp)
+library(sf)
 data("nuts2006")
 # Create a link layer
 head(twincities.df)
@@ -45,7 +46,7 @@ twincitiesIE <- twincities.df[substr(twincities.df$i,1,2)=="IE", ]
 twincities.sf <- getLinkLayer(x = nuts2.spdf, df = twincitiesIE, dfid = c("i", "j"))
 # Plot the links
 plot(nuts2.spdf, col = "#6C6870")
-plot(twincities.sf, col = "#F78194", add = TRUE)
+plot(st_geometry(twincities.sf), col = "#F78194", add = TRUE)
 }
 \seealso{
 \link{gradLinkLayer}, \link{propLinkLayer}
