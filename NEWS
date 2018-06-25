@@ -1,3 +1,14 @@
+cartography version 2.1.1 (Release date: 2018-06-25)
+==============
+
+Minor changes:
+
+- rgeos is back to Imports (was actually needed for some sp <> sf transformation)
+- Add getPencilLayer function (color pencil layers)
+- small fixes to follow sf API changes (warnings with st_centroids)
+
+
+
 cartography version 2.1.0 (Release date: 2018-04-29)
 ==============
 
