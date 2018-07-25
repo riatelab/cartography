@@ -149,7 +149,7 @@ getGridHexa <- function(x, cellsize){
   spdf <- methods::as(x, "Spatial")
   # cellsize transform
   cellsize <- 2 * sqrt(cellsize/((3*sqrt(3)/2))) * sqrt(3)/2
-  bbox <- bbox(spdf)
+  bbox <- sp::bbox(spdf)
   bbox[, 1] <- bbox[, 1] - cellsize
   bbox[, 2] <- bbox[, 2] + cellsize
   bboxMat <- rbind( c(bbox[1,'min'] , bbox[2,'min']), 
