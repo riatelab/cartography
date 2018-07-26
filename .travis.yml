@@ -15,6 +15,7 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
   - # activate liblwgeom:
   - sudo ldconfig 
+  - sudo apt-get install ghostscript
 
 warnings_are_errors: true
 
