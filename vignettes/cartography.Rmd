@@ -6,7 +6,7 @@ output:
  rmarkdown::html_vignette: 
     toc: true
 vignette: >
-  %\VignetteIndexEntry{cartography}
+  %\VignetteIndexEntry{Commented Scripts to Build Maps with `cartography`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
