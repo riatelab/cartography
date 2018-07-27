@@ -1,12 +1,12 @@
 ---
-title: '***Commented Scripts to Build Maps with `cartography`*** '
+title: 'Examples of Thematic Maps'
 author: "Timothée Giraud, Nicolas Lambert"
 date: '`r Sys.Date()`'
 output: 
  rmarkdown::html_vignette: 
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Commented Scripts to Build Maps with `cartography`}
+  %\VignetteIndexEntry{Examples of Thematic Maps}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
