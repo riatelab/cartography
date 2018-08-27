@@ -8,7 +8,7 @@
 .Rproj.user/
 # produced vignettes
 vignettes/*.html
-#vignettes/*.pdf
+# vignettes/*.pdf
 .Rproj.user
 inst/doc
 data-raw
