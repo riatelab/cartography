@@ -14,7 +14,7 @@ vignette: >
 
 ---
 
- * [Thematic Maps with cartography :: CHEAT SHEET (riatelab/cartography)](https://github.com/riatelab/cartography/blob/master/vignettes/cheatsheet/cartography_cheatsheet.pdf)
+ * [Thematic Maps with cartography :: CHEAT SHEET](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf)
 
 
 

@@ -1,3 +1,10 @@
+cartography version 2.1.1 (Release date: 2018-08-27)
+==============
+
+
+
+
+
 cartography version 2.1.1 (Release date: 2018-06-25)
 ==============
 
@@ -52,6 +59,13 @@ Minor Changes:
 
 cartography version 2.0.0 (Release date: 2017-09-19)
 ==============
+
+Up to version 1.4.2 cartography was mainly based on sp and and rgeos for its 
+spatial data management and geoprocessing operations. These dependencies 
+are as much as possible replaced by sf functions since version 2.0.0.
+Most functions are kept unchanged except for the addition of an x argument 
+used to take sf objects as inputs.
+
 
 Breaking changes:
 

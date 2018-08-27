@@ -9,9 +9,13 @@
 #' elements (scale, north arrow, title...), labels, legends or access to some 
 #' cartographic APIs.
 #' 
-#' A vignette contains commented scripts on how to build various types of maps 
-#' with \code{cartography}: \cr
-#' \code{vignette(topic = "cartography")}
+#' A \bold{vignette} contains commented scripts on how to create various maps 
+#' and a \bold{cheat sheet} displays a quick overview of \code{cartography}'s 
+#' main features:\cr  
+#' - \code{vignette(topic = "cartography", package = "cartography")};\cr
+#' - \code{vignette(topic = "cheatsheet" , package = "cartography")}.\cr
+#' 
+#'  
 #' 
 #' Main functions : 
 #' \itemize{
@@ -54,12 +58,6 @@
 #' 
 #' }
 #' 
-#' @note Up to version 1.4.2 \code{cartography} was mainly based on \code{sp} and and \code{rgeos} 
-#' for its spatial data management and geoprocessing operations. These dependencies 
-#' are as much as possible replaced by \code{sf} functions since version 2.0.0.\cr
-#' Most functions are kept unchanged except for the addition of an \code{x} argument 
-#' used to take \code{sf} objects as inputs. See the NEWS file for details: 
-#' \code{print(news(package = 'cartography'))}.
 #' 
 #' @docType package
 NULL
