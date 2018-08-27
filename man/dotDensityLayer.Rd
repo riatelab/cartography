@@ -4,10 +4,11 @@
 \alias{dotDensityLayer}
 \title{Dot Density layer}
 \usage{
-dotDensityLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var, n = NULL,
-  iter = 5, pch = 1, cex = 0.15, type = "random", col = "black",
-  legend.pos = "topright", legend.txt = NULL, legend.cex = 0.6,
-  legend.col = "black", legend.frame = TRUE, add = TRUE)
+dotDensityLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
+  n = NULL, iter = 5, pch = 1, cex = 0.15, type = "random",
+  col = "black", legend.pos = "topright", legend.txt = NULL,
+  legend.cex = 0.6, legend.col = "black", legend.frame = TRUE,
+  add = TRUE)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
