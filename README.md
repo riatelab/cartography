@@ -18,7 +18,7 @@ legends or access to some cartographic APIs.
 
 ## Cheat Sheet
 The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features:
-[![cartography cheat sheet](https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png)](https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png)
+[![cartography cheat sheet](https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png)](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf)
 
 ## Vignette
 The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 

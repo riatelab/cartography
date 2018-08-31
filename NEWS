@@ -1,5 +1,9 @@
-cartography version 2.1.1 (Release date: 2018-08-27)
+cartography version 2.1.2 (Release date: 2018-08-27)
 ==============
+
+Minor changes: 
+- small fix in getGridLayer for type ="hexagon"
+- addition of a cheat cheat reference in vignette
 
 
 
