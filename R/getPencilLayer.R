@@ -31,11 +31,14 @@
 #'             scale = NULL)
 #' @export
 getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
-  a <- median(sf::st_area(x))
+  a <- median(sf::st_area(sf::st_set_crs(x, NA)))
   size <- size * size
   . <- lapply(sf::st_geometry(x), makelines, size = size, buffer = buffer, 
               lefthanded = lefthanded, a = a)
   . <- sf::st_sfc(do.call(rbind,.))
+  if(length(.)<nrow(x)){
+    stop(simpleError("Try a smaller buffer size or a larger size"))
+  }
   . <- sf::st_sf(geometry = ., x[,,drop=TRUE], sf_column_name = "geometry")
   . <- sf::st_set_crs(., sf::st_crs(x))
   . <- sf::st_cast(. , "MULTILINESTRING")
@@ -43,9 +46,10 @@ getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
 }
 
 makelines <- function(x, size, buffer, lefthanded, a){
-  size <- round(sqrt(as.numeric((sf::st_area(x)*size / a))), 0) 
+  size <- round(sqrt(as.numeric(sf::st_area(x) * size / a)), 0)
   if (size <= 10){size = 10}
   pt <- sf::st_sample(sf::st_buffer(x, buffer), size = size)
+  # pt <- pt[sort(sample(1:length(pt), size, replace = FALSE))]
   if(lefthanded){
     pt <- sf::st_sf(pt, x = sf::st_coordinates(pt)[,2] + 
                       sf::st_coordinates(pt)[,1])
