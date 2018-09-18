@@ -117,7 +117,7 @@ layoutLayer(title = "Demographic Trends", author = "cartography",
 ## ----propMap, fig.height=5, fig.width=7, message=FALSE, margin=TRUE------
 ## Plot OpenStreetMap tiles as basemap 
 # Download the tiles, nuts0.spdf extent
-EUosm <- getTiles(spdf = nuts0.spdf, type = "osm", zoom = 4)
+EUosm <- getTiles(x = nuts0.spdf, type = "osm", zoom = 4)
 # Plot the tiles
 tilesLayer(EUosm)
 
@@ -211,7 +211,7 @@ layoutLayer(title = "Demographic trends, 1999-2008", coltitle = "black",
 
 ## ----discLayer, fig.height=5, fig.width=7, margin=TRUE-------------------
 # Get a SpatialLinesDataFrame of countries borders
-nuts0.contig <- getBorders(spdf = nuts0.spdf)
+nuts0.contig <- getBorders(x = nuts0.spdf)
 class(nuts0.contig)
 
 # Get the GDP per capita
