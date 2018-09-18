@@ -1,11 +1,11 @@
-cartography version 2.1.2 (Release date: 2018-08-27)
+cartography version 2.1.2 (Release date: 2018-09-17)
 ==============
 
 Minor changes: 
-- small fix in getGridLayer for type ="hexagon"
-- addition of a cheat cheat reference in vignette
-
-
+- fix in getGridLayer for type ="hexagon" (sp import)
+- addition of a cheat cheat reference in vignette (new vignette with a single link)
+- Allow unprojected sf as input for getPencilLayer and prevent sampling error with a warning. 
+- vignette correction (deprecated argument)
 
 
 
