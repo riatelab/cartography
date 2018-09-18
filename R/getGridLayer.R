@@ -163,7 +163,7 @@ getGridHexa <- function(x, cellsize){
                                 proj4string=sp::CRS(sp::proj4string(spdf)))
   
   pregrid <- sp::spsample(x = bboxSP, type = "hexagonal", cellsize = cellsize, 
-                          bb = bbox(spdf))
+                          bb = sp::bbox(spdf))
   grid <- sp::HexPoints2SpatialPolygons(pregrid)
   grid <- sp::SpatialPolygonsDataFrame(Sr = grid, 
                                        data = data.frame(id_cell = 
