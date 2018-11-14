@@ -48,6 +48,14 @@ if(sum(missing(spdf), is.null(spdf2), is.null(spdfid),
   link <- merge(link, x2, by.x =  dfid[1], by.y = "id", all.x = TRUE)
   names(link)[3:6] <- c('xj', 'yj', 'xi', 'yi')
 
+  # watch for NAs
+  d1 <- nrow(link)
+  link <- link[!is.na(link$xj) & !is.na(link$xi),]
+  msms <- d1 - nrow(link)
+    if(msms>0){
+    warning(paste0(msms, " links were not created. Some dfid were not found in xid"))
+  } 
+  
   stringo <- paste0('LINESTRING(', link$xi, " ",link$yi, ", ", 
                     link$xj, " ", link$yj, ")")
   link <- sf::st_sf(link[, dfid], 

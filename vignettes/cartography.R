@@ -119,10 +119,10 @@ layoutLayer(title = "Demographic Trends", author = "cartography",
 # Download the tiles, nuts0.spdf extent
 EUosm <- getTiles(x = nuts0.spdf, type = "osm", zoom = 4)
 # Plot the tiles
-tilesLayer(EUosm)
+# tilesLayer(EUosm)
 
 # Plot countries
-plot(nuts0.spdf, border = "grey65", lwd = 2, add=TRUE)
+plot(nuts0.spdf, border = "grey65", lwd = 2, add=FALSE)
 
 # Plot countries population 
 nuts0.df$pop <- nuts0.df$pop2008 / 1000
