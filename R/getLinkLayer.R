@@ -51,10 +51,15 @@ if(sum(missing(spdf), is.null(spdf2), is.null(spdfid),
   # watch for NAs
   d1 <- nrow(link)
   link <- link[!is.na(link$xj) & !is.na(link$xi),]
-  msms <- d1 - nrow(link)
-    if(msms>0){
-    warning(paste0(msms, " links were not created. Some dfid were not found in xid"))
-  } 
+  d2 <- nrow(link)
+  if(d2 == 0){
+    stop("No links were created. dfid and xid do not match", call. = FALSE)
+  }
+  if((d1 - d2) > 0){
+    warning(paste0((d1 - d2), 
+                   " links were not created. Some dfid were not found in xid"), 
+            call. = FALSE)
+  }
   
   stringo <- paste0('LINESTRING(', link$xi, " ",link$yi, ", ", 
                     link$xj, " ", link$yj, ")")
