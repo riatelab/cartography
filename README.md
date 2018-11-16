@@ -113,7 +113,7 @@ par(opar)
 ## Installation
 * Development version on GitHub
 ```{r}
-require(devtools)
+require(remotes)
 install_github("riatelab/cartography")
 ```
 
