@@ -4,10 +4,9 @@
 #' fetched from various open map servers.
 #' @param x an sf object, a simple feature collection or a Spatial*DataFrame.
 #' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
-#' @param type the tile server from which to get the map, one of "osm", 
-#' "opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
-#' "stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
-#' "thunderforestoutdoors", "cartodark", "cartolight".  
+#' @param type the tile server from which to get the map, one of "osm", "hotstyle", 
+#' "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", "stamenbw", 
+#' "stamenwatercolor", "cartodark", "cartolight".
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified spdf extent, FALSE otherwise.
