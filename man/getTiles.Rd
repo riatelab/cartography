@@ -11,10 +11,9 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
 
 \item{spdf}{deprecated, a Spatial*DataFrame with a valid projection attribute.}
 
-\item{type}{the tile server from which to get the map, one of "osm", 
-"opencycle", "hotstyle", "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", 
-"stamenbw", "stamenwatercolor", "osmtransport", "thunderforestlandscape", 
-"thunderforestoutdoors", "cartodark", "cartolight".}
+\item{type}{the tile server from which to get the map, one of "osm", "hotstyle", 
+"loviniahike", "loviniacycle", "hikebike", "osmgrayscale", "stamenbw", 
+"stamenwatercolor", "cartodark", "cartolight".}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}

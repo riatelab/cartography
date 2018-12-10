@@ -61,6 +61,7 @@ first variable and colored to reflect the discretization of a second variable.
 ```r
 library(cartography)
 
+library(sf) 
 # Import a shapefile // this one is distributed within the package
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 
@@ -112,7 +113,7 @@ par(opar)
 ## Installation
 * Development version on GitHub
 ```{r}
-require(devtools)
+require(remotes)
 install_github("riatelab/cartography")
 ```
 

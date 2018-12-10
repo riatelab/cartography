@@ -183,7 +183,7 @@ legendTypo <- function(pos = "topleft",
                        nodata.col = "white",
                        frame=FALSE,
                        symbol="box"){
-  categ <- rev(categ)
+  categ <- rev(as.character(categ))
   col <- rev(col)
   
   # exit for none
