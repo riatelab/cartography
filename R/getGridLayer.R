@@ -69,16 +69,14 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
   if(sum(missing(spdf), is.null(spdfid)) != 2){
     warning("spdf and spdfid are deprecated; use x instead.", call. = FALSE)
   }
-
-  
   
   x$area <- sf::st_area(x)
   
   # get a grid
   if(type %in% c("regular", "hexagonal")){
-    grid <- switch(type, 
-                   regular = getGridSquare(x, cellsize), 
-                   hexagonal = getGridHexa(x, cellsize))
+    grid <- switch(type,
+                   regular = getGridAll(x, cellsize, TRUE),
+                   hexagonal = getGridAll(x, cellsize, FALSE))
   }else{
     stop("type should be either 'regular' or 'hexagonal'", call. = F)
   }
@@ -93,7 +91,7 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
   parts <- sf::st_intersection(x = grid[,"id_cell"], y = x)
   options(warn = 0)
   parts$area_part <- sf::st_area(parts)
-
+  
   lvar <- vector(mode = "list", length = length(var))
   names(lvar) <- var
   for (i in 1:length(lvar)){
@@ -116,63 +114,86 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
   
   grid <- merge(grid, v, by = "id", all.x = T)
   return(grid)
-
+  
 }
 
 
-getGridSquare <- function(x, cellsize){
+
+
+getGridAll <- function(x, cellsize, square){
   # cellsize transform
-  cellsize <- sqrt(cellsize)
+  if (square){
+    cellsize <- sqrt(cellsize)
+  }else{
+    cellsize <- 2 * sqrt(cellsize/((3*sqrt(3)/2))) * sqrt(3)/2
+  }
   boundingBox <- sf::st_bbox(x)
   rounder <- boundingBox[1:2] %% cellsize
   boundingBox[1] <- boundingBox[1] - rounder[1]
   boundingBox[2] <- boundingBox[2] - rounder[2]
   n <- unname(c(ceiling(diff(boundingBox[c(1, 3)]) / cellsize), 
                 ceiling(diff(boundingBox[c(2, 4)]) / cellsize)))
-  grid <- sf::st_make_grid(cellsize = cellsize, offset = boundingBox[1:2], n = n,
-                       crs = sf::st_crs(x))
+  grid <- sf::st_make_grid(x = x, cellsize = cellsize, offset = boundingBox[1:2], 
+                           n = n, crs = sf::st_crs(x), square = square)
   grid <- sf::st_sf(id_cell=1:length(grid), geometry = grid)
   # grid$id_cell <- 1:nrow(grid)
   row.names(grid) <- grid$id_cell
   return(grid)
 }
 
-
-getGridHexa <- function(x, cellsize){
-  
-  #  •*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•
-  #
-  #  This one is still in sp style !
-  #
-  #  •*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•
-  
-  spdf <- methods::as(x, "Spatial")
-  # cellsize transform
-  cellsize <- 2 * sqrt(cellsize/((3*sqrt(3)/2))) * sqrt(3)/2
-  bbox <- sp::bbox(spdf)
-  bbox[, 1] <- bbox[, 1] - cellsize
-  bbox[, 2] <- bbox[, 2] + cellsize
-  bboxMat <- rbind( c(bbox[1,'min'] , bbox[2,'min']), 
-                    c(bbox[1,'min'],bbox[2,'max']),
-                    c(bbox[1,'max'],bbox[2,'max']), 
-                    c(bbox[1,'max'],bbox[2,'min']), 
-                    c(bbox[1,'min'],bbox[2,'min']) ) 
-  bboxSP <- sp::SpatialPolygons(Srl = 
-                                  list(sp::Polygons(list(sp::Polygon(bboxMat)),
-                                                    "bbox")), 
-                                proj4string=sp::CRS(sp::proj4string(spdf)))
-  
-  pregrid <- sp::spsample(x = bboxSP, type = "hexagonal", cellsize = cellsize, 
-                          bb = sp::bbox(spdf))
-  grid <- sp::HexPoints2SpatialPolygons(pregrid)
-  grid <- sp::SpatialPolygonsDataFrame(Sr = grid, 
-                                       data = data.frame(id_cell = 
-                                                           1:length(grid)), 
-                                       match.ID = FALSE)
-  row.names(grid) <- as.character(grid$id_cell)
-  grid <- sf::st_as_sf(grid)
-  return(grid)
-}
+# getGridSquare <- function(x, cellsize){
+#   # cellsize transform
+#   cellsize <- sqrt(cellsize)
+#   boundingBox <- sf::st_bbox(x)
+#   rounder <- boundingBox[1:2] %% cellsize
+#   boundingBox[1] <- boundingBox[1] - rounder[1]
+#   boundingBox[2] <- boundingBox[2] - rounder[2]
+#   n <- unname(c(ceiling(diff(boundingBox[c(1, 3)]) / cellsize), 
+#                 ceiling(diff(boundingBox[c(2, 4)]) / cellsize)))
+#   grid <- sf::st_make_grid(cellsize = cellsize, offset = boundingBox[1:2], n = n,
+#                        crs = sf::st_crs(x))
+#   grid <- sf::st_sf(id_cell=1:length(grid), geometry = grid)
+#   # grid$id_cell <- 1:nrow(grid)
+#   row.names(grid) <- grid$id_cell
+#   return(grid)
+# }
+# 
+# 
+# getGridHexa <- function(x, cellsize){
+#   
+#   #  •*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•
+#   #
+#   #  This one is still in sp style !
+#   #
+#   #  •*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•
+#   
+#   spdf <- methods::as(x, "Spatial")
+#   # cellsize transform
+#   cellsize <- 2 * sqrt(cellsize/((3*sqrt(3)/2))) * sqrt(3)/2
+#   bbox <- sp::bbox(spdf)
+#   bbox[, 1] <- bbox[, 1] - cellsize
+#   bbox[, 2] <- bbox[, 2] + cellsize
+#   bboxMat <- rbind( c(bbox[1,'min'] , bbox[2,'min']), 
+#                     c(bbox[1,'min'],bbox[2,'max']),
+#                     c(bbox[1,'max'],bbox[2,'max']), 
+#                     c(bbox[1,'max'],bbox[2,'min']), 
+#                     c(bbox[1,'min'],bbox[2,'min']) ) 
+#   bboxSP <- sp::SpatialPolygons(Srl = 
+#                                   list(sp::Polygons(list(sp::Polygon(bboxMat)),
+#                                                     "bbox")), 
+#                                 proj4string=sp::CRS(sp::proj4string(spdf)))
+#   
+#   pregrid <- sp::spsample(x = bboxSP, type = "hexagonal", cellsize = cellsize, 
+#                           bb = sp::bbox(spdf))
+#   grid <- sp::HexPoints2SpatialPolygons(pregrid)
+#   grid <- sp::SpatialPolygonsDataFrame(Sr = grid, 
+#                                        data = data.frame(id_cell = 
+#                                                            1:length(grid)), 
+#                                        match.ID = FALSE)
+#   row.names(grid) <- as.character(grid$id_cell)
+#   grid <- sf::st_as_sf(grid)
+#   return(grid)
+# }
 
 
 #' @title Compute Data for a Grid Layer
