@@ -52,22 +52,34 @@ contains commented scripts on how to build various types of maps with `cartograp
 
 
 ## Demo
-
-* You can access the code used to create the cartographic mix [here](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68).  
-
-* The following script creates a map of symbols that are proportional to values of a 
+The following script creates a map of symbols that are proportional to values of a 
 first variable and colored to reflect the discretization of a second variable.  
+
 
 ```r
 library(cartography)
-
 library(sf) 
+
+# Data Import
 # Import a shapefile // this one is distributed within the package
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-
-# Share of farmers in the active population
+# Compute the share of farmers in the active population
 mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
 
+########## Draft Map
+# Plot the communes
+plot(st_geometry(mtq))
+# Plot symbols with choropleth coloration
+propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1")
+
+# Add a layout
+layoutLayer(title="Farmers in Martinique, 2013")
+```
+
+![](https://raw.githubusercontent.com/riatelab/cartography/master/img/map9.png)
+
+```r
+########## Final Map
 # Set a custom color palette
 cols <- carto.pal(pal1 = "wine.pal", n1 = 6)
 
@@ -79,30 +91,19 @@ plot(st_geometry(mtq), col = "#5F799C", border = "white",
      bg = "#A6CAE0", lwd = 0.5, add = FALSE)
 
 # Plot symbols with choropleth coloration
-propSymbolsChoroLayer(x = mtq, # sf object 
-                      var = "C13_POP", # field used to plot the symbols sizes
-                      var2 = "shareCS1", #  field used to plot the colors
-                      col = cols, # symbols colors
-                      inches = 0.4, # radius of the largest circle
-                      method = "quantile", # discretization method (?getBreaks)
-                      border = "grey50", # color of circle borders
-                      lwd = 1, # width of the circle borders
-                      legend.var.pos = "topright", # position of the first legend
-                      legend.var2.pos = "left", # position of the second legend
-                      legend.var2.title.txt =  
+propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1", col = cols, 
+                      inches = 0.4, method = "quantile", border = "grey50", 
+                      lwd = 1, legend.var.pos = "topright", legend.var.style = "c",
+                      legend.var2.pos = "left", legend.var2.title.txt =  
                         "Share of \nthe population\nworking in\nagriculture (%)", 
-                      legend.var.title.txt = "Population aged\n15 and over",
-                      legend.var.style = "c") # legend style
+                      legend.var.title.txt = "Population aged\n15 and over") 
 
 # Add a layout
-layoutLayer(title="Farmers in Martinique, 2013", # title of the map
-            scale = 5, # size of the scale bar
-            north = TRUE, # north arrow
-            col = "white",
-            coltitle = "black",
-            author = "cartography 2.0.0",  
-            sources = "INSEE, 2016",
-            frame = TRUE)
+layoutLayer(title="Farmers in Martinique, 2013", author = "cartography 2.1.3", 
+            sources = "INSEE, 2016", scale = 5, tabtitle = TRUE, frame = FALSE)
+
+# Add a north arrow
+north(pos = "topleft")
 
 # restore graphics parameters
 par(opar)
