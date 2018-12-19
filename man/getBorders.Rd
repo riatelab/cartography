@@ -50,7 +50,7 @@ mtq.borders <- getBorders(x = mtq)
 plot(st_geometry(mtq), border = NA, col = "grey60")
 # Plot borders
 plot(st_geometry(mtq.borders), 
-     col = sample(x = rainbow(nrow(nuts0.contig))), 
+     col = sample(x = rainbow(nrow(mtq.borders))), 
      lwd = 3, add = TRUE)
 }
 \seealso{
