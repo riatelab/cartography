@@ -13,7 +13,6 @@ library(rgdal)
 path_to_file <- system.file("shape/martinique.shp", package="cartography")
 mtq <- readOGR(dsn = path_to_file, verbose = FALSE)
 class(mtq)
-plot(mtq)
 
 ## ----importSF, margin=TRUE,fig.height=5, fig.width=5---------------------
 library(sf)
@@ -21,7 +20,6 @@ library(sf)
 path_to_file <- system.file("shape/martinique.shp", package="cartography")
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
 class(mtq)
-plot(st_geometry(mtq))
 
 ## ----importDataSet, margin=TRUE, fig.height=5, fig.width=7---------------
 library(cartography)
@@ -122,7 +120,7 @@ EUosm <- getTiles(x = nuts0.spdf, type = "osm", zoom = 4)
 tilesLayer(EUosm)
 
 # Plot countries
-plot(nuts0.spdf, border = "grey65", lwd = 2, add=FALSE)
+plot(nuts0.spdf, border = "grey65", lwd = 2)
 
 # Plot countries population 
 nuts0.df$pop <- nuts0.df$pop2008 / 1000

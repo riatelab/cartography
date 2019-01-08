@@ -32,6 +32,9 @@
 
 <meta property="og:title" content="Function reference" />
 
+<meta property="og:image" content="/logo.png" />
+<meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -73,9 +76,6 @@
   </a>
 </li>
 <li>
-  <a href="../articles/cartography.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -87,6 +87,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/cheatsheet.html">Thematic Maps with cartography :: CHEAT SHEET</a>
+    </li>
+    <li>
+      <a href="../articles/examples.html">Examples of Thematic Maps</a>
     </li>
   </ul>
 </li>
@@ -128,52 +131,16 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-map-types" class="hasAnchor"><a href="#section-map-types" class="anchor"></a>Map Types</h2>
+          <p class="section-desc"><p>Functions for creating map representations.</p></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="barscale.html">barscale()</a></code> </p>
-        </td>
-        <td><p>Scale Bar</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="carto.pal.html">carto.pal()</a></code> </p>
-        </td>
-        <td><p>Build Cartographic Palettes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="carto.pal.info.html">carto.pal.info()</a></code> </p>
-        </td>
-        <td><p>Display the Names of all Cartographic Palettes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cartography.html">cartography</a></code> </p>
-        </td>
-        <td><p>Cartography Package</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="choroLayer.html">choroLayer()</a></code> </p>
         </td>
         <td><p>Choropleth Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="coasts.spdf.html">coasts.spdf</a></code> </p>
-        </td>
-        <td><p>Coastline of Europe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="countries.spdf.html">countries.spdf</a></code> </p>
-        </td>
-        <td><p>Countries in the European Area</p></td>
       </tr><tr>
         
         <td>
@@ -183,51 +150,95 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="display.carto.all.html">display.carto.all()</a></code> </p>
-        </td>
-        <td><p>Display all Cartographic Palettes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="display.carto.pal.html">display.carto.pal()</a></code> </p>
-        </td>
-        <td><p>Display one Cartographic Palette</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="dotDensityLayer.html">dotDensityLayer()</a></code> </p>
         </td>
         <td><p>Dot Density layer</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="frame.spdf.html">frame.spdf</a></code> </p>
+          <p><code><a href="gradLinkLayer.html">gradLinkLayer()</a></code> </p>
         </td>
-        <td><p>Frame around Europe</p></td>
+        <td><p>Graduated Links Layer</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="gradLinkTypoLayer.html">gradLinkTypoLayer()</a></code> </p>
+        </td>
+        <td><p>Graduated and Colored Links Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="labelLayer.html">labelLayer()</a></code> </p>
+        </td>
+        <td><p>Label Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="layoutLayer.html">layoutLayer()</a></code> </p>
+        </td>
+        <td><p>Layout Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="propLinkLayer.html">propLinkLayer()</a></code> </p>
+        </td>
+        <td><p>Proportional Links Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="propSymbolsChoroLayer.html">propSymbolsChoroLayer()</a></code> </p>
+        </td>
+        <td><p>Proportional and Choropleth Symbols Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="propSymbolsLayer.html">propSymbolsLayer()</a></code> </p>
+        </td>
+        <td><p>Proportional Symbols Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="propSymbolsTypoLayer.html">propSymbolsTypoLayer()</a></code> </p>
+        </td>
+        <td><p>Proportional Symbols Typo Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="propTrianglesLayer.html">propTrianglesLayer()</a></code> </p>
+        </td>
+        <td><p>Double Proportional Triangle Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="smoothLayer.html">smoothLayer()</a></code> </p>
+        </td>
+        <td><p>Smooth Layer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tilesLayer.html">tilesLayer()</a></code> </p>
+        </td>
+        <td><p>Plot Tiles from Open Map Servers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="typoLayer.html">typoLayer()</a></code> </p>
+        </td>
+        <td><p>Typology Layer</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-map-objects" class="hasAnchor"><a href="#section-map-objects" class="anchor"></a>Map Objects</h2>
+          <p class="section-desc"><p>Functions for creating map objects.</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="getBorders.html">getBorders()</a></code> </p>
         </td>
         <td><p>Extract Polygons Borders</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getBreaks.html">getBreaks()</a></code> </p>
-        </td>
-        <td><p>Discretization</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getFigDim.html">getFigDim()</a></code> </p>
-        </td>
-        <td><p>Get Figure Dimensions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getGridData.html">getGridData()</a></code> </p>
-        </td>
-        <td><p>Compute Data for a Grid Layer</p></td>
       </tr><tr>
         
         <td>
@@ -258,90 +269,102 @@
           <p><code><a href="getTiles.html">getTiles()</a></code> </p>
         </td>
         <td><p>Get Tiles from Open Map Servers</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-utils" class="hasAnchor"><a href="#section-utils" class="anchor"></a>Utils</h2>
+          <p class="section-desc"><p>Utils</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="barscale.html">barscale()</a></code> </p>
+        </td>
+        <td><p>Scale Bar</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="gradLinkLayer.html">gradLinkLayer()</a></code> </p>
+          <p><code><a href="getBreaks.html">getBreaks()</a></code> </p>
         </td>
-        <td><p>Graduated Links Layer</p></td>
+        <td><p>Discretization</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="gradLinkTypoLayer.html">gradLinkTypoLayer()</a></code> </p>
+          <p><code><a href="getFigDim.html">getFigDim()</a></code> </p>
         </td>
-        <td><p>Graduated and Colored Links Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="graticule.spdf.html">graticule.spdf</a></code> </p>
-        </td>
-        <td><p>Graticule around Europe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="labelLayer.html">labelLayer()</a></code> </p>
-        </td>
-        <td><p>Label Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="layoutLayer.html">layoutLayer()</a></code> </p>
-        </td>
-        <td><p>Layout Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendBarsSymbols.html">legendBarsSymbols()</a></code> </p>
-        </td>
-        <td><p>Legend for Proportional Bars Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendChoro.html">legendChoro()</a></code> </p>
-        </td>
-        <td><p>Legend for Choropleth Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendCirclesSymbols.html">legendCirclesSymbols()</a></code> </p>
-        </td>
-        <td><p>Legend for Proportional Circles Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendGradLines.html">legendGradLines()</a></code> </p>
-        </td>
-        <td><p>Legend for Graduated Size Lines Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendPropLines.html">legendPropLines()</a></code> </p>
-        </td>
-        <td><p>Legend for Proportional Lines Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendPropTriangles.html">legendPropTriangles()</a></code> </p>
-        </td>
-        <td><p>Legend for Double Proportional Triangles Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendSquaresSymbols.html">legendSquaresSymbols()</a></code> </p>
-        </td>
-        <td><p>Legend for Proportional Squares Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="legendTypo.html">legendTypo()</a></code> </p>
-        </td>
-        <td><p>Legend for Typology Maps</p></td>
+        <td><p>Get Figure Dimensions</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="north.html">north()</a></code> </p>
         </td>
         <td><p>North Arrow</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-color-palettes" class="hasAnchor"><a href="#section-color-palettes" class="anchor"></a>Color Palettes</h2>
+          <p class="section-desc"><p>Functions for inspecting and building color palettes.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="carto.pal.html">carto.pal()</a></code> </p>
+        </td>
+        <td><p>Build Cartographic Palettes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="carto.pal.info.html">carto.pal.info()</a></code> </p>
+        </td>
+        <td><p>Display the Names of all Cartographic Palettes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="display.carto.all.html">display.carto.all()</a></code> </p>
+        </td>
+        <td><p>Display all Cartographic Palettes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="display.carto.pal.html">display.carto.pal()</a></code> </p>
+        </td>
+        <td><p>Display one Cartographic Palette</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-datasets" class="hasAnchor"><a href="#section-datasets" class="anchor"></a>Datasets</h2>
+          <p class="section-desc"><p>Sample datasets used in examples.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="coasts.spdf.html">coasts.spdf</a></code> </p>
+        </td>
+        <td><p>Coastline of Europe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="countries.spdf.html">countries.spdf</a></code> </p>
+        </td>
+        <td><p>Countries in the European Area</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="frame.spdf.html">frame.spdf</a></code> </p>
+        </td>
+        <td><p>Frame around Europe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="graticule.spdf.html">graticule.spdf</a></code> </p>
+        </td>
+        <td><p>Graticule around Europe</p></td>
       </tr><tr>
         
         <td>
@@ -393,63 +416,71 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="propLinkLayer.html">propLinkLayer()</a></code> </p>
-        </td>
-        <td><p>Proportional Links Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="propSymbolsChoroLayer.html">propSymbolsChoroLayer()</a></code> </p>
-        </td>
-        <td><p>Proportional and Choropleth Symbols Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="propSymbolsLayer.html">propSymbolsLayer()</a></code> </p>
-        </td>
-        <td><p>Proportional Symbols Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="propSymbolsTypoLayer.html">propSymbolsTypoLayer()</a></code> </p>
-        </td>
-        <td><p>Proportional Symbols Typo Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="propTrianglesLayer.html">propTrianglesLayer()</a></code> </p>
-        </td>
-        <td><p>Double Proportional Triangle Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="smoothLayer.html">smoothLayer()</a></code> </p>
-        </td>
-        <td><p>Smooth Layer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tilesLayer.html">tilesLayer()</a></code> </p>
-        </td>
-        <td><p>Plot Tiles from Open Map Servers</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="twincities.df.html">twincities.df</a></code> </p>
         </td>
         <td><p>Twin Cities Dataset</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="typoLayer.html">typoLayer()</a></code> </p>
-        </td>
-        <td><p>Typology Layer</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="world.spdf.html">world.spdf</a></code> </p>
         </td>
         <td><p>World Background</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-legends" class="hasAnchor"><a href="#section-legends" class="anchor"></a>Legends</h2>
+          <p class="section-desc"><p>Functions for creating legends.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="legendBarsSymbols.html">legendBarsSymbols()</a></code> </p>
+        </td>
+        <td><p>Legend for Proportional Bars Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendChoro.html">legendChoro()</a></code> </p>
+        </td>
+        <td><p>Legend for Choropleth Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendCirclesSymbols.html">legendCirclesSymbols()</a></code> </p>
+        </td>
+        <td><p>Legend for Proportional Circles Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendGradLines.html">legendGradLines()</a></code> </p>
+        </td>
+        <td><p>Legend for Graduated Size Lines Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendPropLines.html">legendPropLines()</a></code> </p>
+        </td>
+        <td><p>Legend for Proportional Lines Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendPropTriangles.html">legendPropTriangles()</a></code> </p>
+        </td>
+        <td><p>Legend for Double Proportional Triangles Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendSquaresSymbols.html">legendSquaresSymbols()</a></code> </p>
+        </td>
+        <td><p>Legend for Proportional Squares Maps</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="legendTypo.html">legendTypo()</a></code> </p>
+        </td>
+        <td><p>Legend for Typology Maps</p></td>
       </tr>
     </tbody>
     </table>
@@ -458,7 +489,12 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-map-types">Map Types</a></li>
+      <li><a href="#section-map-objects">Map Objects</a></li>
+      <li><a href="#section-utils">Utils</a></li>
+      <li><a href="#section-color-palettes">Color Palettes</a></li>
+      <li><a href="#section-datasets">Datasets</a></li>
+      <li><a href="#section-legends">Legends</a></li>
     </ul>
   </div>
 </div>

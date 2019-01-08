@@ -1,0 +1,50 @@
+reference:
+  - title: "Map Types"
+    desc: Functions for creating map representations.
+    contents: 
+    - choroLayer
+    - discLayer
+    - dotDensityLayer
+    - gradLinkLayer
+    - gradLinkTypoLayer
+    - labelLayer
+    - layoutLayer
+    - propLinkLayer
+    - propSymbolsChoroLayer
+    - propSymbolsLayer
+    - propSymbolsTypoLayer
+    - propTrianglesLayer
+    - smoothLayer
+    - tilesLayer
+    - typoLayer
+  - title: "Map Objects"
+    desc: Functions for creating map objects.
+    contents: 
+    - getBorders
+    - getGridLayer
+    - getLinkLayer
+    - getOuterBorders
+    - getPencilLayer
+    - getTiles
+  - title: "Utils"
+    desc: Utils
+    contents: 
+    - barscale
+    - getBreaks
+    - getFigDim
+    - north    
+  - title: "Color Palettes"
+    desc: Functions for inspecting and building color palettes.
+    contents: 
+    - carto.pal
+    - carto.pal.info
+    - display.carto.all
+    - display.carto.pal
+  - title: "Datasets"
+    desc: Sample datasets used in examples.
+    contents: 
+    - ends_with("df")
+  - title: "Legends"
+    desc: Functions for creating legends.
+    contents: 
+    - starts_with("legend") 

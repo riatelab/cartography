@@ -1,15 +1,13 @@
-# cartography
+# cartography <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
-[![Travis-CI Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
-![](http://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)
-[![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
- 
+[![](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
+[![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
+[![Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography) 
+ [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
 
-## *Create and integrate maps in your R workflow!*
 
-[![Cartographic Mix](https://raw.githubusercontent.com/riatelab/cartography/master/img/map8.png "click on the map to see the code")](https://gist.github.com/rCarto/ef52aa4e96a7b628956fbf531143ae68)  
 
+## Create and integrate maps in your R workflow!
 This package allows various **cartographic representations** such as 
 proportional symbols, choropleth, typology, flows or discontinuities maps. It 
 also offers several features enhancing the graphic presentation of maps like 
