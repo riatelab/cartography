@@ -1,4 +1,4 @@
-# cartography <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# cartography 
 
 [![](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
 [![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
@@ -7,7 +7,7 @@
 
 
 
-## Create and integrate maps in your R workflow!
+## Create and integrate maps in your R workflow! <img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/logo.png" align="right" alt="" width="120" />
 This package allows various **cartographic representations** such as 
 proportional symbols, choropleth, typology, flows or discontinuities maps. It 
 also offers several features enhancing the graphic presentation of maps like 
