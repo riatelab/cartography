@@ -48,3 +48,13 @@ reference:
     desc: Functions for creating legends.
     contents: 
     - starts_with("legend") 
+    
+figures:
+  dev: grDevices::png
+  dpi: 72
+  dev.args: []
+  fig.ext: png
+  fig.width: 7.2916667
+  fig.height: 7
+  fig.retina: 2
+  fig.asp: 1 
