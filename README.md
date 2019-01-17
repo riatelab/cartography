@@ -57,7 +57,6 @@ first variable and colored to reflect the discretization of a second variable.
 ```r
 library(cartography)
 library(sf) 
-
 # Data Import
 # Import a shapefile // this one is distributed within the package
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
@@ -69,7 +68,6 @@ mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
 plot(st_geometry(mtq))
 # Plot symbols with choropleth coloration
 propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1")
-
 # Add a layout
 layoutLayer(title="Farmers in Martinique, 2013")
 ```
@@ -79,30 +77,26 @@ layoutLayer(title="Farmers in Martinique, 2013")
 ```r
 ########## Final Map
 # Set a custom color palette
-cols <- carto.pal(pal1 = "wine.pal", n1 = 6)
-
+cols <- carto.pal(pal1 = "sand.pal", n1 = 4)
 # set plot margins
 opar <- par(mar = c(0,0,1.2,0))
-
 # Plot the communes
-plot(st_geometry(mtq), col = "#5F799C", border = "white", 
-     bg = "#A6CAE0", lwd = 0.5, add = FALSE)
-
+plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",  
+     bg = "lightblue1", lwd = 0.5, add = FALSE)
 # Plot symbols with choropleth coloration
-propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1", col = cols, 
-                      inches = 0.4, method = "quantile", border = "grey50", 
-                      lwd = 1, legend.var.pos = "topright", legend.var.style = "c",
+propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1",  
+                      inches = 0.4, border = "grey50",lwd = 1,
+                      method = "quantile", nclass = 4, col = cols,
+                      legend.var2.values.rnd = 1,
+                      legend.var.pos = "topright", legend.var.style = "c",
                       legend.var2.pos = "left", legend.var2.title.txt =  
                         "Share of \nthe population\nworking in\nagriculture (%)", 
                       legend.var.title.txt = "Population aged\n15 and over") 
-
 # Add a layout
 layoutLayer(title="Farmers in Martinique, 2013", author = "cartography 2.1.3", 
             sources = "INSEE, 2016", scale = 5, tabtitle = TRUE, frame = FALSE)
-
 # Add a north arrow
 north(pos = "topleft")
-
 # restore graphics parameters
 par(opar)
 ```
