@@ -3,7 +3,7 @@ r:
   - release
   - devel
 
-cache: packages
+#cache: packages
 
 sudo: required
 
