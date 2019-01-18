@@ -5,11 +5,12 @@
 #' @param x an sf object, a simple feature collection or a Spatial*DataFrame.
 #' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
 #' @param type the tile server from which to get the map, one of "osm", "hotstyle", 
-#' "loviniahike", "loviniacycle", "hikebike", "osmgrayscale", "stamenbw", 
-#' "stamenwatercolor", "cartodark", "cartolight".
+#' "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
+#' "cartolight".
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
-#' @param crop TRUE if results should be cropped to the specified spdf extent, FALSE otherwise.
+#' @param crop TRUE if results should be cropped to the specified x extent, FALSE otherwise.
+#' @param verbose if TRUE a progress bar is displayed. 
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
@@ -27,7 +28,7 @@
 #' # extract Denmark
 #' spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
 #' # Download the tiles, extent = Denmark
-#' den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
+#' den <- getTiles(x = spdf, type = "osm", crop = TRUE)
 #' class(den)
 #' # Plot the tiles
 #' tilesLayer(den)
@@ -43,10 +44,10 @@
 #' tilesLayer(mtqOSM)
 #' # Plot countries
 #' plot(st_geometry(mtq), add=TRUE)
-#' mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
+#' mtext(text = "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright",
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
-getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
+getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE){
   
   if(!missing(spdf)){
     warning("spdf is deprecated; use x instead.", call. = FALSE)
@@ -67,7 +68,13 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
   
   if (!is.null(zoom)){zoom <- zoom + 1}
   
-  finalOSM <- rosm::osm.raster(x = spdf, progress = "none", 
+  if(verbose){
+    progress <- "text"
+  }else{
+    progress <- "none"
+  }
+  
+  finalOSM <- rosm::osm.raster(x = spdf, progress = progress, 
                                zoom = zoom, 
                                zoomin = -1,
                                cachedir = tempdir(), 
@@ -76,6 +83,20 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE){
   
   finalOSM@data@max <- rep(255,3)
   
-  # detach(name = package:rosm)
+  cat("Data and map tiles sources:\n")
+  cit <- switch(
+    type,
+    "osm" = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright.",
+    "hotstyle" = "\u00A9 OpenStreetMap contributors. Tiles style by Humanitarian OpenStreetMap Team, under CC0, www.hotosm.org.",
+    "hikebike" = "\u00A9 OpenStreetMap contributors. Tiles style under CC0, hikebikemap.net.", 
+    "osmgrayscale" = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright.",
+    "stamenbw" = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com.",
+    "stamenwatercolor" = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com.",
+    "cartodark" = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution.",
+    "cartolight" = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
+  )
+  cat(cit, "\n")
+  
   return(finalOSM)
 }
+

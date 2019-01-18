@@ -4,7 +4,8 @@
 \alias{getTiles}
 \title{Get Tiles from Open Map Servers}
 \usage{
-getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
+getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
+  verbose = FALSE)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
@@ -12,13 +13,15 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE)
 \item{spdf}{deprecated, a Spatial*DataFrame with a valid projection attribute.}
 
 \item{type}{the tile server from which to get the map, one of "osm", "hotstyle", 
-"loviniahike", "loviniacycle", "hikebike", "osmgrayscale", "stamenbw", 
-"stamenwatercolor", "cartodark", "cartolight".}
+"hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
+"cartolight".}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}
 
-\item{crop}{TRUE if results should be cropped to the specified spdf extent, FALSE otherwise.}
+\item{crop}{TRUE if results should be cropped to the specified x extent, FALSE otherwise.}
+
+\item{verbose}{if TRUE a progress bar is displayed.}
 }
 \value{
 A RatserBrick is returned.
@@ -44,7 +47,7 @@ data("nuts2006")
 # extract Denmark
 spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
 # Download the tiles, extent = Denmark
-den <- getTiles(spdf = spdf, type = "osm", crop = TRUE)
+den <- getTiles(x = spdf, type = "osm", crop = TRUE)
 class(den)
 # Plot the tiles
 tilesLayer(den)
@@ -60,7 +63,7 @@ mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 tilesLayer(mtqOSM)
 # Plot countries
 plot(st_geometry(mtq), add=TRUE)
-mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
+mtext(text = "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright",
       side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }
