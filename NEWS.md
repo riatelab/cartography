@@ -14,6 +14,7 @@
 - fix incorrect display of typo legends if legend.order is not provided.
 - fix error in getLinkLayer when x and df ids do not perfectly match.
 - only suggest OSM basemap sources without API key requirement.
+- add source citation recommandation in getTiles()
 - update README
 
 
@@ -21,7 +22,7 @@
 
 ## Minor changes
 
-- fix in getGridLayer for type ="hexagon" (sp import)
+- fix in getGridLayer() for type ="hexagon" (sp import)
 - addition of a cheat cheat reference in vignette (new vignette with a single link)
 - Allow unprojected sf as input for getPencilLayer and prevent sampling error with a warning. 
 - vignette correction (deprecated argument)
