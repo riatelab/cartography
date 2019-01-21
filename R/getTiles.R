@@ -23,19 +23,6 @@
 #' @seealso \link{tilesLayer}
 #' @examples
 #' \dontrun{
-#' library(sp)
-#' data("nuts2006")
-#' # extract Denmark
-#' spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]
-#' # Download the tiles, extent = Denmark
-#' den <- getTiles(x = spdf, type = "osm", crop = TRUE)
-#' class(den)
-#' # Plot the tiles
-#' tilesLayer(den)
-#' # Map tiles sources
-#' mtext(text = "© OpenStreetMap contributors, under CC BY SA.",
-#'       side = 1, adj = 0, cex = 0.7, font = 3)
-#' 
 #' library(sf)
 #' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 #' # Download the tiles, extent = Martinique
@@ -44,7 +31,8 @@
 #' tilesLayer(mtqOSM)
 #' # Plot countries
 #' plot(st_geometry(mtq), add=TRUE)
-#' mtext(text = "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright",
+#' txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
+#' mtext(text = txt,
 #'       side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE){

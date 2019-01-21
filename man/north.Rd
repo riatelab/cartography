@@ -19,15 +19,6 @@ vector of two coordinates in map units (c(x, y)).}
 Plot a north arrow.
 }
 \examples{
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-box()
-for (i in list("topleft", "top", "topright", "right", "bottomright", 
-               "bottom", "bottomleft", "left", c(3502127, 4770427))){
-  north(i)
-}
-
 library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 plot(st_geometry(mtq))

@@ -302,24 +302,7 @@ and var2 (denominator) is computed.</p>
             <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> -<span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='propSymbolsLayer.html'>propSymbolsLayer</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"P13_POP"</span>, <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>690000</span>, <span class='fl'>1599950</span>),
                  <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"Population 2013"</span>,
                  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"#ffffff50"</span>)</div><div class='input'><span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Actual and Potential Popultation in Martinique"</span>,
-            <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"INSEE, 2016"</span>, <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='smoothLayer-1.png' alt='' width='525' height='504' /></div><div class='input'>
-</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sp</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"nuts2006"</span>)
-<span class='co'># Potential of GDP</span>
-<span class='fu'>smoothLayer</span>(<span class='kw'>spdf</span> <span class='kw'>=</span> <span class='no'>nuts3.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>nuts3.df</span>,
-            <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>'gdppps2008'</span>,
-            <span class='kw'>span</span> <span class='kw'>=</span> <span class='fl'>75000</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>mask</span> <span class='kw'>=</span> <span class='no'>nuts0.spdf</span>,
-            <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"GDP"</span>,
-            <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> -<span class='fl'>2</span>)</div><div class='img'><img src='smoothLayer-2.png' alt='' width='525' height='504' /></div><div class='input'>
-<span class='co'># Potential of GDP per Capita</span>
-<span class='no'>nuts3.df</span>$<span class='no'>gdppps2008</span> <span class='kw'>&lt;-</span> <span class='no'>nuts3.df</span>$<span class='no'>gdppps2008</span> * <span class='fl'>1000000</span>
-<span class='fu'>smoothLayer</span>(<span class='kw'>spdf</span> <span class='kw'>=</span> <span class='no'>nuts3.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>nuts3.df</span>,
-            <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>'gdppps2008'</span>, <span class='kw'>var2</span> <span class='kw'>=</span> <span class='st'>'pop2008'</span>,
-            <span class='kw'>span</span> <span class='kw'>=</span> <span class='fl'>75000</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-            <span class='kw'>mask</span> <span class='kw'>=</span> <span class='no'>nuts0.spdf</span>,
-            <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"GDP PER CAPITA"</span>,
-            <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> -<span class='fl'>2</span>)</div><div class='img'><img src='smoothLayer-3.png' alt='' width='525' height='504' /></div></pre>
+            <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"INSEE, 2016"</span>, <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='smoothLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

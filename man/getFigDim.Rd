@@ -39,32 +39,27 @@ The function can be used to export vector or raster files (see examples).
 }
 \examples{
 \dontrun{
-library(sp)
-data("nuts2006")
-italy <- nuts0.spdf[nuts0.spdf$id=="IT",]
+library(sf)
+mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 
 ## PNG export
 # get figure dimension
-sizes <- getFigDim(x = italy, width = 450, mar = c(0,0,1.2,0))
+sizes <- getFigDim(x = mtq, width = 450, mar = c(0,0,1.2,0))
 # export the map
-png(filename = "Italy.png", width = sizes[1], height = sizes[2])
+png(filename = "mtq.png", width = sizes[1], height = sizes[2])
 par(mar = c(0,0,1.2,0))
-plot(italy, col = NA, border=NA, bg = "#A6CAE0")
-plot(world.spdf, col = "#E3DEBF", border = NA, add = TRUE)
-plot(italy, col = "#D1914D", border = "white", add = TRUE)
-layoutLayer(title = "Map of Italy")
+plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
+title("Madinina")
 dev.off()
 
 ## PDF export
 # get figure dimension
-library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 sizes <- getFigDim(x = mtq, width = 450, mar = c(1,1,2.2,1))
 # export the map
-pdf(file = "Martinique.pdf", width = sizes[1]/72, height = sizes[2]/72)
+pdf(file = "mtq.pdf", width = sizes[1]/72, height = sizes[2]/72)
 par(mar = c(1,1,2.2,1))
 plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
-layoutLayer(title = "Map of Martinique")
+title("Madinina")
 dev.off()
 }
 }

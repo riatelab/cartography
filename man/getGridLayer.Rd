@@ -48,28 +48,4 @@ choroLayer(x = mygrid, var = "densitykm", breaks = bks,
            legend.pos = "n", legend.values.rnd = 1,
            legend.title.txt = "Population density")
 plot(st_geometry(mtq), lwd = 0.2, add=TRUE, border = "#ffffff75")
-
-\donttest{
-library(sp)
-data(nuts2006)
-nuts2.spdf@data = nuts2.df
-mygrid <- getGridLayer(x = nuts2.spdf, cellsize = 200000 * 200000, 
-                       type = "regular", var = "pop2008")
-# Plot total population
-plot(st_geometry(mygrid), col="#CCCCCC",border="white")
-propSymbolsLayer(x = mygrid, var = "pop2008", border = "white",
-                 legend.style = "e", legend.pos = "right", 
-                 legend.title.txt = "Total population",
-                 inches = 0.1, col = "black", add = TRUE)
-
-# Plot dentsity of population 
-## conversion from square meter to square kilometers
-mygrid$densitykm <- mygrid$pop2008 * 1000 * 1000 / mygrid$gridarea 
-cols <- carto.pal(pal1 = "taupe.pal", n1 = 6)
-choroLayer(x = mygrid, var = "densitykm", 
-           border = "grey80",col = cols, method = "q6", 
-           legend.pos = "right", legend.values.rnd = 1,
-           legend.title.txt = "Population density")
-par(opar)
-}
 }

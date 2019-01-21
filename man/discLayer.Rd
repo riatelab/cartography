@@ -78,22 +78,6 @@ The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 
 The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
 }
 \examples{
-library(sp)
-data(nuts2006)
-# Get borders
-nuts0.contig <- getBorders(x = nuts0.spdf)
-# GDP per capita
-nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008
-# Plot countries
-plot(nuts0.spdf, col="#CCCCCC", lwd=1, border="white")
-# Plot discontinuities
-discLayer(x = nuts0.contig, df = nuts0.df,
-          var = "gdpcap", col="red", nclass=5,
-          method="quantile", threshold = 0.5, sizemin = 1,
-          sizemax = 10, type = "rel", legend.frame = TRUE,
-          legend.title.txt = "GDP per Capita discontinuities\\n(relative)",
-          legend.pos = "topright", add=TRUE)
-
 library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Get borders

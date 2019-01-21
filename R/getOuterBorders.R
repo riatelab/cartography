@@ -28,18 +28,6 @@
 #' # Plot borders
 #' plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
 #'      lwd = 3, add = TRUE)
-#'      
-#' \donttest{
-#' library(sp)
-#' data(nuts2006)
-#' # Get units borders
-#' nuts0.outer <- getOuterBorders(x = nuts0.spdf)
-#' # Plot Countries
-#' plot(nuts0.spdf, border = NA, col = "grey60")
-#' # Plot borders
-#' plot(st_geometry(nuts0.outer), col = sample(x = rainbow(nrow(nuts0.outer))),
-#'      lwd = 3, add = TRUE)
-#' }
 #' @seealso \link{discLayer}, \link{getBorders}
 #' @export
 getOuterBorders <- function(x, id, res = NULL, width = NULL, 

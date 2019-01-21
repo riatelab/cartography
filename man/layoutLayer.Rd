@@ -50,33 +50,18 @@ If extent is not set, plot.new has to be called first.\cr
 The size of the title box in layoutLayer is fixed to 1.2 lines height.
 }
 \examples{
-# Example 1
 library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-plot(st_geometry(mtq), col = "grey60",border = "grey20")
+plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
 # Layout plot
 layoutLayer()
 
-# Example 2
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf, col=NA, border = NA, bg ="#A6CAE0")
-plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
-plot(nuts0.spdf, col = "#D1914D",border = "white", lwd=1, add=TRUE)
-layoutLayer(col = NA, coltitle = "black",
-            sources = "", author = "",
-            frame = FALSE, postitle = "center",
-            south = TRUE)
-
-# Example 3
-nuts3.df$gdphab <- 1000000 * nuts3.df$gdppps2008 / nuts3.df$pop2008
-choroLayer(spdf = nuts3.spdf, df = nuts3.df, var = "gdphab",
-           legend.pos = "right", border = NA, nclass = 6,
-           col = carto.pal('green.pal', 6))
+plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
 # Layout plot
-layoutLayer(title = "GDP per Inhabitants", sources = "", 
-            tabtitle = TRUE, scale = NULL,
-            author = "Eurostat, 2008", theme = "green.pal")
+layoutLayer(title = "Martinique", sources = "",
+            author =  paste0("cartography ", packageVersion("cartography")),
+            tabtitle = TRUE, scale = 5, north = TRUE, frame = FALSE,
+            theme = "sand.pal")
 }
 \seealso{
 \link{labelLayer}

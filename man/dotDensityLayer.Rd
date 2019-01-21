@@ -61,13 +61,6 @@ If an error occurred, increase this value.\cr
 The type parameters is defined within the \link{spsample} function.
 }
 \examples{
-# Example 1
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf)
-dotDensityLayer(spdf = nuts0.spdf, df=nuts0.df,var="pop2008")
-
-# Example 2
 library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 plot(st_geometry(mtq), col = "#B8704D50",border = "white")

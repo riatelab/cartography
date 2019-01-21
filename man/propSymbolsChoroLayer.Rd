@@ -104,18 +104,6 @@ Plot a proportional symbols layer with colors based on a
 quantitative data discretization.
 }
 \examples{
-library(sp)
-data("nuts2006")
-## Example 1
-# Growth rate
-nuts0.df$cagr <- (((nuts0.df$pop2008 / nuts0.df$pop1999)^(1/9)) - 1) * 100
-# Countries plot
-plot(nuts0.spdf, col = "grey60",border = "grey20", add=FALSE)
-# Plot the symbols
-propSymbolsChoroLayer(spdf = nuts0.spdf, df = nuts0.df,symbols = "circle",
-                      var = "pop2008", var2 = "cagr")
-
-## Example 2
 # Share of farmers in Martinique
 library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
@@ -132,7 +120,6 @@ propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1",
                         "Share of \\nthe population\\nworking in\\nagriculture (\%)",
                       legend.var.title.txt = "Population aged\\n15 and over",
                       legend.var.style = "e")
-
 # First layout
 layoutLayer(title="Farmers in Martinique, 2013",
             scale = NULL,col = NA, coltitle = "black",

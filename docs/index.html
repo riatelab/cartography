@@ -126,50 +126,44 @@
 <p>The following script creates a map of symbols that are proportional to values of a first variable and colored to reflect the discretization of a second variable.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf) </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Data Import</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Import a shapefile // this one is distributed within the package</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"shape/martinique.shp"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>))</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># Compute the share of farmers in the active population</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">mtq<span class="op">$</span>shareCS1 &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>C13_CS1<span class="op">/</span>mtq<span class="op">$</span>C13_POP</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">########## Draft Map</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># Plot the communes</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq))</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># Plot symbols with choropleth coloration</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"C13_POP"</span>, <span class="dt">var2 =</span> <span class="st">"shareCS1"</span>)</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"># Add a layout</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw"><a href="reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Farmers in Martinique, 2013"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Data Import</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Import a shapefile // this one is distributed within the package</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"shape/martinique.shp"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>))</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># Compute the share of farmers in the active population</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">mtq<span class="op">$</span>shareCS1 &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>C13_CS1<span class="op">/</span>mtq<span class="op">$</span>C13_POP</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">########## Draft Map</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># Plot the communes</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq))</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># Plot symbols with choropleth coloration</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"C13_POP"</span>, <span class="dt">var2 =</span> <span class="st">"shareCS1"</span>)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co"># Add a layout</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw"><a href="reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Farmers in Martinique, 2013"</span>)</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map9.png"></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">########## Final Map</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># Set a custom color palette</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">cols &lt;-<span class="st"> </span><span class="kw"><a href="reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"wine.pal"</span>, <span class="dt">n1 =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># set plot margins</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">opar &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># Plot the communes</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"#5F799C"</span>, <span class="dt">border =</span> <span class="st">"white"</span>, </a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">     <span class="dt">bg =</span> <span class="st">"#A6CAE0"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co"># Plot symbols with choropleth coloration</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="kw"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"C13_POP"</span>, <span class="dt">var2 =</span> <span class="st">"shareCS1"</span>, <span class="dt">col =</span> cols, </a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">                      <span class="dt">inches =</span> <span class="fl">0.4</span>, <span class="dt">method =</span> <span class="st">"quantile"</span>, <span class="dt">border =</span> <span class="st">"grey50"</span>, </a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">                      <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">legend.var.pos =</span> <span class="st">"topright"</span>, <span class="dt">legend.var.style =</span> <span class="st">"c"</span>,</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">                      <span class="dt">legend.var2.pos =</span> <span class="st">"left"</span>, <span class="dt">legend.var2.title.txt =</span>  </a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">                        <span class="st">"Share of </span><span class="ch">\n</span><span class="st">the population</span><span class="ch">\n</span><span class="st">working in</span><span class="ch">\n</span><span class="st">agriculture (%)"</span>, </a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">                      <span class="dt">legend.var.title.txt =</span> <span class="st">"Population aged</span><span class="ch">\n</span><span class="st">15 and over"</span>) </a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># Add a layout</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="kw"><a href="reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Farmers in Martinique, 2013"</span>, <span class="dt">author =</span> <span class="st">"cartography 2.1.3"</span>, </a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">            <span class="dt">sources =</span> <span class="st">"INSEE, 2016"</span>, <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co"># Add a north arrow</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="kw"><a href="reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co"># restore graphics parameters</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(opar)</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3">cols &lt;-<span class="st"> </span><span class="kw"><a href="reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"sand.pal"</span>, <span class="dt">n1 =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># set plot margins</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">opar &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># Plot the communes</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"darkseagreen3"</span>, <span class="dt">border=</span><span class="st">"darkseagreen4"</span>,  </a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">     <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># Plot symbols with choropleth coloration</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"C13_POP"</span>, <span class="dt">var2 =</span> <span class="st">"shareCS1"</span>,  </a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">                      <span class="dt">inches =</span> <span class="fl">0.4</span>, <span class="dt">border =</span> <span class="st">"grey50"</span>,<span class="dt">lwd =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">                      <span class="dt">method =</span> <span class="st">"quantile"</span>, <span class="dt">nclass =</span> <span class="dv">4</span>, <span class="dt">col =</span> cols,</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">                      <span class="dt">legend.var2.values.rnd =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">                      <span class="dt">legend.var.pos =</span> <span class="st">"topright"</span>, <span class="dt">legend.var.style =</span> <span class="st">"c"</span>,</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">                      <span class="dt">legend.var2.pos =</span> <span class="st">"left"</span>, <span class="dt">legend.var2.title.txt =</span>  </a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">                        <span class="st">"Share of </span><span class="ch">\n</span><span class="st">the population</span><span class="ch">\n</span><span class="st">working in</span><span class="ch">\n</span><span class="st">agriculture (%)"</span>, </a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">                      <span class="dt">legend.var.title.txt =</span> <span class="st">"Population aged</span><span class="ch">\n</span><span class="st">15 and over"</span>) </a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co"># Add a layout</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="kw"><a href="reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Farmers in Martinique, 2013"</span>, <span class="dt">author =</span> <span class="st">"cartography 2.1.3"</span>, </a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">            <span class="dt">sources =</span> <span class="st">"INSEE, 2016"</span>, <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="kw"><a href="reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co"># restore graphics parameters</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(opar)</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map7.png"></p>
 </div>
 <div id="installation" class="section level2">

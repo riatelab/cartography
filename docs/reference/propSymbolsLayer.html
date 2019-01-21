@@ -254,8 +254,7 @@ not (FALSE).</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Example 1</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sf</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sf</span>)
 <span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"shape/martinique.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `martinique' from data source `/home/tim/Documents/pkg/cartography/inst/shape/martinique.shp' using driver `ESRI Shapefile'
 #&gt; Simple feature collection with 34 features and 23 fields
 #&gt; geometry type:  POLYGON
@@ -271,40 +270,7 @@ not (FALSE).</p></td>
                  <span class='kw'>legend.style</span> <span class='kw'>=</span> <span class='st'>"c"</span>)</div><div class='input'><span class='co'># Layout plot</span>
 <span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Population in Martinique"</span>,
             <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>"INSEE, 2016"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>,
-            <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='propSymbolsLayer-1.png' alt='' width='525' height='504' /></div><div class='input'>
-<span class='co'>## Example 2</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sp</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"nuts2006"</span>)
-<span class='co'># Countries plot</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>nuts0.spdf</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>,<span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>)</div><div class='input'><span class='co'># Population plot on proportional symbols</span>
-<span class='fu'>propSymbolsLayer</span>(<span class='kw'>spdf</span> <span class='kw'>=</span> <span class='no'>nuts0.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>nuts0.df</span>,
-                 <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"gdppps2008"</span>,
-                 <span class='kw'>symbols</span> <span class='kw'>=</span> <span class='st'>"bar"</span>, <span class='kw'>col</span> <span class='kw'>=</span>  <span class='st'>"#B00EF0"</span>,
-                 <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
-                 <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"GDP\nin Millions PPS (2008)"</span>,
-                 <span class='kw'>legend.style</span> <span class='kw'>=</span> <span class='st'>"e"</span>)</div><div class='img'><img src='propSymbolsLayer-2.png' alt='' width='525' height='504' /></div><div class='input'>
-<span class='co'>## Example 3</span>
-<span class='no'>oldpar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>))
-<span class='co'># Countries plot</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>nuts0.spdf</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>,<span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-<span class='co'># Population plot on proportional symbols</span>
-<span class='fu'>propSymbolsLayer</span>(<span class='kw'>spdf</span> <span class='kw'>=</span> <span class='no'>nuts0.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>nuts0.df</span>,
-                 <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"birth_2008"</span>,
-                 <span class='kw'>fixmax</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>max</a></span>(<span class='no'>nuts0.df</span>$<span class='no'>birth_2008</span>),
-                 <span class='kw'>inches</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
-                 <span class='kw'>symbols</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>col</span> <span class='kw'>=</span>  <span class='st'>"orange"</span>,
-                 <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
-                 <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"nb of births"</span>,
-                 <span class='kw'>legend.style</span> <span class='kw'>=</span> <span class='st'>"e"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>nuts0.spdf</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>,<span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='input'><span class='co'># Population plot on proportional symbols</span>
-<span class='fu'>propSymbolsLayer</span>(<span class='kw'>spdf</span> <span class='kw'>=</span> <span class='no'>nuts0.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>nuts0.df</span>,
-                 <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"death_2008"</span>,
-                 <span class='kw'>symbols</span> <span class='kw'>=</span> <span class='st'>"square"</span>, <span class='kw'>col</span> <span class='kw'>=</span>  <span class='st'>"pink"</span>,
-                 <span class='kw'>fixmax</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>max</a></span>(<span class='no'>nuts0.df</span>$<span class='no'>birth_2008</span>),
-                 <span class='kw'>inches</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
-                 <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
-                 <span class='kw'>legend.style</span> <span class='kw'>=</span> <span class='st'>"e"</span>,
-                 <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"nb of deaths"</span>)</div><div class='img'><img src='propSymbolsLayer-3.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='no'>oldpar</span>)</div></pre>
+            <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='propSymbolsLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

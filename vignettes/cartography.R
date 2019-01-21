@@ -87,7 +87,7 @@ layoutLayer(
 north(pos = "topleft")
 
 
-## ----propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE, cache = TRUE----
+## ----propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE------
 ## Plot OpenStreetMap tiles as basemap
 # Download the tiles, nuts0.spdf extent
 # mtq.osm <- getTiles(x = mtq, type = "osm", zoom = 11, crop = TRUE)
@@ -154,5 +154,110 @@ layoutLayer(
 )
 
 north(pos = "topleft")
+
+
+## ----grid, fig.height=4.33, fig.width=5, margin=TRUE---------------------
+library(sf)
+library(cartography)
+# path to the ESRI Shapefile embedded in cartography
+path_to_file <- system.file("shape/martinique.shp", package="cartography")
+# import the Shapefile to a sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+
+# Create a grid layer
+mygrid <- getGridLayer(
+  x = mtq, 
+  cellsize = (median(st_area(mtq))), 
+  var = c("C13_POP"),
+  type = "hexagonal"
+)
+
+# Compute population density in people per km2
+mygrid$POP_DENS <- 1e6 * mygrid$C13_POP / mygrid$gridarea
+
+# Set a custom color palette
+cols <- carto.pal(pal1 = "sand.pal", n1 = 5)
+# plot communes (only the backgroung color is plotted)
+plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+# Plot the population density
+choroLayer(
+  x = mygrid, 
+  var = "POP_DENS",
+  method = "geom",
+  nclass=5,
+  col = cols,
+  border = "grey80", 
+  lwd = 0.5,
+  legend.pos = "topright", 
+  legend.title.txt = "Population Density\n(people per km2)",
+  add = T
+) 
+layoutLayer(
+  title = "Population Distribution in Martinique", 
+  sources = "INSEE 2016",  
+  author = paste0("cartography ", packageVersion("cartography")), 
+  frame = FALSE,
+  north = FALSE, 
+  tabtitle = TRUE
+) 
+
+
+
+## ----discc, fig.height=4.33, fig.width=5, margin=TRUE--------------------
+library(sf)
+library(cartography)
+# path to the ESRI Shapefile embedded in cartography
+path_to_file <- system.file("shape/martinique.shp", package="cartography")
+# import the Shapefile to a sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+
+# Compute the population density (inhab./km2) using sf::st_area()
+mtq$POP_DENS <- as.numeric(1e6 * mtq$P13_POP / st_area(mtq))
+
+# Get a SpatialLinesDataFrame of countries borders
+mtq.contig <- getBorders(mtq)
+
+plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+# Plot the population density
+choroLayer(
+  x = mtq, 
+  var = "POP_DENS",
+  method = "geom",
+  nclass=5,
+  col = cols,
+  border = "grey80", 
+  lwd = 0.5,
+  legend.pos = "topright", 
+  legend.title.txt = "Population Density\n(people per km2)",
+  add = TRUE
+)
+
+# Plot discontinuities
+discLayer(
+  x = mtq.contig, 
+  df = mtq, 
+  var = "POP_DENS",
+  type = "rel", 
+  method = "geom", 
+  nclass = 3,
+  threshold = 0.6,
+  sizemin = 0.7, 
+  sizemax = 6, 
+  col = "red",
+  legend.values.rnd = 1, 
+  legend.title.txt = "Discontinuities in \nGDP per Capita\n(relative)", 
+  legend.pos = "bottomright",
+  add = TRUE
+)
+
+# Layout
+layoutLayer(
+  title = "Wealth Disparities in Europe, 2008", 
+  author =  paste0("cartography ", packageVersion("cartography")),
+  sources = "Source: Eurostat, 2011", 
+  frame = FALSE, 
+  scale = 500, 
+  theme = "grey.pal"
+)
 
 

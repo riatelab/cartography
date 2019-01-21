@@ -82,45 +82,28 @@ If breaks is used then nclass and method are not. \cr
 If breaks is defined as \code{c(2, 5, 10, 15, 20)} intervals will be: [2 - 5[, [5 - 10[, [10 - 15[, [15 - 20].
 }
 \examples{
-## Example 1
-library(sp)
-data("nuts2006")
-nuts2.df$unemprate <- nuts2.df$unemp2008/nuts2.df$act2008*100
-choroLayer(spdf = nuts2.spdf,
-           df = nuts2.df,
-           var = "unemprate")
-
-## Example 2
-nuts2.df$unemprate <- nuts2.df$unemp2008/nuts2.df$act2008*100
-choroLayer(spdf = nuts2.spdf,
-           df = nuts2.df,
-           var = "unemprate",
-           method = "quantile",
-           nclass = 8,
-           col = carto.pal(pal1 = "turquoise.pal", n1 = 8),
-           border = "grey40",
-           add = FALSE,
-           legend.pos = "topright",
-           legend.title.txt = "Unemployement rate\\n(\%)",
-           legend.values.rnd = 1)
-
-## Example 3
 library(sf)
 mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
 # Compute the compound annual growth rate
-mtq$cagr <- (((mtq$P13_POP / mtq$P08_POP)^(1/4)) - 1) * 100
-summary(mtq$cagr)
+mtq$cagr <- (((mtq$P13_POP / mtq$P08_POP)^(1/5)) - 1) * 100
 
-# Plot the compound annual growth rate
-cols <- carto.pal(pal1 = "blue.pal", n1 = 3, pal2 = "red.pal", n2 = 2)
-choroLayer(x = mtq, 
-           var = "cagr", breaks = c(-6.14,-2,-1,0,1,2),
+# Default param
+choroLayer(x = mtq, var = "cagr")
+
+# Set a color palette
+cols <- carto.pal(pal1 = "blue.pal", n1 = 4, 
+                  pal2 = "red.pal", n2 = 2, 
+                  middle = TRUE)
+choroLayer(x = mtq,
+           var = "cagr",
+           method = "quantile", 
+           nclass = 7,
            col = cols,
            border = "grey40",
            add = FALSE,
            legend.pos = "topleft",
-           legend.title.txt = "Compound annual\\ngrowth rate",
-           legend.values.rnd = 2)
+           legend.title.txt = "Compound Annual\\nGrowth Rate",
+           legend.values.rnd = 1)
 # Layout plot
 layoutLayer(title = "Demographic Trends in Martinique, 2008-2013",
             author = "INSEE, 2016", sources = "",
