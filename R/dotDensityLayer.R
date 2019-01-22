@@ -32,12 +32,11 @@
 #' @seealso \link{propSymbolsLayer}
 #' @examples
 #' library(sf)
-#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-#' plot(st_geometry(mtq), col = "#B8704D50",border = "white")
-#' dotDensityLayer(x = mtq,  var="P13_POP", pch=20, col = "brown", n = 50)
-#' layoutLayer(title = "Population in Martinique, 2013", 
-#'             sources = "INSEE, 2016", scale = NULL, frame = FALSE,
-#'             theme = "brown.pal")
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' plot(st_geometry(mtq), col = "#B8704D50")
+#' dotDensityLayer(x = mtq,  var="POP", pch=20, col = "red4", n = 50)
+#' layoutLayer(title = "Population Distribution in Martinique, 2015",
+#'             author = "", sources = "")
 dotDensityLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                             n = NULL, # Un point vaut nb units
                             iter = 5,

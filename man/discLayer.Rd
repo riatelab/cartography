@@ -79,20 +79,18 @@ The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 # Get borders
 mtq.borders <- getBorders(x = mtq)
-# Employees share in the pop
-mtq$emp_share <- 100 * mtq$C13_CS5/mtq$C13_POP
-# Plot this share
-choroLayer(x = mtq, var = "emp_share", border = NA, method = 'q6', 
-           legend.values.rnd = 1, legend.pos = "topleft", 
-           legend.title.txt = "Share of employees\\nin the population\\n(age > 15 y.o.)" )
-# Plot discontinuities
+# Median Income 
+choroLayer(x = mtq, var = "MED", border = "grey", lwd = 0.5, 
+           method = 'equal', nclass = 6, legend.pos = "topleft",
+           legend.title.txt = "Median Income\\n(in euros)" )
+# Discontinuities
 discLayer(x = mtq.borders, df = mtq,
-          var = "emp_share", col="darkorange2", nclass=3,
-          method="quantile", threshold = 0.5, sizemin = 0.5,
-          sizemax = 10, type = "abs", 
+          var = "MED", col="red4", nclass=3,
+          method="equal", threshold = 0.4, sizemin = 0.5,
+          sizemax = 10, type = "abs",legend.values.rnd = 0,
           legend.title.txt = "Discontinuities\\n(absolute difference)",
           legend.pos = "bottomleft", add=TRUE)
 }

@@ -51,18 +51,18 @@ styles, "c" stands for compact and "e" for extended.}
 Plot legends for double proportional triangles maps.
 }
 \examples{
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf)
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+plot(st_geometry(mtq))
 box()
-var <- round((nuts0.df$pop2008 / sum(nuts0.df$pop2008))*100,2)
-var2 <- round((nuts0.df$gdppps2008 / sum(nuts0.df$gdppps2008))*100,2)
-r <- sqrt(var)/2*1000000
-r2 <- sqrt(var2)/2*1000000
-legendPropTriangles(pos = "topright", var.txt = "population totale (habs)",
-                        var2.txt = "pib (euros)", title.txt="PIB par habitant",
-                        title.cex = 0.8, values.cex = 0.6, cex = 1,
-                        var = var, var2 = var2, r = r, r2 = r2,
-                        col="green", col2="yellow", frame=TRUE, values.rnd=2, 
-                        style="c")
+var <- runif(10, 0,100)
+var2 <- runif(10, 0,100)
+r <- sqrt(var)*1000
+r2 <- sqrt(var2)*1000
+legendPropTriangles(pos = "topright", var.txt = "population 1",
+                    var2.txt = "population 2", title.txt="Population totale",
+                    title.cex = 0.8, values.cex = 0.6, cex = 1,
+                    var = var, var2 = var2, r = r, r2 = r2,
+                    col="green", col2="yellow", frame=TRUE, values.rnd=2,
+                    style="c")
 }

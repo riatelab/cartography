@@ -14,17 +14,16 @@
 #' @param dfide defunct.
 #' @return An sf LINESTRING is returned, it contains two fields (origins and destinations).
 #' @examples 
-#' library(sp)
 #' library(sf)
-#' data("nuts2006")
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' mob <- read.csv(system.file("csv/mob.csv", package="cartography"))
+#' # Select links from Fort-de-France (97209))
+#' mob_97209 <- mob[mob$i == 97209, ]
 #' # Create a link layer
-#' head(twincities.df)
-#' # Select links from Ireland (IE)
-#' twincitiesIE <- twincities.df[substr(twincities.df$i,1,2)=="IE", ]
-#' twincities.sf <- getLinkLayer(x = nuts2.spdf, df = twincitiesIE, dfid = c("i", "j"))
-#' # Plot the links
-#' plot(nuts2.spdf, col = "#6C6870")
-#' plot(st_geometry(twincities.sf), col = "#F78194", add = TRUE)
+#' mob.sf <- getLinkLayer(x = mtq, df = mob_97209, dfid = c("i", "j"))
+#' # Plot the links1
+#' plot(st_geometry(mtq), col = "grey")
+#' plot(st_geometry(mob.sf), col = "red4", lwd = 2, add = TRUE)
 #' @seealso \link{gradLinkLayer}, \link{propLinkLayer}
 #' @export
 getLinkLayer <- function(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL, 

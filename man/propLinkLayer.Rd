@@ -66,16 +66,17 @@ Plot a layer of proportional links. Links widths are directly proportional to va
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
-library(sp)
-data("nuts2006")
-# Create a link layer of the twin cities agreements
-twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
-# Plot the links - Twin cities agreements between regions 
-plot(nuts0.spdf, col = "grey60",border = "grey20")
-propLinkLayer(x = twincities.spdf, df = twincities.df[twincities.df$fij>=5,],
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+mob <- read.csv(system.file("csv/mob.csv", package="cartography"))
+# Create a link layer - work mobilities to Fort-de-France (97209)
+mob.sf <- getLinkLayer(x = mtq, df = mob[mob$j==97209,], dfid = c("i", "j"))
+# Plot the links - Work mobility
+plot(st_geometry(mtq), col = "grey60",border = "grey20")
+propLinkLayer(x = mob.sf, df = mob,
               maxlwd = 10,
               legend.pos = "topright",
-              var = "fij", 
+              var = "fij",
               col = "#92000090", add = TRUE)
 }
 \seealso{

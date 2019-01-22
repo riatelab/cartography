@@ -62,7 +62,7 @@ Plot a typology layer.
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 typoLayer(x = mtq, var="STATUT",  
           col = c("aquamarine4", "yellow3","wheat"),
           legend.values.order = c("Préfecture de région",
@@ -70,10 +70,7 @@ typoLayer(x = mtq, var="STATUT",
                                   "Commune simple"),
           legend.pos = "topright",
           legend.title.txt = "Status")
-layoutLayer(title = "Commune Status",
-            author = "UMS RIATE, 2017",
-            sources = "IGN, 2016",
-            scale = NULL)
+layoutLayer(title = "Commune Status", author = "", sources = "")
 }
 \seealso{
 \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}

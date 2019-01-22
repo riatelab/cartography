@@ -20,7 +20,7 @@ Plot a north arrow.
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 plot(st_geometry(mtq))
 box()
 for (i in list("topleft", "top", "topright", "right", "bottomright", 

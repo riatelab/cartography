@@ -27,21 +27,18 @@ MULTIPOLYGON sf object into a MULTILINESTRING one.
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 mtq_pencil <- getPencilLayer(x = mtq)
 plot(st_geometry(mtq_pencil), col = 1:8)
 plot(st_geometry(mtq), add = TRUE)
 
-typoLayer(x = mtq_pencil, var="STATUT", add = FALSE,
+typoLayer(x = mtq_pencil, var="STATUT", 
           col = c("aquamarine4", "yellow3","wheat"),
           legend.values.order = c("Préfecture de région",
-                                  "Sous-préfecture", 
+                                  "Sous-préfecture",
                                   "Commune simple"),
           legend.pos = "topright",
           legend.title.txt = "Status")
 plot(st_geometry(mtq), add = TRUE, ldy=2)
-layoutLayer(title = "Commune Status",
-            author = "UMS RIATE, 2017",
-            sources = "IGN, 2016",
-            scale = NULL)
+layoutLayer(title = "Commune Status", author = "", sources = "")
 }

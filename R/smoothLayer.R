@@ -58,18 +58,18 @@
 #' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples
 #' library(sf)
-#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-#' smoothLayer(x = mtq, var = 'P13_POP',
-#'             span = 4000, beta = 2, breaks = c(0,5000,seq(10000,110000,10000)),
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' smoothLayer(x = mtq, var = 'POP',
+#'             span = 4000, beta = 2,
 #'             mask = mtq, border = NA,
-#'             col = carto.pal(pal1 = 'wine.pal', n1 = 12),
+#'             col = carto.pal(pal1 = 'wine.pal', n1 = 8),
 #'             legend.title.txt = "Population\nPotential",
-#'             legend.pos = "topright", legend.values.rnd = -2)
-#' propSymbolsLayer(x = mtq, var = "P13_POP", legend.pos = c(690000, 1599950),
-#'                  legend.title.txt = "Population 2013",
+#'             legend.pos = "topright", legend.values.rnd = 0)
+#' propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
+#'                  legend.title.txt = "Population 2015",
 #'                  col = NA, border = "#ffffff50")
-#' layoutLayer(title = "Actual and Potential Popultation in Martinique", 
-#'             author = "INSEE, 2016", sources = "")
+#' layoutLayer(title = "Actual and Potential Popultation in Martinique",
+#'             author = "", sources = "")
 smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, 
                         var, 
                         var2 = NULL, 

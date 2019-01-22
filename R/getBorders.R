@@ -14,7 +14,7 @@
 #' of id1 and id2 (with "_" as separator).
 #' @examples
 #' library(sf)
-#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 #' # Get borders
 #' mtq.borders <- getBorders(x = mtq)
 #' # Plot polygons

@@ -104,27 +104,24 @@ Plot a proportional symbols layer with colors based on a
 quantitative data discretization.
 }
 \examples{
-# Share of farmers in Martinique
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
-plot(st_geometry(mtq), col = "grey60",border = "white", 
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+plot(st_geometry(mtq), col = "grey60",border = "white",
      lwd=0.4, bg = "lightsteelblue1")
-propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1", 
+propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED",
                       col = carto.pal(pal1 = "blue.pal", n1 = 3,
                                       pal2 = "red.pal", n2 = 3),
                       inches = 0.2, method = "q6",
                       border = "grey50", lwd = 1,
-                      legend.var.pos = "topright", legend.var2.pos = "left",
-                      legend.var2.title.txt = 
-                        "Share of \\nthe population\\nworking in\\nagriculture (\%)",
-                      legend.var.title.txt = "Population aged\\n15 and over",
+                      legend.var.pos = "topright", 
+                      legend.var2.pos = "left",
+                      legend.var2.values.rnd = -2,
+                      legend.var2.title.txt = "Median Income\\n(in euros)",
+                      legend.var.title.txt = "Total Population",
                       legend.var.style = "e")
 # First layout
-layoutLayer(title="Farmers in Martinique, 2013",
-            scale = NULL,col = NA, coltitle = "black",
-            author = "INSEE, 2016", sources = "",
-            frame = FALSE)
+layoutLayer(title="Population and Wealth in Martinique, 2015",
+            author = "", sources = "")
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendChoro}, 

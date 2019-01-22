@@ -29,10 +29,10 @@ This scale bar is not accurate on unprojected (long/lat) maps.
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 plot(st_geometry(mtq), col = "grey60", border = "grey20")
 barscale(size = 5)
-barscale(size = 5, lwd = 3, cex = .9, pos = c(714000, 1596000))
+barscale(size = 5, lwd = 2, cex = .9, pos = c(714000, 1596000))
 }
 \seealso{
 \link{layoutLayer}

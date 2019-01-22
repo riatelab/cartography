@@ -53,34 +53,24 @@
 #' @export
 #' @examples
 #' library(sf)
-#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-#' # Compute the compound annual growth rate
-#' mtq$cagr <- (((mtq$P13_POP / mtq$P08_POP)^(1/5)) - 1) * 100
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' # Population density
+#' mtq$POPDENS <- 1e6 * mtq$POP / st_area(x = mtq)
 #' 
-#' # Default param
-#' choroLayer(x = mtq, var = "cagr")
+#' # Default
+#' choroLayer(x = mtq, var = "POPDENS")
 #' 
-#' # Set a color palette
-#' cols <- carto.pal(pal1 = "blue.pal", n1 = 4, 
-#'                   pal2 = "red.pal", n2 = 2, 
-#'                   middle = TRUE)
-#' choroLayer(x = mtq,
-#'            var = "cagr",
-#'            method = "quantile", 
-#'            nclass = 7,
-#'            col = cols,
+#' # With parameters 
+#' choroLayer(x = mtq, var = "POPDENS",
+#'            method = "quantile", nclass = 5,
+#'            col = carto.pal(pal1 = "sand.pal", n1 = 5),
 #'            border = "grey40",
-#'            add = FALSE,
-#'            legend.pos = "topleft",
-#'            legend.title.txt = "Compound Annual\nGrowth Rate",
-#'            legend.values.rnd = 1)
-#' # Layout plot
-#' layoutLayer(title = "Demographic Trends in Martinique, 2008-2013",
-#'             author = "INSEE, 2016", sources = "",
-#'             scale = NULL,
-#'             frame = TRUE,
-#'             col = "black",
-#'             coltitle = "white")
+#'            legend.pos = "topright", legend.values.rnd = 0,
+#'            legend.title.txt = "Population Density\n(people per km2)")
+#' 
+#' # Layout
+#' layoutLayer(title = "Population Distribution in Martinique, 2015",
+#'             author = "", sources = "")
 choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                        breaks = NULL, method = "quantile", nclass = NULL,
                        col = NULL,

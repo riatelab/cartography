@@ -45,28 +45,26 @@ styles, "c" stands for compact and "e" for extended.}
 Plot legend for proportional circles maps
 }
 \examples{
-library(sp) 
-data("nuts2006")
-plot(nuts0.spdf)
-propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df, var = "pop2008", 
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+plot(st_geometry(mtq))
+box()
+
+propSymbolsLayer(x = mtq, var = "POP",
                  inches = 0.2, legend.pos = "n")
 
 legendCirclesSymbols(pos = "topleft", inches = 0.2,
-                     var = c(min(nuts0.df$pop2008), max(nuts0.df$pop2008)))
-
-legendCirclesSymbols(pos = "left", 
-                     var = c(min(nuts0.df$pop2008), max(nuts0.df$pop2008)),
+                     var = c(min(mtq$POP), max(mtq$POP)))
+legendCirclesSymbols(pos = "left",
+                     var = c(min(mtq$POP), max(mtq$POP)),
                      inches = 0.2, style = "e")
-oopt <- options(scipen = 10)
-legendCirclesSymbols(pos = "bottomleft", 
-                     var = c(35e3, 1e7, 4e7, max(nuts0.df$pop2008)),
+legendCirclesSymbols(pos = "bottomleft",
+                     var = c(600, 12000, 40000, max(mtq$POP)),
                      inches = 0.2, style = "c")
 legendCirclesSymbols(pos = "topright", cex = 2,
-                     var = c(35e3,1e6, 5e6, 1e7, 2e7, 4e7, 6e7,max(nuts0.df$pop2008)),
+                     var = c(600, 30000,max(mtq$POP)),
                      inches = 0.2, style = "e", frame = TRUE)
-options(oopt)
-
-legendCirclesSymbols(pos = c(5533388, 1570417),
-                     var = c(min(nuts0.df$pop2008),max(nuts0.df$pop2008)),
+legendCirclesSymbols(pos = c(736164.4, 1596658),
+                     var = c(min(mtq$POP),max(mtq$POP)),
                      inches = 0.2, frame = TRUE)
 }

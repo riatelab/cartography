@@ -70,15 +70,18 @@ Plot a layer of graduated links. Links are plotted according to discrete classes
 Unlike most of cartography functions, identifiers fields are mandatory.
 }
 \examples{
-library(sp)
-data("nuts2006")
-# Create a link layer
-twincities.sf <- getLinkLayer(x = nuts2.spdf, df = twincities.df[,1:2])
-# Plot the links - Twin cities agreements between regions 
-plot(nuts0.spdf, col = "grey60",border = "grey20")
-gradLinkLayer(x = twincities.sf, df = twincities.df,
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+mob <- read.csv(system.file("csv/mob.csv", package="cartography"))
+# Create a link layer - work mobilities to Fort-de-France (97209)
+mob.sf <- getLinkLayer(x = mtq, df = mob[mob$j==97209,], dfid = c("i", "j"))
+# Plot the links - Work mobility
+plot(st_geometry(mtq), col = "grey60",border = "grey20")
+gradLinkLayer(x = mob.sf, df = mob,
               legend.pos = "topright",
-              var = "fij", breaks = c(2,5,15,20,30), lwd = c(0.1,1,4,10),
+              var = "fij", 
+              breaks = c(109,500,1000,2000,4679), 
+              lwd = c(1,2,4,10),
               col = "#92000090", add = TRUE)
 }
 \seealso{

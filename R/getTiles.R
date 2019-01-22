@@ -24,7 +24,7 @@
 #' @examples
 #' \dontrun{
 #' library(sf)
-#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 #' # Download the tiles, extent = Martinique
 #' mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 #' # Plot the tiles
@@ -32,8 +32,7 @@
 #' # Plot countries
 #' plot(st_geometry(mtq), add=TRUE)
 #' txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
-#' mtext(text = txt,
-#'       side = 1, adj = 0, cex = 0.7, font = 3)
+#' mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 #' }
 getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE){
   

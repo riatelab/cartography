@@ -41,9 +41,9 @@ not (FALSE).}
 Plot legend for typology maps.
 }
 \examples{
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf, col = "grey")
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+plot(st_geometry(mtq))
 box()
 
 # Define labels and colors

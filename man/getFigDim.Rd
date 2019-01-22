@@ -40,7 +40,7 @@ The function can be used to export vector or raster files (see examples).
 \examples{
 \dontrun{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 
 ## PNG export
 # get figure dimension

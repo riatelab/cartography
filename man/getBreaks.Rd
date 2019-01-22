@@ -43,13 +43,11 @@ This function is mainly a wrapper classInt::classIntervals +
 arith, em, q6, geom and msd methods.
 }
 \examples{
-library(sp)
-data("nuts2006")
-# Create the natality rate
-var <- nuts2.df$birth_2008/nuts2.df$pop2008 * 1000
-
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+var <- mtq$MED
 # Histogram
-hist(var, probability = TRUE, nclass = 30)
+hist(var, probability = TRUE, breaks = 20)
 rug(var)
 moy <- mean(var)
 med <- median(var)

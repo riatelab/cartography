@@ -5,10 +5,8 @@ date: '`r Sys.Date()`'
 output: 
   rmarkdown::html_vignette:
     toc: true
-      # toc_float:
-      #   collapsed: false
-      #   smooth_scroll: false
-      # toc_depth: 1
+    number_sections: true 
+    toc_depth: 1
 vignette: >
   %\VignetteIndexEntry{Introduction to cartography}
   %\VignetteEngine{knitr::rmarkdown}

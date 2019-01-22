@@ -31,7 +31,7 @@ getBorders and getOuterBorders can be combined with rbind.
 }
 \examples{
 library(sf)
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 # Get borders
 mtq.borders <- getBorders(x = mtq)
 # Plot polygons

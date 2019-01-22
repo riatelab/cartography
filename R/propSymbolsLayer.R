@@ -43,19 +43,22 @@
 #' \link{propSymbolsTypoLayer}
 #' @examples
 #' library(sf)
-#' mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-#' # Countries plot
-#' plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3", bg = "lightblue1")
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' plot(st_geometry(mtq))
+#' propSymbolsLayer(x = mtq, var = "POP")
+#' 
+#' plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3", 
+#'      bg = "lightblue1")
 #' # Population plot on proportional symbols
-#' propSymbolsLayer(x = mtq, var = "P13_POP", 
+#' propSymbolsLayer(x = mtq, var = "POP",
 #'                  symbols = "circle", col =  "white",
 #'                  legend.pos = "right", border = "grey",
-#'                  legend.title.txt = "Total\npopulation (2013)",
+#'                  legend.title.txt = "Total\nPopulation",
 #'                  legend.style = "c")
 #' # Layout plot
-#' layoutLayer(title = "Population in Martinique",
-#'             sources = "INSEE, 2016", theme = "blue.pal",
-#'             scale = NULL, frame = FALSE)
+#' layoutLayer(title = "Population Distribution in Martinique, 2015",
+#'             sources = "", author = "")
+
 propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              inches = 0.3, fixmax = NULL, 
                              symbols = "circle", 

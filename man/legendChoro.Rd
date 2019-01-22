@@ -46,9 +46,9 @@ not (FALSE).}
 Plot legend for choropleth maps.
 }
 \examples{
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf, col = "grey")
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+plot(st_geometry(mtq))
 box()
 legendChoro(pos = "bottomleft", title.txt = "Title of the legend", title.cex = 0.8,
             values.cex = 0.6, breaks = c(1,2,3,4,10.27,15.2),

@@ -44,26 +44,21 @@
 #' @param dfide defunct.
 #' @note Unlike most of cartography functions, identifiers fields are mandatory.
 #' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
-#' @examples 
-#' library(sp)
-#' data("nuts2006")
-#' # Create a link layer
-#' twincities.spdf <- getLinkLayer(x = nuts2.spdf, df = twincities.df)
-#' 
-#' # Plot the links - Twin cities agreements between regions
-#' plot(nuts0.spdf, col = "grey60",border = "grey20")
-#' 
-#' # Countries of agreements
-#' twincities.df$ctry <- substr(twincities.df$j,1,2)
-#' 
-#' # Agreements with german cities
-#' twincitiesok <- twincities.df[substr(twincities.df$i,1,2)=="DE",]
-#' 
-#' # plot the colored and graduated links
-#' gradLinkTypoLayer(x = twincities.spdf, df = twincitiesok,
-#'                   var = "fij", breaks = c(5,10,15,20), 
-#'                   lwd = c(1,4,8),
-#'                   var2 = "ctry",  add = TRUE)
+#' @examples
+#' library(sf)
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' mob <- read.csv(system.file("csv/mob.csv", package="cartography"))
+#' # Create a link layer - work mobilities to Fort-de-France (97209) and 
+#' # Le Lamentin (97213)
+#' mob.sf <- getLinkLayer(x = mtq, df = mob[mob$j %in% c(97209, 97213),], 
+#'                        dfid = c("i", "j"))
+#' # Plot the links - Work mobility
+#' plot(st_geometry(mtq), col = "grey60",border = "grey20")
+#' gradLinkTypoLayer(x = mob.sf, df = mob,
+#'                   var = "fij", 
+#'                   breaks = c(109,500,1000,2000,4679), 
+#'                   lwd = c(1,2,4,10),
+#'                   var2='j', add = TRUE)
 #' @export
 gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                               var, 

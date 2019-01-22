@@ -4,7 +4,7 @@
 \alias{propTrianglesLayer}
 \title{Double Proportional Triangle Layer}
 \usage{
-propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1,
+propTrianglesLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var1,
   col1 = "#E84923", var2, col2 = "#7DC437", k = 0.02,
   legend.pos = "topright", legend.title.txt = paste(var1, var2, sep =
   " / "), legend.title.cex = 0.8, legend.var1.txt = var1,
@@ -13,6 +13,8 @@ propTrianglesLayer(spdf, df, spdfid = NULL, dfid = NULL, var1,
   add = TRUE)
 }
 \arguments{
+\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
+
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 
@@ -67,30 +69,16 @@ not (FALSE).}
 Plot a double proportional triangles layer.
 }
 \examples{
-# Example 1
-library(sp)
-data("nuts2006")
-plot(nuts0.spdf)
-# There is no data for deaths in Turkey
-propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                   var1 = "birth_2008",
-                   var2 = "death_2008")
-
-# Example 2
-layoutLayer(title = "Births and Deaths in Europe, 2008",
-            sources = "",author = "",
-            scale = NULL,
-            frame = FALSE,
-            col = "black",
-            coltitle = "white",
-            extent = nuts0.spdf)
-plot(countries.spdf,col="#E0E0E0",border="white",lwd=1, add=TRUE)
-plot(nuts0.spdf,col="#E5CFC1",border="white",lwd=2,add=TRUE)
-# There is no data for deaths in Turkey
-propTrianglesLayer(spdf = nuts0.spdf, df = nuts0.df, 
-                   var1 = "birth_2008", legend.style = "e",
-                   var2 = "death_2008", legend.frame = TRUE,
-                   col1="#FF9100",col2="#45C945",k = 0.1, add=TRUE)
+library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+# Employed Active Population 
+mtq$OCC <- mtq$ACT-mtq$CHOM
+plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3",
+     bg = "lightblue1")
+propTrianglesLayer(x = mtq, var1 = "OCC", var2 = "CHOM", 
+                   col1="green4",col2="red4",k = 0.1)
+layoutLayer(title = "Active Population in Martinique, 2015",
+            sources = "",author = "")
 }
 \seealso{
 \link{legendPropTriangles}
