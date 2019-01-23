@@ -149,7 +149,6 @@ library(cartography)
 path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# # Plot OpenStreetMap tiles as basemap
 # download osm tiles
 mtq.osm <- getTiles(
   x = mtq, 
@@ -160,7 +159,7 @@ mtq.osm <- getTiles(
 # plot osm tiles
 tilesLayer(x = mtq.osm)
 # plot municipalities (only borders are plotted)
-plot(st_geometry(mtq), col = NA, border = "grey", add=FALSE)
+plot(st_geometry(mtq), col = NA, border = "grey", add=TRUE)
 # plot population
 propSymbolsLayer(x = mtq, var = "POP", inches = 0.4, col = "brown4",
   legend.pos = "topright",  legend.title.txt = "Total population")

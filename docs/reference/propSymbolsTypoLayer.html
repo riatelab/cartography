@@ -281,7 +281,7 @@ not (FALSE).</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sf</span>)
 <span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/home/tim/Documents/pkg/cartography/inst/gpkg/mtq.gpkg' using driver `GPKG'
-#&gt; Simple feature collection with 34 features and 8 fields
+#&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY
 #&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
@@ -289,12 +289,12 @@ not (FALSE).</p></td>
 #&gt; proj4string:    +proj=utm +zone=20 +datum=WGS84 +units=m +no_defs</div><div class='input'><span class='co'># Countries plot</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_geometry'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"lightblue4"</span>,<span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"lightblue3"</span>,
      <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"lightblue1"</span>)</div><div class='input'><span class='co'># Population plot on proportional symbols</span>
-<span class='fu'>propSymbolsTypoLayer</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"POP"</span>, <span class='kw'>var2</span> <span class='kw'>=</span> <span class='st'>"STATUT"</span>,
+<span class='fu'>propSymbolsTypoLayer</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"POP"</span>, <span class='kw'>var2</span> <span class='kw'>=</span> <span class='st'>"STATUS"</span>,
                      <span class='kw'>symbols</span> <span class='kw'>=</span> <span class='st'>"circle"</span>,
                      <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"aquamarine4"</span>, <span class='st'>"yellow3"</span>,<span class='st'>"wheat"</span>),
-                     <span class='kw'>legend.var2.values.order</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Préfecture de région"</span>,
-                                                  <span class='st'>"Sous-préfecture"</span>,
-                                                  <span class='st'>"Commune simple"</span>),
+                     <span class='kw'>legend.var2.values.order</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Prefecture"</span>,
+                                                  <span class='st'>"Sub-prefecture"</span>,
+                                                  <span class='st'>"Simple municipality"</span>),
                      <span class='kw'>legend.var.pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
                      <span class='kw'>legend.var.title.txt</span> <span class='kw'>=</span> <span class='st'>"Total\nPopulation"</span>)</div><div class='input'><span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Population Distribution in Martinique, 2015"</span>,
             <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='propSymbolsTypoLayer-1.png' alt='' width='525' height='504' /></div></pre>

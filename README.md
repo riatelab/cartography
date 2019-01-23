@@ -15,8 +15,10 @@ cartographic palettes, layout elements (scale, north arrow, title...), labels,
 legends or access to some cartographic APIs.
 
 ## Cheat Sheet
-The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features:
-[![cartography cheat sheet](https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png)](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf)
+The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features.
+
+<a href="http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png" alt="cartography cheat sheet" width="300"/></a>
+
 
 ## Vignette
 The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 
@@ -55,47 +57,48 @@ first variable and colored to reflect the discretization of a second variable.
 
 
 ```r
+library(sf)
 library(cartography)
-library(sf) 
-# Data Import
-# Import a shapefile // this one is distributed within the package
-mtq <- st_read(system.file("shape/martinique.shp", package="cartography"))
-# Compute the share of farmers in the active population
-mtq$shareCS1 <- 100 * mtq$C13_CS1/mtq$C13_POP
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
 
 ########## Draft Map
-# Plot the communes
+# Plot the municipalities
 plot(st_geometry(mtq))
-# Plot symbols with choropleth coloration
-propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1")
+# Plot symbols with choropleth coloration (population & median income)
+propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED")
 # Add a layout
-layoutLayer(title="Farmers in Martinique, 2013")
+title(main = "Population & Wealth in Martinique, 2015", 
+      sub = "Sources: Insee and IGN - 2018")
 ```
 
 ![](https://raw.githubusercontent.com/riatelab/cartography/master/img/map9.png)
 
 ```r
 ########## Final Map
-# Set a custom color palette
-cols <- carto.pal(pal1 = "sand.pal", n1 = 4)
-# set plot margins
+# Set figure margins
 opar <- par(mar = c(0,0,1.2,0))
-# Plot the communes
+# Plot the municipalities
 plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",  
-     bg = "lightblue1", lwd = 0.5, add = FALSE)
+     bg = "lightblue1", lwd = 0.5)
 # Plot symbols with choropleth coloration
-propSymbolsChoroLayer(x = mtq, var = "C13_POP", var2 = "shareCS1",  
+propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED",  
                       inches = 0.4, border = "grey50",lwd = 1,
-                      method = "quantile", nclass = 4, col = cols,
-                      legend.var2.values.rnd = 1,
+                      method = "equal", nclass = 4, 
+                      col = carto.pal(pal1 = "sand.pal", n1 = 4),
+                      legend.var2.values.rnd = -2,
                       legend.var.pos = "topright", legend.var.style = "c",
                       legend.var2.pos = "left", legend.var2.title.txt =  
-                        "Share of \nthe population\nworking in\nagriculture (%)", 
-                      legend.var.title.txt = "Population aged\n15 and over") 
-# Add a layout
-layoutLayer(title="Farmers in Martinique, 2013", author = "cartography 2.1.3", 
-            sources = "INSEE, 2016", scale = 5, tabtitle = TRUE, frame = FALSE)
-# Add a north arrow
+                        "Median Income\n(in euros)", 
+                      legend.var.title.txt = "Population") 
+# Plot a layout
+layoutLayer(title="Population & Wealth in Martinique, 2015", 
+            author = "cartography 2.1.3", 
+            sources = "Sources: Insee and IGN - 2018", 
+            scale = 5, tabtitle = TRUE, frame = FALSE)
+# Plot a north arrow
 north(pos = "topleft")
 # restore graphics parameters
 par(opar)
