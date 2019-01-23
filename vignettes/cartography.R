@@ -10,19 +10,14 @@ knitr::knit_hooks$set(margin = function(before, options, envir){
 ## ----labelMap, fig.height=6, fig.width=5, margin=TRUE--------------------
 library(sf)
 library(cartography)
-# path to the ESRI Shapefile embedded in cartography
-path_to_file <- system.file("shape/martinique.shp", package="cartography")
-# import the Shapefile to a sf object
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# plot communes
-plot(
-  st_geometry(mtq), 
-  col = "darkseagreen3", 
-  border = "darkseagreen4", 
-  bg = "lightblue1", 
-  lwd = 0.5
-)
-# Label plot of the communes names
+# plot municipalities
+plot(st_geometry(mtq), col = "darkseagreen3", border = "darkseagreen4", 
+     bg = "lightblue1", lwd = 0.5)
+# plot labels
 labelLayer(
   x = mtq, 
   txt = "LIBGEO", 
@@ -37,8 +32,8 @@ labelLayer(
 )
 # map layout
 layoutLayer(
-  title = "Communes of Martinique", 
-  sources = "INSEE 2016",  
+  title = "Municipalities of Martinique", 
+  sources = "Sources: Insee and IGN - 2018",  
   author = paste0("cartography ", packageVersion("cartography")), 
   frame = FALSE,
   north = TRUE, 
@@ -50,24 +45,21 @@ layoutLayer(
 ## ----choroMap, fig.height=6, fig.width=5, margin=TRUE--------------------
 library(sf)
 library(cartography)
-# path to the ESRI Shapefile embedded in cartography
-path_to_file <- system.file("shape/martinique.shp", package="cartography")
-# import the Shapefile to a sf object
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# Compute the population density (inhab./km2) using sf::st_area()
-mtq$POP_DENS <- 1000*1000 * mtq$P13_POP / st_area(mtq)
-
-# Set a custom color palette
-cols <- carto.pal(pal1 = "sand.pal", n1 = 5)
-# plot communes (only the backgroung color is plotted)
+# population density (inhab./km2) using sf::st_area()
+mtq$POPDENS <- 1e6 * mtq$POP / st_area(mtq)
+# plot municipalities (only the backgroung color is plotted)
 plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
-# Plot the population density
+# plot population density
 choroLayer(
   x = mtq, 
-  var = "POP_DENS",
+  var = "POPDENS",
   method = "geom",
   nclass=5,
-  col = cols,
+  col = carto.pal(pal1 = "sand.pal", n1 = 5),
   border = "grey40", 
   lwd = 0.5,
   legend.pos = "topright", 
@@ -75,189 +67,184 @@ choroLayer(
   add = TRUE
 ) 
 # http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?topicname=geometrical_interval
-layoutLayer(
-  title = "Population Distribution in Martinique", 
-  sources = "INSEE 2016",  
-  author = paste0("cartography ", packageVersion("cartography")), 
-  frame = FALSE,
-  north = FALSE, 
-  tabtitle = TRUE
-) 
-
+# layout
+layoutLayer(title = "Population Distribution in Martinique", 
+            sources = "Sources: Insee and IGN - 2018",
+            author = paste0("cartography ", packageVersion("cartography")), 
+            frame = FALSE, north = FALSE, tabtitle = TRUE) 
+# north arrow
 north(pos = "topleft")
 
 
 ## ----propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE------
-## Plot OpenStreetMap tiles as basemap
-# Download the tiles, nuts0.spdf extent
-# mtq.osm <- getTiles(x = mtq, type = "osm", zoom = 11, crop = TRUE)
-# # Plot the tiles
-# tilesLayer(mtq.osm)
-# plot communes (only borders are plotted)
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+# # Plot OpenStreetMap tiles as basemap
+# download osm tiles
+mtq.osm <- getTiles(
+  x = mtq, 
+  type = "osm", 
+  zoom = 11, 
+  crop = TRUE
+)
+# plot osm tiles
+tilesLayer(x = mtq.osm)
+# plot municipalities (only borders are plotted)
 plot(st_geometry(mtq), col = NA, border = "grey", add=FALSE)
-# Plot communes population
-propSymbolsLayer(
-  x = mtq,
-  var = "P13_POP",
-  inches = 0.4,
-  symbols = "circle",
-  col = "brown4",
-  legend.pos = "topright",
-  legend.title.txt = "Total population"
-)
-
-layoutLayer(
-  title = "Population Distribution in Martinique",
-  sources = "INSEE 2016 - © OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
-  author = paste0("cartography ", packageVersion("cartography")),
-  frame = FALSE,
-  north = FALSE,
-  tabtitle = TRUE
-)
-
+# plot population
+propSymbolsLayer(x = mtq, var = "POP", inches = 0.4, col = "brown4",
+  legend.pos = "topright",  legend.title.txt = "Total population")
+# layout
+layoutLayer(title = "Population Distribution in Martinique",
+            sources = "Sources: Insee and IGN - 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
+            author = paste0("cartography ", packageVersion("cartography")),
+            frame = FALSE, north = FALSE, tabtitle = TRUE)
+# north arrow
 north(pos = "topleft")
 
 ## ----isopleth, fig.height=6, fig.width=5, margin=TRUE--------------------
 library(sf)
 library(cartography)
-# path to the ESRI Shapefile embedded in cartography
-path_to_file <- system.file("shape/martinique.shp", package="cartography")
-# import the Shapefile to a sf object
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-options(scipen = 6)
+# plot municipalities (only the backgroung color is plotted)
 plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+# plot isopleth map
 smoothLayer(
   x = mtq, 
-  var = 'P13_POP',
-  span = 4000, 
-  beta = 2, 
-  breaks = c(0,5000,seq(10000,100000,10000),105700 ),
+  var = 'POP',
+  span = 4000,
+  nclass = 12,
+  beta = 2,
   mask = mtq, 
   border = "grey",
-  lwd = 0.2,
+  lwd = 0.1, legend.values.rnd = -3,
   col = carto.pal(pal1 = 'brown.pal', n1 = 12),
   legend.title.txt = "Population\nPotential",
   legend.pos = "topright", add=TRUE
 )
-text(
-  x = 692582, y = 1611478, 
-  labels = "Distance function:\n- type = exponential\n- beta = 2\n- span = 4 km", 
-  cex = 0.8, adj = 0, font = 3
-)
-layoutLayer(
-  title = "Population Distribution in Martinique",
-  sources = "INSEE 2016",
-  author = paste0("cartography ", packageVersion("cartography")),
-  frame = FALSE,
-  north = FALSE,
-  tabtitle = TRUE
-)
-
+# annotation on the map
+text(x = 692582, y = 1611478, cex = 0.8, adj = 0, font = 3,  labels = 
+       "Distance function:\n- type = exponential\n- beta = 2\n- span = 4 km")
+# layout
+layoutLayer(title = "Population Distribution in Martinique",
+            sources = "Sources: Insee and IGN - 2018",
+            author = paste0("cartography ", packageVersion("cartography")),
+            frame = FALSE, north = FALSE, tabtitle = TRUE)
+# north arrow
 north(pos = "topleft")
 
 
-## ----grid, fig.height=4.33, fig.width=5, margin=TRUE---------------------
+## ----grid, fig.height=6, fig.width=5, margin=TRUE------------------------
 library(sf)
 library(cartography)
-# path to the ESRI Shapefile embedded in cartography
-path_to_file <- system.file("shape/martinique.shp", package="cartography")
-# import the Shapefile to a sf object
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
 
 # Create a grid layer
 mygrid <- getGridLayer(
   x = mtq, 
   cellsize = (median(st_area(mtq))), 
-  var = c("C13_POP"),
+  var = c("POP"),
   type = "hexagonal"
 )
-
 # Compute population density in people per km2
-mygrid$POP_DENS <- 1e6 * mygrid$C13_POP / mygrid$gridarea
-
-# Set a custom color palette
-cols <- carto.pal(pal1 = "sand.pal", n1 = 5)
-# plot communes (only the backgroung color is plotted)
+mygrid$POPDENS <- 1e6 * mygrid$POP / mygrid$gridarea
+# plot municipalities (only the backgroung color is plotted)
 plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
 # Plot the population density
-choroLayer(
-  x = mygrid, 
-  var = "POP_DENS",
-  method = "geom",
-  nclass=5,
-  col = cols,
-  border = "grey80", 
-  lwd = 0.5,
-  legend.pos = "topright", 
-  legend.title.txt = "Population Density\n(people per km2)",
-  add = T
-) 
-layoutLayer(
-  title = "Population Distribution in Martinique", 
-  sources = "INSEE 2016",  
-  author = paste0("cartography ", packageVersion("cartography")), 
-  frame = FALSE,
-  north = FALSE, 
-  tabtitle = TRUE
-) 
+choroLayer(x = mygrid, var = "POPDENS", method = "geom", nclass=5, 
+           col = carto.pal(pal1 = "turquoise.pal", n1 = 5), border = "grey80", 
+           lwd = 0.5, legend.pos = "topright", add = TRUE,
+           legend.title.txt = "Population Density\n(people per km2)") 
+layoutLayer(title = "Population Distribution in Martinique", 
+            sources = "Sources: Insee and IGN - 2018",
+            author = paste0("cartography ", packageVersion("cartography")), 
+            frame = FALSE, north = FALSE, tabtitle = TRUE) 
 
-
-
-## ----discc, fig.height=4.33, fig.width=5, margin=TRUE--------------------
+## ----discc, fig.height=5, fig.width=5, margin=TRUE-----------------------
 library(sf)
 library(cartography)
-# path to the ESRI Shapefile embedded in cartography
-path_to_file <- system.file("shape/martinique.shp", package="cartography")
-# import the Shapefile to a sf object
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-
 # Compute the population density (inhab./km2) using sf::st_area()
-mtq$POP_DENS <- as.numeric(1e6 * mtq$P13_POP / st_area(mtq))
-
+mtq$POPDENS <- as.numeric(1e6 * mtq$POP / st_area(mtq))
 # Get a SpatialLinesDataFrame of countries borders
 mtq.contig <- getBorders(mtq)
 
-plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1", 
+     xlim = c(690574, 745940))
 # Plot the population density
-choroLayer(
-  x = mtq, 
-  var = "POP_DENS",
-  method = "geom",
-  nclass=5,
-  col = cols,
-  border = "grey80", 
-  lwd = 0.5,
-  legend.pos = "topright", 
-  legend.title.txt = "Population Density\n(people per km2)",
-  add = TRUE
-)
+choroLayer(x = mtq, var = "MED",
+           breaks = c(min(mtq$MED), seq(13000, 21000, 2000), max(mtq$MED)),
+           col = carto.pal("green.pal", 6),border = "white", lwd = 0.5, 
+           legend.pos = "topright", legend.title.txt = "Median Income\n(euros)",
+           add = TRUE)
 
 # Plot discontinuities
 discLayer(
   x = mtq.contig, 
   df = mtq, 
-  var = "POP_DENS",
+  var = "MED",
   type = "rel", 
   method = "geom", 
   nclass = 3,
-  threshold = 0.6,
+  threshold = 0.4,
   sizemin = 0.7, 
   sizemax = 6, 
-  col = "red",
+  col = "red4",
   legend.values.rnd = 1, 
-  legend.title.txt = "Discontinuities in \nGDP per Capita\n(relative)", 
-  legend.pos = "bottomright",
+  legend.title.txt = "Relative\nDiscontinuities", 
+  legend.pos = "right",
   add = TRUE
 )
 
 # Layout
-layoutLayer(
-  title = "Wealth Disparities in Europe, 2008", 
-  author =  paste0("cartography ", packageVersion("cartography")),
-  sources = "Source: Eurostat, 2011", 
-  frame = FALSE, 
-  scale = 500, 
-  theme = "grey.pal"
+layoutLayer(title = "Wealth Disparities in Martinique, 2015", 
+            author =  paste0("cartography ", packageVersion("cartography")),
+            sources = "Sources: Insee and IGN - 2018",
+            frame = FALSE, scale = 5, tabtitle = TRUE,theme = "grey.pal")
+
+
+## ----sp, fig.height=5, fig.width=7, margin=TRUE--------------------------
+library(sp)
+library(cartography)
+data("nuts2006")
+
+
+# Plot a layer with the extent of the EU28 countries with only a background color
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+# Plot non european space
+plot(world.spdf, col  = "#E3DEBF", border = NA, add = TRUE)
+# Plot Nuts2 regions
+plot(nuts0.spdf, col = "grey60",border = "white", lwd = 0.4, add = TRUE)
+
+propSymbolsLayer(
+  spdf = nuts0.spdf, 
+  df = nuts0.df, 
+  spdfid = "id", 
+  dfid = "id", 
+  var = "pop2008", 
+  legend.pos = "topright", 
+  col = "red4", 
+  border = "white", 
+  legend.title.txt = "Population" 
 )
 
+layoutLayer(title = "Population in Europe, 2008",
+            sources = "Data: Eurostat, 2008",
+            author =  paste0("cartography ", packageVersion("cartography")),
+            scale = 500, frame = TRUE, col = "#688994") 
+
+north("topleft")
 
