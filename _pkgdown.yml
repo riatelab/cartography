@@ -56,4 +56,4 @@ figures:
   fig.width: 7.2916667
   fig.height: 7
   fig.retina: 2
-  fig.asp: 1
+  fig.asp: 

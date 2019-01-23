@@ -173,11 +173,11 @@ of id1 and id2 (with "_" as separator).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"shape/martinique.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `martinique' from data source `/home/tim/Documents/pkg/cartography/inst/shape/martinique.shp' using driver `ESRI Shapefile'
-#&gt; Simple feature collection with 34 features and 23 fields
-#&gt; geometry type:  POLYGON
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/home/tim/Documents/pkg/cartography/inst/gpkg/mtq.gpkg' using driver `GPKG'
+#&gt; Simple feature collection with 34 features and 8 fields
+#&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574.4 ymin: 1592426 xmax: 736126.5 ymax: 1645660
+#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
 #&gt; epsg (SRID):    32620
 #&gt; proj4string:    +proj=utm +zone=20 +datum=WGS84 +units=m +no_defs</div><div class='input'><span class='co'># Get borders</span>
 <span class='no'>mtq.borders</span> <span class='kw'>&lt;-</span> <span class='fu'>getBorders</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>)

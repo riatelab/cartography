@@ -283,24 +283,24 @@ not (FALSE).</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sp</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"nuts2006"</span>)
-<span class='co'># Create a link layer</span>
-<span class='no'>twincities.spdf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getLinkLayer.html'>getLinkLayer</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>nuts2.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>twincities.df</span>)
-
-<span class='co'># Plot the links - Twin cities agreements between regions</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>nuts0.spdf</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>,<span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>)</div><div class='input'>
-<span class='co'># Countries of agreements</span>
-<span class='no'>twincities.df</span>$<span class='no'>ctry</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>twincities.df</span>$<span class='no'>j</span>,<span class='fl'>1</span>,<span class='fl'>2</span>)
-
-<span class='co'># Agreements with german cities</span>
-<span class='no'>twincitiesok</span> <span class='kw'>&lt;-</span> <span class='no'>twincities.df</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>twincities.df</span>$<span class='no'>i</span>,<span class='fl'>1</span>,<span class='fl'>2</span>)<span class='kw'>==</span><span class='st'>"DE"</span>,]
-
-<span class='co'># plot the colored and graduated links</span>
-<span class='fu'>gradLinkTypoLayer</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>twincities.spdf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>twincitiesok</span>,
-                  <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"fij"</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>15</span>,<span class='fl'>20</span>),
-                  <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>4</span>,<span class='fl'>8</span>),
-                  <span class='kw'>var2</span> <span class='kw'>=</span> <span class='st'>"ctry"</span>,  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='gradLinkTypoLayer-1.png' alt='' width='525' height='504' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>sf</span>)
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_read'>st_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/home/tim/Documents/pkg/cartography/inst/gpkg/mtq.gpkg' using driver `GPKG'
+#&gt; Simple feature collection with 34 features and 8 fields
+#&gt; geometry type:  MULTIPOLYGON
+#&gt; dimension:      XY
+#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; epsg (SRID):    32620
+#&gt; proj4string:    +proj=utm +zone=20 +datum=WGS84 +units=m +no_defs</div><div class='input'><span class='no'>mob</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"csv/mob.csv"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))
+<span class='co'># Create a link layer - work mobilities to Fort-de-France (97209) and </span>
+<span class='co'># Le Lamentin (97213)</span>
+<span class='no'>mob.sf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getLinkLayer.html'>getLinkLayer</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>mob</span>[<span class='no'>mob</span>$<span class='no'>j</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>97209</span>, <span class='fl'>97213</span>),],
+                       <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"i"</span>, <span class='st'>"j"</span>))
+<span class='co'># Plot the links - Work mobility</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_geometry'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>,<span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>)</div><div class='input'><span class='fu'>gradLinkTypoLayer</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mob.sf</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>mob</span>,
+                  <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"fij"</span>,
+                  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>109</span>,<span class='fl'>500</span>,<span class='fl'>1000</span>,<span class='fl'>2000</span>,<span class='fl'>4679</span>),
+                  <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>10</span>),
+                  <span class='kw'>var2</span><span class='kw'>=</span><span class='st'>'j'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='gradLinkTypoLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
