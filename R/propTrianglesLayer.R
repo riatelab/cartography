@@ -62,7 +62,7 @@ propTrianglesLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                legend.frame = FALSE,
                                add = TRUE)
 {
-  if(!missing(x)){spdf <- as(x, "Spatial")}
+  if(!missing(x)){spdf <- methods::as(x, "Spatial")}
   if (missing(df)){df <- spdf@data}
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
   if (is.null(dfid)){dfid <- names(df)[1]}
