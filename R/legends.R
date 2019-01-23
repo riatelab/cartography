@@ -566,7 +566,6 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
 #' @examples
-#' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 #' plot(st_geometry(mtq))

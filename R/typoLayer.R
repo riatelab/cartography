@@ -33,14 +33,14 @@
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-#' typoLayer(x = mtq, var="STATUT",  
+#' typoLayer(x = mtq, var="STATUS",  
 #'           col = c("aquamarine4", "yellow3","wheat"),
-#'           legend.values.order = c("Préfecture de région",
-#'                                   "Sous-préfecture", 
-#'                                   "Commune simple"),
+#'           legend.values.order = c("Prefecture",
+#'                                   "Sub-prefecture", 
+#'                                   "Simple municipality"),
 #'           legend.pos = "topright",
 #'           legend.title.txt = "Status")
-#' layoutLayer(title = "Commune Status", author = "", sources = "")
+#' layoutLayer(title = "Municipality Status", author = "", sources = "")
 typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                       col = NULL, border = "grey20", lwd = 1,
                       colNA = "white",
