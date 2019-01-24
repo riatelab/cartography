@@ -139,7 +139,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <h2 class="hasAnchor">
 <a href="#openstreetmap-base-map-and-proportional-symbols" class="anchor"></a>OpenStreetMap Base Map and Proportional Symbols</h2>
 <p><code><a href="../reference/getTiles.html">getTiles()</a></code> and <code><a href="../reference/tilesLayer.html">tilesLayer()</a></code> download and display OpenStreetMap tiles. Be careful to cite the source of the tiles appropriately.</p>
-<p><code><a href="../reference/propSymbolsLayer.html">propSymbolsLayer()</a></code> displays symbols proportionals to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The <code>inches</code> argument is used to customize the symbols sizes.</p>
+<p><code><a href="../reference/propSymbolsLayer.html">propSymbolsLayer()</a></code> displays symbols proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The <code>inches</code> argument is used to customize the symbols sizes.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
@@ -208,9 +208,9 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb2-30" data-line-number="30"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
 <p><img src="cartography_files/figure-html/choroMap-1.png" width="360"></p>
 </div>
-<div id="colored-pencil-maps-and-typolgies" class="section level2">
+<div id="colored-pencil-maps-and-typologies" class="section level2">
 <h2 class="hasAnchor">
-<a href="#colored-pencil-maps-and-typolgies" class="anchor"></a>Colored Pencil Maps and Typolgies</h2>
+<a href="#colored-pencil-maps-and-typologies" class="anchor"></a>Colored Pencil Maps and Typologies</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
@@ -224,7 +224,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">lefthanded =</span> F</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">)</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
 <a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co"># plot administrative status</span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw"><a href="../reference/typoLayer.html">typoLayer</a></span>(</a>
 <a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">x =</span> mtq_pencil, </a>
@@ -509,7 +509,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a href="#examples">Examples</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#openstreetmap-base-map-and-proportional-symbols">OpenStreetMap Base Map and Proportional Symbols</a></li>
       <li><a href="#choropleth-map">Choropleth Map</a></li>
-      <li><a href="#colored-pencil-maps-and-typolgies">Colored Pencil Maps and Typolgies</a></li>
+      <li><a href="#colored-pencil-maps-and-typologies">Colored Pencil Maps and Typologies</a></li>
       <li><a href="#label-map">Label Map</a></li>
       <li><a href="#isopleth-map">Isopleth Map</a></li>
       <li><a href="#grid-map">Grid Map</a></li>
