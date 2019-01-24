@@ -1,5 +1,5 @@
 ---
-title: 'Introduction to cartography'
+title: 'cartography'
 author: "Timothée Giraud, Nicolas Lambert"
 date: '`r Sys.Date()`'
 output: 
@@ -108,7 +108,7 @@ north(pos = "topleft")
 In choropleth maps, areas are shaded according to the variation of a quantitative variable. They are used to represent ratios or indices. 
 
 `choroLayer()` displays choropleth maps . Arguments `nclass`, `method` and `breaks` allow to customize the variable classification. `getBreaks()` allow to classify outside of the function itself. Colors palettes are defined with `col` and a set of color palettes can be created with `carto.pal()` (see also `display.carto.all()`). 
-
+<!-- # http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?topicname=geometrical_interval -->
 
 ```{r choroMap, fig.height=6, fig.width=5, margin=TRUE}
 library(sf)
@@ -134,7 +134,6 @@ choroLayer(
   legend.title.txt = "Population Density\n(people per km2)",
   add = TRUE
 ) 
-# http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?topicname=geometrical_interval
 # layout
 layoutLayer(title = "Population Distribution in Martinique", 
             sources = "Sources: Insee and IGN - 2018",
@@ -233,9 +232,9 @@ layoutLayer(
 
 ## Isopleth Map
 
-Unlike choropleth maps, which represent data as discrete values, isopleth maps are based on the assumption that the phenomenon to be represented has a continuous distribution. These maps use a spatial interaction modeling approach which aims to compute indicators based on stock values weighted by distance (Stewart 1942). It allows a spatial representation of the phenomenon independent from the initial heterogeneity of the territorial division. The result is easy to read and can be considered as a bypassing of the Modifiable Areal Unit Problem (MAUP) (Openshaw and Taylor 1979).
+<!-- Unlike choropleth maps, which represent data as discrete values, isopleth maps are based on the assumption that the phenomenon to be represented has a continuous distribution. These maps use a spatial interaction modeling approach which aims to compute indicators based on stock values weighted by distance (Stewart 1942). It allows a spatial representation of the phenomenon independent from the initial heterogeneity of the territorial division. The result is easy to read and can be considered as a bypassing of the Modifiable Areal Unit Problem (MAUP) (Openshaw and Taylor 1979). -->
 
-In cartography, the smoothLayer function, that heavily depends on the SpatialPosition (Giraud and Commenges 2016) package, allow to compute quickly these maps. The function takes as inputs a marked point layer and a set of parameters (a spatial interaction function and its parameters) and outputs an isopleth map layer.
+<!-- In cartography, the smoothLayer function, that heavily depends on the SpatialPosition (Giraud and Commenges 2016) package, allow to compute quickly these maps. The function takes as inputs a marked point layer and a set of parameters (a spatial interaction function and its parameters) and outputs an isopleth map layer. -->
 
 ```{r isopleth, fig.height=6, fig.width=5, margin=TRUE}
 library(sf)
@@ -276,9 +275,9 @@ north(pos = "topleft")
 
 ## Grid Map
 
-The grid-cell method is an option to overcome the arbitrariness and irregularity of administrative division. It highlights the main trends in the data spatial distribution, splitting the territory in regular blocks. Statistical values are distributed over a regular grid. Cell values are classified and then displayed in areas of color. The principle adopted here is to set each cell’s value with a proportion of the initial geometrical units it overlay (share of intersected area).
+<!-- The grid-cell method is an option to overcome the arbitrariness and irregularity of administrative division. It highlights the main trends in the data spatial distribution, splitting the territory in regular blocks. Statistical values are distributed over a regular grid. Cell values are classified and then displayed in areas of color. The principle adopted here is to set each cell’s value with a proportion of the initial geometrical units it overlay (share of intersected area). -->
 
-In cartography the map process relies on three functions. getGridLayer builds a regular grid (squares or hexagons) based on a spatial object and provide a table of surface intersections. getGridLayer computes data to match the grid layer according to the surface intersections. Eventually, choroLayer uses the grid and data to display a choropleth map (figure 4).
+<!-- In cartography the map process relies on three functions. getGridLayer builds a regular grid (squares or hexagons) based on a spatial object and provide a table of surface intersections. getGridLayer computes data to match the grid layer according to the surface intersections. Eventually, choroLayer uses the grid and data to display a choropleth map (figure 4). -->
 
 
 ```{r grid, fig.height=6, fig.width=5, margin=TRUE}
@@ -315,11 +314,11 @@ layoutLayer(title = "Population Distribution in Martinique",
 
 ## Discontinuities
 
-Discontinuities maps are based on the variation of a phenomena between contiguous administrative units. This kind of representation does not focus on homogeneous zones, but rather on spatial breaks. On the map, discontinuity intensity is expressed by the borders’ thickness.
+<!-- Discontinuities maps are based on the variation of a phenomena between contiguous administrative units. This kind of representation does not focus on homogeneous zones, but rather on spatial breaks. On the map, discontinuity intensity is expressed by the borders’ thickness. -->
 
-The first step to build these maps is to extracts borders between units. The second step is to compute a discontinuity measure (either a ratio or an absolute difference). The third step is to display it on a map using the size visual variable. Combine these discontinuities with a choropleth representation helps to understand the discontinuity direction (which one of two regions has the higher value).
+<!-- The first step to build these maps is to extracts borders between units. The second step is to compute a discontinuity measure (either a ratio or an absolute difference). The third step is to display it on a map using the size visual variable. Combine these discontinuities with a choropleth representation helps to understand the discontinuity direction (which one of two regions has the higher value). -->
 
-In cartography, getBorders is used to build a spatial object of borders between units. Each resulting borders contains the ids of its two neighboring units. It is also possible to complement these borders by the getOuterBorders function that can compute borders between non-contiguous units (maritime borders). discLayer function compute and display discontinuities, the line widths reflect the ratio or the absolute difference between values of an indicator in two neighboring units. Of course, the discontinuities layer can be associate with a choropleth layer (choroLayer) (figure 5).
+<!-- In cartography, getBorders is used to build a spatial object of borders between units. Each resulting borders contains the ids of its two neighboring units. It is also possible to complement these borders by the getOuterBorders function that can compute borders between non-contiguous units (maritime borders). discLayer function compute and display discontinuities, the line widths reflect the ratio or the absolute difference between values of an indicator in two neighboring units. Of course, the discontinuities layer can be associate with a choropleth layer (choroLayer) (figure 5). -->
 
 
 ```{r discc, fig.height=5, fig.width=5, margin=TRUE}
@@ -377,7 +376,6 @@ layoutLayer(title = "Wealth Disparities in Martinique, 2015",
 library(sp)
 library(cartography)
 data("nuts2006")
-
 
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")

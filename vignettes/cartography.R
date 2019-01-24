@@ -7,6 +7,109 @@ knitr::knit_hooks$set(margin = function(before, options, envir){
   } 
 })
 
+## ----propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE------
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+# download osm tiles
+mtq.osm <- getTiles(
+  x = mtq, 
+  type = "osm", 
+  zoom = 11, 
+  crop = TRUE
+)
+# plot osm tiles
+tilesLayer(x = mtq.osm)
+# plot municipalities (only borders are plotted)
+plot(st_geometry(mtq), col = NA, border = "grey", add=TRUE)
+# plot population
+propSymbolsLayer(x = mtq, var = "POP", inches = 0.4, col = "brown4",
+  legend.pos = "topright",  legend.title.txt = "Total population")
+# layout
+layoutLayer(title = "Population Distribution in Martinique",
+            sources = "Sources: Insee and IGN - 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
+            author = paste0("cartography ", packageVersion("cartography")),
+            frame = FALSE, north = FALSE, tabtitle = TRUE)
+# north arrow
+north(pos = "topleft")
+
+## ----choroMap, fig.height=6, fig.width=5, margin=TRUE--------------------
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+# population density (inhab./km2) using sf::st_area()
+mtq$POPDENS <- 1e6 * mtq$POP / st_area(mtq)
+# plot municipalities (only the backgroung color is plotted)
+plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+# plot population density
+choroLayer(
+  x = mtq, 
+  var = "POPDENS",
+  method = "geom",
+  nclass=5,
+  col = carto.pal(pal1 = "sand.pal", n1 = 5),
+  border = "grey40", 
+  lwd = 0.5,
+  legend.pos = "topright", 
+  legend.title.txt = "Population Density\n(people per km2)",
+  add = TRUE
+) 
+# layout
+layoutLayer(title = "Population Distribution in Martinique", 
+            sources = "Sources: Insee and IGN - 2018",
+            author = paste0("cartography ", packageVersion("cartography")), 
+            frame = FALSE, north = FALSE, tabtitle = TRUE) 
+# north arrow
+north(pos = "topleft")
+
+
+## ----pentypoMap, fig.height=6, fig.width=5, margin=TRUE------------------
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+# transform municipality multipolygons to (multi)linestrings
+mtq_pencil <- getPencilLayer(
+  x = mtq, 
+  size = 500, 
+  lefthanded = F
+)
+# plot municipalities (only the backgroung color is plotted)
+plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+# plot administrative status
+typoLayer(
+  x = mtq_pencil, 
+  var="STATUS",  
+  col = c("aquamarine4", "yellow3","wheat"), 
+  lwd = .7,
+  legend.values.order = c("Prefecture",
+                          "Sub-prefecture", 
+                          "Simple municipality"),
+  legend.pos = "topright",
+  legend.title.txt = "", 
+  add=TRUE
+)
+#  plot municipalities
+plot(st_geometry(mtq), lwd = 0.5, border = "grey20", add = TRUE, lty = 3)
+# labels for a few  municipalities
+labelLayer(x = mtq[mtq$STATUS != "Simple municipality",], txt = "LIBGEO", 
+           cex = 0.9, halo = T, r = 0.15)
+# north arrow
+north(pos = "topleft", col = "#EED19A")
+# title, source, author
+layoutLayer(title = "Administrative Status", 
+            sources = "Sources: Insee and IGN - 2018",theme = "sand.pal",
+            author = paste0("cartography ", packageVersion("cartography")), 
+            frame = FALSE, north = FALSE, tabtitle = TRUE) 
+
 ## ----labelMap, fig.height=6, fig.width=5, margin=TRUE--------------------
 library(sf)
 library(cartography)
@@ -39,72 +142,6 @@ layoutLayer(
   north = TRUE, 
   tabtitle = TRUE
 ) 
-
-
-
-## ----choroMap, fig.height=6, fig.width=5, margin=TRUE--------------------
-library(sf)
-library(cartography)
-# path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
-# import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# population density (inhab./km2) using sf::st_area()
-mtq$POPDENS <- 1e6 * mtq$POP / st_area(mtq)
-# plot municipalities (only the backgroung color is plotted)
-plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
-# plot population density
-choroLayer(
-  x = mtq, 
-  var = "POPDENS",
-  method = "geom",
-  nclass=5,
-  col = carto.pal(pal1 = "sand.pal", n1 = 5),
-  border = "grey40", 
-  lwd = 0.5,
-  legend.pos = "topright", 
-  legend.title.txt = "Population Density\n(people per km2)",
-  add = TRUE
-) 
-# http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?topicname=geometrical_interval
-# layout
-layoutLayer(title = "Population Distribution in Martinique", 
-            sources = "Sources: Insee and IGN - 2018",
-            author = paste0("cartography ", packageVersion("cartography")), 
-            frame = FALSE, north = FALSE, tabtitle = TRUE) 
-# north arrow
-north(pos = "topleft")
-
-
-## ----propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE------
-library(sf)
-library(cartography)
-# path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
-# import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# # Plot OpenStreetMap tiles as basemap
-# download osm tiles
-mtq.osm <- getTiles(
-  x = mtq, 
-  type = "osm", 
-  zoom = 11, 
-  crop = TRUE
-)
-# plot osm tiles
-tilesLayer(x = mtq.osm)
-# plot municipalities (only borders are plotted)
-plot(st_geometry(mtq), col = NA, border = "grey", add=FALSE)
-# plot population
-propSymbolsLayer(x = mtq, var = "POP", inches = 0.4, col = "brown4",
-  legend.pos = "topright",  legend.title.txt = "Total population")
-# layout
-layoutLayer(title = "Population Distribution in Martinique",
-            sources = "Sources: Insee and IGN - 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
-            author = paste0("cartography ", packageVersion("cartography")),
-            frame = FALSE, north = FALSE, tabtitle = TRUE)
-# north arrow
-north(pos = "topleft")
 
 ## ----isopleth, fig.height=6, fig.width=5, margin=TRUE--------------------
 library(sf)
@@ -220,7 +257,6 @@ layoutLayer(title = "Wealth Disparities in Martinique, 2015",
 library(sp)
 library(cartography)
 data("nuts2006")
-
 
 # Plot a layer with the extent of the EU28 countries with only a background color
 plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
