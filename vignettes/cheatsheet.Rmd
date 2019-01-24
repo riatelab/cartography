@@ -7,10 +7,6 @@ output:
 vignette: >
   %\VignetteIndexEntry{Thematic Maps with cartography :: CHEAT SHEET}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteKeyword{PDF}
-  %\VignetteKeyword{HTML}
-  %\VignetteKeyword{vignette}
-  %\VignetteKeyword{package}
 
 ---
 

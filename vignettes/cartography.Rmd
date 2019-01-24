@@ -11,6 +11,7 @@ vignette: >
   %\VignetteIndexEntry{Introduction to cartography}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+
 ---
 
 
@@ -31,7 +32,7 @@ The aim of `cartography` is to obtain thematic maps with the visual quality of t
 
 Users of the package could belong to one of two categories: cartographers willing to use R or R users willing to create maps. Therefore, its functions have to be intuitive to cartographers and ensure compatibility with common R workflows.  
 
-`cartography` uses `sf` or `sp` objects to produces `base` graphics. As most of the internals of the package relies on `sf` functionnalities, the prefered format for spatial objects is `sf`.  
+`cartography` uses `sf` or `sp` objects to produces `base` graphics. As most of the internals of the package relies on `sf` functionalities, the preferred format for spatial objects is `sf`.  
 
 
 # Features
@@ -49,7 +50,7 @@ Each function has two main arguments that are:
     Many parameters are available to fine tune the cartographic representation. These parameters are the common ones found in GIS and automatic cartography software (e.g. classification and color palettes used in choropleth maps, symbols sizes used in proportional symbols maps...).
 
 * **Legends** (*`legend*()` functions*)     
-Legends are displayed by default along cartographic layerd but more parameters are available through `legend*()` functions.
+Legends are displayed by default along cartographic layers but more parameters are available through `legend*()` functions.
 
 * **Transformations** (*`get*()` functions*)    
 A set of functions is dedicated to the creation or transformation of spatial objects (e.g. borders extraction, grid or links creation). These functions are provided to ease the creation of some more advanced maps that usually need geo-processing. 
@@ -65,45 +66,49 @@ Along with the cartographic functions, some other functions are dedicated to lay
 # Examples
 
 
-## Label Map
+## OpenStreetMap Base Map and Proportional Symbols
 
-```{r labelMap, fig.height=6, fig.width=5, margin=TRUE}
+`getTiles()` and `tilesLayer()` download and display OpenStreetMap tiles. Be careful to cite the source of the tiles appropriately. 
+
+`propSymbolsLayer()` displays symbols proportionals to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes. 
+
+```{r propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
 path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# plot municipalities
-plot(st_geometry(mtq), col = "darkseagreen3", border = "darkseagreen4", 
-     bg = "lightblue1", lwd = 0.5)
-# plot labels
-labelLayer(
+# download osm tiles
+mtq.osm <- getTiles(
   x = mtq, 
-  txt = "LIBGEO", 
-  col= "black", 
-  cex = 0.7, 
-  font = 4,
-  halo = TRUE, 
-  bg = "white", 
-  r = 0.1, 
-  overlap = FALSE, 
-  show.lines = FALSE
+  type = "osm", 
+  zoom = 11, 
+  crop = TRUE
 )
-# map layout
-layoutLayer(
-  title = "Municipalities of Martinique", 
-  sources = "Sources: Insee and IGN - 2018",  
-  author = paste0("cartography ", packageVersion("cartography")), 
-  frame = FALSE,
-  north = TRUE, 
-  tabtitle = TRUE
-) 
-
-
+# plot osm tiles
+tilesLayer(x = mtq.osm)
+# plot municipalities (only borders are plotted)
+plot(st_geometry(mtq), col = NA, border = "grey", add=TRUE)
+# plot population
+propSymbolsLayer(x = mtq, var = "POP", inches = 0.4, col = "brown4",
+  legend.pos = "topright",  legend.title.txt = "Total population")
+# layout
+layoutLayer(title = "Population Distribution in Martinique",
+            sources = "Sources: Insee and IGN - 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
+            author = paste0("cartography ", packageVersion("cartography")),
+            frame = FALSE, north = FALSE, tabtitle = TRUE)
+# north arrow
+north(pos = "topleft")
 ```
 
+
 ## Choropleth Map
+
+In choropleth maps, areas are shaded according to the variation of a quantitative variable. They are used to represent ratios or indices. 
+
+`choroLayer()` displays choropleth maps . Arguments `nclass`, `method` and `breaks` allow to customize the variable classification. `getBreaks()` allow to classify outside of the function itself. Colors palettes are defined with `col` and a set of color palettes can be created with `carto.pal()` (see also `display.carto.all()`). 
+
 
 ```{r choroMap, fig.height=6, fig.width=5, margin=TRUE}
 library(sf)
@@ -140,37 +145,91 @@ north(pos = "topleft")
 
 ```
 
-## Base Map and Proportional Symbols
 
-```{r propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
+## Colored Pencil Maps and Typolgies
+
+
+```{r pentypoMap, fig.height=6, fig.width=5, margin=TRUE}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
 path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-# download osm tiles
-mtq.osm <- getTiles(
+# transform municipality multipolygons to (multi)linestrings
+mtq_pencil <- getPencilLayer(
   x = mtq, 
-  type = "osm", 
-  zoom = 11, 
-  crop = TRUE
+  size = 500, 
+  lefthanded = F
 )
-# plot osm tiles
-tilesLayer(x = mtq.osm)
-# plot municipalities (only borders are plotted)
-plot(st_geometry(mtq), col = NA, border = "grey", add=TRUE)
-# plot population
-propSymbolsLayer(x = mtq, var = "POP", inches = 0.4, col = "brown4",
-  legend.pos = "topright",  legend.title.txt = "Total population")
-# layout
-layoutLayer(title = "Population Distribution in Martinique",
-            sources = "Sources: Insee and IGN - 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
-            author = paste0("cartography ", packageVersion("cartography")),
-            frame = FALSE, north = FALSE, tabtitle = TRUE)
+# plot municipalities (only the backgroung color is plotted)
+plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+# plot administrative status
+typoLayer(
+  x = mtq_pencil, 
+  var="STATUS",  
+  col = c("aquamarine4", "yellow3","wheat"), 
+  lwd = .7,
+  legend.values.order = c("Prefecture",
+                          "Sub-prefecture", 
+                          "Simple municipality"),
+  legend.pos = "topright",
+  legend.title.txt = "", 
+  add=TRUE
+)
+#  plot municipalities
+plot(st_geometry(mtq), lwd = 0.5, border = "grey20", add = TRUE, lty = 3)
+# labels for a few  municipalities
+labelLayer(x = mtq[mtq$STATUS != "Simple municipality",], txt = "LIBGEO", 
+           cex = 0.9, halo = T, r = 0.15)
 # north arrow
-north(pos = "topleft")
+north(pos = "topleft", col = "#EED19A")
+# title, source, author
+layoutLayer(title = "Administrative Status", 
+            sources = "Sources: Insee and IGN - 2018",theme = "sand.pal",
+            author = paste0("cartography ", packageVersion("cartography")), 
+            frame = FALSE, north = FALSE, tabtitle = TRUE) 
 ```
+
+## Label Map
+
+`labelLayer()` is dedicated to the display of labels on a map. The `overlap = FALSE` argument displays non overlapping labels. 
+
+```{r labelMap, fig.height=6, fig.width=5, margin=TRUE}
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+# plot municipalities
+plot(st_geometry(mtq), col = "darkseagreen3", border = "darkseagreen4", 
+     bg = "lightblue1", lwd = 0.5)
+# plot labels
+labelLayer(
+  x = mtq, 
+  txt = "LIBGEO", 
+  col= "black", 
+  cex = 0.7, 
+  font = 4,
+  halo = TRUE, 
+  bg = "white", 
+  r = 0.1, 
+  overlap = FALSE, 
+  show.lines = FALSE
+)
+# map layout
+layoutLayer(
+  title = "Municipalities of Martinique", 
+  sources = "Sources: Insee and IGN - 2018",  
+  author = paste0("cartography ", packageVersion("cartography")), 
+  frame = FALSE,
+  north = TRUE, 
+  tabtitle = TRUE
+) 
+```
+
+
 
 ## Isopleth Map
 
@@ -217,7 +276,7 @@ north(pos = "topleft")
 
 ## Grid Map
 
-The grid-cell method is an option to overcome the arbitrariness and irregularity of administrative division. It highlights the main trends in the data spatial distribution, splitting the territory in regular blocks. Statistical values are distributed over a regular grid. Cell values are discretized and then displayed in areas of color. The principle adopted here is to set each cell’s value with a proportion of the initial geometrical units it overlay (share of intersected area).
+The grid-cell method is an option to overcome the arbitrariness and irregularity of administrative division. It highlights the main trends in the data spatial distribution, splitting the territory in regular blocks. Statistical values are distributed over a regular grid. Cell values are classified and then displayed in areas of color. The principle adopted here is to set each cell’s value with a proportion of the initial geometrical units it overlay (share of intersected area).
 
 In cartography the map process relies on three functions. getGridLayer builds a regular grid (squares or hexagons) based on a spatial object and provide a table of surface intersections. getGridLayer computes data to match the grid layer according to the surface intersections. Eventually, choroLayer uses the grid and data to display a choropleth map (figure 4).
 
@@ -346,6 +405,9 @@ layoutLayer(title = "Population in Europe, 2008",
 
 north("topleft")
 ```
+
+
+
 
 
 # Datasets
