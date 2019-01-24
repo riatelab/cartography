@@ -83,7 +83,7 @@ mtq_pencil <- getPencilLayer(
   lefthanded = F
 )
 # plot municipalities (only the backgroung color is plotted)
-plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+plot(st_geometry(mtq), col = "white", border = NA, bg = "lightblue1")
 # plot administrative status
 typoLayer(
   x = mtq_pencil, 

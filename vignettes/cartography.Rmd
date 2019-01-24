@@ -70,7 +70,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 
 `getTiles()` and `tilesLayer()` download and display OpenStreetMap tiles. Be careful to cite the source of the tiles appropriately. 
 
-`propSymbolsLayer()` displays symbols proportionals to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes. 
+`propSymbolsLayer()` displays symbols proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes. 
 
 ```{r propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
 library(sf)
@@ -145,7 +145,7 @@ north(pos = "topleft")
 ```
 
 
-## Colored Pencil Maps and Typolgies
+## Colored Pencil Maps and Typologies
 
 
 ```{r pentypoMap, fig.height=6, fig.width=5, margin=TRUE}
@@ -162,7 +162,7 @@ mtq_pencil <- getPencilLayer(
   lefthanded = F
 )
 # plot municipalities (only the backgroung color is plotted)
-plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+plot(st_geometry(mtq), col = "white", border = NA, bg = "lightblue1")
 # plot administrative status
 typoLayer(
   x = mtq_pencil, 

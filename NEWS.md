@@ -16,7 +16,7 @@
 - only suggest OSM basemap sources without API key requirement.
 - add source citation recommandation in getTiles()
 - update README
-
+- refounded vignette
 
 # cartography 2.1.2 
 
@@ -64,7 +64,7 @@
 - bug fix in propSymbols*Layer() when using a POINT layer with add=FALSE.
 - bug fix in \*Link\*Layer() (df).
 - add R, sf and sp version requirement + sf SystemRequirements
-- allow dataframe AND tibbles as input for df arguùment in relevant functions
+- allow dataframe AND tibbles as input for df argument in relevant functions
 - add postitle to set the position of the title in laoutLayer()
 - add tabtitle to set the size of the title banner in layoutLayer()
 
