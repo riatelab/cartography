@@ -27,11 +27,11 @@ tilesLayer <- function(x, add = FALSE){
     plot.new()
     plot.window(xlim = c(x@extent@xmin, x@extent@xmax), 
                 ylim = c(x@extent@ymin, x@extent@ymax), 
-                xaxs = "i", yaxs = "i", asp = T)
+                xaxs = "i", yaxs = "i", asp = TRUE)
   }
   
   raster::plotRGB(x = x, 
-                  interpolate = T, 
+                  interpolate = TRUE, 
                   maxpixels = raster::ncell(x), 
                   add  = TRUE)
 }

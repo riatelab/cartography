@@ -56,7 +56,7 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
                    regular = getGridSquare(x, cellsize), 
                    hexagonal = getGridHexa(x, cellsize))
   }else{
-    stop("type should be either 'regular' or 'hexagonal'", call. = F)
+    stop("type should be either 'regular' or 'hexagonal'", call. = FALSE)
   }
   
   # keep only intersecting cells
@@ -90,7 +90,7 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
   grid <- sf::st_sf(geometry, id = names(l))
   grid$gridarea <- sf::st_area(x = grid)
   
-  grid <- merge(grid, v, by = "id", all.x = T)
+  grid <- merge(grid, v, by = "id", all.x = TRUE)
   return(grid)
   
 }
@@ -188,7 +188,7 @@ getGridData <- function(x, df, dfid = NULL, var){
 #                    regular = getGridAll(x, cellsize, TRUE),
 #                    hexagonal = getGridAll(x, cellsize, FALSE))
 #   }else{
-#     stop("type should be either 'regular' or 'hexagonal'", call. = F)
+#     stop("type should be either 'regular' or 'hexagonal'", call. = FALSE)
 #   }
 #   # keep only intersecting cells
 #   gover <- sf::st_intersects(grid, x)

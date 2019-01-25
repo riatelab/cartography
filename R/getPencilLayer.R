@@ -44,7 +44,7 @@ getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
 
 makelines <- function(x, size, buffer, lefthanded, a){
   size <- round(sqrt(as.numeric(sf::st_area(x) * size / a)), 0)
-  if (size <= 10){size = 10}
+  if (size <= 10){size <- 10}
   pt <- sf::st_sample(sf::st_buffer(x, buffer), size = size)
   # pt <- pt[sort(sample(1:length(pt), size, replace = FALSE))]
   if(lefthanded){

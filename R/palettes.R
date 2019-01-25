@@ -100,7 +100,7 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
     pal2 <- pal2[1:n2]
     
     pal <- c(pal1,pal2)
-    if(middle == T){pal <- c(pal1,paste(middlecol,alpha,sep=""),pal2)}
+    if(middle){pal <- c(pal1,paste(middlecol,alpha,sep=""),pal2)}
   }
   return(pal)
 }

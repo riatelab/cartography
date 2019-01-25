@@ -180,7 +180,7 @@ typoLayer(
 plot(st_geometry(mtq), lwd = 0.5, border = "grey20", add = TRUE, lty = 3)
 # labels for a few  municipalities
 labelLayer(x = mtq[mtq$STATUS != "Simple municipality",], txt = "LIBGEO", 
-           cex = 0.9, halo = T, r = 0.15)
+           cex = 0.9, halo = TRUE, r = 0.15)
 # north arrow
 north(pos = "topleft", col = "#EED19A")
 # title, source, author

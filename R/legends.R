@@ -353,8 +353,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   }
   size <- xinch(siz)
   var <- round(var,values.rnd)
-  size <- sort(size, decreasing = T)
-  var <- sort(var, decreasing = T)
+  size <- sort(size, decreasing = TRUE)
+  var <- sort(var, decreasing = TRUE)
   
   # Legend width and height    
   longVal <- var[strwidth(var,cex = values.cex) == 
@@ -479,8 +479,8 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   }
   size <- xinch(siz)
   var <- round(var,values.rnd)
-  size <- sort(size, decreasing = T)
-  var <- sort(var, decreasing = T)
+  size <- sort(size, decreasing = TRUE)
+  var <- sort(var, decreasing = TRUE)
   
   # xsize & ysize
   # Legend width and height    
@@ -609,8 +609,8 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
   }
   size <- xinch(siz)
   var <- round(var,values.rnd)
-  size <- sort(size, decreasing = T)
-  var <- sort(var, decreasing = T)
+  size <- sort(size, decreasing = TRUE)
+  var <- sort(var, decreasing = TRUE)
   
   # xsize & ysize
   longVal <- var[strwidth(var,cex = values.cex) == 
@@ -727,8 +727,8 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
   # size <- xinch(siz)
   size <- siz
   var <- round(var,values.rnd)
-  size <- sort(size, decreasing = T)
-  var <- sort(var, decreasing = T)
+  size <- sort(size, decreasing = TRUE)
+  var <- sort(var, decreasing = TRUE)
   
   # xsize & ysize
   longVal <- var[strwidth(var, cex = values.cex) == max(strwidth(var, cex = values.cex))][1]

@@ -81,11 +81,11 @@ layoutLayer <- function(title = "Title of the map, year",
   }
   
   # NORTH
-  if(south == T){
+  if(south){
     north <- FALSE
     north(pos = "topright", south = TRUE)
   }
-  if(north == T){
+  if(north){
     north(pos = "topright")
   }
   

@@ -86,7 +86,7 @@ checkCol <- function(col, mod){
       col <- carto.pal(pal1 = "pastel.pal", n1 = lm)
     }else{
       lc <- carto.pal(pal1 = "pastel.pal", 20)
-      col <- sample(x = lc, size = lm , replace = T)
+      col <- sample(x = lc, size = lm , replace = TRUE)
     } 
   }else{
     if (length(col) < length(mod)){

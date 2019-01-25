@@ -48,7 +48,7 @@ getBorders <- function(x, id, spdf, spdfid = NULL){
   sf::st_geometry(x) <-  sf::st_buffer(x = sf::st_geometry(x), 1, nQuadSegs = 5)
   lx <- sf::st_cast(x, "MULTILINESTRING")
   
-  l <- sf::st_intersects(x,x, sparse = F)
+  l <- sf::st_intersects(x,x, sparse = FALSE)
   colnames(l) <- x[[id]]
   rownames(l) <- x[[id]]
   l <- lower.tri(l) * l

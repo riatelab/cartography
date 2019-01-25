@@ -113,12 +113,13 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
   r.NAVals <- rna # initiate new raster
   r.NAVals[] <- NAVals # store values in raster
   
-  pB <- raster::rasterToPolygons(r.NAVals, dissolve = T)
+  pB <- raster::rasterToPolygons(r.NAVals, dissolve = TRUE)
   pB@data$id <- spdf@data[pB@data$layer, id]
   
   
   pBBorder <- getBorders(x = pB, id = "id" )
-  result <- sf::st_simplify(x=pBBorder, dTolerance = res, preserveTopology = F)
+  result <- sf::st_simplify(x=pBBorder, dTolerance = res, 
+                            preserveTopology = FALSE)
   row.names(result) <- paste0(row.names(result), "_o")
   
   
