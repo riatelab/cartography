@@ -27,7 +27,7 @@ Main functions :
 \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
 \link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
 
-\item{Choropleth maps (main discretization methods are available)\cr
+\item{Choropleth maps (main classification methods are available)\cr
 \link{choroLayer}}
 
 \item{Typology maps\cr

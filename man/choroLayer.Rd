@@ -31,7 +31,7 @@ of df. (optional)}
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the colors. 
 Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}
 
-\item{method}{a discretization method; one of "sd", "equal", "quantile", "fisher-jenks","q6", "geom", "arith", 
+\item{method}{a classification method; one of "sd", "equal", "quantile", "fisher-jenks","q6", "geom", "arith", 
 "em" or "msd" (see \link{getBreaks}).}
 
 \item{nclass}{a targeted number of classes. If null, the number of class is automatically defined (see Details).}
