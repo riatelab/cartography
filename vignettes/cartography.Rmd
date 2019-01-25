@@ -515,7 +515,7 @@ north(pos = "topleft")
 
 `SpatialPointsDataFrame` and `SpatialPolygonsDataFrame` (from `sp`) are handled through the `spdf` argument if the variable is contained within the `Spatial*DataFrame` and through `spdf`, `spdfid`, `df`, `dfid` if the variable is in a separate `data.frame` that needs to be joined to the `Spatial*DataFrame`. 
 
-```{r sp, fig.height=5, fig.width=7, margin=TRUE}
+```{r sp, fig.height=3.6, fig.width=5, margin=TRUE}
 library(sp)
 library(cartography)
 data("nuts2006")

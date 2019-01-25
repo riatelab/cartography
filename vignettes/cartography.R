@@ -11,9 +11,9 @@ knitr::knit_hooks$set(margin = function(before, options, envir){
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # download osm tiles
 mtq.osm <- getTiles(
   x = mtq, 
@@ -46,9 +46,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # population density (inhab./km2) using sf::st_area()
 mtq$POPDENS <- 1e6 * mtq$POP / st_area(mtq)
 # plot municipalities (only the backgroung color is plotted)
@@ -78,9 +78,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # transform municipality multipolygons to (multi)linestrings
 mtq_pencil <- getPencilLayer(
   x = mtq, 
@@ -120,9 +120,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # Plot the municipalities
 plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",  
      bg = "lightblue1", lwd = 0.5)
@@ -155,9 +155,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # Plot the municipalities
 plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",  
      bg = "lightblue1", lwd = 0.5)
@@ -189,9 +189,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # plot municipalities
 plot(st_geometry(mtq), col = "darkseagreen3", border = "darkseagreen4", 
      bg = "lightblue1", lwd = 0.5)
@@ -219,50 +219,61 @@ layoutLayer(
   theme = "green.pal"
 ) 
 
-## ----linkMap, fig.height=6, fig.width=5, margin=TRUE, eval=FALSE---------
-#  library(sf)
-#  library(cartography)
-#  # path to the geopackage file embedded in cartography
-#  path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
-#  # import to an sf object
-#  mtq <- st_read(dsn = path_to_file, quiet = TRUE)
-#  mob <- read.csv(system.file("csv/mob.csv", package="cartography"))
-#  mob <- mob[mob$sj != "Simple municipality",]
-#  mtq_mob <- getLinkLayer(
-#    x = mtq,
-#    xid = "INSEE_COM",
-#    df = mob,
-#    dfid = c("i","j")
-#  )
-#  
-#  par(bg="grey25")
-#  # plot municipalities
-#  plot(st_geometry(mtq), col = "grey13", border = "grey25",
-#       bg = "grey25", lwd = 0.5)
-#  gradLinkTypoLayer(x = mtq_mob, df = mob,dfid = c('i','j'),
-#                    var = "fij", var2 = "sj",
-#                    legend.var.frame = F, legend.var2.frame = F,
-#                    legend.var2.title.txt = "Destination",
-#                    legend.var.title.txt = "Nb. of\nCommuters",
-#                    legend.var2.pos = "topright",legend.var.pos = "left",
-#                    col = c("grey85", "red4"),
-#                    breaks = c( 100,  500, 1200, 2500, 4679.0),
-#                    lwd = c(1,4,8,16))
-#  # map layout
-#  layoutLayer(
-#    title = "Commuting to Prefectures in Martinique",
-#    sources = "Sources: Insee and IGN - 2018",
-#    author = paste0("cartography ", packageVersion("cartography")),
-#    frame = FALSE, col = "grey25", coltitle = "white",
-#    tabtitle = TRUE)
+## ----linkMap, fig.height=6, fig.width=5, margin=TRUE---------------------
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
+# path to the csv file embedded in cartography
+path_to_csv <- system.file("csv/mob.csv", package="cartography")
+# import to a data.frame
+mob <- read.csv(path_to_csv)
+# select workplaces with administrative status = Prefecture or Sub-prefecture
+mob <- mob[mob$sj != "Simple municipality",]
+# create an sf object of links
+mtq_mob <- getLinkLayer(
+  x = mtq, 
+  xid = "INSEE_COM", 
+  df = mob, 
+  dfid = c("i","j")
+)
+# set figure background color
+par(bg="grey25")
+# plot municipalities
+plot(st_geometry(mtq), col = "grey13", border = "grey25", 
+     bg = "grey25", lwd = 0.5)
+# plot graduated links
+gradLinkTypoLayer(
+  x = mtq_mob, 
+  xid = c("i", "j"),
+  df = mob,
+  dfid = c("i","j"),
+  var = "fij", 
+  breaks = c( 100,  500, 1200, 2500, 4679.0),
+  lwd = c(1,4,8,16),
+  legend.var.pos = "left",
+  legend.var.title.txt = "Nb. of\nCommuters",
+  var2 = "sj", 
+  col = c("grey85", "red4"),
+  legend.var2.title.txt = "Workplace",
+  legend.var2.pos = "topright"
+) 
+# map layout
+layoutLayer(title = "Commuting to Prefectures in Martinique", 
+            sources = "Sources: Insee and IGN - 2018",  
+            author = paste0("cartography ", packageVersion("cartography")), 
+            frame = FALSE, col = "grey25", coltitle = "white",
+            tabtitle = TRUE)
 
 ## ----isopleth, fig.height=6, fig.width=5, margin=TRUE--------------------
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # plot municipalities (only the backgroung color is plotted)
 plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
 # plot isopleth map
@@ -297,9 +308,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # Create a grid layer
 mygrid <- getGridLayer(
   x = mtq, 
@@ -328,9 +339,9 @@ north(pos = "topleft")
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
-path_to_file <- system.file("gpkg/mtq.gpkg", package="cartography")
+path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
-mtq <- st_read(dsn = path_to_file, quiet = TRUE)
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # Compute the population density (inhab./km2) using sf::st_area()
 mtq$POPDENS <- as.numeric(1e6 * mtq$POP / st_area(mtq))
 # Get a SpatialLinesDataFrame of countries borders
@@ -369,7 +380,7 @@ layoutLayer(title = "Wealth Disparities in Martinique, 2015",
 # north arrow
 north(pos = "topleft")
 
-## ----sp, fig.height=5, fig.width=7, margin=TRUE--------------------------
+## ----sp, fig.height=3.6, fig.width=5, margin=TRUE------------------------
 library(sp)
 library(cartography)
 data("nuts2006")

@@ -17,7 +17,7 @@ legends or access to some cartographic APIs.
 ## Cheat Sheet
 The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features.
 
-<a href="http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png" alt="cartography cheat sheet" width="300"/></a>
+<a href="http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf"><img src="img/cheat_sheet.png" alt="cartography cheat sheet" width="300"/></a>
 
 
 ## Vignette
@@ -27,14 +27,21 @@ contains commented scripts on how to build various types of maps with `cartograp
 <table>
 <tbody>
 <tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map1.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map2.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map3.png" /></td>
+<td><img src="img/map03.png" /></td>
+<td><img src="img/map02.png" /></td>
+<td><img src="img/map06.png" /></td>
+<td><img src="img/map04.png" /></td>
 </tr>
 <tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map4.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map5.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map6.png" /></td>
+<td><img src="img/map01.png" /></td>
+<td><img src="img/map08.png" /></td>
+<td><img src="img/map09.png" /></td>
+<td><img src="img/map05.png" /></td>
+</tr>
+<tr>
+<td><img src="img/map07.png" /></td>
+<td><img src="img/map10.png" /></td>
+<td><img src="img/map11.png" /></td>
 </tr>
 </tbody>
 </table>
@@ -53,7 +60,7 @@ contains commented scripts on how to build various types of maps with `cartograp
 
 ## Demo
 The following script creates a map of symbols that are proportional to values of a 
-first variable and colored to reflect the discretization of a second variable.  
+first variable and colored to reflect the classification of a second variable.  
 
 
 ```r
@@ -74,7 +81,7 @@ title(main = "Population & Wealth in Martinique, 2015",
       sub = "Sources: Insee and IGN - 2018")
 ```
 
-![](https://raw.githubusercontent.com/riatelab/cartography/master/img/map9.png)
+![](img/readme_raw.png)
 
 ```r
 ########## Final Map
@@ -84,15 +91,13 @@ opar <- par(mar = c(0,0,1.2,0))
 plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",  
      bg = "lightblue1", lwd = 0.5)
 # Plot symbols with choropleth coloration
-propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED",  
-                      inches = 0.4, border = "grey50",lwd = 1,
-                      method = "equal", nclass = 4, 
+propSymbolsChoroLayer(x = mtq, var = "POP", inches = 0.4, border = "grey50",
+                      lwd = 1, legend.var.pos = "topright", 
+                      legend.var.title.txt = "Population",
+                      var2 = "MED", method = "equal", nclass = 4, 
                       col = carto.pal(pal1 = "sand.pal", n1 = 4),
-                      legend.var2.values.rnd = -2,
-                      legend.var.pos = "topright", legend.var.style = "c",
-                      legend.var2.pos = "left", legend.var2.title.txt =  
-                        "Median Income\n(in euros)", 
-                      legend.var.title.txt = "Population") 
+                      legend.var2.values.rnd = -2,  legend.var2.pos = "left", 
+                      legend.var2.title.txt = "Median Income\n(in euros)") 
 # Plot a layout
 layoutLayer(title="Population & Wealth in Martinique, 2015", 
             author = "cartography 2.1.3", 
@@ -103,7 +108,7 @@ north(pos = "topleft")
 # restore graphics parameters
 par(opar)
 ```
-![](https://raw.githubusercontent.com/riatelab/cartography/master/img/map7.png)
+![](img/readme_final.png)
 
 
 ## Installation
