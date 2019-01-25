@@ -99,6 +99,7 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
   # clean 
   link <- link[!is.na(link[[var]]), ]
   link <- link[link[[var]] >= min(breaks) & link[[var]] <= max(breaks), ]
+  link <- link[order(link[[var]], decreasing = TRUE),]
   
   # lwd
   lwdMap <- lwd[findInterval(x = link[[var]], vec = breaks, all.inside = TRUE)]
