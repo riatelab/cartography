@@ -17,7 +17,7 @@ legends or access to some cartographic APIs.
 ## Cheat Sheet
 The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features.
 
-<a href="http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf"><img src="img/cheat_sheet.png" alt="cartography cheat sheet" width="300"/></a>
+<a href="http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png" alt="cartography cheat sheet" width="300"/></a>
 
 
 ## Vignette
@@ -27,21 +27,21 @@ contains commented scripts on how to build various types of maps with `cartograp
 <table>
 <tbody>
 <tr>
-<td><img src="img/map03.png" /></td>
-<td><img src="img/map02.png" /></td>
-<td><img src="img/map06.png" /></td>
-<td><img src="img/map04.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map03.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map02.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map06.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map04.png" /></td>
 </tr>
 <tr>
-<td><img src="img/map01.png" /></td>
-<td><img src="img/map08.png" /></td>
-<td><img src="img/map09.png" /></td>
-<td><img src="img/map05.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map01.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map08.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map09.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map05.png" /></td>
 </tr>
 <tr>
-<td><img src="img/map07.png" /></td>
-<td><img src="img/map10.png" /></td>
-<td><img src="img/map11.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map07.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map10.png" /></td>
+<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map11.png" /></td>
 </tr>
 </tbody>
 </table>
@@ -81,7 +81,7 @@ title(main = "Population & Wealth in Martinique, 2015",
       sub = "Sources: Insee and IGN - 2018")
 ```
 
-![](img/readme_raw.png)
+![](https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_raw.png)
 
 ```r
 ########## Final Map
@@ -108,7 +108,7 @@ north(pos = "topleft")
 # restore graphics parameters
 par(opar)
 ```
-![](img/readme_final.png)
+![](https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_final.png)
 
 
 ## Installation
