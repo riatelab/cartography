@@ -1,9 +1,9 @@
-#' @title Discretization
+#' @title Classification
 #' @name getBreaks
-#' @description A function to discretize continuous variables.
+#' @description A function to classify continuous variables.
 #' @param v a vector of numeric values.
 #' @param nclass a number of classes
-#' @param method a discretization method; one of "sd", "equal", 
+#' @param method a classification method; one of "sd", "equal", 
 #' "quantile", "fisher-jenks","q6", "geom", "arith", "em" or "msd" (see Details).
 #' @param k number of standard deviation for "msd" method (see Details)..
 #' @param middle creation of a central class for "msd" method (see Details). 

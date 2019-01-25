@@ -1,7 +1,7 @@
 #' @title Proportional and Choropleth Symbols Layer
 #' @name propSymbolsChoroLayer
 #' @description Plot a proportional symbols layer with colors based on a 
-#' quantitative data discretization. 
+#' quantitative data classification 
 #' @param x an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.
 #' @param spdf SpatialPointsDataFrame or SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
@@ -22,7 +22,7 @@
 #' colors specified than the number of break. 
 #' @param nclass a targeted number of classes. If null, the number of class is 
 #' automatically defined (see \link{choroLayer} Details).
-#' @param method a discretization method; one of "sd", "equal", 
+#' @param method a classification method; one of "sd", "equal", 
 #' "quantile", "fisher-jenks", "q6" or "geom"  (see \link{choroLayer} Details).
 #' @param symbols type of symbols, one of "circle", "square" or "bar".
 #' @param fixmax value of the biggest symbol (see \link{propSymbolsLayer} Details).

@@ -15,7 +15,7 @@
 #' @param col a vector of colors. Note that if breaks is specified there must be one less 
 #' colors specified than the number of break. 
 #' @param nclass a targeted number of classes. If null, the number of class is automatically defined (see Details).
-#' @param method a discretization method; one of "sd", "equal", "quantile", "fisher-jenks","q6", "geom", "arith", 
+#' @param method a classification method; one of "sd", "equal", "quantile", "fisher-jenks","q6", "geom", "arith", 
 #' "em" or "msd" (see \link{getBreaks}).
 #' @param border color of the polygons borders.
 #' @param lwd borders width.

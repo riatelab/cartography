@@ -12,7 +12,7 @@
 #' @param col color of the discontinuities lines.
 #' @param nclass a targeted number of classes. If null, the number of 
 #' class is automatically defined (see \link{getBreaks}).
-#' @param method a discretization method; one of "sd", "equal", "quantile", "fisher-jenks","
+#' @param method a classification method; one of "sd", "equal", "quantile", "fisher-jenks","
 #' q6", "geom", "arith", "em" or "msd" (see \link{getBreaks}).
 #' @param threshold share of represented borders, value between 0 
 #' (nothing) and 1 (all the discontinuities).
