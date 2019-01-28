@@ -20,6 +20,8 @@
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param symbol type of symbol in the legend 'line' or 'box'
+#' @param border color of the box borders
+#' @param horiz layout of legend, TRUE for horizontal layout 
 #' @export
 #' @examples
 #' library(sf)
@@ -52,86 +54,97 @@ legendChoro <- function(pos = "topleft",
                         nodata = TRUE, 
                         nodata.txt = "No data", 
                         nodata.col = "white",
-                        frame=FALSE,symbol="box"){
-  # exit for none
-  positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
-  if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
+                        frame=FALSE,symbol="box", 
+                        border = "black", horiz = FALSE){
   
-  # figdim in geo coordinates
-  x1 <- par()$usr[1]
-  x2 <- par()$usr[2]
-  y1 <- par()$usr[3]
-  y2 <- par()$usr[4]
+################### Add border param to vertical legend ///
   
-  # offsets
-  delta1 <- xinch(0.15) * cex
-  delta2 <- delta1 / 2
-  
-  # variables internes
-  width <- (x2 - x1) / (30/cex)
-  height <- width / 1.5
-  
-  # extent
-  if(!is.character(breaks)){
-    breaks <- as.numeric(round(breaks, values.rnd))
-  }
-  
-  if (nodata == FALSE){nodata.txt <- NULL}
-  longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
-  legend_xsize <- max(width + longval,
-                      strwidth(title.txt, cex = title.cex) - delta2) - delta2
-  legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt, cex = title.cex)
-  
-  # legende_size increase if no.data
-  if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
-  
-  # Get legend position
-  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
-                     delta1 = delta1, delta2 = delta2,
-                     legend_xsize = legend_xsize,
-                     legend_ysize = legend_ysize)
-  xref <- legcoord$xref
-  yref <- legcoord$yref
-  
-  # Frame
-  if (frame==TRUE){
-    rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
-         yref + legend_ysize + delta1 * 2, border = "black",  col="white")
-  }
-  
-  # box display
-  if (nodata == TRUE){
-    rect(xref, yref, xref + width, yref + height,
-         col = nodata.col, border = "black", lwd = 0.4)
-    text(xref + width + delta2 , yref + height / 2, labels = nodata.txt,
-         adj = c(0,0.5), cex = values.cex)
-    yref <- yref + height + delta2
-  }
-  
-  if (symbol=="box"){
-    for (i in 0:(length(breaks)-2)){
-      rect(xref, yref + i * height, xref + width, yref + height + i * height,
-           col = col[i+1], border = "black", lwd = 0.4)
-    }
+    
+  if (horiz && symbol=="box"){
+    legendChoroHoriz(pos = pos, title.txt = title.txt, title.cex = title.cex,
+                     values.cex = values.cex, breaks = breaks, col = col, cex = cex,
+                     values.rnd = values.rnd, nodata = nodata, nodata.txt = nodata.txt,
+                     nodata.col = nodata.col, frame = frame, border = border)
   }else{
-    for (i in 0:(length(breaks)-2)){
-      segments(xref, yref + height / 2+ i*height, xref + width,
-               yref + i*height + height / 2, lwd = 5, col = col[i+1], lend = 1)
+    # exit for none
+    positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                   "left", "right", "top", "bottom", "center")
+    if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
+    
+    # figdim in geo coordinates
+    x1 <- par()$usr[1]
+    x2 <- par()$usr[2]
+    y1 <- par()$usr[3]
+    y2 <- par()$usr[4]
+    
+    # offsets
+    delta1 <- xinch(0.15) * cex
+    delta2 <- delta1 / 2
+    
+    # variables internes
+    width <- (x2 - x1) / (30/cex)
+    height <- width / 1.5
+    
+    # extent
+    if(!is.character(breaks)){
+      breaks <- as.numeric(round(breaks, values.rnd))
     }
+    
+    if (nodata == FALSE){nodata.txt <- NULL}
+    longval <- max(strwidth(c(breaks, nodata.txt), cex = values.cex))
+    legend_xsize <- max(width + longval,
+                        strwidth(title.txt, cex = title.cex) - delta2) - delta2
+    legend_ysize <- (length(breaks)-1) * height +  strheight(title.txt, cex = title.cex)
+    
+    # legende_size increase if no.data
+    if (nodata == TRUE){legend_ysize <- legend_ysize + height + delta2 }
+    
+    # Get legend position
+    legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                       delta1 = delta1, delta2 = delta2,
+                       legend_xsize = legend_xsize,
+                       legend_ysize = legend_ysize)
+    xref <- legcoord$xref
+    yref <- legcoord$yref
+    
+    # Frame
+    if (frame==TRUE){
+      rect(xref - delta1, yref - delta1, xref + legend_xsize + delta1 * 2,
+           yref + legend_ysize + delta1 * 2, border = "black",  col="white")
+    }
+    
+    # box display
+    if (nodata == TRUE){
+      rect(xref, yref, xref + width, yref + height,
+           col = nodata.col, border = "black", lwd = 0.4)
+      text(xref + width + delta2 , yref + height / 2, labels = nodata.txt,
+           adj = c(0,0.5), cex = values.cex)
+      yref <- yref + height + delta2
+    }
+    
+    if (symbol=="box"){
+      for (i in 0:(length(breaks)-2)){
+        rect(xref, yref + i * height, xref + width, yref + height + i * height,
+             col = col[i+1], border = "black", lwd = 0.4)
+      }
+    }else{
+      for (i in 0:(length(breaks)-2)){
+        segments(xref, yref + height / 2+ i*height, xref + width,
+                 yref + i*height + height / 2, lwd = 5, col = col[i+1], lend = 1)
+      }
+    }
+    
+    # text display
+    for (i in 1:(length(breaks))){
+      text(x = xref + width + delta2, y = yref + (i-1) * height,
+           labels = breaks[i], adj = c(0,0.5), cex = values.cex)
+    }
+    
+    # title
+    text(x = xref, y = yref + (length(breaks)-1) * height + delta1,
+         labels = title.txt, adj = c(0,0), cex = title.cex)
   }
-  
-  # text display
-  for (i in 1:(length(breaks))){
-    text(x = xref + width + delta2, y = yref + (i-1) * height,
-         labels = breaks[i], adj = c(0,0.5), cex = values.cex)
-  }
-  
-  # title
-  text(x = xref, y = yref + (length(breaks)-1) * height + delta1,
-       labels = title.txt, adj = c(0,0), cex = title.cex)
 }
-
 
 
 #' @title  Legend for Typology Maps
@@ -1109,5 +1122,153 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
     }
   }
 }
+
+
+
+
+
+
+
+
+#' @title Legend for Choropleth Maps
+#' @description Plot legend for choropleth maps.
+#' @name legendChoroHoriz
+#' @param pos position of the legend, one of "topleft", "top",
+#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a
+#' vector of two coordinates in map units (c(x, y)).
+#' @param title.txt title of the legend.
+#' @param title.cex size of the legend title.
+#' @param values.cex size of the values in the legend.
+#' @param breaks break points in sorted order to indicate the intervals for assigning the colors.
+#' Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.
+#' It is possible to use a vector of characters.
+#' @param col a vector of colors.
+#' @param cex size of the legend. 2 means two times bigger.
+#' @param values.rnd number of decimal places of the values in
+#' the legend.
+#' @param nodata if TRUE a "no data" box or line is plotted.
+#' @param nodata.txt label for "no data" values.
+#' @param nodata.col color of "no data" values.
+#' @param frame whether to add a frame to the legend (TRUE) or
+#' not (FALSE).
+#' @param border color of the box borders
+#' @noRd
+legendChoroHoriz <- function(pos = "topleft",
+                             title.txt = "Title of the legend",
+                             title.cex = 0.8,
+                             values.cex = 0.6,
+                             breaks,
+                             col,
+                             cex = 1,
+                             values.rnd =2,
+                             nodata = TRUE,
+                             nodata.txt = "No data",
+                             nodata.col = "white",
+                             frame=FALSE,
+                             border = NA){
+  
+  # exit for none
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center")
+  if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
+  
+  # figdim in geo coordinates
+  x1 <- par()$usr[1]
+  x2 <- par()$usr[2]
+  y1 <- par()$usr[3]
+  y2 <- par()$usr[4]
+  
+  # offsets
+  delta1 <- xinch(0.15) * cex
+  delta2 <- delta1 / 2
+  
+  # variables internes
+  width <- (x2 - x1) / (20/cex)
+  height <- (x2 - x1) / (35/cex) / 1.5
+  
+  # extent
+  if(!is.character(breaks)){
+    breaks <- as.numeric(round(breaks, values.rnd))
+  }
+  
+  if (nodata == FALSE){nodata.txt <- NULL}
+  
+  longval1 <- strwidth(breaks[1], cex = values.cex)
+  longval2 <- strwidth(breaks[length(breaks)], cex = values.cex)
+  
+  
+  legend_xsize <- ((length(breaks)-1) * width) + (longval1 + longval2) / 2 
+  legend_ysize <- height + delta2+ strheight(title.txt, cex = title.cex)
+  
+  # legende_size increase if no.data
+  if (nodata == TRUE){
+    legend_xsize <- legend_xsize + width + delta2
+    lnodata <- strwidth(nodata.txt, cex = values.cex)
+    nddiff <- lnodata - width
+    if(nddiff>0){
+      legend_xsize  <- legend_xsize + nddiff 
+    }
+  }
+  
+  ltitle <- strwidth(title.txt, cex = title.cex) + longval1/2
+  legend_xsize <- max(ltitle, legend_xsize)
+  
+  # Get legend position
+  legcoord <- legpos(pos = pos, x1 = x1, x2 = x2, y1 = y1, y2 = y2,
+                     delta1 = delta1, delta2 = delta2,
+                     legend_xsize = legend_xsize,
+                     legend_ysize = legend_ysize)
+  xref <- legcoord$xref
+  yref <- legcoord$yref
+  
+  if(substr(pos, nchar(pos)-1,nchar(pos))=="ht"){
+    xref <- xref + delta1
+  }
+  
+  # Frame
+  if (frame==TRUE){
+    rect(xref - delta1, 
+         yref - delta1, 
+         xref + legend_xsize + delta1,
+         yref + legend_ysize + 2*delta1,  col="white")
+  }
+  
+  # no data box display
+  if (nodata == TRUE){
+    rect(xref + (length(breaks)-1) * width + delta2 + (longval1 + longval2)/2 + nddiff/2, 
+         yref + delta2, 
+         xref + ((length(breaks)-1) * width) + width + delta2 + (longval1 + longval2)/2 + nddiff/2, 
+         yref + height + delta2,
+         col = nodata.col, border = border, lwd = 0.4)
+    text(x =  xref + ((length(breaks)-1) * width) +  delta2 + (longval1 + longval2)/2 + width/2 + nddiff/2,
+         y = yref  , labels = nodata.txt,
+         adj = c(0.5,0.5), cex = values.cex)
+  }
+  
+  # boxes
+  for (i in 0:(length(breaks)-2)){
+    rect(xref + i * width + longval1 / 2, 
+         yref + delta2, 
+         xref + width + i * width + longval1 / 2, 
+         yref + height + delta2,
+         col = col[i+1], border =border, lwd = 0.4)
+  }
+  
+  # text display
+  for (i in 1:(length(breaks))){
+    text(x = xref + (i-1) * width + longval1/2, 
+         y = yref,
+         labels = breaks[i], adj = c(0.5,0.5), cex = values.cex)
+  }
+  
+  # title
+  text(x = xref + longval1/2, y = yref + height + delta1 + delta2,
+       labels = title.txt, adj = c(0,0), cex = title.cex)
+  
+  
+}
+
+
+
 
 
