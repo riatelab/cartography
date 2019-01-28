@@ -116,7 +116,7 @@ legendChoro <- function(pos = "topleft",
     # box display
     if (nodata == TRUE){
       rect(xref, yref, xref + width, yref + height,
-           col = nodata.col, border = "black", lwd = 0.4)
+           col = nodata.col, border = border, lwd = 0.4)
       text(xref + width + delta2 , yref + height / 2, labels = nodata.txt,
            adj = c(0,0.5), cex = values.cex)
       yref <- yref + height + delta2
@@ -125,7 +125,7 @@ legendChoro <- function(pos = "topleft",
     if (symbol=="box"){
       for (i in 0:(length(breaks)-2)){
         rect(xref, yref + i * height, xref + width, yref + height + i * height,
-             col = col[i+1], border = "black", lwd = 0.4)
+             col = col[i+1], border = border, lwd = 0.4)
       }
     }else{
       for (i in 0:(length(breaks)-2)){
