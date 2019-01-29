@@ -2,13 +2,16 @@
 #' @description Plot legend for choropleth maps.
 #' @name legendChoro
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
-#' @param breaks break points in sorted order to indicate the intervals for assigning the colors. 
-#' Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.
+#' @param breaks break points in sorted order to indicate the intervals for 
+#' assigning the colors. 
+#' Note that if there are nlevel colors (classes) there should be (nlevel+1) 
+#' breakpoints.
 #' It is possible to use a vector of characters. 
 #' @param col a vector of colors. 
 #' @param cex size of the legend. 2 means two times bigger.
@@ -54,7 +57,7 @@ legendChoro <- function(pos = "topleft",
                         nodata.col = "white",
                         frame=FALSE,symbol="box"){
   # exit for none
-  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+  positions <- c("bottomleft", "bottomleftextra","topleft", "topright", "bottomright",
                  "left", "right", "top", "bottom", "center")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   

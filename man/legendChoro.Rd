@@ -11,8 +11,9 @@ legendChoro(pos = "topleft", title.txt = "Title of the legend",
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 
-"topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-vector of two coordinates in map units (c(x, y)).}
+"topright", "right", "bottomright", "bottom", "bottomleft", 
+"bottomleftextra", "left" or a vector of two coordinates in map units 
+(c(x, y)).}
 
 \item{title.txt}{title of the legend.}
 
@@ -20,8 +21,10 @@ vector of two coordinates in map units (c(x, y)).}
 
 \item{values.cex}{size of the values in the legend.}
 
-\item{breaks}{break points in sorted order to indicate the intervals for assigning the colors. 
-Note that if there are nlevel colors (classes) there should be (nlevel+1) breakpoints.
+\item{breaks}{break points in sorted order to indicate the intervals for 
+assigning the colors. 
+Note that if there are nlevel colors (classes) there should be (nlevel+1) 
+breakpoints.
 It is possible to use a vector of characters.}
 
 \item{col}{a vector of colors.}
