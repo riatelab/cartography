@@ -10,7 +10,8 @@ choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.pos = "bottomleft", legend.title.txt = var,
   legend.title.cex = 0.8, legend.values.cex = 0.6,
   legend.values.rnd = 0, legend.nodata = "no data",
-  legend.frame = FALSE, add = FALSE)
+  legend.frame = FALSE, legend.border = "black",
+  legend.horiz = FALSE, add = FALSE)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
@@ -62,6 +63,11 @@ the legend.}
 \item{legend.nodata}{no data label.}
 
 \item{legend.frame}{whether to add a frame to the legend (TRUE) or 
+not (FALSE).}
+
+\item{legend.border}{color of boxes borders in the legend.}
+
+\item{legend.horiz}{whether to display the legend horizontally (TRUE) or
 not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 

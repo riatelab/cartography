@@ -14,6 +14,7 @@ propSymbolsChoroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   legend.var.frame = FALSE, legend.var2.pos = "topright",
   legend.var2.title.txt = var2, legend.var2.values.rnd = 2,
   legend.var2.nodata = "no data", legend.var2.frame = FALSE,
+  legend.var2.border = "black", legend.var2.horiz = FALSE,
   add = TRUE)
 }
 \arguments{
@@ -94,6 +95,11 @@ the legend.}
 \item{legend.var2.nodata}{text for "no data" values}
 
 \item{legend.var2.frame}{whether to add a frame to the legend (TRUE) or 
+not (FALSE).}
+
+\item{legend.var2.border}{color of boxes borders in the legend.}
+
+\item{legend.var2.horiz}{whether to display the legend horizontally (TRUE) or
 not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
