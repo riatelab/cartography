@@ -4,10 +4,11 @@
 \alias{layoutLayer}
 \title{Layout Layer}
 \usage{
-layoutLayer(title = "Title of the map, year", sources = "Source(s)",
-  author = "Author(s)", col = "black", coltitle = "white",
-  theme = NULL, bg = NULL, scale = 0, frame = TRUE,
-  north = FALSE, south = FALSE, extent = NULL, tabtitle = FALSE,
+layoutLayer(title = "Title of the map, year", sources = "",
+  author = "", horiz = TRUE, col = "black", coltitle = "white",
+  theme = NULL, bg = NULL, scale = "auto",
+  posscale = "bottomright", frame = TRUE, north = FALSE,
+  south = FALSE, extent = NULL, tabtitle = FALSE,
   postitle = "left")
 }
 \arguments{
@@ -16,6 +17,10 @@ layoutLayer(title = "Title of the map, year", sources = "Source(s)",
 \item{sources}{sources of the map (or something else).}
 
 \item{author}{author of the map (or something else).}
+
+\item{horiz}{orientation of sources and author. TRUE for horizontal display 
+on the bottom left corner, FALSE for vertical display on the bottom right 
+corner.}
 
 \item{col}{color of the title box and frame border.}
 
@@ -26,8 +31,12 @@ col and coltitle are set according to the chosen palette.}
 
 \item{bg}{color of the frame background.}
 
-\item{scale}{size of the scale bar in kilometers. If set to NULL, no scale bar is 
-displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map width).}
+\item{scale}{size of the scale bar in kilometers. If set to FALSE, no scale 
+bar is displayed, if set to "auto" an automatic size is used (1/10 of the map 
+width).}
+
+\item{posscale}{position of the scale, can be "bottomright", "bottomleft" or 
+a vector of two coordinates (c(x, y))}
 
 \item{frame}{whether displaying a frame (TRUE) or not (FALSE).}
 
@@ -38,7 +47,8 @@ displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map widt
 \item{extent}{sf object or Spatial*DataFrame; sets the extent of the frame to 
 the one of a spatial object. (optional)}
 
-\item{tabtitle}{size of the title box either a full banner (FALSE) or a "tab" (TRUE).}
+\item{tabtitle}{size of the title box either a full banner (FALSE) or a 
+"tab" (TRUE).}
 
 \item{postitle}{position of the title, one of "left", "center", "right".}
 }
@@ -58,7 +68,7 @@ layoutLayer()
 
 plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
 # Layout plot
-layoutLayer(title = "Martinique", sources = "",
+layoutLayer(title = "Martinique",
             author =  paste0("cartography ", packageVersion("cartography")),
             tabtitle = TRUE, scale = 5, north = TRUE, frame = FALSE,
             theme = "sand.pal")
