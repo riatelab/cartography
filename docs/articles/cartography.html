@@ -87,7 +87,7 @@
       <h1>cartography</h1>
                         <h4 class="author">Timothée Giraud, Nicolas Lambert</h4>
             
-            <h4 class="date">2019-01-25</h4>
+            <h4 class="date">2019-01-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/riatelab/cartography/blob/master/vignettes/cartography.Rmd"><code>vignettes/cartography.Rmd</code></a></small>
       <div class="hidden name"><code>cartography.Rmd</code></div>
@@ -122,14 +122,15 @@ Each function has two main arguments that are:</p>
 <p><code>sp</code> objects are handled through the <code>spdf</code> argument if the variable is contained within the <code>Spatial*DataFrame</code> and through <code>spdf</code>, <code>spdfid</code>, <code>df</code>, <code>dfid</code> if the variable is in a separate <code>data.frame</code> that needs to be joined to the <code>Spatial*DataFrame</code>.</p>
 <p>Many parameters are available to fine tune the cartographic representations. These parameters are the common ones found in GIS and automatic cartography tools (e.g. classification and color palettes used in choropleth maps, symbols sizes used in proportional symbols maps…).</p>
 </li>
-<li><p><strong>Legends</strong><br>
-Legends are displayed by default along cartographic layers but more parameters are available through <code>legend*()</code> functions.</p></li>
 <li><p><strong>Transformations</strong><br>
 A set of functions is dedicated to the creation or transformation of spatial objects (e.g. borders extraction, grid or links creation). These functions are provided to ease the creation of some more advanced maps that usually need geo-processing.</p></li>
 <li><p><strong>Map Layout</strong><br>
 Along with the cartographic functions, some other functions are dedicated to layout design (e.g. customizable scale bar, north arrow, title, sources or author information…).</p></li>
 <li><p><strong>Color Palettes</strong><br>
 16 original color palettes are shipped within the package. Those palettes can be customized and combined.</p></li>
+<li><p><strong>Legends</strong><br>
+Legends are displayed by default along cartographic layers but more parameters are available through <code>legend*()</code> functions.</p></li>
+<li><p><strong>Classification</strong><br><code><a href="../reference/getBreaks.html">getBreaks()</a></code> give access to most of the classification methods used for data binning.</p></li>
 </ul>
 </div>
 <div id="examples-of-thematic-maps" class="section level1">
@@ -170,7 +171,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb1-28" data-line-number="28">)</a>
 <a class="sourceLine" id="cb1-29" data-line-number="29"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb1-30" data-line-number="30"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>,</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018</span><span class="ch">\n</span><span class="st">© OpenStreetMap contributors.</span><span class="ch">\n</span><span class="st">Tiles style under CC BY-SA, www.openstreetmap.org/copyright."</span>,</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018</span><span class="ch">\n</span><span class="st">© OpenStreetMap contributors.</span><span class="ch">\n</span><span class="st">Tiles style under CC BY-SA, www.openstreetmap.org/copyright."</span>,</a>
 <a class="sourceLine" id="cb1-32" data-line-number="32">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
 <a class="sourceLine" id="cb1-33" data-line-number="33">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-34" data-line-number="34"><span class="co"># north arrow</span></a>
@@ -191,7 +192,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># population density (inhab./km2) using sf::st_area()</span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">mtq<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_measures">st_area</a></span>(mtq)</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#aadaff"</span>)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># plot population density</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw"><a href="../reference/choroLayer.html">choroLayer</a></span>(</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">  <span class="dt">x =</span> mtq, </a>
@@ -199,7 +200,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb2-15" data-line-number="15">  <span class="dt">method =</span> <span class="st">"geom"</span>,</a>
 <a class="sourceLine" id="cb2-16" data-line-number="16">  <span class="dt">nclass=</span><span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb2-17" data-line-number="17">  <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"sand.pal"</span>, <span class="dt">n1 =</span> <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">  <span class="dt">border =</span> <span class="st">"grey40"</span>, </a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">  <span class="dt">border =</span> <span class="st">"white"</span>, </a>
 <a class="sourceLine" id="cb2-19" data-line-number="19">  <span class="dt">lwd =</span> <span class="fl">0.5</span>,</a>
 <a class="sourceLine" id="cb2-20" data-line-number="20">  <span class="dt">legend.pos =</span> <span class="st">"topright"</span>, </a>
 <a class="sourceLine" id="cb2-21" data-line-number="21">  <span class="dt">legend.title.txt =</span> <span class="st">"Population Density</span><span class="ch">\n</span><span class="st">(people per km2)"</span>,</a>
@@ -207,7 +208,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb2-23" data-line-number="23">) </a>
 <a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb2-25" data-line-number="25"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>, </a>
-<a class="sourceLine" id="cb2-26" data-line-number="26">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb2-28" data-line-number="28">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">theme=</span> <span class="st">"sand.pal"</span>) </a>
 <a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co"># north arrow</span></a>
@@ -228,7 +229,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co"># transform municipality multipolygons to (multi)linestrings</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">mtq_pencil &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getPencilLayer.html">getPencilLayer</a></span>(</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">x =</span> mtq, </a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">size =</span> <span class="dv">500</span>, </a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">size =</span> <span class="dv">400</span>, </a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">lefthanded =</span> F</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">)</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
@@ -253,7 +254,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb3-32" data-line-number="32">           <span class="dt">cex =</span> <span class="fl">0.9</span>, <span class="dt">halo =</span> <span class="ot">TRUE</span>, <span class="dt">r =</span> <span class="fl">0.15</span>)</a>
 <a class="sourceLine" id="cb3-33" data-line-number="33"><span class="co"># title, source, author</span></a>
 <a class="sourceLine" id="cb3-34" data-line-number="34"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Administrative Status"</span>,</a>
-<a class="sourceLine" id="cb3-35" data-line-number="35">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>, </a>
+<a class="sourceLine" id="cb3-35" data-line-number="35">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>, </a>
 <a class="sourceLine" id="cb3-36" data-line-number="36">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb3-37" data-line-number="37">            <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">postitle =</span> <span class="st">"right"</span>, </a>
 <a class="sourceLine" id="cb3-38" data-line-number="38">            <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">coltitle =</span> <span class="st">"black"</span>) </a>
@@ -294,7 +295,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb4-28" data-line-number="28"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Population &amp; Wealth in Martinique, 2015"</span>, </a>
 <a class="sourceLine" id="cb4-29" data-line-number="29">            <span class="dt">author =</span> <span class="st">"cartography 2.1.3"</span>, </a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>, </a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>, </a>
 <a class="sourceLine" id="cb4-31" data-line-number="31">            <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co"># north arrow</span></a>
 <a class="sourceLine" id="cb4-33" data-line-number="33"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
@@ -311,33 +312,34 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># Plot the municipalities</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"darkseagreen3"</span>, <span class="dt">border=</span><span class="st">"darkseagreen4"</span>,  </a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">     <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"#f2efe9"</span>, <span class="dt">border=</span><span class="st">"#b38e43"</span>, <span class="dt">bg =</span> <span class="st">"#aad3df"</span>, </a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">     <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co"># Plot symbols with choropleth coloration</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw"><a href="../reference/propSymbolsTypoLayer.html">propSymbolsTypoLayer</a></span>(</a>
 <a class="sourceLine" id="cb5-12" data-line-number="12">  <span class="dt">x =</span> mtq, </a>
 <a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">var =</span> <span class="st">"POP"</span>, </a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">inches =</span> <span class="fl">0.4</span>,</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="dt">border =</span> <span class="st">"white"</span>,</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">lwd =</span> <span class="fl">.5</span>,</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">legend.var.pos =</span> <span class="st">"topright"</span>, </a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">legend.var.title.txt =</span> <span class="st">"Population"</span>,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">var2 =</span> <span class="st">"STATUS"</span>,</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">legend.var2.values.order =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Prefecture"</span>, <span class="st">"Sub-prefecture"</span>, </a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">                               <span class="st">"Simple municipality"</span>),</a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">  <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"pastel.pal"</span>, <span class="dt">n1 =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">legend.var2.pos =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">693000</span>, <span class="dv">1607000</span>), </a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">legend.var2.title.txt =</span> <span class="st">"Administrative</span><span class="ch">\n</span><span class="st">Status"</span></a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">) </a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">## Warning in if (legend.var2.pos != "n") {: la condition a une longueur &gt; 1</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">## et seul le premier élément est utilisé</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co"># layout</span></a>
-<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Population Distribution in Martinique"</span>, </a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">            <span class="dt">author =</span> <span class="st">"cartography 2.1.3"</span>, </a>
-<a class="sourceLine" id="cb5-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>, </a>
-<a class="sourceLine" id="cb5-32" data-line-number="32">            <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co"># north arrow</span></a>
-<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">inches =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">  <span class="dt">symbols =</span> <span class="st">"square"</span>,</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">  <span class="dt">border =</span> <span class="st">"white"</span>,</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">lwd =</span> <span class="fl">.5</span>,</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">legend.var.pos =</span> <span class="st">"topright"</span>, </a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">legend.var.title.txt =</span> <span class="st">"Population"</span>,</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">var2 =</span> <span class="st">"STATUS"</span>,</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">legend.var2.values.order =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Prefecture"</span>, <span class="st">"Sub-prefecture"</span>, </a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">                               <span class="st">"Simple municipality"</span>),</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"multi.pal"</span>, <span class="dt">n1 =</span> <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">legend.var2.pos =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">693000</span>, <span class="dv">1607000</span>), </a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">legend.var2.title.txt =</span> <span class="st">"Administrative</span><span class="ch">\n</span><span class="st">Status"</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">) </a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">## Warning in if (legend.var2.pos != "n") {: la condition a une longueur &gt; 1</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">## et seul le premier élément est utilisé</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co"># layout</span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title=</span><span class="st">"Population Distribution in Martinique"</span>, </a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">            <span class="dt">author =</span> <span class="st">"cartography 2.1.3"</span>, </a>
+<a class="sourceLine" id="cb5-32" data-line-number="32">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>, </a>
+<a class="sourceLine" id="cb5-33" data-line-number="33">            <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co"># north arrow</span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
 <p><img src="cartography_files/figure-html/proptypo-1.png" width="360"></p>
 </div>
 <div id="label-map" class="section level2">
@@ -351,7 +353,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co"># plot municipalities</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"darkseagreen3"</span>, <span class="dt">border =</span> <span class="st">"darkseagreen4"</span>, </a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"#e4e9de"</span>, <span class="dt">border =</span> <span class="st">"darkseagreen4"</span>, </a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">     <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co"># plot labels</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11"><span class="kw"><a href="../reference/labelLayer.html">labelLayer</a></span>(</a>
@@ -369,12 +371,12 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co"># map layout</span></a>
 <a class="sourceLine" id="cb6-24" data-line-number="24"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(</a>
 <a class="sourceLine" id="cb6-25" data-line-number="25">  <span class="dt">title =</span> <span class="st">"Municipalities of Martinique"</span>, </a>
-<a class="sourceLine" id="cb6-26" data-line-number="26">  <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,  </a>
+<a class="sourceLine" id="cb6-26" data-line-number="26">  <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,  </a>
 <a class="sourceLine" id="cb6-27" data-line-number="27">  <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb6-28" data-line-number="28">  <span class="dt">frame =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb6-29" data-line-number="29">  <span class="dt">north =</span> <span class="ot">TRUE</span>, </a>
 <a class="sourceLine" id="cb6-30" data-line-number="30">  <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb6-31" data-line-number="31">  <span class="dt">theme =</span> <span class="st">"green.pal"</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">  <span class="dt">theme =</span> <span class="st">"taupe.pal"</span></a>
 <a class="sourceLine" id="cb6-32" data-line-number="32">) </a></code></pre></div>
 <p><img src="cartography_files/figure-html/labelMap-1.png" width="360"></p>
 </div>
@@ -424,7 +426,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb7-40" data-line-number="40">) </a>
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co"># map layout</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Commuting to Prefectures in Martinique"</span>, </a>
-<a class="sourceLine" id="cb7-43" data-line-number="43">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,  </a>
+<a class="sourceLine" id="cb7-43" data-line-number="43">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,  </a>
 <a class="sourceLine" id="cb7-44" data-line-number="44">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb7-45" data-line-number="45">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">"grey25"</span>, <span class="dt">coltitle =</span> <span class="st">"white"</span>,</a>
 <a class="sourceLine" id="cb7-46" data-line-number="46">            <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -464,7 +466,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb8-28" data-line-number="28">       <span class="st">"Distance function:</span><span class="ch">\n</span><span class="st">- type = exponential</span><span class="ch">\n</span><span class="st">- beta = 2</span><span class="ch">\n</span><span class="st">- span = 4 km"</span>)</a>
 <a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb8-30" data-line-number="30"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>,</a>
-<a class="sourceLine" id="cb8-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,</a>
+<a class="sourceLine" id="cb8-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
 <a class="sourceLine" id="cb8-32" data-line-number="32">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
 <a class="sourceLine" id="cb8-33" data-line-number="33">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">theme =</span> <span class="st">"brown.pal"</span>)</a>
 <a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co"># north arrow</span></a>
@@ -491,14 +493,14 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co"># Compute population density in people per km2</span></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15">mygrid<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mygrid<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span>mygrid<span class="op">$</span>gridarea</a>
 <a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#deffff"</span>)</a>
 <a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co"># Plot the population density</span></a>
 <a class="sourceLine" id="cb9-19" data-line-number="19"><span class="kw"><a href="../reference/choroLayer.html">choroLayer</a></span>(<span class="dt">x =</span> mygrid, <span class="dt">var =</span> <span class="st">"POPDENS"</span>, <span class="dt">method =</span> <span class="st">"geom"</span>, <span class="dt">nclass=</span><span class="dv">5</span>, </a>
 <a class="sourceLine" id="cb9-20" data-line-number="20">           <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"turquoise.pal"</span>, <span class="dt">n1 =</span> <span class="dv">5</span>), <span class="dt">border =</span> <span class="st">"grey80"</span>, </a>
 <a class="sourceLine" id="cb9-21" data-line-number="21">           <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">legend.pos =</span> <span class="st">"topright"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-22" data-line-number="22">           <span class="dt">legend.title.txt =</span> <span class="st">"Population Density</span><span class="ch">\n</span><span class="st">(people per km2)"</span>) </a>
 <a class="sourceLine" id="cb9-23" data-line-number="23"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>, </a>
-<a class="sourceLine" id="cb9-24" data-line-number="24">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,</a>
+<a class="sourceLine" id="cb9-24" data-line-number="24">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
 <a class="sourceLine" id="cb9-25" data-line-number="25">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb9-26" data-line-number="26">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-27" data-line-number="27">            <span class="dt">theme =</span> <span class="st">"turquoise.pal"</span>)</a>
@@ -549,7 +551,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <a class="sourceLine" id="cb10-37" data-line-number="37"><span class="co"># Layout</span></a>
 <a class="sourceLine" id="cb10-38" data-line-number="38"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Wealth Disparities in Martinique, 2015"</span>, </a>
 <a class="sourceLine" id="cb10-39" data-line-number="39">            <span class="dt">author =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
-<a class="sourceLine" id="cb10-40" data-line-number="40">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,</a>
+<a class="sourceLine" id="cb10-40" data-line-number="40">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
 <a class="sourceLine" id="cb10-41" data-line-number="41">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>,<span class="dt">theme =</span> <span class="st">"grey.pal"</span>)</a>
 <a class="sourceLine" id="cb10-42" data-line-number="42"><span class="co"># north arrow</span></a>
 <a class="sourceLine" id="cb10-43" data-line-number="43"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
@@ -622,7 +624,7 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <li>A csv file of professional mobility flows between Martinique municipalities.
 <ul>
 <li>Sources: <a href="https://www.insee.fr/fr/statistiques/3566477">Flux de mobilité - déplacements domicile-lieu de travail</a> (upload date: 2018-08-01)</li>
-<li>Citation: ©Insee, 2018</li>
+<li>Citation: Insee, 2018</li>
 <li>Fields:
 <ul>
 <li>
@@ -630,7 +632,9 @@ Along with the cartographic functions, some other functions are dedicated to lay
 <li>
 <strong>j</strong>: Municipality of workplace identifier</li>
 <li>
-<strong>fij</strong>: Flows of workers (employed population, 15 y.o. or more, 2015, only flows &gt; 100) -<strong>sj</strong>: Administrative status of the workplace municipality</li>
+<strong>fij</strong>: Flows of workers (employed population, 15 y.o. or more, 2015, only flows &gt; 100)</li>
+<li>
+<strong>sj</strong>: Administrative status of the workplace municipality</li>
 </ul>
 </li>
 </ul>

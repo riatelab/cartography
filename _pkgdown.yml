@@ -1,6 +1,6 @@
 reference:
-  - title: "Map Types"
-    desc: Functions for creating map representations.
+  - title: "Symbology"
+    desc: These functions build cartographic layers.
     contents: 
     - choroLayer
     - discLayer
@@ -8,7 +8,6 @@ reference:
     - gradLinkLayer
     - gradLinkTypoLayer
     - labelLayer
-    - layoutLayer
     - propLinkLayer
     - propSymbolsChoroLayer
     - propSymbolsLayer
@@ -17,8 +16,8 @@ reference:
     - smoothLayer
     - tilesLayer
     - typoLayer
-  - title: "Map Objects"
-    desc: Functions for creating map objects.
+  - title: "Transformations"
+    desc: These functions transform or create spatial objects.
     contents: 
     - getBorders
     - getGridLayer
@@ -26,28 +25,28 @@ reference:
     - getOuterBorders
     - getPencilLayer
     - getTiles
-  - title: "Utils"
-    desc: Utils
+  - title: "Map Layout"
+    desc: These functions are dedicated to the map layout design. 
     contents: 
     - barscale
-    - getBreaks
     - getFigDim
+    - layoutLayer
     - north    
   - title: "Color Palettes"
-    desc: Functions for inspecting and building color palettes.
+    desc: Use these function to build custom color palettes.
     contents: 
     - carto.pal
     - carto.pal.info
     - display.carto.all
     - display.carto.pal
-  - title: "Datasets"
-    desc: Sample datasets used in examples.
-    contents: 
-    - ends_with("df")
   - title: "Legends"
-    desc: Functions for creating legends.
+    desc: These functions create legends.
     contents: 
     - starts_with("legend") 
+  - title: "Classification"
+    desc: This function uses classification methods for binning data.
+    contents: 
+    - getBreaks
 figures:
   dev: grDevices::png
   dpi: 72
