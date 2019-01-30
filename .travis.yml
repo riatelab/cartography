@@ -3,7 +3,7 @@ r:
   - release
   - devel
 
-#cache: packages
+cache: packages
 
 sudo: required
 
@@ -25,3 +25,7 @@ r_packages:
   - rgdal
   - roxygen2
   - rmarkdown
+  - covr
+  
+after_success:
+- Rscript -e 'library(covr);codecov()'
