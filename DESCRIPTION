@@ -15,7 +15,12 @@ BugReports: https://github.com/riatelab/cartography/issues/
 LazyData: true
 Depends: R (>= 3.3.0)
 Imports: classInt, stats, graphics, methods, rosm, raster, Rcpp, rgeos, sp (>= 1.2-4), sf (>= 0.5-4)
-Suggests: SpatialPosition, knitr, rmarkdown, rgdal
+Suggests: 
+    SpatialPosition,
+    knitr,
+    rmarkdown,
+    rgdal,
+    testthat
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 SystemRequirements: GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
