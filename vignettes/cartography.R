@@ -36,7 +36,7 @@ propSymbolsLayer(
 )
 # layout
 layoutLayer(title = "Population Distribution in Martinique",
-            sources = "Sources: Insee and IGN - 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
+            sources = "Sources: Insee and IGN, 2018\n© OpenStreetMap contributors.\nTiles style under CC BY-SA, www.openstreetmap.org/copyright.",
             author = paste0("cartography ", packageVersion("cartography")),
             frame = FALSE, north = FALSE, tabtitle = TRUE)
 # north arrow
@@ -52,7 +52,7 @@ mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # population density (inhab./km2) using sf::st_area()
 mtq$POPDENS <- 1e6 * mtq$POP / st_area(mtq)
 # plot municipalities (only the backgroung color is plotted)
-plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+plot(st_geometry(mtq), col = NA, border = NA, bg = "#aadaff")
 # plot population density
 choroLayer(
   x = mtq, 
@@ -60,7 +60,7 @@ choroLayer(
   method = "geom",
   nclass=5,
   col = carto.pal(pal1 = "sand.pal", n1 = 5),
-  border = "grey40", 
+  border = "white", 
   lwd = 0.5,
   legend.pos = "topright", 
   legend.title.txt = "Population Density\n(people per km2)",
@@ -68,7 +68,7 @@ choroLayer(
 ) 
 # layout
 layoutLayer(title = "Population Distribution in Martinique", 
-            sources = "Sources: Insee and IGN - 2018",
+            sources = "Sources: Insee and IGN, 2018",
             author = paste0("cartography ", packageVersion("cartography")), 
             frame = FALSE, north = FALSE, tabtitle = TRUE, theme= "sand.pal") 
 # north arrow
@@ -84,7 +84,7 @@ mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # transform municipality multipolygons to (multi)linestrings
 mtq_pencil <- getPencilLayer(
   x = mtq, 
-  size = 500, 
+  size = 400, 
   lefthanded = F
 )
 # plot municipalities (only the backgroung color is plotted)
@@ -109,7 +109,7 @@ labelLayer(x = mtq[mtq$STATUS != "Simple municipality",], txt = "LIBGEO",
            cex = 0.9, halo = TRUE, r = 0.15)
 # title, source, author
 layoutLayer(title = "Administrative Status",
-            sources = "Sources: Insee and IGN - 2018", 
+            sources = "Sources: Insee and IGN, 2018", 
             author = paste0("cartography ", packageVersion("cartography")), 
             north = FALSE, tabtitle = TRUE, postitle = "right", 
             col = "white", coltitle = "black") 
@@ -146,7 +146,7 @@ propSymbolsChoroLayer(
 # layout
 layoutLayer(title="Population & Wealth in Martinique, 2015", 
             author = "cartography 2.1.3", 
-            sources = "Sources: Insee and IGN - 2018", 
+            sources = "Sources: Insee and IGN, 2018", 
             scale = 5, tabtitle = TRUE, frame = FALSE)
 # north arrow
 north(pos = "topleft")
@@ -159,13 +159,14 @@ path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # Plot the municipalities
-plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",  
-     bg = "lightblue1", lwd = 0.5)
+plot(st_geometry(mtq), col="#f2efe9", border="#b38e43", bg = "#aad3df", 
+     lwd = 0.5)
 # Plot symbols with choropleth coloration
 propSymbolsTypoLayer(
   x = mtq, 
   var = "POP", 
-  inches = 0.4,
+  inches = 0.5,
+  symbols = "square",
   border = "white",
   lwd = .5,
   legend.var.pos = "topright", 
@@ -173,14 +174,14 @@ propSymbolsTypoLayer(
   var2 = "STATUS",
   legend.var2.values.order = c("Prefecture", "Sub-prefecture", 
                                "Simple municipality"),
-  col = carto.pal(pal1 = "pastel.pal", n1 = 3),
+  col = carto.pal(pal1 = "multi.pal", n1 = 3),
   legend.var2.pos = c(693000, 1607000), 
   legend.var2.title.txt = "Administrative\nStatus"
 ) 
 # layout
 layoutLayer(title="Population Distribution in Martinique", 
             author = "cartography 2.1.3", 
-            sources = "Sources: Insee and IGN - 2018", 
+            sources = "Sources: Insee and IGN, 2018", 
             scale = 5, tabtitle = TRUE, frame = FALSE)
 # north arrow
 north(pos = "topleft")
@@ -193,7 +194,7 @@ path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # plot municipalities
-plot(st_geometry(mtq), col = "darkseagreen3", border = "darkseagreen4", 
+plot(st_geometry(mtq), col = "#e4e9de", border = "darkseagreen4", 
      bg = "lightblue1", lwd = 0.5)
 # plot labels
 labelLayer(
@@ -211,13 +212,14 @@ labelLayer(
 # map layout
 layoutLayer(
   title = "Municipalities of Martinique", 
-  sources = "Sources: Insee and IGN - 2018",  
+  sources = "Sources: Insee and IGN, 2018",  
   author = paste0("cartography ", packageVersion("cartography")), 
   frame = FALSE,
   north = TRUE, 
   tabtitle = TRUE, 
-  theme = "green.pal"
+  theme = "taupe.pal"
 ) 
+
 
 ## ----linkMap, fig.height=6, fig.width=5, margin=TRUE---------------------
 library(sf)
@@ -262,7 +264,7 @@ gradLinkTypoLayer(
 ) 
 # map layout
 layoutLayer(title = "Commuting to Prefectures in Martinique", 
-            sources = "Sources: Insee and IGN - 2018",  
+            sources = "Sources: Insee and IGN, 2018",  
             author = paste0("cartography ", packageVersion("cartography")), 
             frame = FALSE, col = "grey25", coltitle = "white",
             tabtitle = TRUE)
@@ -298,7 +300,7 @@ text(x = 692582, y = 1611478, cex = 0.8, adj = 0, font = 3,  labels =
        "Distance function:\n- type = exponential\n- beta = 2\n- span = 4 km")
 # layout
 layoutLayer(title = "Population Distribution in Martinique",
-            sources = "Sources: Insee and IGN - 2018",
+            sources = "Sources: Insee and IGN, 2018",
             author = paste0("cartography ", packageVersion("cartography")),
             frame = FALSE, north = FALSE, tabtitle = TRUE, theme = "brown.pal")
 # north arrow
@@ -321,14 +323,14 @@ mygrid <- getGridLayer(
 # Compute population density in people per km2
 mygrid$POPDENS <- 1e6 * mygrid$POP / mygrid$gridarea
 # plot municipalities (only the backgroung color is plotted)
-plot(st_geometry(mtq), col = NA, border = NA, bg = "lightblue1")
+plot(st_geometry(mtq), col = NA, border = NA, bg = "#deffff")
 # Plot the population density
 choroLayer(x = mygrid, var = "POPDENS", method = "geom", nclass=5, 
            col = carto.pal(pal1 = "turquoise.pal", n1 = 5), border = "grey80", 
            lwd = 0.5, legend.pos = "topright", add = TRUE,
            legend.title.txt = "Population Density\n(people per km2)") 
 layoutLayer(title = "Population Distribution in Martinique", 
-            sources = "Sources: Insee and IGN - 2018",
+            sources = "Sources: Insee and IGN, 2018",
             author = paste0("cartography ", packageVersion("cartography")), 
             frame = FALSE, north = FALSE, tabtitle = TRUE,
             theme = "turquoise.pal")
@@ -375,7 +377,7 @@ discLayer(
 # Layout
 layoutLayer(title = "Wealth Disparities in Martinique, 2015", 
             author =  paste0("cartography ", packageVersion("cartography")),
-            sources = "Sources: Insee and IGN - 2018",
+            sources = "Sources: Insee and IGN, 2018",
             frame = FALSE, scale = 5, tabtitle = TRUE,theme = "grey.pal")
 # north arrow
 north(pos = "topleft")
