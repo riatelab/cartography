@@ -1,22 +1,22 @@
 context("Get OUter Borders")
 
-skip_on_cran()
-
-
 x = mtq[c(19,11),]
 xsp <- as(x, "Spatial")
 xsp$id <- 1:nrow(xsp)
-res <- getOuterBorders(x)
+
 
 test_that("number of borders", {
-  expect_equal(nrow(res), 2)
+  skip_on_cran()
+  expect_equal(nrow(getOuterBorders(x)), 2)
 })
 
 test_that("check ouput", {
-  expect_is(st_geometry(res), "sfc_MULTILINESTRING")
+  skip_on_cran()
+  expect_is(st_geometry(getOuterBorders(x)), "sfc_MULTILINESTRING")
 })
 
 test_that("check inputs", {
+  skip_on_cran()
   expect_warning(getOuterBorders(spdf=xsp, spdfid = "id"))
   expect_silent(getOuterBorders(x=xsp))
   spdfid="id"
