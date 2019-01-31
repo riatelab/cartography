@@ -52,7 +52,7 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
     id <- names(spdf@data)[1]
   }
   
-  if(!is.numeric(spdf[,id])){
+  if(!is.numeric(spdf@data[,id])){
     spdf$idxd <- 1:nrow(spdf)
   }else{
     spdf$idxd <- spdf@data[, id]

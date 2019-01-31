@@ -381,7 +381,7 @@ layoutLayer(title = "Commuting to Prefectures in Martinique",
 ## Isopleth Map
 
 Isopleth maps are based on the assumption that the phenomenon to be represented has a continuous distribution. These maps use a spatial interaction modeling approach which aims to compute indicators based on stock values weighted by distance. It allows a spatial representation of the phenomenon independent from the initial heterogeneity of the territorial division.  
-`smoothLayer()` heavily depends on the [`SpatialPosition`](ttps://CRAN.R-project.org/package=SpatialPosition) package. The function uses a marked point layer and a set of parameters (a spatial interaction function and its parameters) and displays an isopleth map layer.
+`smoothLayer()` heavily depends on the [`SpatialPosition`](https://CRAN.R-project.org/package=SpatialPosition) package. The function uses a marked point layer and a set of parameters (a spatial interaction function and its parameters) and displays an isopleth map layer.
 
 ```{r isopleth, fig.height=6, fig.width=5, margin=TRUE}
 library(sf)
