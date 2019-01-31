@@ -64,7 +64,7 @@ dotDensityLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
   }
   
   spdf@data[is.na(spdf@data$var),"var"] <- 0
-  if (is.null(n)){n <- round(sum(spdf@data$var)/5000,-3)}
+  if (is.null(n)){n <- round(min(spdf@data$var),0)+1}
   spdf@data$ndots <- as.integer(spdf@data$var/n)
   spdf <- spdf[spdf@data$ndots>0,]
   
