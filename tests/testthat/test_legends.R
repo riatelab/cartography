@@ -51,6 +51,10 @@ test_that("legend grad lines", {
 
 plot(st_geometry(mtq))
 test_that("legend trian", {
+  var <- runif(10, 0,100)
+  var2 <- runif(10, 0,100)
+  r <- sqrt(var)*1000
+  r2 <- sqrt(var2)*1000
   expect_silent( legendPropTriangles(
     pos = "topright", var.txt = "population 1",
     var2.txt = "population 2", title.txt="Population totale",
@@ -58,6 +62,4 @@ test_that("legend trian", {
     var = var, var2 = var2, r = r, r2 = r2,
     col="green", col2="yellow", frame=TRUE, values.rnd=2,
     style="e"))
-  expect_silent( legendTypo(pos = "nada", 
-                            col = c("red", "blue"), categ = c('red','blue')))
 })
