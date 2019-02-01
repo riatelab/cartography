@@ -243,7 +243,6 @@ NULL
 #' @param y lat
 #' @param words labels
 #' @param cex cex
-#' @param rotate90 rotate
 #' @param xlim xlim
 #' @param ylim ylim
 #' @param tstep tstep
@@ -251,7 +250,7 @@ NULL
 #' @param ... other stuf
 #' @return coords
 #' @noRd
-wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
+wordlayout <- function(x, y, words, cex=1, 
                        xlim=c(-Inf,Inf), ylim=c(-Inf,Inf), 
                        tstep=.1, rstep=.1, ...){
   tails <- "g|j|p|q|y"
@@ -264,12 +263,9 @@ wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
     sdy <- 1
   if(length(cex)==1)
     cex <- rep(cex,n)
-  if(length(rotate90)==1)
-    rotate90 <- rep(rotate90,n)	
   set.seed(999)
   boxes <- list()
   for(i in 1:length(words)){
-    rotWord <- rotate90[i]
     r <-0
     theta <- runif(1,0,2*pi)
     x1 <- xo <- x[i]
@@ -282,11 +278,6 @@ wordlayout <- function(x, y, words, cex=1, rotate90 = FALSE,
     #mind your ps and qs
     if(grepl(tails,words[i]))
       ht <- ht + ht*.2
-    if(rotWord){
-      tmp <- ht
-      ht <- wid
-      wid <- tmp	
-    }
     isOverlaped <- TRUE
     while(isOverlaped){
       if(!is_overlap(x1-.5*wid,y1-.5*ht,wid,ht,boxes) &&
