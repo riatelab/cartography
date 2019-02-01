@@ -50,7 +50,7 @@ test_that("legend grad lines", {
 
 
 plot(st_geometry(mtq))
-test_that("legend trian", {
+test_that("legend triangle", {
   var <- runif(10, 0,100)
   var2 <- runif(10, 0,100)
   r <- sqrt(var)*1000
@@ -62,4 +62,18 @@ test_that("legend trian", {
     var = var, var2 = var2, r = r, r2 = r2,
     col="green", col2="yellow", frame=TRUE, values.rnd=2,
     style="e"))
+})
+
+
+
+plot(st_geometry(mtq))
+test_that("other posititons", {
+  expect_silent(legendTypo(pos = c(698207.5, 1610389), 
+                           col = c("red", "blue"), categ = c('red','blue')))
+  expect_silent(legendTypo(pos = "left", 
+                           col = c("red", "blue"), categ = c('red','blue')))
+  expect_silent(legendTypo(pos = "bottom", 
+                           col = c("red", "blue"), categ = c('red','blue')))
+  expect_silent(legendTypo(pos = "center", 
+                           col = c("red", "blue"), categ = c('red','blue')))
 })
