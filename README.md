@@ -3,17 +3,13 @@
 [![](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
 [![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
 [![Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
-[![codecov](https://codecov.io/gh/riatelab/cartography/branch/test/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
+[![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
  [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
 
 
 
 ## Create and integrate maps in your R workflow! 
-This package allows various **cartographic representations** such as 
-proportional symbols, choropleth, typology, flows or discontinuities maps. It 
-also offers several features enhancing the graphic presentation of maps like 
-cartographic palettes, layout elements (scale, north arrow, title...), labels, 
-legends or access to some cartographic APIs.
+This package help to design **cartographic representations** such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends.
 
 ## Cheat Sheet
 The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features.
