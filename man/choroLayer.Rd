@@ -105,8 +105,7 @@ choroLayer(x = mtq, var = "POPDENS",
            legend.title.txt = "Population Density\\n(people per km2)")
 
 # Layout
-layoutLayer(title = "Population Distribution in Martinique, 2015",
-            author = "", sources = "")
+layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \references{
 Herbert A. Sturges, «

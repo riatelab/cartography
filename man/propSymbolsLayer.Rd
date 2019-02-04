@@ -89,8 +89,7 @@ propSymbolsLayer(x = mtq, var = "POP",
                  legend.title.txt = "Total\\nPopulation",
                  legend.style = "c")
 # Layout plot
-layoutLayer(title = "Population Distribution in Martinique, 2015",
-            sources = "", author = "")
+layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 

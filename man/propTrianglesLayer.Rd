@@ -77,8 +77,7 @@ plot(st_geometry(mtq), col = "lightblue4",border = "lightblue3",
      bg = "lightblue1")
 propTrianglesLayer(x = mtq, var1 = "OCC", var2 = "CHOM", 
                    col1="green4",col2="red4",k = 0.1)
-layoutLayer(title = "Active Population in Martinique, 2015",
-            sources = "",author = "")
+layoutLayer(title = "Active Population in Martinique, 2015")
 }
 \seealso{
 \link{legendPropTriangles}

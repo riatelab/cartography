@@ -40,5 +40,5 @@ typoLayer(x = mtq_pencil, var="STATUS",
           legend.pos = "topright",
           legend.title.txt = "Status")
 plot(st_geometry(mtq), add = TRUE, ldy=2)
-layoutLayer(title = "Municipality Status", author = "", sources = "")
+layoutLayer(title = "Municipality Status")
 }

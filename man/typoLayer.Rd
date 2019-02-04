@@ -70,7 +70,7 @@ typoLayer(x = mtq, var="STATUS",
                                   "Simple municipality"),
           legend.pos = "topright",
           legend.title.txt = "Status")
-layoutLayer(title = "Municipality Status", author = "", sources = "")
+layoutLayer(title = "Municipality Status")
 }
 \seealso{
 \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}

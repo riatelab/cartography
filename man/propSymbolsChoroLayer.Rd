@@ -126,8 +126,7 @@ propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED",
                       legend.var.title.txt = "Total Population",
                       legend.var.style = "e")
 # First layout
-layoutLayer(title="Population and Wealth in Martinique, 2015",
-            author = "", sources = "")
+layoutLayer(title="Population and Wealth in Martinique, 2015")
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendChoro}, 

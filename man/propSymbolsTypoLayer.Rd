@@ -104,8 +104,7 @@ propSymbolsTypoLayer(x = mtq, var = "POP", var2 = "STATUS",
                                                   "Simple municipality"),
                      legend.var.pos = "right", border = "grey",
                      legend.var.title.txt = "Total\\nPopulation")
-layoutLayer(title = "Population Distribution in Martinique, 2015",
-            sources = "", author = "")
+layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \seealso{
 \link{legendBarsSymbols}, \link{legendTypo},
