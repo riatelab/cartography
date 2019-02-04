@@ -190,6 +190,10 @@ legpos <- function(pos, x1, x2, y1, y2, delta1, delta2,
     xref <- x1 + delta1
     yref <- y1 + delta1
   }
+  if (pos == "bottomleftextra") {
+    xref <- x1 + delta1 
+    yref <- y1 + delta1 + graphics::strheight(s = "hp\nhp", cex = 0.6, font = 3)
+  }
   if (pos == "topleft") {
     xref <- x1 + delta1
     yref <- y2 - 2 * delta1 - legend_ysize

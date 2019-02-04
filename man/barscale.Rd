@@ -4,19 +4,19 @@
 \alias{barscale}
 \title{Scale Bar}
 \usage{
-barscale(size = NULL, lwd = 1.5, cex = 0.6, pos = NULL,
+barscale(size, lwd = 1.5, cex = 0.6, pos = "bottomright",
   style = "pretty")
 }
 \arguments{
-\item{size}{size of the scale bar in kilometers. If set to NULL, an 
+\item{size}{size of the scale bar in kilometers. If size is not set, an 
 automatic size is used (1/10 of the map width).}
 
 \item{lwd}{width of the scale bar.}
 
 \item{cex}{cex of the text.}
 
-\item{pos}{position of the legend, default to the bottom right corner of the map. 
-A vector of two coordinates (c(x, y)) is possible.}
+\item{pos}{position of the legend, default to "bottomright". 
+"bottomright" or a vector of two coordinates (c(x, y)) are possible.}
 
 \item{style}{style of the legend, either "pretty" or "oldschool". The 
 "oldschool" style only uses the "size" parameter.}

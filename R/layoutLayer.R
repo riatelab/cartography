@@ -4,12 +4,16 @@
 #' @param title title of the map.
 #' @param sources sources of the map (or something else).
 #' @param author author of the map (or something else).
-#' @param scale size of the scale bar in kilometers. If set to NULL, no scale bar is 
-#' displayed, if set to 0 an automatic scale bar is displayed (1/10 of the map width).
+#' @param scale size of the scale bar in kilometers. If set to FALSE, no scale 
+#' bar is displayed, if set to "auto" an automatic size is used (1/10 of the map 
+#' width).
+#' @param posscale position of the scale, can be "bottomright", "bottomleft" or 
+#' a vector of two coordinates (c(x, y))
 #' @param frame whether displaying a frame (TRUE) or not (FALSE).
 #' @param col color of the title box and frame border.
 #' @param coltitle color of the title.
-#' @param tabtitle size of the title box either a full banner (FALSE) or a "tab" (TRUE). 
+#' @param tabtitle size of the title box either a full banner (FALSE) or a 
+#' "tab" (TRUE). 
 #' @param postitle position of the title, one of "left", "center", "right". 
 #' @param bg color of the frame background.
 #' @param north whether displaying a North arrow (TRUE) or not (FALSE).
@@ -18,6 +22,9 @@
 #' the one of a spatial object. (optional)
 #' @param theme name of a cartographic palette (see \link{carto.pal.info}). 
 #' col and coltitle are set according to the chosen palette. 
+#' @param horiz orientation of sources and author. TRUE for horizontal display 
+#' on the bottom left corner, FALSE for vertical display on the bottom right 
+#' corner.
 #' @details If extent is not set, plot.new has to be called first.\cr
 #' The size of the title box in layoutLayer is fixed to 1.2 lines height.
 #' @export 
@@ -31,17 +38,19 @@
 #' 
 #' plot(st_geometry(mtq), col = "#D1914D", border = "white", bg = "#A6CAE0")
 #' # Layout plot
-#' layoutLayer(title = "Martinique", sources = "",
+#' layoutLayer(title = "Martinique",
 #'             author =  paste0("cartography ", packageVersion("cartography")),
 #'             tabtitle = TRUE, scale = 5, north = TRUE, frame = FALSE,
 #'             theme = "sand.pal")
 layoutLayer <- function(title = "Title of the map, year",
-                        sources = "Source(s)", author = "Author(s)",
+                        sources = "", author = "",
+                        horiz = TRUE, 
                         col = "black", coltitle = "white", theme = NULL, 
-                        bg = NULL, scale = 0, frame = TRUE, north = FALSE, 
+                        bg = NULL, scale = "auto", posscale = "bottomright",
+                        frame = TRUE, north = FALSE, 
                         south = FALSE, extent = NULL, tabtitle = FALSE, 
                         postitle = "left"){
-  # EXTENT
+  # Extent
   if (!is.null(extent)){
     if(methods::is(extent, 'Spatial')){
       extent <- sf::st_as_sf(extent)
@@ -57,7 +66,7 @@ layoutLayer <- function(title = "Title of the map, year",
   y2 <- mapExtent[4]
   delta <- min((y2 - y1) / 40, (x2 - x1) / 40)
   
-  # COLOR THEME
+  # Color theme
   if(!is.null(theme)){
     pals <- carto.pal.info()[1:14]
     if (theme %in% pals){
@@ -67,20 +76,25 @@ layoutLayer <- function(title = "Title of the map, year",
     }
   }
   
-  # FRAME
+  # Frame
   if(frame == TRUE){
     rect(x1, y1, x2, y2, border = col, col = bg)
   }
   
-  # SCALE
+  # Scale
   if (!is.null(scale)){
     if(scale == 0){
-      scale <- NULL
+      # DO NOTHING
+    }else{
+      if(scale=="auto"){
+        barscale(style = "pretty", pos = posscale)
+      }else{
+        barscale(size = scale, style = "pretty", pos=posscale)
+      }
     }
-    barscale(size = scale, style = "pretty")
   }
   
-  # NORTH
+  # North arrow
   if(south){
     north <- FALSE
     north(pos = "topright", south = TRUE)
@@ -89,43 +103,55 @@ layoutLayer <- function(title = "Title of the map, year",
     north(pos = "topright")
   }
   
-  # TITLE
-  size <- 0.8
-  titlesize <- xinch(strwidth(title, cex = size, units = "inches", font = 2))
-  par(xpd = TRUE)
-  switch(postitle, 
-         left = {
-           x1s <- x1
-         }, 
-         center = {
-           x1s <- x1 + ((x2 - x1) - titlesize) / 2 - delta / 2
+  # Title
+  if(title != ""){
+    size <- 0.8
+    titlesize <- xinch(strwidth(title, cex = size, units = "inches", font = 2))
+    par(xpd = TRUE)
+    switch(postitle, 
+           left = {
+             x1s <- x1
            }, 
-         right = {
-           x1s <- x1 + ((x2 - x1) - titlesize) - delta
+           center = {
+             x1s <- x1 + ((x2 - x1) - titlesize) / 2 - delta / 2
+           }, 
+           right = {
+             x1s <- x1 + ((x2 - x1) - titlesize) - delta
            }
-         )
-  if(tabtitle){
-    rect(xleft = x1s, 
-         ybottom = y2, 
-         xright = x1s + titlesize + delta, 
-         ytop = y2 + (xinch(1.2) * 0.2), 
-         border = col, col = col)
-  }else{
-    rect(xleft = x1, 
-         ybottom = y2, 
-         xright = x2, 
-         ytop = y2 + (xinch(1.2) * 0.2), 
-         border = col, col = col)
+    )
+    
+    if(tabtitle){
+      rect(xleft = x1s, 
+           ybottom = y2, 
+           xright = x1s + titlesize + delta, 
+           ytop = y2 + (xinch(1.2) * 0.2), 
+           border = col, col = col)
+    }else{
+      rect(xleft = x1, 
+           ybottom = y2, 
+           xright = x2, 
+           ytop = y2 + (xinch(1.2) * 0.2), 
+           border = col, col = col)
+    }
+    
+    text(x = x1s + delta / 2, 
+         y = y2 + ((xinch(1.2) * 0.2) - xinch(strheight(title, cex = 0.8, 
+                                                        units = "inches", 
+                                                        font = 2))) / 2,
+         labels = title, adj = c(0,0),
+         cex = size, col = coltitle, font = 2)
+    par(xpd = FALSE)
   }
-  text(x = x1s + delta / 2, 
-       y = y2 + ((xinch(1.2) * 0.2) - xinch(strheight(title, cex = 0.8, 
-                                                      units = "inches", 
-                                                      font = 2))) / 2,
-       labels = title, adj = c(0,0),
-       cex = size, col = coltitle, font = 2)
-  par(xpd = FALSE)
   
-  # SOURCES
-  text(x1 + delta / 2, y1 + delta / 2, paste(sources, author, sep = "\n"),
-       adj = c(0,0), cex = 0.6, font = 3)
+  # Credits
+  if(author != ""){sep = "\n"}else{sep = ""}
+  credit <- paste(sources, author, sep = sep)
+  if(horiz){
+    text(x = x1 + delta / 2, y = y1 + delta / 2, labels = credit,
+         adj = c(0,0), cex = 0.6, font = 3)
+  }else{
+    text(x = x2 - delta / 2, y = y1 + delta / 2, labels = credit,
+         adj = c(0,0), cex = 0.6, font = 3, srt = 90)
+  }
+  
 }
