@@ -25,7 +25,7 @@
 #'           legend.pos = "topright",
 #'           legend.title.txt = "Status")
 #' plot(st_geometry(mtq), add = TRUE, ldy=2)
-#' layoutLayer(title = "Municipality Status", author = "", sources = "")
+#' layoutLayer(title = "Municipality Status")
 #' @export
 getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
   a <- median(sf::st_area(sf::st_set_crs(x, NA)))

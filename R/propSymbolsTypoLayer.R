@@ -63,8 +63,7 @@
 #'                                                   "Simple municipality"),
 #'                      legend.var.pos = "right", border = "grey",
 #'                      legend.var.title.txt = "Total\nPopulation")
-#' layoutLayer(title = "Population Distribution in Martinique, 2015",
-#'             sources = "", author = "")
+#' layoutLayer(title = "Population Distribution in Martinique, 2015")
 propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                  inches = 0.3, fixmax = NULL, symbols = "circle",
                                  border = "grey20", lwd = 1,

@@ -40,7 +40,7 @@
 #'                                   "Simple municipality"),
 #'           legend.pos = "topright",
 #'           legend.title.txt = "Status")
-#' layoutLayer(title = "Municipality Status", author = "", sources = "")
+#' layoutLayer(title = "Municipality Status")
 typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                       col = NULL, border = "grey20", lwd = 1,
                       colNA = "white",

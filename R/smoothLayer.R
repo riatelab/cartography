@@ -68,8 +68,7 @@
 #' propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
 #'                  legend.title.txt = "Population 2015",
 #'                  col = NA, border = "#ffffff50")
-#' layoutLayer(title = "Actual and Potential Popultation in Martinique",
-#'             author = "", sources = "")
+#' layoutLayer(title = "Actual and Potential Popultation in Martinique")
 smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, 
                         var, 
                         var2 = NULL, 

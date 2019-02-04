@@ -56,9 +56,7 @@
 #'                  legend.title.txt = "Total\nPopulation",
 #'                  legend.style = "c")
 #' # Layout plot
-#' layoutLayer(title = "Population Distribution in Martinique, 2015",
-#'             sources = "", author = "")
-
+#' layoutLayer(title = "Population Distribution in Martinique, 2015")
 propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              inches = 0.3, fixmax = NULL, 
                              symbols = "circle", 

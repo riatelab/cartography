@@ -72,8 +72,7 @@
 #'            legend.title.txt = "Population Density\n(people per km2)")
 #' 
 #' # Layout
-#' layoutLayer(title = "Population Distribution in Martinique, 2015",
-#'             author = "", sources = "")
+#' layoutLayer(title = "Population Distribution in Martinique, 2015")
 choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var, 
                        breaks = NULL, method = "quantile", nclass = NULL,
                        col = NULL,

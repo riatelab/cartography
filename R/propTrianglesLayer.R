@@ -44,8 +44,7 @@
 #'      bg = "lightblue1")
 #' propTrianglesLayer(x = mtq, var1 = "OCC", var2 = "CHOM", 
 #'                    col1="green4",col2="red4",k = 0.1)
-#' layoutLayer(title = "Active Population in Martinique, 2015",
-#'             sources = "",author = "")
+#' layoutLayer(title = "Active Population in Martinique, 2015")
 #' @export
 propTrianglesLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, 
                                var1, col1 = "#E84923",
