@@ -26,7 +26,7 @@ barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pre
   inset <- min(diff(x), diff(y)) / 40
   
   # default scale
-  if(missing(size)){
+  if(missing(size) || is.null(size)){
     size <- diff(x)/10
     size <- signif(size, digits = 0)
   }else{
@@ -38,21 +38,18 @@ barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pre
   labelscale <- paste(size / 1000, "km", sep =" ")
   
   # xy pos
-  if(pos=="bottomright"){
-    xscale <- x[2] - inset * 0.5 - size
-    yscale <- y[1] + inset
-  }
-  if(pos == "bottomleft"){
-    xscale <- x[1] + inset * 0.5 
-    yscale <- y[1] + inset
-  }
-  
-  
+  xscale <- x[2] - inset * 0.5 - size
+  yscale <- y[1] + inset
   
   if(!missing(pos)){
     if(is.numeric(pos) & length(pos)==2){
       xscale <- pos[1]
       yscale <- pos[2]
+    }else{
+      if(pos == "bottomleft"){
+        xscale <- x[1] + inset * 0.5 
+        yscale <- y[1] + inset
+      }
     }
   }
   
