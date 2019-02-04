@@ -5,6 +5,10 @@ plot(st_geometry(mtq))
 test_that("legend choropleth", {
   expect_silent(legendChoro(pos = "nada", breaks = c(1,2,3,4,10.27,15.2),
                             col = carto.pal(pal1 = "orange.pal",n1 = 5)))
+  expect_silent(legendChoro(pos = "topright", breaks = c(1,2,3,4,10.27,15.2),
+                            col = carto.pal(pal1 = "orange.pal",n1 = 5), 
+                            horiz = TRUE, border = NA, nodata = TRUE, 
+                            frame = TRUE, nodata.txt = "extralongstringcharacterstuff"))
   expect_silent(legendChoro(breaks = c(1,2,3,4,10.27,15.2),
                             col = carto.pal(pal1 = "orange.pal",n1 = 5), 
                             frame = TRUE, symbol = "line"))
@@ -75,5 +79,7 @@ test_that("other posititons", {
   expect_silent(legendTypo(pos = "bottom", 
                            col = c("red", "blue"), categ = c('red','blue')))
   expect_silent(legendTypo(pos = "center", 
+                           col = c("red", "blue"), categ = c('red','blue')))
+  expect_silent(legendTypo(pos = "bottomleftextra", 
                            col = c("red", "blue"), categ = c('red','blue')))
 })
