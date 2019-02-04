@@ -57,8 +57,9 @@ legendChoro <- function(pos = "topleft",
                         nodata.col = "white",
                         frame=FALSE,symbol="box"){
   # exit for none
-  positions <- c("bottomleft", "bottomleftextra","topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+  positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
