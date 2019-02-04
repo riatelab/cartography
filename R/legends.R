@@ -59,10 +59,6 @@ legendChoro <- function(pos = "topleft",
                         nodata.col = "white",
                         frame=FALSE,symbol="box", 
                         border = "black", horiz = FALSE){
-
-################### Add border param to vertical legend ///
-  
-    
   if (horiz && symbol=="box"){
     legendChoroHoriz(pos = pos, title.txt = title.txt, title.cex = title.cex,
                      values.cex = values.cex, breaks = breaks, col = col, cex = cex,
@@ -70,8 +66,9 @@ legendChoro <- function(pos = "topleft",
                      nodata.col = nodata.col, frame = frame, border = border)
   }else{
     # exit for none
-    positions <- c("bottomleft", "topleft", "topright", "bottomright","bottomleftextra",
-                   "left", "right", "top", "bottom", "center")
+    positions <- c("bottomleft", "topleft", "topright", "bottomright",
+                   "left", "right", "top", "bottom", "center", 
+                   "bottomleftextra")
     if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
     
     # figdim in geo coordinates
@@ -155,8 +152,9 @@ legendChoro <- function(pos = "topleft",
 #' @name legendTypo
 #' @param categ vector of categories.
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -204,7 +202,8 @@ legendTypo <- function(pos = "topleft",
   
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -298,8 +297,9 @@ legendTypo <- function(pos = "topleft",
 #' @description Plot legend for proportional circles maps
 #' @name legendCirclesSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -346,7 +346,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -435,8 +436,9 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @description Plot legend for proportional squares maps
 #' @name legendSquaresSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -472,7 +474,8 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -563,8 +566,9 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @description Plot legend for proportional bars maps
 #' @name legendBarsSymbols
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -600,7 +604,8 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -688,8 +693,9 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 #' @description Plot legend for proportional lines maps
 #' @name legendPropLines
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -719,7 +725,8 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -784,8 +791,9 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
 #' @description Plot legend for graduated size lines maps.
 #' @name legendGradLines
 #' @param pos position of the legend, one of "topleft", "top", 
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
-#' vector of two coordinates in map units (c(x, y)).
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -816,7 +824,8 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
   breaks <- abs(breaks)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -1136,9 +1145,10 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
 #' @title Legend for Choropleth Maps
 #' @description Plot legend for choropleth maps.
 #' @name legendChoroHoriz
-#' @param pos position of the legend, one of "topleft", "top",
-#' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a
-#' vector of two coordinates in map units (c(x, y)).
+#' @param pos position of the legend, one of "topleft", "top", 
+#' "topright", "right", "bottomright", "bottom", "bottomleft", 
+#' "bottomleftextra", "left" or a vector of two coordinates in map units 
+#' (c(x, y)).
 #' @param title.txt title of the legend.
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
@@ -1172,7 +1182,8 @@ legendChoroHoriz <- function(pos = "topleft",
   
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
-                 "left", "right", "top", "bottom", "center")
+                 "left", "right", "top", "bottom", "center", 
+                 "bottomleftextra")
   if(length(pos) == 1){if(!pos %in% positions){return(invisible())}}
   
   # figdim in geo coordinates
@@ -1267,11 +1278,4 @@ legendChoroHoriz <- function(pos = "topleft",
   # title
   text(x = xref + longval1/2, y = yref + height + delta1 + delta2,
        labels = title.txt, adj = c(0,0), cex = title.cex)
-  
-  
 }
-
-
-
-
-
