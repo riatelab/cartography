@@ -10,4 +10,5 @@ test_that("layout is plotting", {
                             theme = "blue.pal", extent = mtq))
   expect_silent(layoutLayer(tabtitle = TRUE, postitle = "center", north = TRUE, 
                             theme = "blue.pal", extent = as(mtq, "Spatial")))
+  expect_silent(layoutLayer(scale=5, horiz = FALSE, author="    AUTHOR"))
 })

@@ -12,6 +12,12 @@ test_that("legend choropleth", {
   expect_silent(legendChoro(breaks = c(1,2,3,4,10.27,15.2),
                             col = carto.pal(pal1 = "orange.pal",n1 = 5), 
                             frame = TRUE, symbol = "line"))
+  
+  expect_silent(legendChoro(pos = "nadada", breaks = c(1,2,3,4,10.27,15.2),
+                            col = carto.pal(pal1 = "orange.pal",n1 = 5), 
+                            horiz = TRUE, nodata = FALSE))
+  
+  
 }) 
 
 test_that("legend prop symbols", {
@@ -57,8 +63,8 @@ plot(st_geometry(mtq))
 test_that("legend triangle", {
   var <- runif(10, 0,100)
   var2 <- runif(10, 0,100)
-  r <- sqrt(var)*1000
-  r2 <- sqrt(var2)*1000
+  r <- sqrt(var)*500
+  r2 <- sqrt(var2)*500
   expect_silent( legendPropTriangles(
     pos = "topright", var.txt = "population 1",
     var2.txt = "population 2", title.txt="Population totale",
@@ -66,6 +72,21 @@ test_that("legend triangle", {
     var = var, var2 = var2, r = r, r2 = r2,
     col="green", col2="yellow", frame=TRUE, values.rnd=2,
     style="e"))
+  positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", 
+                 "right", "top", "bottom", "middle")
+  
+  for (i in positions){
+    expect_silent( legendPropTriangles(
+      pos = i, var.txt = "population 1",
+      var2.txt = "population 2", title.txt="Pop",
+      title.cex = 0.8, values.cex = 0.6, cex = .5,
+      var = var2, var2 = var, r = r, r2 = r2,
+      col="green", col2="yellow", frame=TRUE, values.rnd=2,
+      style="e"))
+  }
+  
+  
+  
 })
 
 
