@@ -6,12 +6,11 @@
 \alias{cartography-package}
 \title{Cartography Package}
 \description{
-Create and integrate maps in your R workflow. This package allows
-various cartographic representations such as proportional symbols, choropleth,
-typology, flows or discontinuities maps. It also offers several features enhancing 
-the graphic presentation of maps like cartographic palettes, layout 
-elements (scale, north arrow, title...), labels, legends or access to some 
-cartographic APIs.
+This package helps to design cartographic representations such as 
+proportional symbols, choropleth, typology, flows or discontinuities maps. 
+It also offers several features that improve the graphic presentation of 
+maps, for instance, map palettes, layout elements (scale, north arrow, 
+title...), labels or legends.
 
 A \bold{vignette} contains commented scripts on how to create various maps 
 and a \bold{cheat sheet} displays a quick overview of \code{cartography}'s 

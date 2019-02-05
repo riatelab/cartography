@@ -1,22 +1,46 @@
 
 
-# cartography 2.1.4
+# cartography 2.2.x
 
 ## Minor changes
 - internaly, use sf instead of sp for hexagonal grid computation.
 
 
 
-# cartography 2.1.3
+# cartography 2.2.0
+
+## Breaking changes
+
+- barscale(): automatic size by default, NULL return no scale bar; 
+- layoutlayer(): FALSE, no scale bar is displayed, if set to "auto" an automatic size is used (previously was 0). 0 or NULL will display no scalebar. No default text for sources and author. 
+- legend*() and relevant function: new "bottomleftextra" position for the legend. It displays the legend in the bottomleft corner with and extra padding that allows the display of sources and author with layoutLayer() without overlapping. 
+
+
+## New features
+
+- barscale(): new position ("bottomright", "bottomleft" or c(x,y))
+- legendChoro(): horiz argument to display an horizonthal legend, border to set the 
+border color of the boxes
+- choroLayer() and propSymbolsChoroLayer(): legend.horiz, legend.var2.horiz, legend.border and legend.var2.border arguments to use new legendChoro arguments.
+- layoutLayer(): horiz argument to display sources and author in verticaly in the bottomright corner (horiz = FALSE). posscale argument ("bottomright" or 
+"bottomleft") for the scale bar position.
 
 ## Minor changes
 
-- fix incorrect display of typo legends if legend.order is not provided.
-- fix error in getLinkLayer when x and df ids do not perfectly match.
-- only suggest OSM basemap sources without API key requirement.
-- add source citation recommandation in getTiles()
-- update README
-- refounded vignette
+- *typoLayer(): fix incorrect display of typo legends if legend.order is not provided.
+- getLinkLayer(): fix error when x and df ids do not perfectly match.
+- getTiles(): only suggest OSM basemap sources without API key requirement.
+- getTiles(): add source citation recommandation in getTiles()
+- small fixes on propTrianglesLayer(), gradLinkTypoLayer(), layoutLayer(), getOuterBorder(), dotDensityLayer(), labelLayer()
+- vignette: Introduction/descritpion of the package, sf bases examples and dataset description. 
+- README: update
+- examples: examples are now based on sf object
+- data: addition of a GeoPackage on Martinique municipalities (descritpion on vignette), a csv on work mobilities
+- add a test suit
+- add a pkgdown website
+
+
+
 
 # cartography 2.1.2 
 
