@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>barscale</span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>barscale</span>(<span class='no'>size</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>,
   <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"pretty"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -138,7 +138,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>size</th>
-      <td><p>size of the scale bar in kilometers. If set to NULL, an 
+      <td><p>size of the scale bar in kilometers. If size is not set, an 
 automatic size is used (1/10 of the map width).</p></td>
     </tr>
     <tr>
@@ -151,8 +151,8 @@ automatic size is used (1/10 of the map width).</p></td>
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>position of the legend, default to the bottom right corner of the map. 
-A vector of two coordinates (c(x, y)) is possible.</p></td>
+      <td><p>position of the legend, default to "bottomright". 
+"bottomright" or a vector of two coordinates (c(x, y)) are possible.</p></td>
     </tr>
     <tr>
       <th>style</th>

@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
       </span>
     </div>
 
@@ -136,7 +136,8 @@
   <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomleft"</span>, <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='no'>var</span>,
   <span class='kw'>legend.title.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>legend.values.cex</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
   <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>legend.nodata</span> <span class='kw'>=</span> <span class='st'>"no data"</span>,
-  <span class='kw'>legend.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>legend.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>legend.border</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>legend.horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -233,6 +234,15 @@ the legend.</p></td>
 not (FALSE).</p></td>
     </tr>
     <tr>
+      <th>legend.border</th>
+      <td><p>color of boxes borders in the legend.</p></td>
+    </tr>
+    <tr>
+      <th>legend.horiz</th>
+      <td><p>whether to display the legend horizontally (TRUE) or
+not (FALSE).</p></td>
+    </tr>
+    <tr>
       <th>add</th>
       <td><p>whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).</p></td>
@@ -280,8 +290,7 @@ Association, vol. 21, n° 153, mars 1926, p. 65-66.</p>
            <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> <span class='fl'>0</span>,
            <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"Population Density\n(people per km2)"</span>)</div><div class='input'>
 <span class='co'># Layout</span>
-<span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Population Distribution in Martinique, 2015"</span>,
-            <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='choroLayer-2.png' alt='' width='525' height='504' /></div></pre>
+<span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Population Distribution in Martinique, 2015"</span>)</div><div class='img'><img src='choroLayer-2.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

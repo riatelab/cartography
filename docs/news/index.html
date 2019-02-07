@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
       </span>
     </div>
 
@@ -121,9 +121,9 @@
       <small>Source: <a href='https://github.com/riatelab/cartography/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="cartography-2-1-4" class="section level1">
+    <div id="cartography-2-2-x" class="section level1">
 <h1 class="page-header">
-<a href="#cartography-2-1-4" class="anchor"></a>cartography 2.1.4<small> Unreleased </small>
+<a href="#cartography-2-2-x" class="anchor"></a>cartography 2.2.x<small> Unreleased </small>
 </h1>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -133,20 +133,44 @@
 </ul>
 </div>
 </div>
-    <div id="cartography-2-1-3" class="section level1">
+    <div id="cartography-2-2-0" class="section level1">
 <h1 class="page-header">
-<a href="#cartography-2-1-3" class="anchor"></a>cartography 2.1.3<small> Unreleased </small>
+<a href="#cartography-2-2-0" class="anchor"></a>cartography 2.2.0<small> Unreleased </small>
 </h1>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<ul>
+<li>barscale(): automatic size by default, NULL return no scale bar;</li>
+<li>layoutlayer(): FALSE, no scale bar is displayed, if set to “auto” an automatic size is used (previously was 0). 0 or NULL will display no scalebar. No default text for sources and author.</li>
+</ul>
+</div>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>barscale(): new position (“bottomright”, “bottomleft” or c(x,y))</li>
+<li>legendChoro(): horiz argument to display an horizonthal legend, border to set the border color of the boxes</li>
+<li>choroLayer() and propSymbolsChoroLayer(): legend.horiz, legend.var2.horiz, legend.border and legend.var2.border arguments to use new legendChoro arguments.</li>
+<li>layoutLayer(): horiz argument to display sources and author in verticaly in the bottomright corner (horiz = FALSE). posscale argument (“bottomright” or “bottomleft”) for the scale bar position.</li>
+<li>legend*() and relevant function: new “bottomleftextra” position for the legend. It displays the legend in the bottomleft corner with and extra padding that allows the display of sources and author with layoutLayer() without overlapping.</li>
+</ul>
+</div>
 <div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>fix incorrect display of typo legends if legend.order is not provided.</li>
-<li>fix error in getLinkLayer when x and df ids do not perfectly match.</li>
-<li>only suggest OSM basemap sources without API key requirement.</li>
-<li>add source citation recommandation in getTiles()</li>
-<li>update README</li>
-<li>refounded vignette</li>
+<li>*typoLayer(): fix incorrect display of typo legends if legend.order is not provided.</li>
+<li>getLinkLayer(): fix error when x and df ids do not perfectly match.</li>
+<li>getTiles(): only suggest OSM basemap sources without API key requirement.</li>
+<li>getTiles(): add source citation recommandation in getTiles()</li>
+<li>small fixes on propTrianglesLayer(), gradLinkTypoLayer(), layoutLayer(), getOuterBorder(), dotDensityLayer(), labelLayer()</li>
+<li>vignette: Introduction/descritpion of the package, sf bases examples and dataset description.</li>
+<li>README: update</li>
+<li>examples: examples are now based on sf object</li>
+<li>data: addition of a GeoPackage on Martinique municipalities (descritpion on vignette), a csv on work mobilities</li>
+<li>add a test suit</li>
+<li>add a pkgdown website</li>
 </ul>
 </div>
 </div>
@@ -236,9 +260,9 @@
 <h1 class="page-header">
 <a href="#cartography-2-0-0" class="anchor"></a>cartography 2.0.0<small> 2017-09-19 </small>
 </h1>
-<div id="breaking-changes" class="section level2">
+<div id="breaking-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li><p>Up to version 1.4.2 cartography was mainly based on sp and and rgeos for its spatial data management and geoprocessing operations. These dependencies are as much as possible replaced by sf functions since version 2.0.0. Most functions are kept unchanged except for the addition of an x argument used to take sf objects as inputs.</p></li>
 <li>getBorders, getOuterBorders: an x argument is added in first position, x is added to take sf objects as inputs, if x is used then spdf is not used. spdfid is replaced by id. An sf object (MULTILINESTRING) of borders is returned.</li>
@@ -417,8 +441,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#cartography-2-1-4">2.1.4</a></li>
-        <li><a href="#cartography-2-1-3">2.1.3</a></li>
+        <li><a href="#cartography-2-2-x">2.2</a></li>
+        <li><a href="#cartography-2-2-0">2.2.0</a></li>
         <li><a href="#cartography-2-1-2">2.1.2</a></li>
         <li><a href="#cartography-2-1-1">2.1.1</a></li>
         <li><a href="#cartography-2-1-0">2.1.0</a></li>
