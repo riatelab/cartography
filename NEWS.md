@@ -13,7 +13,7 @@
 
 - barscale(): automatic size by default, NULL return no scale bar; 
 - layoutlayer(): FALSE, no scale bar is displayed, if set to "auto" an automatic size is used (previously was 0). 0 or NULL will display no scalebar. No default text for sources and author. 
-- legend*() and relevant function: new "bottomleftextra" position for the legend. It displays the legend in the bottomleft corner with and extra padding that allows the display of sources and author with layoutLayer() without overlapping. 
+
 
 
 ## New features
@@ -24,6 +24,7 @@ border color of the boxes
 - choroLayer() and propSymbolsChoroLayer(): legend.horiz, legend.var2.horiz, legend.border and legend.var2.border arguments to use new legendChoro arguments.
 - layoutLayer(): horiz argument to display sources and author in verticaly in the bottomright corner (horiz = FALSE). posscale argument ("bottomright" or 
 "bottomleft") for the scale bar position.
+- legend*() and relevant function: new "bottomleftextra" position for the legend. It displays the legend in the bottomleft corner with and extra padding that allows the display of sources and author with layoutLayer() without overlapping. 
 
 ## Minor changes
 
