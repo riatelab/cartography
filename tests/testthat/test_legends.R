@@ -12,12 +12,12 @@ test_that("legend choropleth", {
   expect_silent(legendChoro(breaks = c(1,2,3,4,10.27,15.2),
                             col = carto.pal(pal1 = "orange.pal",n1 = 5), 
                             frame = TRUE, symbol = "line"))
-  
   expect_silent(legendChoro(pos = "nadada", breaks = c(1,2,3,4,10.27,15.2),
                             col = carto.pal(pal1 = "orange.pal",n1 = 5), 
                             horiz = TRUE, nodata = FALSE))
-  
-  
+  expect_silent(legendChoro(pos = "bottomright", breaks = c(1,2,3,4,10.27,15.2),
+                            col = carto.pal(pal1 = "orange.pal",n1 = 5), 
+                            horiz = TRUE, nodata = FALSE))
 }) 
 
 test_that("legend prop symbols", {
