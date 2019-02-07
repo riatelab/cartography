@@ -1,10 +1,10 @@
 # cartography <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![](https://www.r-pkg.org/badges/version-ago/cartography)](https://cran.r-project.org/package=cartography)
+[![](https://www.r-pkg.org/badges/version/cartography)](https://cran.r-project.org/package=cartography)
 [![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
 [![Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
 [![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
- [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
+[![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
 
 
 
@@ -45,14 +45,10 @@ contains commented scripts on how to build various types of maps with `cartograp
 
 
 
-## Blog Posts, Tutorials & Papers
+## Other Resources 
 
-
-[Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson MP (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp.
-173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography) (EN)      
-[Cartographie reproductible](https://riatelab.github.io/cartographie-reproductible) (FR)  
-[New version of the cartography package](https://rgeomatic.hypotheses.org/1205) (EN)    
-[SF & cartography V2.0.0](https://rgeomatic.hypotheses.org/1149) (FR)   
+* [Giraud T., Lambert N. (2017) Reproducible Cartography. In: Peterson M. (eds) Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography. Springer, Cham](https://github.com/riatelab/ReproducibleCartography) (EN)      
+* [Blog posts](https://rgeomatic.hypotheses.org/category/cartography) (FR / EN)  
 
 
 ## Demo
