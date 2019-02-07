@@ -200,7 +200,6 @@ propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
          })
   
   
-  if(legend.var2.pos !="n"){
     legendTypo(pos = legend.var2.pos,
                title.txt = legend.var2.title.txt,
                title.cex = legend.title.cex,
@@ -211,5 +210,4 @@ propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                symbol="box",
                nodata = nodata,nodata.col = colNA,
                nodata.txt = legend.var2.nodata)
-  }
 }
