@@ -1,10 +1,10 @@
 
 
-# cartography 2.2.x
+# cartography 2.2.1
 
 ## Minor changes
 - internaly, use sf instead of sp for hexagonal grid computation.
-
+- bugfix in LegendChoro() no more warning when pos = c(x,y). 
 
 
 # cartography 2.2.0
