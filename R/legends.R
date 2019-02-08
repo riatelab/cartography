@@ -1235,8 +1235,10 @@ legendChoroHoriz <- function(pos = "topleft",
   xref <- legcoord$xref
   yref <- legcoord$yref
   
-  if(substr(pos, nchar(pos)-1,nchar(pos))=="ht"){
-    xref <- xref + delta1
+  if(length(pos)==1){
+    if(substr(pos, nchar(pos)-1,nchar(pos))=="ht"){
+      xref <- xref + delta1
+    }
   }
   
   # Frame
