@@ -6,9 +6,9 @@
 #' @name discLayer
 #' @param x an sf object, a simple feature collection, as outputted by the \link{getBorders} function. 
 #' @param df a data frame that contains the values used to compute and plot discontinuities.
-#' @param dfid identifier field in df, default to the first column 
+#' @param dfid name of the identifier variable in df, default to the first column 
 #' of df. (optional)
-#' @param var name of the numeric field in df used to compute and plot discontinuities.
+#' @param var name of the numeric variable used to compute and plot discontinuities.
 #' @param col color of the discontinuities lines.
 #' @param nclass a targeted number of classes. If null, the number of 
 #' class is automatically defined (see \link{getBreaks}).

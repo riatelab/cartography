@@ -18,12 +18,13 @@ dotDensityLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
 \item{df}{a data frame that contains the values to plot. If df is missing 
 spdf@data is used instead.}
 
-\item{spdfid}{id field in spdf, default to the first column 
-of the spdf data frame. (optional)}
+\item{spdfid}{name of the identifier variable in spdf, default to the first 
+column of the spdf data frame. (optional)}
 
-\item{dfid}{id field in df, default to the first column of df. (optional)}
+\item{dfid}{name of the identifier variable in df, default to the first 
+column of df. (optional)}
 
-\item{var}{name of the numeric field in df to plot.}
+\item{var}{name of the numeric variable to plot.}
 
 \item{n}{one dot on the map represents n (in var units).}
 

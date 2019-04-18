@@ -4,7 +4,7 @@
 #' maritime borders).
 #' @name getOuterBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
-#' @param id identifier field in x, default to the first column. (optional)
+#' @param id name of the identifier variable in x, default to the first column. (optional)
 #' @param res resolution of the grid used to compute borders (in x units).
 #' A high resolution will give more detailed borders. (optional)
 #' @param width maximum distance between used to compute borders (in x units).
@@ -14,7 +14,7 @@
 #' @param spdfid deprecated, identifier field in spdf, default to the first column 
 #' of the spdf data frame.  (optional)
 #' @return An sf object (MULTILINESTRING) of borders is returned. This object has three
-#' id fields: id, id1 and id2.
+#' id variables: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation
 #' of id1 and id2 (with "_" as separator).
 #' @note getBorders and getOuterBorders can be combined with rbind.

@@ -5,11 +5,11 @@
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param df a data frame that contains the values to plot. If df is missing 
 #' spdf@data is used instead. 
-#' @param spdfid identifier field in spdf, default to the first column 
+#' @param spdfid name of the identifier variable in spdf, default to the first column 
 #' of the spdf data frame. (optional)
-#' @param dfid identifier field in df, default to the first column 
+#' @param dfid name of the identifier variable in df, default to the first column 
 #' of df. (optional)
-#' @param var name of the field in df to plot.
+#' @param var name of the variable to plot.
 #' @param col a vector of colors.
 #' @param border color of the polygons borders.
 #' @param lwd borders width.

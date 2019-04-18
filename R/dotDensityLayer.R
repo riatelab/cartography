@@ -5,10 +5,11 @@
 #' @param spdf a SpatialPolygonsDataFrame. 
 #' @param df a data frame that contains the values to plot. If df is missing 
 #' spdf@data is used instead. 
-#' @param spdfid id field in spdf, default to the first column 
-#' of the spdf data frame. (optional)
-#' @param dfid id field in df, default to the first column of df. (optional)
-#' @param var name of the numeric field in df to plot.
+#' @param spdfid name of the identifier variable in spdf, default to the first 
+#' column of the spdf data frame. (optional)
+#' @param dfid name of the identifier variable in df, default to the first 
+#' column of df. (optional)
+#' @param var name of the numeric variable to plot.
 #' @param n one dot on the map represents n (in var units).
 #' @param col color of the points.
 #' @param iter number of iteration to try to locate sample points (see Details).

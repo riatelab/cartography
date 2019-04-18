@@ -7,14 +7,14 @@
 #' is a SpatialPolygonsDataFrame symbols are plotted on centroids.
 #' @param df a data frame that contains the values to plot. If df is missing 
 #' spdf@data is used instead. 
-#' @param spdfid identifier field in spdf, default to the first column 
+#' @param spdfid name of the identifier variable in spdf, default to the first column 
 #' of the spdf data frame. (optional)
-#' @param dfid identifier field in df, default to the first column 
+#' @param dfid name of the identifier variable in df, default to the first column 
 #' of df. (optional)
 #' @param inches size of the biggest symbol (radius for circles, width for
 #' squares, height for bars) in inches.
-#' @param var name of the numeric field in df to plot the symbols sizes.
-#' @param var2 name of the numeric field in df to plot the colors.
+#' @param var name of the numeric variable used to plot the symbols sizes.
+#' @param var2 name of the numeric variable used to plot the symbols colors.
 #' @param breaks break points in sorted order to indicate the intervals for assigning the colors. 
 #' Note that if there are nlevel colors (classes) there should be (nlevel+1) 
 #' breakpoints (see \link{choroLayer} Details).

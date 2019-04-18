@@ -10,11 +10,11 @@ getLinkLayer(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL,
 \arguments{
 \item{x}{an sf object, a simple feature collection (or a Spatial*DataFrame).}
 
-\item{xid}{identifier field in x, default to the first column (optional)}
+\item{xid}{name of the identifier variable in x, default to the first column (optional)}
 
 \item{df}{a data frame that contains identifiers of starting and ending points.}
 
-\item{dfid}{identifier fields in df, character vector of length 2, default to 
+\item{dfid}{names of the identifier variables in df, character vector of length 2, default to 
 the two first columns. (optional)}
 
 \item{spdf}{defunct.}
@@ -30,7 +30,7 @@ the two first columns. (optional)}
 \item{dfide}{defunct.}
 }
 \value{
-An sf LINESTRING is returned, it contains two fields (origins and destinations).
+An sf LINESTRING is returned, it contains two variables (origins and destinations).
 }
 \description{
 Create a links layer from a data frame of links.

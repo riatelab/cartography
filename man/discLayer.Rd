@@ -16,10 +16,10 @@ discLayer(x, df, dfid = NULL, var, method = "quantile", nclass = 4,
 
 \item{df}{a data frame that contains the values used to compute and plot discontinuities.}
 
-\item{dfid}{identifier field in df, default to the first column 
+\item{dfid}{name of the identifier variable in df, default to the first column 
 of df. (optional)}
 
-\item{var}{name of the numeric field in df used to compute and plot discontinuities.}
+\item{var}{name of the numeric variable used to compute and plot discontinuities.}
 
 \item{method}{a classification method; one of "sd", "equal", "quantile", "fisher-jenks","
 q6", "geom", "arith", "em" or "msd" (see \link{getBreaks}).}

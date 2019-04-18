@@ -3,8 +3,8 @@
 #' @description Create a links layer from a data frame of links.
 #' @param x an sf object, a simple feature collection (or a Spatial*DataFrame).
 #' @param df a data frame that contains identifiers of starting and ending points.
-#' @param xid identifier field in x, default to the first column (optional)
-#' @param dfid identifier fields in df, character vector of length 2, default to 
+#' @param xid name of the identifier variable in x, default to the first column (optional)
+#' @param dfid names of the identifier variables in df, character vector of length 2, default to 
 #' the two first columns. (optional)
 #' @param spdf defunct.
 #' @param spdf2 defunct. 
@@ -12,7 +12,7 @@
 #' @param spdf2id defunct.
 #' @param dfids defunct.
 #' @param dfide defunct.
-#' @return An sf LINESTRING is returned, it contains two fields (origins and destinations).
+#' @return An sf LINESTRING is returned, it contains two variables (origins and destinations).
 #' @examples 
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))

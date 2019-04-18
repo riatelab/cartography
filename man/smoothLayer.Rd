@@ -20,16 +20,16 @@ smoothLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
 \item{df}{a data frame that contains the values to compute If df is missing 
 spdf@data is used instead.}
 
-\item{spdfid}{name of the identifier field in spdf, default to the first column 
+\item{spdfid}{name of the identifier variable in spdf, default to the first column 
 of the spdf data frame. (optional)}
 
-\item{dfid}{name of the identifier field in df, default to the first column 
+\item{dfid}{name of the identifier variable in df, default to the first column 
 of df. (optional)}
 
-\item{var}{name of the numeric field in df used to compute potentials.}
+\item{var}{name of the numeric variable used to compute potentials.}
 
-\item{var2}{name of the numeric field in df used to compute potentials. 
-This field is used for ratio computation (see Details).}
+\item{var2}{name of the numeric variable used to compute potentials. 
+This variable is used for ratio computation (see Details).}
 
 \item{typefct}{character; spatial interaction function. Options are "pareto" 
 (means power law) or "exponential".

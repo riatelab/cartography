@@ -21,13 +21,13 @@ choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
 \item{df}{a data frame that contains the values to plot. If df is missing 
 spdf@data is used instead.}
 
-\item{spdfid}{name of the identifier field in spdf, default to the first column 
+\item{spdfid}{name of the identifier variable in spdf, default to the first column 
 of the spdf data frame. (optional)}
 
-\item{dfid}{name of the identifier field in df, default to the first column 
+\item{dfid}{name of the identifier variable in df, default to the first column 
 of df. (optional)}
 
-\item{var}{name of the numeric field in x or df to plot.}
+\item{var}{name of the numeric variable to plot.}
 
 \item{breaks}{break values in sorted order to indicate the intervals for assigning the colors. 
 Note that if there are nlevel colors (classes) there should be (nlevel+1) break values (see Details).}

@@ -4,15 +4,16 @@
 #' @description Put labels on a map.
 #' @name labelLayer
 #' @param x an sf object, a simple feature collection. 
+#' spdf, df, dfid and spdfid are not used. 
 #' @param spdf  a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 #' is a SpatialPolygonsDataFrame texts are plotted on centroids.
 #' @param df a data frame that contains the labels to plot. If df is missing 
 #' spdf@data is used instead. 
-#' @param spdfid identifier field in spdf, default to the first column 
-#' of the spdf data frame. (optional)
-#' @param dfid identifier field in df, default to the first column 
-#' of df. (optional)
-#' @param txt labels field in df.
+#' @param spdfid name of the identifier variable in spdf, default to the first 
+#' column of the spdf data frame. (optional)
+#' @param dfid name of the identifier variable in df, default to the first 
+#' column of df. (optional)
+#' @param txt labels variable.
 #' @param col labels color.
 #' @param cex labels cex.
 #' @param ... further \link{text} arguments.

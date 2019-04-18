@@ -9,17 +9,18 @@ getBorders(x, id, spdf, spdfid = NULL)
 \arguments{
 \item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
 
-\item{id}{identifier field in x or spdf, default to the first column. (optional)}
+\item{id}{name of the identifier variable x or spdf, default to the first column. (optional)}
 
 \item{spdf}{deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 has to be projected (planar coordinates).}
 
-\item{spdfid}{deprecated, identifier field in spdf, default to the first column of the 
+\item{spdfid}{deprecated, name of the identifier variable in spdf, default 
+to the first column of the 
 spdf data frame. (optional)}
 }
 \value{
 An sf object (MULTILINESTRING) of borders is returned. This object has three 
-id fields: id, id1 and id2.
+id variables: id, id1 and id2.
 id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 of id1 and id2 (with "_" as separator).
 }

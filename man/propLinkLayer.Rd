@@ -15,10 +15,10 @@ propLinkLayer(x, df, xid = NULL, dfid = NULL, var, maxlwd = 40, col,
 
 \item{df}{a data frame that contains identifiers of starting and ending points and a variable.}
 
-\item{xid}{identifier fields in x, character 
+\item{xid}{names of the identifier variables in x, character 
 vector of length 2, default to the 2 first columns. (optional)}
 
-\item{dfid}{identifier fields in df, character 
+\item{dfid}{names of the identifier variables in df, character 
 vector of length 2, default to the two first columns. (optional)}
 
 \item{var}{name of the variable used to plot the links widths.}
@@ -63,7 +63,7 @@ not (FALSE).}
 Plot a layer of proportional links. Links widths are directly proportional to values of a variable.
 }
 \note{
-Unlike most of cartography functions, identifiers fields are mandatory.
+Unlike most of cartography functions, identifiers variables are mandatory.
 }
 \examples{
 library(sf)

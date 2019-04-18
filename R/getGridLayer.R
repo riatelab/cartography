@@ -4,7 +4,7 @@
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
 #' @param cellsize targeted area of the cell, in map units.
 #' @param type shape of the cell, "regular" for squares, "hexagonal" for hexagons. 
-#' @param var name of the numeric field(s) in x to adapt to the grid (a vector).
+#' @param var name of the numeric variable(s) in x to adapt to the grid (a vector).
 #' @param spdf deprecated, a SpatialPolygonsDataFrame.
 #' @param spdfid deprecated, identifier field in spdf, default to the first column 
 #' of the spdf data frame.  (optional)

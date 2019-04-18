@@ -11,13 +11,13 @@
 #' @param spdf a SpatialPolygonsDataFrame.
 #' @param df a data frame that contains the values to compute If df is missing 
 #' spdf@data is used instead. 
-#' @param spdfid name of the identifier field in spdf, default to the first column 
+#' @param spdfid name of the identifier variable in spdf, default to the first column 
 #' of the spdf data frame. (optional)
-#' @param dfid name of the identifier field in df, default to the first column 
+#' @param dfid name of the identifier variable in df, default to the first column 
 #' of df. (optional)
-#' @param var name of the numeric field in df used to compute potentials.
-#' @param var2 name of the numeric field in df used to compute potentials. 
-#' This field is used for ratio computation (see Details).
+#' @param var name of the numeric variable used to compute potentials.
+#' @param var2 name of the numeric variable used to compute potentials. 
+#' This variable is used for ratio computation (see Details).
 #' @param typefct character; spatial interaction function. Options are "pareto" 
 #' (means power law) or "exponential".
 #' If "pareto" the interaction is defined as: (1 + alpha * mDistance) ^ (-beta).

@@ -13,7 +13,7 @@ getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid = NULL)
 
 \item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
 
-\item{var}{name of the numeric field(s) in x to adapt to the grid (a vector).}
+\item{var}{name of the numeric variable(s) in x to adapt to the grid (a vector).}
 
 \item{spdf}{deprecated, a SpatialPolygonsDataFrame.}
 

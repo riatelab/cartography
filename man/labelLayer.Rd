@@ -9,7 +9,8 @@ labelLayer(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
   halo = FALSE, bg = "white", r = 0.1, ...)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection.}
+\item{x}{an sf object, a simple feature collection. 
+spdf, df, dfid and spdfid are not used.}
 
 \item{spdf}{a SpatialPointsDataFrame or a SpatialPolygonsDataFrame; if spdf 
 is a SpatialPolygonsDataFrame texts are plotted on centroids.}
@@ -17,13 +18,13 @@ is a SpatialPolygonsDataFrame texts are plotted on centroids.}
 \item{df}{a data frame that contains the labels to plot. If df is missing 
 spdf@data is used instead.}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
-of the spdf data frame. (optional)}
+\item{spdfid}{name of the identifier variable in spdf, default to the first 
+column of the spdf data frame. (optional)}
 
-\item{dfid}{identifier field in df, default to the first column 
-of df. (optional)}
+\item{dfid}{name of the identifier variable in df, default to the first 
+column of df. (optional)}
 
-\item{txt}{labels field in df.}
+\item{txt}{labels variable.}
 
 \item{col}{labels color.}
 

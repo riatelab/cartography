@@ -21,18 +21,18 @@ is a SpatialPolygonsDataFrame symbols are plotted on centroids.}
 \item{df}{a data frame that contains the values to plot. If df is missing 
 spdf@data is used instead.}
 
-\item{spdfid}{identifier field in spdf, default to the first column 
+\item{spdfid}{name of the identifier variable in spdf, default to the first column 
 of the spdf data frame. (optional)}
 
-\item{dfid}{identifier field in df, default to the first column 
+\item{dfid}{name of the identifier variable in df, default to the first column 
 of df. (optional)}
 
-\item{var1}{name of the first numeric field in df to plot, positive values 
+\item{var1}{name of the first numeric variable to plot, positive values 
 only (top triangle).}
 
 \item{col1}{color of top triangles.}
 
-\item{var2}{name of the second  numeric field in df to plot, positive values 
+\item{var2}{name of the second  numeric variable to plot, positive values 
 only (bottom triangle).}
 
 \item{col2}{color of bottom triangles.}

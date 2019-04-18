@@ -3,9 +3,9 @@
 #' @description Plot a layer of proportional links. Links widths are directly proportional to values of a variable.
 #' @param x an sf object, a simple feature collection.
 #' @param df a data frame that contains identifiers of starting and ending points and a variable.
-#' @param xid identifier fields in x, character 
+#' @param xid names of the identifier variables in x, character 
 #' vector of length 2, default to the 2 first columns. (optional)
-#' @param dfid identifier fields in df, character 
+#' @param dfid names of the identifier variables in df, character 
 #' vector of length 2, default to the two first columns. (optional)
 #' @param var name of the variable used to plot the links widths.
 #' @param maxlwd maximum size of the links.
@@ -29,7 +29,7 @@
 #' @param spdfide defunct.
 #' @param dfids defunct.
 #' @param dfide defunct.
-#' @note Unlike most of cartography functions, identifiers fields are mandatory.
+#' @note Unlike most of cartography functions, identifiers variables are mandatory.
 #' @seealso \link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
 #' @examples
 #' library(sf)

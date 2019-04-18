@@ -2,14 +2,15 @@
 #' @description Extract borders between polygons.
 #' @name getBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
-#' @param id identifier field in x or spdf, default to the first column. (optional)
+#' @param id name of the identifier variable x or spdf, default to the first column. (optional)
 #' @param spdf deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 #'  has to be projected (planar coordinates). 
-#' @param spdfid deprecated, identifier field in spdf, default to the first column of the 
+#' @param spdfid deprecated, name of the identifier variable in spdf, default 
+#' to the first column of the 
 #' spdf data frame. (optional)
 #' @note getBorders and getOuterBorders can be combined with rbind. 
 #' @return An sf object (MULTILINESTRING) of borders is returned. This object has three 
-#' id fields: id, id1 and id2.
+#' id variables: id, id1 and id2.
 #' id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 #' of id1 and id2 (with "_" as separator).
 #' @examples

@@ -3,9 +3,9 @@
 #' @description Plot a layer of graduated links. Links are plotted according to discrete classes of widths.
 #' @param x an sf object, a simple feature collection.
 #' @param df a data frame that contains identifiers of starting and ending points and a variable.
-#' @param xid identifier fields in x, character 
+#' @param xid names of the identifier variables in x, character 
 #' vector of length 2, default to the 2 first columns. (optional)
-#' @param dfid identifier fields in df, character 
+#' @param dfid names of the identifier variables in df, character 
 #' vector of length 2, default to the two first columns. (optional)
 #' @param var name of the variable used to plot the links widths.
 #' @param breaks break values in sorted order to indicate the intervals for assigning the lines widths.
