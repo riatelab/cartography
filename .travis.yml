@@ -5,8 +5,6 @@ r:
   - release
   - devel
   - oldrel
-cache: 
-  - packages
 addons:
   apt:
     packages:
