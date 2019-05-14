@@ -7,7 +7,6 @@ r:
   - oldrel
 cache: 
   - packages
-  - ccache
 addons:
   apt:
     packages:
@@ -15,11 +14,14 @@ addons:
      - libproj-dev 
      - libgeos-dev
      - libudunits2-dev 
-before_install:
-  - mkdir $HOME/.R && echo -e 'CXX_STD = CXX14\n\nVER=\nCCACHE=ccache\nCC=$(CCACHE) gcc$(VER) -std=gnu99\nCXX=$(CCACHE) g++$(VER)\nC11=$(CCACHE) g++$(VER)\nC14=$(CCACHE) g++$(VER)\nFC=$(CCACHE) gfortran$(VER)\nF77=$(CCACHE) gfortran$(VER)' > $HOME/.R/Makevars
 warnings_are_errors: true
 r_packages:
   - sf
+  - SpatialPosition
+  - knitr
+  - rmarkdown
+  - rgdal,
+  - testthat
   - covr
 after_success:
   - R -q -e 'covr::codecov(quiet = FALSE)'
