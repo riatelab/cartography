@@ -4,7 +4,7 @@
 \alias{north}
 \title{North Arrow}
 \usage{
-north(pos = "topright", col = "grey20", south = FALSE)
+north(pos = "topright", col = "grey20", south = FALSE, x = NULL)
 }
 \arguments{
 \item{pos}{position of the north arrow. It can be one of "topleft", "top", 
@@ -14,6 +14,8 @@ vector of two coordinates in map units (c(x, y)).}
 \item{col}{arrow color.}
 
 \item{south}{plot a south arrow instead.}
+
+\item{x}{sf or sp object used to correct the north azimuth}
 }
 \description{
 Plot a north arrow.
