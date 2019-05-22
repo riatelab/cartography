@@ -14,12 +14,11 @@ addons:
      - libudunits2-dev 
 warnings_are_errors: true
 r_packages:
-  - sf
   - SpatialPosition
   - knitr
   - rmarkdown
-  - rgdal,
   - testthat
   - covr
+  - rgdal
 after_success:
   - R -q -e 'covr::codecov(quiet = FALSE)'
