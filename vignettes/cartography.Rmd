@@ -435,11 +435,11 @@ library(cartography)
 path_to_gpkg <- system.file("gpkg/mtq.gpkg", package="cartography")
 # import to an sf object
 mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
-# Create a grid layer
+# Create a grid layer, cell size area match the median municipality area 
 mygrid <- getGridLayer(
   x = mtq, 
-  cellsize = (median(st_area(mtq))), 
-  var = c("POP"),
+  cellsize = median(as.numeric(st_area(mtq))), 
+  var = "POP",
   type = "hexagonal"
 )
 # Compute population density in people per km2
