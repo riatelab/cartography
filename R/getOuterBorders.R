@@ -66,11 +66,11 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
   
   
   if(is.null(res)){
-    res <- round(max(c(w, h))/150,0)
+    res <- round(max(c(w, h)) / 150, 0)
   }
   
   if(is.null(width)){
-    width <- round(max(c(w, h))/20,0)
+    width <- round(max(c(w, h)) / 20, 0)
   }
   
   
@@ -83,12 +83,12 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
   
   r <- raster::raster(ex, resolution = res)
   
-  r <- raster::rasterize( x= spdf,  y=r, field = 'idxd')
+  r <- raster::rasterize(x = spdf, y = r, field = 'idxd')
   
   dist <- raster::distance(r)
   dist[dist > width] <- NA
   # you can also set a maximum distance: dist[dist > maxdist] <- NA
-  direct <- raster::direction(r, from=FALSE)
+  direct <- raster::direction(r, from = FALSE)
   
   # NA raster
   rna <- is.na(r) # returns NA raster
