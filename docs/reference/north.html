@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>north</span>(<span class='kw'>pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>, <span class='kw'>south</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>north</span>(<span class='kw'>pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>, <span class='kw'>south</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,6 +148,10 @@ vector of two coordinates in map units (c(x, y)).</p></td>
     <tr>
       <th>south</th>
       <td><p>plot a south arrow instead.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>sf or sp object used to correct the north azimuth</p></td>
     </tr>
     </table>
     

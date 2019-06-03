@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
       </span>
     </div>
 
@@ -145,7 +145,7 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_file, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">########## Draft Map</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">########## Draft Map</span></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># Plot the municipalities</span></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq))</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># Plot symbols with choropleth coloration (population &amp; median income)</span></a>
@@ -154,7 +154,7 @@
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/title">title</a></span>(<span class="dt">main =</span> <span class="st">"Population &amp; Wealth in Martinique, 2015"</span>, </a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">      <span class="dt">sub =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>)</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_raw.png"></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">########## Final Map</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">########## Final Map</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># Set figure margins</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">opar &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Plot the municipalities</span></a>
@@ -217,7 +217,7 @@ install_github("riatelab/cartography")</a></code></pre>
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://CRAN.R-project.org/package=cartography">https://CRAN.R-project.org/package=cartography</a>
+<li>Download from CRAN at <br><a href="https://CRAN.R-project.org/package=cartography">https://​CRAN.R-project.org/​package=cartography</a>
 </li>
 <li>Browse source code at <br><a href="https://github.com/riatelab/cartography">https://​github.com/​riatelab/​cartography</a>
 </li>

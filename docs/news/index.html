@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
       </span>
     </div>
 
@@ -121,15 +121,17 @@
       <small>Source: <a href='https://github.com/riatelab/cartography/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="cartography-2-2-x" class="section level1">
+    <div id="cartography-2-2-1" class="section level1">
 <h1 class="page-header">
-<a href="#cartography-2-2-x" class="anchor"></a>cartography 2.2.x<small> Unreleased </small>
+<a href="#cartography-2-2-1" class="anchor"></a>cartography 2.2.1<small> Unreleased </small>
 </h1>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>internaly, use sf instead of sp for hexagonal grid computation.</li>
+<li>bugfix in LegendChoro() no more warning when pos = c(x,y).</li>
+<li>add param to correct north arrow</li>
 </ul>
 </div>
 </div>
@@ -345,7 +347,7 @@
 <ul>
 <li>As it was a heavy import, SpatialPosition package is back to suggested packages.</li>
 <li>As Jenks and Fisher-Jenks algorithms are based on the same principle and give quite similar results but Fisher-Jenks is much faster, “fisher-jenks” method replaces “jenks” in getBreaks methods.</li>
-<li>In most function, if df is missing then <a href="mailto:spdf@data">spdf@data</a> is used instead.</li>
+<li>In most function, if df is missing then <a href="mailto:spdf@data" class="email">spdf@data</a> is used instead.</li>
 <li>Introduce carto.pal.info() function that gives the list of the cartographic palettes.</li>
 <li>Addition of two qualitatives color palettes (“pastel.pal”" and “multi.pal”).</li>
 </ul>
@@ -427,7 +429,7 @@
 <ul>
 <li>choroLayer: small correction to allow to plot variable named “x” or “y”.<br>
 </li>
-<li>vignette: correct the name entry, incorrectly named “SpatialPosition”“, to”cartography“.<br>
+<li>vignette: correct the name entry, incorrectly named “SpatialPosition”“, to”cartography".<br>
 </li>
 <li>Update of the figure in the README file.<br>
 </li>
@@ -441,7 +443,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#cartography-2-2-x">2.2</a></li>
+        <li><a href="#cartography-2-2-1">2.2.1</a></li>
         <li><a href="#cartography-2-2-0">2.2.0</a></li>
         <li><a href="#cartography-2-1-2">2.1.2</a></li>
         <li><a href="#cartography-2-1-1">2.1.1</a></li>

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
       <h1>cartography</h1>
                         <h4 class="author">Timothée Giraud, Nicolas Lambert</h4>
             
-            <h4 class="date">2019-02-08</h4>
+            <h4 class="date">2019-06-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/riatelab/cartography/blob/master/vignettes/cartography.Rmd"><code>vignettes/cartography.Rmd</code></a></small>
       <div class="hidden name"><code>cartography.Rmd</code></div>
@@ -154,8 +154,8 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="dt">zoom =</span> <span class="dv">11</span>, </a>
 <a class="sourceLine" id="cb1-12" data-line-number="12">  <span class="dt">crop =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">)</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">## Data and map tiles sources:</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">## © OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright.</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">## Data and map tiles sources:</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">## © OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright.</span></a>
 <a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"># plot osm tiles</span></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw"><a href="../reference/tilesLayer.html">tilesLayer</a></span>(<span class="dt">x =</span> mtq.osm)</a>
 <a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co"># plot municipalities (only borders are plotted)</span></a>
@@ -481,11 +481,11 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb9-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># Create a grid layer</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># Create a grid layer, cell size area match the median municipality area </span></a>
 <a class="sourceLine" id="cb9-8" data-line-number="8">mygrid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getGridLayer.html">getGridLayer</a></span>(</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">x =</span> mtq, </a>
-<a class="sourceLine" id="cb9-10" data-line-number="10">  <span class="dt">cellsize =</span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/median">median</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_measures">st_area</a></span>(mtq))), </a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">  <span class="dt">var =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"POP"</span>),</a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">  <span class="dt">cellsize =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/median">median</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_measures">st_area</a></span>(mtq))), </a>
+<a class="sourceLine" id="cb9-11" data-line-number="11">  <span class="dt">var =</span> <span class="st">"POP"</span>,</a>
 <a class="sourceLine" id="cb9-12" data-line-number="12">  <span class="dt">type =</span> <span class="st">"hexagonal"</span></a>
 <a class="sourceLine" id="cb9-13" data-line-number="13">)</a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co"># Compute population density in people per km2</span></a>

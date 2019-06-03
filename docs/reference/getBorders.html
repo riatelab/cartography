@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
       </span>
     </div>
 
@@ -141,7 +141,7 @@
     </tr>
     <tr>
       <th>id</th>
-      <td><p>identifier field in x or spdf, default to the first column. (optional)</p></td>
+      <td><p>name of the identifier variable x or spdf, default to the first column. (optional)</p></td>
     </tr>
     <tr>
       <th>spdf</th>
@@ -150,7 +150,8 @@ has to be projected (planar coordinates).</p></td>
     </tr>
     <tr>
       <th>spdfid</th>
-      <td><p>deprecated, identifier field in spdf, default to the first column of the 
+      <td><p>deprecated, name of the identifier variable in spdf, default 
+to the first column of the 
 spdf data frame. (optional)</p></td>
     </tr>
     </table>
@@ -158,7 +159,7 @@ spdf data frame. (optional)</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An sf object (MULTILINESTRING) of borders is returned. This object has three 
-id fields: id, id1 and id2.
+id variables: id, id1 and id2.
 id1 and id2 are ids of units that neighbour a border; id is the concatenation 
 of id1 and id2 (with "_" as separator).</p>
     
