@@ -47,7 +47,8 @@ contains commented scripts on how to build various types of maps with `cartograp
 
 ## Other Resources 
 
-* [Giraud T., Lambert N. (2017) Reproducible Cartography. In: Peterson M. (eds) Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography. Springer, Cham](https://github.com/riatelab/ReproducibleCartography) (EN)      
+* [Giraud T. (2019). Thematic Maps with `cartography`. useR! 2019. Toulouse, France.](https://github.com/rCarto/user2019) (EN)  
+* [Giraud T., Lambert N. (2017). Reproducible Cartography. In: Peterson M. (eds) Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography. Springer, Cham](https://github.com/riatelab/ReproducibleCartography) (EN)      
 * [Blog posts](https://rgeomatic.hypotheses.org/category/cartography) (FR / EN)  
 
 
