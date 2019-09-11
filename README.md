@@ -19,31 +19,9 @@ The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/car
 
 ## Vignette
 The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 
-contains commented scripts on how to build various types of maps with `cartography`:
+contains commented scripts on how to build various types of maps with `cartography`:  
 
-<table>
-<tbody>
-<tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map03.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map02.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map06.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map04.png" /></td>
-</tr>
-<tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map01.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map08.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map09.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map05.png" /></td>
-</tr>
-<tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map07.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map10.png" /></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map11.png" /></td>
-</tr>
-</tbody>
-</table>
-
-
+[![](https://raw.githubusercontent.com/riatelab/cartography/master/img/vignettes.png)](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html)
 
 ## Other Resources 
 
