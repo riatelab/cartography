@@ -70,7 +70,7 @@ north <- function(pos = "topright", col = "grey20", south = FALSE, x = NULL){
     yy <- c(yarrow, yarrow + inset * 1.5, yarrow)
   }else{
     xx <- c(xarrow, xarrow + inset / 2, xarrow + inset * 1)
-    yy <- c(yarrow + inset * 1.5,yarrow, yarrow + inset * 1.5)
+    yy <- c(yarrow + inset * 1.5, yarrow, yarrow + inset * 1.5)
     azim <- "S"
   }
   
@@ -104,7 +104,8 @@ north <- function(pos = "topright", col = "grey20", south = FALSE, x = NULL){
     
   }
   polygon(xx, yy, col = col, border = col)
-  text(xx[1] + (xx[3] - xx[1]) / 2, yy[1], azim, adj = c(0.5, 1.5), cex = 0.8,
+  text(x = xx[1] + (xx[3] - xx[1]) / 2, y = yarrow, labels = azim, 
+       adj = c(0.5, 1.5), cex = 0.8,
        font = 2, col = col, srt = theta * 180 / pi)
 }
 
