@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thematic Cartography • cartography</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Thematic Cartography">
 <meta property="og:description" content="Create and integrate maps in your R workflow. This package helps to design cartographic representations such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends. See Giraud and Lambert (2017) &lt;doi:10.1007/978-3-319-57336-6_13&gt;.">
 <meta property="og:image" content="/logo.png">
@@ -39,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -68,7 +75,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/riatelab/cartography">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -81,6 +88,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
 <div id="cartography" class="section level1">
@@ -103,32 +111,17 @@
 <h2 class="hasAnchor">
 <a href="#vignette" class="anchor"></a>Vignette</h2>
 <p>The <a href="https://CRAN.R-project.org/package=cartography/vignettes/cartography.html">vignette</a> contains commented scripts on how to build various types of maps with <code>cartography</code>:</p>
-<table class="table"><tbody>
-<tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map03.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map02.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map06.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map04.png"></td>
-</tr>
-<tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map01.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map08.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map09.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map05.png"></td>
-</tr>
-<tr>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map07.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map10.png"></td>
-<td><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/map11.png"></td>
-</tr>
-</tbody></table>
+<p><a href="https://CRAN.R-project.org/package=cartography/vignettes/cartography.html"><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/vignettes.png"></a></p>
 </div>
 <div id="other-resources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#other-resources" class="anchor"></a>Other Resources</h2>
 <ul>
 <li>
-<a href="https://github.com/riatelab/ReproducibleCartography">Giraud T., Lambert N. (2017) Reproducible Cartography. In: Peterson M. (eds) Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography. Springer, Cham</a> (EN)<br>
+<a href="https://github.com/rCarto/user2019">Giraud T. (2019). Thematic Maps with <code>cartography</code>. useR! 2019. Toulouse, France.</a> (EN)<br>
+</li>
+<li>
+<a href="https://github.com/riatelab/ReproducibleCartography">Giraud T., Lambert N. (2017). Reproducible Cartography. In: Peterson M. (eds) Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography. Springer, Cham</a> (EN)<br>
 </li>
 <li>
 <a href="https://rgeomatic.hypotheses.org/category/cartography">Blog posts</a> (FR / EN)</li>
@@ -138,27 +131,27 @@
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
 <p>The following script creates a map of symbols that are proportional to values of a first variable and colored to reflect the classification of a second variable.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">path_to_file &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">path_to_file &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_file, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_file, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">########## Draft Map</span></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># Plot the municipalities</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq))</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq))</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># Plot symbols with choropleth coloration (population &amp; median income)</span></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"POP"</span>, <span class="dt">var2 =</span> <span class="st">"MED"</span>)</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># Add a layout</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/title">title</a></span>(<span class="dt">main =</span> <span class="st">"Population &amp; Wealth in Martinique, 2015"</span>, </a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="dt">main =</span> <span class="st">"Population &amp; Wealth in Martinique, 2015"</span>, </a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">      <span class="dt">sub =</span> <span class="st">"Sources: Insee and IGN - 2018"</span>)</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_raw.png"></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">########## Final Map</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># Set figure margins</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">opar &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">opar &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">1.2</span>,<span class="dv">0</span>))</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Plot the municipalities</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"darkseagreen3"</span>, <span class="dt">border=</span><span class="st">"darkseagreen4"</span>,  </a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"darkseagreen3"</span>, <span class="dt">border=</span><span class="st">"darkseagreen4"</span>,  </a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">     <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># Plot symbols with choropleth coloration</span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"POP"</span>, <span class="dt">inches =</span> <span class="fl">0.4</span>, <span class="dt">border =</span> <span class="st">"grey50"</span>,</a>
@@ -176,7 +169,7 @@
 <a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># Plot a north arrow</span></a>
 <a class="sourceLine" id="cb2-21" data-line-number="21"><span class="kw"><a href="reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a>
 <a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co"># restore graphics parameters</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(opar)</a></code></pre></div>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(opar)</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_final.png"></p>
 </div>
 <div id="installation" class="section level2">
@@ -185,13 +178,13 @@
 <ul>
 <li>Development version on GitHub</li>
 </ul>
-<pre class="{r}"><code><a href="https://www.rdocumentation.org/packages/base/topics/library">require(remotes)
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/library.html">require(remotes)
 install_github("riatelab/cartography")</a></code></pre>
 <ul>
 <li>Stable version on <a href="https://CRAN.R-project.org/package=cartography/">CRAN</a>
 </li>
 </ul>
-<pre class="{r}"><code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages("cartography")</a></code></pre>
+<pre class="{r}"><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("cartography")</a></code></pre>
 </div>
 <div id="alternatives-packages" class="section level2">
 <h2 class="hasAnchor">
@@ -217,7 +210,7 @@ install_github("riatelab/cartography")</a></code></pre>
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://CRAN.R-project.org/package=cartography">https://​CRAN.R-project.org/​package=cartography</a>
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=cartography">https://cran.r-project.org/package=cartography</a>
 </li>
 <li>Browse source code at <br><a href="https://github.com/riatelab/cartography">https://​github.com/​riatelab/​cartography</a>
 </li>
@@ -240,7 +233,7 @@ install_github("riatelab/cartography")</a></code></pre>
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Timothée Giraud <br><small class="roles"> Maintainer, author </small>  </li>
+<li>Timothée Giraud <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0002-1932-3323" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
 <li>Nicolas Lambert <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
@@ -259,17 +252,20 @@ install_github("riatelab/cartography")</a></code></pre>
 </div>
 </div>
 
+
       <footer><div class="copyright">
   <p>Developed by Timothée Giraud, Nicolas Lambert.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

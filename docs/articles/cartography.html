@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>cartography • cartography</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="cartography">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -39,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -68,7 +75,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/riatelab/cartography">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -81,13 +88,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>cartography</h1>
                         <h4 class="author">Timothée Giraud, Nicolas Lambert</h4>
             
-            <h4 class="date">2019-06-03</h4>
+            <h4 class="date">2019-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/riatelab/cartography/blob/master/vignettes/cartography.Rmd"><code>vignettes/cartography.Rmd</code></a></small>
       <div class="hidden name"><code>cartography.Rmd</code></div>
@@ -141,12 +149,12 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a href="#openstreetmap-basemap-and-proportional-symbols" class="anchor"></a>OpenStreetMap Basemap and Proportional Symbols</h2>
 <p><code><a href="../reference/getTiles.html">getTiles()</a></code> and <code><a href="../reference/tilesLayer.html">tilesLayer()</a></code> download and display OpenStreetMap tiles. Be careful to cite the source of the tiles appropriately.</p>
 <p><code><a href="../reference/propSymbolsLayer.html">propSymbolsLayer()</a></code> displays symbols with areas proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The <code>inches</code> argument is used to customize the symbols sizes.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># download osm tiles</span></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8">mtq.osm &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getTiles.html">getTiles</a></span>(</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">x =</span> mtq, </a>
@@ -159,7 +167,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"># plot osm tiles</span></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw"><a href="../reference/tilesLayer.html">tilesLayer</a></span>(<span class="dt">x =</span> mtq.osm)</a>
 <a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co"># plot municipalities (only borders are plotted)</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="st">"grey"</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="st">"grey"</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co"># plot population</span></a>
 <a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw"><a href="../reference/propSymbolsLayer.html">propSymbolsLayer</a></span>(</a>
 <a class="sourceLine" id="cb1-22" data-line-number="22">  <span class="dt">x =</span> mtq, </a>
@@ -172,7 +180,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb1-29" data-line-number="29"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb1-30" data-line-number="30"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>,</a>
 <a class="sourceLine" id="cb1-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018</span><span class="ch">\n</span><span class="st">© OpenStreetMap contributors.</span><span class="ch">\n</span><span class="st">Tiles style under CC BY-SA, www.openstreetmap.org/copyright."</span>,</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">            <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
 <a class="sourceLine" id="cb1-33" data-line-number="33">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-34" data-line-number="34"><span class="co"># north arrow</span></a>
 <a class="sourceLine" id="cb1-35" data-line-number="35"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
@@ -183,16 +191,16 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a href="#choropleth-map" class="anchor"></a>Choropleth Map</h2>
 <p>In choropleth maps, areas are shaded according to the variation of a quantitative variable. They are used to represent ratios or indices.</p>
 <p><code><a href="../reference/choroLayer.html">choroLayer()</a></code> displays choropleth maps . Arguments <code>nclass</code>, <code>method</code> and <code>breaks</code> allow to customize the variable classification. <code><a href="../reference/getBreaks.html">getBreaks()</a></code> allow to classify outside of the function itself. Colors palettes are defined with <code>col</code> and a set of colors can be created with <code><a href="../reference/carto.pal.html">carto.pal()</a></code> (see also <code><a href="../reference/display.carto.all.html">display.carto.all()</a></code>). <!-- # http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?topicname=geometrical_interval --></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># population density (inhab./km2) using sf::st_area()</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">mtq<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_measures">st_area</a></span>(mtq)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">mtq<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/geos_measures.html">st_area</a></span>(mtq)</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#aadaff"</span>)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#aadaff"</span>)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># plot population density</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw"><a href="../reference/choroLayer.html">choroLayer</a></span>(</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">  <span class="dt">x =</span> mtq, </a>
@@ -209,7 +217,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb2-25" data-line-number="25"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>, </a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">            <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb2-28" data-line-number="28">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">theme=</span> <span class="st">"sand.pal"</span>) </a>
 <a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co"># north arrow</span></a>
 <a class="sourceLine" id="cb2-30" data-line-number="30"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
@@ -220,12 +228,12 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a href="#colored-pencil-and-typologies-map" class="anchor"></a>Colored Pencil and Typologies Map</h2>
 <p><code><a href="../reference/getPencilLayer.html">getPencilLayer()</a></code> transforms POLYGONS or MULTIPOLYGONS in MULTILINESTRINGS. This function creates a layer that mimicks a pencil hand-drawing.</p>
 <p><code><a href="../reference/typoLayer.html">typoLayer()</a></code> displays a typology map of a qualitative variable. <code>legend.values.order</code> is used to set the modalities order in the legend.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co"># transform municipality multipolygons to (multi)linestrings</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">mtq_pencil &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getPencilLayer.html">getPencilLayer</a></span>(</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="dt">x =</span> mtq, </a>
@@ -233,14 +241,14 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="dt">lefthanded =</span> F</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">)</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
 <a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co"># plot administrative status</span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw"><a href="../reference/typoLayer.html">typoLayer</a></span>(</a>
 <a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">x =</span> mtq_pencil, </a>
 <a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">var=</span><span class="st">"STATUS"</span>,  </a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"aquamarine4"</span>, <span class="st">"yellow3"</span>,<span class="st">"wheat"</span>), </a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aquamarine4"</span>, <span class="st">"yellow3"</span>,<span class="st">"wheat"</span>), </a>
 <a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="dt">lwd =</span> <span class="fl">.7</span>,</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">legend.values.order =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Prefecture"</span>,</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  <span class="dt">legend.values.order =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Prefecture"</span>,</a>
 <a class="sourceLine" id="cb3-22" data-line-number="22">                          <span class="st">"Sub-prefecture"</span>, </a>
 <a class="sourceLine" id="cb3-23" data-line-number="23">                          <span class="st">"Simple municipality"</span>),</a>
 <a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="dt">legend.pos =</span> <span class="st">"topright"</span>,</a>
@@ -248,14 +256,14 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb3-26" data-line-number="26">  <span class="dt">add =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb3-27" data-line-number="27">)</a>
 <a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#  plot municipalities</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">border =</span> <span class="st">"grey20"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">border =</span> <span class="st">"grey20"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb3-30" data-line-number="30"><span class="co"># labels for a few  municipalities</span></a>
 <a class="sourceLine" id="cb3-31" data-line-number="31"><span class="kw"><a href="../reference/labelLayer.html">labelLayer</a></span>(<span class="dt">x =</span> mtq[mtq<span class="op">$</span>STATUS <span class="op">!=</span><span class="st"> "Simple municipality"</span>,], <span class="dt">txt =</span> <span class="st">"LIBGEO"</span>, </a>
 <a class="sourceLine" id="cb3-32" data-line-number="32">           <span class="dt">cex =</span> <span class="fl">0.9</span>, <span class="dt">halo =</span> <span class="ot">TRUE</span>, <span class="dt">r =</span> <span class="fl">0.15</span>)</a>
 <a class="sourceLine" id="cb3-33" data-line-number="33"><span class="co"># title, source, author</span></a>
 <a class="sourceLine" id="cb3-34" data-line-number="34"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Administrative Status"</span>,</a>
 <a class="sourceLine" id="cb3-35" data-line-number="35">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>, </a>
-<a class="sourceLine" id="cb3-36" data-line-number="36">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">            <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb3-37" data-line-number="37">            <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">postitle =</span> <span class="st">"right"</span>, </a>
 <a class="sourceLine" id="cb3-38" data-line-number="38">            <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">coltitle =</span> <span class="st">"black"</span>) </a>
 <a class="sourceLine" id="cb3-39" data-line-number="39"><span class="co"># north arrow</span></a>
@@ -266,14 +274,14 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#proportional-symbols-and-choropleth-map" class="anchor"></a>Proportional Symbols and Choropleth Map</h2>
 <p><code><a href="../reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer()</a></code> creates a map of symbols that are proportional to values of a first variable and colored to reflect the classification of a second variable. A combination of <code><a href="../reference/propSymbolsLayer.html">propSymbolsLayer()</a></code> and <code><a href="../reference/choroLayer.html">choroLayer()</a></code> arguments is used.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co"># Plot the municipalities</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"darkseagreen3"</span>, <span class="dt">border=</span><span class="st">"darkseagreen4"</span>,  </a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"darkseagreen3"</span>, <span class="dt">border=</span><span class="st">"darkseagreen4"</span>,  </a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">     <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co"># Plot symbols with choropleth coloration</span></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw"><a href="../reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(</a>
@@ -305,14 +313,14 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#proportional-symbols-and-typology-map" class="anchor"></a>Proportional Symbols and Typology Map</h2>
 <p><code><a href="../reference/propSymbolsTypoLayer.html">propSymbolsTypoLayer()</a></code> creates a map of symbols that are proportional to values of a first variable and colored to reflect the modalities of a second qualitatice variable. A combination of <code><a href="../reference/propSymbolsLayer.html">propSymbolsLayer()</a></code> and <code><a href="../reference/typoLayer.html">typoLayer()</a></code> arguments is used.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># Plot the municipalities</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"#f2efe9"</span>, <span class="dt">border=</span><span class="st">"#b38e43"</span>, <span class="dt">bg =</span> <span class="st">"#aad3df"</span>, </a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col=</span><span class="st">"#f2efe9"</span>, <span class="dt">border=</span><span class="st">"#b38e43"</span>, <span class="dt">bg =</span> <span class="st">"#aad3df"</span>, </a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">     <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co"># Plot symbols with choropleth coloration</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw"><a href="../reference/propSymbolsTypoLayer.html">propSymbolsTypoLayer</a></span>(</a>
@@ -325,10 +333,10 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">legend.var.pos =</span> <span class="st">"topright"</span>, </a>
 <a class="sourceLine" id="cb5-19" data-line-number="19">  <span class="dt">legend.var.title.txt =</span> <span class="st">"Population"</span>,</a>
 <a class="sourceLine" id="cb5-20" data-line-number="20">  <span class="dt">var2 =</span> <span class="st">"STATUS"</span>,</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">legend.var2.values.order =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Prefecture"</span>, <span class="st">"Sub-prefecture"</span>, </a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="dt">legend.var2.values.order =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Prefecture"</span>, <span class="st">"Sub-prefecture"</span>, </a>
 <a class="sourceLine" id="cb5-22" data-line-number="22">                               <span class="st">"Simple municipality"</span>),</a>
 <a class="sourceLine" id="cb5-23" data-line-number="23">  <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"multi.pal"</span>, <span class="dt">n1 =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">legend.var2.pos =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">693000</span>, <span class="dv">1607000</span>), </a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="dt">legend.var2.pos =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">693000</span>, <span class="dv">1607000</span>), </a>
 <a class="sourceLine" id="cb5-25" data-line-number="25">  <span class="dt">legend.var2.title.txt =</span> <span class="st">"Administrative</span><span class="ch">\n</span><span class="st">Status"</span></a>
 <a class="sourceLine" id="cb5-26" data-line-number="26">) </a>
 <a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co"># layout</span></a>
@@ -344,14 +352,14 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#label-map" class="anchor"></a>Label Map</h2>
 <p><code><a href="../reference/labelLayer.html">labelLayer()</a></code> is dedicated to the display of labels on a map. The <code>overlap = FALSE</code> argument displays non overlapping labels.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co"># plot municipalities</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"#e4e9de"</span>, <span class="dt">border =</span> <span class="st">"darkseagreen4"</span>, </a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"#e4e9de"</span>, <span class="dt">border =</span> <span class="st">"darkseagreen4"</span>, </a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">     <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co"># plot labels</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11"><span class="kw"><a href="../reference/labelLayer.html">labelLayer</a></span>(</a>
@@ -370,7 +378,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb6-24" data-line-number="24"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(</a>
 <a class="sourceLine" id="cb6-25" data-line-number="25">  <span class="dt">title =</span> <span class="st">"Municipalities of Martinique"</span>, </a>
 <a class="sourceLine" id="cb6-26" data-line-number="26">  <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,  </a>
-<a class="sourceLine" id="cb6-27" data-line-number="27">  <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
+<a class="sourceLine" id="cb6-27" data-line-number="27">  <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb6-28" data-line-number="28">  <span class="dt">frame =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb6-29" data-line-number="29">  <span class="dt">north =</span> <span class="ot">TRUE</span>, </a>
 <a class="sourceLine" id="cb6-30" data-line-number="30">  <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, </a>
@@ -382,16 +390,16 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#links-map" class="anchor"></a>Links Map</h2>
 <p><code><a href="../reference/getLinkLayer.html">getLinkLayer()</a></code> creates a link layer from an <code>sf</code> object and a link <code>data.frame</code> (long format).<br><code><a href="../reference/gradLinkTypoLayer.html">gradLinkTypoLayer()</a></code> displays graduated and colored links.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co"># path to the csv file embedded in cartography</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">path_to_csv &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"csv/mob.csv"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">path_to_csv &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"csv/mob.csv"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co"># import to a data.frame</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10">mob &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(path_to_csv)</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">mob &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(path_to_csv)</a>
 <a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co"># select workplaces with administrative status = Prefecture or Sub-prefecture</span></a>
 <a class="sourceLine" id="cb7-12" data-line-number="12">mob &lt;-<span class="st"> </span>mob[mob<span class="op">$</span>sj <span class="op">!=</span><span class="st"> "Simple municipality"</span>,]</a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co"># create an sf object of links</span></a>
@@ -399,33 +407,33 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb7-15" data-line-number="15">  <span class="dt">x =</span> mtq, </a>
 <a class="sourceLine" id="cb7-16" data-line-number="16">  <span class="dt">xid =</span> <span class="st">"INSEE_COM"</span>, </a>
 <a class="sourceLine" id="cb7-17" data-line-number="17">  <span class="dt">df =</span> mob, </a>
-<a class="sourceLine" id="cb7-18" data-line-number="18">  <span class="dt">dfid =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"i"</span>,<span class="st">"j"</span>)</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">  <span class="dt">dfid =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"i"</span>,<span class="st">"j"</span>)</a>
 <a class="sourceLine" id="cb7-19" data-line-number="19">)</a>
 <a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co"># set figure background color</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">bg=</span><span class="st">"grey25"</span>)</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">bg=</span><span class="st">"grey25"</span>)</a>
 <a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co"># plot municipalities</span></a>
-<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"grey13"</span>, <span class="dt">border =</span> <span class="st">"grey25"</span>, </a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="st">"grey13"</span>, <span class="dt">border =</span> <span class="st">"grey25"</span>, </a>
 <a class="sourceLine" id="cb7-24" data-line-number="24">     <span class="dt">bg =</span> <span class="st">"grey25"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co"># plot graduated links</span></a>
 <a class="sourceLine" id="cb7-26" data-line-number="26"><span class="kw"><a href="../reference/gradLinkTypoLayer.html">gradLinkTypoLayer</a></span>(</a>
 <a class="sourceLine" id="cb7-27" data-line-number="27">  <span class="dt">x =</span> mtq_mob, </a>
-<a class="sourceLine" id="cb7-28" data-line-number="28">  <span class="dt">xid =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"i"</span>, <span class="st">"j"</span>),</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">  <span class="dt">xid =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"i"</span>, <span class="st">"j"</span>),</a>
 <a class="sourceLine" id="cb7-29" data-line-number="29">  <span class="dt">df =</span> mob,</a>
-<a class="sourceLine" id="cb7-30" data-line-number="30">  <span class="dt">dfid =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"i"</span>,<span class="st">"j"</span>),</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">  <span class="dt">dfid =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"i"</span>,<span class="st">"j"</span>),</a>
 <a class="sourceLine" id="cb7-31" data-line-number="31">  <span class="dt">var =</span> <span class="st">"fij"</span>, </a>
-<a class="sourceLine" id="cb7-32" data-line-number="32">  <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>( <span class="dv">100</span>,  <span class="dv">500</span>, <span class="dv">1200</span>, <span class="dv">2500</span>, <span class="fl">4679.0</span>),</a>
-<a class="sourceLine" id="cb7-33" data-line-number="33">  <span class="dt">lwd =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">16</span>),</a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">  <span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>( <span class="dv">100</span>,  <span class="dv">500</span>, <span class="dv">1200</span>, <span class="dv">2500</span>, <span class="fl">4679.0</span>),</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">  <span class="dt">lwd =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">16</span>),</a>
 <a class="sourceLine" id="cb7-34" data-line-number="34">  <span class="dt">legend.var.pos =</span> <span class="st">"left"</span>,</a>
 <a class="sourceLine" id="cb7-35" data-line-number="35">  <span class="dt">legend.var.title.txt =</span> <span class="st">"Nb. of</span><span class="ch">\n</span><span class="st">Commuters"</span>,</a>
 <a class="sourceLine" id="cb7-36" data-line-number="36">  <span class="dt">var2 =</span> <span class="st">"sj"</span>, </a>
-<a class="sourceLine" id="cb7-37" data-line-number="37">  <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"grey85"</span>, <span class="st">"red4"</span>),</a>
+<a class="sourceLine" id="cb7-37" data-line-number="37">  <span class="dt">col =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"grey85"</span>, <span class="st">"red4"</span>),</a>
 <a class="sourceLine" id="cb7-38" data-line-number="38">  <span class="dt">legend.var2.title.txt =</span> <span class="st">"Workplace"</span>,</a>
 <a class="sourceLine" id="cb7-39" data-line-number="39">  <span class="dt">legend.var2.pos =</span> <span class="st">"topright"</span></a>
 <a class="sourceLine" id="cb7-40" data-line-number="40">) </a>
 <a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co"># map layout</span></a>
 <a class="sourceLine" id="cb7-42" data-line-number="42"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Commuting to Prefectures in Martinique"</span>, </a>
 <a class="sourceLine" id="cb7-43" data-line-number="43">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,  </a>
-<a class="sourceLine" id="cb7-44" data-line-number="44">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
+<a class="sourceLine" id="cb7-44" data-line-number="44">            <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb7-45" data-line-number="45">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">"grey25"</span>, <span class="dt">coltitle =</span> <span class="st">"white"</span>,</a>
 <a class="sourceLine" id="cb7-46" data-line-number="46">            <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="cartography_files/figure-html/linkMap-1.png" width="360"></p>
@@ -434,14 +442,14 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#isopleth-map" class="anchor"></a>Isopleth Map</h2>
 <p>Isopleth maps are based on the assumption that the phenomenon to be represented has a continuous distribution. These maps use a spatial interaction modeling approach which aims to compute indicators based on stock values weighted by distance. It allows a spatial representation of the phenomenon independent from the initial heterogeneity of the territorial division.<br><code><a href="../reference/smoothLayer.html">smoothLayer()</a></code> heavily depends on the <a href="https://CRAN.R-project.org/package=SpatialPosition"><code>SpatialPosition</code></a> package. The function uses a marked point layer and a set of parameters (a spatial interaction function and its parameters) and displays an isopleth map layer.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>)</a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co"># plot isopleth map</span></a>
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw"><a href="../reference/smoothLayer.html">smoothLayer</a></span>(</a>
 <a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="dt">x =</span> mtq, </a>
@@ -460,12 +468,12 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb8-24" data-line-number="24">  <span class="dt">add=</span><span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb8-25" data-line-number="25">)</a>
 <a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co"># annotation on the map</span></a>
-<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/text">text</a></span>(<span class="dt">x =</span> <span class="dv">692582</span>, <span class="dt">y =</span> <span class="dv">1611478</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>, <span class="dt">adj =</span> <span class="dv">0</span>, <span class="dt">font =</span> <span class="dv">3</span>,  <span class="dt">labels =</span> </a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="kw"><a href="https://rdrr.io/r/graphics/text.html">text</a></span>(<span class="dt">x =</span> <span class="dv">692582</span>, <span class="dt">y =</span> <span class="dv">1611478</span>, <span class="dt">cex =</span> <span class="fl">0.8</span>, <span class="dt">adj =</span> <span class="dv">0</span>, <span class="dt">font =</span> <span class="dv">3</span>,  <span class="dt">labels =</span> </a>
 <a class="sourceLine" id="cb8-28" data-line-number="28">       <span class="st">"Distance function:</span><span class="ch">\n</span><span class="st">- type = exponential</span><span class="ch">\n</span><span class="st">- beta = 2</span><span class="ch">\n</span><span class="st">- span = 4 km"</span>)</a>
 <a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb8-30" data-line-number="30"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>,</a>
 <a class="sourceLine" id="cb8-31" data-line-number="31">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
-<a class="sourceLine" id="cb8-32" data-line-number="32">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
+<a class="sourceLine" id="cb8-32" data-line-number="32">            <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
 <a class="sourceLine" id="cb8-33" data-line-number="33">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>, <span class="dt">theme =</span> <span class="st">"brown.pal"</span>)</a>
 <a class="sourceLine" id="cb8-34" data-line-number="34"><span class="co"># north arrow</span></a>
 <a class="sourceLine" id="cb8-35" data-line-number="35"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="dt">pos =</span> <span class="st">"topleft"</span>)</a></code></pre></div>
@@ -475,23 +483,23 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#grid-map" class="anchor"></a>Grid Map</h2>
 <p>The grid-cell method is an option to overcome the arbitrariness and irregularity of an administrative division. It highlights the main trends in the data spatial distribution, splitting the territory in regular blocks. Statistical values are distributed over a regular grid. Cell values are classified and then displayed in areas of color. The principle adopted here is to set each cell’s value with a proportion of the initial geometrical units it overlay (share of intersected area).<br><code><a href="../reference/getGridLayer.html">getGridLayer()</a></code> builds a regular grid (squares or hexagons) based on a spatial object and computes data that match the grid layer. <code><a href="../reference/choroLayer.html">choroLayer()</a></code> is then used to display the grid on a choropleth map.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># Create a grid layer, cell size area match the median municipality area </span></a>
 <a class="sourceLine" id="cb9-8" data-line-number="8">mygrid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getGridLayer.html">getGridLayer</a></span>(</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">x =</span> mtq, </a>
-<a class="sourceLine" id="cb9-10" data-line-number="10">  <span class="dt">cellsize =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/median">median</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_measures">st_area</a></span>(mtq))), </a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">  <span class="dt">cellsize =</span> <span class="kw"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/geos_measures.html">st_area</a></span>(mtq))), </a>
 <a class="sourceLine" id="cb9-11" data-line-number="11">  <span class="dt">var =</span> <span class="st">"POP"</span>,</a>
 <a class="sourceLine" id="cb9-12" data-line-number="12">  <span class="dt">type =</span> <span class="st">"hexagonal"</span></a>
 <a class="sourceLine" id="cb9-13" data-line-number="13">)</a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co"># Compute population density in people per km2</span></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15">mygrid<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mygrid<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span>mygrid<span class="op">$</span>gridarea</a>
 <a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#deffff"</span>)</a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#deffff"</span>)</a>
 <a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co"># Plot the population density</span></a>
 <a class="sourceLine" id="cb9-19" data-line-number="19"><span class="kw"><a href="../reference/choroLayer.html">choroLayer</a></span>(<span class="dt">x =</span> mygrid, <span class="dt">var =</span> <span class="st">"POPDENS"</span>, <span class="dt">method =</span> <span class="st">"geom"</span>, <span class="dt">nclass=</span><span class="dv">5</span>, </a>
 <a class="sourceLine" id="cb9-20" data-line-number="20">           <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="dt">pal1 =</span> <span class="st">"turquoise.pal"</span>, <span class="dt">n1 =</span> <span class="dv">5</span>), <span class="dt">border =</span> <span class="st">"grey80"</span>, </a>
@@ -499,7 +507,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb9-22" data-line-number="22">           <span class="dt">legend.title.txt =</span> <span class="st">"Population Density</span><span class="ch">\n</span><span class="st">(people per km2)"</span>) </a>
 <a class="sourceLine" id="cb9-23" data-line-number="23"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population Distribution in Martinique"</span>, </a>
 <a class="sourceLine" id="cb9-24" data-line-number="24">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
-<a class="sourceLine" id="cb9-25" data-line-number="25">            <span class="dt">author =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
+<a class="sourceLine" id="cb9-25" data-line-number="25">            <span class="dt">author =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)), </a>
 <a class="sourceLine" id="cb9-26" data-line-number="26">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">north =</span> <span class="ot">FALSE</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-27" data-line-number="27">            <span class="dt">theme =</span> <span class="st">"turquoise.pal"</span>)</a>
 <a class="sourceLine" id="cb9-28" data-line-number="28"><span class="co"># north arrow</span></a>
@@ -510,22 +518,22 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#discontinuities-map" class="anchor"></a>Discontinuities Map</h2>
 <p>Discontinuities maps are based on the variation of a phenomena between contiguous units. This kind of representation focuses spatial breaks. The discontinuity intensity is expressed by the borders’ thickness.<br><code><a href="../reference/getBorders.html">getBorders()</a></code> is used to build a spatial object of borders between units. Each resulting borders contains the ids of its two neighboring units. It is possible to complement these borders with <code><a href="../reference/getOuterBorders.html">getOuterBorders()</a></code> to compute borders between non-contiguous units (e.g. maritime borders). <code><a href="../reference/discLayer.html">discLayer()</a></code> computes and displays discontinuities, lines widths reflect the ratio or the absolute difference between values of an indicator in two neighboring units.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># path to the geopackage file embedded in cartography</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">path_to_gpkg &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="dt">package=</span><span class="st">"cartography"</span>)</a>
 <a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co"># import to an sf object</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">mtq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="dt">dsn =</span> path_to_gpkg, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># Compute the population density (inhab./km2) using sf::st_area()</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">mtq<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/geos_measures">st_area</a></span>(mtq))</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">mtq<span class="op">$</span>POPDENS &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>mtq<span class="op">$</span>POP <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/sf/man/geos_measures.html">st_area</a></span>(mtq))</a>
 <a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co"># Get a SpatialLinesDataFrame of countries borders</span></a>
 <a class="sourceLine" id="cb10-10" data-line-number="10">mtq.contig &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getBorders.html">getBorders</a></span>(mtq)</a>
 <a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co"># plot municipalities (only the backgroung color is plotted)</span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/st_geometry">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, </a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">     <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">690574</span>, <span class="dv">745940</span>))</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(mtq), <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"lightblue1"</span>, </a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">     <span class="dt">xlim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">690574</span>, <span class="dv">745940</span>))</a>
 <a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co"># Plot the population density with custom breaks</span></a>
 <a class="sourceLine" id="cb10-15" data-line-number="15"><span class="kw"><a href="../reference/choroLayer.html">choroLayer</a></span>(<span class="dt">x =</span> mtq, <span class="dt">var =</span> <span class="st">"MED"</span>,</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16">           <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(mtq<span class="op">$</span>MED), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">13000</span>, <span class="dv">21000</span>, <span class="dv">2000</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(mtq<span class="op">$</span>MED)),</a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">           <span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(mtq<span class="op">$</span>MED), <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">13000</span>, <span class="dv">21000</span>, <span class="dv">2000</span>), <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(mtq<span class="op">$</span>MED)),</a>
 <a class="sourceLine" id="cb10-17" data-line-number="17">           <span class="dt">col =</span> <span class="kw"><a href="../reference/carto.pal.html">carto.pal</a></span>(<span class="st">"green.pal"</span>, <span class="dv">6</span>),<span class="dt">border =</span> <span class="st">"white"</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, </a>
 <a class="sourceLine" id="cb10-18" data-line-number="18">           <span class="dt">legend.pos =</span> <span class="st">"topright"</span>, <span class="dt">legend.title.txt =</span> <span class="st">"Median Income</span><span class="ch">\n</span><span class="st">(euros)"</span>,</a>
 <a class="sourceLine" id="cb10-19" data-line-number="19">           <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
@@ -548,7 +556,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb10-36" data-line-number="36">)</a>
 <a class="sourceLine" id="cb10-37" data-line-number="37"><span class="co"># Layout</span></a>
 <a class="sourceLine" id="cb10-38" data-line-number="38"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Wealth Disparities in Martinique, 2015"</span>, </a>
-<a class="sourceLine" id="cb10-39" data-line-number="39">            <span class="dt">author =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
+<a class="sourceLine" id="cb10-39" data-line-number="39">            <span class="dt">author =</span>  <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
 <a class="sourceLine" id="cb10-40" data-line-number="40">            <span class="dt">sources =</span> <span class="st">"Sources: Insee and IGN, 2018"</span>,</a>
 <a class="sourceLine" id="cb10-41" data-line-number="41">            <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">scale =</span> <span class="dv">5</span>, <span class="dt">tabtitle =</span> <span class="ot">TRUE</span>,<span class="dt">theme =</span> <span class="st">"grey.pal"</span>)</a>
 <a class="sourceLine" id="cb10-42" data-line-number="42"><span class="co"># north arrow</span></a>
@@ -559,15 +567,15 @@ Legends are displayed by default along cartographic layers but more parameters a
 <h2 class="hasAnchor">
 <a href="#mapping-sp-objects" class="anchor"></a>Mapping <code>sp</code> Objects</h2>
 <p><code>SpatialPointsDataFrame</code> and <code>SpatialPolygonsDataFrame</code> (from <code>sp</code>) are handled through the <code>spdf</code> argument if the variable is contained within the <code>Spatial*DataFrame</code> and through <code>spdf</code>, <code>spdfid</code>, <code>df</code>, <code>dfid</code> if the variable is in a separate <code>data.frame</code> that needs to be joined to the <code>Spatial*DataFrame</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sp)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cartography)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"nuts2006"</span>)</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sp)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(cartography)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"nuts2006"</span>)</a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># Plot a layer with the extent of the EU28 countries with only a background color</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#A6CAE0"</span>)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">"#A6CAE0"</span>)</a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co"># Plot non european space</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(world.spdf, <span class="dt">col  =</span> <span class="st">"#E3DEBF"</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(world.spdf, <span class="dt">col  =</span> <span class="st">"#E3DEBF"</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co"># Plot Nuts2 regions</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(nuts0.spdf, <span class="dt">col =</span> <span class="st">"grey60"</span>,<span class="dt">border =</span> <span class="st">"white"</span>, <span class="dt">lwd =</span> <span class="fl">0.4</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="kw"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(nuts0.spdf, <span class="dt">col =</span> <span class="st">"grey60"</span>,<span class="dt">border =</span> <span class="st">"white"</span>, <span class="dt">lwd =</span> <span class="fl">0.4</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co"># plot the countries population</span></a>
 <a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw"><a href="../reference/propSymbolsLayer.html">propSymbolsLayer</a></span>(</a>
 <a class="sourceLine" id="cb11-12" data-line-number="12">  <span class="dt">spdf =</span> nuts0.spdf, </a>
@@ -583,7 +591,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a class="sourceLine" id="cb11-22" data-line-number="22"><span class="co"># layout</span></a>
 <a class="sourceLine" id="cb11-23" data-line-number="23"><span class="kw"><a href="../reference/layoutLayer.html">layoutLayer</a></span>(<span class="dt">title =</span> <span class="st">"Population in Europe, 2008"</span>,</a>
 <a class="sourceLine" id="cb11-24" data-line-number="24">            <span class="dt">sources =</span> <span class="st">"Data: Eurostat, 2008"</span>,</a>
-<a class="sourceLine" id="cb11-25" data-line-number="25">            <span class="dt">author =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
+<a class="sourceLine" id="cb11-25" data-line-number="25">            <span class="dt">author =</span>  <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"cartography "</span>, <span class="kw"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"cartography"</span>)),</a>
 <a class="sourceLine" id="cb11-26" data-line-number="26">            <span class="dt">scale =</span> <span class="dv">500</span>, <span class="dt">frame =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">"#688994"</span>) </a>
 <a class="sourceLine" id="cb11-27" data-line-number="27"><span class="co"># north arrow</span></a>
 <a class="sourceLine" id="cb11-28" data-line-number="28"><span class="kw"><a href="../reference/north.html">north</a></span>(<span class="st">"topleft"</span>)</a></code></pre></div>
@@ -595,7 +603,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 <a href="#datasets" class="anchor"></a>Datasets</h1>
 <p>Several datasets are embedded in the package:</p>
 <ul>
-<li>A <a href="https://www.geopackage.org/">GeoPackage</a> of Martinique municipalities can be imported via the <code><a href="https://www.rdocumentation.org/packages/sf/topics/st_read">st_read()</a></code> function of the <code>sf</code> package.
+<li>A <a href="https://www.geopackage.org/">GeoPackage</a> of Martinique municipalities can be imported via the <code><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read()</a></code> function of the <code>sf</code> package.
 <ul>
 <li>Sources: <a href="https://www.insee.fr/fr/statistiques/2521169">Base comparateur de territoires</a> (upload date: 2018-09-25) &amp; <a href="http://professionnels.ign.fr/adminexpress">ADMIN EXPRESS-COG</a> (2018 edition).</li>
 <li>Citation: Insee and IGN, 2018</li>
@@ -637,12 +645,13 @@ Legends are displayed by default along cartographic layers but more parameters a
 </li>
 </ul>
 </li>
-<li>A set of <code>sp</code> objects and <code>data.frame</code>s on European regions (NUTS) can be loaded in the environment via <code><a href="https://www.rdocumentation.org/packages/utils/topics/data">data(nuts2006)</a></code>. Each layer of this dataset is directly described in the documentation (e.g. <code><a href="../reference/nuts0.spdf.html">?nuts0.spdf</a></code>).</li>
+<li>A set of <code>sp</code> objects and <code>data.frame</code>s on European regions (NUTS) can be loaded in the environment via <code><a href="https://rdrr.io/r/utils/data.html">data(nuts2006)</a></code>. Each layer of this dataset is directly described in the documentation (e.g. <code><a href="../reference/nuts0.spdf.html">?nuts0.spdf</a></code>).</li>
 </ul>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -672,17 +681,20 @@ Legends are displayed by default along cartographic layers but more parameters a
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Timothée Giraud, Nicolas Lambert.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
