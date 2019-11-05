@@ -1,6 +1,6 @@
 Package: cartography
 Title: Thematic Cartography
-Version: 2.2.1
+Version: 2.2.1.1
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut"), 
@@ -31,7 +31,7 @@ Suggests:
     knitr,
     rmarkdown,
     rgdal,
-    testthat
+    tinytest
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 SystemRequirements: GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)

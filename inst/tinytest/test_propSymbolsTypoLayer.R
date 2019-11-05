@@ -1,0 +1,18 @@
+library(sf)
+library(sp)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"), quiet = TRUE)
+
+plot(st_geometry(mtq))
+expect_silent(propSymbolsTypoLayer(mtq, var="POP", var2 = "STATUS",  add=TRUE))
+plot(st_geometry(mtq))
+expect_silent(propSymbolsTypoLayer(mtq, var="POP", var2 = "STATUS", add=TRUE, symbols = "square"))
+plot(st_geometry(mtq))
+expect_silent(propSymbolsTypoLayer(mtq, var="POP", var2 = "STATUS", add=TRUE, symbols = "bar"))
+plot(st_geometry(mtq))
+expect_silent(propSymbolsTypoLayer(mtq, var="POP", var2 = "STATUS", add=TRUE, symbols = "square"))
+plot(st_geometry(mtq))
+expect_silent(propSymbolsTypoLayer(spdf = as(mtq, "Spatial"), var="POP", var2 = "STATUS", add=TRUE))
+plot(st_geometry(mtq))
+expect_silent(propSymbolsTypoLayer(mtq, var="POP", var2 = "STATUS", fixmax = 100000,add=TRUE))
+mtq$STATUS[1:2] <- NA
+expect_silent(propSymbolsTypoLayer(mtq, var="POP", var2 = "STATUS", add=FALSE))

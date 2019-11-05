@@ -19,7 +19,7 @@ r_packages:
   - SpatialPosition
   - knitr
   - rmarkdown
-  - testthat
+  - tinytest
   - covr
   - rgdal
 after_success:
