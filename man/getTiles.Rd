@@ -19,9 +19,10 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}
 
-\item{crop}{TRUE if results should be cropped to the specified x extent, FALSE otherwise.}
+\item{crop}{TRUE if results should be cropped to the specified x extent, 
+FALSE otherwise.}
 
-\item{verbose}{if TRUE a progress bar is displayed.}
+\item{verbose}{if TRUE, tiles filepaths, zoom level and citation are displayed.}
 }
 \value{
 A RatserBrick is returned.
@@ -34,12 +35,6 @@ fetched from various open map servers.
 Zoom levels are described on the OpenStreetMap wiki: 
 \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
 }
-\note{
-This function is a wrapper around the \code{osm.raster} function 
-from the \code{rosm} package. \cr
-Use directly the \href{https://CRAN.R-project.org/package=rosm}{rosm} package to have a finer control over  
-extraction and display parameters.
-}
 \examples{
 \dontrun{
 library(sf)
@@ -50,7 +45,7 @@ mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 tilesLayer(mtqOSM)
 # Plot countries
 plot(st_geometry(mtq), add=TRUE)
-txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
+txt <- "\\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }

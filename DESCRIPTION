@@ -17,15 +17,17 @@ LazyData: true
 Depends: R (>= 3.3.0)
 Imports: 
     classInt, 
-    stats, 
+    curl,
     graphics, 
     methods, 
-    rosm, 
+    png, 
     raster, 
     Rcpp, 
     rgeos, 
+    slippymath,
+    sf (>= 0.6-4),
     sp (>= 1.2-4), 
-    sf (>= 0.6-4)
+    stats 
 Suggests: 
     SpatialPosition,
     knitr,
