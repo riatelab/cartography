@@ -109,8 +109,8 @@ get_tiles <- function(tile_grid, verbose) {
   )
   
   if (verbose) {
-    cat("Zoom:", tile_grid$zoom, "\nData and map tiles sources:\n",
-        tile_grid$cit, "\n")
+    message("Zoom:", tile_grid$zoom, "\nData and map tiles sources:\n",
+        tile_grid$cit)
   }
   images
 }
@@ -123,7 +123,7 @@ dl_t <- function(x, z, ext, src, q, verbose) {
     q <- gsub(pattern = '{y}', replacement = x[2], x = q, fixed = TRUE)
     q <- gsub(pattern = '{z}', replacement = z, x = q, fixed = TRUE)
     if (verbose) {
-      cat(q, " => ", outfile, '\n')
+      message(q, " => ", outfile)
     }
     curl::curl_download(url = q, destfile = outfile)
   }

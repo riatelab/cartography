@@ -24,8 +24,8 @@ Imports:
     raster, 
     Rcpp, 
     rgeos, 
-    slippymath,
     sf (>= 0.6-4),
+    slippymath,
     sp (>= 1.2-4), 
     stats 
 Suggests: 
