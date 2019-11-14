@@ -6,7 +6,7 @@
 #' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
 #' @param type the tile server from which to get the map, one of "osm", "hotstyle", 
 #' "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-#' "cartolight".
+#' "cartolight", "opentopomap".
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified x extent, 
@@ -194,9 +194,12 @@ get_param <- function(type){
       q = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
       sub = c("a", "b", "c", "d"), 
       cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
+    ), 
+    opentopomap = list(
+      q = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+      sub = c("a", "b", "c"), 
+      cit = "\u00A9 OpenStreetMap contributors and SRTM. Tiles style by OpenTopoMap, under CC BY-SA 3.0, opentopomap.org."
     )
   )
   param
 }
-
-

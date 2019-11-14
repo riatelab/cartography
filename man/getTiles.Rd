@@ -14,7 +14,7 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
 
 \item{type}{the tile server from which to get the map, one of "osm", "hotstyle", 
 "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-"cartolight".}
+"cartolight", "opentopomap".}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}
