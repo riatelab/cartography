@@ -4,16 +4,36 @@
 \alias{gradLinkTypoLayer}
 \title{Graduated and Colored Links Layer}
 \usage{
-gradLinkTypoLayer(x, df, xid = NULL, dfid = NULL, var,
+gradLinkTypoLayer(
+  x,
+  df,
+  xid = NULL,
+  dfid = NULL,
+  var,
   breaks = getBreaks(v = df[, var], nclass = 4, method = "quantile"),
-  lwd = c(1, 2, 4, 6), var2, col = NULL, colNA = "white",
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.values.rnd = 0, legend.var.pos = "bottomleft",
-  legend.var.title.txt = var, legend.var.frame = FALSE,
-  legend.var2.pos = "topright", legend.var2.title.txt = var2,
-  legend.var2.values.order = NULL, legend.var2.nodata = "no data",
-  legend.var2.frame = FALSE, add = TRUE, spdf, spdfid, spdfids,
-  spdfide, dfids, dfide)
+  lwd = c(1, 2, 4, 6),
+  var2,
+  col = NULL,
+  colNA = "white",
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.values.rnd = 0,
+  legend.var.pos = "bottomleft",
+  legend.var.title.txt = var,
+  legend.var.frame = FALSE,
+  legend.var2.pos = "topright",
+  legend.var2.title.txt = var2,
+  legend.var2.values.order = NULL,
+  legend.var2.nodata = "no data",
+  legend.var2.frame = FALSE,
+  add = TRUE,
+  spdf,
+  spdfid,
+  spdfids,
+  spdfide,
+  dfids,
+  dfide
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection.}

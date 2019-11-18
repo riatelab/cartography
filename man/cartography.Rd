@@ -3,7 +3,6 @@
 \docType{package}
 \name{cartography}
 \alias{cartography}
-\alias{cartography-package}
 \title{Cartography Package}
 \description{
 This package helps to design cartographic representations such as 

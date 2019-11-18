@@ -4,12 +4,30 @@
 \alias{propSymbolsLayer}
 \title{Proportional Symbols Layer}
 \usage{
-propSymbolsLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
-  inches = 0.3, fixmax = NULL, symbols = "circle", col = "#E84923",
-  border = "black", lwd = 1, legend.pos = "bottomleft",
-  legend.title.txt = var, legend.title.cex = 0.8,
-  legend.values.cex = 0.6, legend.values.rnd = 0, legend.style = "c",
-  legend.frame = FALSE, add = TRUE, breakval = NULL, col2)
+propSymbolsLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  var,
+  inches = 0.3,
+  fixmax = NULL,
+  symbols = "circle",
+  col = "#E84923",
+  border = "black",
+  lwd = 1,
+  legend.pos = "bottomleft",
+  legend.title.txt = var,
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.values.rnd = 0,
+  legend.style = "c",
+  legend.frame = FALSE,
+  add = TRUE,
+  breakval = NULL,
+  col2
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}

@@ -4,16 +4,35 @@
 \alias{propSymbolsTypoLayer}
 \title{Proportional Symbols Typo Layer}
 \usage{
-propSymbolsTypoLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
-  inches = 0.3, fixmax = NULL, symbols = "circle",
-  border = "grey20", lwd = 1, var2, col = NULL, colNA = "white",
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.var.pos = "bottomleft", legend.var.title.txt = var,
-  legend.values.rnd = 0, legend.var.style = "c",
-  legend.var.frame = FALSE, legend.var2.pos = "topright",
-  legend.var2.title.txt = var2, legend.var2.values.order = NULL,
-  legend.var2.nodata = "no data", legend.var2.frame = FALSE,
-  add = TRUE)
+propSymbolsTypoLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  var,
+  inches = 0.3,
+  fixmax = NULL,
+  symbols = "circle",
+  border = "grey20",
+  lwd = 1,
+  var2,
+  col = NULL,
+  colNA = "white",
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.var.pos = "bottomleft",
+  legend.var.title.txt = var,
+  legend.values.rnd = 0,
+  legend.var.style = "c",
+  legend.var.frame = FALSE,
+  legend.var2.pos = "topright",
+  legend.var2.title.txt = var2,
+  legend.var2.values.order = NULL,
+  legend.var2.nodata = "no data",
+  legend.var2.frame = FALSE,
+  add = TRUE
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}

@@ -4,8 +4,7 @@
 \alias{getFigDim}
 \title{Get Figure Dimensions}
 \usage{
-getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"),
-  res = 72)
+getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"), res = 72)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}

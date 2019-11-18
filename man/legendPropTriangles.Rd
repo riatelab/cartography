@@ -4,10 +4,24 @@
 \alias{legendPropTriangles}
 \title{Legend for Double Proportional Triangles Maps}
 \usage{
-legendPropTriangles(pos = "topleft", title.txt, var.txt, var2.txt,
-  title.cex = 0.8, cex = 1, values.cex = 0.6, var, var2, r, r2,
-  col = "red", col2 = "blue", frame = FALSE, values.rnd = 0,
-  style = "c")
+legendPropTriangles(
+  pos = "topleft",
+  title.txt,
+  var.txt,
+  var2.txt,
+  title.cex = 0.8,
+  cex = 1,
+  values.cex = 0.6,
+  var,
+  var2,
+  r,
+  r2,
+  col = "red",
+  col2 = "blue",
+  frame = FALSE,
+  values.rnd = 0,
+  style = "c"
+)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 

@@ -4,10 +4,21 @@
 \alias{legendSquaresSymbols}
 \title{Legend for Proportional Squares Maps}
 \usage{
-legendSquaresSymbols(pos = "topleft",
-  title.txt = "Title of the legend", title.cex = 0.8, cex = 1,
-  border = "black", lwd = 1, values.cex = 0.6, var, inches,
-  col = "red", frame = FALSE, values.rnd = 0, style = "c")
+legendSquaresSymbols(
+  pos = "topleft",
+  title.txt = "Title of the legend",
+  title.cex = 0.8,
+  cex = 1,
+  border = "black",
+  lwd = 1,
+  values.cex = 0.6,
+  var,
+  inches,
+  col = "red",
+  frame = FALSE,
+  values.rnd = 0,
+  style = "c"
+)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 

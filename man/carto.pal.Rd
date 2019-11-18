@@ -4,8 +4,14 @@
 \alias{carto.pal}
 \title{Build Cartographic Palettes}
 \usage{
-carto.pal(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
-  transparency = FALSE)
+carto.pal(
+  pal1,
+  n1,
+  pal2 = NULL,
+  n2 = NULL,
+  middle = FALSE,
+  transparency = FALSE
+)
 }
 \arguments{
 \item{pal1}{name of the color gradient (see Details).}

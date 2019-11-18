@@ -4,9 +4,18 @@
 \alias{legendPropLines}
 \title{Legend for Proportional Lines Maps}
 \usage{
-legendPropLines(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, cex = 1, values.cex = 0.6, var, lwd,
-  col = "red", frame = FALSE, values.rnd = 0)
+legendPropLines(
+  pos = "topleft",
+  title.txt = "Title of the legend",
+  title.cex = 0.8,
+  cex = 1,
+  values.cex = 0.6,
+  var,
+  lwd,
+  col = "red",
+  frame = FALSE,
+  values.rnd = 0
+)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 

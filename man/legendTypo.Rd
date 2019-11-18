@@ -4,10 +4,20 @@
 \alias{legendTypo}
 \title{Legend for Typology Maps}
 \usage{
-legendTypo(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, values.cex = 0.6, col, categ, cex = 1,
-  nodata = TRUE, nodata.txt = "No data", nodata.col = "white",
-  frame = FALSE, symbol = "box")
+legendTypo(
+  pos = "topleft",
+  title.txt = "Title of the legend",
+  title.cex = 0.8,
+  values.cex = 0.6,
+  col,
+  categ,
+  cex = 1,
+  nodata = TRUE,
+  nodata.txt = "No data",
+  nodata.col = "white",
+  frame = FALSE,
+  symbol = "box"
+)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 

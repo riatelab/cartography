@@ -4,11 +4,23 @@
 \alias{legendChoro}
 \title{Legend for Choropleth Maps}
 \usage{
-legendChoro(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, values.cex = 0.6, breaks, col, cex = 1,
-  values.rnd = 2, nodata = TRUE, nodata.txt = "No data",
-  nodata.col = "white", frame = FALSE, symbol = "box",
-  border = "black", horiz = FALSE)
+legendChoro(
+  pos = "topleft",
+  title.txt = "Title of the legend",
+  title.cex = 0.8,
+  values.cex = 0.6,
+  breaks,
+  col,
+  cex = 1,
+  values.rnd = 2,
+  nodata = TRUE,
+  nodata.txt = "No data",
+  nodata.col = "white",
+  frame = FALSE,
+  symbol = "box",
+  border = "black",
+  horiz = FALSE
+)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 

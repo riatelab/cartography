@@ -4,9 +4,22 @@
 \alias{labelLayer}
 \title{Label Layer}
 \usage{
-labelLayer(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
-  col = "black", cex = 0.7, overlap = TRUE, show.lines = TRUE,
-  halo = FALSE, bg = "white", r = 0.1, ...)
+labelLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  txt,
+  col = "black",
+  cex = 0.7,
+  overlap = TRUE,
+  show.lines = TRUE,
+  halo = FALSE,
+  bg = "white",
+  r = 0.1,
+  ...
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. 

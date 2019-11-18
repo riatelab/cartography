@@ -4,8 +4,18 @@
 \alias{getLinkLayer}
 \title{Create a Links Layer from a Data Frame of Links.}
 \usage{
-getLinkLayer(x, xid = NULL, df, dfid = NULL, spdf, spdf2 = NULL,
-  spdfid = NULL, spdf2id = NULL, dfids = NULL, dfide = NULL)
+getLinkLayer(
+  x,
+  xid = NULL,
+  df,
+  dfid = NULL,
+  spdf,
+  spdf2 = NULL,
+  spdfid = NULL,
+  spdf2id = NULL,
+  dfids = NULL,
+  dfide = NULL
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection (or a Spatial*DataFrame).}

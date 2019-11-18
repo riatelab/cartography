@@ -4,12 +4,24 @@
 \alias{layoutLayer}
 \title{Layout Layer}
 \usage{
-layoutLayer(title = "Title of the map, year", sources = "",
-  author = "", horiz = TRUE, col = "black", coltitle = "white",
-  theme = NULL, bg = NULL, scale = "auto",
-  posscale = "bottomright", frame = TRUE, north = FALSE,
-  south = FALSE, extent = NULL, tabtitle = FALSE,
-  postitle = "left")
+layoutLayer(
+  title = "Title of the map, year",
+  sources = "",
+  author = "",
+  horiz = TRUE,
+  col = "black",
+  coltitle = "white",
+  theme = NULL,
+  bg = NULL,
+  scale = "auto",
+  posscale = "bottomright",
+  frame = TRUE,
+  north = FALSE,
+  south = FALSE,
+  extent = NULL,
+  tabtitle = FALSE,
+  postitle = "left"
+)
 }
 \arguments{
 \item{title}{title of the map.}

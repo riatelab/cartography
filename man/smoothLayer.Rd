@@ -4,13 +4,32 @@
 \alias{smoothLayer}
 \title{Smooth Layer}
 \usage{
-smoothLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
-  var2 = NULL, typefct = "exponential", span, beta,
-  resolution = NULL, mask = NULL, nclass = 8, breaks = NULL,
-  col = NULL, border = "grey20", lwd = 1,
-  legend.pos = "bottomleft", legend.title.txt = "Potential",
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.values.rnd = 0, legend.frame = FALSE, add = FALSE)
+smoothLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  var,
+  var2 = NULL,
+  typefct = "exponential",
+  span,
+  beta,
+  resolution = NULL,
+  mask = NULL,
+  nclass = 8,
+  breaks = NULL,
+  col = NULL,
+  border = "grey20",
+  lwd = 1,
+  legend.pos = "bottomleft",
+  legend.title.txt = "Potential",
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.values.rnd = 0,
+  legend.frame = FALSE,
+  add = FALSE
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection.}

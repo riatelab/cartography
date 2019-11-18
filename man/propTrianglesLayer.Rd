@@ -4,13 +4,28 @@
 \alias{propTrianglesLayer}
 \title{Double Proportional Triangle Layer}
 \usage{
-propTrianglesLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var1,
-  col1 = "#E84923", var2, col2 = "#7DC437", k = 0.02,
-  legend.pos = "topright", legend.title.txt = paste(var1, var2, sep =
-  " / "), legend.title.cex = 0.8, legend.var1.txt = var1,
-  legend.var2.txt = var2, legend.values.cex = 0.6,
-  legend.values.rnd = 0, legend.style = "c", legend.frame = FALSE,
-  add = TRUE)
+propTrianglesLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  var1,
+  col1 = "#E84923",
+  var2,
+  col2 = "#7DC437",
+  k = 0.02,
+  legend.pos = "topright",
+  legend.title.txt = paste(var1, var2, sep = " / "),
+  legend.title.cex = 0.8,
+  legend.var1.txt = var1,
+  legend.var2.txt = var2,
+  legend.values.cex = 0.6,
+  legend.values.rnd = 0,
+  legend.style = "c",
+  legend.frame = FALSE,
+  add = TRUE
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}

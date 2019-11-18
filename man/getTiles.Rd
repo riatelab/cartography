@@ -4,8 +4,7 @@
 \alias{getTiles}
 \title{Get Tiles from Open Map Servers}
 \usage{
-getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
-  verbose = FALSE)
+getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
@@ -45,7 +44,7 @@ mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 tilesLayer(mtqOSM)
 # Plot countries
 plot(st_geometry(mtq), add=TRUE)
-txt <- "\\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
+txt <- "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }

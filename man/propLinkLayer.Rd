@@ -4,11 +4,28 @@
 \alias{propLinkLayer}
 \title{Proportional Links Layer}
 \usage{
-propLinkLayer(x, df, xid = NULL, dfid = NULL, var, maxlwd = 40, col,
-  legend.pos = "bottomleft", legend.title.txt = var,
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.values.rnd = 0, legend.frame = FALSE, add = TRUE, spdf,
-  spdfid, spdfids, spdfide, dfids, dfide)
+propLinkLayer(
+  x,
+  df,
+  xid = NULL,
+  dfid = NULL,
+  var,
+  maxlwd = 40,
+  col,
+  legend.pos = "bottomleft",
+  legend.title.txt = var,
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.values.rnd = 0,
+  legend.frame = FALSE,
+  add = TRUE,
+  spdf,
+  spdfid,
+  spdfids,
+  spdfide,
+  dfids,
+  dfide
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection.}

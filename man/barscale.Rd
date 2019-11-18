@@ -4,8 +4,7 @@
 \alias{barscale}
 \title{Scale Bar}
 \usage{
-barscale(size, lwd = 1.5, cex = 0.6, pos = "bottomright",
-  style = "pretty")
+barscale(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style = "pretty")
 }
 \arguments{
 \item{size}{size of the scale bar in kilometers. If size is not set, an 

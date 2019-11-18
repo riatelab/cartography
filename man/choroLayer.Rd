@@ -4,14 +4,31 @@
 \alias{choroLayer}
 \title{Choropleth Layer}
 \usage{
-choroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
-  breaks = NULL, method = "quantile", nclass = NULL, col = NULL,
-  border = "grey20", lwd = 1, colNA = "white",
-  legend.pos = "bottomleft", legend.title.txt = var,
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.values.rnd = 0, legend.nodata = "no data",
-  legend.frame = FALSE, legend.border = "black",
-  legend.horiz = FALSE, add = FALSE)
+choroLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  var,
+  breaks = NULL,
+  method = "quantile",
+  nclass = NULL,
+  col = NULL,
+  border = "grey20",
+  lwd = 1,
+  colNA = "white",
+  legend.pos = "bottomleft",
+  legend.title.txt = var,
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.values.rnd = 0,
+  legend.nodata = "no data",
+  legend.frame = FALSE,
+  legend.border = "black",
+  legend.horiz = FALSE,
+  add = FALSE
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}

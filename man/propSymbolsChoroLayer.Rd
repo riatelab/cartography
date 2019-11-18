@@ -4,18 +4,40 @@
 \alias{propSymbolsChoroLayer}
 \title{Proportional and Choropleth Symbols Layer}
 \usage{
-propSymbolsChoroLayer(x, spdf, df, spdfid = NULL, dfid = NULL, var,
-  inches = 0.3, fixmax = NULL, symbols = "circle",
-  border = "grey20", lwd = 1, var2, breaks = NULL,
-  method = "quantile", nclass = NULL, col = NULL, colNA = "white",
-  legend.title.cex = 0.8, legend.values.cex = 0.6,
-  legend.var.pos = "right", legend.var.title.txt = var,
-  legend.var.values.rnd = 0, legend.var.style = "c",
-  legend.var.frame = FALSE, legend.var2.pos = "topright",
-  legend.var2.title.txt = var2, legend.var2.values.rnd = 2,
-  legend.var2.nodata = "no data", legend.var2.frame = FALSE,
-  legend.var2.border = "black", legend.var2.horiz = FALSE,
-  add = TRUE)
+propSymbolsChoroLayer(
+  x,
+  spdf,
+  df,
+  spdfid = NULL,
+  dfid = NULL,
+  var,
+  inches = 0.3,
+  fixmax = NULL,
+  symbols = "circle",
+  border = "grey20",
+  lwd = 1,
+  var2,
+  breaks = NULL,
+  method = "quantile",
+  nclass = NULL,
+  col = NULL,
+  colNA = "white",
+  legend.title.cex = 0.8,
+  legend.values.cex = 0.6,
+  legend.var.pos = "right",
+  legend.var.title.txt = var,
+  legend.var.values.rnd = 0,
+  legend.var.style = "c",
+  legend.var.frame = FALSE,
+  legend.var2.pos = "topright",
+  legend.var2.title.txt = var2,
+  legend.var2.values.rnd = 2,
+  legend.var2.nodata = "no data",
+  legend.var2.frame = FALSE,
+  legend.var2.border = "black",
+  legend.var2.horiz = FALSE,
+  add = TRUE
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}

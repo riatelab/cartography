@@ -4,9 +4,18 @@
 \alias{legendGradLines}
 \title{Legend for Graduated Size Lines Maps}
 \usage{
-legendGradLines(pos = "topleft", title.txt = "Title of the legend",
-  title.cex = 0.8, cex = 1, values.cex = 0.6, breaks, lwd, col,
-  values.rnd = 2, frame = FALSE)
+legendGradLines(
+  pos = "topleft",
+  title.txt = "Title of the legend",
+  title.cex = 0.8,
+  cex = 1,
+  values.cex = 0.6,
+  breaks,
+  lwd,
+  col,
+  values.rnd = 2,
+  frame = FALSE
+)
 }
 \arguments{
 \item{pos}{position of the legend, one of "topleft", "top", 

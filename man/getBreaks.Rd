@@ -4,8 +4,7 @@
 \alias{getBreaks}
 \title{Classification}
 \usage{
-getBreaks(v, nclass = NULL, method = "quantile", k = 1,
-  middle = FALSE)
+getBreaks(v, nclass = NULL, method = "quantile", k = 1, middle = FALSE)
 }
 \arguments{
 \item{v}{a vector of numeric values.}
