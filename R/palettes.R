@@ -1,5 +1,5 @@
 #' @title Build Cartographic Palettes
-#' @description Build sequential, diverging and qualitative color palettes. 
+#' @description \code{carto.pal} builds sequential, diverging and qualitative color palettes. 
 #' Diverging color palettes can be dissymmetric (different number of colors in 
 #' each of the two gradients).
 #' @name carto.pal
@@ -11,35 +11,14 @@
 #' grey) between two gradients is added.
 #' @param transparency a logical value. If TRUE, contrasts are enhanced by 
 #' adding an opacity variation.
-#' @details Sequential palettes: 
-#' \itemize{
-#' \item{blue.pal}
-#' \item{orange.pal}
-#' \item{red.pal}
-#' \item{brown.pal}
-#' \item{green.pal}
-#' \item{purple.pal}
-#' \item{pink.pal}
-#' \item{wine.pal}
-#' \item{grey.pal}
-#' \item{turquoise.pal}
-#' \item{sand.pal}
-#' \item{taupe.pal}
-#' \item{kaki.pal}
-#' \item{harmo.pal}}
-#'  
-#' Qualitative palettes: 
-#' \itemize{
-#' \item{pastel.pal}
-#' \item{multi.pal}
-#' }
-#' @note Use \link{display.carto.all} to show all palettes and use 
-#' \link{display.carto.pal} to show one palette. 
+#' @details Sequential palettes: "blue.pal", "orange.pal", "red.pal", 
+#' "brown.pal", "green.pal", "purple.pal", "pink.pal", "wine.pal", "grey.pal", 
+#' "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" or "harmo.pal". \cr\cr
+#' Qualitative palettes: "pastel.pal" or "multi.pal".
 #' @references Qualitative palettes were generated with "i want hue" 
 #' (\url{http://tools.medialab.sciences-po.fr/iwanthue/}) by Mathieu Jacomy at 
 #' the Sciences-Po Medialab.
-#' @return A vector of colors is returned.
-#' @seealso \link{display.carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
+#' @return \code{carto.pal} returns a vector of colors.
 #' @examples 
 #' # Simple gradient: blue
 #' carto.pal(pal1 = "blue.pal" ,n1 = 20)
@@ -105,19 +84,49 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
   return(pal)
 }
 
-
-
-#' @title Display all Cartographic Palettes
-#' @description Display all the available color palettes.
-#' @name display.carto.all
-#' @param n number of colors in the gradients (from 1 to 20).
+#' @description \code{carto.pal.info} displays the names of all color palettes.
+#' @name carto.pal
+#' @return \code{carto.pal.info} returns a vector of color palettes names. 
 #' @examples
-#' display.carto.all(1)
-#' display.carto.all(5)
+#' carto.pal.info()
+#' @export
+carto.pal.info <- function(){
+  names(cartography.colors)
+}
+
+
+
+
+#' @description \code{display.carto.pal} displays one color palette.
+#' @name carto.pal
+#' @param name name of the palette available in the package (see Details).
+#' @examples
+#' display.carto.pal("orange.pal")
+#' @export
+display.carto.pal<-function(name)
+{
+  old.par <- par(no.readonly = TRUE)
+  par(mfrow=c(5,4))
+  par(mar=c(0.2, 0.2, 1, 0.2), xaxs='i', yaxs='i')
+  for ( i in 1:20) {
+    mypal <- carto.pal(name,i)
+    k<-length(mypal)
+    image(1:k, 1, as.matrix(1:k), col = mypal, 
+          xlab = paste(k," classes",sep=""), 
+          ylab = "", xaxt = "n", yaxt = "n",bty = "n")
+    
+    if (i==1){cl <- "classe"}else{cl <- "classes"}
+    title(paste(i,cl,sep=" "))
+  }
+  par(old.par)
+}
+
+
+#' @description \code{display.carto.all} displays all the available color palettes.
+#' @name carto.pal
+#' @param n number of colors in the gradient (up to 20).
+#' @examples
 #' display.carto.all(8)
-#' display.carto.all(12)
-#' display.carto.all(20)
-#' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{carto.pal.info}
 #' @export
 display.carto.all <- function(n = 10)
 {
@@ -142,72 +151,6 @@ display.carto.all <- function(n = 10)
 }
 
 
-#' @title Display the Names of all Cartographic Palettes
-#' @description Display the names of all color palettes.
-#' @name carto.pal.info
-#' @return A vector of color palettes names is returned. 
-#' @examples
-#' carto.pal.info()
-#' @seealso \link{carto.pal}, \link{display.carto.pal}, \link{display.carto.all}
-#' @export
-carto.pal.info <- function(){
-  names(cartography.colors)
-}
-
-  
-
-
-
-
-
-#' @title Display one Cartographic Palette
-#' @description Display one color palette.
-#' @name display.carto.pal
-#' @param name name of the palette available in the package (see Details).
-#' @details Sequential palettes: 
-#' \itemize{
-#' \item{blue.pal}
-#' \item{orange.pal}
-#' \item{red.pal}
-#' \item{brown.pal}
-#' \item{green.pal}
-#' \item{purple.pal}
-#' \item{pink.pal}
-#' \item{wine.pal}
-#' \item{grey.pal}
-#' \item{turquoise.pal}
-#' \item{sand.pal}
-#' \item{taupe.pal}
-#' \item{kaki.pal}
-#' \item{harmo.pal}}
-#'  
-#' Qualitative palettes: 
-#' \itemize{
-#' \item{pastel.pal}
-#' \item{multi.pal}
-#' }
-#' @examples
-#' display.carto.pal("orange.pal")
-#' display.carto.pal("sand.pal")
-#' @seealso \link{carto.pal}, \link{display.carto.all}, \link{carto.pal.info}
-#' @export
-display.carto.pal<-function(name)
-{
-  old.par <- par(no.readonly = TRUE)
-  par(mfrow=c(5,4))
-  par(mar=c(0.2, 0.2, 1, 0.2), xaxs='i', yaxs='i')
-  for ( i in 1:20) {
-    mypal <- carto.pal(name,i)
-    k<-length(mypal)
-    image(1:k, 1, as.matrix(1:k), col = mypal, 
-          xlab = paste(k," classes",sep=""), 
-          ylab = "", xaxt = "n", yaxt = "n",bty = "n")
-    
-    if (i==1){cl <- "classe"}else{cl <- "classes"}
-    title(paste(i,cl,sep=" "))
-  }
-  par(old.par)
-}
 
 
 

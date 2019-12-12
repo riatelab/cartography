@@ -18,3 +18,4 @@ getGridData(x, df, dfid = NULL, var)
 \description{
 Defunct
 }
+\keyword{internal}

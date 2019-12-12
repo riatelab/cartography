@@ -119,7 +119,7 @@ choroLayer(x = mtq, var = "POPDENS",
            col = carto.pal(pal1 = "sand.pal", n1 = 5),
            border = "grey40",
            legend.pos = "topright", legend.values.rnd = 0,
-           legend.title.txt = "Population Density\\n(people per km2)")
+           legend.title.txt = "Population Density\n(people per km2)")
 
 # Layout
 layoutLayer(title = "Population Distribution in Martinique, 2015")

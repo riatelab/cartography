@@ -27,3 +27,4 @@ nuts2.spdf
 \item{\code{fij}}{number of agreements}
 }}
 
+\keyword{internal}

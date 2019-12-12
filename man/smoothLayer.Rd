@@ -122,7 +122,7 @@ smoothLayer(x = mtq, var = 'POP',
             span = 4000, beta = 2,
             mask = mtq, border = NA,
             col = carto.pal(pal1 = 'wine.pal', n1 = 8),
-            legend.title.txt = "Population\\nPotential",
+            legend.title.txt = "Population\nPotential",
             legend.pos = "topright", legend.values.rnd = 0)
 propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
                  legend.title.txt = "Population 2015",

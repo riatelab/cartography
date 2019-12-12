@@ -123,7 +123,7 @@ propSymbolsTypoLayer(x = mtq, var = "POP", var2 = "STATUS",
                                                   "Sub-prefecture",
                                                   "Simple municipality"),
                      legend.var.pos = "right", border = "grey",
-                     legend.var.title.txt = "Total\\nPopulation")
+                     legend.var.title.txt = "Total\nPopulation")
 layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \seealso{

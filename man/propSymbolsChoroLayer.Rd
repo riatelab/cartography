@@ -144,7 +144,7 @@ propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED",
                       legend.var.pos = "topright", 
                       legend.var2.pos = "left",
                       legend.var2.values.rnd = -2,
-                      legend.var2.title.txt = "Median Income\\n(in euros)",
+                      legend.var2.title.txt = "Median Income\n(in euros)",
                       legend.var.title.txt = "Total Population",
                       legend.var.style = "e")
 # First layout

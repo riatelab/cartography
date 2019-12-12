@@ -35,3 +35,4 @@ nuts3.spdf
 \item{\code{pop2008}}{Total population in 2008 (inhabitants) (numeric)}
 }}
 
+\keyword{internal}

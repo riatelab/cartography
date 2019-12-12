@@ -9,7 +9,12 @@ Authors@R: c(
         email = "nicolas.lambert@cnrs.fr", role = "aut"), 
       person("Ian", "Fellows", role = "cph", 
         comment = "no overlap algorithm for labels, from wordcloud package"))
-Description: Create and integrate maps in your R workflow. This package helps to design cartographic representations such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
+Description: Create and integrate maps in your R workflow. This package helps 
+    to design cartographic representations such as proportional symbols, 
+    choropleth, typology, flows or discontinuities maps. It also offers several 
+    features that improve the graphic presentation of maps, for instance, map 
+    palettes, layout elements (scale, north arrow, title...), labels or legends. 
+    See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
 License: GPL-3
 URL: https://github.com/riatelab/cartography/
 BugReports: https://github.com/riatelab/cartography/issues/
@@ -38,4 +43,4 @@ LinkingTo: Rcpp
 VignetteBuilder: knitr
 SystemRequirements: GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
 Encoding: UTF-8
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2

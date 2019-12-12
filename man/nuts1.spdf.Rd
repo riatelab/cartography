@@ -20,3 +20,4 @@ This SpatialPolygonsDataFrame can be used with the nuts1.df data frame
 \item{\code{id}}{Unique nuts id (character)}
 }}
 
+\keyword{internal}
