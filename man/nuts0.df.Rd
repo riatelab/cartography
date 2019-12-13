@@ -5,8 +5,7 @@
 \alias{nuts0.df}
 \title{Nuts0 Dataset}
 \source{
-UMS RIATE - \url{http://www.ums-riate.fr/Webriate/?page_id=151}. 
-Data extraction: 2011; data validity: 2008.
+UMS RIATE - Data extraction: 2011; data validity: 2008.
 }
 \description{
 This dataset contains some socio-economic data
