@@ -4,9 +4,9 @@ dist: xenial
 cache:
   - packages
 r:
-  - release
+#  - release
   - devel
-  - oldrel
+#  - oldrel
 addons:
   apt:
     packages:
