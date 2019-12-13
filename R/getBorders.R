@@ -2,7 +2,7 @@
 #' @description Extract borders between polygons.
 #' @name getBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
-#' @param id name of the identifier variable x or spdf, default to the first column. (optional)
+#' @param id name of the identifier variable x, default to the first column. (optional)
 #' @param spdf deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 #'  has to be projected (planar coordinates). 
 #' @param spdfid deprecated, name of the identifier variable in spdf, default 
@@ -24,7 +24,7 @@
 #' plot(st_geometry(mtq.borders), 
 #'      col = sample(x = rainbow(nrow(mtq.borders))), 
 #'      lwd = 3, add = TRUE)
-#' @seealso \link{discLayer}, \link{getOuterBorders}
+#' @seealso \link{discLayer}
 #' @export
 getBorders <- function(x, id, spdf, spdfid = NULL){
   if(missing(x)){

@@ -1,23 +1,17 @@
 #' @title Extract Polygons Outer Borders
-#' @description Extract outer borders between polygons.
-#' Outer borders are non-contiguous polygons borders (e.g.
+#' @description Outer borders are non-contiguous polygons borders (e.g.
 #' maritime borders).
-#' @name getOuterBorders
+#' @name getBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
 #' @param id name of the identifier variable in x, default to the first column. (optional)
-#' @param res resolution of the grid used to compute borders (in x units).
+#' @param res resolution of the grid used to compute outer borders (in x units).
 #' A high resolution will give more detailed borders. (optional)
-#' @param width maximum distance between used to compute borders (in x units).
+#' @param width maximum distance between used to compute outer borders (in x units).
 #' A higher width will build borders between units that are farther apart. (optional)
 #' @param spdf deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
 #'  has to be projected (planar coordinates).
 #' @param spdfid deprecated, identifier field in spdf, default to the first column 
 #' of the spdf data frame.  (optional)
-#' @return An sf object (MULTILINESTRING) of borders is returned. This object has three
-#' id variables: id, id1 and id2.
-#' id1 and id2 are ids of units that neighbour a border; id is the concatenation
-#' of id1 and id2 (with "_" as separator).
-#' @note getBorders and getOuterBorders can be combined with rbind.
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -28,7 +22,6 @@
 #' # Plot borders
 #' plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
 #'      lwd = 3, add = TRUE)
-#' @seealso \link{discLayer}, \link{getBorders}
 #' @export
 getOuterBorders <- function(x, id, res = NULL, width = NULL, 
                             spdf, spdfid = NULL){

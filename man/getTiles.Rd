@@ -44,7 +44,8 @@ mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 tilesLayer(mtqOSM)
 # Plot countries
 plot(st_geometry(mtq), add=TRUE)
-txt <- "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
+txt <- paste0("\u00A9 OpenStreetMap contributors.", 
+              " Tiles style under CC BY-SA, www.openstreetmap.org/copyright")
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 }
 }
