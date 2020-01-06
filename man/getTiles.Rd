@@ -19,7 +19,7 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE)
 (see Details).}
 
 \item{crop}{TRUE if results should be cropped to the specified x extent, 
-FALSE otherwise.}
+FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.}
 
 \item{verbose}{if TRUE, tiles filepaths, zoom level and citation are displayed.}
 }

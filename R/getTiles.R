@@ -10,7 +10,7 @@
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified x extent, 
-#' FALSE otherwise.
+#' FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE. 
 #' @param verbose if TRUE, tiles filepaths, zoom level and citation are displayed. 
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
@@ -34,23 +34,32 @@
 #' }
 getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE, 
                      verbose = FALSE){
-  
+  # deprecated check
   if(!missing(spdf)){
     warning("spdf is deprecated; use x instead.", call. = FALSE)
     x <- spdf
   }
-  
+  # test for sp
   if(methods::is(x,"Spatial") == TRUE){
     x <- convertToSf(spdf = x)
   }
-  
-  # use x bbox to select the tiles to get 
-  bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(x)), 4326))
+  # test for single point (apply buffer to obtain a correct bbox)
+  if(sf::st_is(x, "POINT") && nrow(x)==1){
+    xt <- sf::st_transform(x, 3857)
+    sf::st_geometry(xt) <- sf::st_buffer(sf::st_geometry(xt), 1000)
+    crop <- FALSE
+    # use x bbox to select the tiles to get 
+    bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(xt)), 4326))
+  }else{
+    # use x bbox to select the tiles to get 
+    bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(x)), 4326))
+  }
   # select a default zoom level
   if(is.null(zoom)){
     gz <- slippymath::bbox_tile_query(bbx)
     zoom <- min(gz[gz$total_tiles %in% 4:10,"zoom"])
   }
+  
   # get tile list
   tile_grid <- slippymath::bbox_to_tile_grid(bbox = bbx, zoom = zoom)
   
@@ -72,18 +81,10 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
   # compose images
   rout <- compose_tile_grid(tile_grid, images)
   
-  # reproject if x is projected
-  pref <- list(
-    3857,
-    "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs",
-    "+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +nadgrids=@null +units=m +no_defs"
-  )
-  
-  if (length(intersect(pref,  sf::st_crs(x))) == 0) {
-    rout <- raster::projectRaster(from = rout, crs = raster::crs(raster::raster(x)))
-    rout <- raster::clamp(rout,lower = 0, upper = 255, useValues = TRUE)
-  }
-  
+  # reproject rout
+  rout <- raster::projectRaster(from = rout, crs = sf::st_crs(x)$proj4string)
+  rout <- raster::clamp(rout,lower = 0, upper = 255, useValues = TRUE)
+
   # crop management  
   if(crop == TRUE){
     cb <- sf::st_bbox(x)
@@ -96,8 +97,9 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
 }
 
 
-
+# get the tiles according to the grid
 get_tiles <- function(tile_grid, verbose) {
+  # go through tile_grid tiles and download
   images <- apply(
     X = tile_grid$tiles,
     MARGIN = 1, 
@@ -116,6 +118,7 @@ get_tiles <- function(tile_grid, verbose) {
   images
 }
 
+# download tile according to parameters
 dl_t <- function(x, z, ext, src, q, verbose) {
   outfile <- paste0(tempdir(), "/", src, "_", z, "_", x[1], "_", x[2],".", ext)
   if (!file.exists(outfile)) {
@@ -131,28 +134,32 @@ dl_t <- function(x, z, ext, src, q, verbose) {
   outfile
 } 
 
-
+# compose tiles 
 compose_tile_grid <- function (tile_grid, images){
   bricks = vector("list", nrow(tile_grid$tiles))
   for (i in seq_along(bricks)){
     bbox <- slippymath::tile_bbox(tile_grid$tiles$x[i], tile_grid$tiles$y[i],
                                   tile_grid$zoom)
     img <- images[i]
+    # special for png tiles
     if (tile_grid$ext=="png"){
       img <- png::readPNG(img)*255
     }
+    # compose brick raster
     r_img <- raster::brick(img, crs = attr(bbox, "crs")$proj4string)
     raster::extent(r_img) <- raster::extent(bbox[c("xmin", "xmax", "ymin", "ymax")])
     bricks[[i]] <- r_img
   }
-  
+  # if only one tile is needed
   if(length(bricks)==1){
     return(bricks[[1]])
   }
+  # all tiles together
   rout <- do.call(raster::merge, bricks)
   rout
 }
 
+# providers parameters
 get_param <- function(type){
   param <- switch(
     type,
