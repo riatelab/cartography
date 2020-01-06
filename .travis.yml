@@ -5,7 +5,7 @@ cache:
   - packages
 r:
   - release
-#  - devel
+  - devel
   - oldrel
 addons:
   apt:

@@ -44,12 +44,14 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
     x <- convertToSf(spdf = x)
   }
   # test for single point (apply buffer to obtain a correct bbox)
-  if(sf::st_is(x, "POINT") && nrow(x)==1){
-    xt <- sf::st_transform(x, 3857)
-    sf::st_geometry(xt) <- sf::st_buffer(sf::st_geometry(xt), 1000)
-    crop <- FALSE
-    # use x bbox to select the tiles to get 
-    bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(xt)), 4326))
+  if(nrow(x)==1){
+    if(sf::st_is(x, "POINT")){
+      xt <- sf::st_transform(x, 3857)
+      sf::st_geometry(xt) <- sf::st_buffer(sf::st_geometry(xt), 1000)
+      crop <- FALSE
+      # use x bbox to select the tiles to get 
+      bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(xt)), 4326))
+    }
   }else{
     # use x bbox to select the tiles to get 
     bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(x)), 4326))
@@ -84,7 +86,7 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
   # reproject rout
   rout <- raster::projectRaster(from = rout, crs = sf::st_crs(x)$proj4string)
   rout <- raster::clamp(rout,lower = 0, upper = 255, useValues = TRUE)
-
+  
   # crop management  
   if(crop == TRUE){
     cb <- sf::st_bbox(x)
@@ -113,7 +115,7 @@ get_tiles <- function(tile_grid, verbose) {
   
   if (verbose) {
     message("Zoom:", tile_grid$zoom, "\nData and map tiles sources:\n",
-        tile_grid$cit)
+            tile_grid$cit)
   }
   images
 }
