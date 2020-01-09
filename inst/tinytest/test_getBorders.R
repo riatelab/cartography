@@ -2,7 +2,9 @@ library(sf)
 library(sp)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"), quiet = TRUE)
 res <- getBorders(x = mtq)
-res2 <- getBorders(spdf = as(mtq, "Spatial"), spdfid = "INSEE_COM")
+expect_warning(res2 <- getBorders(spdf = as(mtq, "Spatial"), spdfid = "INSEE_COM"))
+
+# res2 <- getBorders(spdf = as(mtq, "Spatial"), spdfid = "INSEE_COM")
 res3 <- getBorders(x = as(mtq, "Spatial"))
 
 expect_equal(nrow(res), 142)
