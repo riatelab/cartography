@@ -38,8 +38,8 @@
 #' par(opar)
 labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
                        col = "black",
-                        cex = 0.7, overlap = TRUE, show.lines = TRUE, 
-                        halo = FALSE, bg = "white", r = 0.1, ...){
+                       cex = 0.7, overlap = TRUE, show.lines = TRUE, 
+                       halo = FALSE, bg = "white", r = 0.1, ...){
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }
@@ -48,8 +48,14 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
   }
   
   words <- x[[txt]]
-  cc <- sf::st_coordinates(sf::st_centroid(x = sf::st_geometry(x), 
-                                           of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON"))))
+  cc <- sf::st_coordinates(sf::st_centroid(
+    x = sf::st_geometry(x),
+    of_largest_polygon = max(sf::st_is(sf::st_as_sf(x), "MULTIPOLYGON"))
+  ))
+  
+  if(nrow(x) == 1){
+    overlap <- TRUE
+  }
   
   if (!overlap){
     x <- unlist(cc[,1])
