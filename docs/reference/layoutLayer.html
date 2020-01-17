@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
       </span>
     </div>
 
@@ -140,12 +140,24 @@
     <p>Plot a layout layer.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>layoutLayer</span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title of the map, year"</span>, <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>coltitle</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>posscale</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>, <span class='kw'>frame</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>north</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>south</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>extent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tabtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>postitle</span> <span class='kw'>=</span> <span class='st'>"left"</span>)</pre>
+    <pre class="usage"><span class='fu'>layoutLayer</span>(
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title of the map, year"</span>,
+  <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>coltitle</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>posscale</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>,
+  <span class='kw'>frame</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>north</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>south</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>extent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tabtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>postitle</span> <span class='kw'>=</span> <span class='st'>"left"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,7 +190,7 @@ corner.</p></td>
     </tr>
     <tr>
       <th>theme</th>
-      <td><p>name of a cartographic palette (see <a href='carto.pal.info.html'>carto.pal.info</a>). 
+      <td><p>name of a cartographic palette (see <a href='carto.pal.html'>carto.pal.info</a>). 
 col and coltitle are set according to the chosen palette.</p></td>
     </tr>
     <tr>
@@ -234,7 +246,7 @@ The size of the title box in layoutLayer is fixed to 1.2 lines height.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpK1V5rT/temp_libpath145f3a9c04d1/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpnEuK8D/temp_libpath5576845d0ac/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY

@@ -43,7 +43,9 @@
 
 
 <meta property="og:title" content="Extract Polygons Borders — getBorders" />
-<meta property="og:description" content="Extract borders between polygons." />
+<meta property="og:description" content="Extract borders between polygons.
+Outer borders are non-contiguous polygons borders (e.g.
+maritime borders)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -77,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
       </span>
     </div>
 
@@ -132,15 +134,19 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extract Polygons Borders</h1>
-    <small class="dont-index">Source: <a href='https://github.com/riatelab/cartography/blob/master/R/getBorders.R'><code>R/getBorders.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/riatelab/cartography/blob/master/R/getBorders.R'><code>R/getBorders.R</code></a>, <a href='https://github.com/riatelab/cartography/blob/master/R/getOuterBorders.R'><code>R/getOuterBorders.R</code></a></small>
     <div class="hidden name"><code>getBorders.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Extract borders between polygons.</p>
+<p>Outer borders are non-contiguous polygons borders (e.g.
+maritime borders).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getBorders</span>(<span class='no'>x</span>, <span class='no'>id</span>, <span class='no'>spdf</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>getBorders</span>(<span class='no'>x</span>, <span class='no'>id</span>, <span class='no'>spdf</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>getOuterBorders</span>(<span class='no'>x</span>, <span class='no'>id</span>, <span class='kw'>res</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>spdf</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,7 +157,7 @@
     </tr>
     <tr>
       <th>id</th>
-      <td><p>name of the identifier variable x or spdf, default to the first column. (optional)</p></td>
+      <td><p>name of the identifier variable in x, default to the first column. (optional)</p></td>
     </tr>
     <tr>
       <th>spdf</th>
@@ -160,9 +166,18 @@ has to be projected (planar coordinates).</p></td>
     </tr>
     <tr>
       <th>spdfid</th>
-      <td><p>deprecated, name of the identifier variable in spdf, default 
-to the first column of the 
-spdf data frame. (optional)</p></td>
+      <td><p>deprecated, identifier field in spdf, default to the first column 
+of the spdf data frame.  (optional)</p></td>
+    </tr>
+    <tr>
+      <th>res</th>
+      <td><p>resolution of the grid used to compute outer borders (in x units).
+A high resolution will give more detailed borders. (optional)</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>maximum distance between used to compute outer borders (in x units).
+A higher width will build borders between units that are farther apart. (optional)</p></td>
     </tr>
     </table>
 
@@ -177,11 +192,11 @@ of id1 and id2 (with "_" as separator).</p>
     <p>getBorders and getOuterBorders can be combined with rbind.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='discLayer.html'>discLayer</a>, <a href='getOuterBorders.html'>getOuterBorders</a></p></div>
+    <div class='dont-index'><p><a href='discLayer.html'>discLayer</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpK1V5rT/temp_libpath145f3a9c04d1/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpnEuK8D/temp_libpath5576845d0ac/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY
@@ -193,7 +208,19 @@ of id1 and id2 (with "_" as separator).</p>
 <span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>)</div><div class='input'><span class='co'># Plot borders</span>
 <span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq.borders</span>),
      <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>mtq.borders</span>))),
-     <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='getBorders-1.png' alt='' width='525' height='504' /></div></pre>
+     <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='getBorders-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpnEuK8D/temp_libpath5576845d0ac/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+#&gt; Simple feature collection with 34 features and 7 fields
+#&gt; geometry type:  MULTIPOLYGON
+#&gt; dimension:      XY
+#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; epsg (SRID):    32620
+#&gt; proj4string:    +proj=utm +zone=20 +datum=WGS84 +units=m +no_defs</div><div class='input'><span class='co'># Get units borders</span>
+<span class='no'>mtq.outer</span> <span class='kw'>&lt;-</span> <span class='fu'>getOuterBorders</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>res</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>2500</span>)
+<span class='co'># Plot municipalities</span>
+<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>)</div><div class='input'><span class='co'># Plot borders</span>
+<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq.outer</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>mtq.outer</span>))),
+     <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='getBorders-2.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

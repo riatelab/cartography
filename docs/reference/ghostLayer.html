@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Frame around Europe — frame.spdf • cartography</title>
+<title>Plot a Ghost Layer — ghostLayer • cartography</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Frame around Europe — frame.spdf" />
-<meta property="og:description" content="Frame around European countries." />
+<meta property="og:title" content="Plot a Ghost Layer — ghostLayer" />
+<meta property="og:description" content="Plot an invisible layer with the extent of a spatial object." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -131,30 +131,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Frame around Europe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/riatelab/cartography/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>frame.spdf.Rd</code></div>
+    <h1>Plot a Ghost Layer</h1>
+    <small class="dont-index">Source: <a href='https://github.com/riatelab/cartography/blob/master/R/ghostLayer.R'><code>R/ghostLayer.R</code></a></small>
+    <div class="hidden name"><code>ghostLayer.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Frame around European countries.</p>
+    <p>Plot an invisible layer with the extent of a spatial object.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>ghostLayer</span>(<span class='no'>x</span>, <span class='no'>bg</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>an sf object, a simple feature collection or a 
+Spatial*DataFrame.</p></td>
+    </tr>
+    <tr>
+      <th>bg</th>
+      <td><p>background color.</p></td>
+    </tr>
+    </table>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>SpatialPolygonsDataFrame.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>UMS RIATE - <a href='http://riate.cnrs.fr/?page_id=153'>http://riate.cnrs.fr/?page_id=153</a></p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpnEuK8D/temp_libpath5576845d0ac/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+#&gt; Simple feature collection with 34 features and 7 fields
+#&gt; geometry type:  MULTIPOLYGON
+#&gt; dimension:      XY
+#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; epsg (SRID):    32620
+#&gt; proj4string:    +proj=utm +zone=20 +datum=WGS84 +units=m +no_defs</div><div class='input'><span class='no'>target</span> <span class='kw'>&lt;-</span> <span class='no'>mtq</span>[<span class='fl'>30</span>,]
+<span class='fu'>ghostLayer</span>(<span class='no'>target</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"gold2"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>target</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='input'><span class='co'># overly complicated label placement trick:</span>
+<span class='fu'><a href='labelLayer.html'>labelLayer</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/geos_binary_ops.html'>st_intersection</a></span>(<span class='no'>mtq</span>, <span class='fu'><a href='https://rdrr.io/pkg/sf/man/geos_unary.html'>st_buffer</a></span>(<span class='no'>target</span>, <span class='fl'>2000</span>))),
+           <span class='kw'>txt</span> <span class='kw'>=</span> <span class='st'>"LIBGEO"</span>, <span class='kw'>halo</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>.9</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>.14</span>, <span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+           <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>, <span class='kw'>col</span><span class='kw'>=</span> <span class='st'>"white"</span>)</div><div class='img'><img src='ghostLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#source">Source</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

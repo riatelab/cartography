@@ -78,7 +78,7 @@ fetched from various open map servers." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
       </span>
     </div>
 
@@ -142,8 +142,7 @@ fetched from various open map servers." />
 fetched from various open map servers.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getTiles</span>(<span class='no'>x</span>, <span class='no'>spdf</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"osm"</span>, <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>crop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>getTiles</span>(<span class='no'>x</span>, <span class='no'>spdf</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"osm"</span>, <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>crop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,7 +159,7 @@ fetched from various open map servers.</p>
       <th>type</th>
       <td><p>the tile server from which to get the map, one of "osm", "hotstyle", 
 "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-"cartolight".</p></td>
+"cartolight", "opentopomap".</p></td>
     </tr>
     <tr>
       <th>zoom</th>
@@ -169,11 +168,12 @@ fetched from various open map servers.</p>
     </tr>
     <tr>
       <th>crop</th>
-      <td><p>TRUE if results should be cropped to the specified x extent, FALSE otherwise.</p></td>
+      <td><p>TRUE if results should be cropped to the specified x extent, 
+FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>if TRUE a progress bar is displayed.</p></td>
+      <td><p>if TRUE, tiles filepaths, zoom level and citation are displayed.</p></td>
     </tr>
     </table>
 
@@ -184,12 +184,6 @@ fetched from various open map servers.</p>
 
     <p>Zoom levels are described on the OpenStreetMap wiki: 
 <a href='http://wiki.openstreetmap.org/wiki/Zoom_levels'>http://wiki.openstreetmap.org/wiki/Zoom_levels</a>.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This function is a wrapper around the <code>osm.raster</code> function 
-from the <code>rosm</code> package. <br />
-Use directly the <a href='https://CRAN.R-project.org/package=rosm'>rosm</a> package to have a finer control over  
-extraction and display parameters.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='tilesLayer.html'>tilesLayer</a></p></div>
@@ -204,7 +198,8 @@ extraction and display parameters.</p>
 <span class='fu'><a href='tilesLayer.html'>tilesLayer</a></span>(<span class='no'>mtqOSM</span>)
 <span class='co'># Plot countries</span>
 <span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>txt</span> <span class='kw'>&lt;-</span> <span class='st'>"© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"</span>
+<span class='no'>txt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"\u00A9 OpenStreetMap contributors."</span>,
+              <span class='st'>" Tiles style under CC BY-SA, www.openstreetmap.org/copyright"</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='no'>txt</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>adj</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>3</span>)
 }</div></pre>
   </div>
@@ -214,7 +209,6 @@ extraction and display parameters.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
       </span>
     </div>
 
@@ -140,9 +140,22 @@
     <p>Put labels on a map.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>labelLayer</span>(<span class='no'>x</span>, <span class='no'>spdf</span>, <span class='no'>df</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>txt</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>overlap</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show.lines</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>halo</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>labelLayer</span>(
+  <span class='no'>x</span>,
+  <span class='no'>spdf</span>,
+  <span class='no'>df</span>,
+  <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>txt</span>,
+  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>overlap</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show.lines</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>halo</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,7 +232,7 @@ arguments bg and r can be modified to set the color and width of the halo.</p></
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
 <span class='no'>opar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>))
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpK1V5rT/temp_libpath145f3a9c04d1/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpnEuK8D/temp_libpath5576845d0ac/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY

@@ -43,9 +43,12 @@
 
 
 <meta property="og:title" content="Build Cartographic Palettes — carto.pal" />
-<meta property="og:description" content="Build sequential, diverging and qualitative color palettes. 
+<meta property="og:description" content="carto.pal builds sequential, diverging and qualitative color palettes. 
 Diverging color palettes can be dissymmetric (different number of colors in 
-each of the two gradients)." />
+each of the two gradients).
+carto.pal.info displays the names of all color palettes.
+display.carto.pal displays one color palette.
+display.carto.all displays all the available color palettes." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -79,7 +82,7 @@ each of the two gradients)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
       </span>
     </div>
 
@@ -139,13 +142,28 @@ each of the two gradients)." />
     </div>
 
     <div class="ref-description">
-    <p>Build sequential, diverging and qualitative color palettes. 
+    <p><code>carto.pal</code> builds sequential, diverging and qualitative color palettes. 
 Diverging color palettes can be dissymmetric (different number of colors in 
 each of the two gradients).</p>
+<p><code>carto.pal.info</code> displays the names of all color palettes.</p>
+<p><code>display.carto.pal</code> displays one color palette.</p>
+<p><code>display.carto.all</code> displays all the available color palettes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>carto.pal</span>(<span class='no'>pal1</span>, <span class='no'>n1</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>carto.pal</span>(
+  <span class='no'>pal1</span>,
+  <span class='no'>n1</span>,
+  <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>n2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+
+<span class='fu'>carto.pal.info</span>()
+
+<span class='fu'>display.carto.pal</span>(<span class='no'>name</span>)
+
+<span class='fu'>display.carto.all</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,47 +194,31 @@ grey) between two gradients is added.</p></td>
       <td><p>a logical value. If TRUE, contrasts are enhanced by 
 adding an opacity variation.</p></td>
     </tr>
+    <tr>
+      <th>name</th>
+      <td><p>name of the palette available in the package (see Details).</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>number of colors in the gradient (up to 20).</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of colors is returned.</p>
+    <p><code>carto.pal</code> returns a vector of colors.</p>
+<p><code>carto.pal.info</code> returns a vector of color palettes names.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Sequential palettes:</p><ul>
-<li><p>blue.pal</p></li>
-<li><p>orange.pal</p></li>
-<li><p>red.pal</p></li>
-<li><p>brown.pal</p></li>
-<li><p>green.pal</p></li>
-<li><p>purple.pal</p></li>
-<li><p>pink.pal</p></li>
-<li><p>wine.pal</p></li>
-<li><p>grey.pal</p></li>
-<li><p>turquoise.pal</p></li>
-<li><p>sand.pal</p></li>
-<li><p>taupe.pal</p></li>
-<li><p>kaki.pal</p></li>
-<li><p>harmo.pal</p></li>
-</ul>
- 
-<p>Qualitative palettes:</p><ul>
-<li><p>pastel.pal</p></li>
-<li><p>multi.pal</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Use <a href='display.carto.all.html'>display.carto.all</a> to show all palettes and use 
-<a href='display.carto.pal.html'>display.carto.pal</a> to show one palette.</p>
+    <p>Sequential palettes: "blue.pal", "orange.pal", "red.pal", 
+"brown.pal", "green.pal", "purple.pal", "pink.pal", "wine.pal", "grey.pal", 
+"turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" or "harmo.pal". <br /><br />
+Qualitative palettes: "pastel.pal" or "multi.pal".</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Qualitative palettes were generated with "i want hue" 
 (<a href='http://tools.medialab.sciences-po.fr/iwanthue/'>http://tools.medialab.sciences-po.fr/iwanthue/</a>) by Mathieu Jacomy at 
 the Sciences-Po Medialab.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='display.carto.pal.html'>display.carto.pal</a>, <a href='display.carto.all.html'>display.carto.all</a>, <a href='carto.pal.info.html'>carto.pal.info</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Simple gradient: blue</span>
@@ -249,7 +251,10 @@ the Sciences-Po Medialab.</p>
                    <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>mypal</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span>(<span class='fl'>1</span>:<span class='no'>k</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fl'>1</span>:<span class='no'>k</span>), <span class='kw'>col</span> <span class='kw'>=</span><span class='no'>mypal</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>k</span>,<span class='st'>" classes"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>),
-      <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>xaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>yaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>,<span class='kw'>bty</span> <span class='kw'>=</span> <span class='st'>"n"</span>)</div><div class='img'><img src='carto.pal-1.png' alt='' width='525' height='504' /></div></pre>
+      <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>xaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>yaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>,<span class='kw'>bty</span> <span class='kw'>=</span> <span class='st'>"n"</span>)</div><div class='img'><img src='carto.pal-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'>carto.pal.info</span>()</div><div class='output co'>#&gt;  [1] "blue.pal"      "orange.pal"    "red.pal"       "brown.pal"    
+#&gt;  [5] "green.pal"     "purple.pal"    "pink.pal"      "wine.pal"     
+#&gt;  [9] "grey.pal"      "turquoise.pal" "sand.pal"      "taupe.pal"    
+#&gt; [13] "kaki.pal"      "harmo.pal"     "pastel.pal"    "multi.pal"    </div><div class='input'><span class='fu'>display.carto.pal</span>(<span class='st'>"orange.pal"</span>)</div><div class='img'><img src='carto.pal-2.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'>display.carto.all</span>(<span class='fl'>8</span>)</div><div class='img'><img src='carto.pal-3.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -257,9 +262,7 @@ the Sciences-Po Medialab.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
       <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

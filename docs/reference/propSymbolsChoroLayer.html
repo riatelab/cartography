@@ -78,7 +78,7 @@ quantitative data classification" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
       </span>
     </div>
 
@@ -142,18 +142,40 @@ quantitative data classification" />
 quantitative data classification</p>
     </div>
 
-    <pre class="usage"><span class='fu'>propSymbolsChoroLayer</span>(<span class='no'>x</span>, <span class='no'>spdf</span>, <span class='no'>df</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>var</span>,
-  <span class='kw'>inches</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>fixmax</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>symbols</span> <span class='kw'>=</span> <span class='st'>"circle"</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>var2</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"quantile"</span>, <span class='kw'>nclass</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>colNA</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>legend.title.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>legend.values.cex</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
-  <span class='kw'>legend.var.pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>legend.var.title.txt</span> <span class='kw'>=</span> <span class='no'>var</span>,
-  <span class='kw'>legend.var.values.rnd</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>legend.var.style</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
-  <span class='kw'>legend.var.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>legend.var2.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>,
-  <span class='kw'>legend.var2.title.txt</span> <span class='kw'>=</span> <span class='no'>var2</span>, <span class='kw'>legend.var2.values.rnd</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>legend.var2.nodata</span> <span class='kw'>=</span> <span class='st'>"no data"</span>, <span class='kw'>legend.var2.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>legend.var2.border</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>legend.var2.horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>propSymbolsChoroLayer</span>(
+  <span class='no'>x</span>,
+  <span class='no'>spdf</span>,
+  <span class='no'>df</span>,
+  <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>var</span>,
+  <span class='kw'>inches</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+  <span class='kw'>fixmax</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>symbols</span> <span class='kw'>=</span> <span class='st'>"circle"</span>,
+  <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"grey20"</span>,
+  <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='no'>var2</span>,
+  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"quantile"</span>,
+  <span class='kw'>nclass</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>colNA</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>legend.title.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>legend.values.cex</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
+  <span class='kw'>legend.var.pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
+  <span class='kw'>legend.var.title.txt</span> <span class='kw'>=</span> <span class='no'>var</span>,
+  <span class='kw'>legend.var.values.rnd</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>legend.var.style</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+  <span class='kw'>legend.var.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>legend.var2.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>,
+  <span class='kw'>legend.var2.title.txt</span> <span class='kw'>=</span> <span class='no'>var2</span>,
+  <span class='kw'>legend.var2.values.rnd</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>legend.var2.nodata</span> <span class='kw'>=</span> <span class='st'>"no data"</span>,
+  <span class='kw'>legend.var2.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>legend.var2.border</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>legend.var2.horiz</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -319,7 +341,7 @@ not (FALSE).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpK1V5rT/temp_libpath145f3a9c04d1/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpnEuK8D/temp_libpath5576845d0ac/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY
