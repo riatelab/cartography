@@ -1,5 +1,5 @@
-#' @title Plot a Shadow Layer 
-#' @name shadowLayer
+#' @title Plot a Ghost Layer 
+#' @name ghostLayer
 #' @description Plot an invisible layer with the extent of a spatial object.  
 #' @param x an sf object, a simple feature collection or a 
 #' Spatial*DataFrame.
@@ -8,14 +8,15 @@
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 #' target <- mtq[30,]
-#' shadowLayer(target, bg = "lightblue")
+#' ghostLayer(target, bg = "lightblue")
 #' plot(st_geometry(mtq), add = TRUE, col = "gold2")
 #' plot(st_geometry(target), add = TRUE, col = "red")
+#' # overly complicated label placement trick:
 #' labelLayer(x = suppressWarnings(st_intersection(mtq, st_buffer(target, 2000))), 
 #'            txt = "LIBGEO", halo = TRUE, cex = .9, r = .14, font = 2, 
 #'            bg = "grey20", col= "white")
 #' @export
-shadowLayer <- function(x, bg){
+ghostLayer <- function(x, bg){
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
   }
