@@ -1,11 +1,12 @@
-# cartography 2.2.2
+# cartography 2.3.0
 
 ## Minor changes
 - use tinytest instead of testthat (fewer dependancies)
 - use slippymath and code instead of rosm for osm tiles download 
 (fewer dependancies)
+- use sf instead of sp in dotDensityLayer()
+- iter argument is deprecated in dotDensityLayer()
 - change in default verbose option in getTiles()
-- add an "opentopomap" tiles type in getTiles()
 - bug fix in getTiles() when nrow(x) == 1
 - bug fix in labelLayer() when nrow(x)==1 and overlap = FALSE
 - remove nuts data documentation from index and remove broken links
@@ -15,7 +16,7 @@
 ## New features
 - add a ghostLayer() function to display an empty layer to give correct xlim 
 and ylim to a map (inspired by shadow_spatial() from `ggspatial` of @paleolimbot)
-
+- add an "opentopomap" tiles type in getTiles()
 
 # cartography 2.2.1
 
