@@ -12,11 +12,11 @@ dotDensityLayer(
   dfid = NULL,
   var,
   n = NULL,
-  iter = 5,
   pch = 1,
   cex = 0.15,
   type = "random",
   col = "black",
+  iter,
   legend.pos = "topright",
   legend.txt = NULL,
   legend.cex = 0.6,
@@ -26,7 +26,8 @@ dotDensityLayer(
 )
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not.}
+\item{x}{an sf object, a simple feature collection. If x is used then spdf,
+df, spdfid and dfid are not.}
 
 \item{spdf}{a SpatialPolygonsDataFrame.}
 
@@ -43,8 +44,6 @@ column of df. (optional)}
 
 \item{n}{one dot on the map represents n (in var units).}
 
-\item{iter}{number of iteration to try to locate sample points (see Details).}
-
 \item{pch}{symbol to use: \link{points}.}
 
 \item{cex}{size of the symbols}
@@ -52,6 +51,8 @@ column of df. (optional)}
 \item{type}{points allocation method: "random" or "regular" (see Details).}
 
 \item{col}{color of the points.}
+
+\item{iter}{deprecated, no longer in use.}
 
 \item{legend.pos}{"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 legend.pos is "n" then the legend is not plotted.}
@@ -72,15 +73,13 @@ not (FALSE).}
 Plot a dot density layer.
 }
 \details{
-The iter parameter is defined within the \link{spsample} function. 
-If an error occurred, increase this value.\cr
-The type parameters is defined within the \link{spsample} function.
+The type parameters is defined within the \link{st_sample} function.
 }
 \examples{
 library(sf)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 plot(st_geometry(mtq), col = "#B8704D50")
-dotDensityLayer(x = mtq,  var="POP", pch=20, col = "red4", n = 50)
+dotDensityLayer(x = mtq,  var="POP", pch=20, col = "red4", n = 200)
 layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \seealso{
