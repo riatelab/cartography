@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -134,9 +134,9 @@
       <small>Source: <a href='https://github.com/riatelab/cartography/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="cartography-2-2-2" class="section level1">
+    <div id="cartography-2-3-0" class="section level1">
 <h1 class="page-header">
-<a href="#cartography-2-2-2" class="anchor"></a>cartography 2.2.2<small> Unreleased </small>
+<a href="#cartography-2-3-0" class="anchor"></a>cartography 2.3.0<small> Unreleased </small>
 </h1>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -144,8 +144,9 @@
 <ul>
 <li>use tinytest instead of testthat (fewer dependancies)</li>
 <li>use slippymath and code instead of rosm for osm tiles download (fewer dependancies)</li>
+<li>use sf instead of sp in dotDensityLayer()</li>
+<li>iter argument is deprecated in dotDensityLayer()</li>
 <li>change in default verbose option in getTiles()</li>
-<li>add an “opentopomap” tiles type in getTiles()</li>
 <li>bug fix in getTiles() when nrow(x) == 1</li>
 <li>bug fix in labelLayer() when nrow(x)==1 and overlap = FALSE</li>
 <li>remove nuts data documentation from index and remove broken links</li>
@@ -158,6 +159,7 @@
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
 <li>add a ghostLayer() function to display an empty layer to give correct xlim and ylim to a map (inspired by shadow_spatial() from <code>ggspatial</code> of <a href='https://github.com/paleolimbot'>@paleolimbot</a>)</li>
+<li>add an “opentopomap” tiles type in getTiles()</li>
 </ul>
 </div>
 </div>
@@ -483,7 +485,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#cartography-2-2-2">2.2.2</a></li>
+        <li><a href="#cartography-2-3-0">2.3.0</a></li>
         <li><a href="#cartography-2-2-1">2.2.1</a></li>
         <li><a href="#cartography-2-2-0">2.2.0</a></li>
         <li><a href="#cartography-2-1-2">2.1.2</a></li>
