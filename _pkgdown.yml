@@ -5,6 +5,7 @@ reference:
     - choroLayer
     - discLayer
     - dotDensityLayer
+    - ghostLayer
     - gradLinkLayer
     - gradLinkTypoLayer
     - labelLayer

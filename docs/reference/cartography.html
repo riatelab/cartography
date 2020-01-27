@@ -48,42 +48,10 @@ proportional symbols, choropleth, typology, flows or discontinuities maps.
 It also offers several features that improve the graphic presentation of 
 maps, for instance, map palettes, layout elements (scale, north arrow, 
 title...), labels or legends.
-A vignette contains commented scripts on how to create various maps 
-and a cheat sheet displays a quick overview of cartography's 
-main features:  
-- vignette(topic = &quot;cartography&quot;, package = &quot;cartography&quot;);
-- vignette(topic = &quot;cheatsheet&quot; , package = &quot;cartography&quot;).
- 
-
-Main functions :
-Proportional symbols maps (circles, squares, bars) 
-propSymbolsLayer, propSymbolsChoroLayer, 
-propSymbolsTypoLayer, propTrianglesLayer
-Choropleth maps (main classification methods are available)
-choroLayer
-Typology maps
-typoLayer
-Flow maps (proportional and classified links)
-getLinkLayer, propLinkLayer, gradLinkLayer, gradLinkTypoLayer
-Discontinuities maps
-getBorders, discLayer
-Cartographic palettes
-carto.pal
-Layout (scale, north arrow, title...)
-layoutLayer, north, barscale
-Labels
-labelLayer
-Legends 
-legendBarsSymbols,
-legendChoro, legendCirclesSymbols, legendGradLines, 
-legendPropLines, legendPropTriangles, 
-legendSquaresSymbols, legendTypo
-Access to cartographic APIs (via rosm package)
-getTiles, tilesLayer
-Irregular polygons to regular grid, transformation with data handling
-getGridLayer
-
-" />
+A vignette contains commented scripts on how to create various maps:
+vignette(topic = &quot;cartography&quot;, package = &quot;cartography&quot;) 
+A cheat sheet displays a quick overview of cartography's 
+main features:vignette(topic = &quot;cheatsheet&quot; , package = &quot;cartography&quot;)" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -182,51 +150,88 @@ proportional symbols, choropleth, typology, flows or discontinuities maps.
 It also offers several features that improve the graphic presentation of 
 maps, for instance, map palettes, layout elements (scale, north arrow, 
 title...), labels or legends.</p>
-<p>A <b>vignette</b> contains commented scripts on how to create various maps 
-and a <b>cheat sheet</b> displays a quick overview of <code>cartography</code>'s 
-main features:<br />  
-- <code><a href='../articles/cartography.html'>vignette(topic = "cartography", package = "cartography")</a></code>;<br />
-- <code><a href='../articles/cheatsheet.html'>vignette(topic = "cheatsheet" , package = "cartography")</a></code>.<br /></p>
- 
-
-<p>Main functions :</p><ul>
-<li><p>Proportional symbols maps (circles, squares, bars)<br /> 
-<a href='propSymbolsLayer.html'>propSymbolsLayer</a>, <a href='propSymbolsChoroLayer.html'>propSymbolsChoroLayer</a>, 
-<a href='propSymbolsTypoLayer.html'>propSymbolsTypoLayer</a>, <a href='propTrianglesLayer.html'>propTrianglesLayer</a></p></li>
-<li><p>Choropleth maps (main classification methods are available)<br />
-<a href='choroLayer.html'>choroLayer</a></p></li>
-<li><p>Typology maps<br />
-<a href='typoLayer.html'>typoLayer</a></p></li>
-<li><p>Flow maps (proportional and classified links)<br />
-<a href='getLinkLayer.html'>getLinkLayer</a>, <a href='propLinkLayer.html'>propLinkLayer</a>, <a href='gradLinkLayer.html'>gradLinkLayer</a>, <a href='gradLinkTypoLayer.html'>gradLinkTypoLayer</a></p></li>
-<li><p>Discontinuities maps<br />
-<a href='getBorders.html'>getBorders</a>, <a href='discLayer.html'>discLayer</a></p></li>
-<li><p>Cartographic palettes<br />
-<a href='carto.pal.html'>carto.pal</a></p></li>
-<li><p>Layout (scale, north arrow, title...)<br />
-<a href='layoutLayer.html'>layoutLayer</a>, <a href='north.html'>north</a>, <a href='barscale.html'>barscale</a></p></li>
-<li><p>Labels<br />
-<a href='labelLayer.html'>labelLayer</a></p></li>
-<li><p>Legends <br />
-<a href='legendBarsSymbols.html'>legendBarsSymbols</a>,
-<a href='legendChoro.html'>legendChoro</a>, <a href='legendCirclesSymbols.html'>legendCirclesSymbols</a>, <a href='legendGradLines.html'>legendGradLines</a>, 
-<a href='legendPropLines.html'>legendPropLines</a>, <a href='legendPropTriangles.html'>legendPropTriangles</a>, 
-<a href='legendSquaresSymbols.html'>legendSquaresSymbols</a>, <a href='legendTypo.html'>legendTypo</a></p></li>
-<li><p>Access to cartographic APIs (via rosm package)<br />
-<a href='getTiles.html'>getTiles</a>, <a href='tilesLayer.html'>tilesLayer</a></p></li>
-<li><p>Irregular polygons to regular grid, transformation with data handling<br />
-<a href='getGridLayer.html'>getGridLayer</a></p></li>
-</ul>
-
+<p>A <b>vignette</b> contains commented scripts on how to create various maps:<br />
+<code><a href='../articles/cartography.html'>vignette(topic = "cartography", package = "cartography")</a></code> <br />
+A <b>cheat sheet</b> displays a quick overview of <code>cartography</code>'s 
+main features:<br /><code><a href='../articles/cheatsheet.html'>vignette(topic = "cheatsheet" , package = "cartography")</a></code></p>
     </div>
 
 
+
+    <h2 class="hasAnchor" id="symbology"><a class="anchor" href="#symbology"></a>Symbology</h2>
+
+    
+
+<p>These functions build cartographic layers.</p><ul>
+<li><p>Proportional symbols layer (<a href='propSymbolsLayer.html'>propSymbolsLayer</a>, <a href='propSymbolsChoroLayer.html'>propSymbolsChoroLayer</a>, <a href='propSymbolsTypoLayer.html'>propSymbolsTypoLayer</a>, <a href='propTrianglesLayer.html'>propTrianglesLayer</a>)</p></li>
+<li><p>Choropleth layer (<a href='choroLayer.html'>choroLayer</a>)</p></li>
+<li><p>Typology layer (<a href='typoLayer.html'>typoLayer</a>)</p></li>
+<li><p>Flows layer (<a href='propLinkLayer.html'>propLinkLayer</a>, <a href='gradLinkLayer.html'>gradLinkLayer</a>, <a href='gradLinkTypoLayer.html'>gradLinkTypoLayer</a>)</p></li>
+<li><p>Discontinuities layer (<a href='discLayer.html'>discLayer</a>)</p></li>
+<li><p>Access to cartographic OpenStreetMap APIs (<a href='tilesLayer.html'>tilesLayer</a>)</p></li>
+<li><p>Dot density layer (<a href='tilesLayer.html'>tilesLayer</a>)</p></li>
+<li><p>Labels layer (<a href='labelLayer.html'>labelLayer</a>)</p></li>
+<li><p>Smooth layer (<a href='smoothLayer.html'>smoothLayer</a>)</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="transformations"><a class="anchor" href="#transformations"></a>Transformations</h2>
+
+    
+
+<p>These functions transform or create spatial objects.</p><ul>
+<li><p>Extract polygons borders (<a href='getBorders.html'>getBorders</a>, <a href='getBorders.html'>getOuterBorders</a>)</p></li>
+<li><p>Build a regular grid layer (<a href='getGridLayer.html'>getGridLayer</a>)</p></li>
+<li><p>Create a links layer from a data.frame of links (<a href='getLinkLayer.html'>getLinkLayer</a>)</p></li>
+<li><p>Create a pencil layer (<a href='getPencilLayer.html'>getPencilLayer</a>)</p></li>
+<li><p>Get tiles from OpenStreetMap servers (<a href='getTiles.html'>getTiles</a>)</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="map-layout"><a class="anchor" href="#map-layout"></a>Map Layout</h2>
+
+    
+
+<p>These functions are dedicated to the map layout design.</p><ul>
+<li><p>Scale bar (<a href='barscale.html'>barscale</a>)</p></li>
+<li><p>Get figure dimensions (<a href='getFigDim.html'>getFigDim</a>)</p></li>
+<li><p>Layout layer (<a href='layoutLayer.html'>layoutLayer</a>)</p></li>
+<li><p>North arrow (<a href='north.html'>north</a>)</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="color-palettes"><a class="anchor" href="#color-palettes"></a>Color Palettes</h2>
+
+    
+
+<p>Use these function to build custom color palettes.</p><ul>
+<li><p>Build cartographic palettes (<a href='carto.pal.html'>carto.pal</a>)</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="legends"><a class="anchor" href="#legends"></a>Legends</h2>
+
+    
+
+<p>These functions create legends.</p><ul>
+<li><p>Legends (<a href='legendBarsSymbols.html'>legendBarsSymbols</a>, <a href='legendChoro.html'>legendChoro</a>, <a href='legendCirclesSymbols.html'>legendCirclesSymbols</a>, <a href='legendGradLines.html'>legendGradLines</a>, <a href='legendPropLines.html'>legendPropLines</a>, <a href='legendPropTriangles.html'>legendPropTriangles</a>, <a href='legendSquaresSymbols.html'>legendSquaresSymbols</a>, <a href='legendTypo.html'>legendTypo</a>)</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="classification"><a class="anchor" href="#classification"></a>Classification</h2>
+
+    
+
+<p>This function uses classification methods for binning data.</p><ul>
+<li><p>Classification (<a href='getBreaks.html'>getBreaks</a>)</p></li>
+</ul>
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#symbology">Symbology</a></li>
+      <li><a href="#transformations">Transformations</a></li>
+      <li><a href="#map-layout">Map Layout</a></li>
+      <li><a href="#color-palettes">Color Palettes</a></li>
+      <li><a href="#legends">Legends</a></li>
+      <li><a href="#classification">Classification</a></li>
     </ul>
 
   </div>
