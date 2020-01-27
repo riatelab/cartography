@@ -1,4 +1,4 @@
-#' @title Dot Density layer
+#' @title Dot Density Layer
 #' @name dotDensityLayer
 #' @description Plot a dot density layer.
 #' @param x an sf object, a simple feature collection. If x is used then spdf, df, spdfid and dfid are not. 

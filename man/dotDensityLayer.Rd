@@ -2,7 +2,7 @@
 % Please edit documentation in R/dotDensityLayer.R
 \name{dotDensityLayer}
 \alias{dotDensityLayer}
-\title{Dot Density layer}
+\title{Dot Density Layer}
 \usage{
 dotDensityLayer(
   x,

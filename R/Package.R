@@ -8,55 +8,63 @@
 #' maps, for instance, map palettes, layout elements (scale, north arrow, 
 #' title...), labels or legends.
 #' 
-#' A \bold{vignette} contains commented scripts on how to create various maps 
-#' and a \bold{cheat sheet} displays a quick overview of \code{cartography}'s 
-#' main features:\cr  
-#' - \code{vignette(topic = "cartography", package = "cartography")};\cr
-#' - \code{vignette(topic = "cheatsheet" , package = "cartography")}.\cr
+#' A \bold{vignette} contains commented scripts on how to create various maps:\cr
+#' \code{vignette(topic = "cartography", package = "cartography")} \cr
+#' A \bold{cheat sheet} displays a quick overview of \code{cartography}'s 
+#' main features:\cr\code{vignette(topic = "cheatsheet" , package = "cartography")}
 #' 
 #'  
-#' 
-#' Main functions : 
+#' @section Symbology:
+#' These functions build cartographic layers.
 #' \itemize{
-#' \item{Proportional symbols maps (circles, squares, bars)\cr 
-#' \link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, 
-#' \link{propSymbolsTypoLayer}, \link{propTrianglesLayer}}
-#' 
-#' \item{Choropleth maps (main classification methods are available)\cr
-#' \link{choroLayer}}
-#' 
-#' \item{Typology maps\cr
-#' \link{typoLayer}}
-#' 
-#' \item{Flow maps (proportional and classified links)\cr
-#' \link{getLinkLayer}, \link{propLinkLayer}, \link{gradLinkLayer}, \link{gradLinkTypoLayer}}
-#' 
-#' \item{Discontinuities maps\cr
-#' \link{getBorders}, \link{discLayer}}
-#' 
-#' \item{Cartographic palettes\cr
-#' \link{carto.pal}}
-#' 
-#' \item{Layout (scale, north arrow, title...)\cr
-#' \link{layoutLayer}, \link{north}, \link{barscale}}
-#' 
-#' \item{Labels\cr
-#' \link{labelLayer}}
-#' 
-#' \item{Legends \cr
-#' \link{legendBarsSymbols},
-#' \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, 
-#' \link{legendPropLines}, \link{legendPropTriangles}, 
-#' \link{legendSquaresSymbols}, \link{legendTypo}}
-#' 
-#' \item{Access to cartographic APIs (via rosm package)\cr
-#' \link{getTiles}, \link{tilesLayer}}
-#' 
-#' \item{Irregular polygons to regular grid, transformation with data handling\cr
-#' \link{getGridLayer}}
-#' 
+#' \item{Proportional symbols layer (\link{propSymbolsLayer}, \link{propSymbolsChoroLayer}, \link{propSymbolsTypoLayer}, \link{propTrianglesLayer})}
+#' \item{Choropleth layer (\link{choroLayer})}
+#' \item{Typology layer (\link{typoLayer})}
+#' \item{Flows layer (\link{propLinkLayer}, \link{gradLinkLayer}, \link{gradLinkTypoLayer})}
+#' \item{Discontinuities layer (\link{discLayer})}
+#' \item{Access to cartographic OpenStreetMap APIs (\link{tilesLayer})}
+#' \item{Dot density layer (\link{tilesLayer})}
+#' \item{Labels layer (\link{labelLayer})}
+#' \item{Smooth layer (\link{smoothLayer})}
 #' }
 #' 
+#' @section Transformations:
+#' These functions transform or create spatial objects.
+#' \itemize{
+#' \item{Extract polygons borders (\link{getBorders}, \link{getOuterBorders})}
+#' \item{Build a regular grid layer (\link{getGridLayer})}
+#' \item{Create a links layer from a data.frame of links (\link{getLinkLayer})}
+#' \item{Create a pencil layer (\link{getPencilLayer})}
+#' \item{Get tiles from OpenStreetMap servers (\link{getTiles})}
+#' }
+#'  
+#' @section Map Layout:
+#' These functions are dedicated to the map layout design.
+#' \itemize{
+#' \item{Scale bar (\link{barscale})}
+#' \item{Get figure dimensions (\link{getFigDim})}
+#' \item{Layout layer (\link{layoutLayer})}
+#' \item{North arrow (\link{north})}
+#' }
 #' 
+#' @section Color Palettes:
+#' Use these function to build custom color palettes.
+#' \itemize{
+#' \item{Build cartographic palettes (\link{carto.pal})}
+#' }
+#' 
+#' @section Legends:
+#' These functions create legends.
+#' \itemize{
+#' \item{Legends (\link{legendBarsSymbols}, \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, \link{legendPropLines}, \link{legendPropTriangles}, \link{legendSquaresSymbols}, \link{legendTypo})}
+#' }
+#' 
+#' @section Classification:
+#' This function uses classification methods for binning data.
+#' \itemize{
+#' \item{Classification (\link{getBreaks})}
+#' }
+#' 
+#' @keywords internal
 #' @docType package
 NULL
