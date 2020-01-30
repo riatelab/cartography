@@ -6,7 +6,9 @@
 #' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
 #' @param type the tile server from which to get the map, one of "osm", "hotstyle", 
 #' "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-#' "cartolight", "opentopomap".
+#' "cartolight", "opentopomap". For other sources use a list: 
+#' type = list(src="name of the source" , q = "tiles address", sub = "subdomains", 
+#' cit = "how to cite the tiles"). See Examples.
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified x extent, 
@@ -31,6 +33,19 @@
 #' txt <- paste0("\u00A9 OpenStreetMap contributors.", 
 #'               " Tiles style under CC BY-SA, www.openstreetmap.org/copyright")
 #' mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
+#' 
+#' # Download esri tiles
+#' typeosm <-  list(
+#'   src = 'esri',
+#'   q = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.jpg',
+#'   sub = NA,
+#'   cit = 'Tiles; Esri; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+#' )
+#' mtqESRI <- getTiles(x = mtq, type = typeosm, crop = TRUE, verbose = T, zoom = 10)
+#' # Plot the tiles
+#' tilesLayer(mtqESRI)
+#' txt <- typeosm$cit
+#' mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 #' }
 getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE, 
                      verbose = FALSE){
@@ -72,7 +87,7 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
   # extension management 
   tile_grid$ext <- substr(param$q, nchar(param$q)-2, nchar(param$q))
   # src mgmnt
-  tile_grid$src <- type
+  tile_grid$src <- param$src
   # query mgmnt
   tile_grid$q <- param$q
   # citation
@@ -163,53 +178,66 @@ compose_tile_grid <- function (tile_grid, images){
 
 # providers parameters
 get_param <- function(type){
-  param <- switch(
-    type,
-    osm = list(
-      q = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      sub = c("a", "b", "c"),
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright."
-    ),
-    hotstyle = list(
-      q = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-      sub = c("a", "b"),
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style by Humanitarian OpenStreetMap Team, under CC0, www.hotosm.org."
-    ),
-    hikebike = list(
-      q = "https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",
-      sub = NA, 
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC0, hikebikemap.net."
-    ),
-    osmgrayscale = list(
-      q = "https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" ,
-      sub = NA, 
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright."
-    ),
-    stamenbw = list(
-      q = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", 
-      sub = c("a", "b", "c", "d"), 
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com."
-    ),
-    stamenwatercolor =  list(
-      q = "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg",
-      sub = c("a", "b", "c", "d"), 
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com."
-    ),
-    cartodark = list(
-      q = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-      sub = c("a", "b", "c", "d"), 
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
-    ),
-    cartolight = list(
-      q = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-      sub = c("a", "b", "c", "d"), 
-      cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
-    ), 
-    opentopomap = list(
-      q = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-      sub = c("a", "b", "c"), 
-      cit = "\u00A9 OpenStreetMap contributors and SRTM. Tiles style by OpenTopoMap, under CC BY-SA 3.0, opentopomap.org."
+  if (length(type) == 4){
+    param <- type
+  }else{
+    param <- switch(
+      type,
+      osm = list(
+        src = "osm",
+        q = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        sub = c("a", "b", "c"),
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright."
+      ),
+      hotstyle = list(
+        src = "hotstyle",
+        q = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+        sub = c("a", "b"),
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Humanitarian OpenStreetMap Team, under CC0, www.hotosm.org."
+      ),
+      hikebike = list(
+        src = "hikebike",
+        q = "https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",
+        sub = NA, 
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC0, hikebikemap.net."
+      ),
+      osmgrayscale = list(
+        src = "osmgrayscale",
+        q = "https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" ,
+        sub = NA, 
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright."
+      ),
+      stamenbw = list(
+        src = "stamenbw",
+        q = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", 
+        sub = c("a", "b", "c", "d"), 
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com."
+      ),
+      stamenwatercolor =  list(
+        src = "stamenwatercolor",
+        q = "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg",
+        sub = c("a", "b", "c", "d"), 
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com."
+      ),
+      cartodark = list(
+        src = "cartodark",
+        q = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+        sub = c("a", "b", "c", "d"), 
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
+      ),
+      cartolight = list(
+        src = "cartolight",
+        q = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        sub = c("a", "b", "c", "d"), 
+        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
+      ), 
+      opentopomap = list(
+        src = "opentopomap",
+        q = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        sub = c("a", "b", "c"), 
+        cit = "\u00A9 OpenStreetMap contributors and SRTM. Tiles style by OpenTopoMap, under CC BY-SA 3.0, opentopomap.org."
+      )
     )
-  )
+  }
   param
 }

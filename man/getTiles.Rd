@@ -13,7 +13,9 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE)
 
 \item{type}{the tile server from which to get the map, one of "osm", "hotstyle", 
 "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-"cartolight", "opentopomap".}
+"cartolight", "opentopomap". For other sources use a list: 
+type = list(src="name of the source" , q = "tiles address", sub = "subdomains", 
+cit = "how to cite the tiles"). See Examples.}
 
 \item{zoom}{the zoom level. If null, it is determined automatically 
 (see Details).}
@@ -47,6 +49,19 @@ plot(st_geometry(mtq), add=TRUE)
 txt <- paste0("\u00A9 OpenStreetMap contributors.", 
               " Tiles style under CC BY-SA, www.openstreetmap.org/copyright")
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
+
+# Download esri tiles
+typeosm <-  list(
+  src = 'esri',
+  q = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.jpg',
+  sub = NA,
+  cit = 'Tiles; Esri; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+)
+mtqESRI <- getTiles(x = mtq, type = typeosm, crop = TRUE, verbose = T, zoom = 10)
+# Plot the tiles
+tilesLayer(mtqESRI)
+txt <- typeosm$cit
+mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 }
 }
 \seealso{
