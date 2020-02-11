@@ -4,7 +4,15 @@
 \alias{getTiles}
 \title{Get Tiles from Open Map Servers}
 \usage{
-getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE)
+getTiles(
+  x,
+  spdf,
+  type = "osm",
+  zoom = NULL,
+  crop = FALSE,
+  verbose = FALSE,
+  apikey = NA
+)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
@@ -13,7 +21,7 @@ getTiles(x, spdf, type = "osm", zoom = NULL, crop = FALSE, verbose = FALSE)
 
 \item{type}{the tile server from which to get the map, one of "osm", "hotstyle", 
 "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-"cartolight", "opentopomap". For other sources use a list: 
+"cartolight", "opentopomap". See Details for additional providers. For other sources use a list: 
 type = list(src="name of the source" , q = "tiles address", sub = "subdomains", 
 cit = "how to cite the tiles"). See Examples.}
 
@@ -24,9 +32,11 @@ cit = "how to cite the tiles"). See Examples.}
 FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.}
 
 \item{verbose}{if TRUE, tiles filepaths, zoom level and citation are displayed.}
+
+\item{apikey}{Needed for Thunderforest maps.}
 }
 \value{
-A RatserBrick is returned.
+A RasterBrick is returned.
 }
 \description{
 Get map tiles based on a spatial object extent. Maps can be 
@@ -34,7 +44,20 @@ fetched from various open map servers.
 }
 \details{
 Zoom levels are described on the OpenStreetMap wiki: 
-\url{http://wiki.openstreetmap.org/wiki/Zoom_levels}.
+\url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
+Full list of additional providers:
+\tabular{llllll}{
+'OpenStreetMap'                \tab 'Hydda'                  \tab 'Stamen.TonerLite'         \tab 'Esri.WorldTerrain'          \tab 'CartoDB.DarkMatterNoLabels'   \tab 'Thunderforest.OpenCycleMap' \cr
+'OpenStreetMap.DE'             \tab 'Hydda.Full'             \tab 'Stamen.Watercolor'        \tab 'Esri.WorldShadedRelief'     \tab 'CartoDB.DarkMatterOnlyLabels' \tab 'Thunderforest.Transport'    \cr
+'OpenStreetMap.France'         \tab 'Hydda.Base'             \tab 'Stamen.Terrain'           \tab 'Esri.OceanBasemap'          \tab 'CartoDB.Voyager'              \tab 'Thunderforest.TransportDark'\cr
+'OpenStreetMap.HOT'            \tab 'Hydda.RoadsAndLabels'   \tab 'Stamen.TerrainBackground' \tab 'Esri.NatGeoWorldMap'        \tab 'CartoDB.VoyagerNoLabels'      \tab 'Thunderforest.SpinalMap'    \cr
+'OpenTopoMap'                  \tab 'Stamen'                 \tab 'Stamen.TerrainLabels'     \tab 'Esri.WorldGrayCanvas'       \tab 'CartoDB.VoyagerOnlyLabels'    \tab 'Thunderforest.Landscape'    \cr
+'OpenMapSurfer'                \tab 'Stamen.Toner'           \tab 'Esri'                     \tab 'CartoDB'                    \tab 'CartoDB.VoyagerLabelsUnder'   \tab 'Thunderforest.Outdoors'     \cr
+'OpenMapSurfer.Roads'          \tab 'Stamen.TonerBackground' \tab 'Esri.WorldStreetMap'      \tab 'CartoDB.Positron'           \tab 'HikeBike'                     \tab 'Thunderforest.Pioneer'      \cr
+'OpenMapSurfer.Hybrid'         \tab 'Stamen.TonerHybrid'     \tab 'Esri.DeLorme'             \tab 'CartoDB.PositronNoLabels'   \tab 'HikeBike.HikeBike'            \tab 'Thunderforest.MobileAtlas'  \cr
+'OpenMapSurfer.AdminBounds'    \tab 'Stamen.TonerLines'      \tab 'Esri.WorldTopoMap'        \tab 'CartoDB.PositronOnlyLabels' \tab 'Wikimedia'                    \tab 'Thunderforest.Neighbourhood'\cr
+'OpenMapSurfer.ElementsAtRisk' \tab 'Stamen.TonerLabels'     \tab 'Esri.WorldImagery'        \tab 'CartoDB.DarkMatter'         \tab 'Thunderforest'                \tab                         
+}
 }
 \examples{
 \dontrun{
@@ -63,6 +86,9 @@ tilesLayer(mtqESRI)
 txt <- typeosm$cit
 mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 }
+}
+\references{
+\url{https://leaflet-extras.github.io/leaflet-providers/}
 }
 \seealso{
 \link{tilesLayer}
