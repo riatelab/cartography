@@ -31,7 +31,7 @@
 #' 'OpenMapSurfer.AdminBounds'    \tab 'Stamen.TonerLines'      \tab 'Esri.WorldTopoMap'        \tab 'CartoDB.PositronOnlyLabels' \tab 'Wikimedia'                    \tab 'Thunderforest.Neighbourhood'\cr
 #' 'OpenMapSurfer.ElementsAtRisk' \tab 'Stamen.TonerLabels'     \tab 'Esri.WorldImagery'        \tab 'CartoDB.DarkMatter'         \tab 'Thunderforest'                \tab                         
 #' }
-#' @references \url{https://leaflet-extras.github.io/leaflet-providers/}
+#' @references \url{https://leaflet-extras.github.io/leaflet-providers/preview/}
 #' @export
 #' @return A RasterBrick is returned.
 #' @seealso \link{tilesLayer}
@@ -411,61 +411,61 @@ get_param <- function(type) {
       ),
       Esri = list(
         src = "Esri",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri"
       ),
       Esri.WorldStreetMap = list(
         src = "EsriWSM",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012"
       ),
       Esri.DeLorme = list(
         src = "EsriDLor",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/til/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Copyright: \u00A92012 DeLorme"
       ),
       Esri.WorldTopoMap = list(
         src = "EsriWTM",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"
       ),
       Esri.WorldImagery = list(
         src = "EsriWI",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
       ),
       Esri.WorldTerrain = list(
         src = "EsriWT",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Source: USGS, Esri, TANA, DeLorme, and NPS"
       ),
       Esri.WorldShadedRelief = list(
         src = "EsriWSR",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Source: Esri"
       ),
       Esri.OceanBasemap = list(
         src = "EsriOBM",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri"
       ),
       Esri.NatGeoWorldMap = list(
         src = "EsriNGW",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC"
       ),
       Esri.WorldGrayCanvas = list(
         src = "EsriWGC",
-        q = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+        q = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.jpg",
         sub = NA,
         cit = "Tiles \u00A9 Esri \u2014 Esri, DeLorme, NAVTEQ"
       ),
