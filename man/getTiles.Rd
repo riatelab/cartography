@@ -88,7 +88,7 @@ mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 }
 }
 \references{
-\url{https://leaflet-extras.github.io/leaflet-providers/}
+\url{https://leaflet-extras.github.io/leaflet-providers/preview/}
 }
 \seealso{
 \link{tilesLayer}
