@@ -74,14 +74,12 @@ getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE,
     x <- convertToSf(spdf = x)
   }
   # test for single point (apply buffer to obtain a correct bbox)
-  if(nrow(x)==1){
-    if(sf::st_is(x, "POINT")){
-      xt <- sf::st_transform(x, 3857)
-      sf::st_geometry(xt) <- sf::st_buffer(sf::st_geometry(xt), 1000)
-      crop <- FALSE
-      # use x bbox to select the tiles to get 
-      bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(xt)), 4326))
-    }
+  if(nrow(x)==1 && sf::st_is(x, "POINT")){
+    xt <- sf::st_transform(x, 3857)
+    sf::st_geometry(xt) <- sf::st_buffer(sf::st_geometry(xt), 1000)
+    crop <- FALSE
+    # use x bbox to select the tiles to get 
+    bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(xt)), 4326))
   }else{
     # use x bbox to select the tiles to get 
     bbx <- sf::st_bbox(sf::st_transform(sf::st_as_sfc(sf::st_bbox(x)), 4326))
