@@ -16,7 +16,7 @@
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
-#' Full list of additional providers:  
+#' Full list of providers:  
 #' \tabular{lll}{
 #' 'OpenStreetMap' (or 'osm')                 \tab	'Stamen' (or 'stamenbw')	                  \tab  'Esri' \cr
 #' 'OpenStreetMap.DE'                         \tab	'Stamen.Toner'                            	\tab  'Esri.WorldStreetMap'\cr
