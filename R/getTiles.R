@@ -4,11 +4,9 @@
 #' fetched from various open map servers.
 #' @param x an sf object, a simple feature collection or a Spatial*DataFrame.
 #' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
-#' @param type the tile server from which to get the map, one of "osm", "hotstyle", 
-#' "hikebike", "osmgrayscale", "stamenbw", "stamenwatercolor", "cartodark", 
-#' "cartolight", "opentopomap". See Details for additional providers. For other sources use a list: 
-#' type = list(src="name of the source" , q = "tiles address", sub = "subdomains", 
-#' cit = "how to cite the tiles"). See Examples.
+#' @param type the tile server from which to get the map. See Details for providers.
+#' For other sources use a list: type = list(src = "name of the source" , 
+#' q = "tiles address", sub = "subdomains", cit = "how to cite the tiles"). See Examples.
 #' @param zoom the zoom level. If null, it is determined automatically 
 #' (see Details).
 #' @param crop TRUE if results should be cropped to the specified x extent, 
@@ -18,18 +16,30 @@
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
-#' Full list of additional providers:
-#' \tabular{llllll}{
-#' 'OpenStreetMap'                \tab 'Hydda'                  \tab 'Stamen.TonerLite'         \tab 'Esri.WorldTerrain'          \tab 'CartoDB.DarkMatterNoLabels'   \tab 'Thunderforest.OpenCycleMap' \cr
-#' 'OpenStreetMap.DE'             \tab 'Hydda.Full'             \tab 'Stamen.Watercolor'        \tab 'Esri.WorldShadedRelief'     \tab 'CartoDB.DarkMatterOnlyLabels' \tab 'Thunderforest.Transport'    \cr
-#' 'OpenStreetMap.France'         \tab 'Hydda.Base'             \tab 'Stamen.Terrain'           \tab 'Esri.OceanBasemap'          \tab 'CartoDB.Voyager'              \tab 'Thunderforest.TransportDark'\cr
-#' 'OpenStreetMap.HOT'            \tab 'Hydda.RoadsAndLabels'   \tab 'Stamen.TerrainBackground' \tab 'Esri.NatGeoWorldMap'        \tab 'CartoDB.VoyagerNoLabels'      \tab 'Thunderforest.SpinalMap'    \cr
-#' 'OpenTopoMap'                  \tab 'Stamen'                 \tab 'Stamen.TerrainLabels'     \tab 'Esri.WorldGrayCanvas'       \tab 'CartoDB.VoyagerOnlyLabels'    \tab 'Thunderforest.Landscape'    \cr
-#' 'OpenMapSurfer'                \tab 'Stamen.Toner'           \tab 'Esri'                     \tab 'CartoDB'                    \tab 'CartoDB.VoyagerLabelsUnder'   \tab 'Thunderforest.Outdoors'     \cr
-#' 'OpenMapSurfer.Roads'          \tab 'Stamen.TonerBackground' \tab 'Esri.WorldStreetMap'      \tab 'CartoDB.Positron'           \tab 'HikeBike'                     \tab 'Thunderforest.Pioneer'      \cr
-#' 'OpenMapSurfer.Hybrid'         \tab 'Stamen.TonerHybrid'     \tab 'Esri.DeLorme'             \tab 'CartoDB.PositronNoLabels'   \tab 'HikeBike.HikeBike'            \tab 'Thunderforest.MobileAtlas'  \cr
-#' 'OpenMapSurfer.AdminBounds'    \tab 'Stamen.TonerLines'      \tab 'Esri.WorldTopoMap'        \tab 'CartoDB.PositronOnlyLabels' \tab 'Wikimedia'                    \tab 'Thunderforest.Neighbourhood'\cr
-#' 'OpenMapSurfer.ElementsAtRisk' \tab 'Stamen.TonerLabels'     \tab 'Esri.WorldImagery'        \tab 'CartoDB.DarkMatter'         \tab 'Thunderforest'                \tab                         
+#' Full list of additional providers:  
+#' \tabular{lll}{
+#' 'OpenStreetMap' (or 'osm')                 \tab	'Stamen' (or 'stamenbw')	                  \tab  'Esri' \cr
+#' 'OpenStreetMap.DE'                         \tab	'Stamen.Toner'                            	\tab  'Esri.WorldStreetMap'\cr
+#' 'OpenStreetMap.France'                     \tab	'Stamen.TonerBackground'                    \tab  'Esri.DeLorme'\cr
+#' 'OpenStreetMap.HOT' (or 'hotstyle')        \tab	'Stamen.TonerHybrid'                        \tab  'Esri.WorldTopoMap'\cr
+#'                                            \tab  'Stamen.TonerLines'                         \tab  'Esri.WorldImagery'\cr
+#' 'OpenMapSurfer'                            \tab  'Stamen.TonerLabels'                        \tab  'Esri.WorldTerrain'\cr
+#' 'OpenMapSurfer.Roads'                      \tab  'Stamen.TonerLite'                          \tab  'Esri.WorldShadedRelief'\cr
+#' 'OpenMapSurfer.Hybrid'                     \tab  'Stamen.Watercolor' (or 'stamenwatercolor') \tab  'Esri.OceanBasemap'\cr
+#' 'OpenMapSurfer.AdminBounds'                \tab  'Stamen.Terrain'                            \tab  'Esri.NatGeoWorldMap'\cr
+#' 'OpenMapSurfer.ElementsAtRisk'             \tab  'Stamen.TerrainBackground'                  \tab  'Esri.WorldGrayCanvas'\cr
+#'                                            \tab  'Stamen.TerrainLabels'                      \tab \cr
+#' 'CartoDB'                                  \tab                                              \tab  'Hydda'\cr
+#' 'CartoDB.Positron' (or 'cartolight')       \tab  'Thunderforest'                             \tab  'Hydda.Full'\cr 
+#' 'CartoDB.PositronNoLabels'                 \tab  'Thunderforest.OpenCycleMap'                \tab  'Hydda.Base'\cr
+#' 'CartoDB.PositronOnlyLabels'               \tab  'Thunderforest.Transport'                   \tab  'Hydda.RoadsAndLabels'\cr
+#' 'CartoDB.DarkMatter' (or 'cartodark')      \tab  'Thunderforest.TransportDark'               \tab \cr 
+#' 'CartoDB.DarkMatterNoLabels'               \tab  'Thunderforest.SpinalMap'                   \tab  'HikeBike' (or 'hikebike')\cr
+#' 'CartoDB.DarkMatterOnlyLabels'             \tab  'Thunderforest.Landscape'                   \tab  'HikeBike.HikeBike'\cr
+#' 'CartoDB.Voyager'                          \tab  'Thunderforest.Outdoors'                    \tab \cr
+#' 'CartoDB.VoyagerNoLabels'                  \tab  'Thunderforest.Pioneer'                     \tab  'OpenTopoMap' (or 'opentopomap') \cr
+#' 'CartoDB.VoyagerOnlyLabels'                \tab  'Thunderforest.MobileAtlas'                 \tab  'Wikimedia'\cr
+#' 'CartoDB.VoyagerLabelsUnder'               \tab  'Thunderforest.Neighbourhood'               \tab  'OpenStreetMap.MapnikBW' (or 'osmgrayscale')\cr
 #' }
 #' @references \url{https://leaflet-extras.github.io/leaflet-providers/preview/}
 #' @export
@@ -52,9 +62,9 @@
 #' # Download esri tiles
 #' typeosm <-  list(
 #'   src = 'esri',
-#'   q = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.jpg',
+#'   q = 'https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}.jpg',
 #'   sub = NA,
-#'   cit = 'Tiles; Esri; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+#'   cit = 'Tiles; Esri; Copyright: 2012 DeLorme'
 #' )
 #' mtqESRI <- getTiles(x = mtq, type = typeosm, crop = TRUE, verbose = T, zoom = 10)
 #' # Plot the tiles
@@ -62,7 +72,7 @@
 #' txt <- typeosm$cit
 #' mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 #' }
-getTiles <- function(x, spdf, type = "osm", zoom = NULL, crop = FALSE, 
+getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE, 
                      verbose = FALSE, apikey=NA){
   # deprecated check
   if(!missing(spdf)){
@@ -203,59 +213,20 @@ get_param <- function(type) {
   } else{
     param <- switch(
       type,
-      osm = list(
-        src = "osm",
-        q = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        sub = c("a", "b", "c"),
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright."
-      ),
-      hotstyle = list(
-        src = "hotstyle",
-        q = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-        sub = c("a", "b"),
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Humanitarian OpenStreetMap Team, under CC0, www.hotosm.org."
-      ),
-      hikebike = list(
-        src = "hikebike",
-        q = "https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png",
-        sub = NA,
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC0, hikebikemap.net."
-      ),
-      osmgrayscale = list(
+      osm              = get_param('OpenStreetMap'),
+      hotstyle         = get_param('OpenStreetMap.HOT'),
+      hikebike         = get_param('HikeBike'),
+      osmgrayscale     = get_param('OpenStreetMap.MapnikBW'),
+      stamenbw         = get_param('Stamen'),
+      stamenwatercolor = get_param('Stamen.Watercolor'),
+      cartodark        = get_param('CartoDB.DarkMatter'),
+      cartolight       = get_param('CartoDB.Positron'),
+      opentopomap      = get_param('OpenTopoMap'),
+      OpenStreetMap.MapnikBW = list(
         src = "osmgrayscale",
         q = "https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" ,
         sub = NA,
         cit = "\u00A9 OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright."
-      ),
-      stamenbw = list(
-        src = "stamenbw",
-        q = "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
-        sub = c("a", "b", "c", "d"),
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com."
-      ),
-      stamenwatercolor =  list(
-        src = "stamenwatercolor",
-        q = "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg",
-        sub = c("a", "b", "c", "d"),
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Stamen Design, under CC BY 3.0, stamen.com."
-      ),
-      cartodark = list(
-        src = "cartodark",
-        q = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-        sub = c("a", "b", "c", "d"),
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
-      ),
-      cartolight = list(
-        src = "cartolight",
-        q = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-        sub = c("a", "b", "c", "d"),
-        cit = "\u00A9 OpenStreetMap contributors. Tiles style by Carto, under CC BY 3.0, carto.com/attribution."
-      ),
-      opentopomap = list(
-        src = "opentopomap",
-        q = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-        sub = c("a", "b", "c"),
-        cit = "\u00A9 OpenStreetMap contributors and SRTM. Tiles style by OpenTopoMap, under CC BY-SA 3.0, opentopomap.org."
       ),
       OpenStreetMap = list(
         src = "OpenStreetMap",
