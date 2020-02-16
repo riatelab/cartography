@@ -1,0 +1,207 @@
+---
+title: 'New layers on cartography'
+author: "@dieghernan"
+date: '`r Sys.Date()`'
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true 
+    toc_depth: 1
+vignette: >
+  %\VignetteIndexEntry{New layers on cartography package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+
+---
+
+  
+  
+```{r echo=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+rm(list = ls())
+knitr::knit_hooks$set(margin = function(before, options, envir){
+  if (before){
+    par(mar=c(0.1,0.1,1.3,0.1))
+  } 
+})
+```
+
+# Introduction
+
+The aim of this document is to describe the new features added to `cartography` by
+[dieghernan](https://github.com/dieghernan/), basically:
+  
+* `hatchedLayer` and `legendHatched` functions.
+* `pngLayer` and `getPngLayer` functions.
+* `wordcloudLayer`function.
+* An image can be now found on `/inst/img/`, for testing purposes.
+* All the tests passed.
+
+These functions don't handle `sp` objects on purpose, favoring `sf` instead.
+
+For an expanded vignette see [cartographyvignette](https://dieghernan.github.io/cartographyvignette/).
+
+# Hatched Map
+
+Version of typology/choropleth maps using a hatched filling. This is particularly useful for those maps that needs to be printed on black and white, as academic papers. This feature is also useful for representing overlapping dimensions on a map.
+
+```{r hatchMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_gpkg <-
+  system.file("gpkg/mtq.gpkg", package = "cartography")
+# import to an sf object
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
+
+
+#get potential and plot blank
+potential = smoothLayer(
+  x = mtq,
+  var = 'POP',
+  span = 4000,
+  beta = 2,
+  col=NA,
+  border=NA,
+  legend.pos = "n",
+  mask = mtq,
+  breaks = c(0, 20000, 50000)
+)
+
+
+# plot population
+choroLayer(
+  x = mtq,
+  var = "POP",
+  method = "geom",
+  breaks = c(0, 10000, 25000, 40000, 90000),
+  col = carto.pal("grey.pal", 4),
+  border = "grey30",
+  legend.pos = "topright",
+  legend.title.txt = "Population",
+  add = TRUE
+)
+plot(st_union(st_geometry(potential[2:3,])), 
+     border = "white", add = TRUE)
+hatchedLayer(
+  potential[3,],
+  pattern = "diamond",
+  density = 0.4,
+  col = "white",
+  add = TRUE
+)
+hatchedLayer(
+  potential[2,],
+  pattern = "left2right",
+  density=1.7,
+  col = "white",
+  add = TRUE
+)
+
+legendHatched(
+  "left",
+  title.txt = "Potential\npopulation",
+  title.cex = 0.6,
+  categ = c("50000", "20000"),
+  pattern = c("diamond", "left2right")
+)
+
+# layout
+layoutLayer(
+  title = "Population in Martinique",
+  sources = "Sources: Insee and IGN, 2018",
+  author = paste0("cartography ", packageVersion("cartography")),
+  frame = TRUE,
+  north = FALSE,
+  tabtitle = TRUE,
+  theme = "grey.pal"
+)
+
+```
+
+# png Layer
+
+This new capability effectively geotags a `.png` file, converting the image into a tile. This allows the user to create attractive visual maps by masking an image to the shape of a `POLYGON/MULTIPOLYGON`.
+
+For high-quality png maps, **it is recommended to plot your map on a `.svg` device**.
+
+```{r pngMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
+
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_gpkg <-
+  system.file("gpkg/mtq.gpkg", package = "cartography")
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
+plot(st_geometry(mtq), border=NA, bg="lightblue")
+
+dirpng = system.file("img/LogoMartinique.png", package = "cartography")
+
+#Background
+maskbg <- getPngLayer(mtq, dirpng, mask=FALSE, margin = 0.2)
+pngLayer(maskbg, add = TRUE, alpha = 50)
+
+#Mask
+mask <- getPngLayer(mtq, dirpng, margin = 0.2)
+pngLayer(mask, add = TRUE)
+
+layoutLayer(
+  title = "Logo of Martinique overlaying shape",
+  author = paste0("cartography ", packageVersion("cartography")),
+  theme = "orange.pal",
+  frame = FALSE,
+  north = FALSE,
+  tabtitle = TRUE
+)
+```
+
+# Wordcloud Layer
+
+A word cloud (or tag cloud) is a visual representation of text data. On a mapping context, this representation is useful for including several information at a glance. 
+
+Wordcloud layers fitted into a map shape provide a good trade-off between physical location, scale and labels. Size and colors of the words are also based on the frequency of the factor to be plotted, highlighting the most frequent terms over the rest.
+
+
+```{r wordcloudMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
+library(sf)
+library(cartography)
+# path to the geopackage file embedded in cartography
+path_to_gpkg <-
+  system.file("gpkg/mtq.gpkg", package = "cartography")
+mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
+#Break lines
+mtq$lab = gsub(" ", "\n", mtq$LIBGEO)
+mtq$lab = gsub("-", "\n", mtq$lab)
+plot(
+  st_union(st_geometry(mtq)),
+  col = NA,
+  border = NA
+)
+wordcloudLayer(
+  x = mtq,
+  txt = "lab",
+  freq = "POP",
+  cex.maxmin = c(2, 0.8),
+  add = TRUE,
+  rot.per = 0.25,
+  breaks = c(0,1000,5000,10000,20000,40000,90000),
+  col = carto.pal("kaki.pal", 8),
+)
+legendChoro(
+  pos = "topright",
+  title.txt = "",
+  values.rnd = 0,
+  breaks = c(0,1000,5000,10000,20000,40000,90000),
+  col = carto.pal("kaki.pal", 8),
+  nodata = FALSE,
+)
+layoutLayer(
+  title = "Population in Martinique",
+  sources = "Sources: Insee and IGN, 2018",
+  author = paste0("cartography ", packageVersion("cartography")),
+  theme = "kaki.pal",
+  frame = TRUE,
+  north = FALSE,
+  tabtitle = TRUE
+)
+```
