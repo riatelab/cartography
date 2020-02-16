@@ -43,7 +43,7 @@ fetched from various open map servers.
 \details{
 Zoom levels are described on the OpenStreetMap wiki: 
 \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
-Full list of additional providers:  
+Full list of providers:  
 \tabular{lll}{
 'OpenStreetMap' (or 'osm')                 \tab	'Stamen' (or 'stamenbw')	                  \tab  'Esri' \cr
 'OpenStreetMap.DE'                         \tab	'Stamen.Toner'                            	\tab  'Esri.WorldStreetMap'\cr
@@ -84,9 +84,14 @@ txt <- paste0("\u00A9 OpenStreetMap contributors.",
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 
 # Download esri tiles
+fullserver = paste("https://server.arcgisonline.com/ArcGIS/rest/services",
+                   "Specialty/DeLorme_World_Base_Map/MapServer",
+                   "tile/{z}/{y}/{x}.jpg",
+                   sep = "/"
+                   )
 typeosm <-  list(
   src = 'esri',
-  q = 'https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}.jpg',
+  q = fullserver,
   sub = NA,
   cit = 'Tiles; Esri; Copyright: 2012 DeLorme'
 )
