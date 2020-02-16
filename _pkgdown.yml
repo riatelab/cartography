@@ -8,6 +8,7 @@ reference:
     - ghostLayer
     - gradLinkLayer
     - gradLinkTypoLayer
+    - hatchedLayer
     - labelLayer
     - pngLayer
     - propLinkLayer

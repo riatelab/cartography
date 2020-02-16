@@ -27,6 +27,7 @@
 #' \item{Labels layer (\link{labelLayer})}
 #' \item{Smooth layer (\link{smoothLayer})}
 #' \item{png layer (\link{pngLayer})}
+#' \item{Hatched/pattern layer (\link{hatchedLayer})}
 #' }
 #' 
 #' @section Transformations:
@@ -58,7 +59,7 @@
 #' @section Legends:
 #' These functions create legends.
 #' \itemize{
-#' \item{Legends (\link{legendBarsSymbols}, \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, \link{legendPropLines}, \link{legendPropTriangles}, \link{legendSquaresSymbols}, \link{legendTypo})}
+#' \item{Legends (\link{legendBarsSymbols}, \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, \link{legendPropLines}, \link{legendPropTriangles}, \link{legendSquaresSymbols}, \link{legendTypo}, \link{legendHatched})}
 #' }
 #' 
 #' @section Classification:
