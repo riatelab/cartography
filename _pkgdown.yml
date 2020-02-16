@@ -9,6 +9,7 @@ reference:
     - gradLinkLayer
     - gradLinkTypoLayer
     - labelLayer
+    - pngLayer
     - propLinkLayer
     - propSymbolsChoroLayer
     - propSymbolsLayer
@@ -25,6 +26,7 @@ reference:
     - getLinkLayer
     - getOuterBorders
     - getPencilLayer
+    - getPngLayer
     - getTiles
   - title: "Map Layout"
     desc: These functions are dedicated to the map layout design. 

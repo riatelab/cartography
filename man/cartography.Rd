@@ -29,6 +29,7 @@ These functions build cartographic layers.
 \item{Dot density layer (\link{tilesLayer})}
 \item{Labels layer (\link{labelLayer})}
 \item{Smooth layer (\link{smoothLayer})}
+\item{png layer (\link{pngLayer})}
 }
 }
 
@@ -39,6 +40,7 @@ These functions transform or create spatial objects.
 \item{Extract polygons borders (\link{getBorders}, \link{getOuterBorders})}
 \item{Build a regular grid layer (\link{getGridLayer})}
 \item{Create a links layer from a data.frame of links (\link{getLinkLayer})}
+\item{Create a png layer (\link{getPngLayer})}
 \item{Create a pencil layer (\link{getPencilLayer})}
 \item{Get tiles from OpenStreetMap servers (\link{getTiles})}
 }
