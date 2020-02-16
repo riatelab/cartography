@@ -135,6 +135,16 @@ wordcloudLayer <- function(x,
                  labels = F)
   
   x_v1$col = (col)[x_v1$cut]
+
+  if (use.rank){
+    x_v1$freq=x_v1$cut
+    
+    x_v1$normedFreq <- x_v1$freq / max(x_v1$freq)
+    x_v1$size <- (cex.max - cex.min) * x_v1$normedFreq + cex.min
+    
+    #Sorting
+    x_v1 = x_v1[(order(-x_v1$freq)),]
+  }
   
   #Prepare plot device
   if (!add) {
