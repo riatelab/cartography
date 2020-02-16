@@ -28,6 +28,7 @@
 #' \item{Smooth layer (\link{smoothLayer})}
 #' \item{png layer (\link{pngLayer})}
 #' \item{Hatched/pattern layer (\link{hatchedLayer})}
+#' \item{Tag (or word) cloud layer (\link{wordcloudLayer})}
 #' }
 #' 
 #' @section Transformations:
