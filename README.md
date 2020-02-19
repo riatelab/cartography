@@ -6,13 +6,8 @@
 [![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
 [![status](https://tinyverse.netlify.com/badge/cartography)](https://CRAN.R-project.org/package=cartography)
 [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)
-[![minimal R version](https://img.shields.io/badge/R-%E2%89%A5%203.3.0-blue)](https://cran.r-project.org/)
-![GitHub top language](https://img.shields.io/github/languages/top/riatelab/cartography)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/riatelab/cartography)
-![CRAN/METACRAN](https://img.shields.io/cran/l/cartography)
-
-[![GitHub forks](https://img.shields.io/github/forks/riatelab/cartography?style=social)](https://github.com/riatelab/cartography/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/riatelab/cartography?style=social)](https://github.com/riatelab/cartography/stargazers)
+[![minimal R version](https://img.shields.io/badge/R-%E2%89%A5%203.3.0-brightgreen)](https://cran.r-project.org/)
+![CRAN/METACRAN](https://img.shields.io/cran/l/cartography?color=brightgreen)
 
 
 
