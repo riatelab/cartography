@@ -14,6 +14,25 @@
 #' @seealso \link{getPngLayer}
 #' @examples
 #' library(sf)
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
+#' #Local file
+#' dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
+#' mask <- getPngLayer(mtq, dirpng, crop = TRUE, margin = 0.5)
+#' par(mar=c(0,0,0,0))
+#' ghostLayer(mtq)
+#' pngLayer(mask, add = TRUE)
+#' 
+#' \dontrun{
+#' #Remote file
+#' urlpng = "https://i.imgur.com/gePiDvB.png"
+#' masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE, margin = 0.5 )
+#' #Combine
+#' par(mar=c(0,0,0,0))
+#' plot(st_geometry(mtq), col=NA, border = NA)
+#' pngLayer(mask, add = TRUE)
+#' pngLayer(masksea, add = TRUE)
+#' plot(st_geometry(mtq), border="orange", add=TRUE)
+#' }
 #' 
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 #' par(mar = c(0, 0, 0, 0))
