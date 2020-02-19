@@ -1,4 +1,4 @@
-#' @title Plot geotagged \code{*.png} files
+#' @title Plot Geotagged \code{*.png} Files
 #' @description Plot \code{*.png} over a map.
 #' @name pngLayer
 #' @param x a RasterBrick object; the \link{getPngLayer} function outputs these 
