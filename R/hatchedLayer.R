@@ -27,7 +27,7 @@
 #' par(mar=c(1,1,1,1))
 #' hatchedLayer(mtq, "dot")
 #' title("dot")
-#' plot(mtq$geom, border = NA, col="grey80")
+#' plot(st_geometry(mtq), border = NA, col="grey80")
 #' hatchedLayer(mtq, "text", txt = "Y", add=TRUE)
 #' title("text")
 #' hatchedLayer(mtq, "diamond", density = 0.5)
