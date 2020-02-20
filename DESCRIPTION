@@ -32,7 +32,9 @@ Imports:
     sf (>= 0.6-4),
     slippymath,
     sp (>= 1.2-4), 
-    stats 
+    stats,
+    utils,
+    grDevices
 Suggests: 
     SpatialPosition,
     knitr,
