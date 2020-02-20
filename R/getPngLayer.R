@@ -30,92 +30,78 @@
 #' urlpng <- "https://i.imgur.com/gePiDvB.png"
 #' masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE)
 #' }
-
-
-#' library(sf)
-#' 
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-#' 
-#' #Local file
-#' dirpng = system.file("img/LogoMartinique.png", package = "cartography")
-#' 
-#' mask <- getPngLayer(mtq, dirpng)
-#' #Remote file
-#' urlpng = "https://i.imgur.com/gePiDvB.png"
-#' 
-#' masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE)
-#' }
 #' @export
-getPngLayer <-  function(x, pngpath, align = "center", margin = 0, crop=FALSE,
-                         mask=TRUE, inverse = FALSE, dwmode = "curl", ...) {
-  if (class(x)[1] != "RasterBrick"){
-    geom=sf::st_geometry(x)
-    x <- sf::st_sf(index=1:length(geom),geometry=geom)
+getPngLayer <-  function(x, pngpath, align = "center", margin = 0, crop = FALSE,
+                         mask = TRUE, inverse = FALSE, dwmode = "curl", ...) {
+  if (class(x)[1] != "RasterBrick") {
+    geom <- sf::st_geometry(x)
+    x <- sf::st_sf(index = 1:length(geom), geometry = geom)
   }
-  crs = sf::st_crs(x)$proj4string
+  crs <- sf::st_crs(x)$proj4string
   if (file.exists(pngpath)) {
-    pngRB = raster::brick(png::readPNG(pngpath) * 255, crs = crs)
+    pngRB <- raster::brick(png::readPNG(pngpath) * 255, crs = crs)
   } else {
     # Download
-    dirfile = tempfile(fileext = ".png")
+    dirfile <- tempfile(fileext = ".png")
     if (dwmode == "base") {
       download.file(pngpath, dirfile, ...)
     } else if (dwmode == "curl") {
       curl::curl_download(pngpath, dirfile, ...)
     }
-    pngRB = raster::brick(png::readPNG(dirfile) * 255, crs = crs)
+    pngRB <- raster::brick(png::readPNG(dirfile) * 255, crs = crs)
   }
   
-  if (!align %in% c("left", "right", "center","top","bottom")) {
+  if (!align %in% c("left", "right", "center", "top", "bottom")) {
     stop("align should be 'left','right','top', 'bottom' or 'center'")
   }
   
   #Geotagging the raster
   
   #Add margin
-  extshpinit = raster::extent(x)
-  innermarg=min((extshpinit@xmax-extshpinit@xmin),(extshpinit@ymax-extshpinit@ymin))*margin
-  extshp=extshpinit+innermarg
+  extshpinit <- raster::extent(x)
+  innermarg <- min((extshpinit@xmax - extshpinit@xmin),
+                   (extshpinit@ymax - extshpinit@ymin)) * margin
+  extshp <- extshpinit + innermarg
   
   #Relation w2h
-  ratiopng = dim(pngRB)[2] / dim(pngRB)[1]
-  wfig=dim(pngRB)[2]
-  hfig=dim(pngRB)[1]
+  ratiopng <- dim(pngRB)[2] / dim(pngRB)[1]
+  wfig <- dim(pngRB)[2]
+  hfig <- dim(pngRB)[1]
   
-  ratiox=(extshp@xmax-extshp@xmin)/(extshp@ymax-extshp@ymin)
-  w = (extshp@xmax - extshp@xmin) 
-  h = (extshp@ymax - extshp@ymin) 
-  w_mp = extshp@xmin + w/2
-  h_mp = extshp@ymin + h/2
-  ev=as.double(extshp[])
-  if (ratiox>ratiopng){
-    if (align=="top"){
-      new_ext = c(ev[1],ev[2],ev[4]-w/ratiopng,ev[4])
-    } else if(align=="bottom"){
-      new_ext = c(ev[1],ev[2],ev[3],ev[3]+w/ratiopng)
+  ratiox <- (extshp@xmax - extshp@xmin) / (extshp@ymax - extshp@ymin)
+  w <- (extshp@xmax - extshp@xmin)
+  h <- (extshp@ymax - extshp@ymin)
+  w_mp <- extshp@xmin + w / 2
+  h_mp <- extshp@ymin + h / 2
+  ev <- as.double(extshp[])
+  if (ratiox > ratiopng) {
+    if (align == "top") {
+      new_ext <- c(ev[1], ev[2], ev[4] - w / ratiopng, ev[4])
+    } else if (align == "bottom") {
+      new_ext <- c(ev[1], ev[2], ev[3], ev[3] + w / ratiopng)
     } else {
-      new_ext = c(ev[1],ev[2],h_mp-0.5*w/ratiopng,h_mp+0.5*w/ratiopng)
+      new_ext <- c(ev[1], ev[2], h_mp - 0.5 * w / ratiopng, h_mp + 0.5 * w / ratiopng)
     }
   } else {
-    if (align=="left"){
-      new_ext = c(ev[1],ev[1]+h*ratiopng,ev[3],ev[4])
-    } else if (align=="right"){
-      new_ext = c(ev[2]-h*ratiopng,ev[2],ev[3],ev[4])
+    if (align == "left") {
+      new_ext <- c(ev[1], ev[1] + h * ratiopng, ev[3], ev[4])
+    } else if (align == "right") {
+      new_ext <- c(ev[2] - h * ratiopng, ev[2], ev[3], ev[4])
     } else {
-      new_ext = c(w_mp-0.5*h*ratiopng,w_mp+0.5*h*ratiopng,ev[3],ev[4])
+      new_ext <- c(w_mp - 0.5 * h * ratiopng, w_mp + 0.5 * h * ratiopng, ev[3], ev[4])
     }
   }
   raster::extent(pngRB) <- new_ext
-  fig<-pngRB
+  fig <- pngRB
   
   # Crop
-  if (crop){
-    fig=raster::crop(fig,extshpinit)
+  if (crop) {
+    fig <- raster::crop(fig, extshpinit)
   }
   
   # Mask
-  if(mask & class(x)[1] != "RasterBrick"){
-    fig = raster::mask(fig, x, inverse = inverse)
+  if (mask & class(x)[1] != "RasterBrick") {
+    fig <- raster::mask(fig, x, inverse = inverse)
   }
   
   fig
