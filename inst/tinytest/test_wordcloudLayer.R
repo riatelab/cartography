@@ -14,7 +14,7 @@ expect_silent(wordcloudLayer(mtq, txt ="LIBGEO", freq = "POP", col=carto.pal("bl
 expect_silent(wordcloudLayer(mtq, txt ="LIBGEO", freq = "POP", nclass=8,col=carto.pal("blue.pal",4)))
 expect_silent(wordcloudLayer(mtq, txt ="LIBGEO", freq = "POP", max.words = 15, col=carto.pal("blue.pal",4)))
 
-expect_silent(wordcloudLayer(mtq, txt ="LIBGEO", freq = "POP", use.rank = TRUE, nclass=5, col=c("yellow","green")))
+expect_silent(wordcloudLayer(mtq, txt ="LIBGEO", freq = "POP", use.rank = TRUE, nclass=5,cex.maxmin = c(0.8,0.2), col=c("yellow","green")))
 
 
 
@@ -36,4 +36,5 @@ mtqcent=st_sf(
 plot(st_geometry(mtq))
 expect_silent(wordcloudLayer(mtqcent, txt ="LIBGEO", freq = "POP", cex=0.3, add=TRUE))
 expect_error(wordcloudLayer(mtqcent, txt ="LIBGEO", freq = "POP", cex=0.3))
+
 

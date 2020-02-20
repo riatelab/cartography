@@ -52,11 +52,11 @@ wordcloudLayer <- function(x,
                            method = "quantile",
                            nclass = NULL) {
   set.seed(999)
-  rot.per = max(0.00001, rot.per)
+  rot.per <- max(0.00001, rot.per)
   
   
   #Check
-  geomtype = unique(sf::st_geometry_type(x))
+  geomtype <- unique(sf::st_geometry_type(x))
   if (!geomtype %in% c("POINT", "POLYGON", "MULTIPOLYGON")) {
     stop("Input should be  MULTIPOLYGON, POLYGON or POINT")
   }
@@ -67,46 +67,46 @@ wordcloudLayer <- function(x,
   }
   
   #Cleaning
-  x$text = x[[txt]]
-  x$freq = as.double(x[[freq]])
+  x$text <- x[[txt]]
+  x$freq <- as.double(x[[freq]])
   #Clean up nulls
   x <- x[!is.na(x$freq), ]
   
-  x_t1 = x[, c("text", "freq")]
+  x_t1 <- x[, c("text", "freq")]
   
   # Work with polygons
   if (geomtype %in% c("POLYGON", "MULTIPOLYGON")) {
     if (fittopol) {
-      x_t1$ratiow2h = w2hratio(x_t1)
-      x_t1$rot.per = cut(x_t1$ratiow2h,
+      x_t1$ratiow2h <- w2hratio(x_t1)
+      x_t1$rot.per <- cut(x_t1$ratiow2h,
                          breaks = c(-Inf, 0.8, 1.2, Inf),
                          labels = FALSE)
       x_t1[x_t1$rot.per == 2,]$rot.per <- rot.per
       x_t1[x_t1$rot.per == 1,]$rot.per <- 0.99
       x_t1[x_t1$rot.per == 3,]$rot.per <- 0.01
-      x_t1 = x_t1[, c("text", "freq", "rot.per")]
+      x_t1 <- x_t1[, c("text", "freq", "rot.per")]
     } else {
       x_t1$rot.per <- rot.per
     }
     geom <-
       sf::st_centroid(sf::st_geometry(x_t1), of_largest_polygon = TRUE)
-    x_t1 = sf::st_sf(sf::st_drop_geometry(x_t1), geometry = geom)
+    x_t1 <- sf::st_sf(sf::st_drop_geometry(x_t1), geometry = geom)
   } else {
     x_t1$rot.per <- rot.per
   }
   
   #Sorting
-  x_v1 = x_t1[(order(-x_t1$freq)), ]
+  x_v1 <- x_t1[(order(-x_t1$freq)), ]
   
   if (!is.null(max.words)) {
-    max.words = min(nrow(x_v1), max.words)
-    x_v1 = x_v1[1:max.words, ]
+    max.words <- min(nrow(x_v1), max.words)
+    x_v1 <- x_v1[1:max.words, ]
   }
   
   #Normalize
   
-  cex.max = max(cex.maxmin)
-  cex.min = min(cex.maxmin)
+  cex.max <- max(cex.maxmin)
+  cex.min <- min(cex.maxmin)
   
   x_v1$normedFreq <- x_v1$freq / max(x_v1$freq)
   x_v1$size <- (cex.max - cex.min) * x_v1$normedFreq + cex.min
@@ -122,54 +122,54 @@ wordcloudLayer <- function(x,
       nclass = nclass,
       method = method
     )
-  breaks = layer$distr
-  lencol = length(breaks) - 1
+  breaks <- layer$distr
+  lencol <- length(breaks) - 1
   if (is.null(col)) {
     col <- carto.pal(pal1 = "blue.pal", n1 = lencol)
   } else {
-    col = colorRampPalette(col)(lencol)
+    col <- colorRampPalette(col)(lencol)
   }
-  x_v1$cut = cut(x_v1$freq,
+  x_v1$cut <- cut(x_v1$freq,
                  breaks,
                  include.lowest = T,
                  labels = F)
   
-  x_v1$col = (col)[x_v1$cut]
+  x_v1$col <- (col)[x_v1$cut]
 
   if (use.rank){
-    x_v1$freq=x_v1$cut
+    x_v1$freq<-x_v1$cut
     
     x_v1$normedFreq <- x_v1$freq / max(x_v1$freq)
     x_v1$size <- (cex.max - cex.min) * x_v1$normedFreq + cex.min
     
     #Sorting
-    x_v1 = x_v1[(order(-x_v1$freq)),]
+    x_v1 <- x_v1[(order(-x_v1$freq)),]
   }
   
   #Prepare plot device
   if (!add) {
-    lims = sf::st_bbox(sf::st_convex_hull(sf::st_union(x_v1)))
-    tobuff = min(lims[3] - lims[1], lims[4] - lims[2]) * 0.1
-    buffer = sf::st_buffer(sf::st_as_sfc(lims), tobuff)
+    lims <- sf::st_bbox(sf::st_convex_hull(sf::st_union(x_v1)))
+    tobuff <- min(lims[3] - lims[1], lims[4] - lims[2]) * 0.1
+    buffer <- sf::st_buffer(sf::st_as_sfc(lims), tobuff)
     op <- par("mar")
     
     plot.new()
     plot(buffer, col = NA, border = NA)
   }
   
-  limdev = par()$usr
-  xlim = limdev[1:2]
-  ylim = limdev[3:4]
+  limdev <- par()$usr
+  xlim <- limdev[1:2]
+  ylim <- limdev[3:4]
   
-  x = sf::st_coordinates(x_v1)[, 1]
-  y = sf::st_coordinates(x_v1)[, 2]
+  x <- sf::st_coordinates(x_v1)[, 1]
+  y <- sf::st_coordinates(x_v1)[, 2]
   words <- x_v1$text
   cex <- x_v1$size
   col <- x_v1$col
   rotation <- x_v1$rot.per
   
   
-  lay = wordcloudlayout(x,
+  lay <- wordcloudlayout(x,
                         y,
                         words,
                         cex,
@@ -219,13 +219,13 @@ wordcloudlayout <- function(x,
                             rstep = .1,
                             rot.per = 0.1) {
   if (length(rot.per) == 1) {
-    rot.per = rep(rot.per, length(x))
+    rot.per <- rep(rot.per, length(x))
   }
   tails <- "g|j|p|q|y"
   n <- length(words)
   sdx <- sd(x, na.rm = TRUE)
   sdy <- sd(y, na.rm = TRUE)
-  alt = min((xlim[2] - xlim[1]), (ylim[2] - ylim[1])) / 6
+  alt <- min((xlim[2] - xlim[1]), (ylim[2] - ylim[1])) / 6
   
   if (sdx == 0)
     sdx <- alt
@@ -236,7 +236,7 @@ wordcloudlayout <- function(x,
   
   boxes <- list()
   additional <- list()
-  radiuslim = 10
+  radiuslim <- 10
   for (i in 1:length(words)) {
     r <- 0
     theta <- runif(1, 0, 2 * pi)
@@ -251,9 +251,9 @@ wordcloudlayout <- function(x,
     if (grepl(tails, words[i]))
       ht <- ht + ht * .2
     #Fixed on horizontal
-    sizetext = c(wid, ht)
+    sizetext <- c(wid, ht)
     isOverlaped <- TRUE
-    col = "red"
+    col <- "red"
     while (isOverlaped) {
       rotWord <- runif(1) < rot.per[i]
       if (rotWord) {
@@ -302,9 +302,9 @@ wordcloudlayout <- function(x,
   colnames(graphpar) <- c("usr1", "usr2", "usr3", "usr4",
                           "mar1", "mar2", "mar3", "mar4")
   
-  result = cbind(result, pos)
-  result = cbind(result, add)
-  result = cbind(result, graphpar)
+  result <- cbind(result, pos)
+  result <- cbind(result, add)
+  result <- cbind(result, graphpar)
   
   row.names(result) <- words[add[, 3]]
   result
@@ -319,16 +319,16 @@ wordcloudlayout <- function(x,
 
 w2hratio <- function(x) {
   #Extract largest polygon
-  topol = sf::st_cast(x, "POLYGON", warn = FALSE)
+  topol <- sf::st_cast(x, "POLYGON", warn = FALSE)
   topol$area <- as.double(sf::st_area(topol))
-  maxby = data.frame(max = tapply(topol$area, topol$text, max))
-  topolmax = topol[topol$area %in% maxby$max, ]
+  maxby <- data.frame(max = tapply(topol$area, topol$text, max))
+  topolmax <- topol[topol$area %in% maxby$max, ]
   
   bboxlist <- lapply(1:nrow(topolmax), function(j)
     as.numeric(sf::st_bbox(topolmax[j, ])))
   ratiow2h <- lapply(1:length(bboxlist), function(s)
     (bboxlist[[s]][3] - bboxlist[[s]][1]) / (bboxlist[[s]][4] - bboxlist[[s]][2]))
-  ratiow2h = unlist(ratiow2h)
+  ratiow2h <- unlist(ratiow2h)
   ratiow2h
 }
 
