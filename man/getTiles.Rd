@@ -11,7 +11,9 @@ getTiles(
   zoom = NULL,
   crop = FALSE,
   verbose = FALSE,
-  apikey = NA
+  apikey = NA,
+  cachedir = FALSE,
+  forceDownload = FALSE
 )
 }
 \arguments{
@@ -32,6 +34,11 @@ FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.}
 \item{verbose}{if TRUE, tiles filepaths, zoom level and citation are displayed.}
 
 \item{apikey}{Needed for Thunderforest maps.}
+
+\item{cachedir}{name of a directory used to cache tiles. If TRUE, places a 
+'tile.cache' folder in the working directory. If FALSE, tiles are not cached.}
+
+\item{forceDownload}{if TRUE, cached tiles are downloaded again.}
 }
 \value{
 A RasterBrick is returned.
