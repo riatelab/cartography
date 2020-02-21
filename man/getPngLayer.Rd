@@ -51,18 +51,15 @@ the scale of \code{x} and the resolution setup of the graphic device. Exporting 
 recommended.
 }
 \examples{
-\dontrun{
 library(sf)
-
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-
 #Local file
-dirpng = system.file("img/LogoMartinique.png", package = "cartography")
-
+dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
 mask <- getPngLayer(mtq, dirpng)
-#Remote file
-urlpng = "https://i.imgur.com/gePiDvB.png"
 
+\dontrun{
+#Remote file
+urlpng <- "https://i.imgur.com/gePiDvB.png"
 masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE)
 }
 }

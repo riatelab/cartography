@@ -2,7 +2,7 @@
 % Please edit documentation in R/pngLayer.R
 \name{pngLayer}
 \alias{pngLayer}
-\title{Plot geotagged \code{*.png} files}
+\title{Plot Geotagged \code{*.png} Files}
 \usage{
 pngLayer(x, add = FALSE, bgalpha = 0, interpolate = TRUE, ...)
 }
@@ -25,6 +25,25 @@ the scale of \code{x} and the resolution setup of the graphic device.
 }
 \examples{
 library(sf)
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
+#Local file
+dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
+mask <- getPngLayer(mtq, dirpng, crop = TRUE, margin = 0.5)
+par(mar=c(0,0,0,0))
+ghostLayer(mtq)
+pngLayer(mask, add = TRUE)
+
+\dontrun{
+#Remote file
+urlpng = "https://i.imgur.com/gePiDvB.png"
+masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE, margin = 0.5 )
+#Combine
+par(mar=c(0,0,0,0))
+plot(st_geometry(mtq), col=NA, border = NA)
+pngLayer(mask, add = TRUE)
+pngLayer(masksea, add = TRUE)
+plot(st_geometry(mtq), border="orange", add=TRUE)
+}
 
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 par(mar = c(0, 0, 0, 0))
