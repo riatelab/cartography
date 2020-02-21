@@ -9,6 +9,7 @@
 #' "bottomright" or a vector of two coordinates (c(x, y)) are possible.
 #' @param style style of the legend, either "pretty" or "oldschool". The 
 #' "oldschool" style only uses the "size" parameter.   
+#' @param dist_unit Can be "mi" for miles, "m" for meters, or "km" for kilometers (default)
 #' @note This scale bar is not accurate on unprojected (long/lat) maps.
 #' @export
 #' @seealso \link{layoutLayer}
@@ -18,7 +19,8 @@
 #' plot(st_geometry(mtq), col = "grey60", border = "grey20")
 #' barscale(size = 5)
 #' barscale(size = 5, lwd = 2, cex = .9, pos = c(714000, 1596000))
-barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pretty"){
+barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pretty",
+  dist_unit="km"){
   # size = 10
   mapExtent <- par()$usr
   x <- mapExtent[1:2]
@@ -30,12 +32,13 @@ barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pre
     size <- diff(x)/10
     size <- signif(size, digits = 0)
   }else{
-    # km to m 
-    size <- size * 1000
+    # convert distance into meters based on dist_unit
+    size_text <- as.character(size)
+    size <- unit_conversion(size, dist_unit)
   }
   
   # label
-  labelscale <- paste(size / 1000, "km", sep =" ")
+  labelscale <- paste(size_text, dist_unit, sep =" ")
   
   # xy pos
   xscale <- x[2] - inset * 0.5 - size
@@ -77,6 +80,12 @@ barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pre
          })
 }
 
-
+#' Convert units
+unit_conversion <- function(size, dist_unit){
+  if(!dist_unit %in% c('km','m','mi')) stop("dist_unit must be 'km','m', or'mi'")
+  if(dist_unit=="km") size <- size * 1000
+  if(dist_unit=="mi") size <- size * 1609.344
+  return(size)
+}
 
 
