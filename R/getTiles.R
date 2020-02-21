@@ -13,6 +13,8 @@
 #' FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE. 
 #' @param verbose if TRUE, tiles filepaths, zoom level and citation are displayed. 
 #' @param apikey Needed for Thunderforest maps.
+#' @param cachedir String containing cache directory. If FALSE, tiles are not cached.
+#' @param forceDownload Re-download cached tiles?
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
@@ -73,7 +75,7 @@
 #' mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 #' }
 getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE, 
-                     verbose = FALSE, apikey=NA){
+                     verbose = FALSE, apikey=NA, cachedir=FALSE, forceDownload=FALSE){
   # deprecated check
   if(!missing(spdf)){
     warning("spdf is deprecated; use x instead.", call. = FALSE)
@@ -124,7 +126,7 @@ getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE,
   #tile_grid$ext <- substr(param$q, nchar(param$q)-2, nchar(param$q))
   
   # download images
-  images <- get_tiles(tile_grid, verbose)
+  images <- get_tiles(tile_grid, verbose, cachedir, forceDownload)
   # compose images
   rout <- compose_tile_grid(tile_grid, images)
   
@@ -145,7 +147,7 @@ getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE,
 
 
 # get the tiles according to the grid
-get_tiles <- function(tile_grid, verbose) {
+get_tiles <- function(tile_grid, verbose, cachedir, forceDownload) {
   # go through tile_grid tiles and download
   images <- apply(
     X = tile_grid$tiles,
@@ -155,7 +157,9 @@ get_tiles <- function(tile_grid, verbose) {
     ext = tile_grid$ext,
     src = tile_grid$src,
     q = tile_grid$q,
-    verbose = verbose
+    verbose = verbose,
+    cachedir = cachedir,
+    forceDownload = forceDownload
   )
   
   if (verbose) {
@@ -166,9 +170,23 @@ get_tiles <- function(tile_grid, verbose) {
 }
 
 # download tile according to parameters
-dl_t <- function(x, z, ext, src, q, verbose) {
-  outfile <- paste0(tempdir(), "/", src, "_", z, "_", x[1], "_", x[2],".", ext)
-  if (!file.exists(outfile)) {
+dl_t <- function(x, z, ext, src, q, verbose, cachedir, forceDownload) {
+  # forceDownload will overwrite any files existing in cache
+  if(!is.logical(forceDownload)) stop("forceDownload must be TRUE or FALSE")
+  # if cachedir==F, save to temporary filepath
+  if(isFALSE(cachedir)) {
+    cachedir <- tempdir()
+  } else { 
+    #create the cachedir if it doesn't exist.
+    if(!dir.exists(cachedir)) dir.create(cachedir)
+    # uses subdirectories based on src to make the directory easier for users to navigate
+    subdir <- paste0(cachedir,"/",src)
+    if(!dir.exists(subdir)) dir.create(subdir)
+    cachedir <- subdir
+  }
+  
+  outfile <- paste0(cachedir, "/", src, "_", z, "_", x[1], "_", x[2],".", ext)
+  if (!file.exists(outfile) | isTRUE(forceDownload)) {
     q <- gsub(pattern = '{s}', replacement = x[3], x = q, fixed = TRUE)
     q <- gsub(pattern = '{x}', replacement = x[1], x = q, fixed = TRUE)
     q <- gsub(pattern = '{y}', replacement = x[2], x = q, fixed = TRUE)
