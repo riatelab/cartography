@@ -13,8 +13,9 @@
 #' FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE. 
 #' @param verbose if TRUE, tiles filepaths, zoom level and citation are displayed. 
 #' @param apikey Needed for Thunderforest maps.
-#' @param cachedir String containing cache directory. If FALSE, tiles are not cached.
-#' @param forceDownload Re-download cached tiles?
+#' @param cachedir name of a directory used to cache tiles. If TRUE, tiles are 
+#' cached in the current directory. If FALSE, tiles are not cached.
+#' @param forceDownload if TRUE, cached tiles are downloaded again. 
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
 #' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
@@ -177,6 +178,8 @@ dl_t <- function(x, z, ext, src, q, verbose, cachedir, forceDownload) {
   if(isFALSE(cachedir)) {
     cachedir <- tempdir()
   } else { 
+    # if cachedir==T, place in working directory
+    if(isTRUE(cachedir)) cachedir <- paste0(getwd(),'/tile.cache')
     #create the cachedir if it doesn't exist.
     if(!dir.exists(cachedir)) dir.create(cachedir)
     # uses subdirectories based on src to make the directory easier for users to navigate
