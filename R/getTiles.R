@@ -13,8 +13,8 @@
 #' FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE. 
 #' @param verbose if TRUE, tiles filepaths, zoom level and citation are displayed. 
 #' @param apikey Needed for Thunderforest maps.
-#' @param cachedir name of a directory used to cache tiles. If TRUE, tiles are 
-#' cached in the current directory. If FALSE, tiles are not cached.
+#' @param cachedir name of a directory used to cache tiles. If TRUE, places a 
+#' 'tile.cache' folder in the working directory. If FALSE, tiles are not cached.
 #' @param forceDownload if TRUE, cached tiles are downloaded again. 
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
