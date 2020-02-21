@@ -82,13 +82,15 @@ hatchedLayer(mtq[mtq$Patts == 3, ], "left2right", col = "white",
 legendHatched(pos = "bottomleft",
               cex = 1.5,
               values.cex = 0.8,
-              title.txt = "Median Income (â‚¬)",
-              categ = c("< 14k â‚¬","14k-18k â‚¬",">18k â‚¬", "Prefecture", "Sub-prefecture","Simple municipality"),
+              title.txt = "Median Income (€)",
+              categ = c("< 14k €","14k-18k €",">18k €",
+                        "Prefecture", "Sub-prefecture",
+                        "Simple municipality"),
               patterns = c("zigzag","horizontal","left2right"),
               col = c(rep("black", 3), "grey10", "grey50", "grey80"),
               ptrn.bg = c(rep("white", 3), "grey10", "grey50", "grey80"),
               pch = 3
-)
+              )
 plot(st_geometry(st_union(mtq)), add = TRUE)
 }
 \seealso{

@@ -48,12 +48,14 @@
 #'               cex = 1.5,
 #'               values.cex = 0.8,
 #'               title.txt = "Median Income (€)",
-#'               categ = c("< 14k €","14k-18k €",">18k €", "Prefecture", "Sub-prefecture","Simple municipality"),
+#'               categ = c("< 14k €","14k-18k €",">18k €",
+#'                         "Prefecture", "Sub-prefecture",
+#'                         "Simple municipality"),
 #'               patterns = c("zigzag","horizontal","left2right"),
 #'               col = c(rep("black", 3), "grey10", "grey50", "grey80"),
 #'               ptrn.bg = c(rep("white", 3), "grey10", "grey50", "grey80"),
 #'               pch = 3
-#' )
+#'               )
 #' plot(st_geometry(st_union(mtq)), add = TRUE)
 legendHatched <- function(pos = "topleft",
                           title.txt = "Title of the legend",
