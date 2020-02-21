@@ -31,6 +31,7 @@ barscale <- function(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style="pre
   if(missing(size) || is.null(size)){
     size <- diff(x)/10
     size <- signif(size, digits = 0)
+    size_text <- as.character(size/1000)
   }else{
     # convert distance into meters based on dist_unit
     size_text <- as.character(size)
