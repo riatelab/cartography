@@ -8,7 +8,9 @@ reference:
     - ghostLayer
     - gradLinkLayer
     - gradLinkTypoLayer
+    - hatchedLayer
     - labelLayer
+    - pngLayer
     - propLinkLayer
     - propSymbolsChoroLayer
     - propSymbolsLayer
@@ -17,6 +19,7 @@ reference:
     - smoothLayer
     - tilesLayer
     - typoLayer
+    - wordcloudLayer
   - title: "Transformations"
     desc: These functions transform or create spatial objects.
     contents: 
@@ -25,6 +28,7 @@ reference:
     - getLinkLayer
     - getOuterBorders
     - getPencilLayer
+    - getPngLayer
     - getTiles
   - title: "Map Layout"
     desc: These functions are dedicated to the map layout design. 

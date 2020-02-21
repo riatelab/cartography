@@ -29,6 +29,9 @@ These functions build cartographic layers.
 \item{Dot density layer (\link{tilesLayer})}
 \item{Labels layer (\link{labelLayer})}
 \item{Smooth layer (\link{smoothLayer})}
+\item{png layer (\link{pngLayer})}
+\item{Hatched/pattern layer (\link{hatchedLayer})}
+\item{Tag (or word) cloud layer (\link{wordcloudLayer})}
 }
 }
 
@@ -39,6 +42,7 @@ These functions transform or create spatial objects.
 \item{Extract polygons borders (\link{getBorders}, \link{getOuterBorders})}
 \item{Build a regular grid layer (\link{getGridLayer})}
 \item{Create a links layer from a data.frame of links (\link{getLinkLayer})}
+\item{Create a png layer (\link{getPngLayer})}
 \item{Create a pencil layer (\link{getPencilLayer})}
 \item{Get tiles from OpenStreetMap servers (\link{getTiles})}
 }
@@ -67,7 +71,7 @@ Use these function to build custom color palettes.
 
 These functions create legends.
 \itemize{
-\item{Legends (\link{legendBarsSymbols}, \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, \link{legendPropLines}, \link{legendPropTriangles}, \link{legendSquaresSymbols}, \link{legendTypo})}
+\item{Legends (\link{legendBarsSymbols}, \link{legendChoro}, \link{legendCirclesSymbols}, \link{legendGradLines}, \link{legendPropLines}, \link{legendPropTriangles}, \link{legendSquaresSymbols}, \link{legendTypo}, \link{legendHatched})}
 }
 }
 
