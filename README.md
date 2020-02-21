@@ -4,8 +4,10 @@
 [![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
 [![Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
 [![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
-[![status](https://tinyverse.netlify.com/badge/cartography)](https://CRAN.R-project.org/package=cartography)
-[![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)  
+[![status](https://tinyverse.netlify.com/badge/cartography)](https://tinyverse.netlify.com/)
+[![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)
+[![minimal R version](https://img.shields.io/badge/R-%E2%89%A5%203.3.0-brightgreen)](https://cran.r-project.org/)
+![CRAN/METACRAN](https://img.shields.io/cran/l/cartography?color=brightgreen)
 
 
 
@@ -107,7 +109,6 @@ install.packages("cartography")
 ## Community Guidelines
 
 One can contribute to the package through [pull requests](https://github.com/riatelab/cartography/pulls) and report issues or ask questions [here](https://github.com/riatelab/cartography/issues).
-
 
 
 
