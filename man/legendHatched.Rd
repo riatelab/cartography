@@ -60,40 +60,35 @@ Parameters would honour the order of the \code{categ} variable.
 }
 \examples{
 library(sf)
-mtq <-  st_read(system.file("shape/martinique.shp", 
-                            package = "cartography"), 
+mtq <-  st_read(system.file("gpkg/mtq.gpkg",
+                            package = "cartography"),
                 stringsAsFactors = FALSE)
 
-mtq$shareCS1 <- 100 * mtq$C13_CS1 / mtq$C13_POP
-ord=unique(mtq$STATUT)
+breaksMED<-getBreaks(mtq$MED, nclass=3)
+ord=unique(mtq$STATUS)
 ord<-ord[c(2,3,1)]
-typoLayer(mtq,  var = "STATUT",  legend.pos = "n",
+typoLayer(mtq,  var = "STATUS",  legend.pos = "n",
           legend.values.order = ord,
           col = c("grey10", "grey50", "grey80"),border = NA)
 
-mtq$Patts = cut(mtq$shareCS1, seq(0, max(mtq$shareCS1) + 2, 2))
-mtq$Patts = gsub(",", "\%,", mtq$Patts)
-mtq$Patts = gsub("]", "\%]", mtq$Patts)
-patcat = sort(unique(mtq$Patts))
-
-hatchedLayer( mtq[mtq$Patts == patcat[1], ],"dot",
+mtq$Patts = cut(mtq$MED,c(-Inf,14000,18000,Inf), labels=FALSE)
+hatchedLayer( mtq[mtq$Patts == 1,],"zigzag",
               density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
-hatchedLayer(mtq[mtq$Patts == patcat[2], ],"horizontal",
-             density = 4, col = "black", add = TRUE)
-hatchedLayer(mtq[mtq$Patts == patcat[3], ], "left2right", col = "black",
-             add = TRUE)
+hatchedLayer(mtq[mtq$Patts == 2, ],"horizontal",
+             density = 4, col = "white", add = TRUE)
+hatchedLayer(mtq[mtq$Patts == 3, ], "left2right", col = "white",
+             add = TRUE, density = 1.5)
 
 legendHatched(pos = "bottomleft",
               cex = 1.5,
               values.cex = 0.8,
-              title.txt = "Share of \nthe population\nworking in\nagriculture (\%)",
-              categ = c(patcat, "Prefecture", "Sub-prefecture","Simple municipality"),
-              patterns = c("dot","horizontal","left2right"),
+              title.txt = "Median Income (â‚¬)",
+              categ = c("< 14k â‚¬","14k-18k â‚¬",">18k â‚¬", "Prefecture", "Sub-prefecture","Simple municipality"),
+              patterns = c("zigzag","horizontal","left2right"),
               col = c(rep("black", 3), "grey10", "grey50", "grey80"),
               ptrn.bg = c(rep("white", 3), "grey10", "grey50", "grey80"),
               pch = 3
 )
-
 plot(st_geometry(st_union(mtq)), add = TRUE)
 }
 \seealso{

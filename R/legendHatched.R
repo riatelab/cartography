@@ -25,42 +25,36 @@
 #' @export
 #' @examples 
 #' library(sf)
-#' mtq <-  st_read(system.file("shape/martinique.shp", 
-#'                             package = "cartography"), 
+#' mtq <-  st_read(system.file("gpkg/mtq.gpkg",
+#'                             package = "cartography"),
 #'                 stringsAsFactors = FALSE)
 #' 
-#' mtq$shareCS1 <- 100 * mtq$C13_CS1 / mtq$C13_POP
-#' ord=unique(mtq$STATUT)
+#' breaksMED<-getBreaks(mtq$MED, nclass=3)
+#' ord=unique(mtq$STATUS)
 #' ord<-ord[c(2,3,1)]
-#' typoLayer(mtq,  var = "STATUT",  legend.pos = "n",
+#' typoLayer(mtq,  var = "STATUS",  legend.pos = "n",
 #'           legend.values.order = ord,
 #'           col = c("grey10", "grey50", "grey80"),border = NA)
 #' 
-#' mtq$Patts = cut(mtq$shareCS1, seq(0, max(mtq$shareCS1) + 2, 2))
-#' mtq$Patts = gsub(",", "%,", mtq$Patts)
-#' mtq$Patts = gsub("]", "%]", mtq$Patts)
-#' patcat = sort(unique(mtq$Patts))
-#' 
-#' hatchedLayer( mtq[mtq$Patts == patcat[1], ],"dot",
+#' mtq$Patts = cut(mtq$MED,c(-Inf,14000,18000,Inf), labels=FALSE)
+#' hatchedLayer( mtq[mtq$Patts == 1,],"zigzag",
 #'               density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
-#' hatchedLayer(mtq[mtq$Patts == patcat[2], ],"horizontal",
-#'              density = 4, col = "black", add = TRUE)
-#' hatchedLayer(mtq[mtq$Patts == patcat[3], ], "left2right", col = "black",
-#'              add = TRUE)
+#' hatchedLayer(mtq[mtq$Patts == 2, ],"horizontal",
+#'              density = 4, col = "white", add = TRUE)
+#' hatchedLayer(mtq[mtq$Patts == 3, ], "left2right", col = "white",
+#'              add = TRUE, density = 1.5)
 #' 
 #' legendHatched(pos = "bottomleft",
 #'               cex = 1.5,
 #'               values.cex = 0.8,
-#'               title.txt = "Share of \nthe population\nworking in\nagriculture (%)",
-#'               categ = c(patcat, "Prefecture", "Sub-prefecture","Simple municipality"),
-#'               patterns = c("dot","horizontal","left2right"),
+#'               title.txt = "Median Income (€)",
+#'               categ = c("< 14k €","14k-18k €",">18k €", "Prefecture", "Sub-prefecture","Simple municipality"),
+#'               patterns = c("zigzag","horizontal","left2right"),
 #'               col = c(rep("black", 3), "grey10", "grey50", "grey80"),
 #'               ptrn.bg = c(rep("white", 3), "grey10", "grey50", "grey80"),
 #'               pch = 3
 #' )
-#' 
 #' plot(st_geometry(st_union(mtq)), add = TRUE)
-
 legendHatched <- function(pos = "topleft",
                           title.txt = "Title of the legend",
                           title.cex = 0.8,
@@ -75,8 +69,8 @@ legendHatched <- function(pos = "topleft",
                           frame = FALSE,
                           ...) {
   # Basic controls #
-  todot = c("dot", "text")
-  tolines = c("diamond","grid","hexagon",
+  todot <- c("dot", "text")
+  tolines <- c("diamond","grid","hexagon",
               "horizontal", "vertical","zigzag",
               "left2right","right2left","circle")
   
@@ -84,80 +78,86 @@ legendHatched <- function(pos = "topleft",
   
   # Store defaults #
   # Goal is to create a df with all the graphical params to be applied
-  dots = list(...) #additional params
-  ncat = length(categ)
-  params = data.frame(categ = categ,
+  dots <- list(...) #additional params
+  ncat <- length(categ)
+  params <- data.frame(categ = categ,
                       stringsAsFactors = F
   )
-  params$pattern = rep(patterns, ncat)[1:ncat]
-  params$legendfill = rep(ptrn.bg, ncat)[1:ncat]
-  col = ifelse(rep(is.null(dots$col), ncat),
+  params$pattern <- rep(patterns, ncat)[1:ncat]
+  params$legendfill <- rep(ptrn.bg, ncat)[1:ncat]
+  col <- ifelse(rep(is.null(dots$col), ncat),
                par()$col,
                dots$col)
   
-  params$col = col
-  rm(patterns, ptrn.bg, col)
+  params$col <- col
+  density <- ifelse(rep(is.null(dots$density), ncat),
+               1,
+               dots$density)
+  
+  params$density <- density
+  rm(patterns, ptrn.bg, density)
+  params[,c(1,2)]
   
   # params forLines
-  nlines = nrow(params[params$pattern %in% tolines,])
-  ltydef = ifelse(is.null(dots$lty), par()$lty, NA)
+  nlines <- nrow(params[params$pattern %in% tolines,])
+  ltydef <- ifelse(is.null(dots$lty), par()$lty, NA)
   if (!is.na(ltydef)) {
-    ltytext = c("blank","solid",
+    ltytext <- c("blank","solid",
                 "dashed","dotted",
                 "dotdash","longdash",
                 "twodash")
     ltytopar <- match(ltydef, ltytext) - 1
-    ltytopar = rep(ltytopar, nlines)[1:nlines]
+    ltytopar <- rep(ltytopar, nlines)[1:nlines]
   } else {
-    ltytopar = rep(dots$lty, nlines)[1:nlines]
+    ltytopar <- rep(dots$lty, nlines)[1:nlines]
   }
-  auxlist = rep(NA, ncat)
+  auxlist <- rep(NA, ncat)
   auxlist[params$pattern %in% tolines] <- ltytopar
-  params$line.lty = auxlist
-  lwd = ifelse(rep(is.null(dots$lwd), nlines),
+  params$line.lty <- auxlist
+  lwd <- ifelse(rep(is.null(dots$lwd), nlines),
                par()$lwd, dots$lwd
   )
   auxlist[params$pattern %in% tolines] <- lwd
-  params$line.lwd = auxlist
+  params$line.lwd <- auxlist
   rm(lwd, nlines)
   
   # params for Dots
-  ndots = nrow(params[params$pattern == "dot",])
-  pch = ifelse(rep(is.null(dots$pch), ndots),
+  ndots <- nrow(params[params$pattern == "dot",])
+  pch <- ifelse(rep(is.null(dots$pch), ndots),
                par()$pch,
                dots$pch
   )
-  auxlist = rep(NA, ncat)
+  auxlist <- rep(NA, ncat)
   auxlist[params$pattern == "dot"] <- pch
-  params$dot.pch = auxlist
+  params$dot.pch <- auxlist
   rm(pch)
   
   auxlist[params$pattern == "dot"] <- rep(dot.cex, 
                                           ndots)[1:ndots]
-  params$dot.cex.pch = auxlist
+  params$dot.cex.pch <- auxlist
   rm(dot.cex)
   
-  bg = ifelse(rep(is.null(dots$bg), ndots),
+  bg <- ifelse(rep(is.null(dots$bg), ndots),
               par()$bg,
               dots$bg)
   auxlist[params$pattern == "dot"] <- bg
-  params$dot.bg = auxlist
+  params$dot.bg <- auxlist
   rm(bg, ndots)
   
   # params for Text
-  ntxt = nrow(params[params$pattern == "text", ])
-  ptrn.text = rep(ptrn.text, ntxt)[1:ntxt]
-  auxlist = rep(NA, ncat)
+  ntxt <- nrow(params[params$pattern == "text", ])
+  ptrn.text <- rep(ptrn.text, ntxt)[1:ntxt]
+  auxlist <- rep(NA, ncat)
   auxlist[params$pattern == "text"] <- ptrn.text
-  params$text.value = auxlist
+  params$text.value <- auxlist
   rm(ptrn.text)
   
-  text.cex = rep(text.cex, ntxt)[1:ntxt]
+  text.cex <- rep(text.cex, ntxt)[1:ntxt]
   auxlist[params$pattern == "text"] <- text.cex
-  params$text.cex = auxlist
+  params$text.cex <- auxlist
   rm(text.cex, ntxt)
   #Reversing table 
-  params = params[nrow(params):1,]
+  params <- params[nrow(params):1,]
   # End params table
   
   # exit for none
@@ -233,13 +233,13 @@ legendHatched <- function(pos = "topleft",
     j <- i + 1
     
     # Overlay pattern
-    rect = c(xref,
+    rect <- c(xref,
              yref + i * height + i * delta2,
              xref + width,
              yref + height + i * height + i * delta2)
     
     class(rect) <- "bbox"
-    rect = sf::st_as_sfc(rect)
+    rect <- sf::st_as_sfc(rect)
     plot(
       sf::st_geometry(rect),
       col = params$legendfill[j],
@@ -249,8 +249,8 @@ legendHatched <- function(pos = "topleft",
     )
     
     if (params$pattern[j] == "text") {
-      centre = sf::st_centroid(rect) 
-      centre = sf::st_coordinates(centre)
+      centre <- sf::st_centroid(rect) 
+      centre <- sf::st_coordinates(centre)
       text(x = centre[1],
            y = centre[2],
            labels = params$text.value[j],
@@ -258,8 +258,8 @@ legendHatched <- function(pos = "topleft",
            cex = as.double(params$text.cex[j])
       )
     } else if (params$pattern[j] == "dot") {
-      fr = sf::st_make_grid(rect, 
-                            n = c(2, 2), 
+      fr <- sf::st_make_grid(rect, 
+                            n = c(2, 2)*params$density[j], 
                             what = "centers")
       plot(sf::st_geometry(fr),
            pch = as.integer(params$dot.pch[j]),
@@ -269,9 +269,10 @@ legendHatched <- function(pos = "topleft",
            add = T
       )
     } else {
-      patt = hatchedLayer(rect,
+      patt <- hatchedLayer(rect,
                           pattern = params$pattern[j],
-                          mode = "legend")
+                          mode = "legend",
+                          density = params$density[j])
       plot(sf::st_geometry(patt),
            add = T,
            col = params$col[j],

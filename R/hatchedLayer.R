@@ -50,35 +50,42 @@
 #' hatchedLayer(mtq, "circle")
 #' title("circle")
 #' @export
-hatchedLayer = function(x, pattern = "dot", density = 1, txt = "a", ...) {
+hatchedLayer <- function(x, pattern = "dot", density = 1, txt = "a", ...) {
   # Assign default options #
-  dots = list(...)
-  mode = ifelse(is.null(dots$mode), "plot", dots$mode)
-  col = ifelse(is.null(dots$col), par()$col, dots$col)
-  bg = ifelse(is.null(dots$bg), par()$bg, dots$bg)
-  pch = ifelse(is.null(dots$pch), par()$pch, dots$pch)
-  lty = ifelse(is.null(dots$lty), par()$lty, dots$lty)
-  cex = ifelse(is.null(dots$cex), par()$cex, dots$cex)
-  lwd = ifelse(is.null(dots$lwd), par()$lwd, dots$lwd)
-  add = ifelse(is.null(dots$add), F, dots$add)
+  dots <- list(...)
+  mode <- ifelse(is.null(dots$mode), "plot", dots$mode)
+  col <- ifelse(is.null(dots$col), par()$col, dots$col)
+  bg <- ifelse(is.null(dots$bg), par()$bg, dots$bg)
+  pch <- ifelse(is.null(dots$pch), par()$pch, dots$pch)
+  lty <- ifelse(is.null(dots$lty), par()$lty, dots$lty)
+  cex <- ifelse(is.null(dots$cex), par()$cex, dots$cex)
+  lwd <- ifelse(is.null(dots$lwd), par()$lwd, dots$lwd)
+  add <- ifelse(is.null(dots$add), F, dots$add)
   # End defaults #
   
-  # Crop to device when adding the layer #
-  if (mode != "legend" & add == T) {
-    devplot = par()$usr
-    devplot <- devplot[c(1, 3, 2, 4)]
-    class(devplot) <- "bbox"
-    x = sf::st_crop(sf::st_geometry(x), devplot)
-    x = sf::st_union(x)
+  
+  #Change1: Goal is to create the grid over the devplot
+  if (mode == "legend" | add == FALSE) {
+    devsfc <- sf::st_as_sfc(sf::st_bbox(x))
+  } else {
+    devsfc <- par()$usr
+    devsfc <- devsfc[c(1, 3, 2, 4)]
+    class(devsfc) <- "bbox"
+    crsdev <- sf::st_crs(x)
+    devsfc <- sf::st_as_sfc(devsfc)
+    sf::st_crs(devsfc) <- crsdev
+    x <- sf::st_crop(sf::st_geometry(x), devsfc)
+    x <- sf::st_union(x)
   }
-  # End crop #
+  
+  #End Change1
   
   # Check inputs #
   checkpatterLayer(x, mode, pattern)
   # End check
   
-  todot = c("dot", "text")
-  tolines = c(
+  todot <- c("dot", "text")
+  tolines <- c(
     "diamond",
     "grid",
     "hexagon",
@@ -93,31 +100,31 @@ hatchedLayer = function(x, pattern = "dot", density = 1, txt = "a", ...) {
   
   # Dimensions #
   # by default 10 cells on the shortest dimensions #
-  dist = min(diff(sf::st_bbox(x)[c(1, 3)]),
-             diff(sf::st_bbox(x)[c(2, 4)])) / (10 * density)
+  dist <- min(diff(sf::st_bbox(devsfc)[c(1, 3)]),
+              diff(sf::st_bbox(devsfc)[c(2, 4)])) / (10 * density)
   
   # Superseed if cellsize option provided #
-  dist = ifelse(is.null(dots$cellsize), dist, dots$cellsize)
+  dist <- ifelse(is.null(dots$cellsize), dist, dots$cellsize)
   
   # Prepare to grid #
   if (pattern %in% c("dot", "text")) {
-    ops = list(cellsize = dist ,
-               what = "corners",
-               square = F)
+    ops <- list(cellsize = dist ,
+                what = "corners",
+                square = F)
   } else {
     tops <- pattern != "hexagon"
-    ops = list(cellsize = dist ,
-               what = "polygons",
-               square = tops)
+    ops <- list(cellsize = dist ,
+                what = "polygons",
+                square = tops)
   }
   if (mode == "legend") {
-    fillgrid = sf::st_make_grid(x,
-                                n = c(3, 3),
-                                what = ops[2],
-                                square = as.logical(ops[3]))
+    fillgrid <- sf::st_make_grid(devsfc,
+                                 n = c(3, 3) * density,
+                                 what = ops[2],
+                                 square = as.logical(ops[3]))
   } else {
-    fillgrid = sf::st_make_grid(
-      x,
+    fillgrid <- sf::st_make_grid(
+      devsfc,
       cellsize = as.numeric(ops[1]),
       what = ops[2],
       square = as.logical(ops[3])
@@ -125,104 +132,106 @@ hatchedLayer = function(x, pattern = "dot", density = 1, txt = "a", ...) {
   }
   # Grid created #
   
+  
   # Create patterns #
   # 1. circle #
   if (pattern == "circle") {
-    x = sf::st_union(x)
-    centr = sf::st_centroid(sf::st_geometry(x),
-                            of_largest_polygon = T)
-    rad = min(diff(sf::st_bbox(x)[c(1, 3)]),
-              diff(sf::st_bbox(x)[c(2, 4)]))
+    x <- sf::st_union(x)
+    centr <- sf::st_centroid(sf::st_geometry(x),
+                             of_largest_polygon = T)
+    rad <- min(diff(sf::st_bbox(x)[c(1, 3)]),
+               diff(sf::st_bbox(x)[c(2, 4)]))
     # by default 21 circles would be created.
     # if cellsize provided the number of circles would be adjusted
     if (mode == "legend") {
-      ntimes = 3
+      ntimes <- as.integer(2 * density) + 1
     } else if (is.null(dots$cellsize)) {
-      ntimes = as.integer(20 * density) + 1
+      ntimes <- as.integer(20 * density) + 1
     } else {
-      ntimes = as.integer(rad / dots$cellsize) + 1
+      ntimes <- as.integer(rad / dots$cellsize) + 1
     }
-    seg = rad / ntimes
+    seg <- rad / ntimes
     # Initial circle #
-    lp = sf::st_buffer(centr, seg / 8)
-    lp = sf::st_cast(lp , "LINESTRING")
+    lp <- sf::st_buffer(centr, seg / 8)
+    lp <- sf::st_cast(lp , "LINESTRING")
     
     for (i in 1:ntimes) {
-      join = sf::st_buffer(centr, dist = seg * i)
-      join = sf::st_cast(join, "LINESTRING")
-      lp = sf::st_union(lp, join)
+      join <- sf::st_buffer(centr, dist = seg * i)
+      join <- sf::st_cast(join, "LINESTRING")
+      lp <- sf::st_union(lp, join)
     }
-    endsf =  sf::st_intersection(lp, x)
+    endsf <-  sf::st_intersection(lp, x)
   } else if (pattern %in% c("dot", "text")) {
     # 2. dot and text #
     # Buffering around the shp
-    x = sf::st_union(x)
-    d = as.double(sf::st_distance(fillgrid,
-                                  sf::st_cast(x, "MULTILINESTRING")))
-    endsf = fillgrid[d > (dist / 4)]
+    x <- sf::st_union(x)
+    d <- as.double(sf::st_distance(fillgrid,
+                                   sf::st_cast(x, "MULTILINESTRING")))
+    endsf <- fillgrid[d > (dist / 4)]
+    endsf <- endsf[sf::st_contains(sf::st_union(x) ,endsf, sparse = FALSE)]
     if (pattern == "text") {
-      endsf = sf::st_sf(txt = txt, geometry = endsf)
+      endsf <- sf::st_sf(txt = txt, geometry = endsf)
     } else {
-      endsf = sf::st_union(endsf)
+      endsf <- sf::st_union(endsf)
     }
   } else if (pattern %in% c("grid", "hexagon")) {
     # 3. grid and hexagon #
-    endsf = sf::st_cast(fillgrid, "LINESTRING")
-    endsf = sf::st_intersection(endsf, x)
-    endsf = endsf[sf::st_geometry_type(endsf)
-                  %in% c("LINESTRING", "MULTILINESTRING")]
-    endsf = sf::st_line_merge(sf::st_union(endsf))
+    endsf <- sf::st_cast(fillgrid, "LINESTRING")
+    endsf <- sf::st_intersection(endsf, x)
+    endsf <- endsf[sf::st_geometry_type(endsf)
+                   %in% c("LINESTRING", "MULTILINESTRING")]
+    endsf <- sf::st_line_merge(sf::st_union(endsf))
   } else if (!pattern %in% c("zigzag", "diamond")) {
     # 4. rest except zigzag and diamonds #
-    ex = list(
+    ex <- list(
       horizontal = c(1, 2),
       vertical = c(1, 4),
       left2right = c(2, 4),
       right2left = c(1, 3)
     )
-    endsf = lapply(1:length(fillgrid), function(j)
+    endsf <- lapply(1:length(fillgrid), function(j)
       sf::st_linestring(sf::st_coordinates(fillgrid[j])[ex[[pattern]], 1:2]))
-    endsf = sf::st_sfc(endsf, crs = sf::st_crs(x))
-    endsf = sf::st_intersection(endsf, x)
-    endsf = endsf[sf::st_geometry_type(endsf)
-                  %in% c("LINESTRING", "MULTILINESTRING")]
-    endsf = sf::st_line_merge(sf::st_union(endsf))
+    endsf <- sf::st_sfc(endsf, crs = sf::st_crs(x))
+    endsf <- sf::st_intersection(endsf, x)
+    endsf <- endsf[sf::st_geometry_type(endsf)
+                   %in% c("LINESTRING", "MULTILINESTRING")]
+    endsf <- sf::st_line_merge(sf::st_union(endsf))
   } else {
     # 5. zigzag and diamonds #
-    l2r = lapply(1:length(fillgrid), function(j)
+    l2r <- lapply(1:length(fillgrid), function(j)
       sf::st_linestring(sf::st_coordinates(fillgrid[j])[c(2, 4), 1:2]))
-    l2r = sf::st_sfc(l2r, crs = sf::st_crs(x))
-    r2l = lapply(1:length(fillgrid), function(j)
+    l2r <- sf::st_sfc(l2r, crs = sf::st_crs(x))
+    r2l <- lapply(1:length(fillgrid), function(j)
       sf::st_linestring(sf::st_coordinates(fillgrid[j])[c(1, 3), 1:2]))
-    r2l = sf::st_sfc(r2l, crs = sf::st_crs(x))
+    r2l <- sf::st_sfc(r2l, crs = sf::st_crs(x))
     
     if (pattern == "diamond") {
-      l2r = sf::st_line_merge(sf::st_union(l2r))
-      r2l = sf::st_line_merge(sf::st_union(r2l))
-      endsf = sf::st_union(l2r,
-                           r2l)
+      l2r <- sf::st_line_merge(sf::st_union(l2r))
+      r2l <- sf::st_line_merge(sf::st_union(r2l))
+      endsf <- sf::st_union(l2r,
+                            r2l)
     } else {
       if (mode == "legend") {
-        nrows = 3
-        ncols = 3
+        nrows <- 3 * density
+        ncols <- 3 * density
       } else {
-        ncols = as.integer(diff(sf::st_bbox(fillgrid)[c(1, 3)]) / (dist))
-        nrows = as.integer(length(fillgrid) / ncols)
+        ncols <- as.integer(diff(sf::st_bbox(fillgrid)[c(1, 3)]) / (dist))
+        nrows <- as.integer(length(fillgrid) / ncols)
       }
-      id_grid = seq(1, length(fillgrid))
-      row_id = cut(id_grid, nrows, labels = F)
-      col_id = id_grid - (row_id - 1) * ncols
-      l2r = l2r[col_id %in% seq(1, ncols + 1, 2)]
-      l2r = sf::st_line_merge(sf::st_union(l2r))
-      r2l = r2l[col_id %in% seq(2, ncols + 1, 2)]
-      r2l = sf::st_line_merge(sf::st_union(r2l))
-      endsf = sf::st_union(l2r,
-                           r2l)
+      id_grid <- seq(1, length(fillgrid))
+      row_id <- cut(id_grid, nrows, labels = F)
+      col_id <- id_grid - (row_id - 1) * ncols
+      l2r <- l2r[col_id %in% seq(1, ncols + 1, 2)]
+      l2r <- sf::st_line_merge(sf::st_union(l2r))
+      r2l <- r2l[col_id %in% seq(2, ncols + 1, 2)]
+      r2l <- sf::st_line_merge(sf::st_union(r2l))
+      endsf <- sf::st_union(l2r,
+                            r2l)
     }
-    endsf = sf::st_intersection(endsf, x)
-    endsf = endsf[sf::st_geometry_type(endsf)
-                  %in% c("LINESTRING", "MULTILINESTRING")]
-    endsf = sf::st_line_merge(sf::st_union(endsf))
+    endsf <- sf::st_intersection(endsf, x)
+    endsf <- endsf[sf::st_geometry_type(endsf)
+                   %in% c("LINESTRING", "MULTILINESTRING")]
+    endsf <- sf::st_line_merge(sf::st_union(endsf))
   }
   # End patterns#
   
