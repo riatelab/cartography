@@ -2,28 +2,38 @@
 % Please edit documentation in R/tilesLayer.R
 \name{tilesLayer}
 \alias{tilesLayer}
-\title{Plot Tiles from Open Map Servers}
+\alias{pngLayer}
+\title{Plot a Raster Object}
 \usage{
-tilesLayer(x, add = FALSE)
+tilesLayer(x, add = FALSE, ...)
+
+pngLayer(x, add = FALSE, ...)
 }
 \arguments{
-\item{x}{a RasterBrick object; the \link{getTiles} function outputs these 
-objects.}
+\item{x}{a RasterBrick object; \link{getPngLayer} and \link{getTiles} 
+functions output these objects.}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{...}{bgalpha, interpolate, or other arguments passed to be passed to
+\code{\link[raster:plotRGB]{plotRGB}}}
 }
 \description{
-Plot tiles from open map servers.
+Plot a raster object over a map. It can be used to plot tiles 
+from getTiles or images from getPngLayer.
 }
 \note{
-This function is a wrapper for plotRGB from the 
-raster package.
+This function is a wrapper for \code{\link[raster:plotRGB]{plotRGB}} 
+from the raster package. The accuracy of the final plot depends on the 
+quality of the \code{*.png} file, the scale of \code{x} and the resolution 
+setup of the graphic device.
 }
 \examples{
-\dontrun{
 library(sf)
-mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
+
+\dontrun{
 # Download the tiles, extent = Martinique
 mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
 # Plot the tiles
@@ -33,7 +43,29 @@ plot(st_geometry(mtq), add=TRUE)
 txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 }
+
+# Local image
+dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
+mask <- getPngLayer(mtq, dirpng, crop = TRUE, margin = 0.5)
+par(mar = c(0,0,0,0))
+ghostLayer(mtq)
+pngLayer(mask, add = TRUE)
+
+\dontrun{
+# Remote image
+urlpng = "https://i.imgur.com/gePiDvB.png"
+masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE, margin = 0.5)
+#Combine
+par(mar = c(0,0,0,0))
+ghostLayer(mtq)
+pngLayer(mask, add = TRUE)
+pngLayer(masksea, add = TRUE)
+plot(st_geometry(mtq), border="orange", add=TRUE)
+}
 }
 \seealso{
-\link{getTiles}
+\link{getPngLayer}, \link{getTiles}
+}
+\author{
+dieghernan, \url{https://github.com/dieghernan/}
 }
