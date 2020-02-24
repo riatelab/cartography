@@ -1,3 +1,22 @@
+# cartography 2.4.0
+
+
+
+## New features
+- getTiles(): possibility to use Thunderforest tiles with the apikey arg (@dieghernan)
+- getTiles(): new cachedir and forceDownload args to control tiles caching (@arthurgailes & @dieghernan)
+- getTiles(): possibility to use a custom tiles server (using a list in type arg)
+- barscale(): new parameter unit to plot the scalebar in kilometers, miles or meters (@arthurgailes) 
+- add hatchedLayer() and legendHatched() to represent hatched layers
+- add getPngLayer() and pngLayer() to import and display png images 
+- add wordcloudLayer() to display words à la wordcloud 
+
+## Minor changes
+- getTiles() gets a lot of new tiles sources (around 60) (@dieghernan) 
+- bug fix in getTiles when x!=POINT & nrow(x) == 1, see #59 (thanks to @drikkes-jue)
+- tilesLayer() is enhanced with e possibility to use args from raster::plotRGB()
+
+
 # cartography 2.3.0
 
 ## Minor changes
