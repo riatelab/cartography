@@ -39,7 +39,7 @@ waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize,
                         col,
                         border = "white", lwd = .2,
                         legend.pos = "bottomleft", 
-                        legend.title.txt = var,
+                        legend.title.txt = "legend title",
                         legend.title.cex = 0.8, 
                         legend.values.cex = 0.6,
                         legend.frame = FALSE,
@@ -117,7 +117,20 @@ waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize,
             legend.values.order = rev(var),
             add = add, lwd = lwd, 
             border = border, 
-            col = col, legend.pos = NA)
+            col = rev(col), legend.pos = NA)
+  
+
+  legendWaffle(pos = legend.pos, 
+               title.txt = legend.title.txt,
+               title.cex = legend.title.cex, 
+               values.cex = legend.values.cex,
+               categ = labels, 
+               col = col, 
+               frame = legend.frame, 
+               cell.width = cellsize,
+               cell.txt = paste0("1 cell = ", value),
+               lwd = .0, border = "white")
+  
 }
 
 
