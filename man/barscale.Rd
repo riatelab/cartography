@@ -4,11 +4,18 @@
 \alias{barscale}
 \title{Scale Bar}
 \usage{
-barscale(size, lwd = 1.5, cex = 0.6, pos = "bottomright", style = "pretty")
+barscale(
+  size,
+  lwd = 1.5,
+  cex = 0.6,
+  pos = "bottomright",
+  style = "pretty",
+  unit = "km"
+)
 }
 \arguments{
-\item{size}{size of the scale bar in kilometers. If size is not set, an 
-automatic size is used (1/10 of the map width).}
+\item{size}{size of the scale bar in units (default to km). If size is not 
+set, an automatic size is used (1/10 of the map width).}
 
 \item{lwd}{width of the scale bar.}
 
@@ -19,6 +26,9 @@ automatic size is used (1/10 of the map width).}
 
 \item{style}{style of the legend, either "pretty" or "oldschool". The 
 "oldschool" style only uses the "size" parameter.}
+
+\item{unit}{units used for the scale bar. Can be "mi" for miles, 
+"m" for meters, or "km" for kilometers (default)}
 }
 \description{
 Plot a scale bar.
