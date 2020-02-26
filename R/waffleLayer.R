@@ -3,14 +3,16 @@
 #' @description Plot a waffle layer.
 #' @param x an sf object, a simple feature collection.
 #' @param var names of the numeric variable to plot.
-#' @param value value of a single cell (variables will be rounded to be 
+#' @param cellvalue value of a single cell (variables will be rounded to be 
 #' expressed as multiple of value). See Details
+#' @param cellsize size of single cell, in map units.
+#' @param cellrnd rounding method, one of "ceiling", "floor", "round". 
+#' @param celltxt text that appears under the legend.
 #' @param labels names that will appear in the legend.
 #' @param ncols number of columns of the waffles
-#' @param cellsize size of single cell, in map units.
 #' @param col a vector of colors.
-#' @param border color of the polygons borders.
-#' @param lwd borders width.
+#' @param border color of the cells borders.
+#' @param lwd cells borders width.
 #' @param legend.pos position of the legend, one of "topleft", "top", 
 #' "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
 #' vector of two coordinates in map units (c(x, y)). If 
@@ -22,20 +24,52 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
+#' @details Values are  
 #' @export
 #' @examples
 #' library(sf)
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"),
+#'                quiet = TRUE)
+#' # number of employed persons
 #' mtq$EMP <- mtq$ACT - mtq$CHOM
-#' mtq$INACT <- mtq$POP - mtq$ACT
 #' 
-#' par(mar=c(0,0,0,0))
-#' 
-#' plot(st_geometry(mtq), col="#f2efe9", border="#b38e43", bg = "#aad3df",
+#' plot(st_geometry(mtq),
+#'      col = "#f2efe9",
+#'      border = "#b38e43",
 #'      lwd = 0.5)
-#' waffleLayer(x = mtq, var = rev(c("CHOM","EMP", "INACT")), 
-#'             value = 200, cellsize = 300, ncols = 10)
-waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize, 
+#' waffleLayer(
+#'   x = mtq,
+#'   var = c("EMP", "CHOM"),
+#'   cellvalue = 100,
+#'   cellsize = 400,
+#'   cellrnd = "ceiling",
+#'   celltxt = "1 cell represents 100 persons",
+#'   labels = c("Employed", "Unemployed"),
+#'   ncols = 6,
+#'   col = c("tomato1", "lightblue"),
+#'   border = "#f2efe9",
+#'   legend.pos = "topright",
+#'   legend.title.cex = 1,
+#'   legend.title.txt = "Active Population",
+#'   legend.values.cex = 0.8,
+#'   add = TRUE
+#' )
+#' 
+#' layoutLayer(
+#'   title = "Structure of the Active Population",
+#'   col = "tomato4",
+#'   tabtitle = TRUE,
+#'   scale = FALSE,
+#'   sources =  paste0("cartography ", packageVersion("cartography")),
+#'   author = "Sources: Insee and IGN, 2018",
+#' )
+waffleLayer <- function(x, var, 
+                        cellvalue,
+                        cellsize, 
+                        cellrnd = "ceiling", 
+                        celltxt = paste0("1 cell = ", cellvalue),
+                        labels, 
+                        ncols = 5,
                         col,
                         border = "white", lwd = .2,
                         legend.pos = "bottomleft", 
@@ -44,7 +78,19 @@ waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize,
                         legend.values.cex = 0.6,
                         legend.frame = FALSE,
                         add = FALSE){
-  x[,var] <- ceiling(x[,var,drop=TRUE] / value)
+  
+  if(!cellrnd %in% c("round", "floor", "ceiling")){
+    stop('cellrnd should be set to "round", "floor" or "ceiling"', 
+         call. = FALSE)
+  }
+  x[, var] <- switch(
+    cellrnd,
+    ceiling = ceiling(x[, var, drop = TRUE] / cellvalue),
+    round   = round(x[, var, drop = TRUE] / cellvalue, 0),
+    floor   = floor(x[, var, drop = TRUE] / cellvalue)
+  )
+  
+  x <- x[rowSums(x[,var, drop = T])>0, ]
   
   # default labels
   if(missing(labels)){
@@ -96,6 +142,7 @@ waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize,
     grid <- sf::st_make_grid(x = x, offset = c(xcenter,ycenter), 
                              cellsize = cellsize, 
                              n = c(ncols, nh), crs = mycrs)
+    
     # populate the waffle with value
     lx <- character(0)
     for (j in 1:length(var)){
@@ -119,7 +166,7 @@ waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize,
             border = border, 
             col = rev(col), legend.pos = NA)
   
-
+  
   legendWaffle(pos = legend.pos, 
                title.txt = legend.title.txt,
                title.cex = legend.title.cex, 
@@ -127,9 +174,9 @@ waffleLayer <- function(x, var, value, labels, ncols = 5, cellsize,
                categ = labels, 
                col = col, 
                frame = legend.frame, 
-               cell.width = cellsize,
-               cell.txt = paste0("1 cell = ", value),
-               lwd = .0, border = "white")
+               cell.size = cellsize,
+               cell.txt = celltxt,
+               lwd = .0, border = NA)
   
 }
 

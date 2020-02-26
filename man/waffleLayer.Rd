@@ -7,15 +7,17 @@
 waffleLayer(
   x,
   var,
-  value,
+  cellvalue,
+  cellsize,
+  cellrnd = "ceiling",
+  celltxt = paste0("1 cell = ", cellvalue),
   labels,
   ncols = 5,
-  cellsize,
   col,
   border = "white",
   lwd = 0.2,
   legend.pos = "bottomleft",
-  legend.title.txt = var,
+  legend.title.txt = "legend title",
   legend.title.cex = 0.8,
   legend.values.cex = 0.6,
   legend.frame = FALSE,
@@ -27,20 +29,24 @@ waffleLayer(
 
 \item{var}{names of the numeric variable to plot.}
 
-\item{value}{value of a single cell (variables will be rounded to be 
+\item{cellvalue}{value of a single cell (variables will be rounded to be 
 expressed as multiple of value). See Details}
+
+\item{cellsize}{size of single cell, in map units.}
+
+\item{cellrnd}{rounding method, one of "ceiling", "floor", "round".}
+
+\item{celltxt}{text that appears under the legend.}
 
 \item{labels}{names that will appear in the legend.}
 
 \item{ncols}{number of columns of the waffles}
 
-\item{cellsize}{size of single cell, in map units.}
-
 \item{col}{a vector of colors.}
 
-\item{border}{color of the polygons borders.}
+\item{border}{color of the cells borders.}
 
-\item{lwd}{borders width.}
+\item{lwd}{cells borders width.}
 
 \item{legend.pos}{position of the legend, one of "topleft", "top", 
 "topright", "right", "bottomright", "bottom", "bottomleft", "left" or a 
@@ -62,16 +68,44 @@ not (FALSE).}
 \description{
 Plot a waffle layer.
 }
+\details{
+Values are
+}
 \examples{
 library(sf)
-mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"),
+               quiet = TRUE)
+# number of employed persons
 mtq$EMP <- mtq$ACT - mtq$CHOM
-mtq$INACT <- mtq$POP - mtq$ACT
 
-par(mar=c(0,0,0,0))
-
-plot(st_geometry(mtq), col="#f2efe9", border="#b38e43", bg = "#aad3df",
+plot(st_geometry(mtq),
+     col = "#f2efe9",
+     border = "#b38e43",
      lwd = 0.5)
-waffleLayer(x = mtq, var = rev(c("CHOM","EMP", "INACT")), 
-            value = 200, cellsize = 300, ncols = 10)
+waffleLayer(
+  x = mtq,
+  var = c("EMP", "CHOM"),
+  cellvalue = 100,
+  cellsize = 400,
+  cellrnd = "ceiling",
+  celltxt = "1 cell represents 100 persons",
+  labels = c("Employed", "Unemployed"),
+  ncols = 6,
+  col = c("tomato1", "lightblue"),
+  border = "#f2efe9",
+  legend.pos = "topright",
+  legend.title.cex = 1,
+  legend.title.txt = "Active Population",
+  legend.values.cex = 0.8,
+  add = TRUE
+)
+
+layoutLayer(
+  title = "Structure of the Active Population",
+  col = "tomato4",
+  tabtitle = TRUE,
+  scale = FALSE,
+  sources =  paste0("cartography ", packageVersion("cartography")),
+  author = "Sources: Insee and IGN, 2018",
+)
 }

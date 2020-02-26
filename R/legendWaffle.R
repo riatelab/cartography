@@ -10,9 +10,11 @@
 #' @param title.cex size of the legend title.
 #' @param values.cex size of the values in the legend.
 #' @param col a vector of colors. 
+#' @param cell.size size of the cell
 #' @param cex size of the legend. 2 means two times bigger.
 #' @param cell.txt label for cell values. 
-#' @param nodata.col color of cell values.
+#' @param border color of the cells borders.
+#' @param lwd width of the cells borders
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @export
@@ -29,11 +31,13 @@ legendWaffle <- function(pos = "topleft",
                          title.txt = "Title of the legend", 
                          title.cex = 0.8,
                          values.cex = 0.6, 
-                         col, categ,
+                         categ,
                          cex = 1,
                          cell.txt = "1 cell = ...", 
-                         cell.col = "white",
-                         cell.width, border = "white", lwd = .2,
+                         col,
+                         cell.size, 
+                         border = "white", 
+                         lwd = .2,
                          frame = FALSE){
   
   categ <- (as.character(categ))
@@ -58,8 +62,8 @@ legendWaffle <- function(pos = "topleft",
   
   # variables internes
   width <- (x2 - x1) / (50/cex)
-  if(!missing(cell.width)){
-    width <- cell.width
+  if(!missing(cell.size)){
+    width <- cell.size
   }
   height <- width 
   
@@ -89,8 +93,6 @@ legendWaffle <- function(pos = "topleft",
          yref + legend_ysize + delta1 * 2, border = "black",  col="white")
   }
   
-  # rect(xref, yref, xref + width, yref + height,
-  #      col = cell.col, border = border, lwd = lwd)
   text(xref , yref + height / 2, labels = cell.txt,
        adj = c(0,0.5), cex = values.cex)
   yref <- yref + height + delta2

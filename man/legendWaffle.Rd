@@ -9,12 +9,13 @@ legendWaffle(
   title.txt = "Title of the legend",
   title.cex = 0.8,
   values.cex = 0.6,
-  col,
   categ,
   cex = 1,
-  nodata = TRUE,
-  nodata.txt = "1 cell = 10 persons",
-  nodata.col = "white",
+  cell.txt = "1 cell = ...",
+  col,
+  cell.size,
+  border = "white",
+  lwd = 0.2,
   frame = FALSE
 )
 }
@@ -30,22 +31,22 @@ legendWaffle(
 
 \item{values.cex}{size of the values in the legend.}
 
-\item{col}{a vector of colors.}
-
 \item{categ}{vector of categories.}
 
 \item{cex}{size of the legend. 2 means two times bigger.}
 
-\item{nodata}{if TRUE a "no data" box or line is plotted.}
+\item{cell.txt}{label for cell values.}
 
-\item{nodata.txt}{label for "no data" values.}
+\item{col}{a vector of colors.}
 
-\item{nodata.col}{color of "no data" values.}
+\item{cell.size}{size of the cell}
+
+\item{border}{color of the cells borders.}
+
+\item{lwd}{width of the cells borders}
 
 \item{frame}{whether to add a frame to the legend (TRUE) or 
 not (FALSE).}
-
-\item{symbol}{character; 'line' or 'box'}
 }
 \description{
 Plot legend for typology maps.
@@ -59,14 +60,4 @@ box()
 # Define labels and colors
 someLabels <- c("red color", "yellow color", "green color", "black color")
 someColors <- c("red", "yellow", "green", "black")
-
-# plot legend
-legendTypo(pos = "bottomleft", title.txt = "Title of the legend", title.cex = 0.8,
-           values.cex = 0.6, col = someColors, categ = someLabels, 
-           cex = 0.75,
-           nodata = TRUE, nodata.txt = "no data", frame = TRUE, symbol="box")
-legendTypo(pos = "topright", title.txt = "", 
-           title.cex = 1.5, cex = 1.25,
-           values.cex = 1, col = someColors, categ = someLabels, 
-           nodata = FALSE, frame = FALSE, symbol="line")
 }
