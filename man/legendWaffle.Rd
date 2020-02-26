@@ -60,4 +60,5 @@ box()
 # Define labels and colors
 someLabels <- c("red color", "yellow color", "green color", "black color")
 someColors <- c("red", "yellow", "green", "black")
+legendWaffle(categ = someLabels, col = someColors, cell.size = 750)
 }

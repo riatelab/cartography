@@ -12,7 +12,7 @@ waffleLayer(
   cellrnd = "ceiling",
   celltxt = paste0("1 cell = ", cellvalue),
   labels,
-  ncols = 5,
+  ncols,
   col,
   border = "white",
   lwd = 0.2,
