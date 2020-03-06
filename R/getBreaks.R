@@ -3,24 +3,26 @@
 #' @description A function to classify continuous variables.
 #' @param v a vector of numeric values.
 #' @param nclass a number of classes
-#' @param method a classification method; one of "sd", "equal", 
-#' "quantile", "fisher-jenks","q6", "geom", "arith", "em" or "msd" (see Details).
+#' @param method a classification method; one of "fixed", "sd", "equal", "pretty", "quantile",
+#' "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih", "q6", "geom", "arith", "em" or "msd" (see Details).
 #' @param k number of standard deviation for "msd" method (see Details)..
 #' @param middle creation of a central class for "msd" method (see Details). 
+#' @param ... further arguments of \code{\link[classInt:classIntervals]{classIntervals}}.
+#' @seealso \link[classInt:classIntervals]{classIntervals}
 #' @details 
-#' "sd", "equal", "quantile" and "fisher-jenks" are \link{classIntervals} methods.\cr\cr
-#' Jenks and Fisher-Jenks algorithms are based on the same principle and give 
-#' quite similar results but Fisher-Jenks is much faster. \cr\cr
-#' The "q6" method uses the following \link{quantile} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr\cr   
+#' "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
+#' "bclust", "fisher", "jenks" and "dpih" are \code{\link[classInt:classIntervals]{classIntervals}}
+#' methods. You may need to pass additional arguments for some of them.\cr\cr
+#' The "q6" method uses the following \code{\link[stats:quantile]{quantile}} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr\cr   
 #' The "geom" method is based on a geometric progression along the variable values.\cr\cr
 #' The "arith" method is based on an arithmetic progression along the variable values.\cr\cr
 #' The "em" method is based on nested averages computation.\cr\cr 
 #' The "msd" method is based on the mean and the standard deviation of a numeric vector. 
-#' The nclass parameter is not relevant, use k and middle instead. k indicates 
-#' the extent of each class in share of standard deviation. If middle=TRUE then 
+#' The \code{nclass} parameter is not relevant, use \code{k} and \code{middle} instead. \code{k} indicates 
+#' the extent of each class in share of standard deviation. If \code{middle=TRUE} then 
 #' the mean value is the center of a class else the mean is a break value. 
-#' @note This function is mainly a wrapper classInt::classIntervals + 
-#' arith, em, q6, geom and msd methods. 
+#' @note This function is mainly a wrapper of \code{\link[classInt:classIntervals]{classIntervals}} + 
+#' "arith", "em", "q6", "geom" and "msd" methods. 
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -40,6 +42,20 @@
 #' med <- median(var)
 #' abline(v = med, col = "blue", lwd = 3)
 #' 
+#' # Pretty breaks
+#' breaks <- getBreaks(v = var, nclass = 4, method = "pretty")
+#' hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9", axes = FALSE)
+#' rug(var)
+#' axis(1, at = breaks)
+#' axis(2)
+#' abline(v = med, col = "blue", lwd = 6)
+#' 
+#' # kmeans method
+#' breaks <- getBreaks(v = var, nclass = 4, method = "kmeans")
+#' hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9")
+#' rug(var)
+#' abline(v = med, col = "blue", lwd = 6)
+#' 
 #' # Geometric intervals
 #' breaks <- getBreaks(v = var, nclass = 8, method = "geom")
 #' hist(var, probability = TRUE, breaks = breaks, col = "#F0D9F9")
@@ -57,17 +73,16 @@
 #' @return A numeric vector of breaks
 #' @export
 getBreaks <- function(v, nclass = NULL, method = "quantile", 
-                      k = 1, middle = FALSE){
+                      k = 1, middle = FALSE, ...){
   v <- as.vector(na.omit(v))
-  classIntMethods <- c("sd", "equal", "quantile", "fisher-jenks")
+  customMethods <- c("geom", "arith", "q6", "em", "msd")
   
   if(is.null(nclass)){
     nclass <- round(1+3.3*log10(length(v)),0)
   }
-  if (method %in% classIntMethods){
-    if (method=="fisher-jenks"){method <- "fisher"}
-    intervals <- classInt::classIntervals(v,nclass,style=method)$brks
-    
+  if (!method %in% customMethods){
+    if (method=="fisher-jenks"){method <- "fisher"} # Backwards compatibility
+    intervals <- classInt::classIntervals(v,nclass,style=method, ...)$brks
   } else {
     if (method=="geom")
     {
