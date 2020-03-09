@@ -30,6 +30,8 @@ A function to classify continuous variables.
 "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
 "bclust", "fisher", "jenks" and "dpih" are \code{\link[classInt:classIntervals]{classIntervals}}
 methods. You may need to pass additional arguments for some of them.\cr\cr
+Jenks ("jenks" method) and Fisher-Jenks ("fisher" method) algorithms are based on the same principle and give 
+quite similar results but Fisher-Jenks is much faster. \cr\cr
 The "q6" method uses the following \code{\link[stats:quantile]{quantile}} probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr\cr   
 The "geom" method is based on a geometric progression along the variable values.\cr\cr
 The "arith" method is based on an arithmetic progression along the variable values.\cr\cr
