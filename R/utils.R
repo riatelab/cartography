@@ -329,8 +329,8 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
 
 
 # import stuffs
-#' @importFrom graphics image legend lines par plot.new
-#'             plot.window points polygon rect segments
+#' @importFrom graphics image legend lines par 
+#'             points polygon rect segments
 #'             strheight strwidth symbols text title 
 #'             xinch yinch
 #' @importFrom stats aggregate na.omit quantile runif sd median
