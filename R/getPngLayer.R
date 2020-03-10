@@ -107,5 +107,3 @@ getPngLayer <-  function(x, pngpath, align = "center", margin = 0, crop = FALSE,
   fig
 }
 
-#' @importFrom utils download.file
-NULL

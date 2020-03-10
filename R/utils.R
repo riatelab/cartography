@@ -332,7 +332,9 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
 #' @importFrom graphics image legend lines par plot.new
 #'             plot.window points polygon rect segments
 #'             strheight strwidth symbols text title 
-#'             xinch yinch plot
+#'             xinch yinch
 #' @importFrom stats aggregate na.omit quantile runif sd median
 #' @importFrom rgeos createSPComment
+#' @importFrom utils download.file
+#' @importFrom grDevices colorRampPalette
 NULL

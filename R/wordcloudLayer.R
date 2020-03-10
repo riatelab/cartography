@@ -331,7 +331,3 @@ w2hratio <- function(x) {
   ratiow2h <- unlist(ratiow2h)
   ratiow2h
 }
-
-
-#' @importFrom grDevices colorRampPalette
-NULL
