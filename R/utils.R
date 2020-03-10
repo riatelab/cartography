@@ -329,7 +329,7 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
 
 
 # import stuffs
-#' @importFrom graphics image legend lines par 
+#' @importFrom graphics image legend lines par plot.new plot.window
 #'             points polygon rect segments
 #'             strheight strwidth symbols text title 
 #'             xinch yinch

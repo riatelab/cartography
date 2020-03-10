@@ -1,8 +1,8 @@
 language: r
 sudo: required
 dist: xenial
-cache:
-  - packages
+#cache:
+#  - packages
 r:
   - devel
 #  - release
