@@ -3,10 +3,20 @@ sudo: required
 dist: xenial
 #cache:
 #  - packages
-r:
-  - devel
+#r:
+#  - devel
 #  - release
 #  - oldrel
+jobs:
+  include:
+  - r: devel
+  - r: release
+    cache:
+      - packages
+  - r: oldrel
+    cache:
+      - packages
+
 addons:
   apt:
     packages:
