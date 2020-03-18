@@ -4,7 +4,9 @@
 \name{nuts0.spdf}
 \alias{nuts0.spdf}
 \title{Nuts0 Regions}
-\format{SpatialPolygonsDataFrame.}
+\format{
+SpatialPolygonsDataFrame.
+}
 \source{
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }

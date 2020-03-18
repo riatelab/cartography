@@ -4,7 +4,9 @@
 \name{world.spdf}
 \alias{world.spdf}
 \title{World Background}
-\format{SpatialPolygonsDataFrame.}
+\format{
+SpatialPolygonsDataFrame.
+}
 \source{
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }

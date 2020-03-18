@@ -4,7 +4,9 @@
 \name{countries.spdf}
 \alias{countries.spdf}
 \title{Countries in the European Area}
-\format{SpatialPolygonsDataFrame.}
+\format{
+SpatialPolygonsDataFrame.
+}
 \source{
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }

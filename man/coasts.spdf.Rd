@@ -4,7 +4,9 @@
 \name{coasts.spdf}
 \alias{coasts.spdf}
 \title{Coastline of Europe}
-\format{SpatialLinesDataFrame.}
+\format{
+SpatialLinesDataFrame.
+}
 \source{
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }

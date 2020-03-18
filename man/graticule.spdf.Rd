@@ -4,7 +4,9 @@
 \name{graticule.spdf}
 \alias{graticule.spdf}
 \title{Graticule around Europe}
-\format{SpatialLines.}
+\format{
+SpatialLines.
+}
 \source{
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }

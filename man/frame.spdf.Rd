@@ -4,7 +4,9 @@
 \name{frame.spdf}
 \alias{frame.spdf}
 \title{Frame around Europe}
-\format{SpatialPolygonsDataFrame.}
+\format{
+SpatialPolygonsDataFrame.
+}
 \source{
 UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
 }
