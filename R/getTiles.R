@@ -136,6 +136,7 @@ getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE,
   # compose images
   rout <- compose_tile_grid(tile_grid, images)
   
+  
   # reproject rout
   rout <- raster::projectRaster(from = rout, crs = sf::st_crs(x)$proj4string)
   rout <- raster::clamp(rout,lower = 0, upper = 255, useValues = TRUE)
@@ -218,9 +219,11 @@ compose_tile_grid <- function (tile_grid, images){
     if (tile_grid$ext=="png"){
       img <- png::readPNG(img)*255
     }
+
     # compose brick raster
-    r_img <- raster::brick(img, crs = attr(bbox, "crs")$proj4string)
-    raster::extent(r_img) <- raster::extent(bbox[c("xmin", "xmax", "ymin", "ymax")])
+    r_img <- raster::brick(img, crs = sf::st_crs(3857)$proj4string)
+    raster::extent(r_img) <- raster::extent(bbox[c("xmin", "xmax", 
+                                                   "ymin", "ymax")])
     bricks[[i]] <- r_img
   }
   # if only one tile is needed
