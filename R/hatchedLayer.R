@@ -1,18 +1,25 @@
 #' @title Hatched Layer
 #' @name hatchedLayer
-#' @description Plot a hatched layer with several different patterns. Suitable for b/w print maps.
-#' @param x an sf object, a simple feature collection. It should be either a \code{POLYGON} or a \code{MULTIPOLYGON}.
+#' @description Plot a hatched layer with several different patterns. Suitable 
+#' for b/w print maps.
+#' @param x an sf object, a simple feature collection. It should be either a 
+#' \code{POLYGON} or a \code{MULTIPOLYGON}.
 #' @param pattern Desired pattern to use for hatching. Possible values are:
 #' \itemize{
 #'   \item Dots: \code{"dot", "text"}
-#'   \item Lines \code{"diamond","grid","hexagon","horizontal", "vertical","zigzag","left2right","right2left","circle"}
+#'   \item Lines \code{"diamond","grid","hexagon","horizontal", "vertical",
+#'   "zigzag","left2right","right2left","circle"}
 #' }
-#' @param density of the grid. By default the function uses a grid with a minimum of 10 cells on the shortest dimension of the bounding box. Additionally, 
-#' it is possible to pass a \code{\link[sf:st_make_grid]{cellsize}} value that would feed the \code{\link[sf:st_make_grid]{st_make_grid}} underlying function.
+#' @param density of the grid. By default the function uses a grid with a 
+#' minimum of 10 cells on the shortest dimension of the bounding box. 
+#' Additionally, it is possible to pass a 
+#' \code{\link[sf:st_make_grid]{cellsize}} value that would feed the 
+#' \code{\link[sf:st_make_grid]{st_make_grid}} underlying function.
 #' @param txt for the \code{"text"} pattern, that should be a character.
 #' @param ... Additional graphic parameters (see Details).
 #' @author dieghernan, \url{https://github.com/dieghernan/}
-#' @return When passing \code{mode='sfc'} an 'sf' object (either MULTLINESTRING or MULTIPOINT) is returned.
+#' @return When passing \code{mode='sfc'} an 'sf' object (either MULTLINESTRING
+#'  or MULTIPOINT) is returned.
 #' @details Possible values are:
 #' \tabular{lccccccc}{
 #' \bold{pattern}        \tab \bold{add} \tab \bold{col} \tab \bold{bg} \tab \bold{cex} \tab \bold{pch} \tab \bold{lwd} \tab \bold{lty}\cr

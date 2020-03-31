@@ -7,26 +7,33 @@
 hatchedLayer(x, pattern = "dot", density = 1, txt = "a", ...)
 }
 \arguments{
-\item{x}{an sf object, a simple feature collection. It should be either a \code{POLYGON} or a \code{MULTIPOLYGON}.}
+\item{x}{an sf object, a simple feature collection. It should be either a 
+\code{POLYGON} or a \code{MULTIPOLYGON}.}
 
 \item{pattern}{Desired pattern to use for hatching. Possible values are:
 \itemize{
   \item Dots: \code{"dot", "text"}
-  \item Lines \code{"diamond","grid","hexagon","horizontal", "vertical","zigzag","left2right","right2left","circle"}
+  \item Lines \code{"diamond","grid","hexagon","horizontal", "vertical",
+  "zigzag","left2right","right2left","circle"}
 }}
 
-\item{density}{of the grid. By default the function uses a grid with a minimum of 10 cells on the shortest dimension of the bounding box. Additionally, 
-it is possible to pass a \code{\link[sf:st_make_grid]{cellsize}} value that would feed the \code{\link[sf:st_make_grid]{st_make_grid}} underlying function.}
+\item{density}{of the grid. By default the function uses a grid with a 
+minimum of 10 cells on the shortest dimension of the bounding box. 
+Additionally, it is possible to pass a 
+\code{\link[sf:st_make_grid]{cellsize}} value that would feed the 
+\code{\link[sf:st_make_grid]{st_make_grid}} underlying function.}
 
 \item{txt}{for the \code{"text"} pattern, that should be a character.}
 
 \item{...}{Additional graphic parameters (see Details).}
 }
 \value{
-When passing \code{mode='sfc'} an 'sf' object (either MULTLINESTRING or MULTIPOINT) is returned.
+When passing \code{mode='sfc'} an 'sf' object (either MULTLINESTRING
+ or MULTIPOINT) is returned.
 }
 \description{
-Plot a hatched layer with several different patterns. Suitable for b/w print maps.
+Plot a hatched layer with several different patterns. Suitable 
+for b/w print maps.
 }
 \details{
 Possible values are:
