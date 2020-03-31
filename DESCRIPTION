@@ -7,7 +7,7 @@ Authors@R: c(
         comment = c(ORCID = "0000-0002-1932-3323")),
       person("Nicolas", "Lambert", 
         email = "nicolas.lambert@cnrs.fr", role = "aut"), 
-      person("Diego", "Hernangómez", role = "ctb"),
+      person("Diego", "Hernangómez", role = "ctb", comment = c(ORCID = "0000-0001-8457-4658")),
       person("Ian", "Fellows", role = "cph", 
         comment = "no overlap algorithm for labels, from wordcloud package"))
 Description: Create and integrate maps in your R workflow. This package helps 
