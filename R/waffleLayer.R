@@ -139,7 +139,7 @@ waffleLayer <- function(x, var,
     ycenter <- df[i, "Y"] - (nh * cellsize / 2) 
     
     # create the waffle
-    grid <- sf::st_make_grid(x = x, offset = c(xcenter,ycenter), 
+    grid <- sf::st_make_grid( offset = c(xcenter,ycenter), 
                              cellsize = cellsize, 
                              n = c(ncols, nh), crs = mycrs)
     
