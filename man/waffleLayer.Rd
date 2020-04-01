@@ -21,7 +21,7 @@ waffleLayer(
   legend.title.cex = 0.8,
   legend.values.cex = 0.6,
   legend.frame = FALSE,
-  add = FALSE
+  add = TRUE
 )
 }
 \arguments{
@@ -29,8 +29,8 @@ waffleLayer(
 
 \item{var}{names of the numeric variable to plot.}
 
-\item{cellvalue}{value of a single cell (variables will be rounded to be 
-expressed as multiple of value). See Details}
+\item{cellvalue}{value of a single cell. Original values are rounded, using
+\code{cellrnd} method, to be expressed as multiple of \code{cellvalue}.}
 
 \item{cellsize}{size of single cell, in map units.}
 
@@ -67,9 +67,6 @@ not (FALSE).}
 }
 \description{
 Plot a waffle layer.
-}
-\details{
-Values are
 }
 \examples{
 library(sf)

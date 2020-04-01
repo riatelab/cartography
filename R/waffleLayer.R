@@ -3,8 +3,8 @@
 #' @description Plot a waffle layer.
 #' @param x an sf object, a simple feature collection.
 #' @param var names of the numeric variable to plot.
-#' @param cellvalue value of a single cell (variables will be rounded to be 
-#' expressed as multiple of value). See Details
+#' @param cellvalue value of a single cell. Original values are rounded, using
+#' \code{cellrnd} method, to be expressed as multiple of \code{cellvalue}. 
 #' @param cellsize size of single cell, in map units.
 #' @param cellrnd rounding method, one of "ceiling", "floor", "round". 
 #' @param celltxt text that appears under the legend.
@@ -24,7 +24,6 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @details Values are  
 #' @export
 #' @examples
 #' library(sf)
@@ -77,7 +76,7 @@ waffleLayer <- function(x, var,
                         legend.title.cex = 0.8, 
                         legend.values.cex = 0.6,
                         legend.frame = FALSE,
-                        add = FALSE){
+                        add = TRUE){
   
   if(!cellrnd %in% c("round", "floor", "ceiling")){
     stop('cellrnd should be set to "round", "floor" or "ceiling"', 
