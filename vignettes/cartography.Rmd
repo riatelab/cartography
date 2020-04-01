@@ -17,7 +17,10 @@ vignette: >
 
 
 ```{r echo=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(collapse = TRUE, 
+                      fig.width = 4.08, 
+                      fig.height = 5, 
+                      margin = TRUE)
 
 knitr::knit_hooks$set(margin = function(before, options, envir){
   if (before){
@@ -73,7 +76,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 
 `propSymbolsLayer()` displays symbols with areas proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes. 
 
-```{r propMap, fig.height=6, fig.width=5, message=FALSE, margin=TRUE}
+```{r propMap, message=FALSE}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -83,7 +86,7 @@ mtq <- st_read(dsn = path_to_gpkg, quiet = TRUE)
 # download osm tiles
 mtq.osm <- getTiles(
   x = mtq, 
-  type = "osm", 
+  type = "OpenStreetMap", 
   zoom = 11, 
   crop = TRUE
 )
@@ -95,7 +98,7 @@ plot(st_geometry(mtq), col = NA, border = "grey", add=TRUE)
 propSymbolsLayer(
   x = mtq, 
   var = "POP", 
-  inches = 0.4, 
+  inches = 0.25, 
   col = "brown4",
   legend.pos = "topright",  
   legend.title.txt = "Total population"
@@ -117,7 +120,7 @@ In choropleth maps, areas are shaded according to the variation of a quantitativ
 `choroLayer()` displays choropleth maps . Arguments `nclass`, `method` and `breaks` allow to customize the variable classification. `getBreaks()` allow to classify outside of the function itself. Colors palettes are defined with `col` and a set of colors can be created with `carto.pal()` (see also `display.carto.all()`). 
 <!-- # http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?topicname=geometrical_interval -->
 
-```{r choroMap, fig.height=6, fig.width=5, margin=TRUE}
+```{r choroMap}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -158,7 +161,7 @@ north(pos = "topleft")
 `typoLayer()` displays a typology map of a qualitative variable. `legend.values.order` is used to set the modalities order in the legend. 
 
 
-```{r pentypoMap, fig.height=6, fig.width=5, margin=TRUE}
+```{r pentypoMap}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -205,7 +208,7 @@ north(pos = "topleft")
 
 `propSymbolsChoroLayer()` creates a map of symbols that are proportional to values of a first variable and colored to reflect the classification of a second variable. A combination of `propSymbolsLayer()` and `choroLayer()` arguments is used. 
 
-```{r propchoro, fig.height=6, fig.width=5, margin=TRUE}
+```{r propchoro, fig.width=5}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -219,7 +222,6 @@ plot(st_geometry(mtq), col="darkseagreen3", border="darkseagreen4",
 propSymbolsChoroLayer(
   x = mtq, 
   var = "POP", 
-  inches = 0.4,
   border = "grey50",
   lwd = 1,
   legend.var.pos = "topright", 
@@ -245,7 +247,7 @@ north(pos = "topleft")
 
 `propSymbolsTypoLayer()` creates a map of symbols that are proportional to values of a first variable and colored to reflect the modalities of a second qualitatice variable. A combination of `propSymbolsLayer()` and `typoLayer()` arguments is used. 
 
-```{r proptypo, fig.height=6, fig.width=5, margin=TRUE}
+```{r proptypo}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -269,7 +271,7 @@ propSymbolsTypoLayer(
   legend.var2.values.order = c("Prefecture", "Sub-prefecture", 
                                "Simple municipality"),
   col = carto.pal(pal1 = "multi.pal", n1 = 3),
-  legend.var2.pos = c(693000, 1607000), 
+  legend.var2.pos = c(692000, 1607000), 
   legend.var2.title.txt = "Administrative\nStatus"
 ) 
 # layout
@@ -285,7 +287,7 @@ north(pos = "topleft")
 
 `labelLayer()` is dedicated to the display of labels on a map. The `overlap = FALSE` argument displays non overlapping labels. 
 
-```{r labelMap, fig.height=6, fig.width=5, margin=TRUE}
+```{r labelMap}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -326,7 +328,7 @@ layoutLayer(
 `getLinkLayer()` creates a link layer from an `sf` object and a link `data.frame` (long format).   
 `gradLinkTypoLayer()` displays graduated and colored links. 
 
-```{r linkMap, fig.height=6, fig.width=5, margin=TRUE}
+```{r linkMap}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -383,7 +385,7 @@ layoutLayer(title = "Commuting to Prefectures in Martinique",
 Isopleth maps are based on the assumption that the phenomenon to be represented has a continuous distribution. These maps use a spatial interaction modeling approach which aims to compute indicators based on stock values weighted by distance. It allows a spatial representation of the phenomenon independent from the initial heterogeneity of the territorial division.  
 `smoothLayer()` heavily depends on the [`SpatialPosition`](https://CRAN.R-project.org/package=SpatialPosition) package. The function uses a marked point layer and a set of parameters (a spatial interaction function and its parameters) and displays an isopleth map layer.
 
-```{r isopleth, fig.height=6, fig.width=5, margin=TRUE}
+```{r isopleth, fig.width = 5}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -428,7 +430,7 @@ The grid-cell method is an option to overcome the arbitrariness and irregularity
 `getGridLayer()` builds a regular grid (squares or hexagons) based on a spatial object and computes data that match the grid layer. `choroLayer()` is then used to display the grid on a choropleth map.
 
 
-```{r grid, fig.height=6, fig.width=5, margin=TRUE}
+```{r grid}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
@@ -449,7 +451,7 @@ plot(st_geometry(mtq), col = NA, border = NA, bg = "#deffff")
 # Plot the population density
 choroLayer(x = mygrid, var = "POPDENS", method = "geom", nclass=5, 
            col = carto.pal(pal1 = "turquoise.pal", n1 = 5), border = "grey80", 
-           lwd = 0.5, legend.pos = "topright", add = TRUE,
+           lwd = 0.5, legend.pos = "bottomleftextra", add = TRUE,
            legend.title.txt = "Population Density\n(people per km2)") 
 layoutLayer(title = "Population Distribution in Martinique", 
             sources = "Sources: Insee and IGN, 2018",
