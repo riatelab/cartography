@@ -15,6 +15,7 @@
 - bug fix in getTiles when x!=POINT & nrow(x) == 1, see #59 (thanks to @drikkes-jue)
 - tilesLayer() is enhanced with the possibility to use args from raster::plotRGB()
 - getBreaks() is now a full wrap of classIntervals + few other methods. 
+- remove unused files martinique.shp
 
 
 

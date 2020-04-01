@@ -19,6 +19,7 @@ reference:
     - smoothLayer
     - tilesLayer
     - typoLayer
+    - waffleLayer
     - wordcloudLayer
   - title: "Transformations"
     desc: These functions transform or create spatial objects.
