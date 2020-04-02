@@ -37,25 +37,24 @@
 #'           col = c("grey10", "grey50", "grey80"),border = NA)
 #' 
 #' mtq$Patts = cut(mtq$MED,c(-Inf,14000,18000,Inf), labels=FALSE)
-#' hatchedLayer( mtq[mtq$Patts == 1,],"zigzag",
+#' hatchedLayer( mtq[mtq$Patts == 1,],"left2right",
 #'               density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
-#' hatchedLayer(mtq[mtq$Patts == 2, ],"horizontal",
+#' hatchedLayer(mtq[mtq$Patts == 2, ],"left2right",
 #'              density = 4, col = "white", add = TRUE)
 #' hatchedLayer(mtq[mtq$Patts == 3, ], "left2right", col = "white",
-#'              add = TRUE, density = 1.5)
+#'              add = TRUE, density = 6)
 #' 
 #' legendHatched(pos = "bottomleft",
 #'               cex = 1.5,
 #'               values.cex = 0.8,
-#'               title.txt = "Median Income (€)",
-#'               categ = c("< 14k €","14k-18k €",">18k €",
+#'               title.txt = "Median Income\n(in thousand of euros)",
+#'               categ = c("< 14","14 - 18",">18",
 #'                         "Prefecture", "Sub-prefecture",
 #'                         "Simple municipality"),
-#'               patterns = c("zigzag","horizontal","left2right"),
+#'               patterns = c("left2right"), density = c(1, 2, 3),
 #'               col = c(rep("black", 3), "grey10", "grey50", "grey80"),
 #'               ptrn.bg = c(rep("white", 3), "grey10", "grey50", "grey80"),
-#'               pch = 3
-#'               )
+#'               pch = 3)
 #' plot(st_geometry(st_union(mtq)), add = TRUE)
 legendHatched <- function(pos = "topleft",
                           title.txt = "Title of the legend",
