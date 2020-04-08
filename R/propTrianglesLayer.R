@@ -85,7 +85,7 @@ propTrianglesLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   sfdc <- (x2-x1)*(y2-y1)
   # sc <- sum(abs(dots[,var]),na.rm = TRUE)
   sc <- max(abs(dots[,var]),na.rm = TRUE)
-  if(add==FALSE){sp::plot(spdf)}
+  if(add==FALSE){suppressWarnings(sp::plot(spdf))}
   
   # TRIANGLE TOP
   dots$size1 <-  sqrt(dots[,var1]*k* sfdc / sc /2)
