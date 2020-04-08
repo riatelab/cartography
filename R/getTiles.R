@@ -181,11 +181,11 @@ dl_t <- function(x, z, ext, src, q, verbose, cachedir, forceDownload) {
   # forceDownload will overwrite any files existing in cache
   if(!is.logical(forceDownload)) stop("forceDownload must be TRUE or FALSE")
   # if cachedir==F, save to temporary filepath
-  if(isFALSE(cachedir)) {
+  if(cachedir == FALSE) {
     cachedir <- tempdir()
   } else { 
     # if cachedir==T, place in working directory
-    if(isTRUE(cachedir)) cachedir <- paste0(getwd(),'/tile.cache')
+    if(cachedir == TRUE) cachedir <- paste0(getwd(),'/tile.cache')
     #create the cachedir if it doesn't exist.
     if(!dir.exists(cachedir)) dir.create(cachedir)
     # uses subdirectories based on src to make the directory easier for users to navigate
