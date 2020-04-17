@@ -37,6 +37,7 @@ Imports:
     utils,
     grDevices
 Suggests: 
+    lwgeom,
     SpatialPosition,
     knitr,
     rmarkdown,
