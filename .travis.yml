@@ -11,11 +11,7 @@ jobs:
   include:
   - r: devel
   - r: release
-    cache:
-      - packages
   - r: oldrel
-    cache:
-      - packages
 
 addons:
   apt:
@@ -26,6 +22,7 @@ addons:
      - libudunits2-dev 
 warnings_are_errors: true
 r_packages:
+  - lwgeom
   - SpatialPosition
   - knitr
   - rmarkdown
