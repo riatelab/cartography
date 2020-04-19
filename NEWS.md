@@ -2,7 +2,6 @@
 
 ## Minor changes
 - mute an sp dependant warning in propTrianglesLayer (@rsbivand)
-è 
 - remove isFALSE to work with older R versions
 - bugfix in waffleLayer (@dieghernan)
 - add lwgeom to suggests to accomodate sf/lwgeom switching function, SpatialPosition. 
