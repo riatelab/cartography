@@ -25,35 +25,26 @@
 #' @export
 #' @examples 
 #' library(sf)
-#' mtq <-  st_read(system.file("gpkg/mtq.gpkg",
-#'                             package = "cartography"),
-#'                 stringsAsFactors = FALSE)
-#' 
-#' breaksMED<-getBreaks(mtq$MED, nclass=3)
-#' ord=unique(mtq$STATUS)
-#' ord<-ord[c(2,3,1)]
+#' mtq <-  st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 #' typoLayer(mtq,  var = "STATUS",  legend.pos = "n",
-#'           legend.values.order = ord,
+#'           legend.values.order = c("Prefecture","Sub-prefecture",
+#'                                   "Simple municipality"),
 #'           col = c("grey10", "grey50", "grey80"),border = NA)
-#' 
-#' mtq$Patts = cut(mtq$MED,c(-Inf,14000,18000,Inf), labels=FALSE)
-#' hatchedLayer( mtq[mtq$Patts == 1,],"left2right",
-#'               density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
+#' mtq$Patts = cut(mtq$MED,c(-Inf,15700,Inf), labels=FALSE)
+#' hatchedLayer(mtq[mtq$Patts == 1,],"left2right",
+#'              density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
 #' hatchedLayer(mtq[mtq$Patts == 2, ],"left2right",
 #'              density = 4, col = "white", add = TRUE)
-#' hatchedLayer(mtq[mtq$Patts == 3, ], "left2right", col = "white",
-#'              add = TRUE, density = 6)
-#' 
 #' legendHatched(pos = "bottomleft",
 #'               cex = 1.5,
 #'               values.cex = 0.8,
 #'               title.txt = "Median Income\n(in thousand of euros)",
-#'               categ = c("< 14","14 - 18",">18",
+#'               categ = c("11.9 - 15.7","14.7 - 21.8",
 #'                         "Prefecture", "Sub-prefecture",
 #'                         "Simple municipality"),
-#'               patterns = c("left2right"), density = c(1, 2, 3),
-#'               col = c(rep("black", 3), "grey10", "grey50", "grey80"),
-#'               ptrn.bg = c(rep("white", 3), "grey10", "grey50", "grey80"),
+#'               patterns = c("left2right"), density = c(1, 2),
+#'               col = c(rep("black", 2), "grey10", "grey50", "grey80"),
+#'               ptrn.bg = c(rep("white", 2), "grey10", "grey50", "grey80"),
 #'               pch = 3)
 #' plot(st_geometry(st_union(mtq)), add = TRUE)
 legendHatched <- function(pos = "topleft",
