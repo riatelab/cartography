@@ -2,7 +2,7 @@
 
 [![](https://www.r-pkg.org/badges/version/cartography)](https://cran.r-project.org/package=cartography)
 [![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
-[![Build Status](https://travis-ci.org/riatelab/cartography.svg?branch=master)](https://travis-ci.org/riatelab/cartography)
+[![R-CMD-check](https://github.com/riatelab/cartography/workflows/R-CMD-check/badge.svg)](https://github.com/riatelab/cartography/actions)
 [![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
 [![status](https://tinyverse.netlify.com/badge/cartography)](https://tinyverse.netlify.com/)
 [![status](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg)](http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923)
@@ -103,7 +103,7 @@ install.packages("cartography")
 ## Alternatives Packages
 * [tmap](https://github.com/mtennekes/tmap)    
 * [ggplot2](https://github.com/tidyverse/ggplot2) + [ggspatial](https://github.com/paleolimbot/ggspatial)     
-  
+* [oceanis](https://github.com/insee-psar-at/oceanis-package)  
 
 
 ## Community Guidelines
