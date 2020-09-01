@@ -76,7 +76,7 @@ Legends are displayed by default along cartographic layers but more parameters a
 
 `propSymbolsLayer()` displays symbols with areas proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes. 
 
-```{r propMap, message=FALSE}
+```{r propMap, message=FALSE, warning=FALSE}
 library(sf)
 library(cartography)
 # path to the geopackage file embedded in cartography
