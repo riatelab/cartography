@@ -1,3 +1,12 @@
+# cartography 2.4.2
+
+## Minor changes
+- switch to github cicd infrastructure
+- add a comment containing an WKT2 CRS representation to sp objects stored in nuts2006.RData
+- increase R minimal version to 3.5.0 (re-serialised RData)
+
+
+
 # cartography 2.4.1
 
 ## Minor changes
