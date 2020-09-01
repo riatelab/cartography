@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
       </span>
     </div>
 
@@ -203,12 +203,12 @@ the mean value is the center of a class else the mean is a break value.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/Rtmpe1NJW9/temp_libpathb2e69cc94c1/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY
 #&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; CRS:            32620</div><div class='input'><span class='no'>var</span> <span class='kw'>&lt;-</span> <span class='no'>mtq</span>$<span class='no'>MED</span>
+#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='no'>var</span> <span class='kw'>&lt;-</span> <span class='no'>mtq</span>$<span class='no'>MED</span>
 <span class='co'># Histogram</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>var</span>, <span class='kw'>probability</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/rug.html'>rug</a></span>(<span class='no'>var</span>)</div><div class='input'><span class='no'>moy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>var</span>)
 <span class='no'>med</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span>(<span class='no'>var</span>)
@@ -246,7 +246,7 @@ the mean value is the center of a class else the mean is a break value.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

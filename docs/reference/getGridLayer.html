@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
       </span>
     </div>
 
@@ -181,12 +181,12 @@ of the spdf data frame.  (optional)</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/Rtmpe1NJW9/temp_libpathb2e69cc94c1/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; geometry type:  MULTIPOLYGON
 #&gt; dimension:      XY
 #&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; CRS:            32620</div><div class='input'><span class='co'># Plot dentsity of population</span>
+#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Plot dentsity of population</span>
 <span class='no'>mtq</span>$<span class='no'>POPDENS</span> <span class='kw'>&lt;-</span> <span class='fl'>1e6</span> * <span class='no'>mtq</span>$<span class='no'>POP</span> / <span class='fu'><a href='https://rdrr.io/pkg/sf/man/geos_measures.html'>st_area</a></span>(<span class='no'>mtq</span>)
 <span class='no'>bks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getBreaks.html'>getBreaks</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='no'>mtq</span>$<span class='no'>POPDENS</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"geom"</span>, <span class='fl'>5</span>)
 <span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='carto.pal.html'>carto.pal</a></span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"taupe.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>5</span>)
@@ -219,7 +219,7 @@ of the spdf data frame.  (optional)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
