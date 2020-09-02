@@ -18,7 +18,7 @@
 #' @param forceDownload if TRUE, cached tiles are downloaded again. 
 #' @details 
 #' Zoom levels are described on the OpenStreetMap wiki: 
-#' \url{http://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
+#' \url{https://wiki.openstreetmap.org/wiki/Zoom_levels}. \cr\cr
 #' Full list of providers:  
 #' \tabular{lll}{
 #' 'OpenStreetMap' (or 'osm')                 \tab	'Stamen' (or 'stamenbw')	                  \tab  'Esri' \cr

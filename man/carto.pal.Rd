@@ -93,6 +93,6 @@ display.carto.all(8)
 }
 \references{
 Qualitative palettes were generated with "i want hue" 
-(\url{http://tools.medialab.sciences-po.fr/iwanthue/}) by Mathieu Jacomy at 
+(\url{https://medialab.github.io/iwanthue/}) by Mathieu Jacomy at 
 the Sciences-Po Medialab.
 }

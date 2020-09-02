@@ -16,7 +16,7 @@
 #' "turquoise.pal", "sand.pal", "taupe.pal", "kaki.pal" or "harmo.pal". \cr\cr
 #' Qualitative palettes: "pastel.pal" or "multi.pal".
 #' @references Qualitative palettes were generated with "i want hue" 
-#' (\url{http://tools.medialab.sciences-po.fr/iwanthue/}) by Mathieu Jacomy at 
+#' (\url{https://medialab.github.io/iwanthue/}) by Mathieu Jacomy at 
 #' the Sciences-Po Medialab.
 #' @return \code{carto.pal} returns a vector of colors.
 #' @examples 
