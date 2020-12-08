@@ -5,7 +5,6 @@
 ^pkgdown$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^paper$
 ^LICENSE$
 ^appveyor\.yml$
