@@ -24,7 +24,8 @@
 #' arguments bg and r can be modified to set the color and width of the halo.
 #' @param show.lines if TRUE, then lines are plotted between x,y and the word, 
 #' for those words not covering their x,y coordinate
-#' @seealso \link{layoutLayer}
+#' @seealso \link{tc_label}
+#' @keywords internal
 #' @export
 #' @examples
 #' library(sf)
@@ -40,6 +41,11 @@ labelLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, txt,
                        col = "black",
                        cex = 0.7, overlap = TRUE, show.lines = TRUE, 
                        halo = FALSE, bg = "white", r = 0.1, ...){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::labelLayer()",
+                            with = "tc_label()") 
+  
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }

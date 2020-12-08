@@ -28,7 +28,8 @@
 #' @details If extent is not set, plot.new has to be called first.\cr
 #' The size of the title box in layoutLayer is fixed to 1.2 lines height.
 #' @export 
-#' @seealso \link{labelLayer}
+#' @keywords internal
+#' @seealso \link{tc_layout}
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -50,6 +51,14 @@ layoutLayer <- function(title = "Title of the map, year",
                         frame = TRUE, north = FALSE, 
                         south = FALSE, extent = NULL, tabtitle = FALSE, 
                         postitle = "left"){
+  lifecycle::deprecate_soft(
+    when = "3.0.0", 
+    what = "cartography::layoutLayer()",
+    with = "tc_layout()", 
+    details = paste0("You can also use `tc_title()`, `tc_credits()`, ", 
+                     "`tc_arrow()` or `tc_scale()` to set layout elements ", 
+                     "individually.")
+    ) 
   # Extent
   if (!is.null(extent)){
     if(methods::is(extent, 'Spatial')){

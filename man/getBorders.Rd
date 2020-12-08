@@ -5,20 +5,18 @@
 \alias{getOuterBorders}
 \title{Extract Polygons Borders}
 \usage{
-getBorders(x, id, spdf, spdfid = NULL)
+getBorders(x, id, spdf, spdfid)
 
-getOuterBorders(x, id, res = NULL, width = NULL, spdf, spdfid = NULL)
+getOuterBorders(x, id, res = NULL, width = NULL, spdf, spdfid)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
 
 \item{id}{name of the identifier variable in x, default to the first column. (optional)}
 
-\item{spdf}{deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-has to be projected (planar coordinates).}
+\item{spdf}{defunct.}
 
-\item{spdfid}{deprecated, identifier field in spdf, default to the first column 
-of the spdf data frame.  (optional)}
+\item{spdfid}{defunct.}
 
 \item{res}{resolution of the grid used to compute outer borders (in x units).
 A high resolution will give more detailed borders. (optional)}

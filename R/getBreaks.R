@@ -8,7 +8,8 @@
 #' @param k number of standard deviation for "msd" method (see Details)..
 #' @param middle creation of a central class for "msd" method (see Details). 
 #' @param ... further arguments of \code{\link[classInt:classIntervals]{classIntervals}}.
-#' @seealso \link[classInt:classIntervals]{classIntervals}
+#' @seealso \link[classInt:classIntervals]{classIntervals} \link{tc_get_breaks}
+#' @keywords internal
 #' @details 
 #' "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
 #' "bclust", "fisher", "jenks" and "dpih" are \code{\link[classInt:classIntervals]{classIntervals}}
@@ -76,6 +77,11 @@
 #' @export
 getBreaks <- function(v, nclass = NULL, method = "quantile", 
                       k = 1, middle = FALSE, ...){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getBreaks()",
+                            with = "cartography::tc_get_breaks()")  
+  
   v <- as.vector(na.omit(v))
   customMethods <- c("geom", "arith", "q6", "em", "msd")
   

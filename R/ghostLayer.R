@@ -4,6 +4,8 @@
 #' @param x an sf object, a simple feature collection or a 
 #' Spatial*DataFrame.
 #' @param bg background color.
+#' @seealso \link{tc_init}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -17,6 +19,9 @@
 #'            bg = "grey20", col= "white")
 #' @export
 ghostLayer <- function(x, bg){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::ghostLayer()",
+                            with = "cartography::tc_init()")  
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
   }

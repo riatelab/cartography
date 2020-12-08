@@ -9,5 +9,5 @@ expect_silent(dotDensityLayer(spdf = as(mtq, "Spatial"),
                               legend.frame = FALSE))
 expect_silent(dotDensityLayer(x = mtq,  var="POP", pch=20, 
                               col = "red4", n = 500, add=F))
-suppressMessages(expect_warning(dotDensityLayer(x = mtq,  var="POP", 
+suppressMessages(expect_error(dotDensityLayer(x = mtq,  var="POP", 
                                                 iter = 5, n = 500)))

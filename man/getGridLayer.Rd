@@ -4,7 +4,7 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid = NULL)
+getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
@@ -15,10 +15,9 @@ getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid = NULL)
 
 \item{var}{name of the numeric variable(s) in x to adapt to the grid (a vector).}
 
-\item{spdf}{deprecated, a SpatialPolygonsDataFrame.}
+\item{spdf}{defunct.}
 
-\item{spdfid}{deprecated, identifier field in spdf, default to the first column 
-of the spdf data frame.  (optional)}
+\item{spdfid}{defunct.}
 }
 \value{
 A grid is returned as an sf object.
@@ -49,3 +48,7 @@ choroLayer(x = mygrid, var = "POPDENSG", breaks = bks,
            legend.title.txt = "Population density")
 par(opar)
 }
+\seealso{
+\link{tc_get_grid}
+}
+\keyword{internal}

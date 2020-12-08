@@ -33,14 +33,11 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @param breakval defunct.
-#' @param col2 defunct.
 #' @details  
 #' Two maps with the same inches and fixmax parameters will be comparable.
 #' @export 
-#' @seealso \link{legendBarsSymbols}, \link{legendCirclesSymbols}, 
-#' \link{legendSquaresSymbols}, \link{propSymbolsChoroLayer}, 
-#' \link{propSymbolsTypoLayer}
+#' @seealso \link{tc_map_p}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -69,12 +66,11 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              legend.values.rnd = 0,
                              legend.style = "c", 
                              legend.frame = FALSE,
-                             add = TRUE, 
-                             breakval = NULL, col2){
-  if(!is.null(breakval)){
-    stop("breakval and col2 are defunct arguments; last used in version 1.4.2.",
-         call. = FALSE)
-  }
+                             add = TRUE){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::propSymbolsLayer()",
+                            with = "tc_map_p()") 
+
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }

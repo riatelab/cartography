@@ -87,5 +87,6 @@ typoLayer(x = mtq, var="STATUS",
 layoutLayer(title = "Municipality Status")
 }
 \seealso{
-\link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
+\link{tc_map_t}
 }
+\keyword{internal}

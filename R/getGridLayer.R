@@ -5,9 +5,10 @@
 #' @param cellsize targeted area of the cell, in map units.
 #' @param type shape of the cell, "regular" for squares, "hexagonal" for hexagons. 
 #' @param var name of the numeric variable(s) in x to adapt to the grid (a vector).
-#' @param spdf deprecated, a SpatialPolygonsDataFrame.
-#' @param spdfid deprecated, identifier field in spdf, default to the first column 
-#' of the spdf data frame.  (optional)
+#' @param spdf defunct.
+#' @param spdfid defunct.
+#' @keywords internal
+#' @seealso \link{tc_get_grid}
 #' @return A grid is returned as an sf object.
 #' @examples
 #' library(sf)
@@ -33,23 +34,23 @@
 #' par(opar)
 #' @export
 getGridLayer <- function(x, cellsize, type = "regular", var,
-                         spdf, spdfid = NULL){
+                         spdf, spdfid){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getGridLayer()",
+                            with = "tc_get_grid()") 
   # sp check
-  if(missing(x)){
-    x <- sf::st_as_sf(spdf)
-  }
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
   }
-  if(sum(missing(spdf), is.null(spdfid)) != 2){
-    warning("spdf and spdfid are deprecated; use x instead.", call. = FALSE)
+  if(sum(missing(spdf), missing(spdfid)) != 2){
+    stop("spdf and spdfid are defunct; use x instead.", call. = FALSE)
   }
   x$area <- sf::st_area(x)
   # get a grid
   if(type %in% c("regular", "hexagonal")){
     grid <- switch(type,
-                   regular = getGridAll(x, cellsize, TRUE),
-                   hexagonal = getGridAll(x, cellsize, FALSE))
+                   regular = getGridAll_l(x, cellsize, TRUE),
+                   hexagonal = getGridAll_l(x, cellsize, FALSE))
   }else{
     stop("type should be either 'regular' or 'hexagonal'", call. = FALSE)
   }
@@ -85,7 +86,7 @@ getGridLayer <- function(x, cellsize, type = "regular", var,
   return(grid)
 }
 
-getGridAll <- function(x, cellsize, square){
+getGridAll_l <- function(x, cellsize, square){
   # cellsize transform
   if (square){
     cellsize <- sqrt(cellsize)
@@ -110,15 +111,3 @@ getGridAll <- function(x, cellsize, square){
 
 
 
-#' @title Compute Data for a Grid Layer
-#' @name getGridData
-#' @description Defunct
-#' @param x ...
-#' @param df ...
-#' @param dfid ...
-#' @param var ...
-#' @export
-#' @keywords internal
-getGridData <- function(x, df, dfid = NULL, var){
-  .Defunct(msg = "This function is defunct, use getGridLayer instead.")
-}

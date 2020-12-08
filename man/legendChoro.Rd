@@ -86,3 +86,7 @@ legendChoro(pos = "topright", title.txt = "Title of the legend", title.cex = 0.8
             nodata = TRUE, nodata.txt = "No data available", frame = TRUE,
             symbol="box")
 }
+\seealso{
+\link{tc_leg_c}
+}
+\keyword{internal}

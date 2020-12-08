@@ -86,5 +86,6 @@ layoutLayer(title = "Martinique",
             theme = "sand.pal")
 }
 \seealso{
-\link{labelLayer}
+\link{tc_layout}
 }
+\keyword{internal}

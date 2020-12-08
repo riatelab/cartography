@@ -8,10 +8,8 @@
 #' A high resolution will give more detailed borders. (optional)
 #' @param width maximum distance between used to compute outer borders (in x units).
 #' A higher width will build borders between units that are farther apart. (optional)
-#' @param spdf deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-#'  has to be projected (planar coordinates).
-#' @param spdfid deprecated, identifier field in spdf, default to the first column 
-#' of the spdf data frame.  (optional)
+#' @param spdf defunct.
+#' @param spdfid defunct.
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -24,10 +22,10 @@
 #'      lwd = 3, add = TRUE)
 #' @export
 getOuterBorders <- function(x, id, res = NULL, width = NULL, 
-                            spdf, spdfid = NULL){
+                            spdf, spdfid){
   
-  if(sum(missing(spdf), is.null(spdfid)) != 2){
-    warning("spdf and spdfid are deprecated; use x and id instead.", 
+  if(sum(missing(spdf), missing(spdfid)) != 2){
+    stop("spdf and spdfid are defunct; use x and id instead.", 
             call. = FALSE)
   }
   
@@ -38,9 +36,8 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
       spdf <- x
     }
   }
-  if(!is.null(spdfid)){
-    id <- spdfid
-  }
+
+  
   if (missing(id)) {
     id <- names(spdf@data)[1]
   }

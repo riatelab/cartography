@@ -9,7 +9,7 @@ getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"), res = 72)
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
 
-\item{spdf}{deprecated, a Spatial*DataFrame.}
+\item{spdf}{defunct.}
 
 \item{width}{width of the figure (in pixels), either width or height 
 must be set.}
@@ -62,3 +62,7 @@ title("Madinina")
 dev.off()
 }
 }
+\seealso{
+\link{tc_init}
+}
+\keyword{internal}

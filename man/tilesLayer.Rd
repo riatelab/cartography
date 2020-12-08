@@ -2,16 +2,13 @@
 % Please edit documentation in R/tilesLayer.R
 \name{tilesLayer}
 \alias{tilesLayer}
-\alias{pngLayer}
-\title{Plot a Raster Object}
+\title{Plot Tiles}
 \usage{
 tilesLayer(x, add = FALSE, ...)
-
-pngLayer(x, add = FALSE, ...)
 }
 \arguments{
-\item{x}{a RasterBrick object; \link{getPngLayer} and \link{getTiles} 
-functions output these objects.}
+\item{x}{a RasterBrick object; \link{getTiles} 
+function outputs these objects.}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
@@ -21,13 +18,7 @@ not (FALSE).}
 }
 \description{
 Plot a raster object over a map. It can be used to plot tiles 
-from getTiles or images from getPngLayer.
-}
-\note{
-This function is a wrapper for \code{\link[raster:plotRGB]{plotRGB}} 
-from the raster package. The accuracy of the final plot depends on the 
-quality of the \code{*.png} file, the scale of \code{x} and the resolution 
-setup of the graphic device.
+from getTiles.
 }
 \examples{
 library(sf)
@@ -43,29 +34,8 @@ plot(st_geometry(mtq), add=TRUE)
 txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
 mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
 }
-
-# Local image
-dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
-mask <- getPngLayer(mtq, dirpng, crop = TRUE, margin = 0.5)
-par(mar = c(0,0,0,0))
-ghostLayer(mtq)
-pngLayer(mask, add = TRUE)
-
-\dontrun{
-# Remote image
-urlpng = "https://i.imgur.com/gePiDvB.png"
-masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE, margin = 0.5)
-#Combine
-par(mar = c(0,0,0,0))
-ghostLayer(mtq)
-pngLayer(mask, add = TRUE)
-pngLayer(masksea, add = TRUE)
-plot(st_geometry(mtq), border="orange", add=TRUE)
-}
 }
 \seealso{
-\link{getPngLayer}, \link{getTiles}
+\link[maptiles]{plot_tiles}
 }
-\author{
-dieghernan, \url{https://github.com/dieghernan/}
-}
+\keyword{internal}

@@ -8,7 +8,8 @@
 #' @param col arrow color.
 #' @param x sf or sp object used to correct the north azimuth
 #' @export
-#' @seealso \link{layoutLayer}
+#' @seealso \link{tc_arrow}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -19,6 +20,9 @@
 #'   north(i, south = TRUE)
 #' }
 north <- function(pos = "topright", col = "grey20", south = FALSE, x = NULL){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::north()",
+                            with = "tc_arrow()") 
   azim <- "N"
   theta = 0
   mapExtent <- par()$usr
@@ -95,10 +99,10 @@ north <- function(pos = "topright", col = "grey20", south = FALSE, x = NULL){
     VY = c(DeltaXC, DeltaYC)
     theta <- acos( sum(VX*VY) / ( sqrt(sum(VX * VX)) * sqrt(sum(VY * VY)) ) )
     theta <- sign(C$X - B$X) * theta
-    nc <- rot(A,c(xx[1], yy[1]), theta)
+    nc <- rot_l(A,c(xx[1], yy[1]), theta)
     xx[1] <- nc[1]
     yy[1] <- nc[2]
-    nc <- rot(A,c(xx[3], yy[3]), theta)
+    nc <- rot_l(A,c(xx[3], yy[3]), theta)
     xx[3] <- nc[1]
     yy[3] <- nc[2]
     
@@ -110,7 +114,7 @@ north <- function(pos = "topright", col = "grey20", south = FALSE, x = NULL){
 }
 
 
-rot <- function(A,B, theta){
+rot_l <- function(A,B, theta){
   x <- cos(theta) * (B[1] - A$X) - sin(theta) * (B[2] - A$Y) + A$X
   y <- sin(theta) * (B[1] - A$X) + cos(theta) * (B[2] - A$Y) + A$Y
   return(c(x,y))

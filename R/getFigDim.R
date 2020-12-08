@@ -5,7 +5,7 @@
 #' the figure, a targeted width or height and a resolution. 
 #' @name getFigDim
 #' @param x an sf object, a simple feature collection or a Spatial*DataFrame. 
-#' @param spdf deprecated, a Spatial*DataFrame.
+#' @param spdf defunct.
 #' @param width width of the figure (in pixels), either width or height 
 #' must be set.
 #' @param height height of the figure (in pixels), either width or height 
@@ -17,6 +17,8 @@
 #' bitmap file.
 #' @return A vector of width and height in pixels is returned.
 #' @details The function can be used to export vector or raster files (see examples).
+#' @keywords internal
+#' @seealso \link{tc_init}
 #' @export
 #' @examples
 #' \dontrun{
@@ -45,13 +47,11 @@
 #' }
 getFigDim <- function(x, spdf, width = NULL, height = NULL, 
                       mar = par('mar'), res = 72){
-  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getFigDim()",
+                            with = "cartography::tc_init()")  
   if(!missing(spdf)){
-    warning("spdf is deprecated; use x instead.", call. = FALSE)
-  }
-  
-  if(missing(x)){
-    x <- sf::st_as_sf(spdf)
+    stop("spdf is defunct; use x instead.", call. = FALSE)
   }
   
   if(methods::is(x, "Spatial")){

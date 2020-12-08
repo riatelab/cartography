@@ -19,7 +19,7 @@ getTiles(
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
 
-\item{spdf}{deprecated, a Spatial*DataFrame with a valid projection attribute.}
+\item{spdf}{defunct.}
 
 \item{type}{the tile server from which to get the map. See Details for providers.
 For other sources use a list: type = list(src = "name of the source" , 
@@ -113,5 +113,6 @@ mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 \url{https://leaflet-extras.github.io/leaflet-providers/preview/}
 }
 \seealso{
-\link{tilesLayer}
+\link[maptiles]{get_tiles}
 }
+\keyword{internal}

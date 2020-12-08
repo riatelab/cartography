@@ -44,5 +44,6 @@ barscale(size = 5)
 barscale(size = 5, lwd = 2, cex = .9, pos = c(714000, 1596000))
 }
 \seealso{
-\link{layoutLayer}
+\link{tc_scale}
 }
+\keyword{internal}

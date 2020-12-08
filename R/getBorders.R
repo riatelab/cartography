@@ -3,11 +3,8 @@
 #' @name getBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
 #' @param id name of the identifier variable x, default to the first column. (optional)
-#' @param spdf deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-#'  has to be projected (planar coordinates). 
-#' @param spdfid deprecated, name of the identifier variable in spdf, default 
-#' to the first column of the 
-#' spdf data frame. (optional)
+#' @param spdf defunct. 
+#' @param spdfid defunct. 
 #' @note getBorders and getOuterBorders can be combined with rbind. 
 #' @return An sf object (MULTILINESTRING) of borders is returned. This object has three 
 #' id variables: id, id1 and id2.
@@ -26,22 +23,19 @@
 #'      lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}
 #' @export
-getBorders <- function(x, id, spdf, spdfid = NULL){
-  if(missing(x)){
-    x <- sf::st_as_sf(spdf)
-  }
+getBorders <- function(x, id, spdf, spdfid){
+
+  
   if(methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
   }
-  if(!is.null(spdfid)){
-    id <- spdfid
-  }
+
   if(missing(id)){
     id <- names(x)[1]
   }
   
-  if(sum(missing(spdf), is.null(spdfid)) != 2){
-    warning("spdf and spdfid are deprecated; use x and id instead.", 
+  if(sum(missing(spdf), missing(spdfid)) != 2){
+    stop("spdf and spdfid are defunct; use x and id instead.", 
             call. = FALSE)
   }
   

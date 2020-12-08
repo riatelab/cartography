@@ -3,7 +3,7 @@
 #' @description Get map tiles based on a spatial object extent. Maps can be 
 #' fetched from various open map servers.
 #' @param x an sf object, a simple feature collection or a Spatial*DataFrame.
-#' @param spdf  deprecated, a Spatial*DataFrame with a valid projection attribute.
+#' @param spdf  defunct.
 #' @param type the tile server from which to get the map. See Details for providers.
 #' For other sources use a list: type = list(src = "name of the source" , 
 #' q = "tiles address", sub = "subdomains", cit = "how to cite the tiles"). See Examples.
@@ -47,7 +47,8 @@
 #' @references \url{https://leaflet-extras.github.io/leaflet-providers/preview/}
 #' @export
 #' @return A RasterBrick is returned.
-#' @seealso \link{tilesLayer}
+#' @keywords internal
+#' @seealso \link[maptiles]{get_tiles}
 #' @examples
 #' \dontrun{
 #' library(sf)
@@ -82,11 +83,15 @@
 #' }
 getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE, 
                      verbose = FALSE, apikey=NA, cachedir=FALSE, forceDownload=FALSE){
-  # deprecated check
+
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getTiles()",
+                            with = "maptiles::get_tiles()")  
+
   if(!missing(spdf)){
-    warning("spdf is deprecated; use x instead.", call. = FALSE)
-    x <- spdf
+    stop("spdf is defunct; use x instead.", call. = FALSE)
   }
+  
   # test for sp
   if(methods::is(x,"Spatial") == TRUE){
     x <- convertToSf(spdf = x)

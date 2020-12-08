@@ -13,7 +13,8 @@
 #' "m" for meters, or "km" for kilometers (default)
 #' @note This scale bar is not accurate on unprojected (long/lat) maps.
 #' @export
-#' @seealso \link{layoutLayer}
+#' @seealso \link{tc_scale}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -22,6 +23,11 @@
 #' barscale(size = 5, lwd = 2, cex = .9, pos = c(714000, 1596000))
 barscale <- function(size, lwd = 1.5, cex = 0.6, 
                      pos = "bottomright", style = "pretty", unit = "km"){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::barscale()",
+                            with = "tc_scale()") 
+  
   # size = 10
   mapExtent <- par()$usr
   x <- mapExtent[1:2]
@@ -31,13 +37,13 @@ barscale <- function(size, lwd = 1.5, cex = 0.6,
   # default scale
   if(missing(size) || is.null(size)){
     size <- diff(x)/10
-    size <- unit_conversion(size = size, unit_in = "m", unit_out = unit)
+    size <- unit_conversion_leg(size = size, unit_in = "m", unit_out = unit)
     size_text <- signif(size, digits = 0)
-    size <- unit_conversion(size = size_text, unit_in = unit, unit_out = "m")
+    size <- unit_conversion_leg(size = size_text, unit_in = unit, unit_out = "m")
   }else{
     # convert distance into meters based on dist_unit
     size_text <- as.character(size)
-    size <- unit_conversion(size, unit_in = unit, unit_out = "m")
+    size <- unit_conversion_leg(size, unit_in = unit, unit_out = "m")
   }
   
   # label
@@ -88,7 +94,7 @@ barscale <- function(size, lwd = 1.5, cex = 0.6,
 #' @param unit_in input unit
 #' @param unit_out output unit
 #' @noRd
-unit_conversion <- function(size, unit_in, unit_out){
+unit_conversion_leg <- function(size, unit_in, unit_out){
   # uncomment comments if the function is eventually exported
   
   # if(!unit_in %in% c('km','m','mi')) stop("unit must be 'km', 'm', or 'mi'")

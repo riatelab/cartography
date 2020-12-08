@@ -22,10 +22,7 @@ discLayer(
   legend.values.cex = 0.6,
   legend.values.rnd = 2,
   legend.frame = FALSE,
-  add = TRUE,
-  spdf,
-  spdfid1,
-  spdfid2
+  add = TRUE
 )
 }
 \arguments{
@@ -74,12 +71,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{spdf}{defunct.}
-
-\item{spdfid1}{defunct.}
-
-\item{spdfid2}{defunct.}
 }
 \value{
 An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is returned.

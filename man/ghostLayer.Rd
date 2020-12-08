@@ -27,3 +27,7 @@ labelLayer(x = suppressWarnings(st_intersection(mtq, st_buffer(target, 2000))),
            txt = "LIBGEO", halo = TRUE, cex = .9, r = .14, font = 2, 
            bg = "grey20", col= "white")
 }
+\seealso{
+\link{tc_init}
+}
+\keyword{internal}

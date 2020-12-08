@@ -322,9 +322,9 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
   xo <- r*strwidth('A')
   yo <- r*strheight('A')
   for (i in theta) {
-    text(x + cos(i)*xo, y + sin(i)*yo, labels, col=bg, ... )
+    text(x + cos(i) * xo, y + sin(i) * yo, labels, col = bg, ... )
   }
-  text(x, y, labels, col=col, ... )
+  text(x, y, labels, col = col, ... )
 }
 
 

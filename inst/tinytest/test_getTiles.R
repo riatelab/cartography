@@ -8,7 +8,7 @@ if(home){
   suppressMessages(expect_warning(getTiles(x = mtq, verbose=TRUE)))
   expect_true(methods::is(getTiles(x=mtq, crop = TRUE), "RasterBrick"))
   expect_true(methods::is(getTiles(x=mtq1, crop = TRUE), "RasterBrick"))
-  expect_warning(getTiles(spdf = as(mtq, "Spatial"), zoom = 1))
+  expect_error(getTiles(spdf = as(mtq, "Spatial"), zoom = 1))
   expect_true(methods::is(getTiles(x = as(mtq, "Spatial")), "RasterBrick"))
   expect_true(methods::is(getTiles(x=mtq, type = "Stamen.Watercolor", zoom = 2), 
                           "RasterBrick"))

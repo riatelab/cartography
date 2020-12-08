@@ -68,3 +68,7 @@ legendSquaresSymbols(pos = "bottomright", title.txt = "Title of\nthe legend ",
                      col="red",  
                      frame=TRUE, values.rnd=0, style ="c")
 }
+\seealso{
+\link{tc_leg_p}
+}
+\keyword{internal}

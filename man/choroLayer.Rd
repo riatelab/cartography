@@ -130,5 +130,6 @@ Herbert A. Sturges, «
 Association, vol. 21, n° 153, mars 1926, p. 65-66.
 }
 \seealso{
-\link{getBreaks}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
+\link{tc_map_c}
 }
+\keyword{internal}

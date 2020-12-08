@@ -26,6 +26,8 @@
 #' @param border color of the box borders
 #' @param horiz layout of legend, TRUE for horizontal layout 
 #' @export
+#' @seealso \link{tc_leg_c}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -59,6 +61,11 @@ legendChoro <- function(pos = "topleft",
                         nodata.col = "white",
                         frame=FALSE,symbol="box", 
                         border = "black", horiz = FALSE){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendChoro()",
+                            with = "tc_leg_c()") 
+  
   if (horiz && symbol=="box"){
     legendChoroHoriz(pos = pos, title.txt = title.txt, title.cex = title.cex,
                      values.cex = values.cex, breaks = breaks, col = col, cex = cex,
@@ -197,6 +204,9 @@ legendTypo <- function(pos = "topleft",
                        nodata.col = "white",
                        frame=FALSE,
                        symbol="box"){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendTypo()",
+                            with = "tc_leg_t()") 
   categ <- rev(as.character(categ))
   col <- rev(col)
   
@@ -316,6 +326,8 @@ legendTypo <- function(pos = "topleft",
 #' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
+#' @keywords internal
+#' @seealso \link{tc_leg_p}
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -343,6 +355,9 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
                                 title.cex = 0.8, cex = 1, border="black", lwd=1,
                                 values.cex = 0.6, var, inches, col="#E84923", 
                                 frame=FALSE, values.rnd=0, style ="c"){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendCirclesSymbols()",
+                            with = "tc_leg_p()") 
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
@@ -455,6 +470,8 @@ legendCirclesSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
+#' @keywords internal
+#' @seealso \link{tc_leg_p}
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -471,6 +488,9 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
                                 values.cex = 0.6, var, inches, 
                                 col="red", frame=FALSE, values.rnd=0, style ="c"){
   
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendSquaresSymbols()",
+                            with = "tc_leg_p()") 
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",
@@ -585,6 +605,8 @@ legendSquaresSymbols<- function(pos = "topleft", title.txt = "Title of the legen
 #' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
+#' @keywords internal
+#' @seealso \link{tc_leg_p}
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -601,6 +623,9 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
                              values.cex = 0.6, 
                              var, inches, col = "red", frame = FALSE, 
                              values.rnd = 0, style = "c"){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendBarsSymbols()",
+                            with = "tc_leg_p()") 
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",

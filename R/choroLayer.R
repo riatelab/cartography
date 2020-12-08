@@ -52,7 +52,8 @@
 #' @references Herbert A. Sturges, «
 #' \emph{The Choice of a Class Interval }», Journal of the American Statistical 
 #' Association, vol. 21, n° 153, mars 1926, p. 65-66.
-#' @seealso \link{getBreaks}, \link{carto.pal},  \link{legendChoro}, \link{propSymbolsChoroLayer}
+#' @seealso \link{tc_map_c}
+#' @keywords internal
 #' @export
 #' @examples
 #' library(sf)
@@ -88,6 +89,11 @@ choroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                        legend.border = "black",
                        legend.horiz = FALSE,
                        add = FALSE){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::choroLayer()",
+                            with = "tc_map_c()") 
+  
   
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)

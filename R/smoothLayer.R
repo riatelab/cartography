@@ -62,7 +62,7 @@
 #' smoothLayer(x = mtq, var = 'POP',
 #'             span = 4000, beta = 2,
 #'             mask = mtq, border = NA,
-#'             col = carto.pal(pal1 = 'wine.pal', n1 = 8),
+#'             col = tc_get_pal(8, "Reds 2"),
 #'             legend.title.txt = "Population\nPotential",
 #'             legend.pos = "topright", legend.values.rnd = 0)
 #' propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
@@ -95,7 +95,7 @@ smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   if(!'package:SpatialPosition' %in% search()){
     attachNamespace('SpatialPosition')
   }
-
+  
   
   if(!missing(x)){
     spdf <- methods::as(x, "Spatial")
@@ -110,15 +110,17 @@ smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
   
   
   # Potential
-  pot.spdf <- SpatialPosition::quickStewart(spdf = spdf, df = df, 
-                                            spdfid = spdfid, dfid = dfid, 
-                                            var = var, var2 = var2, 
-                                            typefct = typefct,
-                                            span = span, 
-                                            resolution = resolution, 
-                                            beta = beta, mask = mask, 
-                                            nclass=nclass,
-                                            breaks = breaks)
+  pot.spdf <- suppressPackageStartupMessages(
+    SpatialPosition::quickStewart(spdf = spdf, df = df, 
+                                  spdfid = spdfid, dfid = dfid, 
+                                  var = var, var2 = var2, 
+                                  typefct = typefct,
+                                  span = span, 
+                                  resolution = resolution, 
+                                  beta = beta, mask = mask, 
+                                  nclass=nclass,
+                                  breaks = breaks)
+  )
   # breaks
   if(is.null(breaks)){
     breaks <- sort(c(unique(pot.spdf$min), max(pot.spdf$max)))

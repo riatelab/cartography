@@ -31,5 +31,6 @@ for (i in list("topleft", "top", "topright", "right", "bottomright",
 }
 }
 \seealso{
-\link{layoutLayer}
+\link{tc_arrow}
 }
+\keyword{internal}

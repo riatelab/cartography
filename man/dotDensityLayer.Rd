@@ -52,7 +52,7 @@ column of df. (optional)}
 
 \item{col}{color of the points.}
 
-\item{iter}{deprecated, no longer in use.}
+\item{iter}{defunct.}
 
 \item{legend.pos}{"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 legend.pos is "n" then the legend is not plotted.}

@@ -19,6 +19,8 @@
 #' (\url{https://medialab.github.io/iwanthue/}) by Mathieu Jacomy at 
 #' the Sciences-Po Medialab.
 #' @return \code{carto.pal} returns a vector of colors.
+#' @seealso \link{tc_get_pal}
+#' @keywords internal
 #' @examples 
 #' # Simple gradient: blue
 #' carto.pal(pal1 = "blue.pal" ,n1 = 20)
@@ -46,6 +48,9 @@
 #' @export
 carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
                       transparency = FALSE){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::carto.pal()",
+                            with = "tc_get_pal()")  
   alphainit <- 30
   alpha <- "FF"
   middlecol <- "#F6F6F6"
@@ -91,6 +96,9 @@ carto.pal <- function(pal1, n1, pal2 = NULL, n2 = NULL, middle = FALSE,
 #' carto.pal.info()
 #' @export
 carto.pal.info <- function(){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::carto.pal.info()",
+                            with = "tc_get_pal()") 
   names(cartography.colors)
 }
 
@@ -105,6 +113,9 @@ carto.pal.info <- function(){
 #' @export
 display.carto.pal<-function(name)
 {
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::display.carto.pal()",
+                            with = "tc_get_pal()") 
   old.par <- par(no.readonly = TRUE)
   par(mfrow=c(5,4))
   par(mar=c(0.2, 0.2, 1, 0.2), xaxs='i', yaxs='i')
@@ -130,6 +141,9 @@ display.carto.pal<-function(name)
 #' @export
 display.carto.all <- function(n = 10)
 {
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::display.carto.all()",
+                            with = "tc_get_pal()") 
   nbpal <- length(cartography.colors)
   ncol <- 2
   nrow <- round(nbpal/ncol+0.1)

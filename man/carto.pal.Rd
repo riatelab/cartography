@@ -96,3 +96,7 @@ Qualitative palettes were generated with "i want hue"
 (\url{https://medialab.github.io/iwanthue/}) by Mathieu Jacomy at 
 the Sciences-Po Medialab.
 }
+\seealso{
+\link{tc_get_pal}
+}
+\keyword{internal}

@@ -10,6 +10,8 @@
 #' and the original polygons borders
 #' @param lefthanded if TRUE the penciling is done left-handed style. 
 #' @return A MULTILINESTRING sf object is returned. 
+#' @keywords internal
+#' @seealso \link{tc_get_pencil}
 #' @examples 
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -28,9 +30,13 @@
 #' layoutLayer(title = "Municipality Status")
 #' @export
 getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getPencilLayer()",
+                            with = "tc_get_pencil()") 
+  
   a <- median(sf::st_area(sf::st_set_crs(x, NA)))
   size <- size * size
-  . <- lapply(sf::st_geometry(x), makelines, size = size, buffer = buffer, 
+  . <- lapply(sf::st_geometry(x), makelines_l, size = size, buffer = buffer, 
               lefthanded = lefthanded, a = a)
   . <- sf::st_sfc(do.call(rbind,.))
   if(length(.)<nrow(x)){
@@ -42,7 +48,7 @@ getPencilLayer <- function(x, size = 100, buffer = 1000, lefthanded = TRUE){
   return(.)
 }
 
-makelines <- function(x, size, buffer, lefthanded, a){
+makelines_l <- function(x, size, buffer, lefthanded, a){
   size <- round(sqrt(as.numeric(sf::st_area(x) * size / a)), 0)
   if (size <= 10){size <- 10}
   pt <- sf::st_sample(sf::st_buffer(sf::st_sfc(x), buffer), size = size)

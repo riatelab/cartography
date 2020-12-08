@@ -72,5 +72,6 @@ labelLayer(x = mtq, txt = "LIBGEO", col= "black", cex = 0.7, font = 4,
 par(opar)
 }
 \seealso{
-\link{layoutLayer}
+\link{tc_label}
 }
+\keyword{internal}

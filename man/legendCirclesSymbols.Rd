@@ -80,3 +80,7 @@ legendCirclesSymbols(pos = c(736164.4, 1596658),
                      var = c(min(mtq$POP),max(mtq$POP)),
                      inches = 0.2, frame = TRUE)
 }
+\seealso{
+\link{tc_leg_p}
+}
+\keyword{internal}

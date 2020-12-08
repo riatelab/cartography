@@ -28,7 +28,8 @@
 #' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @seealso \link{propSymbolsTypoLayer}, \link{typoLayer}, \link{legendTypo}
+#' @seealso \link{tc_map_t}
+#' @keywords internal
 #' @export
 #' @examples
 #' library(sf)
@@ -53,6 +54,11 @@ typoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                       legend.frame = FALSE,
                       add = FALSE)
 {
+  
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::typoLayer()",
+                            with = "tc_map_t()")
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }

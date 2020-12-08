@@ -24,9 +24,7 @@ propSymbolsLayer(
   legend.values.rnd = 0,
   legend.style = "c",
   legend.frame = FALSE,
-  add = TRUE,
-  breakval = NULL,
-  col2
+  add = TRUE
 )
 }
 \arguments{
@@ -81,10 +79,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{breakval}{defunct.}
-
-\item{col2}{defunct.}
 }
 \description{
 Plot a proportional symbols layer.
@@ -110,7 +104,6 @@ propSymbolsLayer(x = mtq, var = "POP",
 layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \seealso{
-\link{legendBarsSymbols}, \link{legendCirclesSymbols}, 
-\link{legendSquaresSymbols}, \link{propSymbolsChoroLayer}, 
-\link{propSymbolsTypoLayer}
+\link{tc_map_p}
 }
+\keyword{internal}

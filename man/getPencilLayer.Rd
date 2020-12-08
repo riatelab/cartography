@@ -42,3 +42,7 @@ typoLayer(x = mtq_pencil, var="STATUS",
 plot(st_geometry(mtq), add = TRUE, ldy=2)
 layoutLayer(title = "Municipality Status")
 }
+\seealso{
+\link{tc_get_pencil}
+}
+\keyword{internal}

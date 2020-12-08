@@ -94,5 +94,6 @@ abline(v = moy + 0.5 * sd, col = "blue", lwd = 3)
 abline(v = moy - 0.5 * sd, col = "blue", lwd = 3)
 }
 \seealso{
-\link[classInt:classIntervals]{classIntervals}
+\link[classInt:classIntervals]{classIntervals} \link{tc_get_breaks}
 }
+\keyword{internal}
