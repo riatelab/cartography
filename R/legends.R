@@ -174,6 +174,8 @@ legendChoro <- function(pos = "topleft",
 #' not (FALSE).
 #' @param symbol character; 'line' or 'box'
 #' @export
+#' @seealso \link{tc_leg_t}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))

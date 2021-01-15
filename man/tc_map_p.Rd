@@ -13,7 +13,7 @@ tc_map_p(
   col = "tomato4",
   border,
   lwd = 0.7,
-  leg_pos = "topright",
+  leg_pos = "topleft",
   leg_title = var,
   leg_title_cex = 0.8,
   leg_val_cex = 0.6,

@@ -57,9 +57,17 @@ Cartography.
 
 Core functions start with tc\_map
 
-Why not a new package ? Despite all the novelties, the set of function
-remane the same, the way of thinking also (painter model ?), only
-additions.
+### F.A.Q.
+
+-   Why not a new package ? Despite all the novelties, the set of
+    function remane the same, the way of thinking also (painter model
+    ?), only additions.
+
+-   Will my old scripts fail with the new version ? No. Previous
+    function are only deprecated. You will only see a warning message
+    with a replacement function suggestion.
+
+-   
 
 ROADMAP
 
@@ -92,51 +100,47 @@ contains commented scripts on how to build various types of maps with
 ## Demo
 
 The following script creates a map of symbols that are proportional to
-values of a first variable and colored to reflect the classification of
-a second variable.
+values of a variable.
 
 ``` r
 library(cartography)
-# import the demo sf object
-mtq <- tc_import_mtq()
-# Plot municipalities
-tc_map(mtq)
-# Add symbols with choropleth coloration (population & median income)
-propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED")
-# Add title and credits
-tc_title("Population & Wealth in Martinique, 2015") 
-tc_credits("Sources: Insee and IGN - 2018")
 ```
 
-![](https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_raw.png)
+    ## Loading required package: sf
+
+    ## Linking to GEOS 3.7.1, GDAL 3.1.2, PROJ 7.1.0
+
+    ## 
+    ## Since version 3.0.0 several replacement function have been introduced.
+    ## You can use `tc_legacy_mode('on')` to suppress deprecation warnings.
 
 ``` r
-########## Final Map
-# Set figure margins
-opar <- par(mar = c(0,0,1.2,0))
-# Plot the municipalities
-tc_map(mtq, col="darkseagreen3", border="darkseagreen4",  
-     bg = "lightblue1", lwd = 0.5)
-# Plot symbols with choropleth coloration
-propSymbolsChoroLayer(x = mtq, var = "POP", inches = 0.4, border = "grey50",
-                      lwd = 1, legend.var.pos = "topright", 
-                      legend.var.title.txt = "Population",
-                      var2 = "MED", method = "equal", nclass = 4, 
-                      col = carto.pal(pal1 = "sand.pal", n1 = 4),
-                      legend.var2.values.rnd = -2,  legend.var2.pos = "left", 
-                      legend.var2.title.txt = "Median Income\n(in euros)") 
-# Plot a layout
-layoutLayer(title="Population & Wealth in Martinique, 2015", 
-            author = "cartography 2.1.3", 
-            sources = "Sources: Insee and IGN - 2018", 
-            scale = 5, tabtitle = TRUE, frame = FALSE)
-# Plot a north arrow
-north(pos = "topleft")
-# restore graphics parameters
-par(opar)
+mtq <- tc_import_mtq()
+tc_map(mtq)
+tc_map_p(mtq, "POP")
+tc_layout(title = "Population in Martinique, 2015", 
+          credits = "Sources: Insee and IGN - 2018")
 ```
 
-![](https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_final.png)
+![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
+tc_theme("nevermind")
+tc_map(mtq)
+tc_map_p(x = mtq, 
+    var = "POP", 
+    inches = 0.4, 
+    border = "grey50",
+    lwd = 1, 
+    leg_pos = "topright", 
+    leg_title = "Population") 
+tc_title("Population in Martinique, 2015")
+tc_credits("cartography 2.1.3\nSources: Insee and IGN - 2018")
+tc_scale(5)
+tc_arrow("topleft")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ## Installation
 

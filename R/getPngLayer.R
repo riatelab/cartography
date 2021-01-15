@@ -1,20 +1,36 @@
 #' @title \code{.png} Layer
 #' @name getPngLayer
-#' @description Get a \code{RasterBrick} from a \code{.png} image cut using the shape of a spatial object. The \code{.png} file could be either a local file or extracted from a given url.
-#' @param x an \code{sf} object, a simple feature collection (POLYGON or MULTIPOLYGON) or a tile (see \code{\link{getTiles}}).  
+#' @description Get a \code{RasterBrick} from a \code{.png} image cut using the 
+#' shape of a spatial object. The \code{.png} file could be either a local file 
+#' or extracted from a given url.
+#' @param x an \code{sf} object, a simple feature collection (POLYGON or 
+#' MULTIPOLYGON) or a tile (see \code{\link{getTiles}}).  
 #' @param pngpath local path or url of a \code{.png} file. 
-#' @param align set how the \code{.png} file should be fitted within \code{x}. Possible values are \code{'left','right','top', 'bottom'} or \code{'center'}.
-#' @param margin inner margin, zooms out the \code{.png} over \code{x}. If 0 then \code{.png} is completely zoomed over \code{x}.
-#' @param crop \code{TRUE} if results should be cropped to the specified \code{x} extent.
+#' @param align set how the \code{.png} file should be fitted within \code{x}.
+#'  Possible values are \code{'left','right','top', 'bottom'} or \code{'center'}.
+#' @param margin inner margin, zooms out the \code{.png} over \code{x}. If 0
+#'  then \code{.png} is completely zoomed over \code{x}.
+#' @param crop \code{TRUE} if results should be cropped to the specified 
+#' \code{x} extent.
 #' @param mask \code{TRUE} if the result should be masked to \code{x}.
-#' @param inverse  logical. If \code{FALSE}, overlapped areas of \code{x} on \code{pngpath} are extracted, otherwise non-overlapping areas are returned. See \code{\link[raster:mask]{mask}}.
-#' @param dwmode Set the download mode. It could be \code{'base'} for \code{\link[utils:download.file]{download.file}} or \code{'curl'} for \code{\link[curl:curl_download]{curl_download}}.
-#' @param ... additional arguments for downloading the file. See \code{\link[utils:download.file]{download.file}} or \code{\link[curl:curl_download]{curl_download}}.
+#' @param inverse  logical. If \code{FALSE}, overlapped areas of \code{x} on 
+#' \code{pngpath} are extracted, otherwise non-overlapping areas are returned. 
+#' See \code{\link[raster:mask]{mask}}.
+#' @param dwmode Set the download mode. It could be \code{'base'} for 
+#' \code{\link[utils:download.file]{download.file}} or \code{'curl'} for 
+#' \code{\link[curl:curl_download]{curl_download}}.
+#' @param ... additional arguments for downloading the file. See 
+#' \code{\link[utils:download.file]{download.file}} or 
+#' \code{\link[curl:curl_download]{curl_download}}.
 #' @return A \code{RasterBrick} object is returned. 
-#' @details The effect of \code{align} would differ depending of the aspect ratio of \code{x} and \code{pngpath}. To obtain a fitted tile from \code{pngpath} 
+#' @details The effect of \code{align} would differ depending of the aspect 
+#' ratio of \code{x} and \code{pngpath}. To obtain a fitted tile from 
+#' \code{pngpath} 
 #' given that \code{x} is the tile to fit, set \code{margin = 0 , crop = TRUE}.
-#' @note The accuracy of the final plot would depend on the quality of the \code{.png} file, 
-#' the scale of \code{x} and the resolution setup of the graphic device. Exporting to \code{svg} is highly
+#' @note The accuracy of the final plot would depend on the quality of the 
+#' \code{.png} file, 
+#' the scale of \code{x} and the resolution setup of the graphic device. 
+#' Exporting to \code{svg} is highly
 #' recommended.
 #' @author dieghernan, \url{https://github.com/dieghernan/}
 #' @seealso \link{pngLayer}
