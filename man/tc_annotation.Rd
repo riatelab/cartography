@@ -49,7 +49,7 @@ tc_map(mtq)
 tc_annotation(x = c(711167.8,1614764 ), 
               txt = "Look!\nImportant feature\nhere!", 
               pos = "bottomleft", cex = 1.2, font = 2,
-              halo = T, s = 1.5 )
+              halo = TRUE, s = 1.5 )
 
 tc_annotation(x = mtq[1, ], 
               txt = "This is less\nimportant", 

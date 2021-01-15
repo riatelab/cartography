@@ -61,5 +61,6 @@ plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
      lwd = 3, add = TRUE)
 }
 \seealso{
-\link{discLayer}
+\link{tc_get_borders}
 }
+\keyword{internal}
