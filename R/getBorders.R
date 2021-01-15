@@ -21,10 +21,16 @@
 #' plot(st_geometry(mtq.borders), 
 #'      col = sample(x = rainbow(nrow(mtq.borders))), 
 #'      lwd = 3, add = TRUE)
-#' @seealso \link{discLayer}
+#' @seealso \link{tc_get_borders}
+#' @keywords internal
 #' @export
 getBorders <- function(x, id, spdf, spdfid){
 
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getBorders()",
+                            with = "tc_get_borders()") 
+  
+  
   
   if(methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)

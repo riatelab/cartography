@@ -1,46 +1,95 @@
-#' @title Extract Polygons Outer Borders
-#' @description Outer borders are non-contiguous polygons borders (e.g.
-#' maritime borders).
-#' @name getBorders
-#' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
-#' @param id name of the identifier variable in x, default to the first column. (optional)
+#' @title Get borders from polygons
+#' @description Extract borders between polygons.
+#' @name tc_get_borders
+#' @eval my_params("x")
+#' @param id name of the identifier variable in x, default to the first column
+#' @param outer if TRUE outer borders (non-contiguous polygons borders like
+#' maritime borders) are computed.
 #' @param res resolution of the grid used to compute outer borders (in x units).
 #' A high resolution will give more detailed borders. (optional)
 #' @param width maximum distance between used to compute outer borders (in x units).
 #' A higher width will build borders between units that are farther apart. (optional)
-#' @param spdf defunct.
-#' @param spdfid defunct.
+#' @return An sf object (MULTILINESTRING) of borders is returned. This object
+#' has three id variables: id, id1 and id2.
+#' id1 and id2 are ids of units that neighbour a border; id is the concatenation
+#' of id1 and id2 (with "_" as separator).
 #' @examples
-#' library(sf)
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-#' # Get units borders
-#' mtq.outer <- getOuterBorders(x = mtq, res = 1000, width = 2500)
-#' # Plot municipalities
-#' plot(st_geometry(mtq), col = "grey60")
-#' # Plot borders
-#' plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
-#'      lwd = 3, add = TRUE)
+#' mtq <- tc_import_mtq()
+#' mtq_borders <- tc_get_borders(x = mtq)
+#' plot(mtq_borders)
 #' @export
-getOuterBorders <- function(x, id, res = NULL, width = NULL, 
-                            spdf, spdfid){
+tc_get_borders <- function(x, id, outer = FALSE, res = NULL, width = NULL) {
   
-  lifecycle::deprecate_soft(when = "3.0.0", 
-                            what = "cartography::getOuterBorders()",
-                            with = "tc_get_borders()") 
-  
-  if(sum(missing(spdf), missing(spdfid)) != 2){
-    stop("spdf and spdfid are defunct; use x and id instead.", 
-            call. = FALSE)
+  if (missing(id)) {
+    id <- names(x)[1]
+  }
+
+  if(outer){
+    return(get_ob(x = x, id = id, res = res, width = width))
   }
   
-  if(!missing(x)){
-    if(methods::is(x,'sf')){
-      spdf <- methods::as(x, "Spatial")
-    }else{
-      spdf <- x
+  
+  st_geometry(x) <- st_buffer(x = st_geometry(x), 1, nQuadSegs = 5)
+  lx <- st_cast(x, "MULTILINESTRING")
+
+  l <- st_intersects(x, x, sparse = FALSE)
+  colnames(l) <- x[[id]]
+  rownames(l) <- x[[id]]
+  l <- lower.tri(l) * l
+
+  gna <- function(x) {
+    y <- x[x == 1]
+    if (length(y) > 0) {
+      names(y)
+    } else {
+      NA
+    }
+  }
+  myl <- as.list(apply(l, 1, gna))
+  myl <- myl[!is.na(myl)]
+  long <- sum(sapply(myl, length))
+  df <- data.frame(
+    id = rep(NA, long),
+    id1 = rep(NA, long),
+    id2 = rep(NA, long)
+  )
+
+  lgeo <- vector(mode = "list", length = long)
+  lgeo2 <- vector(mode = "list", length = long)
+  ind <- 1
+  for (i in 1:length(myl)) {
+    id1 <- names(myl[i])
+    li <- lx[lx[[id]] == id1, ]
+    for (j in 1:length(myl[[i]])) {
+      id2 <- myl[[i]][[j]]
+      po <- x[x[[id]] == id2, ]
+      Inter <- st_intersection(st_geometry(li), st_geometry(po))
+      df[ind, ] <- c(paste0(id1, "_", id2), id1, id2)
+      lgeo[[ind]] <- Inter[[1]]
+      ind <- ind + 1
     }
   }
 
+  df <- st_sf(df, geometry = st_sfc(lgeo))
+  df <- st_cast(x = df, to = "MULTILINESTRING")
+  st_set_crs(df, st_crs(x))
+
+  df2 <- df[, c(1, 3, 2)]
+
+  names(df2) <- c("id", "id1", "id2", "geometry")
+  df2$id <- paste(df2$id1, df2$id2, sep = "_")
+  borderlines <- rbind(df, df2)
+  row.names(borderlines) <- borderlines$id
+  return(borderlines)
+}
+
+
+
+get_ob <- function(x, id, res = NULL, width = NULL){
+
+  if(methods::is(x,'sf')){
+      spdf <- methods::as(x, "Spatial")
+  }
   
   if (missing(id)) {
     id <- names(spdf@data)[1]
@@ -52,7 +101,7 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
     spdf$idxd <- spdf@data[, id]
   }
   
-
+  
   
   boundingBox <- sp::bbox(spdf)
   w <- (boundingBox[1,2] - boundingBox[1,1])
@@ -120,3 +169,4 @@ getOuterBorders <- function(x, id, res = NULL, width = NULL,
   
   return(result)
 }
+
