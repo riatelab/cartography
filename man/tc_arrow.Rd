@@ -4,7 +4,7 @@
 \alias{tc_arrow}
 \title{Plot a north arrow}
 \usage{
-tc_arrow(pos = "topright", col, adjust)
+tc_arrow(pos = "topleft", col, adjust)
 }
 \arguments{
 \item{pos}{position. It can be one of 'topleft', 'top', 'topright', 'right', 'bottomright', 'bottom', 'bottomleft', 'left' or a vector of two coordinates in map units (c(x, y))}

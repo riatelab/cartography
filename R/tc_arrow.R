@@ -11,7 +11,7 @@
 #' tc_map(mtq)
 #' tc_arrow(pos = "topright")
 #' @export
-tc_arrow <- function(pos = "topright", col, adjust) {
+tc_arrow <- function(pos = "topleft", col, adjust) {
   if (missing(col)) {
     col <- .gmapsf$args$fg
   }

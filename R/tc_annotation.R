@@ -3,7 +3,7 @@
 #' @param x an sf object with 1 row, a couple of coordinates (c(x, y)). 
 #' @param txt the text to display
 #' @param pos position of the text, one of "topleft", "topright", "bottomright", 
-#' "bototmleft"
+#' "bottomleft"
 #' @param cex size of the text
 #' @param col_arrow arrow color
 #' @param col_txt text colot
