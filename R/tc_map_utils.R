@@ -162,3 +162,13 @@ get_col_typo <- function(x, pal, val_order) {
   mycols <- refcol[match(x, refcol[, 1]), 2]
 }
 
+get_sym_typo <- function(x, pch, val_order) {
+  # get the colors
+  refsym <- data.frame(
+    mod = val_order,
+    pch = pch,
+    stringsAsFactors = FALSE
+  )
+  mysym <- refsym[match(x, refsym[, 1]), 2]
+}
+
