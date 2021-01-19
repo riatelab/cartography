@@ -76,9 +76,8 @@
 #' # First layout
 #' layoutLayer(title="Population and Wealth in Martinique, 2015")
 #' @export
-#' @seealso \link{legendBarsSymbols}, \link{legendChoro}, 
-#' \link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
-#' \link{choroLayer}, \link{propSymbolsLayer}
+#' @keywords internal
+#' @seealso \link{tc_map_pc}
 propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   var, 
                                   inches = 0.3, fixmax = NULL, 
@@ -104,6 +103,10 @@ propSymbolsChoroLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                   legend.var2.border = "black", 
                                   legend.var2.horiz = FALSE,
                                   add = TRUE){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::propSymbolsChoroLayer()",
+                            with = "tc_map_pc()") 
   
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)

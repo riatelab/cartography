@@ -151,7 +151,6 @@ propSymbolsChoroLayer(x = mtq, var = "POP", var2 = "MED",
 layoutLayer(title="Population and Wealth in Martinique, 2015")
 }
 \seealso{
-\link{legendBarsSymbols}, \link{legendChoro}, 
-\link{legendCirclesSymbols}, \link{legendSquaresSymbols}, 
-\link{choroLayer}, \link{propSymbolsLayer}
+\link{tc_map_pc}
 }
+\keyword{internal}
