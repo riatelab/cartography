@@ -9,7 +9,8 @@ if (home) {#Remote
     methods::is(getPngLayer(x = mtq,pngpath = remoteurl,dwmode = "curl"),
                 "RasterBrick"))
   expect_true(
-    methods::is(getPngLayer(x = mtq,pngpath = remoteurl,dwmode = "base",mode = "wb"),
+    methods::is(getPngLayer(x = mtq,pngpath = remoteurl,dwmode = "base",
+                            mode = "wb", quiet = TRUE),
                 "RasterBrick"))
 }
 
@@ -24,8 +25,8 @@ expect_silent(getPngLayer(mtq, dirpng, margin = 0.2, crop = TRUE))
 expect_silent(getPngLayer(mtq, dirpng, align = "left"))
 expect_silent(getPngLayer(mtq, dirpng, align = "right"))
 expect_error(getPngLayer(x = mtq, pngpath = "https://i.imgur.com/2CJpz98.jpg"))
-mtq.car <- getTiles(x = mtq, type = "cartodark", crop = TRUE)
-expect_silent(getPngLayer(mtq.car, dirpng, crop = TRUE))
+# mtq.car <- getTiles(x = mtq, type = "cartodark", crop = TRUE)
+# expect_silent(getPngLayer(mtq.car, dirpng, crop = TRUE))
 
 mtqhoriz <- mtq[mtq$INSEE_COM %in% c(97230, 97234), ]
 expect_silent(getPngLayer(mtqhoriz, dirpng, align = "top", mask = FALSE))
