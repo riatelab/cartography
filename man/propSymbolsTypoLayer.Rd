@@ -127,7 +127,6 @@ propSymbolsTypoLayer(x = mtq, var = "POP", var2 = "STATUS",
 layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 \seealso{
-\link{legendBarsSymbols}, \link{legendTypo},
-\link{legendCirclesSymbols}, \link{legendSquaresSymbols},
-\link{typoLayer}, \link{propSymbolsLayer}
+\link{tc_map_pt}
 }
+\keyword{internal}

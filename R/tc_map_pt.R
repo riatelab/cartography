@@ -1,14 +1,13 @@
-#' @title Plot proportional symbols using choropleth coloration
-#' @description Plot proportional symbols with colors based on a quantitative
-#' data classification.
+#' @title Plot proportional symbols using typology coloration
+#' @description Plot proportional symbols with colors based on qualitative data.
 #' @eval my_params(c(
 #' 'x',
 #' 'var',
 #' 'border',
 #' 'lwd',
 #' 'add' ,
-#' 'inches', 'val_max', 'symbol', 'col_na', 'pal', 'breaks', 'nbreaks',
-#' 'leg_pos', 'leg_title', 'leg_title_cex', 'leg_val_cex', 'leg_val_rnd',
+#' 'inches', 'val_max', 'symbol', 'col_na', 'pal', 'leg_val_rnd',
+#' 'leg_pos', 'leg_title', 'leg_title_cex', 'leg_val_cex', 'val_order',
 #' 'leg_no_data', 'leg_frame'))
 #'
 #' @importFrom methods is
@@ -16,32 +15,30 @@
 #'
 #' @examples
 #' mtq <- tc_import_mtq()
-#' tc_map(mtq) 
-#' tc_map_pc(mtq, c("POP", "MED"))
-#'
 #' tc_map(mtq)
-#' mtq[6, "MED"] <- NA
-#' tc_map_pc(
-#'   x = mtq, var = c("POP", "MED"), inches = .35, border = "tomato4",
-#'   val_max = 90000, symbol = "circle", col_na = "grey", pal = "Cividis",
-#'   breaks = "equal", nbreaks = 4, lwd = 4,
+#' tc_map_pt(mtq, c("POP", "STATUS"))
+#'
+#' mtq[6, "STATUS"] <- NA
+#' tc_map(mtq)
+#' tc_map_pt(
+#'   x = mtq, var = c("POP", "STATUS"), inches = .35, border = "tomato4",
+#'   val_max = 90000, symbol = "circle", col_na = "grey", pal = "Dynamic",
+#'   lwd = 2,
 #'   leg_pos = c("bottomright", "bottomleft"),
-#'   leg_title = c("Population", "Median Income"),
-#'   leg_title_cex = c(0.8, 1),
-#'   leg_val_cex = c(.7, .9),
-#'   leg_val_rnd = c(0, 0),
-#'   leg_no_data = "No data",
+#'   leg_title = c("Population", "Municipality\nstatus"),
+#'   leg_title_cex = c(0.9, 0.9),
+#'   leg_val_cex = c(.7, .7),
+#'   val_order = c("Prefecture", "Sub-prefecture", "Simple municipality"),
+#'   leg_no_data = "No dada",
 #'   leg_frame = c(TRUE, TRUE),
 #'   add = TRUE
 #' )
-tc_map_pc <- function(x,
-                      var,
+tc_map_pt <- function(x, var,
                       inches = 0.3,
                       val_max,
                       symbol = "circle",
-                      pal = "Mint",
-                      breaks = "quantile",
-                      nbreaks,
+                      pal = "Dynamic",
+                      val_order,
                       border,
                       lwd = .7,
                       col_na = "white",
@@ -49,7 +46,7 @@ tc_map_pc <- function(x,
                       leg_title = var,
                       leg_title_cex = c(.8, .8),
                       leg_val_cex = c(.6, .6),
-                      leg_val_rnd = c(0, 2),
+                      leg_val_rnd = c(0),
                       leg_no_data = "No data",
                       leg_frame = c(FALSE, FALSE),
                       add) {
@@ -58,24 +55,26 @@ tc_map_pc <- function(x,
   on.exit(par(op))
   bg <- .gmapsf$args$bg
   fg <- .gmapsf$args$fg
-  if (missing(add)) add <- TRUE
   if (missing(border)) border <- fg
+  if (missing(add)) add <- TRUE
   
   var2 <- var[2]
   var1 <- var[1]
   # check merge and order
   dots <- create_dots(x = x, var = var1)
   
-  # get the breaks
-  breaks <- tc_get_breaks(
-    x = dots[[var2]], nbreaks = nbreaks,
-    breaks = breaks
+  # get modalities
+  val_order <- get_modalities(
+    x = dots[[var2]],
+    val_order = val_order
   )
-  nbreaks <- length(breaks) - 1
-  # get the cols
-  pal <- get_the_pal(pal = pal, nbreaks = nbreaks)
-  # get the color vector
-  mycols <- get_col_vec(x = dots[[var2]], breaks = breaks, pal = pal)
+  # get color list and association
+  pal <- get_the_pal(pal = pal, nbreaks = length(val_order))
+  # get color vector
+  mycols <- get_col_typo(
+    x = dots[[var2]], pal = pal,
+    val_order = val_order
+  )
   
   no_data <- FALSE
   if (max(is.na(mycols)) == 1) {
@@ -103,7 +102,7 @@ tc_map_pc <- function(x,
     mycols <- c(NA, mycols)
     borders <- c(NA, rep(border, nrow(dots)))
     dots <- rbind(dots[1, ], dots)
-    dots[1, var] <- val_max
+    dots[1, var1] <- val_max
     sizes <- c(inches, sizes)
   }
   
@@ -126,15 +125,13 @@ tc_map_pc <- function(x,
     pos = leg_pos[1], val = val, title = leg_title[1],
     symbol = symbol, inches = inches, col = "grey80",
     title_cex = leg_title_cex[1], val_cex = leg_val_cex[1],
-    val_rnd = leg_val_rnd[1],
-    frame = leg_frame[1], border = border, lwd = lwd,
-    bg = bg, fg = fg
+    val_rnd = leg_val_rnd,
+    frame = leg_frame[1], border = border, lwd = lwd, bg = bg, fg = fg
   )
   
-  tc_leg_c(
-    pos = leg_pos[2], val = breaks, title = leg_title[2],
+  tc_leg_t(
+    pos = leg_pos[2], val = val_order, title = leg_title[2],
     title_cex = leg_title_cex[2], val_cex = leg_val_cex[2],
-    val_rnd = leg_val_rnd[2],
     col_na = col_na, no_data = no_data, no_data_txt = leg_no_data,
     frame = leg_frame[2], pal = pal, bg = bg, fg = fg
   )

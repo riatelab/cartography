@@ -46,9 +46,8 @@
 #' not (FALSE).
 #' @param colNA no data color. 
 #' @export
-#' @seealso \link{legendBarsSymbols}, \link{legendTypo},
-#' \link{legendCirclesSymbols}, \link{legendSquaresSymbols},
-#' \link{typoLayer}, \link{propSymbolsLayer}
+#' @keywords internal
+#' @seealso \link{tc_map_pt}
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -82,6 +81,9 @@ propSymbolsTypoLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                                  legend.var2.nodata = "no data",
                                  legend.var2.frame = FALSE,
                                  add = TRUE){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::propSymbolsTypoLayer()",
+                            with = "tc_map_pt()") 
   
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
