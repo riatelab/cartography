@@ -15,7 +15,7 @@ tc_map_pt(
   border,
   lwd = 0.7,
   col_na = "white",
-  leg_pos = c("topright", "bottomright"),
+  leg_pos = tc_get_leg_pos(x, 2),
   leg_title = var,
   leg_title_cex = c(0.8, 0.8),
   leg_val_cex = c(0.6, 0.6),

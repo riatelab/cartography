@@ -32,7 +32,7 @@
 #' tc_map_c(
 #'   x = mtq, var = "MED", col_na = "grey", pal = "Cividis",
 #'   breaks = "quantile", nbreaks = 4, border = "white",
-#'   lwd = .5, leg_pos = "bottomleft",
+#'   lwd = .5, leg_pos = "topleft",
 #'   leg_title = "Median Income", leg_title_cex = 1.1,
 #'   leg_val_cex = 1, leg_val_rnd = -2, leg_no_data = "No data",
 #'   leg_frame = TRUE
@@ -48,7 +48,7 @@ tc_map_c <- function(x, var,
                      col_na = "white",
                      cex_na = 1,
                      pch_na = 4,
-                     leg_pos = "topright",
+                     leg_pos = tc_get_leg_pos(x),
                      leg_title = var,
                      leg_title_cex = .8,
                      leg_val_cex = .6,

@@ -16,7 +16,7 @@ tc_map_s(
   pch_na = 4,
   cex_na = 1,
   val_order,
-  leg_pos = "topright",
+  leg_pos = tc_get_leg_pos(x),
   leg_title = var,
   leg_title_cex = 0.8,
   leg_val_cex = 0.6,
