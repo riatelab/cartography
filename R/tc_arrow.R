@@ -35,27 +35,27 @@ tc_arrow <- function(pos = "topleft", col, adjust) {
     switch(pos,
            topleft = {
              xarrow <- xe[1] + inset * .5
-             yarrow <- ye[2] - inset * 2
+             yarrow <- ye[2] - inset * 1.5
            },
            bottomright = {
              xarrow <- xe[2] - inset * 1.5
-             yarrow <- ye[1] + inset * 2
+             yarrow <- ye[1] + inset * 1.5
            },
            topright = {
              xarrow <- xe[2] - inset * 1.5
-             yarrow <- ye[2] - inset * 2
+             yarrow <- ye[2] - inset * 1.5
            },
            bottomleft = {
              xarrow <- xe[1] + inset * .5
-             yarrow <- ye[1] + inset * 2
+             yarrow <- ye[1] + inset * 1.5
            },
            top = {
              xarrow <- xe[1] + diff(xe) / 2 - inset * .5
-             yarrow <- ye[2] - inset * 2
+             yarrow <- ye[2] - inset * 1.5
            },
            bottom = {
              xarrow <- xe[1] + diff(xe) / 2 - inset * .5
-             yarrow <- ye[1] + inset * 2
+             yarrow <- ye[1] + inset * 1.5
            },
            left = {
              xarrow <- xe[1] + inset * .5
@@ -67,9 +67,9 @@ tc_arrow <- function(pos = "topleft", col, adjust) {
            }
     )
   }
-  
+  # points(xarrow, yarrow, pch = 4, col = "red", cex = 2)
   xx <- c(xarrow, xarrow + inset / 2, xarrow + inset)
-  yy <- c(yarrow, yarrow + inset * 1.5, yarrow)
+  yy <- c(yarrow, yarrow + inset * 1, yarrow)
   
   if (!missing(adjust)) {
     xcrs <- st_crs(adjust)
@@ -111,7 +111,7 @@ tc_arrow <- function(pos = "topleft", col, adjust) {
   polygon(xx, yy, col = col, border = col, xpd = TRUE)
   text(
     x = xx[1] + (xx[3] - xx[1]) / 2, y = yarrow, labels = azim,
-    adj = c(0.5, 1.5), cex = 0.7, xpd = TRUE,
+    adj = c(0.5, 1.3), cex = 0.7, xpd = TRUE,
     font = 2, col = col, srt = theta * 180 / pi
   )
   
