@@ -44,7 +44,11 @@ tc_leg_t <- function(pos = "topright",
   # stop if the position is not valid
   positions <- c(
     "bottomleft", "left", "topleft", "top", "bottom",
-    "bottomright", "right", "topright"
+    "bottomright", "right", "topright",
+    "bottomleft1", "bottomright1", "bottom1",
+    "bottomleft2", "bottomright2", "bottom2",
+    "topright1", "topleft1", "top1",
+    "topright2", "topleft2", "top2"
   )
   if (length(pos) == 1) {
     if (!pos %in% positions) {

@@ -31,19 +31,27 @@ get_xy_title <- function(x = NULL, y, title, title_cex) {
 # get the position of the legeng
 get_pos_leg <- function(pos, xy_rect, inset, xy_title, frame = FALSE) {
   pu <- par("usr")
-  pu
   inset2 <- strwidth("M", units = "user", cex = 1) / 2
   if(frame){
     pu <- pu + c(inset2  , -inset2 , inset2 , -inset2 )
   }
   
+  lpos <- nchar(pos)
+  ex_line <- substr(pos, lpos, lpos)
+  extra <- 0
+  if(ex_line %in% c(1:3)){
+    extra <- inset2 * 2 * as.numeric(ex_line)
+    pos <- substr(pos, 1, lpos-1)
+  }
+
   xy <- switch(pos,
                bottomleft = c(
                  pu[1] + inset2,
-                 pu[3] + xy_rect[4] - xy_rect[2] + inset2),
+                 pu[3] + xy_rect[4] - xy_rect[2] + inset2 + extra
+                 ),
                topleft = c(
                  pu[1] + inset2,
-                 pu[4] - inset2
+                 pu[4] - inset2 - 3 * extra
                ),
                left = c(
                  pu[1] + inset2,
@@ -51,15 +59,15 @@ get_pos_leg <- function(pos, xy_rect, inset, xy_title, frame = FALSE) {
                ),
                top = c(
                  pu[1] + (pu[2] - pu[1]) / 2 - (xy_rect[3] - xy_rect[1]) / 2 + inset2,
-                 pu[4] - inset2
+                 pu[4] - inset2 - 3 * extra
                ),
                bottom = c(
                  pu[1] + (pu[2] - pu[1]) / 2 - (xy_rect[3] - xy_rect[1]) / 2 + inset2,
-                 pu[3] + xy_rect[4] - xy_rect[2] + inset2
+                 pu[3] + xy_rect[4] - xy_rect[2] + inset2 + extra
                ),
                bottomright = c(
                  pu[2] - xy_rect[3] - xy_rect[1] - inset2,
-                 pu[3] + xy_rect[4] - xy_rect[2] + inset2
+                 pu[3] + xy_rect[4] - xy_rect[2] + inset2 + extra
                ),
                right = c(
                  pu[2] - xy_rect[3] - xy_rect[1] - inset2,
@@ -67,10 +75,10 @@ get_pos_leg <- function(pos, xy_rect, inset, xy_title, frame = FALSE) {
                ),
                topright = c(
                  pu[2] - xy_rect[3] - xy_rect[1] - inset2,
-                 pu[4] - inset2
+                 pu[4] - inset2 - 3 * extra
                )
   )
-  
+  print(xy)
   return(unname(xy))
 }
 

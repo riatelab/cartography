@@ -50,8 +50,8 @@ tc_get_leg_pos <- function(x, n = 1){
       }
     }
   }
-  tpos = c("bottomleft", "bottom", "bottomright",
+  tpos = c("bottomleft1", "bottom1", "bottomright1",
            "left"      , "center", "right",
-           "topleft"   , "top"   , "topright")
+           "topleft1"   , "top1"   , "topright1")
   return(tpos[pos])
 }
