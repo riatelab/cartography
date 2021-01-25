@@ -12,7 +12,7 @@
 #' mtq <- tc_import_mtq()
 #' tc_get_leg_pos(mtq)
 tc_get_leg_pos <- function(x, n = 1){
-  if(is.null(dev.list())){
+  if(is.null(grDevices::dev.list())){
     bb <- sf::st_bbox(x)
   }else{
     p <- par("usr")
@@ -52,6 +52,6 @@ tc_get_leg_pos <- function(x, n = 1){
   }
   tpos = c("bottomleft1", "bottom1", "bottomright1",
            "left"      , "center", "right",
-           "topleft1"   , "top1"   , "topright1")
+           "toplef1"   , "top1"   , "topright")
   return(tpos[pos])
 }
