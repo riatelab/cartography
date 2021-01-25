@@ -30,7 +30,8 @@
 #' @details 
 #' The type parameters is defined within the \link{st_sample} function.
 #' @export
-#' @seealso \link{propSymbolsLayer}
+#' @seealso \link{tc_map_dd}
+#' @keywords internal
 #' @examples
 #' \dontrun{
 #' library(sf)
@@ -52,7 +53,9 @@ dotDensityLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                             legend.col = "black",
                             legend.frame = TRUE,
                             add = TRUE){
-  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::dotDensityLayer()",
+                            with = "tc_map_dd()") 
   if (!missing(iter)){
       stop("iter argument is defunct", call. = FALSE)
   }
