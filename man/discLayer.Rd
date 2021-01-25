@@ -103,5 +103,6 @@ discLayer(x = mtq.borders, df = mtq,
           legend.pos = "bottomleft", add=TRUE)
 }
 \seealso{
-\link{getBorders}, \link{gradLinkLayer}, \link{legendGradLines}
+\link{tc_map_d}
 }
+\keyword{internal}

@@ -35,5 +35,6 @@ plot(st_geometry(mtq), col = "grey")
 plot(st_geometry(mob.sf), col = "red4", lwd = 2, add = TRUE)
 }
 \seealso{
-\link{gradLinkLayer}, \link{propLinkLayer}
+\link{tc_get_links}
 }
+\keyword{internal}
