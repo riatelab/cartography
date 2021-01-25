@@ -79,5 +79,6 @@ propLinkLayer(x = mob.sf, df = mob,
               col = "#92000090", add = TRUE)
 }
 \seealso{
-\link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
+\link{tc_map_p}
 }
+\keyword{internal}

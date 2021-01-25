@@ -13,6 +13,7 @@ tc_map_p(
   col = "tomato4",
   border,
   lwd = 0.7,
+  lwd_max = 20,
   leg_pos = tc_get_leg_pos(x),
   leg_title = var,
   leg_title_cex = 0.8,
@@ -38,6 +39,8 @@ tc_map_p(
 \item{border}{border color}
 
 \item{lwd}{border width}
+
+\item{lwd_max}{lwd_max}
 
 \item{leg_pos}{position of the legend, one of 'topleft', 'top','topright', 'right', 'bottomright', 'bottom', 'bottomleft', 'left' or a vector of two coordinates in map units (c(x, y)). If leg_pos is 'n' then the legend is not plotted.}
 

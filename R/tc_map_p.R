@@ -16,6 +16,7 @@
 #' 'leg_val_cex',
 #' 'leg_val_rnd',
 #' 'leg_frame'))
+#' @param lwd_max lwd_max
 #' @importFrom graphics box
 #' @export
 #' @examples
@@ -39,6 +40,7 @@ tc_map_p <- function(x,
                      col = "tomato4",
                      border,
                      lwd = .7,
+                     lwd_max = 20,
                      leg_pos = tc_get_leg_pos(x),
                      leg_title = var,
                      leg_title_cex = .8,
@@ -48,11 +50,37 @@ tc_map_p <- function(x,
                      add) {
   # default
   op <- par(mar = .gmapsf$args$mar, no.readonly = TRUE)
+  lend <- par("lend")
   on.exit(par(op))
   bg <- .gmapsf$args$bg
   fg <- .gmapsf$args$fg
   if (missing(add)) add <- TRUE
   if (missing(border)) border <- fg
+
+  
+  
+  
+  if (is(st_geometry(x), c("sfc_LINESTRING", "sfc_MULTILINESTRING"))) {
+    x <- x[!is.na(x[[var]]), ]
+    maxval <- max(x[[var]])
+    x$lwd <- x[[var]] * lwd_max / maxval
+    if (add == FALSE) {
+      tc_init(x, bg = bg)
+    }
+    
+    par(lend = 1)
+    tc_map(x, lwd = x$lwd, add = T, col = col)
+    legendPropLines(pos = "right", title.txt = leg_title, 
+                    title.cex = leg_title_cex,
+                    values.cex = leg_val_cex, 
+                    var = c(min(x[[var]]), maxval), 
+                    lwd = lwd_max, col = col, frame = leg_frame, 
+                    values.rnd = leg_val_rnd)
+    par(lend = lend)
+    
+    return(invisible(NULL))
+  }
+  
   
   # check merge and order
   dots <- create_dots(x = x, var = var)

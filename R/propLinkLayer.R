@@ -24,7 +24,8 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @note Unlike most of cartography functions, identifiers variables are mandatory.
-#' @seealso \link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
+#' @seealso \link{tc_map_p}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
