@@ -36,7 +36,8 @@
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
-#' @seealso \link{getBorders}, \link{gradLinkLayer}, \link{legendGradLines}
+#' @seealso \link{tc_map_d}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -66,6 +67,9 @@ discLayer <- function(x, df, dfid = NULL, var,
                       legend.values.rnd = 2,
                       legend.frame=FALSE,
                       add = TRUE){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::discLayer()",
+                            with = "tc_disc()") 
   
 
   if (is.null(dfid)){dfid <- names(df)[1]}
