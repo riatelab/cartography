@@ -18,10 +18,13 @@
 #' # Plot the links1
 #' plot(st_geometry(mtq), col = "grey")
 #' plot(st_geometry(mob.sf), col = "red4", lwd = 2, add = TRUE)
-#' @seealso \link{gradLinkLayer}, \link{propLinkLayer}
+#' @seealso \link{tc_get_links}
+#' @keywords internal
 #' @export
 getLinkLayer <- function(x, xid = NULL, df, dfid = NULL){
-
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::getLinkLayer()",
+                            with = "tc_get_links()") 
   if(methods::is(x, "Spatial")){x <- sf::st_as_sf(x)}
   if(is.null(xid)){xid <- names(x)[1]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
