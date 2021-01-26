@@ -74,7 +74,6 @@ tc_map_sc <- function(x, var,
   var1 <- var[1]
   
   # Transform to point
-  xx <- x
   st_geometry(x) <- st_centroid(st_geometry(x), of_largest_polygon = TRUE)
   
   ################### COLORS ##########################

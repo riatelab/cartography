@@ -70,7 +70,7 @@ tc_map_p <- function(x,
     
     par(lend = 1)
     tc_map(x, lwd = x$lwd, add = T, col = col)
-    legendPropLines(pos = "right", title.txt = leg_title, 
+    legendPropLines(pos = leg_pos, title.txt = leg_title, 
                     title.cex = leg_title_cex,
                     values.cex = leg_val_cex, 
                     var = c(min(x[[var]]), maxval), 
