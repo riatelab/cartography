@@ -56,10 +56,8 @@ tc_map_p <- function(x,
   fg <- .gmapsf$args$fg
   if (missing(add)) add <- TRUE
   if (missing(border)) border <- fg
-
   
-  
-  
+  # linestring special case
   if (is(st_geometry(x), c("sfc_LINESTRING", "sfc_MULTILINESTRING"))) {
     x <- x[!is.na(x[[var]]), ]
     maxval <- max(x[[var]])
@@ -67,7 +65,6 @@ tc_map_p <- function(x,
     if (add == FALSE) {
       tc_init(x, bg = bg)
     }
-    
     par(lend = 1)
     tc_map(x, lwd = x$lwd, add = T, col = col)
     legendPropLines(pos = leg_pos, title.txt = leg_title, 
@@ -122,11 +119,7 @@ tc_map_p <- function(x,
     mycols = mycols, border = borders, lwd = lwd,
     inches = inches
   )
-  
-  # if (add == FALSE) {
-  #   box(bg = bg)
-  # }
-  
+
   # symbols size
   val <- seq(sqrt(min(dots[[var]])), sqrt(max(dots[[var]])), length.out = 4)
   val <- val * val

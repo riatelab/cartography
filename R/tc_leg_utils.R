@@ -78,7 +78,7 @@ get_pos_leg <- function(pos, xy_rect, inset, xy_title, frame = FALSE) {
                  pu[4] - inset2 - 3 * extra
                )
   )
-  print(xy)
+
   return(unname(xy))
 }
 

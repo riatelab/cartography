@@ -73,7 +73,8 @@ tc_map_d <- function(x,
   op <- par(mar = .gmapsf$args$mar, no.readonly = TRUE)
   on.exit(par(op))
   bg <- .gmapsf$args$bg
-
+  fg <- .gmapsf$args$fg
+  
   if (missing(df_id)){df_id <- names(df)[1]}
   df <- data.frame(df)
   # Join (1 and 2)
@@ -101,23 +102,28 @@ tc_map_d <- function(x,
   distr <- tc_get_breaks(x = x$disc, nbreaks = nbreaks, breaks = breaks)
   
   # Classes de tailles
-  ete <- (sizemax - sizemin) / nbreaks
-  sizes <- sizemin
-  for(i in 1:nbreaks){sizes <- c(sizes,sizes[i]+ete)}
+  # ete <- (sizemax - sizemin) / nbreaks-1
+  # sizes <- sizemin
+  # for(i in 1:nbreaks){sizes <- c(sizes,sizes[i] + ete)}
+  
+  sizes <- seq(sizemin, sizemax, length.out = nbreaks)
+
   
   # Affectation des tailles au spdf
-  x$sizesMap <- sizes[(findInterval(x$disc,distr,all.inside=TRUE))]
+  x$sizesMap <- sizes[(findInterval(x$disc,distr,all.inside=FALSE, rightmost.closed = TRUE))]
   
   # Cartographie
   plot(sf::st_geometry(x), col = col, lwd = x$sizesMap, add = add, bg = bg)
   
+  print(unique(x$sizesMap))
   # Legend
-  legendGradLines(pos = leg_pos, title.txt = leg_title, 
-                  title.cex = leg_title_cex ,
-                  values.cex = leg_val_cex, 
-                  breaks = distr, lwd = sizes, 
-                  col = col, values.rnd = leg_val_rnd,
-                  frame = leg_frame)
+  tc_leg_gl(pos = leg_pos, 
+            val = distr, 
+            lwd = sizes,
+            title = leg_title,
+            title_cex = leg_title_cex ,val_cex = leg_val_cex,
+            val_rnd =  leg_val_rnd, col = col, 
+            bg = bg, fg = fg, frame = leg_frame)
   
   invisible(x.out)
 }

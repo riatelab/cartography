@@ -1,22 +1,19 @@
-#' @title Plot a legend for a choropleth map
-#' @description This function plots a legend for a choropleth map.
+#' @title Plot a legend for a graduated lines map
+#' @description This function plots a legend for graduated lines maps.
 #'
-#' @param pal a set of colors.
-#' @param col_na color for missing values
 #' @param pos position of the legend, one of "topleft", "top",
 #' "topright", "right", "bottomright", "bottom", "bottomleft",
 #' "left" or a vector of two coordinates in map units
 #' (c(x, y))
+#' @param lwd lines widths
 #' @param val break labels
+#' @param col lines color
 #' @param title title of the legend
 #' @param title_cex size of the legend title
 #' @param val_cex size of the values in the legend
 #' @param val_rnd number of decimal places of the values in
 #' the legend.
-#' @param no_data if TRUE a "missing value" box is plotted
-#' @param no_data_txt label for missing values
 #' @param frame whether to add a frame to the legend (TRUE) or not (FALSE)
-#' @param border color of the boxes' borders
 #' @param cex size of the legend; 2 means two times bigger
 #' @param bg background of the legend
 #' @param fg foreground of the legend
@@ -25,23 +22,19 @@
 #' @examples
 #' plot.new()
 #' plot.window(xlim = c(0, 1), ylim = c(0, 1), asp = 1)
-#' tc_leg_c(val = c(1,2,3,4), pal = c("red1", "red3", "red4"))
+#' tc_leg_gl("bottomleft", lwd =  c(0.2,2,4,5,10), val =c(1,2,3,4,10.2,15.2))
 #' box()
-tc_leg_c <- function(pos = "topleft",
-                  val,
-                  pal,
-                  title = "Title of the Legend",
-                  title_cex = .8,
-                  val_cex = .6,
-                  val_rnd = 2,
-                  col_na = "white",
-                  no_data = FALSE,
-                  no_data_txt = "No Data",
-                  frame = FALSE,
-                  border,
-                  bg,
-                  fg,
-                  cex = 1) {
+tc_leg_gl <- function(pos = "topleft",val,
+                     col = "tomato4",
+                     lwd,
+                     title = "Title of the Legend",
+                     title_cex = .8,
+                     val_cex = .6,
+                     val_rnd = 2,
+                     frame = FALSE,
+                     bg,
+                     fg,
+                     cex = 1) {
   
   op <- par(mar = .gmapsf$args$mar, no.readonly = TRUE)
   on.exit(par(op))
@@ -65,15 +58,15 @@ tc_leg_c <- function(pos = "topleft",
   inset <- insetf * cex
   if (missing(bg)) bg <- .gmapsf$args$bg
   if (missing(fg)) fg <- .gmapsf$args$fg
-  if (missing(border)) border <- fg
-  
+
   
   w <- inset
   h <- inset / 1.5
   val <- get_val_rnd(val = val, val_rnd = val_rnd)
   val <- rev(val)
+  lwd <- rev(lwd)
   n <- length(val) - 1
-  pal <- rev(pal)
+  pal <- rev(col)
   xy_leg <- NULL
   while (TRUE) {
     if (length(pos) == 2) {
@@ -92,12 +85,7 @@ tc_leg_c <- function(pos = "topleft",
       w = w,
       h = h
     )
-    xy_nabox <- get_xy_nabox(
-      x = xy_title$x,
-      y = xy_box$ybottom[n] - inset / 2,
-      w = w,
-      h = h
-    )
+
     xy_box_lab <- get_xy_box_lab_c(
       x = xy_box$xright[n] + inset / 4,
       y = xy_box$ytop[1],
@@ -105,24 +93,13 @@ tc_leg_c <- function(pos = "topleft",
       val = val,
       val_cex = val_cex
     )
-    xy_nabox_lab <- get_xy_nabox_lab(
-      x = xy_nabox$xright + inset / 4,
-      y = xy_nabox$ytop,
-      h = h,
-      no_data_txt = no_data_txt,
-      val_cex = val_cex
-    )
-    xy_rect <- get_xy_rect(
+
+    xy_rect <- get_xy_rect2(
       xy_title = xy_title,
       xy_box = xy_box,
-      xy_nabox = xy_nabox,
       xy_box_lab = xy_box_lab,
-      xy_nabox_lab = xy_nabox_lab,
-      no_data = no_data,
       inset = inset,
-      w = w,
-      cho = TRUE
-    )
+      w = w )
     if (!is.null(xy_leg)) {
       break
     }
@@ -152,28 +129,18 @@ tc_leg_c <- function(pos = "topleft",
        adj = c(0, 0), col = fg
   )
   # boxes
-  rect(xy_box[[1]], xy_box[[2]], xy_box[[3]], xy_box[[4]],
-       col = pal,
-       border = fg, lwd = .7
+  segments(x0 = xy_box[[1]], 
+           y0 = xy_box[[2]] + (xy_box[[4]] - xy_box[[2]]) / 2 , 
+           x1 = xy_box[[3]], 
+           y1 = xy_box[[2]] + (xy_box[[4]] - xy_box[[2]]) / 2, 
+           col = pal,
+           lwd = lwd, lend = 1
   )
   # labels
   text(xy_box_lab$x,
        y = xy_box_lab$y, labels = val, cex = val_cex,
        adj = c(0, 0.5), col = fg
   )
-  # no data
-  if (no_data) {
-    # NA box
-    rect(xy_nabox[[1]], xy_nabox[[2]], xy_nabox[[3]], xy_nabox[[4]],
-         col = col_na, border = fg, lwd = .7
-    )
-    # NA text
-    text(xy_nabox_lab$x,
-         y = xy_nabox_lab$y, labels = no_data_txt,
-         cex = val_cex, adj = c(0, 0.5), col = fg
-    )
-  }
-  
-  
+
   return(invisible(list(xy_rect = xy_rect, inset = inset, h = xy_title$h)))
 }

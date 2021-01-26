@@ -834,6 +834,8 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @export
+#' @seealso \link{tc_leg_gl}
+#' @keywords internal
 #' @examples 
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -848,6 +850,9 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
 legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend", 
                             title.cex = 0.8, cex = 1, values.cex = 0.6, breaks, 
                             lwd, col, values.rnd = 2,frame=FALSE){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendGradLines()",
+                            with = "tc_leg_gl()") 
   breaks <- abs(breaks)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",

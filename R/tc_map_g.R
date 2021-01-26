@@ -68,12 +68,10 @@ tc_map_g <- function(x,
     # map
     plot(sf::st_geometry(x), col = col, lwd = mylwd, add = add)
     # legend
-    legendGradLines(pos = leg_pos, title.txt = leg_title,
-                    title.cex = leg_title_cex ,
-                    values.cex = leg_val_cex,
-                    breaks = breaks, lwd = lwd,
-                    col = col, values.rnd = leg_val_rnd,
-                    frame = leg_frame)
+    tc_leg_gl(pos = leg_pos, val = breaks, title = leg_title,
+              title_cex = leg_title_cex ,val_cex = leg_val_cex,
+              val_rnd =  leg_val_rnd, lwd = lwd, col = col, 
+              bg = bg, fg =fg, frame = leg_frame)
     return(invisible(NULL))
   }
   

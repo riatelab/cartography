@@ -186,9 +186,7 @@ tc_theme <- function(x) {
       theme <- themes[[x]]
     }
   }
-  
-  # print(theme)
-  # par(mar = theme[["mar"]])
+
   .gmapsf$args <- as.list(theme)
   
   return(invisible(theme))

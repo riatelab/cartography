@@ -36,18 +36,12 @@ tc_init <- function(x,
                     width,
                     height,
                     res = 72) {
-  
-  
-  
   if (!missing(theme)) {
     tc_theme(theme)
     mar <- .gmapsf$args$mar
   } else {
     mar <- par("mar")
   }
-  
-  
-  
   
   if (missing(bg)) bg <- .gmapsf$args$bg
   
@@ -58,7 +52,6 @@ tc_init <- function(x,
   if (par("xaxs") == "r") {
     expandBB <- expandBB / (1 + 0.08)
   }
-  
   # expandBB mgmt
   extra <- expandBB[c(2, 1, 4, 3)]
   w <- bb[3] - bb[1]
@@ -107,7 +100,7 @@ tc_init <- function(x,
   
   # plot with bg and margins
   plot(y, col = NA, bg = bg, border = NA, lwd = 1, expandBB = expandBB, asp = 1)
-  # box(col = bg)
+  
   # add a shadow
   if (shadow) {
     d <- shadow_cex * strwidth("M", units = "user", cex = 1) / 3

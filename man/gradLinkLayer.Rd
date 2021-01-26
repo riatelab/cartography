@@ -83,5 +83,6 @@ gradLinkLayer(x = mob.sf, df = mob,
               col = "#92000090", add = TRUE)
 }
 \seealso{
-\link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}
+\link{tc_map_g}
 }
+\keyword{internal}
