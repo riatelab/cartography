@@ -7,9 +7,6 @@
 [![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
 [![status](https://tinyverse.netlify.com/badge/cartography)](https://tinyverse.netlify.app/)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.00054/status.svg)](https://doi.org/10.21105/joss.00054)
-[![minimal R
-version](https://img.shields.io/badge/R-%E2%89%A5%203.3.0-brightgreen)](https://cran.r-project.org/)
-![CRAN/METACRAN](https://img.shields.io/cran/l/cartography?color=brightgreen)
 
 ## Create and integrate maps in your R workflow!
 
@@ -110,9 +107,8 @@ library(cartography)
 
     ## Linking to GEOS 3.7.1, GDAL 3.1.2, PROJ 7.1.0
 
-    ## 
-    ## Since version 3.0.0 several replacement function have been introduced.
-    ## You can use `tc_legacy_mode('on')` to suppress deprecation warnings.
+    ## This version introduces functions that supersede previous ones.
+    ## Use `tc_legacy_mode('on')` to suppress deprecation warnings.
 
 ``` r
 mtq <- tc_import_mtq()
