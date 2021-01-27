@@ -1,11 +1,10 @@
-#' @title \code{.png} Layer
-#' @name getPngLayer
+#' @title Get a RasterBrick from a png file
+#' @name tc_get_png
 #' @description Get a \code{RasterBrick} from a \code{.png} image cut using the 
-#' shape of a spatial object. The \code{.png} file could be either a local file 
-#' or extracted from a given url.
+#' shape of a spatial object. 
 #' @param x an \code{sf} object, a simple feature collection (POLYGON or 
-#' MULTIPOLYGON) or a tile (see \code{\link{getTiles}}).  
-#' @param pngpath local path or url of a \code{.png} file. 
+#' MULTIPOLYGON).  
+#' @param file path to the file. 
 #' @param align set how the \code{.png} file should be fitted within \code{x}.
 #'  Possible values are \code{'left','right','top', 'bottom'} or \code{'center'}.
 #' @param margin inner margin, zooms out the \code{.png} over \code{x}. If 0
@@ -16,12 +15,6 @@
 #' @param inverse  logical. If \code{FALSE}, overlapped areas of \code{x} on 
 #' \code{pngpath} are extracted, otherwise non-overlapping areas are returned. 
 #' See \code{\link[raster:mask]{mask}}.
-#' @param dwmode Set the download mode. It could be \code{'base'} for 
-#' \code{\link[utils:download.file]{download.file}} or \code{'curl'} for 
-#' \code{\link[curl:curl_download]{curl_download}}.
-#' @param ... additional arguments for downloading the file. See 
-#' \code{\link[utils:download.file]{download.file}} or 
-#' \code{\link[curl:curl_download]{curl_download}}.
 #' @return A \code{RasterBrick} object is returned. 
 #' @details The effect of \code{align} would differ depending of the aspect 
 #' ratio of \code{x} and \code{pngpath}. To obtain a fitted tile from 
@@ -32,47 +25,19 @@
 #' the scale of \code{x} and the resolution setup of the graphic device. 
 #' Exporting to \code{svg} is highly
 #' recommended.
-#' @author dieghernan, \url{https://github.com/dieghernan/}
-#' @seealso \link{tc_get_png}
+#' @seealso \link{tc_map_r}
 #' @examples 
-#' library(sf)
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-#' #Local file
-#' dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
-#' mask <- getPngLayer(mtq, dirpng)
-#' 
-#' \dontrun{
-#' #Remote file
-#' urlpng <- "https://i.imgur.com/gePiDvB.png"
-#' masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE)
-#' }
+#' mtq <- tc_import_mtq()
+#' file_path <- system.file("img/LogoMartinique.png", package = "cartography")
+#' mask <- tc_get_png(x = mtq, file = file_path)
 #' @export
-#' @keywords internal
-getPngLayer <-  function(x, pngpath, align = "center", margin = 0, crop = FALSE,
-                         mask = TRUE, inverse = FALSE, dwmode = "curl", ...) {
-  
-  lifecycle::deprecate_soft(when = "3.0.0", 
-                            what = "cartography::getPngLayer()",
-                            with = "tc_get_png()") 
-  
-  if (class(x)[1] != "RasterBrick") {
-    geom <- sf::st_geometry(x)
-    x <- sf::st_sf(index = 1:length(geom), geometry = geom)
-  }
+tc_get_png <-  function(x, file, align = "center", margin = 0, crop = FALSE,
+                         mask = TRUE, inverse = FALSE) {
+  x <- sf::st_as_sf(x)
   crs <- sf::st_crs(x)$proj4string
-  if (file.exists(pngpath)) {
-    pngRB <- raster::brick(png::readPNG(pngpath) * 255, crs = crs)
-  } else {
-    # Download
-    dirfile <- tempfile(fileext = ".png")
-    if (dwmode == "base") {
-      download.file(pngpath, dirfile, ...)
-    } else if (dwmode == "curl") {
-      curl::curl_download(pngpath, dirfile, ...)
-    }
-    pngRB <- raster::brick(png::readPNG(dirfile) * 255, crs = crs)
-  }
-  
+
+  pngRB <- raster::brick(png::readPNG(file) * 255, crs = crs)
+
   if (!align %in% c("left", "right", "center", "top", "bottom")) {
     stop("align should be 'left','right','top', 'bottom' or 'center'")
   }
