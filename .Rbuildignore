@@ -13,3 +13,4 @@
 ^img$
 ^.github
 ^README\.Rmd$
+^README_
