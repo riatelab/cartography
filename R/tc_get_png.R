@@ -29,20 +29,34 @@
 #' @examples 
 #' mtq <- tc_import_mtq()
 #' file_path <- system.file("img/LogoMartinique.png", package = "cartography")
-#' mask <- tc_get_png(x = mtq, file = file_path)
+#' logo <- tc_get_png(x = mtq, file = file_path)
 #' @export
 tc_get_png <-  function(x, file, align = "center", margin = 0, crop = FALSE,
                          mask = TRUE, inverse = FALSE) {
-  x <- sf::st_as_sf(x)
-  crs <- sf::st_crs(x)$proj4string
-
-  pngRB <- raster::brick(png::readPNG(file) * 255, crs = crs)
 
   if (!align %in% c("left", "right", "center", "top", "bottom")) {
     stop("align should be 'left','right','top', 'bottom' or 'center'")
   }
   
   #Geotagging the raster
+  img <- png::readPNG(file) * 255
+
+  # Adding transparency
+  if (dim(img)[3] == 4) {
+    nrow <- dim(img)[1]
+    for (j in seq_len(nrow)) {
+      row <- img[j, , ]
+      alpha <- row[, 4] == 0
+      row[alpha, ] <- NA
+      img[j, , ] <- row
+    }
+  }
+  
+  #Geotagging the raster
+  x <- sf::st_as_sf(x)
+  crs <- sf::st_crs(x)$proj4string
+  pngRB <- raster::brick(img, crs = crs)
+  
   
   #Add margin
   extshpinit <- raster::extent(x)
@@ -87,7 +101,7 @@ tc_get_png <-  function(x, file, align = "center", margin = 0, crop = FALSE,
   }
   
   # Mask
-  if (mask & class(x)[1] != "RasterBrick") {
+  if (mask) {
     fig <- raster::mask(fig, x, inverse = inverse)
   }
   
