@@ -6,7 +6,6 @@
 [![R-CMD-check](https://github.com/riatelab/cartography/workflows/R-CMD-check/badge.svg)](https://github.com/riatelab/cartography/actions)
 [![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
 [![status](https://tinyverse.netlify.com/badge/cartography)](https://tinyverse.netlify.app/)
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.00054/status.svg)](https://doi.org/10.21105/joss.00054)
 
 ## Create and integrate maps in your R workflow!
 
@@ -59,7 +58,7 @@ tc_map_p(x = mtq,
          leg_pos = "topright", 
          leg_title = "Population") 
 tc_title("Population in Martinique, 2015")
-tc_credits("cartography 2.1.3\nSources: Insee and IGN - 2018")
+tc_credits("cartography 3.0.0\nSources: Insee and IGN - 2018")
 tc_scale(5)
 tc_arrow("topleft")
 ```
@@ -124,11 +123,12 @@ API (e.g. `propSymbolsTriangleLayer()`, `smoothLayer()`, `getTiles()` or
 
 -   But why?
 
-`cartography` was created in 2015. It was based on sp, rgdal and rgeos.
-Some initial choices (camelCase, argument names and order) were not the
-wisests. V2.0.0 introduced sf object, and internal uses switch to sf.
-But the general API was not significatly modified. v3.0.0 is a fresh
-start for the API (most of the internal code is only adapted)
+    `cartography` was created in 2015. It was based on sp, rgdal and
+    rgeos. Some initial choices (camelCase, argument names and order)
+    were not the wisests. V2.0.0 introduced sf object, and internal uses
+    switch to sf. But the general API was not significatly modified.
+    v3.0.0 is a fresh start for the API (most of the internal code is
+    only adapted)
 
 -   Why not create a new package ?
 
@@ -157,6 +157,9 @@ start for the API (most of the internal code is only adapted)
     Cham](https://github.com/riatelab/ReproducibleCartography) (EN)  
 -   [Blog posts](https://rgeomatic.hypotheses.org/category/cartography)
     (FR / EN)
+-   Giraud et al, (2016), cartography: Create and Integrate Maps in your
+    R Workflow, Journal of Open Source Software, 1(4), 54
+    [![DOI](https://joss.theoj.org/papers/10.21105/joss.00054/status.svg)](https://doi.org/10.21105/joss.00054)
 
 ## Alternatives Packages
 
