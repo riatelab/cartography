@@ -167,8 +167,18 @@ tc_theme <- function(x) {
       line = 1.5,
       cex = 1,
       font = 2
-    )
-    
+    ), 
+    barcelona = list(
+      name = "1936", 
+      bg = "#160808", 
+      fg = "#d73e23", 
+      mar = c(0, 0, 1.2, 0), 
+      tab = TRUE, 
+      pos = "left", 
+      inner = FALSE, 
+      line = 1.2, 
+      cex = 1, 
+      font = 2)
   )
   
   
