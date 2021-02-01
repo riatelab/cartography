@@ -80,3 +80,4 @@ legendPropTriangles(pos = "topright", var.txt = "population 1",
                     col="green", col2="yellow", frame=TRUE, values.rnd=2,
                     style="c")
 }
+\keyword{internal}

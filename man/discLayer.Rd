@@ -103,6 +103,6 @@ discLayer(x = mtq.borders, df = mtq,
           legend.pos = "bottomleft", add=TRUE)
 }
 \seealso{
-\link{tc_map_d}
+\link{tc_map_disc}
 }
 \keyword{internal}

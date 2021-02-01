@@ -94,6 +94,4 @@ propTrianglesLayer(x = mtq, var1 = "OCC", var2 = "CHOM",
                    col1="green4",col2="red4",k = 0.1)
 layoutLayer(title = "Active Population in Martinique, 2015")
 }
-\seealso{
-\link{legendPropTriangles}
-}
+\keyword{internal}

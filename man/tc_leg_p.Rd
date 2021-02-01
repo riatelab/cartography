@@ -2,7 +2,7 @@
 % Please edit documentation in R/tc_leg_p.R
 \name{tc_leg_p}
 \alias{tc_leg_p}
-\title{Plot a legend for proportional symbols}
+\title{Plot a legend for a proportional symbols map}
 \usage{
 tc_leg_p(
   pos = "left",

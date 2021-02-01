@@ -85,6 +85,6 @@ layoutLayer(title = "Population Distribution in Martinique, 2015")
 }
 }
 \seealso{
-\link{tc_map_dd}
+\link{tc_map_dots}
 }
 \keyword{internal}

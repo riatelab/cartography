@@ -103,6 +103,11 @@ not (FALSE).}
 An \code{\link{invisible}} sf object (MULTIPOLYGONs) is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 }
 \description{
+This function is deprecated, it is advised to use directly the \code{potential} 
+package to compute potentials. 
+
+
+
 Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
 This function is a wrapper around the \code{\link[SpatialPosition:quickStewart]{quickStewart}} function in 
 \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
@@ -129,6 +134,4 @@ propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
                  col = NA, border = "#ffffff50")
 layoutLayer(title = "Actual and Potential Popultation in Martinique")
 }
-\seealso{
-\link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
-}
+\keyword{internal}

@@ -49,9 +49,7 @@ pngLayer(masksea, add = TRUE)
 plot(st_geometry(mtq), border="orange", add=TRUE)
 }
 }
-\seealso{
-\link{getPngLayer}, \link{getTiles}
-}
 \author{
 dieghernan, \url{https://github.com/dieghernan/}
 }
+\keyword{internal}
