@@ -1,6 +1,6 @@
 #' @name tc_get_links
 #' @title Get a link layer from a data.frame of links.
-#' @description Create a links layer from a data.frame of links and an sf object.
+#' @description Create a link layer from a data.frame of links and an sf object.
 #' @param x an sf object, a simple feature collection.
 #' @param df a data.frame that contains identifiers of starting and ending points.
 #' @param x_id name of the identifier variable in x, default to the first column (optional)

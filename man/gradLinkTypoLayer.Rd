@@ -109,6 +109,4 @@ gradLinkTypoLayer(x = mob.sf, df = mob,
                   lwd = c(1,2,4,10),
                   var2='j', add = TRUE)
 }
-\seealso{
-\link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
-}
+\keyword{internal}

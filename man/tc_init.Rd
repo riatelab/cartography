@@ -2,7 +2,7 @@
 % Please edit documentation in R/tc_init.R
 \name{tc_init}
 \alias{tc_init}
-\title{Plot an invisible layer}
+\title{Initialize or export a map}
 \usage{
 tc_init(
   x,

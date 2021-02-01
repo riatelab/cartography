@@ -1,5 +1,5 @@
-#' Plot an annotation on a map
-#'
+#' @title Plot an annotation on a map
+#' @description Plot an annotation on a map.
 #' @param x an sf object with 1 row, a couple of coordinates (c(x, y)). 
 #' @param txt the text to display
 #' @param pos position of the text, one of "topleft", "topright", "bottomright", 
@@ -15,14 +15,13 @@
 #'
 #' @examples
 #' mtq <- tc_import_mtq()
-#' tc_theme("nevermind")
 #' tc_map(mtq)
 #' tc_annotation(x = c(711167.8,1614764 ), 
 #'               txt = "Look!\nImportant feature\nhere!", 
 #'               pos = "bottomleft", cex = 1.2, font = 2,
 #'               halo = TRUE, s = 1.5 )
 #' 
-#' tc_annotation(x = mtq[1, ], 
+#' tc_annotation(x = mtq[20, ], 
 #'               txt = "This is less\nimportant", 
 #'               cex = .7, font = 3, s = 1.3 )
 tc_annotation <- function(x, txt, pos = "topright", 

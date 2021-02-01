@@ -28,7 +28,7 @@
 #' @seealso \link{tc_map_r}
 #' @examples 
 #' mtq <- tc_import_mtq()
-#' file_path <- system.file("img/LogoMartinique.png", package = "cartography")
+#' file_path <- system.file("img/logo.png", package = "cartography")
 #' logo <- tc_get_png(x = mtq, file = file_path)
 #' @export
 tc_get_png <-  function(x, file, align = "center", margin = 0, crop = FALSE,

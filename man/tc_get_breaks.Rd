@@ -34,9 +34,9 @@ A function to classify continuous variables.
 "bclust", "fisher", "jenks" and "dpih"
 are \code{\link[classInt:classIntervals]{classIntervals}}
 methods. You may need to pass additional arguments for some of them.\cr\cr
-Jenks ("jenks" method) and Fisher-Jenks ("fisher" method) algorithms are
+Jenks ("jenks" method) and Fisher ("fisher" method) algorithms are
 based on the same principle and give
-quite similar results but Fisher-Jenks is much faster. \cr\cr
+quite similar results but Fisher is much faster. \cr\cr
 The "q6" method uses the following \code{\link[stats:quantile]{quantile}}
 probabilities: 0, 0.05, 0.275, 0.5, 0.725, 0.95, 1.\cr\cr
 The "geom" method is based on a geometric progression along

@@ -65,5 +65,4 @@ This function plots a legend for proportional symbols.
 plot.new()
 plot.window(xlim = c(0, 1), ylim = c(0, 1), asp = 1)
 tc_leg_p(val = c(1,20,100), col = "red", inches = .3)
-box()
 }

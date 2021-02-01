@@ -16,7 +16,7 @@ A vector of position is retured
 }
 \description{
 Find the optimal for one or two legends. The optimal position is
-a position that minimize overlap between a spatial object and a legend
+a position that minimizes overlap between a spatial object and a legend.
 }
 \examples{
 mtq <- tc_import_mtq()

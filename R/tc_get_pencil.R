@@ -14,7 +14,7 @@
 #' mtq <- tc_import_mtq()
 #' mtq_pencil <- tc_get_pencil(x = mtq, size = 100, buffer = 1000,
 #'                             lefthanded = TRUE)
-#' plot(mtq_pencil)
+#' tc_map(mtq_pencil)
 #' @export
 tc_get_pencil <- function(x, size = 100, buffer = 1000, lefthanded = TRUE) {
   a <- median(st_area(st_set_crs(x, NA)))

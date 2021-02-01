@@ -1,4 +1,4 @@
-#' @title Plot an invisible layer
+#' @title Initialize or export a map
 #' @name tc_init
 #' @description Plot an invisible layer with the extent of a spatial object.
 #' Export a map in png or svg format. It uses a reference

@@ -15,7 +15,7 @@ tc_arrow(pos = "topleft", col, adjust)
 arrow to the real north}
 }
 \description{
-Plot a north arrow
+Plot a north arrow.
 }
 \examples{
 mtq <- tc_import_mtq()

@@ -15,7 +15,6 @@
 #' @export
 #' @examples
 #' mtq <- tc_import_mtq()
-#' tc_theme("darkula")
 #' tc_map(mtq)
 #' tc_label(x = mtq, var = "LIBGEO", halo = TRUE, cex = 0.8,
 #'          overlap = FALSE, lines = FALSE)

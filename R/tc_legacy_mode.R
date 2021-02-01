@@ -5,7 +5,7 @@
 #' function. 
 #'
 #' @param mode "on" hide deprecation warnings, "off" to show deprecation warnings.    
-#' @note Be aware that this function may affect other package output. This is 
+#' @note Be aware that this function may affect other package. This is 
 #' a wrapper around \code{options(lifecycle_verbosity="quiet")} when 
 #' \code{mode="on"} and \code{options(lifecycle_verbosity="default")} when 
 #' \code{mode="off"}.

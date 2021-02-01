@@ -20,7 +20,7 @@ the two first columns. (optional)}
 An sf object is returned, it is composed of df and the sfc (LINESTRING) of links.
 }
 \description{
-Create a links layer from a data.frame of links and an sf object.
+Create a link layer from a data.frame of links and an sf object.
 }
 \examples{
 mtq <- tc_import_mtq()

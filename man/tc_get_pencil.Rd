@@ -29,5 +29,5 @@ MULTIPOLYGON sf object into a MULTILINESTRING one.
 mtq <- tc_import_mtq()
 mtq_pencil <- tc_get_pencil(x = mtq, size = 100, buffer = 1000,
                             lefthanded = TRUE)
-plot(mtq_pencil)
+tc_map(mtq_pencil)
 }

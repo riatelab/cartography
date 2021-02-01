@@ -60,5 +60,4 @@ This function plots a legend for a typologie map.
 plot.new()
 plot.window(xlim = c(0, 1), ylim = c(0, 1), asp = 1)
 tc_leg_t(val = c("type A", "type B"), pal = c('navy', 'tomato'))
-box()
 }

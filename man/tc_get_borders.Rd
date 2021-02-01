@@ -32,5 +32,5 @@ Extract borders between polygons.
 \examples{
 mtq <- tc_import_mtq()
 mtq_borders <- tc_get_borders(x = mtq)
-plot(mtq_borders)
+tc_map(mtq_borders, col = 1:5, lwd = 2)
 }

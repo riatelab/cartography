@@ -15,7 +15,7 @@ The best way to avoid these warnings is to use the suggested replacement
 function.
 }
 \note{
-Be aware that this function may affect other package output. This is 
+Be aware that this function may affect other package. This is 
 a wrapper around \code{options(lifecycle_verbosity="quiet")} when 
 \code{mode="on"} and \code{options(lifecycle_verbosity="default")} when 
 \code{mode="off"}.

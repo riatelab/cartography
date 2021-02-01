@@ -1,4 +1,5 @@
 #' @title Plot a north arrow
+#' @description Plot a north arrow.
 #' @name tc_arrow
 #' @eval my_params(c('pos'))
 #' @param col arrow color

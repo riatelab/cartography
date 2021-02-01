@@ -64,5 +64,4 @@ This function plots a legend for a choropleth map.
 plot.new()
 plot.window(xlim = c(0, 1), ylim = c(0, 1), asp = 1)
 tc_leg_c(val = c(1,2,3,4), pal = c("red1", "red3", "red4"))
-box()
 }

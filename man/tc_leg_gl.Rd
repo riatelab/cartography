@@ -54,6 +54,5 @@ This function plots a legend for graduated lines maps.
 \examples{
 plot.new()
 plot.window(xlim = c(0, 1), ylim = c(0, 1), asp = 1)
-tc_leg_gl("bottomleft", lwd =  c(0.2,2,4,5,10), val =c(1,2,3,4,10.2,15.2))
-box()
+tc_leg_gl(lwd =  c(0.2,2,4,5,10), val =c(1,2,3,4,10.2,15.2))
 }

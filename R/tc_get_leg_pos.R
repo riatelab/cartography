@@ -1,7 +1,7 @@
 #' @title Get the optimal position of a legend
 #'
 #' @description Find the optimal for one or two legends. The optimal position is
-#' a position that minimize overlap between a spatial object and a legend
+#' a position that minimizes overlap between a spatial object and a legend.
 #' @eval my_params(c("x"))
 #' @param n number of positions to get (1 or 2)
 #'
