@@ -1,6 +1,6 @@
 #' @title Legend for Hatched Maps
 #' @description Plot legend for hatched maps.
-#' @name legendHatched
+#' @name tc_leg_pattern
 #' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "right", "bottomright", "bottom", "bottomleft", 
 #' "bottomleftextra", "left" or a vector of two coordinates in map units 
@@ -24,31 +24,32 @@
 #' @note It is also possible to create solid legends, by setting \code{col} and \code{ptrn.bg} to the same color. 
 #' Parameters would honour the order of the \code{categ} variable.
 #' @export
-#' @examples 
-#' library(sf)
-#' mtq <-  st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-#' typoLayer(mtq,  var = "STATUS",  legend.pos = "n",
-#'           legend.values.order = c("Prefecture","Sub-prefecture",
-#'                                   "Simple municipality"),
-#'           col = c("grey10", "grey50", "grey80"),border = NA)
+#' @examples
+#' library(cartography)
+#' mtq <- tc_import_mtq()
+#' tc_map_t(mtq, var = "STATUS",  leg_pos = "n",
+#'          val_order = c("Prefecture","Sub-prefecture",
+#'                        "Simple municipality"),
+#'          pal = c("grey10", "grey50", "grey80"),
+#'          border = NA)
 #' mtq$Patts = cut(mtq$MED,c(-Inf,15700,Inf), labels=FALSE)
-#' hatchedLayer(mtq[mtq$Patts == 1,],"left2right",
-#'              density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
-#' hatchedLayer(mtq[mtq$Patts == 2, ],"left2right",
-#'              density = 4, col = "white", add = TRUE)
-#' legendHatched(pos = "bottomleft",
-#'               cex = 1.5,
-#'               values.cex = 0.8,
-#'               title.txt = "Median Income\n(in thousand of euros)",
-#'               categ = c("11.9 - 15.7","14.7 - 21.8",
-#'                         "Prefecture", "Sub-prefecture",
-#'                         "Simple municipality"),
-#'               patterns = c("left2right"), density = c(1, 2),
-#'               col = c(rep("black", 2), "grey10", "grey50", "grey80"),
-#'               ptrn.bg = c(rep("white", 2), "grey10", "grey50", "grey80"),
-#'               pch = 3)
+#' tc_pattern(mtq[mtq$Patts == 1,],"left2right",
+#'            density = 2,  col = "white",  add = TRUE,  pch = 3,  cex = 0.6)
+#' tc_pattern(mtq[mtq$Patts == 2, ],"left2right",
+#'            density = 4, col = "white", add = TRUE)
+#' tc_leg_pattern(pos = "bottomleft",
+#'                cex = 1.5,
+#'                values.cex = 0.8,
+#'                title.txt = "Median Income\n(in thousand of euros)",
+#'                categ = c("11.9 - 15.7","14.7 - 21.8",
+#'                          "Prefecture", "Sub-prefecture",
+#'                          "Simple municipality"),
+#'                patterns = c("left2right"), density = c(1, 2),
+#'                col = c(rep("black", 2), "grey10", "grey50", "grey80"),
+#'                ptrn.bg = c(rep("white", 2), "grey10", "grey50", "grey80"),
+#'                pch = 3)
 #' plot(st_geometry(st_union(mtq)), add = TRUE)
-legendHatched <- function(pos = "topleft",
+tc_leg_pattern <- function(pos = "topleft",
                           title.txt = "Title of the legend",
                           title.cex = 0.8,
                           values.cex = 0.6,
@@ -64,28 +65,28 @@ legendHatched <- function(pos = "topleft",
   # Basic controls #
   todot <- c("dot", "text")
   tolines <- c("diamond","grid","hexagon",
-              "horizontal", "vertical","zigzag",
-              "left2right","right2left","circle")
+               "horizontal", "vertical","zigzag",
+               "left2right","right2left","circle")
   
-
+  
   
   # Store defaults #
   # Goal is to create a df with all the graphical params to be applied
   dots <- list(...) #additional params
   ncat <- length(categ)
   params <- data.frame(categ = categ,
-                      stringsAsFactors = F
+                       stringsAsFactors = F
   )
   params$pattern <- rep(patterns, ncat)[1:ncat]
   params$legendfill <- rep(ptrn.bg, ncat)[1:ncat]
   col <- ifelse(rep(is.null(dots$col), ncat),
-               par()$col,
-               dots$col)
+                par()$col,
+                dots$col)
   
   params$col <- col
   density <- ifelse(rep(is.null(dots$density), ncat),
-               1,
-               dots$density)
+                    1,
+                    dots$density)
   
   params$density <- density
   rm(patterns, ptrn.bg, density)
@@ -96,9 +97,9 @@ legendHatched <- function(pos = "topleft",
   ltydef <- ifelse(is.null(dots$lty), par()$lty, NA)
   if (!is.na(ltydef)) {
     ltytext <- c("blank","solid",
-                "dashed","dotted",
-                "dotdash","longdash",
-                "twodash")
+                 "dashed","dotted",
+                 "dotdash","longdash",
+                 "twodash")
     ltytopar <- match(ltydef, ltytext) - 1
     ltytopar <- rep(ltytopar, nlines)[1:nlines]
   } else {
@@ -108,7 +109,7 @@ legendHatched <- function(pos = "topleft",
   auxlist[params$pattern %in% tolines] <- ltytopar
   params$line.lty <- auxlist
   lwd <- ifelse(rep(is.null(dots$lwd), nlines),
-               par()$lwd, dots$lwd
+                par()$lwd, dots$lwd
   )
   auxlist[params$pattern %in% tolines] <- lwd
   params$line.lwd <- auxlist
@@ -117,8 +118,8 @@ legendHatched <- function(pos = "topleft",
   # params for Dots
   ndots <- nrow(params[params$pattern == "dot",])
   pch <- ifelse(rep(is.null(dots$pch), ndots),
-               par()$pch,
-               dots$pch
+                par()$pch,
+                dots$pch
   )
   auxlist <- rep(NA, ncat)
   auxlist[params$pattern == "dot"] <- pch
@@ -131,8 +132,8 @@ legendHatched <- function(pos = "topleft",
   rm(dot.cex)
   
   bg <- ifelse(rep(is.null(dots$bg), ndots),
-              par()$bg,
-              dots$bg)
+               par()$bg,
+               dots$bg)
   auxlist[params$pattern == "dot"] <- bg
   params$dot.bg <- auxlist
   rm(bg, ndots)
@@ -184,7 +185,7 @@ legendHatched <- function(pos = "topleft",
   
   longVal <- categ[
     strwidth(categ, cex = values.cex) == max(strwidth(categ, cex = values.cex))
-    ][1]
+  ][1]
   longVal <- max(strwidth(c(longVal), cex = values.cex))
   legend_xsize <- max(width + longVal,
                       strwidth(title.txt,
@@ -227,9 +228,9 @@ legendHatched <- function(pos = "topleft",
     
     # Overlay pattern
     rect <- c(xref,
-             yref + i * height + i * delta2,
-             xref + width,
-             yref + height + i * height + i * delta2)
+              yref + i * height + i * delta2,
+              xref + width,
+              yref + height + i * height + i * delta2)
     
     class(rect) <- "bbox"
     rect <- sf::st_as_sfc(rect)
@@ -252,8 +253,8 @@ legendHatched <- function(pos = "topleft",
       )
     } else if (params$pattern[j] == "dot") {
       fr <- sf::st_make_grid(rect, 
-                            n = c(2, 2)*params$density[j], 
-                            what = "centers")
+                             n = c(2, 2)*params$density[j], 
+                             what = "centers")
       plot(sf::st_geometry(fr),
            pch = as.integer(params$dot.pch[j]),
            cex = as.double(params$dot.cex.pch[j]),
@@ -263,9 +264,9 @@ legendHatched <- function(pos = "topleft",
       )
     } else {
       patt <- hatchedLayer(rect,
-                          pattern = params$pattern[j],
-                          mode = "legend",
-                          density = params$density[j])
+                           pattern = params$pattern[j],
+                           mode = "legend",
+                           density = params$density[j])
       plot(sf::st_geometry(patt),
            add = T,
            col = params$col[j],

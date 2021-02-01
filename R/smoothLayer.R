@@ -1,6 +1,12 @@
 #' @title Smooth Layer
 #' @name smoothLayer
-#' @description Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
+#' @description 
+#' This function is deprecated, it is advised to use directly the \code{potential} 
+#' package to compute potentials. 
+#' 
+#' 
+#' 
+#' Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
 #' This function is a wrapper around the \code{\link[SpatialPosition:quickStewart]{quickStewart}} function in 
 #' \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
 #' The SpatialPosition package also provides: \itemize{
@@ -55,7 +61,7 @@
 #' and var2 (denominator) is computed.
 #' @return An \code{\link{invisible}} sf object (MULTIPOLYGONs) is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 #' @export
-#' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -88,6 +94,13 @@ smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                         legend.values.rnd = 0,
                         legend.frame = FALSE,
                         add = FALSE){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::smoothLayer()",
+                            with = "potential::potential()")  
+  
+  
+  
   if (!requireNamespace("SpatialPosition", quietly = TRUE)) {
     stop("'SpatialPosition' package needed for this function to work. Please install it.",
          call. = FALSE)

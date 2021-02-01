@@ -29,8 +29,7 @@ tilesLayer <- function(x, add = FALSE, ...) {
   
   lifecycle::deprecate_soft(when = "3.0.0", 
                             what = "cartography::tilesLayer()",
-                            with = "maptiles::plot_tiles()")  
-  
+                            with = "maptiles::tc_map_r()")  
   
   if (add == FALSE) {
     ext <- sf::st_bbox(x)
@@ -68,7 +67,7 @@ tilesLayer <- function(x, add = FALSE, ...) {
 #' quality of the \code{*.png} file, the scale of \code{x} and the resolution 
 #' setup of the graphic device.
 #' @export
-#' @seealso \link{getPngLayer}, \link{getTiles}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
@@ -92,6 +91,11 @@ tilesLayer <- function(x, add = FALSE, ...) {
 #' plot(st_geometry(mtq), border="orange", add=TRUE)
 #' }
 pngLayer <- function(x, add = FALSE, ...) {
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::pngLayer()",
+                            with = "maptiles::tc_map_r()")  
+  
+  
   if (add == FALSE) {
     ext <- sf::st_bbox(x)
     plot.new()

@@ -948,6 +948,7 @@ legendGradLines <- function(pos = "topleft", title.txt = "Title of the legend",
 #' @param style either "c" or "e". The legend has two display 
 #' styles, "c" stands for compact and "e" for extended.
 #' @export
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -968,7 +969,8 @@ legendPropTriangles<- function(pos = "topleft", title.txt, var.txt,var2.txt,
                                values.cex = 0.6, var, var2, r, r2, col="red", 
                                col2="blue", frame=FALSE, values.rnd=0, 
                                style="c"){
-  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendPropTriangles()") 
   positions <- c("bottomleft", "topleft", "topright", "bottomright", "left", 
                  "right", "top", "bottom", "middle")
   if(pos %in% positions){

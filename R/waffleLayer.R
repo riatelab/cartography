@@ -25,6 +25,7 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @export
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"),
@@ -77,6 +78,11 @@ waffleLayer <- function(x, var,
                         legend.values.cex = 0.6,
                         legend.frame = FALSE,
                         add = TRUE){
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::waffleLayer()",
+                            with = "tc_map_waffle()") 
+  
   
   if(!cellrnd %in% c("round", "floor", "ceiling")){
     stop('cellrnd should be set to "round", "floor" or "ceiling"', 

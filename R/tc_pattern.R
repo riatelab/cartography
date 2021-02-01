@@ -1,5 +1,5 @@
-#' @title Hatched Layer
-#' @name hatchedLayer
+#' @title Plot hatched polygons
+#' @name tc_pattern
 #' @description Plot a hatched layer with several different patterns. Suitable 
 #' for b/w print maps.
 #' @param x an sf object, a simple feature collection. It should be either a 
@@ -27,41 +27,36 @@
 #' \bold{"text"}         \tab x   \tab x   \tab    \tab x   \tab     \tab     \tab    \cr
 #' \bold{Lines patterns} \tab x   \tab x   \tab    \tab     \tab     \tab x   \tab x  
 #' }
-#' @seealso \link{tc_pattern}
-#' @keywords internal
+#' @seealso \link{tc_leg_pattern}
 #' @examples 
 #' library(sf)
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-#' par(mar=c(1,1,1,1))
-#' hatchedLayer(mtq, "dot")
+#' mtq <- tc_import_mtq()
+#' tc_pattern(mtq, "dot")
 #' title("dot")
 #' plot(st_geometry(mtq), border = NA, col="grey80")
-#' hatchedLayer(mtq, "text", txt = "Y", add=TRUE)
+#' tc_pattern(mtq, "text", txt = "Y", add=TRUE)
 #' title("text")
-#' hatchedLayer(mtq, "diamond", density = 0.5)
+#' tc_pattern(mtq, "diamond", density = 0.5)
 #' plot(st_union(st_geometry(mtq)), add = TRUE)
 #' title("diamond")
-#' hatchedLayer(mtq, "grid", lwd = 1.5)
+#' tc_pattern(mtq, "grid", lwd = 1.5)
 #' title("grid")
-#' hatchedLayer(mtq, "hexagon", col = "blue")
+#' tc_pattern(mtq, "hexagon", col = "blue")
 #' title("hexagon")
-#' hatchedLayer(mtq, "horizontal", lty = 5)
+#' tc_pattern(mtq, "horizontal", lty = 5)
 #' title("horizontal")
-#' hatchedLayer(mtq, "vertical")
+#' tc_pattern(mtq, "vertical")
 #' title("vertical")
-#' hatchedLayer(mtq, "left2right")
+#' tc_pattern(mtq, "left2right")
 #' title("left2right")
-#' hatchedLayer(mtq, "right2left")
+#' tc_pattern(mtq, "right2left")
 #' title("right2left")
-#' hatchedLayer(mtq, "zigzag",cellsize=5000)
+#' tc_pattern(mtq, "zigzag",cellsize=5000)
 #' title("zigzag")
-#' hatchedLayer(mtq, "circle")
+#' tc_pattern(mtq, "circle")
 #' title("circle")
 #' @export
-hatchedLayer <- function(x, pattern = "dot", density = 1, txt = "a", ...) {
-  lifecycle::deprecate_soft(when = "3.0.0", 
-                            what = "cartography::hatchedLayer()",
-                            with = "tc_pattern()") 
+tc_pattern <- function(x, pattern = "dot", density = 1, txt = "a", ...) {
   # Assign default options #
   dots <- list(...)
   mode <- ifelse(is.null(dots$mode), "plot", dots$mode)

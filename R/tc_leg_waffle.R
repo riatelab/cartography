@@ -1,6 +1,6 @@
-#' @title  Legend for Typology Maps
-#' @description Plot legend for typology maps.
-#' @name legendWaffle
+#' @title Plot a legend for a waffle map
+#' @description Plot legend for a waffle map.
+#' @name tc_leg_waffle
 #' @param categ vector of categories.
 #' @param pos position of the legend, one of "topleft", "top", 
 #' "topright", "right", "bottomright", "bottom", "bottomleft", 
@@ -18,18 +18,14 @@
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @export
-#' @keywords internal
 #' @examples
-#' library(sf)
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-#' plot(st_geometry(mtq))
-#' box()
-#' 
+#' mtq <- tc_import_mtq()
+#' tc_map(mtq)
 #' # Define labels and colors
 #' someLabels <- c("red color", "yellow color", "green color", "black color")
 #' someColors <- c("red", "yellow", "green", "black")
-#' legendWaffle(categ = someLabels, col = someColors, cell.size = 750)
-legendWaffle <- function(pos = "topleft", 
+#' tc_leg_waffle(categ = someLabels, col = someColors, cell.size = 750)
+tc_leg_waffle <- function(pos = "topleft", 
                          title.txt = "Title of the legend", 
                          title.cex = 0.8,
                          values.cex = 0.6, 
@@ -41,13 +37,6 @@ legendWaffle <- function(pos = "topleft",
                          border = "white", 
                          lwd = .2,
                          frame = FALSE){
-  
-  
-  lifecycle::deprecate_soft(when = "3.0.0", 
-                            what = "cartography::legendWaffle()",
-                            with = "tc_leg_waffle()") 
-  
-  
   
   categ <- (as.character(categ))
   col <- col

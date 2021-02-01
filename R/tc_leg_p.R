@@ -1,4 +1,4 @@
-#' Plot a legend for proportional symbols
+#' Plot a legend for a proportional symbols map
 #' @description This function plots a legend for proportional symbols.
 #'
 #' @param symbol type of symbols, 'circle' or 'square'

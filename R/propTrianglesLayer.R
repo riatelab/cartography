@@ -34,7 +34,7 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @export
-#' @seealso \link{legendPropTriangles}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -61,6 +61,11 @@ propTrianglesLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                                legend.frame = FALSE,
                                add = TRUE)
 {
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::propTrianglesLayer()")
+  
+  
   if(!missing(x)){spdf <- methods::as(x, "Spatial")}
   if (missing(df)){df <- spdf@data}
   if (is.null(spdfid)){spdfid <- names(spdf@data)[1]}
