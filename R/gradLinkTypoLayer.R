@@ -37,7 +37,7 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @note Unlike most of cartography functions, identifiers variables are mandatory.
-#' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -73,6 +73,11 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                               legend.var2.nodata = "no data",
                               legend.var2.frame = FALSE,
                               add = TRUE){
+  
+  
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::gradLinkTypoLayer()")
+  
   # test
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)

@@ -1,5 +1,5 @@
-#' @title Wordcloud Layer
-#' @name wordcloudLayer
+#' @title Plot a wordcloud map
+#' @name tc_map_words
 #' @description Plot a word cloud adjusted to an \code{sf} object.
 #' @param x an sf object, a simple feature collection (POLYGON or MULTIPOLYGON).  
 #' @param txt labels variable.
@@ -13,49 +13,46 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or not (FALSE)
 #' @param breaks,method,nclass additional arguments for adjusting the colors of \code{txt}, see \code{\link{choroLayer}}.
 #' @author dieghernan, \url{https://github.com/dieghernan/}
-#' @seealso \link{tc_map_words}
-#' @keywords internal
+#' @seealso \link{choroLayer}, \link{legendChoro}
 #' @references Ian Fellows (2018). wordcloud: Word Clouds.\cr\cr
 #' R package version 2.6. \url{https://CRAN.R-project.org/package=wordcloud}
 #' @examples
-#' library(sf) 
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-#' par(mar=c(0,0,0,0))
-#' plot(st_geometry(mtq),
-#'      col = "white",
-#'      bg = "grey95",
-#'      border = NA)
-#' wordcloudLayer(
+#' mtq <- tc_import_mtq()
+#' tc_map(mtq,
+#'        col = "white",
+#'        bg = "grey95",
+#'        border = NA)
+#' bks <- tc_get_breaks(x = mtq$POP, nbreaks = 5, breaks = "quantile")
+#' cols <- tc_get_pal(n = 5, palette = "Blues", rev = T)
+#' tc_map_words(
 #'   x = mtq,
 #'   txt = "LIBGEO",
 #'   freq = "POP",
 #'   add = TRUE,
-#'   nclass = 5
+#'   breaks = bks, 
+#'   col = cols 
 #' )
-#' legendChoro(
-#'   title.txt = "Population",
-#'   breaks = getBreaks(mtq$POP, nclass = 5, method = "quantile"),
-#'   col = carto.pal("blue.pal", 5),
-#'   nodata = FALSE
+#' tc_leg_c(
+#'   title = "Population",
+#'   val = bks,
+#'   pal = cols,
+#'   val_rnd = 0,
+#'   no_data = FALSE
 #' )
 #' @export
-wordcloudLayer <- function(x,
-                           txt,
-                           freq,
-                           max.words = NULL,
-                           cex.maxmin = c(1, 0.5),
-                           rot.per = .1,
-                           col = NULL,
-                           fittopol = FALSE,
-                           use.rank = FALSE,
-                           add = FALSE,
-                           breaks = NULL,
-                           method = "quantile",
-                           nclass = NULL) {
-  
-  lifecycle::deprecate_soft(when = "3.0.0", 
-                            what = "cartography::wordcloudLayer()",
-                            with = "tc_map_words()") 
+tc_map_words <- function(x,
+                         txt,
+                         freq,
+                         max.words = NULL,
+                         cex.maxmin = c(1, 0.5),
+                         rot.per = .1,
+                         col = NULL,
+                         fittopol = FALSE,
+                         use.rank = FALSE,
+                         add = FALSE,
+                         breaks = NULL,
+                         method = "quantile",
+                         nclass = NULL) {
   
   set.seed(999)
   rot.per <- max(0.00001, rot.per)
@@ -85,8 +82,8 @@ wordcloudLayer <- function(x,
     if (fittopol) {
       x_t1$ratiow2h <- w2hratio(x_t1)
       x_t1$rot.per <- cut(x_t1$ratiow2h,
-                         breaks = c(-Inf, 0.8, 1.2, Inf),
-                         labels = FALSE)
+                          breaks = c(-Inf, 0.8, 1.2, Inf),
+                          labels = FALSE)
       x_t1[x_t1$rot.per == 2,]$rot.per <- rot.per
       x_t1[x_t1$rot.per == 1,]$rot.per <- 0.99
       x_t1[x_t1$rot.per == 3,]$rot.per <- 0.01
@@ -136,12 +133,12 @@ wordcloudLayer <- function(x,
     col <- colorRampPalette(col)(lencol)
   }
   x_v1$cut <- cut(x_v1$freq,
-                 breaks,
-                 include.lowest = T,
-                 labels = F)
+                  breaks,
+                  include.lowest = T,
+                  labels = F)
   
   x_v1$col <- (col)[x_v1$cut]
-
+  
   if (use.rank){
     x_v1$freq<-x_v1$cut
     
@@ -176,12 +173,12 @@ wordcloudLayer <- function(x,
   
   
   lay <- wordcloudlayout(x,
-                        y,
-                        words,
-                        cex,
-                        xlim,
-                        ylim,
-                        rot.per = rotation)
+                         y,
+                         words,
+                         cex,
+                         xlim,
+                         ylim,
+                         rot.per = rotation)
   
   col = col[lay[, "index"]]
   for (i in 1:nrow(lay)) {
