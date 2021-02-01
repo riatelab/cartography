@@ -3,7 +3,7 @@
 #' discontinuities are plotted over a border layer (see \link{tc_get_borders}.
 #' The line widths reflect the ratio or the difference between values of an indicator 
 #' in two neighbouring units.
-#' @name tc_map_d
+#' @name tc_map_disc
 #' @param x an sf object, a simple feature collection, as outputted by the \link{tc_get_borders} function. 
 #' @param df a data.frame that contains the values used to compute and plot discontinuities.
 #' @param df_id name of the identifier variable in df, default to the first column 
@@ -45,31 +45,31 @@
 #'          breaks = 'equal', nbreaks = 6, leg_pos = "topleft",
 #'          leg_title = "Median Income\n(in euros)" )
 #' # Discontinuities
-#' tc_map_d(x = mtq_borders, df = mtq, 
-#'          var = "MED", col = "red4", nbreaks=3,
-#'          breaks="equal", threshold = 0.5, sizemin = 0.5,
-#'          sizemax = 10, type = "abs",leg_val_rnd = 0,
-#'          leg_title = "Discontinuities\n(absolute difference)",
-#'          leg_pos = "bottomleft", add = TRUE)
+#' tc_map_disc(x = mtq_borders, df = mtq, 
+#'             var = "MED", col = "red4", nbreaks=3,
+#'             breaks="equal", threshold = 0.5, sizemin = 0.5,
+#'             sizemax = 10, type = "abs",leg_val_rnd = 0,
+#'             leg_title = "Discontinuities\n(absolute difference)",
+#'             leg_pos = "bottomleft", add = TRUE)
 #' @export
-tc_map_d <- function(x, 
-                      df, 
-                      df_id, 
-                      var, 
-                      breaks = "quantile", 
-                      nbreaks = 4, 
-                      threshold = 0.75, 
-                      type = "rel",
-                      sizemin = 1, 
-                      sizemax = 10,
-                      col = "tomato4", 
-                      leg_pos = "bottomleft",
-                      leg_title="legend title",  
-                      leg_title_cex = 0.8, 
-                      leg_val_cex = 0.6, 
-                      leg_val_rnd = 2,
-                      leg_frame=FALSE,
-                      add = TRUE){
+tc_map_disc <- function(x, 
+                        df, 
+                        df_id, 
+                        var, 
+                        breaks = "quantile", 
+                        nbreaks = 4, 
+                        threshold = 0.75, 
+                        type = "rel",
+                        sizemin = 1, 
+                        sizemax = 10,
+                        col = "tomato4", 
+                        leg_pos = "bottomleft",
+                        leg_title="legend title",  
+                        leg_title_cex = 0.8, 
+                        leg_val_cex = 0.6, 
+                        leg_val_rnd = 2,
+                        leg_frame=FALSE,
+                        add = TRUE){
   op <- par(mar = .gmapsf$args$mar, no.readonly = TRUE)
   on.exit(par(op))
   bg <- .gmapsf$args$bg
@@ -107,7 +107,7 @@ tc_map_d <- function(x,
   # for(i in 1:nbreaks){sizes <- c(sizes,sizes[i] + ete)}
   
   sizes <- seq(sizemin, sizemax, length.out = nbreaks)
-
+  
   
   # Affectation des tailles au spdf
   x$sizesMap <- sizes[(findInterval(x$disc,distr,all.inside=FALSE, rightmost.closed = TRUE))]

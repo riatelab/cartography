@@ -36,7 +36,7 @@
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
 #' The "abs" type of discontinuity is the result of pmax(value unit 1 - value unit 2, value unit 2 - value unit 1).
-#' @seealso \link{tc_map_d}
+#' @seealso \link{tc_map_disc}
 #' @keywords internal
 #' @examples
 #' library(sf)

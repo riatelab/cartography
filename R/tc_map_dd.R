@@ -1,5 +1,5 @@
 #' @title Plot a dot dentity map
-#' @name tc_map_dd
+#' @name tc_map_dots
 #' @description Plot a dot density map
 #' @param x an sf object 
 #' @param var name of the numeric variable to plot.
@@ -25,10 +25,10 @@
 #' mtq <- tc_import_mtq()
 #' tc_init(mtq, shadow = TRUE, theme = "green")
 #' tc_map(mtq, add = TRUE)
-#' tc_map_dd(x = mtq,  var="POP", pch=20, col = "red4",n = 200)
+#' tc_map_dots(x = mtq,  var="POP", pch=20, col = "red4",n = 200)
 #' tc_layout(title = "Population Distribution in Martinique, 2015")
 #' }
-tc_map_dd <- function(x, 
+tc_map_dots <- function(x, 
                       var,
                       n, 
                       pch = 1,
