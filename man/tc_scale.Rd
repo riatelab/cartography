@@ -30,4 +30,6 @@ This scale bar is not accurate on unprojected (long/lat) maps.
 }
 \examples{
 mtq <- tc_import_mtq()
+tc_map(mtq)
+tc_scale()
 }

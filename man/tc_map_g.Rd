@@ -61,4 +61,6 @@ Plot graduated symbols based on quantitative data.
 }
 \examples{
 mtq <- tc_import_mtq()
+tc_map(mtq)
+tc_map_g(mtq, "POP", pch = 22)
 }

@@ -33,7 +33,7 @@ tc_map_sc(
 
 \item{var}{name of the variable to plot}
 
-\item{pal}{a set of colors or a palette name (from \link{tc_get_pal} or \link{hcl.colors})}
+\item{pal}{a set of colors or a palette name (from \link{hcl.colors})}
 
 \item{breaks}{either a numeric vector with the actual breaks, or a name of a method a classification method; one of 'fixed', 'sd', 'equal', 'pretty', 'quantile', 'kmeans', 'hclust', 'bclust', 'fisher', 'jenks', 'dpih', 'q6', 'geom', 'arith', 'em' or 'msd' (see Details).}
 

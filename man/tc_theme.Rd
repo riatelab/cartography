@@ -9,7 +9,7 @@ tc_theme(x)
 \arguments{
 \item{x}{name of a map theme. One of "default", "brutal", "ink",
 "dark", "agolalight", "candy", "darkula", "iceberg", "green", "nevermind",
-"jsk".
+"jsk", "barcelona".
 It is also possible to set a custom theme (see Examples).
 The parameters set by this function are the figure margins, background and
 foreground colors and some \link{tc_title} options.

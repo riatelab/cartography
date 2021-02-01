@@ -31,7 +31,7 @@ tc_map_s(
 
 \item{var}{name of the variable to plot}
 
-\item{pal}{a set of colors or a palette name (from \link{tc_get_pal} or \link{hcl.colors})}
+\item{pal}{a set of colors or a palette name (from \link{hcl.colors})}
 
 \item{border}{border color}
 

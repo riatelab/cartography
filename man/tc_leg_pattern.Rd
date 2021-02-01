@@ -2,7 +2,7 @@
 % Please edit documentation in R/tc_leg_pattern.R
 \name{tc_leg_pattern}
 \alias{tc_leg_pattern}
-\title{Legend for Hatched Maps}
+\title{Plot a legend for hatched polygons}
 \usage{
 tc_leg_pattern(
   pos = "topleft",
@@ -59,7 +59,6 @@ It is also possible to create solid legends, by setting \code{col} and \code{ptr
 Parameters would honour the order of the \code{categ} variable.
 }
 \examples{
-library(cartography)
 mtq <- tc_import_mtq()
 tc_map_t(mtq, var = "STATUS",  leg_pos = "n",
          val_order = c("Prefecture","Sub-prefecture",
@@ -85,9 +84,8 @@ tc_leg_pattern(pos = "bottomleft",
 plot(st_geometry(st_union(mtq)), add = TRUE)
 }
 \seealso{
-\link{tc_leg_pattern}
+\link{tc_pattern}
 }
 \author{
 dieghernan, \url{https://github.com/dieghernan/}
 }
-\keyword{internal}

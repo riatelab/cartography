@@ -73,11 +73,6 @@ mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
 mask <- getPngLayer(mtq, dirpng)
 
-\dontrun{
-#Remote file
-urlpng <- "https://i.imgur.com/gePiDvB.png"
-masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE)
-}
 }
 \seealso{
 \link{tc_get_png}

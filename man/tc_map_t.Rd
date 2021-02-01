@@ -30,7 +30,7 @@ tc_map_t(
 
 \item{var}{name of the variable to plot}
 
-\item{pal}{a set of colors or a palette name (from \link{tc_get_pal} or \link{hcl.colors})}
+\item{pal}{a set of colors or a palette name (from \link{hcl.colors})}
 
 \item{val_order}{values order, a character vector that matches var modalities}
 

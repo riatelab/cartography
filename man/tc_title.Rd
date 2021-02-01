@@ -4,7 +4,7 @@
 \alias{tc_title}
 \title{Plot a title}
 \usage{
-tc_title(txt = "Map Title, Year", pos, tab, bg, fg, cex, line, font, inner, x)
+tc_title(txt = "Map Title, Year", pos, tab, bg, fg, cex, line, font, inner)
 }
 \arguments{
 \item{txt}{title text}
@@ -24,8 +24,6 @@ tc_title(txt = "Map Title, Year", pos, tab, bg, fg, cex, line, font, inner, x)
 \item{font}{font of the title}
 
 \item{inner}{if TRUE the title is displayed inside the plot area.}
-
-\item{x}{object of class \code{sf} or \code{sfc}}
 }
 \description{
 Plot a title
