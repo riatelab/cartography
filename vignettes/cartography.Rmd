@@ -26,55 +26,56 @@ The aim of `cartography` is to obtain thematic maps with the visual quality of t
 
 Users of the package could belong to one of two categories: cartographers willing to use R or R users willing to create maps. Therefore, its functions have to be intuitive to cartographers and ensure compatibility with common R workflows.
 
-`cartography` uses [`sf`](https://CRAN.R-project.org/package=sf) objects to produce `base` graphics.  
+`cartography` uses [`sf`](https://CRAN.R-project.org/package=sf) objects to produce `base` graphics.
 
 `cartography` functions can be classified in the following categories :
 
-- **Symbology**\
-Each function focuses on a single cartographic representation (e.g. proportional symbols or choropleth representation) and displays it on a georeferenced plot. This solution allows to consider each representation as a layer and to overlay multiple representations on a same map. Functions names start with `tc_map_` and each function has two main arguments that are:
-  - `x`, an `sf` object),
-  - `var`, the name(s) of a variable(s) to map.  
-  
-  Many parameters are available to fine tune the cartographic representations. These parameters are the common ones found in GIS and automatic cartography tools (e.g. classification and color palettes used in choropleth maps, symbols sizes used in proportional symbols maps...).
+-   **Symbology**\
+    Each function focuses on a single cartographic representation (e.g. proportional symbols or choropleth representation) and displays it on a georeferenced plot. This solution allows to consider each representation as a layer and to overlay multiple representations on a same map. Functions names start with `tc_map_` and each function has two main arguments that are:
 
-- **Transformations**\
-A set of functions is dedicated to the creation or transformation of spatial objects (e.g. borders extraction, grid or links creation). These functions are provided to ease the creation of some more advanced maps that usually need geo-processing. Functions name start with `tc_get_`.
+    -   `x`, an `sf` object),
+    -   `var`, the name(s) of a variable(s) to map.
 
-- **Map Layout**\
-Along with the cartographic functions, some other functions are dedicated to layout design (e.g. customizable scale bar, north arrow, title, sources or author information...).
+    Many parameters are available to fine tune the cartographic representations. These parameters are the common ones found in GIS and automatic cartography tools (e.g. classification and color palettes used in choropleth maps, symbols sizes used in proportional symbols maps...).
 
-- **Legends**\
-Legends are displayed by default along cartographic layers but more parameters are available through `tc_leg_*()` functions.
+-   **Transformations**\
+    A set of functions is dedicated to the creation or transformation of spatial objects (e.g. borders extraction, grid or links creation). These functions are provided to ease the creation of some more advanced maps that usually need geo-processing. Functions name start with `tc_get_`.
+
+-   **Map Layout**\
+    Along with the cartographic functions, some other functions are dedicated to layout design (e.g. customizable scale bar, north arrow, title, sources or author information...).
+
+-   **Legends**\
+    Legends are displayed by default along cartographic layers but more parameters are available through `tc_leg_*()` functions.
 
 # Main Features
 
 ## Symbology
 
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| map type                     | name          | data type        | polygon              | point                 | line                | deprecated                |
-+==============================+===============+==================+======================+=======================+=====================+===========================+
-| Base Map                     | `tc_map()`    | geometry         | ![](fig/poly.svg)    | ![](fig/point.svg)    | ![](fig/line.svg)   | \-                        |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Proportional Symbols         | `tc_map_p()`  | stock            | ![](fig/poly_p.svg)  | ![](fig/point_p.svg)  | ![](fig/line_p.svg) | `propSymbolsLayer()`      |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Typology                     | `tc_map_t()`  | category         | ![](fig/poly_t.svg)  | ![](fig/point_t.svg)  | ![](fig/line_t.svg) | `typoLayer()`             |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Choropleth                   | `tc_map_c()`  | ratio            | ![](fig/poly_c.svg)  | ![](fig/point_c.svg)  | ![](fig/line_c.svg) | `choroLayer()`            |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Symbols                      | `tc_map_s()`  | category         | ![](fig/poly_s.svg)  | ![](fig/point_s.svg)  |                     | \-                        |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Graduated Symbols            | `tc_map_g()`  | stock            | ![](fig/poly_g.svg)  | ![](fig/point_g.svg)  | ![](fig/line_g.svg) | \-                        |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Proportional Symbols + Typo  | `tc_map_pt()` | stock & category | ![](fig/poly_pt.svg) | ![](fig/point_pt.svg) |                     | `propSymbolsTypoLayer()`  |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Proportional Symbols + Choro | `tc_map_pc()` | stock & ratio    | ![](fig/poly_pc.svg) | ![](fig/point_pc.svg) |                     | `propSymbolsChoroLayer()` |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Symbols + Choro              | `tc_map_sc()` | category & ratio | ![](fig/poly_sc.svg) | ![](fig/point_sc.svg) |                     | \-                        |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Dot density                  | `tc_map_dd()` | stock            | ![](fig/poly_dd.svg) |                       |                     | `dotDensityLayer()`       |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
-| Discontinuities              | `tc_map_d()`  | stock \| ratio   | ![](fig/poly_d.svg)  |                       |                     | `discLayer()`             |
-+------------------------------+---------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| map type                     | name            | data type        | polygon              | point                 | line                | deprecated                |
++==============================+=================+==================+======================+=======================+=====================+===========================+
+| Base Map                     | `tc_map()`      | geometry         | ![](fig/poly.svg)    | ![](fig/point.svg)    | ![](fig/line.svg)   | \-                        |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Proportional Symbols         | `tc_map_p()`    | stock            | ![](fig/poly_p.svg)  | ![](fig/point_p.svg)  | ![](fig/line_p.svg) | `propSymbolsLayer()`      |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Typology                     | `tc_map_t()`    | category         | ![](fig/poly_t.svg)  | ![](fig/point_t.svg)  | ![](fig/line_t.svg) | `typoLayer()`             |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Choropleth                   | `tc_map_c()`    | ratio            | ![](fig/poly_c.svg)  | ![](fig/point_c.svg)  | ![](fig/line_c.svg) | `choroLayer()`            |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Symbols                      | `tc_map_s()`    | category         | ![](fig/poly_s.svg)  | ![](fig/point_s.svg)  |                     | \-                        |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Graduated Symbols            | `tc_map_g()`    | stock            | ![](fig/poly_g.svg)  | ![](fig/point_g.svg)  | ![](fig/line_g.svg) | \-                        |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Proportional Symbols + Typo  | `tc_map_pt()`   | stock & category | ![](fig/poly_pt.svg) | ![](fig/point_pt.svg) |                     | `propSymbolsTypoLayer()`  |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Proportional Symbols + Choro | `tc_map_pc()`   | stock & ratio    | ![](fig/poly_pc.svg) | ![](fig/point_pc.svg) |                     | `propSymbolsChoroLayer()` |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Symbols + Choro              | `tc_map_sc()`   | category & ratio | ![](fig/poly_sc.svg) | ![](fig/point_sc.svg) |                     | \-                        |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Dot density                  | `tc_map_dots()` | stock            | ![](fig/poly_dd.svg) |                       |                     | `dotDensityLayer()`       |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
+| Discontinuities              | `tc_map_disc()` | stock \| ratio   | ![](fig/poly_d.svg)  |                       |                     | `discLayer()`             |
++------------------------------+-----------------+------------------+----------------------+-----------------------+---------------------+---------------------------+
 
 ## Map Layout
 
@@ -100,8 +101,6 @@ Legends are displayed by default along cartographic layers but more parameters a
 | `tc_label()`    | `labelLayer()`       |
 +-----------------+----------------------+
 
-
-
 ## Themes
 
 `tc_theme()` defines a map theme. It sets the margins of the figure, a background color, a foreground color and some parameters of the title. A set of theme is included in the package and it is possible to create cutom ones.
@@ -115,54 +114,50 @@ Legends are displayed by default along cartographic layers but more parameters a
 
 ## Export
 
-The `tc_init()` function can be used to export maps in raster (.png) or vector formats (.svg). 
-The size of the exported map will fit the height/width ratio of a spatial object. 
+The `tc_init()` function can be used to export maps in raster (.png) or vector formats (.svg). The size of the exported map will fit the height/width ratio of a spatial object.
 
 ## Datasets
 
 Several datasets are embedded in the package:
 
-- A [GeoPackage](https://www.geopackage.org/) of Martinique municipalities can be imported with `tc_import_mtq()` (or via `sf::st_read()`).
+-   A [GeoPackage](https://www.geopackage.org/) of Martinique municipalities can be imported with `tc_import_mtq()` (or via `sf::st_read()`).
 
-  - Sources: [Base comparateur de territoires](https://www.insee.fr/fr/statistiques/2521169) (upload date: 2018-09-25) & [ADMIN EXPRESS-COG](http://professionnels.ign.fr/adminexpress) (2018 edition).
-  - Citation: Insee and IGN, 2018
-  
-  - Fields:
-  
-    - **INSEE_COM**: Municipality identifier
-    - **STATUS**: Municipality administrative status
-    - **LIBGEO**: Municipality name
-    - **POP**: Total population, 2015
-    - **MED**: Median disposable income adjusted per equivalent household member, in euros, 2015
-    - **CHOM**: Unemployed population, 2015
-    - **ACT**: Active population, 2015
+    -   Sources: [Base comparateur de territoires](https://www.insee.fr/fr/statistiques/2521169) (upload date: 2018-09-25) & [ADMIN EXPRESS-COG](http://professionnels.ign.fr/adminexpress) (2018 edition).
 
-- A csv file of professional mobility flows between Martinique municipalities.
+    -   Citation: Insee and IGN, 2018
 
-  - Sources: [Flux de mobilité - déplacements domicile-lieu de travail](https://www.insee.fr/fr/statistiques/3566477) (upload date: 2018-08-01)
-  
-  - Citation: Insee, 2018
-  
-  - Fields:
-  
-    - **i**: Municipality of residence identifier
-    - **j**: Municipality of workplace identifier
-    - **fij**: Flows of workers (employed population, 15 y.o. or more, 2015, only flows \> 100)
-    - **sj**: Administrative status of the workplace municipality
+    -   Fields:
 
+        -   **INSEE_COM**: Municipality identifier
+        -   **STATUS**: Municipality administrative status
+        -   **LIBGEO**: Municipality name
+        -   **POP**: Total population, 2015
+        -   **MED**: Median disposable income adjusted per equivalent household member, in euros, 2015
+        -   **CHOM**: Unemployed population, 2015
+        -   **ACT**: Active population, 2015
 
+-   A csv file of professional mobility flows between Martinique municipalities.
+
+    -   Sources: [Flux de mobilité - déplacements domicile-lieu de travail](https://www.insee.fr/fr/statistiques/3566477) (upload date: 2018-08-01)
+
+    -   Citation: Insee, 2018
+
+    -   Fields:
+
+        -   **i**: Municipality of residence identifier
+        -   **j**: Municipality of workplace identifier
+        -   **fij**: Flows of workers (employed population, 15 y.o. or more, 2015, only flows \> 100)
+        -   **sj**: Administrative status of the workplace municipality
 
 # Examples of thematic maps
 
 ## Base map
-`tc_init()` is designed to initiate a map centered on a specific extent (`x` bbox). 
-The `theme` argument allow to select a theme and the `shadow` argument add a shadow.   
 
-`tc_map()` displays `sf` objects geometries.   
+`tc_init()` is designed to initiate a map centered on a specific extent (`x` bbox). The `theme` argument allow to select a theme and the `shadow` argument add a shadow.
 
-`tc_layout()` add a complete layout to the map (title, credits, north arrow, scale bar). 
-Each layout elements can also be set separetly (with `tc_title()`, `tc_credits()`, `tc_arrow()` and `tc_scale()`).
+`tc_map()` displays `sf` objects geometries.
 
+`tc_layout()` add a complete layout to the map (title, credits, north arrow, scale bar). Each layout elements can also be set separetly (with `tc_title()`, `tc_credits()`, `tc_arrow()` and `tc_scale()`).
 
 ```{r tc_init, message=FALSE, warning=FALSE}
 library(cartography)
@@ -181,8 +176,7 @@ tc_layout(title = "Martinique",
 
 ## Proportional Symbols
 
-
-`tc_map_p()` displays symbols with areas proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes. 
+`tc_map_p()` displays symbols with areas proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes.
 
 ```{r tc_map_p, message=FALSE, warning=FALSE}
 library(cartography)
@@ -208,16 +202,12 @@ tc_layout(title = "Population Distribution in Martinique",
                            packageVersion("cartography")))
 ```
 
-
-
 ## Choropleth Map
 
-In choropleth maps, areas are shaded according to the variation of a quantitative variable. They are used to represent ratios or indices.   
-`tc_map_c()` displays choropleth maps . Arguments `nbreaks`, and `breaks` allow to customize the variable classification. `tc_get_breaks()` allows to classify outside of the function itself. Colors palettes, defined with `pal`, can be created with `tc_get_pal()` or you can use palette names from `hcl.pals()`.   
+In choropleth maps, areas are shaded according to the variation of a quantitative variable. They are used to represent ratios or indices.\
+`tc_map_c()` displays choropleth maps . Arguments `nbreaks`, and `breaks` allow to customize the variable classification. `tc_get_breaks()` allows to classify outside of the function itself. Colors palettes, defined with `pal`, can be created with `tc_get_pal()` or you can use palette names from `hcl.pals()`.
 
-Use `tc_theme()` to set a theme without plotting anything. 
-
-
+Use `tc_theme()` to set a theme without plotting anything.
 
 ```{r tc_map_c}
 library(cartography)
@@ -246,15 +236,13 @@ tc_layout(title = "Population Distribution in Martinique",
                            packageVersion("cartography")))
 ```
 
-
 ## Colored Pencil and Typologies Map
 
-`tc_get_pencil()` transforms POLYGONS or MULTIPOLYGONS in MULTILINESTRINGS. This function creates a layer that mimicks a pencil hand-drawing.  
+`tc_get_pencil()` transforms POLYGONS or MULTIPOLYGONS in MULTILINESTRINGS. This function creates a layer that mimicks a pencil hand-drawing.
 
-`tc_map_t()` displays a typology map of a qualitative variable. `val_order` is used to set the modalities order in the legend.   
+`tc_map_t()` displays a typology map of a qualitative variable. `val_order` is used to set the modalities order in the legend.
 
-`tc_label()` displays labels on the map.  
-
+`tc_label()` displays labels on the map.
 
 ```{r tc_map_t}
 library(cartography)
@@ -291,16 +279,11 @@ tc_layout(title = "Administrative Status",
                            packageVersion("cartography")))
 ```
 
-
-
-
-
 ## Proportional Symbols using Choropleth Coloration
 
-`tc_map_pc()` creates a map of symbols that are proportional to values of a first variable and colored to reflect the classification of a second variable. 
-A combination of `tc_map_p()` and `tc_map_c()` arguments is used. 
+`tc_map_pc()` creates a map of symbols that are proportional to values of a first variable and colored to reflect the classification of a second variable. A combination of `tc_map_p()` and `tc_map_c()` arguments is used.
 
-`expandBB` argument in `tc_init()` allows to expand the map space. Here, we increase the space available on the right of the map to avoid overlaps between the legends and the map. 
+`expandBB` argument in `tc_init()` allows to expand the map space. Here, we increase the space available on the right of the map to avoid overlaps between the legends and the map.
 
 ```{r tc_map_pc, fig.width=5}
 library(cartography)
@@ -333,12 +316,9 @@ tc_layout(title = "Population & Wealth in Martinique, 2015",
 
 ```
 
-
-
-
 ## Proportional Symbols using Typology Coloration
 
-`tc_map_pt` creates a map of symbols that are proportional to values of a first variable and colored to reflect the modalities of a second qualitatice variable. A combination of `propSymbolsLayer()` and `typoLayer()` arguments is used. 
+`tc_map_pt` creates a map of symbols that are proportional to values of a first variable and colored to reflect the modalities of a second qualitatice variable. A combination of `propSymbolsLayer()` and `typoLayer()` arguments is used.
 
 ```{r tc_map_pt, fig.width=5}
 library(cartography)
@@ -366,12 +346,11 @@ tc_layout(title = "Population Distribution in Martinique",
                            packageVersion("cartography")))
 ```
 
-
 ## Label Map
 
-`tc_label()` is dedicated to the display of labels on a map. The `overlap = FALSE` argument displays non overlapping labels. 
+`tc_label()` is dedicated to the display of labels on a map. The `overlap = FALSE` argument displays non overlapping labels.
 
-In this example we have built a custom theme with `tc_theme()`. 
+In this example we have built a custom theme with `tc_theme()`.
 
 ```{r tc_label}
 library(cartography)
@@ -417,11 +396,11 @@ tc_arrow(pos ='topright')
 
 ## Links Map
 
-`tc_get_links()` creates a link layer from an `sf` object and a link `data.frame` (long format).  
+`tc_get_links()` creates a link layer from an `sf` object and a link `data.frame` (long format).
 
-`tc_map_g()` displays graduated links. 
+`tc_map_g()` displays graduated links.
 
-We have used `leg_pos = "bottomleft2"` to display the legend in the bottom left corner of the map with an extra space to avoid overlaps between the legend and the credits. 
+We have used `leg_pos = "bottomleft2"` to display the legend in the bottom left corner of the map with an extra space to avoid overlaps between the legend and the credits.
 
 ```{r tc_map_g}
 library(cartography)
@@ -457,16 +436,15 @@ tc_layout(title = "Commuting to Fort-de-France",
           arrow = FALSE)
 ```
 
-
 ## Discontinuities Map
 
-Discontinuities maps are based on the variation of a phenomena between contiguous units. This kind of representation focuses spatial breaks. The discontinuity intensity is expressed by the borders thickness.   
+Discontinuities maps are based on the variation of a phenomena between contiguous units. This kind of representation focuses spatial breaks. The discontinuity intensity is expressed by the borders thickness.
 
-`tc_get_borders()` is used to build a spatial object of borders between units. Each resulting borders contains the ids of its two neighboring units.  
+`tc_get_borders()` is used to build a spatial object of borders between units. Each resulting borders contains the ids of its two neighboring units.
 
 `tc_map_d()` computes and displays discontinuities, lines widths reflect the ratio or the absolute difference between values of an indicator in two neighboring units.
 
-```{r tc_map_d, fig.width = 5}
+```{r tc_map_disc, fig.width = 5}
 library(cartography)
 # import the sample data set
 mtq <- tc_import_mtq()
@@ -481,7 +459,7 @@ tc_map_c(x = mtq, var = "MED",
          leg_pos = "topright", leg_title = "Median Income\n(euros)",
          add = TRUE)
 # Plot discontinuities
-tc_map_d(
+tc_map_disc(
   x = mtq_borders,
   df = mtq,
   var = "MED",
@@ -503,8 +481,3 @@ tc_layout(title = "Wealth Disparities in Martinique, 2015",
                            "cartography ", 
                            packageVersion("cartography")))
 ```
-
-
-
-
-
