@@ -8,7 +8,6 @@
 #' @param font font of the title
 #' @param line number of lines used for the title
 #' @param inner if TRUE the title is displayed inside the plot area.
-#' @eval my_params("xfull")
 #' @export
 #' @examples
 #' mtq <- tc_import_mtq()
@@ -16,7 +15,7 @@
 #' tc_title()
 tc_title <- function(txt = "Map Title, Year", pos, tab,
                      bg, fg, cex, line, font,
-                     inner, x) {
+                     inner) {
   op <- par(mar = .gmapsf$args$mar, no.readonly = TRUE)
   on.exit(par(op))
   
@@ -92,9 +91,6 @@ tc_title <- function(txt = "Map Title, Year", pos, tab,
     font = font, xpd = TRUE
   )
   
-  
-  if (missing(x)) {
-    x <- NULL
-  }
-  return(invisible(x))
+
+  return(invisible(NULL))
 }

@@ -1,18 +1,7 @@
 library(sf)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"), quiet = TRUE)
 
-home <- length(unclass(packageVersion("cartography"))[[1]]) == 4
 
-if (home) {#Remote
-  remoteurl <- "https://i.imgur.com/gePiDvB.png"
-  expect_true(
-    methods::is(getPngLayer(x = mtq,pngpath = remoteurl,dwmode = "curl"),
-                "RasterBrick"))
-  expect_true(
-    methods::is(getPngLayer(x = mtq,pngpath = remoteurl,dwmode = "base",
-                            mode = "wb", quiet = TRUE),
-                "RasterBrick"))
-}
 
 #Local file
 dirpng <-

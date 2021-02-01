@@ -115,7 +115,6 @@ tc_map_disc <- function(x,
   # Cartographie
   plot(sf::st_geometry(x), col = col, lwd = x$sizesMap, add = add, bg = bg)
   
-  print(unique(x$sizesMap))
   # Legend
   tc_leg_gl(pos = leg_pos, 
             val = distr, 

@@ -23,6 +23,8 @@
 #'
 #' @examples
 #' mtq <- tc_import_mtq()
+#' tc_map(mtq)
+#' tc_map_g(mtq, "POP", pch = 22)
 tc_map_g <- function(x, 
                      var,
                      breaks = "quantile",

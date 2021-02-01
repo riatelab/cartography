@@ -14,8 +14,8 @@
 #' @export
 #' @examples
 #' mtq <- tc_import_mtq()
-# tc_map(mtq)
-# tc_scale()
+#' tc_map(mtq)
+#' tc_scale()
 tc_scale <- function(size, pos = "bottomright",
                      lwd = 1.5, cex = 0.6, col, unit = "km") {
   # default color

@@ -70,7 +70,7 @@ tc_map_dots <- function(x,
       bg <- NA
       fg <- NA
     }
-    legend(legend = leg_title, cex = leg_cex, text.col = fg, 
+    legend(legend = leg_title, cex = leg_cex, text.col = fg, col = col,
            pch = pch, pt.cex = cex,  x = leg_pos, box.col = fg,
            bg = bg)
   }

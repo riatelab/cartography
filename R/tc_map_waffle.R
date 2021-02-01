@@ -26,7 +26,6 @@
 #' not (FALSE).
 #' @export
 #' @examples
-#' library(sf)
 #' mtq <- tc_import_mtq()
 #' # number of employed persons
 #' mtq$EMP <- mtq$ACT - mtq$CHOM
@@ -46,9 +45,9 @@
 #'   pal = c("tomato1", "lightblue"),
 #'   border = "#f2efe9",
 #'   leg_pos = "topright",
-#'   leg_title_cex = 1,
+#'   leg_title_cex = .9,
 #'   leg_title = "Active Population",
-#'   leg_val_cex = 0.8,
+#'   leg_val_cex = 0.7,
 #'   add = TRUE
 #' )
 #' tc_layout(

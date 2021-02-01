@@ -1,4 +1,4 @@
-#' @title Legend for Hatched Maps
+#' @title Plot a legend for hatched polygons
 #' @description Plot legend for hatched maps.
 #' @name tc_leg_pattern
 #' @param pos position of the legend, one of "topleft", "top", 
@@ -18,14 +18,12 @@
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @param ... optional graphical parameters, see details on \link{hatchedLayer}
-#' @seealso \link{tc_leg_pattern}
-#' @keywords internal
+#' @seealso \link{tc_pattern}
 #' @author dieghernan, \url{https://github.com/dieghernan/}
 #' @note It is also possible to create solid legends, by setting \code{col} and \code{ptrn.bg} to the same color. 
 #' Parameters would honour the order of the \code{categ} variable.
 #' @export
 #' @examples
-#' library(cartography)
 #' mtq <- tc_import_mtq()
 #' tc_map_t(mtq, var = "STATUS",  leg_pos = "n",
 #'          val_order = c("Prefecture","Sub-prefecture",

@@ -32,7 +32,7 @@ my_params <- function(x) {
     add = "add whether to add the layer to an existing plot (TRUE) or not (FALSE)",
     pal = paste0(
       "pal a set of colors or a palette name",
-      " (from \\link{tc_get_pal} or \\link{hcl.colors})"
+      " (from \\link{hcl.colors})"
     ),
     col_na = "col_na color for missing values",
     val_max = "val_max maximum value used for proportional symbols",

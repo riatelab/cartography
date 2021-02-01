@@ -41,11 +41,6 @@
 #' dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
 #' mask <- getPngLayer(mtq, dirpng)
 #' 
-#' \dontrun{
-#' #Remote file
-#' urlpng <- "https://i.imgur.com/gePiDvB.png"
-#' masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE)
-#' }
 #' @export
 #' @keywords internal
 getPngLayer <-  function(x, pngpath, align = "center", margin = 0, crop = FALSE,
