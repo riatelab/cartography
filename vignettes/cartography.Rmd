@@ -176,7 +176,8 @@ tc_layout(title = "Martinique",
 
 ## Proportional Symbols
 
-`tc_map_p()` displays symbols with areas proportional to a quantitative variable (stocks). Several symbols are available (circles, squares, bars). The `inches` argument is used to customize the symbols sizes.
+`tc_map_p()` displays symbols with areas proportional to a quantitative variable (stocks). 
+The `inches` argument is used to customize the symbols sizes.
 
 ```{r tc_map_p, message=FALSE, warning=FALSE}
 library(cartography)
