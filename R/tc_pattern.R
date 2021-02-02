@@ -116,7 +116,7 @@ tc_pattern <- function(x, pattern = "dot", density = 1, txt = "a", ...) {
   if (pattern %in% c("dot", "text")) {
     ops <- list(cellsize = dist ,
                 what = "corners",
-                square = F)
+                square = FALSE)
   } else {
     tops <- pattern != "hexagon"
     ops <- list(cellsize = dist ,
@@ -144,7 +144,7 @@ tc_pattern <- function(x, pattern = "dot", density = 1, txt = "a", ...) {
   if (pattern == "circle") {
     x <- sf::st_union(x)
     centr <- sf::st_centroid(sf::st_geometry(x),
-                             of_largest_polygon = T)
+                             of_largest_polygon = TRUE)
     rad <- min(diff(sf::st_bbox(x)[c(1, 3)]),
                diff(sf::st_bbox(x)[c(2, 4)]))
     # by default 21 circles would be created.
@@ -225,7 +225,7 @@ tc_pattern <- function(x, pattern = "dot", density = 1, txt = "a", ...) {
         nrows <- as.integer(length(fillgrid) / ncols)
       }
       id_grid <- seq(1, length(fillgrid))
-      row_id <- cut(id_grid, nrows, labels = F)
+      row_id <- cut(id_grid, nrows, labels = FALSE)
       col_id <- id_grid - (row_id - 1) * ncols
       l2r <- l2r[col_id %in% seq(1, ncols + 1, 2)]
       l2r <- sf::st_line_merge(sf::st_union(l2r))

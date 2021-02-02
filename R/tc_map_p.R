@@ -66,7 +66,7 @@ tc_map_p <- function(x,
       tc_init(x, bg = bg)
     }
     par(lend = 1)
-    tc_map(x, lwd = x$lwd, add = T, col = col)
+    tc_map(x, lwd = x$lwd, add = TRUE, col = col)
     legendPropLines(pos = leg_pos, title.txt = leg_title, 
                     title.cex = leg_title_cex,
                     values.cex = leg_val_cex, 

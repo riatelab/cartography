@@ -34,7 +34,7 @@ tc_get_leg_pos <- function(x, n = 1){
   if(n == 2){
     pos <- c(NA, NA)
     if (length(ind) > 1){
-      pos <- sort(ind, decreasing = T)[1:2]
+      pos <- sort(ind, decreasing = TRUE)[1:2]
     }else{
       if(length(ind) == 1){
         ii <- rep(NA, 9)

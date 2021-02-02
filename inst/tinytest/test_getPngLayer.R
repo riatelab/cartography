@@ -5,7 +5,7 @@ mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"), quiet = TR
 
 #Local file
 dirpng <-
-  system.file("img/LogoMartinique.png", package = "cartography")
+  system.file("img/logo.png", package = "cartography")
 expect_true(methods::is(getPngLayer(x = mtq, pngpath = dirpng), "RasterBrick"))
 
 expect_error(getPngLayer(x = mtq, pngpath = dirpng, align = "fake"))

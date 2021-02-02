@@ -31,23 +31,12 @@ library(sf)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 
 # Local image
-dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
+dirpng <- system.file("img/logo.png", package = "cartography")
 mask <- getPngLayer(mtq, dirpng, crop = TRUE, margin = 0.5)
 par(mar = c(0,0,0,0))
 ghostLayer(mtq)
 pngLayer(mask, add = TRUE)
 
-\dontrun{
-# Remote image
-urlpng = "https://i.imgur.com/gePiDvB.png"
-masksea <- getPngLayer(mtq, urlpng, mode = "wb", inverse = TRUE, margin = 0.5)
-#Combine
-par(mar = c(0,0,0,0))
-ghostLayer(mtq)
-pngLayer(mask, add = TRUE)
-pngLayer(masksea, add = TRUE)
-plot(st_geometry(mtq), border="orange", add=TRUE)
-}
 }
 \author{
 dieghernan, \url{https://github.com/dieghernan/}

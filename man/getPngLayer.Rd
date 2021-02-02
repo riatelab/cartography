@@ -70,7 +70,7 @@ recommended.
 library(sf)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 #Local file
-dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
+dirpng <- system.file("img/logo.png", package = "cartography")
 mask <- getPngLayer(mtq, dirpng)
 
 }

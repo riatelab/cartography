@@ -24,16 +24,6 @@ from getTiles.
 library(sf)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
 
-\dontrun{
-# Download the tiles, extent = Martinique
-mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
-# Plot the tiles
-tilesLayer(mtqOSM)
-# Plot countries
-plot(st_geometry(mtq), add=TRUE)
-txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
-mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
-}
 }
 \seealso{
 \link[maptiles]{plot_tiles}

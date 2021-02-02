@@ -53,7 +53,7 @@ tc_map(mtq,
        bg = "grey95",
        border = NA)
 bks <- tc_get_breaks(x = mtq$POP, nbreaks = 5, breaks = "quantile")
-cols <- tc_get_pal(n = 5, palette = "Blues", rev = T)
+cols <- tc_get_pal(n = 5, palette = "Blues", rev = TRUE)
 tc_map_words(
   x = mtq,
   txt = "LIBGEO",

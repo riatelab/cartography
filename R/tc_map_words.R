@@ -23,7 +23,7 @@
 #'        bg = "grey95",
 #'        border = NA)
 #' bks <- tc_get_breaks(x = mtq$POP, nbreaks = 5, breaks = "quantile")
-#' cols <- tc_get_pal(n = 5, palette = "Blues", rev = T)
+#' cols <- tc_get_pal(n = 5, palette = "Blues", rev = TRUE)
 #' tc_map_words(
 #'   x = mtq,
 #'   txt = "LIBGEO",
@@ -134,8 +134,8 @@ tc_map_words <- function(x,
   }
   x_v1$cut <- cut(x_v1$freq,
                   breaks,
-                  include.lowest = T,
-                  labels = F)
+                  include.lowest = TRUE,
+                  labels = FALSE)
   
   x_v1$col <- (col)[x_v1$cut]
   
@@ -301,7 +301,7 @@ wordcloudlayout <- function(x,
       c(xlim, ylim, par()$mar), length(result[, 1])
     )),
     ncol = 8,
-    byrow = T)
+    byrow = TRUE)
   colnames(graphpar) <- c("usr1", "usr2", "usr3", "usr4",
                           "mar1", "mar2", "mar3", "mar4")
   

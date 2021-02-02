@@ -137,8 +137,8 @@ wordcloudLayer <- function(x,
   }
   x_v1$cut <- cut(x_v1$freq,
                  breaks,
-                 include.lowest = T,
-                 labels = F)
+                 include.lowest = TRUE,
+                 labels = FALSE)
   
   x_v1$col <- (col)[x_v1$cut]
 
@@ -304,7 +304,7 @@ wordcloudlayout <- function(x,
       c(xlim, ylim, par()$mar), length(result[, 1])
     )),
     ncol = 8,
-    byrow = T)
+    byrow = TRUE)
   colnames(graphpar) <- c("usr1", "usr2", "usr3", "usr4",
                           "mar1", "mar2", "mar3", "mar4")
   

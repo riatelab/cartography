@@ -266,14 +266,14 @@ tc_leg_pattern <- function(pos = "topleft",
                            mode = "legend",
                            density = params$density[j])
       plot(sf::st_geometry(patt),
-           add = T,
+           add = TRUE,
            col = params$col[j],
            lwd = as.double(params$line.lwd[j]),
            lty = as.integer(params$line.lty[j])
       )
       # Add border #
       plot(sf::st_geometry(rect),
-           add = T,
+           add = TRUE,
            col = NA,
            border = "black",
            lwd = 0.4

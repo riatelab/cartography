@@ -119,7 +119,7 @@ getTiles <- function(x, spdf, type = "OpenStreetMap", zoom = NULL, crop = FALSE,
   # get query parameters according to type 
   param <- get_param(type)
   # subdomains management
-  tile_grid$tiles$s <- sample(param$sub, nrow(tile_grid$tiles), replace = T)
+  tile_grid$tiles$s <- sample(param$sub, nrow(tile_grid$tiles), replace = TRUE)
   # src mgmnt
   tile_grid$src <- param$src
   # query mgmnt
