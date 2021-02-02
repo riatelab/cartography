@@ -130,7 +130,6 @@ tc_map_pc <- function(x,
     frame = leg_frame[1], border = border, lwd = lwd,
     bg = bg, fg = fg
   )
-  print(leg_pos)
   tc_leg_c(
     pos = leg_pos[2], val = breaks, title = leg_title[2],
     title_cex = leg_title_cex[2], val_cex = leg_val_cex[2],

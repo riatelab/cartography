@@ -735,6 +735,7 @@ legendBarsSymbols<- function(pos = "topleft", title.txt = "Title of the legend",
 #' @param frame whether to add a frame to the legend (TRUE) or 
 #' not (FALSE).
 #' @export
+#' @keywords internal
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -749,6 +750,9 @@ legendPropLines<- function(pos = "topleft", title.txt = "Title of the legend",
                            title.cex = 0.8, cex = 1,
                            values.cex = 0.6, var, lwd, col="red", frame=FALSE, 
                            values.rnd = 0){
+  lifecycle::deprecate_soft(when = "3.0.0", 
+                            what = "cartography::legendPropLines()",
+                            with = "tc_leg_pl()") 
   var <- abs(var)
   # exit for none
   positions <- c("bottomleft", "topleft", "topright", "bottomright",

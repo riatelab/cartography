@@ -67,12 +67,19 @@ tc_map_p <- function(x,
     }
     par(lend = 1)
     tc_map(x, lwd = x$lwd, add = TRUE, col = col)
-    legendPropLines(pos = leg_pos, title.txt = leg_title, 
-                    title.cex = leg_title_cex,
-                    values.cex = leg_val_cex, 
-                    var = c(min(x[[var]]), maxval), 
-                    lwd = lwd_max, col = col, frame = leg_frame, 
-                    values.rnd = leg_val_rnd)
+    
+    val <- seq(min(x[[var]]), max(x[[var]]), length.out = 4)
+    tc_leg_pl(pos = leg_pos, val = val , lwd = lwd_max, col = col, 
+              title = leg_title, title_cex = leg_title_cex, 
+              val_cex = leg_val_cex, val_rnd = leg_val_rnd, 
+              frame = leg_frame, bg = bg, fg = fg)
+    
+    # legendPropLines(pos = leg_pos, title.txt = leg_title, 
+    #                 title.cex = leg_title_cex,
+    #                 values.cex = leg_val_cex, 
+    #                 var = c(min(x[[var]]), maxval), 
+    #                 lwd = lwd_max, col = col, frame = leg_frame, 
+    #                 values.rnd = leg_val_rnd)
     par(lend = lend)
     
     return(invisible(NULL))
