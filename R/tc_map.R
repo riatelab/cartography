@@ -39,6 +39,9 @@ tc_map <- function(x,
        lwd = lwd, add = add, bg = bg,
        asp = 1,  ...
   )
-  return(invisible(NULL))
+  pu <- par("usr")
+  rect(pu[1], pu[3], pu[2], pu[4], border = bg, col =  NA)
+
+    return(invisible(NULL))
   
 }
