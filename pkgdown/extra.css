@@ -1,0 +1,217 @@
+/* Created by dieghernan, https://github.com/dieghernan/ */
+
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+
+/* Highlighter */
+pre, code {
+	background-color: #f9f9f9;	
+}
+
+code a, pre a {
+  color: #fd0000;
+}
+
+.sourceLine:hover {
+  text-decoration: none;
+}
+
+/* Keyword */
+ .kw {
+     font-weight: bold
+}
+/* String */
+ .st, .an, .ch, .cn {
+     color: #009FFF;
+}
+ .cn {
+     font-weight: bold
+}
+/* Function */
+ .fu {
+     color: #7D0000;
+     font-weight: bold
+}
+/* Float */
+ .fl {
+     color: #009500;
+      font-weight: bold
+}
+/* Comment */
+ .co {
+     color: #487E91;
+	 font-style: italic;
+}
+
+/* Variable */
+ .va {
+     color: #56423D;
+}
+
+/* Operator */
+.op {
+	color: #FD0000;
+	font-weight: bold
+}
+
+
+/* ---Theming pkgdown--- */
+/* General typography of Bootstrap 4 */
+body {
+  font-family: 'Arimo', sans-serif;
+  font-weight: 400;
+}
+
+a {
+  color: #fd0000;
+}
+
+a:hover,
+a:focus {
+  color: #cccccc;
+}
+
+/* Footer */
+footer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #140b0b;
+  color: white;
+}
+
+footer a {
+  color: #fd0000;
+}
+
+footer div {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+/* Navbar colors */
+/* Background: #140b0b */
+/* Font color: white */
+/* Hover/Active background:  #fd0000 */
+/* Hover/Active font color:  #cccccc */
+
+/* Navbar logo */
+#navbar-logo {
+  margin-top: -4px;
+  height: 32px;
+  margin-right: 7px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #140b0b;
+}
+
+
+/* Brand */
+
+.navbar .navbar-brand .navbar-link {
+  color: white;
+}
+
+.navbar .navbar-brand .navbar-link:hover,
+.navbar .navbar-brand .navbar-link:focus {
+  color: #fd0000;
+  text-decoration: none;
+}
+
+.navbar .navbar-brand .label-default {
+  color: white;
+  background-color: #fd0000;
+}
+
+.navbar-default .navbar-collapse {
+  border-color: #fd0000;
+}
+
+
+/* Toggle */
+
+.navbar .navbar-toggle {
+  color: white;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+  background-color: #fd0000;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+
+/* Navbar links */
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+  color: #fd0000;
+}
+
+.navbar-default .navbar-nav>.active>a {
+  background-color: #fd0000;
+  color: white;
+}
+
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  color: #cccccc;
+  background-color: #fd0000;
+}
+
+
+/* Dropdowns */
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+  color: #fd0000;
+  background-color: #140b0b;
+}
+
+
+/* Childs */
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+  color: #fd0000;
+  background-color: #140b0b;
+}
+
+.navbar-default .navbar-nav>li>.dropdown-menu {
+  background-color: #140b0b;
+}
+
+.navbar-default .dropdown-menu>li>a:focus,
+.navbar-default .dropdown-menu>li>a:hover {
+  background-color: #cccccc;
+  color: white;
+}
+
+
+/* Childs Active */
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a {
+  background-color: #fd0000;
+  color: white;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
+  background-color: #fd0000;
+  color: #cccccc;
+}
