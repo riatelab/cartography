@@ -16,13 +16,13 @@ dotDensityLayer(
   cex = 0.15,
   type = "random",
   col = "black",
-  iter,
   legend.pos = "topright",
   legend.txt = NULL,
   legend.cex = 0.6,
   legend.col = "black",
   legend.frame = TRUE,
-  add = TRUE
+  add = TRUE,
+  iter
 )
 }
 \arguments{
@@ -52,8 +52,6 @@ column of df. (optional)}
 
 \item{col}{color of the points.}
 
-\item{iter}{deprecated, no longer in use.}
-
 \item{legend.pos}{"topright", "left", "right", "bottomleft", "bottom", "bottomright". If 
 legend.pos is "n" then the legend is not plotted.}
 
@@ -68,6 +66,8 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
+
+\item{iter}{defunct.}
 }
 \description{
 Plot a dot density layer.

@@ -4,12 +4,10 @@
 \alias{getFigDim}
 \title{Get Figure Dimensions}
 \usage{
-getFigDim(x, spdf, width = NULL, height = NULL, mar = par("mar"), res = 72)
+getFigDim(x, width = NULL, height = NULL, mar = par("mar"), res = 72, spdf)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
-
-\item{spdf}{deprecated, a Spatial*DataFrame.}
 
 \item{width}{width of the figure (in pixels), either width or height 
 must be set.}
@@ -23,6 +21,8 @@ sides of the plot (see \link{par}).}
 
 \item{res}{the nominal resolution in ppi which will be recorded in the 
 bitmap file.}
+
+\item{spdf}{defunct.}
 }
 \value{
 A vector of width and height in pixels is returned.

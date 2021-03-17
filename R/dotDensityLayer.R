@@ -13,7 +13,7 @@
 #' @param var name of the numeric variable to plot.
 #' @param n one dot on the map represents n (in var units).
 #' @param col color of the points.
-#' @param iter deprecated, no longer in use.
+#' @param iter defunct.
 #' @param pch symbol to use: \link{points}.
 #' @param cex size of the symbols
 #' @param type points allocation method: "random" or "regular" (see Details).
@@ -45,16 +45,15 @@ dotDensityLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                             cex = .15,
                             type = "random",
                             col = "black",
-                            iter,
                             legend.pos = "topright",
                             legend.txt = NULL,
                             legend.cex = 0.6,
                             legend.col = "black",
                             legend.frame = TRUE,
-                            add = TRUE){
+                            add = TRUE, iter){
   
   if (!missing(iter)){
-      warning("iter argument is deprecated.", call. = FALSE)
+      stop("iter argument is defunct", call. = FALSE)
   }
   
   if (missing(x)){

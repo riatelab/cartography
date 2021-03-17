@@ -6,20 +6,18 @@
 \usage{
 getTiles(
   x,
-  spdf,
   type = "OpenStreetMap",
   zoom = NULL,
   crop = FALSE,
   verbose = FALSE,
   apikey = NA,
   cachedir = FALSE,
-  forceDownload = FALSE
+  forceDownload = FALSE,
+  spdf
 )
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a Spatial*DataFrame.}
-
-\item{spdf}{deprecated, a Spatial*DataFrame with a valid projection attribute.}
 
 \item{type}{the tile server from which to get the map. See Details for providers.
 For other sources use a list: type = list(src = "name of the source" , 
@@ -39,6 +37,8 @@ FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.}
 'tile.cache' folder in the working directory. If FALSE, tiles are not cached.}
 
 \item{forceDownload}{if TRUE, cached tiles are downloaded again.}
+
+\item{spdf}{defunct.}
 }
 \value{
 A RasterBrick is returned.
