@@ -26,13 +26,7 @@ gradLinkTypoLayer(
   legend.var2.values.order = NULL,
   legend.var2.nodata = "no data",
   legend.var2.frame = FALSE,
-  add = TRUE,
-  spdf,
-  spdfid,
-  spdfids,
-  spdfide,
-  dfids,
-  dfide
+  add = TRUE
 )
 }
 \arguments{
@@ -90,18 +84,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{spdf}{defunct.}
-
-\item{spdfid}{defunct.}
-
-\item{spdfids}{defunct.}
-
-\item{spdfide}{defunct.}
-
-\item{dfids}{defunct.}
-
-\item{dfide}{defunct.}
 }
 \description{
 Plot a layer of colored and graduated links. 

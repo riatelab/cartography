@@ -4,18 +4,7 @@
 \alias{getLinkLayer}
 \title{Create a Links Layer from a Data Frame of Links.}
 \usage{
-getLinkLayer(
-  x,
-  xid = NULL,
-  df,
-  dfid = NULL,
-  spdf,
-  spdf2 = NULL,
-  spdfid = NULL,
-  spdf2id = NULL,
-  dfids = NULL,
-  dfide = NULL
-)
+getLinkLayer(x, xid = NULL, df, dfid = NULL)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection (or a Spatial*DataFrame).}
@@ -26,18 +15,6 @@ getLinkLayer(
 
 \item{dfid}{names of the identifier variables in df, character vector of length 2, default to 
 the two first columns. (optional)}
-
-\item{spdf}{defunct.}
-
-\item{spdf2}{defunct.}
-
-\item{spdfid}{defunct.}
-
-\item{spdf2id}{defunct.}
-
-\item{dfids}{defunct.}
-
-\item{dfide}{defunct.}
 }
 \value{
 An sf LINESTRING is returned, it contains two variables (origins and destinations).

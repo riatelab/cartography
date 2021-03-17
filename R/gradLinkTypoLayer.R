@@ -36,12 +36,6 @@
 #' @param colNA no data color. 
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @param spdf defunct.
-#' @param spdfid defunct.
-#' @param spdfids defunct.
-#' @param spdfide defunct.
-#' @param dfids defunct.
-#' @param dfide defunct.
 #' @note Unlike most of cartography functions, identifiers variables are mandatory.
 #' @seealso \link{getLinkLayer}, \link{propLinkLayer}, \link{legendGradLines}, \link{gradLinkLayer}
 #' @examples
@@ -78,13 +72,7 @@ gradLinkTypoLayer <- function(x, df, xid = NULL, dfid = NULL,
                               legend.var2.values.order = NULL,
                               legend.var2.nodata = "no data",
                               legend.var2.frame = FALSE,
-                              add = TRUE, 
-                              spdf, spdfid, spdfids, spdfide, dfids, dfide){
-  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), missing(spdfide), 
-           missing(dfids), missing(dfide))) != 6){
-    stop("spdf, spdfid, spdfids, spdfide, dfids and dfide are defunct arguments; last used in version 1.4.2.",
-         call. = FALSE)
-  }
+                              add = TRUE){
   # test
   if((length(breaks)-1) != length(lwd)){
     stop("length(lwd) must be equal to length(breaks) - 1",call. = FALSE)

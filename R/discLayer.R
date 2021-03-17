@@ -32,9 +32,6 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @param spdf defunct.
-#' @param spdfid1 defunct.
-#' @param spdfid2 defunct.
 #' @return  An \link{invisible} sf object (MULTISTRING) with the discontinuity measures is returned. 
 #' @details 
 #' The "rel" type of discontinuity is the result of pmax(value unit 1 / value unit 2, value unit 2 / value unit 1).\cr
@@ -68,12 +65,8 @@ discLayer <- function(x, df, dfid = NULL, var,
                       legend.values.cex = 0.6, 
                       legend.values.rnd = 2,
                       legend.frame=FALSE,
-                      add = TRUE, spdf, spdfid1, spdfid2){
+                      add = TRUE){
   
-  if(sum(c(missing(spdf), missing(spdfid1), missing(spdfid2))) != 3){
-    stop("spdf, spdfid1 and spdfid2 are defunct arguments; last used in version 1.4.2.",
-         call. = FALSE)
-  }
   if (is.null(dfid)){dfid <- names(df)[1]}
   df <- data.frame(df)
   # Join (1 and 2)

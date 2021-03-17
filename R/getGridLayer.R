@@ -110,15 +110,3 @@ getGridAll <- function(x, cellsize, square){
 
 
 
-#' @title Compute Data for a Grid Layer
-#' @name getGridData
-#' @description Defunct
-#' @param x ...
-#' @param df ...
-#' @param dfid ...
-#' @param var ...
-#' @export
-#' @keywords internal
-getGridData <- function(x, df, dfid = NULL, var){
-  .Defunct(msg = "This function is defunct, use getGridLayer instead.")
-}

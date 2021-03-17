@@ -33,8 +33,6 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @param breakval defunct.
-#' @param col2 defunct.
 #' @details  
 #' Two maps with the same inches and fixmax parameters will be comparable.
 #' @export 
@@ -69,12 +67,8 @@ propSymbolsLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, var,
                              legend.values.rnd = 0,
                              legend.style = "c", 
                              legend.frame = FALSE,
-                             add = TRUE, 
-                             breakval = NULL, col2){
-  if(!is.null(breakval)){
-    stop("breakval and col2 are defunct arguments; last used in version 1.4.2.",
-         call. = FALSE)
-  }
+                             add = TRUE){
+
   if (missing(x)){
     x <- convertToSf(spdf = spdf, df = df, spdfid = spdfid, dfid = dfid)
   }

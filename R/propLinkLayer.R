@@ -23,12 +23,6 @@
 #' not (FALSE).
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
-#' @param spdf defunct.
-#' @param spdfid defunct.
-#' @param spdfids defunct.
-#' @param spdfide defunct.
-#' @param dfids defunct.
-#' @param dfide defunct.
 #' @note Unlike most of cartography functions, identifiers variables are mandatory.
 #' @seealso \link{gradLinkLayer}, \link{getLinkLayer}, \link{legendPropLines}
 #' @examples
@@ -54,14 +48,8 @@ propLinkLayer <- function(x, df, xid = NULL, dfid = NULL,
                           legend.values.cex = 0.6, 
                           legend.values.rnd = 0,
                           legend.frame = FALSE, 
-                          add = TRUE,
-                          spdf, spdfid, spdfids, spdfide, dfids, dfide){
-  
-  if(sum(c(missing(spdf), missing(spdfid), missing(spdfids), 
-           missing(spdfide), missing(dfids), missing(dfide))) != 6){
-    stop("spdf, spdfid, spdfids, spdfide, dfids and dfide are defunct arguments; last used in version 1.4.2.",
-         call. = FALSE)
-  }
+                          add = TRUE){
+
   if (is.null(xid)){xid <- names(x)[1:2]}
   if (is.null(dfid)){dfid <- names(df)[1:2]}
   
