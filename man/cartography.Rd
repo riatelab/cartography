@@ -16,6 +16,17 @@ A \bold{vignette} contains commented scripts on how to create various maps:\cr
 A \bold{cheat sheet} displays a quick overview of \code{cartography}'s 
 main features:\cr\code{vignette(topic = "cheatsheet" , package = "cartography")}
 }
+\section{Consider \code{mapsf}}{
+
+There are no plans for new features or enhancements in \code{cartography}.
+Basic maintenance and support will continue indefinitely. 
+Existing projects that use \code{cartography} can safely continue to use \code{cartography}. 
+The \code{mapsf} R package is the successor of \code{cartography} and it is friendlier, 
+lighter and more robust. 
+See mapsf vignette (\url{https://riatelab.github.io/mapsf/articles/mapsf.html}) 
+to migrate from \code{cartography} to \code{mapsf}.
+}
+
 \section{Symbology}{
 
 These functions build cartographic layers.

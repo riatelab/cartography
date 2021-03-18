@@ -10,6 +10,17 @@
 ![CRAN/METACRAN](https://img.shields.io/cran/l/cartography?color=brightgreen)
 
 
+## Consider `mapsf`
+
+There are no plans for new features or enhancements in `cartography`. 
+Basic maintenance and support will continue indefinitely. 
+Existing projects that use `cartography` can safely continue to use `cartography`. 
+The `mapsf` R package is the successor of `cartography` and it is friendlier, lighter and more robust. 
+See [`mapsf` vignette](https://riatelab.github.io/mapsf/articles/mapsf.html) or [this blog post](https://rgeomatic.hypotheses.org/2212) to migrate from `cartography` to `mapsf`.
+
+
+
+
 ## Create and integrate maps in your R workflow! 
 This package helps to design **cartographic representations** such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends.
 
@@ -100,6 +111,8 @@ install.packages("cartography")
 
 
 ## Alternatives Packages
+
+* [mapsf](https://github.com/riatelab/mapsf)
 * [tmap](https://github.com/mtennekes/tmap)    
 * [ggplot2](https://github.com/tidyverse/ggplot2) + [ggspatial](https://github.com/paleolimbot/ggspatial)     
 * [oceanis](https://github.com/insee-psar-at/oceanis-package)  
