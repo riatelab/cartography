@@ -1,3 +1,16 @@
+# cartography 3.0.0
+
+cartography enters in maintenance mode. 
+
+## Major changes
+- Remove defunct arguments in discLayer, getGridLayer, getLinkLayer, 
+gradLinkLayer, gradLinkkTypoLayer, propLinkLayer, propSymbolsLayer.
+- Remove getGridData function 
+- Defunct deprecated arguments in dotDensityLayer, getBorders, getFigDim, 
+getOuterBorders and getTiles
+- Deprecate getTiles
+
+
 # cartography 2.4.2
 
 ## Minor changes
