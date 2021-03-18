@@ -1,6 +1,6 @@
 Package: cartography
 Title: Thematic Cartography
-Version: 2.4.2
+Version: 3.0.0
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut"), 
@@ -46,6 +46,5 @@ Suggests:
     covr
 LinkingTo: Rcpp
 VignetteBuilder: knitr
-SystemRequirements: GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ.4 (>= 4.8.0)
 Encoding: UTF-8
 RoxygenNote: 7.1.1
