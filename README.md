@@ -10,12 +10,12 @@
 ![CRAN/METACRAN](https://img.shields.io/cran/l/cartography?color=brightgreen)
 
 
-## Consider `mapsf`
+## Consider [`mapsf`](https://riatelab.github.io/mapsf/)
 
 There are no plans for new features or enhancements in `cartography`. 
 Basic maintenance and support will continue indefinitely. 
 Existing projects that use `cartography` can safely continue to use `cartography`. 
-The `mapsf` R package is the successor of `cartography` and it is friendlier, lighter and more robust. 
+The [`mapsf` R package](https://riatelab.github.io/mapsf/) is the successor of `cartography` and it is friendlier, lighter and more robust. 
 See [`mapsf` vignette](https://riatelab.github.io/mapsf/articles/mapsf.html) or [this blog post](https://rgeomatic.hypotheses.org/2212) to migrate from `cartography` to `mapsf`.
 
 
