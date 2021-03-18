@@ -81,9 +81,13 @@
 #' mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
 #' }
 getTiles <- function(x, type = "OpenStreetMap", zoom = NULL, crop = FALSE, 
-                     verbose = FALSE, apikey=NA, cachedir=FALSE, 
+                     verbose = FALSE, apikey = NA, cachedir = FALSE, 
                      forceDownload = FALSE, spdf){
-  # deprecated check
+  .Deprecated(
+    new = "get_tiles", package = "maptiles", 
+    msg = "'getTiles' is deprecated.\nUse 'maptiles::get_tiles()' instead."
+  )
+  # defunct
   if(!missing(spdf)){
     stop("spdf is defunct; use x instead.", call. = FALSE)
     x <- spdf
@@ -220,7 +224,7 @@ compose_tile_grid <- function (tile_grid, images){
     if (tile_grid$ext=="png"){
       img <- png::readPNG(img)*255
     }
-
+    
     # compose brick raster
     r_img <- raster::brick(img, crs = sf::st_crs(3857)$proj4string)
     raster::extent(r_img) <- raster::extent(bbox[c("xmin", "xmax", 
