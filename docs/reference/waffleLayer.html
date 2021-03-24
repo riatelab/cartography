@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,25 +143,25 @@
     <p>Plot a waffle layer.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>waffleLayer</span>(
-  <span class='no'>x</span>,
-  <span class='no'>var</span>,
-  <span class='no'>cellvalue</span>,
-  <span class='no'>cellsize</span>,
-  <span class='kw'>cellrnd</span> <span class='kw'>=</span> <span class='st'>"ceiling"</span>,
-  <span class='kw'>celltxt</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"1 cell = "</span>, <span class='no'>cellvalue</span>),
-  <span class='no'>labels</span>,
-  <span class='no'>ncols</span>,
-  <span class='no'>col</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomleft"</span>,
-  <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"legend title"</span>,
-  <span class='kw'>legend.title.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>legend.values.cex</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
-  <span class='kw'>legend.frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>waffleLayer</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>var</span>,
+  <span class='va'>cellvalue</span>,
+  <span class='va'>cellsize</span>,
+  cellrnd <span class='op'>=</span> <span class='st'>"ceiling"</span>,
+  celltxt <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"1 cell = "</span>, <span class='va'>cellvalue</span><span class='op'>)</span>,
+  <span class='va'>labels</span>,
+  <span class='va'>ncols</span>,
+  <span class='va'>col</span>,
+  border <span class='op'>=</span> <span class='st'>"white"</span>,
+  lwd <span class='op'>=</span> <span class='fl'>0.2</span>,
+  legend.pos <span class='op'>=</span> <span class='st'>"bottomleft"</span>,
+  legend.title.txt <span class='op'>=</span> <span class='st'>"legend title"</span>,
+  legend.title.cex <span class='op'>=</span> <span class='fl'>0.8</span>,
+  legend.values.cex <span class='op'>=</span> <span class='fl'>0.6</span>,
+  legend.frame <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -244,40 +244,43 @@ not (FALSE).</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"cartography"</span>),
-               <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package <span class='op'>=</span> <span class='st'>"cartography"</span><span class='op'>)</span>,
+               quiet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># number of employed persons</span>
-<span class='no'>mtq</span>$<span class='no'>EMP</span> <span class='kw'>&lt;-</span> <span class='no'>mtq</span>$<span class='no'>ACT</span> - <span class='no'>mtq</span>$<span class='no'>CHOM</span>
+<span class='va'>mtq</span><span class='op'>$</span><span class='va'>EMP</span> <span class='op'>&lt;-</span> <span class='va'>mtq</span><span class='op'>$</span><span class='va'>ACT</span> <span class='op'>-</span> <span class='va'>mtq</span><span class='op'>$</span><span class='va'>CHOM</span>
 
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>),
-     <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#f2efe9"</span>,
-     <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"#b38e43"</span>,
-     <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='input'><span class='fu'>waffleLayer</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>,
-  <span class='kw'>var</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"EMP"</span>, <span class='st'>"CHOM"</span>),
-  <span class='kw'>cellvalue</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>cellsize</span> <span class='kw'>=</span> <span class='fl'>400</span>,
-  <span class='kw'>cellrnd</span> <span class='kw'>=</span> <span class='st'>"ceiling"</span>,
-  <span class='kw'>celltxt</span> <span class='kw'>=</span> <span class='st'>"1 cell represents 100 persons"</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Employed"</span>, <span class='st'>"Unemployed"</span>),
-  <span class='kw'>ncols</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tomato1"</span>, <span class='st'>"lightblue"</span>),
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"#f2efe9"</span>,
-  <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>,
-  <span class='kw'>legend.title.cex</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"Active Population"</span>,
-  <span class='kw'>legend.values.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='input'>
-<span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span>(
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Structure of the Active Population"</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"tomato4"</span>,
-  <span class='kw'>tabtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sources</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"cartography "</span>, <span class='fu'><a href='https://rdrr.io/r/utils/packageDescription.html'>packageVersion</a></span>(<span class='st'>"cartography"</span>)),
-  <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"Sources: Insee and IGN, 2018"</span>,
-)</div><div class='img'><img src='waffleLayer-1.png' alt='' width='525' height='504' /></div></pre>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>,
+     col <span class='op'>=</span> <span class='st'>"#f2efe9"</span>,
+     border <span class='op'>=</span> <span class='st'>"#b38e43"</span>,
+     lwd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>waffleLayer</span><span class='op'>(</span>
+  x <span class='op'>=</span> <span class='va'>mtq</span>,
+  var <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"EMP"</span>, <span class='st'>"CHOM"</span><span class='op'>)</span>,
+  cellvalue <span class='op'>=</span> <span class='fl'>100</span>,
+  cellsize <span class='op'>=</span> <span class='fl'>400</span>,
+  cellrnd <span class='op'>=</span> <span class='st'>"ceiling"</span>,
+  celltxt <span class='op'>=</span> <span class='st'>"1 cell represents 100 persons"</span>,
+  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Employed"</span>, <span class='st'>"Unemployed"</span><span class='op'>)</span>,
+  ncols <span class='op'>=</span> <span class='fl'>6</span>,
+  col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"tomato1"</span>, <span class='st'>"lightblue"</span><span class='op'>)</span>,
+  border <span class='op'>=</span> <span class='st'>"#f2efe9"</span>,
+  legend.pos <span class='op'>=</span> <span class='st'>"topright"</span>,
+  legend.title.cex <span class='op'>=</span> <span class='fl'>1</span>,
+  legend.title.txt <span class='op'>=</span> <span class='st'>"Active Population"</span>,
+  legend.values.cex <span class='op'>=</span> <span class='fl'>0.8</span>,
+  add <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+</div><div class='input'>
+<span class='fu'><a href='layoutLayer.html'>layoutLayer</a></span><span class='op'>(</span>
+  title <span class='op'>=</span> <span class='st'>"Structure of the Active Population"</span>,
+  col <span class='op'>=</span> <span class='st'>"tomato4"</span>,
+  tabtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  scale <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sources <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"cartography "</span>, <span class='fu'><a href='https://rdrr.io/r/utils/packageDescription.html'>packageVersion</a></span><span class='op'>(</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>,
+  author <span class='op'>=</span> <span class='st'>"Sources: Insee and IGN, 2018"</span>,
+<span class='op'>)</span>
+</div><div class='img'><img src='waffleLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -293,7 +296,7 @@ not (FALSE).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -83,7 +83,7 @@ the figure, a targeted width or height and a resolution." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ the figure, a targeted width or height and a resolution." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@ the figure, a targeted width or height and a resolution." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -149,7 +149,7 @@ Output dimension are based on a spatial object dimension ratio, margins of
 the figure, a targeted width or height and a resolution.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getFigDim</span>(<span class='no'>x</span>, <span class='no'>spdf</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"mar"</span>), <span class='kw'>res</span> <span class='kw'>=</span> <span class='fl'>72</span>)</pre>
+    <pre class="usage"><span class='fu'>getFigDim</span><span class='op'>(</span><span class='va'>x</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, height <span class='op'>=</span> <span class='cn'>NULL</span>, mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"mar"</span><span class='op'>)</span>, res <span class='op'>=</span> <span class='fl'>72</span>, <span class='va'>spdf</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,10 +157,6 @@ the figure, a targeted width or height and a resolution.</p>
     <tr>
       <th>x</th>
       <td><p>an sf object, a simple feature collection or a Spatial*DataFrame.</p></td>
-    </tr>
-    <tr>
-      <th>spdf</th>
-      <td><p>deprecated, a Spatial*DataFrame.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -183,6 +179,10 @@ sides of the plot (see <a href='https://rdrr.io/r/graphics/par.html'>par</a>).</
       <td><p>the nominal resolution in ppi which will be recorded in the 
 bitmap file.</p></td>
     </tr>
+    <tr>
+      <th>spdf</th>
+      <td><p>defunct.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -193,30 +193,31 @@ bitmap file.</p></td>
     <p>The function can be used to export vector or raster files (see examples).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## PNG export</span>
 <span class='co'># get figure dimension</span>
-<span class='no'>sizes</span> <span class='kw'>&lt;-</span> <span class='fu'>getFigDim</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>450</span>, <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1.2</span>,<span class='fl'>0</span>))
+<span class='va'>sizes</span> <span class='op'>&lt;-</span> <span class='fu'>getFigDim</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, width <span class='op'>=</span> <span class='fl'>450</span>, mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1.2</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># export the map</span>
-<span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span>(<span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"mtq.png"</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='no'>sizes</span>[<span class='fl'>1</span>], <span class='kw'>height</span> <span class='kw'>=</span> <span class='no'>sizes</span>[<span class='fl'>2</span>])
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1.2</span>,<span class='fl'>0</span>))
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#D1914D"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"#A6CAE0"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span>(<span class='st'>"Madinina"</span>)
-<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span>filename <span class='op'>=</span> <span class='st'>"mtq.png"</span>, width <span class='op'>=</span> <span class='va'>sizes</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, height <span class='op'>=</span> <span class='va'>sizes</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1.2</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"#D1914D"</span>, border <span class='op'>=</span> <span class='st'>"white"</span>, bg <span class='op'>=</span> <span class='st'>"#A6CAE0"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span><span class='op'>(</span><span class='st'>"Madinina"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'>## PDF export</span>
 <span class='co'># get figure dimension</span>
-<span class='no'>sizes</span> <span class='kw'>&lt;-</span> <span class='fu'>getFigDim</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>450</span>, <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2.2</span>,<span class='fl'>1</span>))
+<span class='va'>sizes</span> <span class='op'>&lt;-</span> <span class='fu'>getFigDim</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, width <span class='op'>=</span> <span class='fl'>450</span>, mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2.2</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># export the map</span>
-<span class='fu'><a href='https://rdrr.io/r/grDevices/pdf.html'>pdf</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"mtq.pdf"</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='no'>sizes</span>[<span class='fl'>1</span>]/<span class='fl'>72</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='no'>sizes</span>[<span class='fl'>2</span>]/<span class='fl'>72</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2.2</span>,<span class='fl'>1</span>))
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#D1914D"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"#A6CAE0"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span>(<span class='st'>"Madinina"</span>)
-<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span>()
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/pdf.html'>pdf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='st'>"mtq.pdf"</span>, width <span class='op'>=</span> <span class='va'>sizes</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>/</span><span class='fl'>72</span>, height <span class='op'>=</span> <span class='va'>sizes</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>/</span><span class='fl'>72</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2.2</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"#D1914D"</span>, border <span class='op'>=</span> <span class='st'>"white"</span>, bg <span class='op'>=</span> <span class='st'>"#A6CAE0"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span><span class='op'>(</span><span class='st'>"Madinina"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -232,7 +233,7 @@ bitmap file.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

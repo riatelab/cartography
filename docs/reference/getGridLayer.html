@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,7 +143,7 @@
     <p>Build a regular grid based on an sf object or a SpatialPolygonsDataFrame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getGridLayer</span>(<span class='no'>x</span>, <span class='no'>cellsize</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>, <span class='no'>var</span>, <span class='no'>spdf</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>getGridLayer</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>cellsize</span>, type <span class='op'>=</span> <span class='st'>"regular"</span>, <span class='va'>var</span>, <span class='va'>spdf</span>, <span class='va'>spdfid</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,12 +166,11 @@
     </tr>
     <tr>
       <th>spdf</th>
-      <td><p>deprecated, a SpatialPolygonsDataFrame.</p></td>
+      <td><p>defunct.</p></td>
     </tr>
     <tr>
       <th>spdfid</th>
-      <td><p>deprecated, identifier field in spdf, default to the first column 
-of the spdf data frame.  (optional)</p></td>
+      <td><p>defunct.</p></td>
     </tr>
     </table>
 
@@ -180,30 +179,33 @@ of the spdf data frame.  (optional)</p></td>
     <p>A grid is returned as an sf object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Plot dentsity of population</span>
-<span class='no'>mtq</span>$<span class='no'>POPDENS</span> <span class='kw'>&lt;-</span> <span class='fl'>1e6</span> * <span class='no'>mtq</span>$<span class='no'>POP</span> / <span class='fu'><a href='https://rdrr.io/pkg/sf/man/geos_measures.html'>st_area</a></span>(<span class='no'>mtq</span>)
-<span class='no'>bks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getBreaks.html'>getBreaks</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='no'>mtq</span>$<span class='no'>POPDENS</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"geom"</span>, <span class='fl'>5</span>)
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='carto.pal.html'>carto.pal</a></span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"taupe.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>opar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>))
-<span class='fu'><a href='choroLayer.html'>choroLayer</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"POPDENS"</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='no'>bks</span>,
-           <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"burlywood3"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>cols</span>,
-           <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-           <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"Population density"</span>)
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Plot dentsity of population</span>
+<span class='va'>mtq</span><span class='op'>$</span><span class='va'>POPDENS</span> <span class='op'>&lt;-</span> <span class='fl'>1e6</span> <span class='op'>*</span> <span class='va'>mtq</span><span class='op'>$</span><span class='va'>POP</span> <span class='op'>/</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span> 
+<span class='va'>bks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getBreaks.html'>getBreaks</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='va'>mtq</span><span class='op'>$</span><span class='va'>POPDENS</span>, method <span class='op'>=</span> <span class='st'>"geom"</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='carto.pal.html'>carto.pal</a></span><span class='op'>(</span>pal1 <span class='op'>=</span> <span class='st'>"taupe.pal"</span>, n1 <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>opar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='choroLayer.html'>choroLayer</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, var <span class='op'>=</span> <span class='st'>"POPDENS"</span>, breaks <span class='op'>=</span> <span class='va'>bks</span>,
+           border <span class='op'>=</span> <span class='st'>"burlywood3"</span>, col <span class='op'>=</span> <span class='va'>cols</span>,
+           legend.pos <span class='op'>=</span> <span class='st'>"topright"</span>, legend.values.rnd <span class='op'>=</span> <span class='fl'>0</span>,
+           legend.title.txt <span class='op'>=</span> <span class='st'>"Population density"</span><span class='op'>)</span>
 
-<span class='no'>mygrid</span> <span class='kw'>&lt;-</span> <span class='fu'>getGridLayer</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>cellsize</span> <span class='kw'>=</span> <span class='fl'>3e7</span>,
-                       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"hexagonal"</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"POP"</span>)
+<span class='va'>mygrid</span> <span class='op'>&lt;-</span> <span class='fu'>getGridLayer</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, cellsize <span class='op'>=</span> <span class='fl'>3e7</span>,
+                       type <span class='op'>=</span> <span class='st'>"hexagonal"</span>, var <span class='op'>=</span> <span class='st'>"POP"</span><span class='op'>)</span>
 <span class='co'>## conversion from square meter to square kilometers</span>
-<span class='no'>mygrid</span>$<span class='no'>POPDENSG</span> <span class='kw'>&lt;-</span> <span class='fl'>1e6</span> * <span class='no'>mygrid</span>$<span class='no'>POP</span> / <span class='no'>mygrid</span>$<span class='no'>gridarea</span>
-<span class='fu'><a href='choroLayer.html'>choroLayer</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mygrid</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"POPDENSG"</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='no'>bks</span>,
-           <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"burlywood3"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>cols</span>,
-           <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>legend.values.rnd</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-           <span class='kw'>legend.title.txt</span> <span class='kw'>=</span> <span class='st'>"Population density"</span>)</div><div class='img'><img src='getGridLayer-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='no'>opar</span>)</div></pre>
+<span class='va'>mygrid</span><span class='op'>$</span><span class='va'>POPDENSG</span> <span class='op'>&lt;-</span> <span class='fl'>1e6</span> <span class='op'>*</span> <span class='va'>mygrid</span><span class='op'>$</span><span class='va'>POP</span> <span class='op'>/</span> <span class='va'>mygrid</span><span class='op'>$</span><span class='va'>gridarea</span> 
+<span class='fu'><a href='choroLayer.html'>choroLayer</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mygrid</span>, var <span class='op'>=</span> <span class='st'>"POPDENSG"</span>, breaks <span class='op'>=</span> <span class='va'>bks</span>,
+           border <span class='op'>=</span> <span class='st'>"burlywood3"</span>, col <span class='op'>=</span> <span class='va'>cols</span>,
+           legend.pos <span class='op'>=</span> <span class='st'>"n"</span>, legend.values.rnd <span class='op'>=</span> <span class='fl'>1</span>,
+           legend.title.txt <span class='op'>=</span> <span class='st'>"Population density"</span><span class='op'>)</span>
+</div><div class='img'><img src='getGridLayer-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>opar</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -219,7 +221,7 @@ of the spdf data frame.  (optional)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

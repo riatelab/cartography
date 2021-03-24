@@ -82,7 +82,7 @@ maritime borders)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ maritime borders)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +119,7 @@ maritime borders)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,9 +147,9 @@ maritime borders)." />
 maritime borders).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getBorders</span>(<span class='no'>x</span>, <span class='no'>id</span>, <span class='no'>spdf</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>getBorders</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span>, <span class='va'>spdf</span>, <span class='va'>spdfid</span><span class='op'>)</span>
 
-<span class='fu'>getOuterBorders</span>(<span class='no'>x</span>, <span class='no'>id</span>, <span class='kw'>res</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>spdf</span>, <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>getOuterBorders</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span>, res <span class='op'>=</span> <span class='cn'>NULL</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>spdf</span>, <span class='va'>spdfid</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,13 +164,11 @@ maritime borders).</p>
     </tr>
     <tr>
       <th>spdf</th>
-      <td><p>deprecated, a SpatialPolygonsDataFrame. This SpatialPolygonsDataFrame
-has to be projected (planar coordinates).</p></td>
+      <td><p>defunct.</p></td>
     </tr>
     <tr>
       <th>spdfid</th>
-      <td><p>deprecated, identifier field in spdf, default to the first column 
-of the spdf data frame.  (optional)</p></td>
+      <td><p>defunct.</p></td>
     </tr>
     <tr>
       <th>res</th>
@@ -198,30 +196,36 @@ of id1 and id2 (with "_" as separator).</p>
     <div class='dont-index'><p><a href='discLayer.html'>discLayer</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Get borders</span>
-<span class='no'>mtq.borders</span> <span class='kw'>&lt;-</span> <span class='fu'>getBorders</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>)
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Get borders</span>
+<span class='va'>mtq.borders</span> <span class='op'>&lt;-</span> <span class='fu'>getBorders</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span><span class='op'>)</span>
 <span class='co'># Plot polygons</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>)</div><div class='input'><span class='co'># Plot borders</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq.borders</span>),
-     <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>mtq.borders</span>))),
-     <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='getBorders-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, border <span class='op'>=</span> <span class='cn'>NA</span>, col <span class='op'>=</span> <span class='st'>"grey60"</span><span class='op'>)</span>
+</div><div class='input'><span class='co'># Plot borders</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq.borders</span><span class='op'>)</span>, 
+     col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>mtq.borders</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, 
+     lwd <span class='op'>=</span> <span class='fl'>3</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='getBorders-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Get units borders</span>
-<span class='no'>mtq.outer</span> <span class='kw'>&lt;-</span> <span class='fu'>getOuterBorders</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>res</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>2500</span>)
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='co'># Get units borders</span>
+<span class='va'>mtq.outer</span> <span class='op'>&lt;-</span> <span class='fu'>getOuterBorders</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, res <span class='op'>=</span> <span class='fl'>1000</span>, width <span class='op'>=</span> <span class='fl'>2500</span><span class='op'>)</span>
 <span class='co'># Plot municipalities</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey60"</span>)</div><div class='input'><span class='co'># Plot borders</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq.outer</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>mtq.outer</span>))),
-     <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='getBorders-2.png' alt='' width='525' height='504' /></div></pre>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"grey60"</span><span class='op'>)</span>
+</div><div class='input'><span class='co'># Plot borders</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq.outer</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>mtq.outer</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+     lwd <span class='op'>=</span> <span class='fl'>3</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='getBorders-2.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -237,7 +241,7 @@ of id1 and id2 (with "_" as separator).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

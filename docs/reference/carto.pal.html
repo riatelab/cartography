@@ -85,7 +85,7 @@ display.carto.all displays all the available color palettes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ display.carto.all displays all the available color palettes." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ display.carto.all displays all the available color palettes." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -153,20 +153,20 @@ each of the two gradients).</p>
 <p><code>display.carto.all</code> displays all the available color palettes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>carto.pal</span>(
-  <span class='no'>pal1</span>,
-  <span class='no'>n1</span>,
-  <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>carto.pal</span><span class='op'>(</span>
+  <span class='va'>pal1</span>,
+  <span class='va'>n1</span>,
+  pal2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  n2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  middle <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  transparency <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>carto.pal.info</span>()
+<span class='fu'>carto.pal.info</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>display.carto.pal</span>(<span class='no'>name</span>)
+<span class='fu'>display.carto.pal</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
 
-<span class='fu'>display.carto.all</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
+<span class='fu'>display.carto.all</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -220,44 +220,53 @@ Qualitative palettes: "pastel.pal" or "multi.pal".</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Qualitative palettes were generated with "i want hue" 
-(<a href='http://tools.medialab.sciences-po.fr/iwanthue/'>http://tools.medialab.sciences-po.fr/iwanthue/</a>) by Mathieu Jacomy at 
+(<a href='https://medialab.github.io/iwanthue/'>https://medialab.github.io/iwanthue/</a>) by Mathieu Jacomy at 
 the Sciences-Po Medialab.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Simple gradient: blue</span>
-<span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span> ,<span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt;  [1] "#DCF0F8" "#D0E8F2" "#C4E0EC" "#B9D8E7" "#ADD0E1" "#A1C8DC" "#96C0D6"
+<span class='fu'>carto.pal</span><span class='op'>(</span>pal1 <span class='op'>=</span> <span class='st'>"blue.pal"</span> ,n1 <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "#DCF0F8" "#D0E8F2" "#C4E0EC" "#B9D8E7" "#ADD0E1" "#A1C8DC" "#96C0D6"
 #&gt;  [8] "#8AB8D0" "#7EB0CB" "#6EA6C3" "#5F9BBC" "#4F91B4" "#4086AD" "#307BA5"
 #&gt; [15] "#236F9A" "#1E6085" "#19506F" "#14405A" "#0F3045" "#0B2130"</div><div class='input'>
 <span class='co'># Double gradient: blue &amp; red</span>
-<span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt;  [1] "#0F4464" "#17577C" "#206A94" "#317DA7" "#4B90B5" "#64A3C4" "#79B3CF"
+<span class='fu'>carto.pal</span><span class='op'>(</span>pal1 <span class='op'>=</span> <span class='st'>"blue.pal"</span>, n1 <span class='op'>=</span> <span class='fl'>10</span>, pal2 <span class='op'>=</span> <span class='st'>"red.pal"</span>, n2 <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "#0F4464" "#17577C" "#206A94" "#317DA7" "#4B90B5" "#64A3C4" "#79B3CF"
 #&gt;  [8] "#8CC1DA" "#9FCFE5" "#B2DEF0" "#FCDACA" "#F8BCAE" "#F59F93" "#F28278"
 #&gt; [15] "#EE625B" "#EA3B36" "#E71312" "#D00002" "#A60007" "#7C000C"</div><div class='input'>
 <span class='co'># Adding a neutral color</span>
-<span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] "#0F4464"   "#17577C"   "#206A94"   "#317DA7"   "#4B90B5"   "#64A3C4"  
+<span class='fu'>carto.pal</span><span class='op'>(</span>pal1 <span class='op'>=</span> <span class='st'>"blue.pal"</span>, n1 <span class='op'>=</span> <span class='fl'>10</span>, pal2 <span class='op'>=</span> <span class='st'>"red.pal"</span>, n2 <span class='op'>=</span> <span class='fl'>10</span>, middle <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "#0F4464"   "#17577C"   "#206A94"   "#317DA7"   "#4B90B5"   "#64A3C4"  
 #&gt;  [7] "#79B3CF"   "#8CC1DA"   "#9FCFE5"   "#B2DEF0"   "#F6F6F6FF" "#FCDACA"  
 #&gt; [13] "#F8BCAE"   "#F59F93"   "#F28278"   "#EE625B"   "#EA3B36"   "#E71312"  
 #&gt; [19] "#D00002"   "#A60007"   "#7C000C"  </div><div class='input'>
 <span class='co'># Enhancing contrasts with transparency</span>
-<span class='fu'>carto.pal</span>(<span class='kw'>pal1</span><span class='kw'>=</span><span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] "#0F4464"   "#17577Ce8" "#206A94d2" "#317DA7bb" "#4B90B5a5" "#64A3C48e"
+<span class='fu'>carto.pal</span><span class='op'>(</span>pal1<span class='op'>=</span><span class='st'>"blue.pal"</span>, n1 <span class='op'>=</span> <span class='fl'>10</span>, pal2 <span class='op'>=</span> <span class='st'>"red.pal"</span>, n2 <span class='op'>=</span> <span class='fl'>10</span>, middle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+          transparency <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "#0F4464"   "#17577Ce8" "#206A94d2" "#317DA7bb" "#4B90B5a5" "#64A3C48e"
 #&gt;  [7] "#79B3CF78" "#8CC1DA61" "#9FCFE54b" "#B2DEF034" "#F6F6F61e" "#FCDACA34"
 #&gt; [13] "#F8BCAE4b" "#F59F9361" "#F2827878" "#EE625B8e" "#EA3B36a5" "#E71312bb"
 #&gt; [19] "#D00002d2" "#A60007e8" "#7C000C"  </div><div class='input'>
 <span class='co'># The double gradient can be asymetric</span>
-<span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;  [1] "#8FBFD769" "#9DC9DE5a" "#ABD3E54b" "#B9DDEC3c" "#C7E7F42d" "#F6F6F61e"
+<span class='fu'>carto.pal</span><span class='op'>(</span>pal1 <span class='op'>=</span> <span class='st'>"blue.pal"</span>, n1 <span class='op'>=</span> <span class='fl'>5</span>, pal2 <span class='op'>=</span> <span class='st'>"red.pal"</span>, n2 <span class='op'>=</span> <span class='fl'>15</span>, middle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+          transparency <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "#8FBFD769" "#9DC9DE5a" "#ABD3E54b" "#B9DDEC3c" "#C7E7F42d" "#F6F6F61e"
 #&gt;  [7] "#FCDACA2d" "#F9C7B83c" "#F7B4A74b" "#F5A1955a" "#F38F8469" "#F17C7378"
 #&gt; [13] "#EF686087" "#EC4E4996" "#EA3531a5" "#E71C1Ab4" "#E50302c3" "#CD0002d2"
 #&gt; [19] "#B20005e1" "#970008f0" "#7C000C"  </div><div class='input'>
 <span class='co'># Build and display a palette</span>
-<span class='no'>mypal</span> <span class='kw'>&lt;-</span> <span class='fu'>carto.pal</span>(<span class='kw'>pal1</span> <span class='kw'>=</span> <span class='st'>"blue.pal"</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>pal2</span> <span class='kw'>=</span> <span class='st'>"red.pal"</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-                   <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>mypal</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span>(<span class='fl'>1</span>:<span class='no'>k</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='fl'>1</span>:<span class='no'>k</span>), <span class='kw'>col</span> <span class='kw'>=</span><span class='no'>mypal</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>k</span>,<span class='st'>" classes"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>),
-      <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>xaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>, <span class='kw'>yaxt</span> <span class='kw'>=</span> <span class='st'>"n"</span>,<span class='kw'>bty</span> <span class='kw'>=</span> <span class='st'>"n"</span>)</div><div class='img'><img src='carto.pal-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'>carto.pal.info</span>()</div><div class='output co'>#&gt;  [1] "blue.pal"      "orange.pal"    "red.pal"       "brown.pal"    
+<span class='va'>mypal</span> <span class='op'>&lt;-</span> <span class='fu'>carto.pal</span><span class='op'>(</span>pal1 <span class='op'>=</span> <span class='st'>"blue.pal"</span>, n1 <span class='op'>=</span> <span class='fl'>5</span>, pal2 <span class='op'>=</span> <span class='st'>"red.pal"</span>, n2 <span class='op'>=</span> <span class='fl'>15</span>,
+                   middle <span class='op'>=</span> <span class='cn'>TRUE</span>, transparency <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>mypal</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>)</span>, col <span class='op'>=</span><span class='va'>mypal</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='st'>" classes"</span>,sep<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>,
+      ylab <span class='op'>=</span> <span class='st'>""</span>, xaxt <span class='op'>=</span> <span class='st'>"n"</span>, yaxt <span class='op'>=</span> <span class='st'>"n"</span>,bty <span class='op'>=</span> <span class='st'>"n"</span><span class='op'>)</span>
+</div><div class='img'><img src='carto.pal-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'>carto.pal.info</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "blue.pal"      "orange.pal"    "red.pal"       "brown.pal"    
 #&gt;  [5] "green.pal"     "purple.pal"    "pink.pal"      "wine.pal"     
 #&gt;  [9] "grey.pal"      "turquoise.pal" "sand.pal"      "taupe.pal"    
-#&gt; [13] "kaki.pal"      "harmo.pal"     "pastel.pal"    "multi.pal"    </div><div class='input'><span class='fu'>display.carto.pal</span>(<span class='st'>"orange.pal"</span>)</div><div class='img'><img src='carto.pal-2.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'>display.carto.all</span>(<span class='fl'>8</span>)</div><div class='img'><img src='carto.pal-3.png' alt='' width='525' height='504' /></div></pre>
+#&gt; [13] "kaki.pal"      "harmo.pal"     "pastel.pal"    "multi.pal"    </div><div class='input'><span class='fu'>display.carto.pal</span><span class='op'>(</span><span class='st'>"orange.pal"</span><span class='op'>)</span>
+</div><div class='img'><img src='carto.pal-2.png' alt='' width='525' height='504' /></div><div class='input'><span class='fu'>display.carto.all</span><span class='op'>(</span><span class='fl'>8</span><span class='op'>)</span>
+</div><div class='img'><img src='carto.pal-3.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -273,7 +282,7 @@ the Sciences-Po Medialab.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

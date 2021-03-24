@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,21 +143,21 @@
     <p>Plot a word cloud adjusted to an <code>sf</code> object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wordcloudLayer</span>(
-  <span class='no'>x</span>,
-  <span class='no'>txt</span>,
-  <span class='no'>freq</span>,
-  <span class='kw'>max.words</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cex.maxmin</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0.5</span>),
-  <span class='kw'>rot.per</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fittopol</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>use.rank</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"quantile"</span>,
-  <span class='kw'>nclass</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>wordcloudLayer</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>txt</span>,
+  <span class='va'>freq</span>,
+  max.words <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cex.maxmin <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0.5</span><span class='op'>)</span>,
+  rot.per <span class='op'>=</span> <span class='fl'>0.1</span>,
+  col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fittopol <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  use.rank <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  breaks <span class='op'>=</span> <span class='cn'>NULL</span>,
+  method <span class='op'>=</span> <span class='st'>"quantile"</span>,
+  nclass <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -215,30 +215,37 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='choroLayer.html'>choroLayer</a>, <a href='legendChoro.html'>legendChoro</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span> 
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package <span class='op'>=</span> <span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>))
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>),
-     <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-     <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"grey95"</span>,
-     <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</div><div class='input'><span class='fu'>wordcloudLayer</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>,
-  <span class='kw'>txt</span> <span class='kw'>=</span> <span class='st'>"LIBGEO"</span>,
-  <span class='kw'>freq</span> <span class='kw'>=</span> <span class='st'>"POP"</span>,
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>nclass</span> <span class='kw'>=</span> <span class='fl'>5</span>
-)</div><div class='input'><span class='fu'><a href='legendChoro.html'>legendChoro</a></span>(
-  <span class='kw'>title.txt</span> <span class='kw'>=</span> <span class='st'>"Population"</span>,
-  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='getBreaks.html'>getBreaks</a></span>(<span class='no'>mtq</span>$<span class='no'>POP</span>, <span class='kw'>nclass</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"quantile"</span>),
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='carto.pal.html'>carto.pal</a></span>(<span class='st'>"blue.pal"</span>, <span class='fl'>5</span>),
-  <span class='kw'>nodata</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='img'><img src='wordcloudLayer-1.png' alt='' width='525' height='504' /></div></pre>
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>,
+     col <span class='op'>=</span> <span class='st'>"white"</span>,
+     bg <span class='op'>=</span> <span class='st'>"grey95"</span>,
+     border <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>wordcloudLayer</span><span class='op'>(</span>
+  x <span class='op'>=</span> <span class='va'>mtq</span>,
+  txt <span class='op'>=</span> <span class='st'>"LIBGEO"</span>,
+  freq <span class='op'>=</span> <span class='st'>"POP"</span>,
+  add <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  nclass <span class='op'>=</span> <span class='fl'>5</span>
+<span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='legendChoro.html'>legendChoro</a></span><span class='op'>(</span>
+  title.txt <span class='op'>=</span> <span class='st'>"Population"</span>,
+  breaks <span class='op'>=</span> <span class='fu'><a href='getBreaks.html'>getBreaks</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>$</span><span class='va'>POP</span>, nclass <span class='op'>=</span> <span class='fl'>5</span>, method <span class='op'>=</span> <span class='st'>"quantile"</span><span class='op'>)</span>,
+  col <span class='op'>=</span> <span class='fu'><a href='carto.pal.html'>carto.pal</a></span><span class='op'>(</span><span class='st'>"blue.pal"</span>, <span class='fl'>5</span><span class='op'>)</span>,
+  nodata <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='wordcloudLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -254,7 +261,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

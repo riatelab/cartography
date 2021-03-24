@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -51,7 +51,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -80,7 +80,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,6 +101,12 @@
 <a href="#cartography-" class="anchor"></a>cartography <img src="reference/figures/logo.png" align="right" alt="" width="120">
 </h1></div>
 
+<div id="consider-mapsf" class="section level2">
+<h2 class="hasAnchor">
+<a href="#consider-mapsf" class="anchor"></a>Consider <a href="https://riatelab.github.io/mapsf/"><code>mapsf</code></a>
+</h2>
+<p>There are no plans for new features or enhancements in <code>cartography</code>. Basic maintenance and support will continue indefinitely. Existing projects that use <code>cartography</code> can safely continue to use <code>cartography</code>. The <a href="https://riatelab.github.io/mapsf/"><code>mapsf</code> R package</a> is the successor of <code>cartography</code> and it is friendlier, lighter and more robust. See <a href="https://riatelab.github.io/mapsf/articles/mapsf.html"><code>mapsf</code> vignette</a> or <a href="https://rgeomatic.hypotheses.org/2212">this blog post</a> to migrate from <code>cartography</code> to <code>mapsf</code>.</p>
+</div>
 <div id="create-and-integrate-maps-in-your-r-workflow" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-and-integrate-maps-in-your-r-workflow" class="anchor"></a>Create and integrate maps in your R workflow!</h2>
@@ -136,45 +142,47 @@
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
 <p>The following script creates a map of symbols that are proportional to values of a first variable and colored to reflect the classification of a second variable.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sf</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cartography</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/riatelab/cartography/">cartography</a></span><span class="op">)</span>
 <span class="co"># path to the geopackage file embedded in cartography</span>
-<span class="no">path_to_file</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"gpkg/mtq.gpkg"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"cartography"</span>)
+<span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"gpkg/mtq.gpkg"</span>, package<span class="op">=</span><span class="st">"cartography"</span><span class="op">)</span>
 <span class="co"># import to an sf object</span>
-<span class="no">mtq</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="kw">dsn</span> <span class="kw">=</span> <span class="no">path_to_file</span>, <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="va">mtq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="va">path_to_file</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co">########## Draft Map</span>
 <span class="co"># Plot the municipalities</span>
-<span class="fu"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(<span class="no">mtq</span>))
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">mtq</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Plot symbols with choropleth coloration (population &amp; median income)</span>
-<span class="fu"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">mtq</span>, <span class="kw">var</span> <span class="kw">=</span> <span class="st">"POP"</span>, <span class="kw">var2</span> <span class="kw">=</span> <span class="st">"MED"</span>)
+<span class="fu"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtq</span>, var <span class="op">=</span> <span class="st">"POP"</span>, var2 <span class="op">=</span> <span class="st">"MED"</span><span class="op">)</span>
 <span class="co"># Add a layout</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span>(<span class="kw">main</span> <span class="kw">=</span> <span class="st">"Population &amp; Wealth in Martinique, 2015"</span>,
-      <span class="kw">sub</span> <span class="kw">=</span> <span class="st">"Sources: Insee and IGN - 2018"</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Population &amp; Wealth in Martinique, 2015"</span>, 
+      sub <span class="op">=</span> <span class="st">"Sources: Insee and IGN - 2018"</span><span class="op">)</span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_raw.png"></p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co">########## Final Map</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">########## Final Map</span>
 <span class="co"># Set figure margins</span>
-<span class="no">opar</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1.2</span>,<span class="fl">0</span>))
+<span class="va">opar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1.2</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Plot the municipalities</span>
-<span class="fu"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_geometry.html">st_geometry</a></span>(<span class="no">mtq</span>), <span class="kw">col</span><span class="kw">=</span><span class="st">"darkseagreen3"</span>, <span class="kw">border</span><span class="kw">=</span><span class="st">"darkseagreen4"</span>,
-     <span class="kw">bg</span> <span class="kw">=</span> <span class="st">"lightblue1"</span>, <span class="kw">lwd</span> <span class="kw">=</span> <span class="fl">0.5</span>)
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">mtq</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"darkseagreen3"</span>, border<span class="op">=</span><span class="st">"darkseagreen4"</span>,  
+     bg <span class="op">=</span> <span class="st">"lightblue1"</span>, lwd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 <span class="co"># Plot symbols with choropleth coloration</span>
-<span class="fu"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">mtq</span>, <span class="kw">var</span> <span class="kw">=</span> <span class="st">"POP"</span>, <span class="kw">inches</span> <span class="kw">=</span> <span class="fl">0.4</span>, <span class="kw">border</span> <span class="kw">=</span> <span class="st">"grey50"</span>,
-                      <span class="kw">lwd</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">legend.var.pos</span> <span class="kw">=</span> <span class="st">"topright"</span>,
-                      <span class="kw">legend.var.title.txt</span> <span class="kw">=</span> <span class="st">"Population"</span>,
-                      <span class="kw">var2</span> <span class="kw">=</span> <span class="st">"MED"</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"equal"</span>, <span class="kw">nclass</span> <span class="kw">=</span> <span class="fl">4</span>,
-                      <span class="kw">col</span> <span class="kw">=</span> <span class="fu"><a href="reference/carto.pal.html">carto.pal</a></span>(<span class="kw">pal1</span> <span class="kw">=</span> <span class="st">"sand.pal"</span>, <span class="kw">n1</span> <span class="kw">=</span> <span class="fl">4</span>),
-                      <span class="kw">legend.var2.values.rnd</span> <span class="kw">=</span> -<span class="fl">2</span>,  <span class="kw">legend.var2.pos</span> <span class="kw">=</span> <span class="st">"left"</span>,
-                      <span class="kw">legend.var2.title.txt</span> <span class="kw">=</span> <span class="st">"Median Income\n(in euros)"</span>)
+<span class="fu"><a href="reference/propSymbolsChoroLayer.html">propSymbolsChoroLayer</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtq</span>, var <span class="op">=</span> <span class="st">"POP"</span>, inches <span class="op">=</span> <span class="fl">0.4</span>, border <span class="op">=</span> <span class="st">"grey50"</span>,
+                      lwd <span class="op">=</span> <span class="fl">1</span>, legend.var.pos <span class="op">=</span> <span class="st">"topright"</span>, 
+                      legend.var.title.txt <span class="op">=</span> <span class="st">"Population"</span>,
+                      var2 <span class="op">=</span> <span class="st">"MED"</span>, method <span class="op">=</span> <span class="st">"equal"</span>, nclass <span class="op">=</span> <span class="fl">4</span>, 
+                      col <span class="op">=</span> <span class="fu"><a href="reference/carto.pal.html">carto.pal</a></span><span class="op">(</span>pal1 <span class="op">=</span> <span class="st">"sand.pal"</span>, n1 <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+                      legend.var2.values.rnd <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,  legend.var2.pos <span class="op">=</span> <span class="st">"left"</span>, 
+                      legend.var2.title.txt <span class="op">=</span> <span class="st">"Median Income\n(in euros)"</span><span class="op">)</span> 
 <span class="co"># Plot a layout</span>
-<span class="fu"><a href="reference/layoutLayer.html">layoutLayer</a></span>(<span class="kw">title</span><span class="kw">=</span><span class="st">"Population &amp; Wealth in Martinique, 2015"</span>,
-            <span class="kw">author</span> <span class="kw">=</span> <span class="st">"cartography 2.1.3"</span>,
-            <span class="kw">sources</span> <span class="kw">=</span> <span class="st">"Sources: Insee and IGN - 2018"</span>,
-            <span class="kw">scale</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">tabtitle</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">frame</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="fu"><a href="reference/layoutLayer.html">layoutLayer</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Population &amp; Wealth in Martinique, 2015"</span>, 
+            author <span class="op">=</span> <span class="st">"cartography 2.1.3"</span>, 
+            sources <span class="op">=</span> <span class="st">"Sources: Insee and IGN - 2018"</span>, 
+            scale <span class="op">=</span> <span class="fl">5</span>, tabtitle <span class="op">=</span> <span class="cn">TRUE</span>, frame <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co"># Plot a north arrow</span>
-<span class="fu"><a href="reference/north.html">north</a></span>(<span class="kw">pos</span> <span class="kw">=</span> <span class="st">"topleft"</span>)
+<span class="fu"><a href="reference/north.html">north</a></span><span class="op">(</span>pos <span class="op">=</span> <span class="st">"topleft"</span><span class="op">)</span>
 <span class="co"># restore graphics parameters</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">opar</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">opar</span><span class="op">)</span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_final.png"></p>
 </div>
 <div id="installation" class="section level2">
@@ -183,7 +191,7 @@
 <ul>
 <li>Development version on GitHub</li>
 </ul>
-<pre class="{r}"><code><a href="https://remotes.r-lib.org/reference">require(remotes)
+<pre class="{r}"><code><a href="https://remotes.r-lib.org">require(remotes)
 install_github("riatelab/cartography")</a></code></pre>
 <ul>
 <li>Stable version on <a href="https://CRAN.R-project.org/package=cartography/">CRAN</a>
@@ -195,6 +203,7 @@ install_github("riatelab/cartography")</a></code></pre>
 <h2 class="hasAnchor">
 <a href="#alternatives-packages" class="anchor"></a>Alternatives Packages</h2>
 <ul>
+<li><a href="https://github.com/riatelab/mapsf">mapsf</a></li>
 <li>
 <a href="https://github.com/mtennekes/tmap">tmap</a><br>
 </li>
@@ -216,7 +225,7 @@ install_github("riatelab/cartography")</a></code></pre>
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://CRAN.R-project.org/package=cartography">https://CRAN.R-project.org/package=cartography</a>
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=cartography">https://​cloud.r-project.org/​package=cartography</a>
 </li>
 <li>Browse source code at <br><a href="https://github.com/riatelab/cartography/">https://​github.com/​riatelab/​cartography/​</a>
 </li>
@@ -252,8 +261,8 @@ install_github("riatelab/cartography")</a></code></pre>
 <li><a href="https://cran.r-project.org/package=cartography"><img src="https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen"></a></li>
 <li><a href="https://github.com/riatelab/cartography/actions"><img src="https://github.com/riatelab/cartography/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://codecov.io/gh/riatelab/cartography"><img src="https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://tinyverse.netlify.com/"><img src="https://tinyverse.netlify.com/badge/cartography" alt="status"></a></li>
-<li><a href="http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923"><img src="http://joss.theoj.org/papers/0c2d51fc23efb8e1f87d764da8414923/status.svg" alt="status"></a></li>
+<li><a href="https://tinyverse.netlify.app/"><img src="https://tinyverse.netlify.com/badge/cartography" alt="status"></a></li>
+<li><a href="https://doi.org/10.21105/joss.00054"><img src="https://joss.theoj.org/papers/10.21105/joss.00054/status.svg" alt="DOI"></a></li>
 <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R-%E2%89%A5%203.3.0-brightgreen" alt="minimal R version"></a></li>
 </ul>
 </div>
@@ -266,7 +275,7 @@ install_github("riatelab/cartography")</a></code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

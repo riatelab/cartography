@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><code>.png</code> Layer — getPngLayer • cartography</title>
+<title>.png Layer — getPngLayer • cartography</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="<code>.png</code> Layer — getPngLayer" />
+<meta property="og:title" content=".png Layer — getPngLayer" />
 <meta property="og:description" content="Get a RasterBrick from a .png image cut using the shape of a spatial object. The .png file could be either a local file or extracted from a given url." />
 <meta property="og:image" content="/logo.png" />
 
@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,17 +143,17 @@
     <p>Get a <code>RasterBrick</code> from a <code>.png</code> image cut using the shape of a spatial object. The <code>.png</code> file could be either a local file or extracted from a given url.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getPngLayer</span>(
-  <span class='no'>x</span>,
-  <span class='no'>pngpath</span>,
-  <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>,
-  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>crop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>mask</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>inverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>dwmode</span> <span class='kw'>=</span> <span class='st'>"curl"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>getPngLayer</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>pngpath</span>,
+  align <span class='op'>=</span> <span class='st'>"center"</span>,
+  margin <span class='op'>=</span> <span class='fl'>0</span>,
+  crop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  mask <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  inverse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  dwmode <span class='op'>=</span> <span class='st'>"curl"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,23 +211,28 @@ recommended.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='tilesLayer.html'>pngLayer</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package <span class='op'>=</span> <span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='co'>#Local file</span>
-<span class='no'>dirpng</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"img/LogoMartinique.png"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"cartography"</span>)
-<span class='no'>mask</span> <span class='kw'>&lt;-</span> <span class='fu'>getPngLayer</span>(<span class='no'>mtq</span>, <span class='no'>dirpng</span>)
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='co'>#Local file</span>
+<span class='va'>dirpng</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"img/LogoMartinique.png"</span>, package <span class='op'>=</span> <span class='st'>"cartography"</span><span class='op'>)</span>
+<span class='va'>mask</span> <span class='op'>&lt;-</span> <span class='fu'>getPngLayer</span><span class='op'>(</span><span class='va'>mtq</span>, <span class='va'>dirpng</span><span class='op'>)</span>
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>#Remote file</span>
-<span class='no'>urlpng</span> <span class='kw'>&lt;-</span> <span class='st'>"https://i.imgur.com/gePiDvB.png"</span>
-<span class='no'>masksea</span> <span class='kw'>&lt;-</span> <span class='fu'>getPngLayer</span>(<span class='no'>mtq</span>, <span class='no'>urlpng</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"wb"</span>, <span class='kw'>inverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</div></pre>
+<span class='va'>urlpng</span> <span class='op'>&lt;-</span> <span class='st'>"https://i.imgur.com/gePiDvB.png"</span>
+<span class='va'>masksea</span> <span class='op'>&lt;-</span> <span class='fu'>getPngLayer</span><span class='op'>(</span><span class='va'>mtq</span>, <span class='va'>urlpng</span>, mode <span class='op'>=</span> <span class='st'>"wb"</span>, inverse <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -243,7 +248,7 @@ recommended.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

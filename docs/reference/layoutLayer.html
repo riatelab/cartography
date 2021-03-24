@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,24 +143,24 @@
     <p>Plot a layout layer.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>layoutLayer</span>(
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title of the map, year"</span>,
-  <span class='kw'>sources</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>horiz</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>coltitle</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>posscale</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>,
-  <span class='kw'>frame</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>north</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>south</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>extent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tabtitle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>postitle</span> <span class='kw'>=</span> <span class='st'>"left"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>layoutLayer</span><span class='op'>(</span>
+  title <span class='op'>=</span> <span class='st'>"Title of the map, year"</span>,
+  sources <span class='op'>=</span> <span class='st'>""</span>,
+  author <span class='op'>=</span> <span class='st'>""</span>,
+  horiz <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  col <span class='op'>=</span> <span class='st'>"black"</span>,
+  coltitle <span class='op'>=</span> <span class='st'>"white"</span>,
+  theme <span class='op'>=</span> <span class='cn'>NULL</span>,
+  bg <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scale <span class='op'>=</span> <span class='st'>"auto"</span>,
+  posscale <span class='op'>=</span> <span class='st'>"bottomright"</span>,
+  frame <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  north <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  south <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  extent <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tabtitle <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  postitle <span class='op'>=</span> <span class='st'>"left"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -248,19 +248,24 @@ The size of the title box in layoutLayer is fixed to 1.2 lines height.</p>
     <div class='dont-index'><p><a href='labelLayer.html'>labelLayer</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#D1914D"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"#A6CAE0"</span>)</div><div class='input'><span class='co'># Layout plot</span>
-<span class='fu'>layoutLayer</span>()</div><div class='img'><img src='layoutLayer-1.png' alt='' width='525' height='504' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#D1914D"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"#A6CAE0"</span>)</div><div class='input'><span class='co'># Layout plot</span>
-<span class='fu'>layoutLayer</span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Martinique"</span>,
-            <span class='kw'>author</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"cartography "</span>, <span class='fu'><a href='https://rdrr.io/r/utils/packageDescription.html'>packageVersion</a></span>(<span class='st'>"cartography"</span>)),
-            <span class='kw'>tabtitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>north</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>frame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-            <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"sand.pal"</span>)</div><div class='img'><img src='layoutLayer-2.png' alt='' width='525' height='504' /></div></pre>
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"#D1914D"</span>, border <span class='op'>=</span> <span class='st'>"white"</span>, bg <span class='op'>=</span> <span class='st'>"#A6CAE0"</span><span class='op'>)</span>
+</div><div class='input'><span class='co'># Layout plot</span>
+<span class='fu'>layoutLayer</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='layoutLayer-1.png' alt='' width='525' height='504' /></div><div class='input'>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"#D1914D"</span>, border <span class='op'>=</span> <span class='st'>"white"</span>, bg <span class='op'>=</span> <span class='st'>"#A6CAE0"</span><span class='op'>)</span>
+</div><div class='input'><span class='co'># Layout plot</span>
+<span class='fu'>layoutLayer</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Martinique"</span>,
+            author <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"cartography "</span>, <span class='fu'><a href='https://rdrr.io/r/utils/packageDescription.html'>packageVersion</a></span><span class='op'>(</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>,
+            tabtitle <span class='op'>=</span> <span class='cn'>TRUE</span>, scale <span class='op'>=</span> <span class='fl'>5</span>, north <span class='op'>=</span> <span class='cn'>TRUE</span>, frame <span class='op'>=</span> <span class='cn'>FALSE</span>,
+            theme <span class='op'>=</span> <span class='st'>"sand.pal"</span><span class='op'>)</span>
+</div><div class='img'><img src='layoutLayer-2.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -276,7 +281,7 @@ The size of the title box in layoutLayer is fixed to 1.2 lines height.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

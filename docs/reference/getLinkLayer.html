@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,18 +143,7 @@
     <p>Create a links layer from a data frame of links.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getLinkLayer</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>xid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>df</span>,
-  <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>spdf</span>,
-  <span class='kw'>spdf2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spdfid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spdf2id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dfids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dfide</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>getLinkLayer</span><span class='op'>(</span><span class='va'>x</span>, xid <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>df</span>, dfid <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,30 +165,6 @@
       <td><p>names of the identifier variables in df, character vector of length 2, default to 
 the two first columns. (optional)</p></td>
     </tr>
-    <tr>
-      <th>spdf</th>
-      <td><p>defunct.</p></td>
-    </tr>
-    <tr>
-      <th>spdf2</th>
-      <td><p>defunct.</p></td>
-    </tr>
-    <tr>
-      <th>spdfid</th>
-      <td><p>defunct.</p></td>
-    </tr>
-    <tr>
-      <th>spdf2id</th>
-      <td><p>defunct.</p></td>
-    </tr>
-    <tr>
-      <th>dfids</th>
-      <td><p>defunct.</p></td>
-    </tr>
-    <tr>
-      <th>dfide</th>
-      <td><p>defunct.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -210,19 +175,22 @@ the two first columns. (optional)</p></td>
     <div class='dont-index'><p><a href='gradLinkLayer.html'>gradLinkLayer</a>, <a href='propLinkLayer.html'>propLinkLayer</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'><span class='no'>mob</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"csv/mob.csv"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"cartography"</span>))
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'><span class='va'>mob</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csv/mob.csv"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Select links from Fort-de-France (97209))</span>
-<span class='no'>mob_97209</span> <span class='kw'>&lt;-</span> <span class='no'>mob</span>[<span class='no'>mob</span>$<span class='no'>i</span> <span class='kw'>==</span> <span class='fl'>97209</span>, ]
+<span class='va'>mob_97209</span> <span class='op'>&lt;-</span> <span class='va'>mob</span><span class='op'>[</span><span class='va'>mob</span><span class='op'>$</span><span class='va'>i</span> <span class='op'>==</span> <span class='fl'>97209</span>, <span class='op'>]</span>
 <span class='co'># Create a link layer</span>
-<span class='no'>mob.sf</span> <span class='kw'>&lt;-</span> <span class='fu'>getLinkLayer</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>mob_97209</span>, <span class='kw'>dfid</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"i"</span>, <span class='st'>"j"</span>))
+<span class='va'>mob.sf</span> <span class='op'>&lt;-</span> <span class='fu'>getLinkLayer</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, df <span class='op'>=</span> <span class='va'>mob_97209</span>, dfid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"i"</span>, <span class='st'>"j"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Plot the links1</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mob.sf</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red4"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='getLinkLayer-1.png' alt='' width='525' height='504' /></div></pre>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mob.sf</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"red4"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='getLinkLayer-1.png' alt='' width='525' height='504' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -238,7 +206,7 @@ the two first columns. (optional)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

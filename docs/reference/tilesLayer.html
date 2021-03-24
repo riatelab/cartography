@@ -81,7 +81,7 @@ from getTiles or images from getPngLayer." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ from getTiles or images from getPngLayer." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -118,7 +118,7 @@ from getTiles or images from getPngLayer." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/riatelab/cartography/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,9 +145,9 @@ from getTiles or images from getPngLayer." />
 from getTiles or images from getPngLayer.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tilesLayer</span>(<span class='no'>x</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>tilesLayer</span><span class='op'>(</span><span class='va'>x</span>, add <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>pngLayer</span>(<span class='no'>x</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>pngLayer</span><span class='op'>(</span><span class='va'>x</span>, add <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,42 +178,49 @@ setup of the graphic device.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='getPngLayer.html'>getPngLayer</a>, <a href='getTiles.html'>getTiles</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
-<span class='no'>mtq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>st_read</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"gpkg/mtq.gpkg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"cartography"</span>))</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpfMP0Eo/temp_libpath527a79870990/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+<span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package <span class='op'>=</span> <span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
-#&gt; projected CRS:  WGS 84 / UTM zone 20N</div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+#&gt; Geometry type: MULTIPOLYGON
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 690574 ymin: 1592536 xmax: 735940.2 ymax: 1645660
+#&gt; Projected CRS: WGS 84 / UTM zone 20N</div><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Download the tiles, extent = Martinique</span>
-<span class='no'>mtqOSM</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getTiles.html'>getTiles</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>mtq</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"osm"</span>, <span class='kw'>crop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='va'>mtqOSM</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getTiles.html'>getTiles</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mtq</span>, type <span class='op'>=</span> <span class='st'>"osm"</span>, crop <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># Plot the tiles</span>
-<span class='fu'>tilesLayer</span>(<span class='no'>mtqOSM</span>)
+<span class='fu'>tilesLayer</span><span class='op'>(</span><span class='va'>mtqOSM</span><span class='op'>)</span>
 <span class='co'># Plot countries</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>txt</span> <span class='kw'>&lt;-</span> <span class='st'>"© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='no'>txt</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>adj</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-}
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, add<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>txt</span> <span class='op'>&lt;-</span> <span class='st'>"© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='va'>txt</span>, side <span class='op'>=</span> <span class='fl'>1</span>, adj <span class='op'>=</span> <span class='fl'>0</span>, cex <span class='op'>=</span> <span class='fl'>0.7</span>, font <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'># Local image</span>
-<span class='no'>dirpng</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"img/LogoMartinique.png"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"cartography"</span>)
-<span class='no'>mask</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getPngLayer.html'>getPngLayer</a></span>(<span class='no'>mtq</span>, <span class='no'>dirpng</span>, <span class='kw'>crop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>))
-<span class='fu'><a href='ghostLayer.html'>ghostLayer</a></span>(<span class='no'>mtq</span>)</div><div class='input'><span class='fu'>pngLayer</span>(<span class='no'>mask</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='tilesLayer-1.png' alt='' width='525' height='504' /></div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='va'>dirpng</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"img/LogoMartinique.png"</span>, package <span class='op'>=</span> <span class='st'>"cartography"</span><span class='op'>)</span>
+<span class='va'>mask</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getPngLayer.html'>getPngLayer</a></span><span class='op'>(</span><span class='va'>mtq</span>, <span class='va'>dirpng</span>, crop <span class='op'>=</span> <span class='cn'>TRUE</span>, margin <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='ghostLayer.html'>ghostLayer</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>pngLayer</span><span class='op'>(</span><span class='va'>mask</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='tilesLayer-1.png' alt='' width='525' height='504' /></div><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Remote image</span>
-<span class='no'>urlpng</span> <span class='kw'>=</span> <span class='st'>"https://i.imgur.com/gePiDvB.png"</span>
-<span class='no'>masksea</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getPngLayer.html'>getPngLayer</a></span>(<span class='no'>mtq</span>, <span class='no'>urlpng</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"wb"</span>, <span class='kw'>inverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
+<span class='va'>urlpng</span> <span class='op'>=</span> <span class='st'>"https://i.imgur.com/gePiDvB.png"</span>
+<span class='va'>masksea</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getPngLayer.html'>getPngLayer</a></span><span class='op'>(</span><span class='va'>mtq</span>, <span class='va'>urlpng</span>, mode <span class='op'>=</span> <span class='st'>"wb"</span>, inverse <span class='op'>=</span> <span class='cn'>TRUE</span>, margin <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
 <span class='co'>#Combine</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>))
-<span class='fu'><a href='ghostLayer.html'>ghostLayer</a></span>(<span class='no'>mtq</span>)
-<span class='fu'>pngLayer</span>(<span class='no'>mask</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>pngLayer</span>(<span class='no'>masksea</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/sf/man/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_geometry.html'>st_geometry</a></span>(<span class='no'>mtq</span>), <span class='kw'>border</span><span class='kw'>=</span><span class='st'>"orange"</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='ghostLayer.html'>ghostLayer</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>
+<span class='fu'>pngLayer</span><span class='op'>(</span><span class='va'>mask</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>pngLayer</span><span class='op'>(</span><span class='va'>masksea</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>mtq</span><span class='op'>)</span>, border<span class='op'>=</span><span class='st'>"orange"</span>, add<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -229,7 +236,7 @@ setup of the graphic device.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
