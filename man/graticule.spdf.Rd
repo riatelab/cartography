@@ -8,7 +8,7 @@
 SpatialLines.
 }
 \source{
-UMS RIATE - \url{http://riate.cnrs.fr/?page_id=153}
+UMS RIATE - \url{http://riate.cnrs.fr/}
 }
 \description{
 Graticule around Europe.

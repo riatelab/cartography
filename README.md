@@ -112,10 +112,9 @@ install.packages("cartography")
 
 ## Alternatives Packages
 
-* [mapsf](https://github.com/riatelab/mapsf)
-* [tmap](https://github.com/mtennekes/tmap)    
+* [mapsf](https://github.com/riatelab/mapsf) (successor of `cartography`)
+* [tmap](https://github.com/r-tmap/tmap)    
 * [ggplot2](https://github.com/tidyverse/ggplot2) + [ggspatial](https://github.com/paleolimbot/ggspatial)     
-* [oceanis](https://github.com/insee-psar-at/oceanis-package)  
 
 
 ## Community Guidelines

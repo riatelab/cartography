@@ -549,7 +549,7 @@ north("topleft")
 Several datasets are embedded in the package: 
 
 - A [GeoPackage](https://www.geopackage.org/) of Martinique municipalities can be imported via the `st_read()` function of the `sf` package.   
-  - Sources: [Base comparateur de territoires](https://www.insee.fr/fr/statistiques/2521169) (upload date: 2018-09-25) & [ADMIN EXPRESS-COG](http://professionnels.ign.fr/adminexpress) (2018 edition). 
+  - Sources: [Base comparateur de territoires](https://www.insee.fr/fr/statistiques/2521169) (upload date: 2018-09-25) & [ADMIN EXPRESS-COG](https://geoservices.ign.fr/documentation/donnees/vecteur/adminexpress) (2018 edition). 
   - Citation: Insee and IGN, 2018
   - Fields: 
     - **INSEE_COM**: Municipality identifier
