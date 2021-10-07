@@ -4,7 +4,7 @@
 \alias{getGridLayer}
 \title{Build a Regular Grid Layer}
 \usage{
-getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid)
+getGridLayer(x, cellsize, type = "regular", var)
 }
 \arguments{
 \item{x}{an sf object, a simple feature collection or a SpatialPolygonsDataFrame.}
@@ -14,10 +14,6 @@ getGridLayer(x, cellsize, type = "regular", var, spdf, spdfid)
 \item{type}{shape of the cell, "regular" for squares, "hexagonal" for hexagons.}
 
 \item{var}{name of the numeric variable(s) in x to adapt to the grid (a vector).}
-
-\item{spdf}{defunct.}
-
-\item{spdfid}{defunct.}
 }
 \value{
 A grid is returned as an sf object.

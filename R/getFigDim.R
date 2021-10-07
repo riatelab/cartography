@@ -5,7 +5,6 @@
 #' the figure, a targeted width or height and a resolution. 
 #' @name getFigDim
 #' @param x an sf object, a simple feature collection or a Spatial*DataFrame. 
-#' @param spdf defunct.
 #' @param width width of the figure (in pixels), either width or height 
 #' must be set.
 #' @param height height of the figure (in pixels), either width or height 
@@ -44,11 +43,8 @@
 #' dev.off()
 #' }
 getFigDim <- function(x, width = NULL, height = NULL, 
-                      mar = par('mar'), res = 72, spdf){
+                      mar = par('mar'), res = 72){
   
-  if(!missing(spdf)){
-    stop("spdf is defunct.", call. = FALSE)
-  }
 
   if(methods::is(x, "Spatial")){
     x <- sf::st_as_sf(x)

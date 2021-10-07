@@ -8,8 +8,6 @@
 #' A high resolution will give more detailed borders. (optional)
 #' @param width maximum distance between used to compute outer borders (in x units).
 #' A higher width will build borders between units that are farther apart. (optional)
-#' @param spdf defunct.
-#' @param spdfid defunct.
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
@@ -21,14 +19,9 @@
 #' plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
 #'      lwd = 3, add = TRUE)
 #' @export
-getOuterBorders <- function(x, id, res = NULL, width = NULL, 
-                            spdf, spdfid){
+getOuterBorders <- function(x, id, res = NULL, width = NULL){
   
-  if(sum(missing(spdf), missing(spdfid)) != 2){
-    stop("spdf and spdfid are defunct; use x and id instead.", 
-            call. = FALSE)
-  }
-  
+
   if(!missing(x)){
     if(methods::is(x,'sf')){
       spdf <- methods::as(x, "Spatial")

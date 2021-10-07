@@ -12,8 +12,7 @@ getTiles(
   verbose = FALSE,
   apikey = NA,
   cachedir = FALSE,
-  forceDownload = FALSE,
-  spdf
+  forceDownload = FALSE
 )
 }
 \arguments{
@@ -37,8 +36,6 @@ FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.}
 'tile.cache' folder in the working directory. If FALSE, tiles are not cached.}
 
 \item{forceDownload}{if TRUE, cached tiles are downloaded again.}
-
-\item{spdf}{defunct.}
 }
 \value{
 A RasterBrick is returned.

@@ -1,6 +1,6 @@
 Package: cartography
 Title: Thematic Cartography
-Version: 3.0.0
+Version: 3.0.1
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut"), 
@@ -47,4 +47,4 @@ Suggests:
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

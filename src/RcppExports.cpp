@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // is_overlap
 RcppExport SEXP is_overlap(SEXP x11, SEXP y11, SEXP sw11, SEXP sh11, SEXP boxes1);
 RcppExport SEXP _cartography_is_overlap(SEXP x11SEXP, SEXP y11SEXP, SEXP sw11SEXP, SEXP sh11SEXP, SEXP boxes1SEXP) {

@@ -1,3 +1,10 @@
+# cartography 3.0.1
+## Major changes
+- Remove defunct arguments in dotdensityLayer, getBorders, getFigDim, 
+getGridLayer, getOuterBorders, getTiles
+## minor changes
+- Move some tests to local tests
+
 # cartography 3.0.0
 
 cartography enters in maintenance mode. 

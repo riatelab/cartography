@@ -21,8 +21,7 @@ dotDensityLayer(
   legend.cex = 0.6,
   legend.col = "black",
   legend.frame = TRUE,
-  add = TRUE,
-  iter
+  add = TRUE
 )
 }
 \arguments{
@@ -66,8 +65,6 @@ not (FALSE).}
 
 \item{add}{whether to add the layer to an existing plot (TRUE) or 
 not (FALSE).}
-
-\item{iter}{defunct.}
 }
 \description{
 Plot a dot density layer.

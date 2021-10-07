@@ -3,8 +3,6 @@
 #' @name getBorders
 #' @param x an sf object, a simple feature collection or a SpatialPolygonsDataFrame.
 #' @param id name of the identifier variable x, default to the first column. (optional)
-#' @param spdf defunct. 
-#' @param spdfid defunct.
 #' @note getBorders and getOuterBorders can be combined with rbind. 
 #' @return An sf object (MULTILINESTRING) of borders is returned. This object has three 
 #' id variables: id, id1 and id2.
@@ -23,7 +21,7 @@
 #'      lwd = 3, add = TRUE)
 #' @seealso \link{discLayer}
 #' @export
-getBorders <- function(x, id, spdf, spdfid){
+getBorders <- function(x, id){
 
   if(methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
@@ -33,11 +31,7 @@ getBorders <- function(x, id, spdf, spdfid){
     id <- names(x)[1]
   }
   
-  if(sum(missing(spdf), missing(spdfid)) != 2){
-    stop("spdf and spdfid are defunct.", call. = FALSE)
-  }
-  
-  
+
   sf::st_geometry(x) <-  sf::st_buffer(x = sf::st_geometry(x), 1, nQuadSegs = 5)
   lx <- sf::st_cast(x, "MULTILINESTRING")
   

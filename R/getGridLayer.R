@@ -5,8 +5,6 @@
 #' @param cellsize targeted area of the cell, in map units.
 #' @param type shape of the cell, "regular" for squares, "hexagonal" for hexagons. 
 #' @param var name of the numeric variable(s) in x to adapt to the grid (a vector).
-#' @param spdf defunct.
-#' @param spdfid defunct.
 #' @return A grid is returned as an sf object.
 #' @examples
 #' library(sf)
@@ -31,17 +29,10 @@
 #'            legend.title.txt = "Population density")
 #' par(opar)
 #' @export
-getGridLayer <- function(x, cellsize, type = "regular", var,
-                         spdf, spdfid){
+getGridLayer <- function(x, cellsize, type = "regular", var){
   # sp check
-  if(missing(x)){
-    x <- sf::st_as_sf(spdf)
-  }
   if (methods::is(x, 'Spatial')){
     x <- sf::st_as_sf(x)
-  }
-  if(sum(missing(spdf), missing(spdfid)) != 2){
-    stop("spdf and spdfid are defunct; use x instead.", call. = FALSE)
   }
   x$area <- sf::st_area(x)
   # get a grid
