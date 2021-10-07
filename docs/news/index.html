@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.1</span>
       </span>
     </div>
 
@@ -137,14 +137,30 @@
       <small>Source: <a href='https://github.com/riatelab/cartography/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="cartography-301" class="section level1">
+<h1 class="page-header" data-toc-text="3.0.1">
+<a href="#cartography-301" class="anchor"></a>cartography 3.0.1<small> Unreleased </small>
+</h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<ul>
+<li>
+<p>Remove defunct arguments in dotdensityLayer, getBorders, getFigDim, getGridLayer, getOuterBorders, getTiles</p>
+<h2 id="minor-changes">minor changes</h2>
+</li>
+<li><p>Move some tests to local tests</p></li>
+</ul>
+</div>
+</div>
     <div id="cartography-300" class="section level1">
 <h1 class="page-header" data-toc-text="3.0.0">
 <a href="#cartography-300" class="anchor"></a>cartography 3.0.0<small> 2021-03-18 </small>
 </h1>
 <p>cartography enters in maintenance mode.</p>
-<div id="major-changes" class="section level2">
+<div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Remove defunct arguments in discLayer, getGridLayer, getLinkLayer, gradLinkLayer, gradLinkkTypoLayer, propLinkLayer, propSymbolsLayer.</li>
 <li>Remove getGridData function</li>
@@ -157,9 +173,9 @@
 <h1 class="page-header" data-toc-text="2.4.2">
 <a href="#cartography-242" class="anchor"></a>cartography 2.4.2<small> 2020-09-02 </small>
 </h1>
-<div id="minor-changes" class="section level2">
+<div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>switch to github cicd infrastructure</li>
 <li>add a comment containing an WKT2 CRS representation to sp objects stored in nuts2006.RData</li>
@@ -171,9 +187,9 @@
 <h1 class="page-header" data-toc-text="2.4.1">
 <a href="#cartography-241" class="anchor"></a>cartography 2.4.1<small> 2020-04-20 </small>
 </h1>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>mute an sp dependant warning in propTrianglesLayer (<a href='https://github.com/rsbivand'>@rsbivand</a>)</li>
 <li>remove isFALSE to work with older R versions</li>
@@ -201,9 +217,9 @@
 <li>add waffleLayer() and legenWaffle() to plot waffle maps (several quantitatives variables on the same map)</li>
 </ul>
 </div>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>getTiles() gets a lot of new tiles sources (around 60) (<a href='https://github.com/dieghernan'>@dieghernan</a>)</li>
 <li>bug fix in getTiles when x!=POINT &amp; nrow(x) == 1, see <a href='https://github.com/riatelab/cartography/issues/59'>#59</a> (thanks to <a href='https://github.com/drikkes-jue'>@drikkes-jue</a>)</li>
@@ -217,9 +233,9 @@
 <h1 class="page-header" data-toc-text="2.3.0">
 <a href="#cartography-230" class="anchor"></a>cartography 2.3.0<small> 2020-01-28 </small>
 </h1>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>use tinytest instead of testthat (fewer dependancies)</li>
 <li>use slippymath and code instead of rosm for osm tiles download (fewer dependancies)</li>
@@ -246,9 +262,9 @@
 <h1 class="page-header" data-toc-text="2.2.1">
 <a href="#cartography-221" class="anchor"></a>cartography 2.2.1<small> 2019-09-27 </small>
 </h1>
-<div id="minor-changes-4" class="section level2">
+<div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>internaly, use sf instead of sp for hexagonal grid computation.</li>
 <li>bugfix in LegendChoro() no more warning when pos = c(x,y).</li>
@@ -279,9 +295,9 @@
 <li>legend*() and relevant function: new “bottomleftextra” position for the legend. It displays the legend in the bottomleft corner with and extra padding that allows the display of sources and author with layoutLayer() without overlapping.</li>
 </ul>
 </div>
-<div id="minor-changes-5" class="section level2">
+<div id="minor-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>*typoLayer(): fix incorrect display of typo legends if legend.order is not provided.</li>
 <li>getLinkLayer(): fix error when x and df ids do not perfectly match.</li>
@@ -301,9 +317,9 @@
 <h1 class="page-header" data-toc-text="2.1.2">
 <a href="#cartography-212" class="anchor"></a>cartography 2.1.2<small> 2018-09-18 </small>
 </h1>
-<div id="minor-changes-6" class="section level2">
+<div id="minor-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>fix in getGridLayer() for type =“hexagon” (sp import)</li>
 <li>addition of a cheat cheat reference in vignette (new vignette with a single link)</li>
@@ -316,9 +332,9 @@
 <h1 class="page-header" data-toc-text="2.1.1">
 <a href="#cartography-211" class="anchor"></a>cartography 2.1.1<small> 2018-06-25 </small>
 </h1>
-<div id="minor-changes-7" class="section level2">
+<div id="minor-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>rgeos is back to Imports (was actually needed for some sp &lt;&gt; sf transformation)</li>
 <li>Add getPencilLayer function (color pencil layers)</li>
@@ -330,18 +346,18 @@
 <h1 class="page-header" data-toc-text="2.1.0">
 <a href="#cartography-210" class="anchor"></a>cartography 2.1.0<small> 2018-04-30 </small>
 </h1>
-<div id="major-changes-1" class="section level2">
+<div id="major-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
 <ul>
 <li>sp and sf goes from Depends to Import, this implies the need to use library(sf) or library(sp) before using most of cartography functions.</li>
 <li>rgeos is not used anymore</li>
 <li>packages sp, sf, graphics, stats, classInt and graphics are no more fully imported in the namespace</li>
 </ul>
 </div>
-<div id="minor-changes-8" class="section level2">
+<div id="minor-changes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>a lot of typos and mis-spelled words have been corrected</li>
 <li>propSymbols*Layer legends use the lwd argument</li>
@@ -353,9 +369,9 @@
 <h1 class="page-header" data-toc-text="2.0.2">
 <a href="#cartography-202" class="anchor"></a>cartography 2.0.2<small> 2017-11-13 </small>
 </h1>
-<div id="minor-changes-9" class="section level2">
+<div id="minor-changes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-10" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>bug fix in labelLayer() when x = SpatialPointsDataFrame.</li>
 <li>bug fix in propSymbols*Layer() when using a POINT layer with add=FALSE.</li>
@@ -371,9 +387,9 @@
 <h1 class="page-header" data-toc-text="2.0.1">
 <a href="#cartography-201" class="anchor"></a>cartography 2.0.1<small> 2017-09-25 </small>
 </h1>
-<div id="minor-changes-10" class="section level2">
+<div id="minor-changes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-11" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>bug fix for proportionnal symbols with negative values.</li>
 </ul>
@@ -396,7 +412,7 @@
 <li><p>legend* functions have been enhanced to be more customizable. It is now possible to lay legend on specified x &amp; y.</p></li>
 <li>
 <p>propSymbolsLayer: breakval and col2 arguments are defunct, use propSymbolsTypoLayer if needed.</p>
-<h2 id="major-changes-2">Major changes</h2>
+<h2 id="major-changes-3">Major changes</h2>
 </li>
 <li><p>choroLayer, typoLayer, propSymbolsLayer, propSymbolsChoroLayer, propSymbolsTypoLayer, dotDensityLayer, getTiles, getFigDim, labelLayer, smoothLayer: an x argument is added in first position of all these functions. x is added to take sf objects as inputs, if x is used then spdf, df, spdfid, id are not used.</p></li>
 <li><p>labelLayer: possibility to add a colored halo around the labels, option to have non-overlapping labels.</p></li>
@@ -410,9 +426,9 @@
 <h1 class="page-header" data-toc-text="1.4.2">
 <a href="#cartography-142" class="anchor"></a>cartography 1.4.2<small> 2017-03-29 </small>
 </h1>
-<div id="minor-changes-11" class="section level2">
+<div id="minor-changes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-12" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Addition of 2 discretization methods (thanks to <a href='https://github.com/MBunel'>@MBunel</a>): ‘em’ and ‘arith’. The “arith” method is based on a arithmetic progression along the variable values. The “em” method is based on subset defined by the mean of a numeric vector.</li>
 <li>Update the list of the available tiles servers (getTiles). This list is reduced and could be extended again depanding on the rosm package evolution.</li>
@@ -423,9 +439,9 @@
 <h1 class="page-header" data-toc-text="1.4.1">
 <a href="#cartography-141" class="anchor"></a>cartography 1.4.1<small> 2016-12-15 </small>
 </h1>
-<div id="major-changes-3" class="section level2">
+<div id="major-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-4" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Addition of the hexagonal regular grid in getGridLayer.<br>
 </li>
@@ -434,9 +450,9 @@
 <li>Addition of north function to plot a custom north (or south) arrow.</li>
 </ul>
 </div>
-<div id="minor-changes-12" class="section level2">
+<div id="minor-changes-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-12" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-13" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>small fix on the msd method (breaks order) in getBreaks function.<br>
 </li>
@@ -450,9 +466,9 @@
 <h1 class="page-header" data-toc-text="1.4.0">
 <a href="#cartography-140" class="anchor"></a>cartography 1.4.0<small> 2016-08-26 </small>
 </h1>
-<div id="major-changes-4" class="section level2">
+<div id="major-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-4" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-5" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Introduce getOuterBorders that allows to build borders (as getBorders) between non-contiguous polygons.</li>
 <li>Addition of the theme parameter in layoutLayer to set col and coltitle according to a cartographic palette.</li>
@@ -462,15 +478,15 @@
 <li>k parameter in prop* function is now defunct, using k will stop the function.</li>
 </ul>
 </div>
-<div id="minor-changes-13" class="section level2">
+<div id="minor-changes-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-13" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-14" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>As it was a heavy import, SpatialPosition package is back to suggested packages.</li>
 <li>As Jenks and Fisher-Jenks algorithms are based on the same principle and give quite similar results but Fisher-Jenks is much faster, “fisher-jenks” method replaces “jenks” in getBreaks methods.</li>
 <li>In most function, if df is missing then <a href="mailto:spdf@data" class="email">spdf@data</a> is used instead.</li>
 <li>Introduce carto.pal.info() function that gives the list of the cartographic palettes.</li>
-<li>Addition of two qualitatives color palettes (“pastel.pal”" and “multi.pal”).</li>
+<li>Addition of two qualitatives color palettes (“pastel.pal”” and “multi.pal”).</li>
 </ul>
 </div>
 </div>
@@ -478,18 +494,18 @@
 <h1 class="page-header" data-toc-text="1.3">
 <a href="#cartography-13" class="anchor"></a>cartography 1.3<small> Unreleased </small>
 </h1>
-<div id="major-changes-5" class="section level2">
+<div id="major-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-5" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-6" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Introduce the smoothLayer function, this function computes smoothed maps of potentials. It uses quickStewart from SpatialPosition package.<br>
 </li>
 <li>Most of previously suggested packages are now imported.</li>
 </ul>
 </div>
-<div id="minor-changes-14" class="section level2">
+<div id="minor-changes-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-14" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-15" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Introduce the legend.*.values.order parameter in typoLayer, propSymbolsTypoLayer and gradLinkTypoLayer. This parameter allows to order modalities in the legend and eases the color assignement.<br>
 </li>
@@ -506,18 +522,18 @@
 <h1 class="page-header" data-toc-text="1.2">
 <a href="#cartography-12" class="anchor"></a>cartography 1.2<small> 2016-02-12 </small>
 </h1>
-<div id="major-changes-6" class="section level2">
+<div id="major-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-6" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-7" class="anchor"></a>Major changes</h2>
 <ul>
 <li>The OpenStreetMap package used to display OpenStreetMap tiles has been replaced by the rosm package. rosm installation is lighter and easier (no Java dependency).<br>
 </li>
 <li>The k parameter is deprecated in propSymbolsLayer, propSymbolsTypoLayer and propSymbolsChoroLayer. The inches parameter is to be used instead. This modification allows to compare proportionnal symbols maps.</li>
 </ul>
 </div>
-<div id="minor-changes-15" class="section level2">
+<div id="minor-changes-16" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-15" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-16" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Introduce the getFigDim function that helps to find output figure dimension that fit a Spatial object dimension ratio.<br>
 </li>
@@ -535,22 +551,22 @@
 <h1 class="page-header" data-toc-text="1.1">
 <a href="#cartography-11" class="anchor"></a>cartography 1.1<small> 2015-11-18 </small>
 </h1>
-<div id="major-changes-7" class="section level2">
+<div id="major-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-7" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-8" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Correction of the proportionnal symbols legends (square, bar, circle, triangle). The previous version was incorrect (size proportionnal to radii and not surfaces).<br>
 </li>
 <li>Add a gradLinkTypoLayer function to plot a layer of colored and graduated links.</li>
 </ul>
 </div>
-<div id="minor-changes-16" class="section level2">
+<div id="minor-changes-17" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-16" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-17" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>choroLayer: small correction to allow to plot variable named “x” or “y”.<br>
 </li>
-<li>vignette: correct the name entry, incorrectly named “SpatialPosition”“, to”cartography".<br>
+<li>vignette: correct the name entry, incorrectly named “SpatialPosition”“, to”cartography”.<br>
 </li>
 <li>Update of the figure in the README file.<br>
 </li>

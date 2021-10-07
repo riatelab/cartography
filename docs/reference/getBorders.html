@@ -82,7 +82,7 @@ maritime borders)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cartography</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.1</span>
       </span>
     </div>
 
@@ -147,9 +147,9 @@ maritime borders)." />
 maritime borders).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getBorders</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span>, <span class='va'>spdf</span>, <span class='va'>spdfid</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>getBorders</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span><span class='op'>)</span>
 
-<span class='fu'>getOuterBorders</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span>, res <span class='op'>=</span> <span class='cn'>NULL</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>spdf</span>, <span class='va'>spdfid</span><span class='op'>)</span></pre>
+<span class='fu'>getOuterBorders</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span>, res <span class='op'>=</span> <span class='cn'>NULL</span>, width <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,14 +161,6 @@ maritime borders).</p>
     <tr>
       <th>id</th>
       <td><p>name of the identifier variable in x, default to the first column. (optional)</p></td>
-    </tr>
-    <tr>
-      <th>spdf</th>
-      <td><p>defunct.</p></td>
-    </tr>
-    <tr>
-      <th>spdfid</th>
-      <td><p>defunct.</p></td>
     </tr>
     <tr>
       <th>res</th>
@@ -198,7 +190,9 @@ of id1 and id2 (with "_" as separator).</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
 <span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source 
+#&gt;   `/tmp/RtmppBiN3A/temp_libpath43d97684eada/cartography/gpkg/mtq.gpkg' 
+#&gt;   using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; Geometry type: MULTIPOLYGON
 #&gt; Dimension:     XY
@@ -213,7 +207,9 @@ of id1 and id2 (with "_" as separator).</p>
      lwd <span class='op'>=</span> <span class='fl'>3</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='getBorders-1.png' alt='' width='525' height='504' /></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
 <span class='va'>mtq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"gpkg/mtq.gpkg"</span>, package<span class='op'>=</span><span class='st'>"cartography"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Reading layer `mtq' from data source `/tmp/RtmpJx1qEG/temp_libpath22d856f4940e/cartography/gpkg/mtq.gpkg' using driver `GPKG'
+</div><div class='output co'>#&gt; Reading layer `mtq' from data source 
+#&gt;   `/tmp/RtmppBiN3A/temp_libpath43d97684eada/cartography/gpkg/mtq.gpkg' 
+#&gt;   using driver `GPKG'
 #&gt; Simple feature collection with 34 features and 7 fields
 #&gt; Geometry type: MULTIPOLYGON
 #&gt; Dimension:     XY

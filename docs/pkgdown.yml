@@ -1,8 +1,8 @@
-pandoc: 2.11.2
+pandoc: 2.14.0.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   cartography: cartography.html
   cheatsheet: cheatsheet.html
-last_built: 2021-03-24T10:28Z
+last_built: 2021-10-07T09:52Z
 
