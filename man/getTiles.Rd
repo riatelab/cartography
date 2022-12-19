@@ -2,7 +2,7 @@
 % Please edit documentation in R/getTiles.R
 \name{getTiles}
 \alias{getTiles}
-\title{Get Tiles from Open Map Servers}
+\title{Defunct Get Tiles from Open Map Servers}
 \usage{
 getTiles(
   x,
@@ -41,8 +41,7 @@ FALSE otherwise. If x is an sf object with one POINT, crop is set to FALSE.}
 A RasterBrick is returned.
 }
 \description{
-Get map tiles based on a spatial object extent. Maps can be 
-fetched from various open map servers.
+This function is defunct. Use 'maptiles::get_tiles()' instead.
 }
 \details{
 Zoom levels are described on the OpenStreetMap wiki: 
@@ -74,37 +73,7 @@ Full list of providers:
 }
 }
 \examples{
-\dontrun{
-library(sf)
-mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-# Download the tiles, extent = Martinique
-mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
-# Plot the tiles
-tilesLayer(mtqOSM)
-# Plot countries
-plot(st_geometry(mtq), add=TRUE)
-txt <- paste0("\u00A9 OpenStreetMap contributors.", 
-              " Tiles style under CC BY-SA, www.openstreetmap.org/copyright")
-mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
-
-# Download esri tiles
-fullserver = paste("https://server.arcgisonline.com/ArcGIS/rest/services",
-                   "Specialty/DeLorme_World_Base_Map/MapServer",
-                   "tile/{z}/{y}/{x}.jpg",
-                   sep = "/"
-                   )
-typeosm <-  list(
-  src = 'esri',
-  q = fullserver,
-  sub = NA,
-  cit = 'Tiles; Esri; Copyright: 2012 DeLorme'
-)
-mtqESRI <- getTiles(x = mtq, type = typeosm, crop = TRUE, verbose = T, zoom = 10)
-# Plot the tiles
-tilesLayer(mtqESRI)
-txt <- typeosm$cit
-mtext(text = txt, side = 1, adj = 0, cex = 0.6, font = 3)
-}
+# install.packages('maptiles')
 }
 \references{
 \url{https://leaflet-extras.github.io/leaflet-providers/preview/}

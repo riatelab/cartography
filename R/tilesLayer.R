@@ -1,11 +1,11 @@
 #' @title Plot a Raster Object
-#' @description Plot a raster object over a map. It can be used to plot tiles 
-#' from getTiles or images from getPngLayer. 
+#' @description Plot a raster object over a map. It can be used to plot images 
+#' from getPngLayer. 
 #' @name tilesLayer
 #' @aliases tilesLayer
 #' @aliases pngLayer
-#' @param x a RasterBrick object; \link{getPngLayer} and \link{getTiles} 
-#' functions output these objects.
+#' @param x a RasterBrick object; \link{getPngLayer} 
+#' function output these objects.
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @param ... bgalpha, interpolate, or other arguments passed to be passed to
@@ -16,21 +16,10 @@
 #' quality of the \code{*.png} file, the scale of \code{x} and the resolution 
 #' setup of the graphic device.
 #' @export
-#' @seealso \link{getPngLayer}, \link{getTiles}
+#' @seealso \link{getPngLayer}
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package = "cartography"))
-#' 
-#' \dontrun{
-#' # Download the tiles, extent = Martinique
-#' mtqOSM <- getTiles(x = mtq, type = "osm", crop = TRUE)
-#' # Plot the tiles
-#' tilesLayer(mtqOSM)
-#' # Plot countries
-#' plot(st_geometry(mtq), add=TRUE)
-#' txt <- "© OpenStreetMap contributors. Tiles style under CC BY-SA, www.openstreetmap.org/copyright"
-#' mtext(text = txt, side = 1, adj = 0, cex = 0.7, font = 3)
-#' }
 #' 
 #' # Local image
 #' dirpng <- system.file("img/LogoMartinique.png", package = "cartography")
