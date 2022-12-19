@@ -29,9 +29,7 @@ Imports:
     png, 
     raster, 
     Rcpp, 
-    rgeos, 
     sf (>= 0.6-4),
-    slippymath,
     sp (>= 1.2-4), 
     stats,
     utils,
@@ -41,10 +39,9 @@ Suggests:
     SpatialPosition,
     knitr,
     rmarkdown,
-    rgdal,
     tinytest, 
     covr
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3

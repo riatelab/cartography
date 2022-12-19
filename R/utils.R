@@ -331,7 +331,7 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
 # import stuffs
 #' @import graphics
 #' @importFrom stats aggregate na.omit quantile runif sd median
-#' @importFrom rgeos createSPComment
+# @importFrom rgeos createSPComment
 #' @importFrom utils download.file
 #' @importFrom grDevices colorRampPalette
 NULL
