@@ -12,3 +12,5 @@
 ^data-raw$
 ^img$
 ^.github
+^\.github$
+^codecov\.yml$
