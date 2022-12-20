@@ -1,6 +1,12 @@
 #' @title Smooth Layer
 #' @name smoothLayer
-#' @description Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
+#' @description 
+#' This function is deprecated. 
+#' Please use the `potential` package instead 
+#' (\url{https://riatelab.github.io/potential/}).\cr \cr
+#' 
+#' 
+#' Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
 #' This function is a wrapper around the \code{\link[SpatialPosition:quickStewart]{quickStewart}} function in 
 #' \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
 #' The SpatialPosition package also provides: \itemize{
@@ -57,18 +63,7 @@
 #' @export
 #' @seealso \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
 #' @examples
-#' library(sf)
-#' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-#' smoothLayer(x = mtq, var = 'POP',
-#'             span = 4000, beta = 2,
-#'             mask = mtq, border = NA,
-#'             col = carto.pal(pal1 = 'wine.pal', n1 = 8),
-#'             legend.title.txt = "Population\nPotential",
-#'             legend.pos = "topright", legend.values.rnd = 0)
-#' propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
-#'                  legend.title.txt = "Population 2015",
-#'                  col = NA, border = "#ffffff50")
-#' layoutLayer(title = "Actual and Potential Popultation in Martinique")
+#' # install.packages('potential')
 smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL, 
                         var, 
                         var2 = NULL, 
@@ -88,6 +83,14 @@ smoothLayer <- function(x, spdf, df, spdfid = NULL, dfid = NULL,
                         legend.values.rnd = 0,
                         legend.frame = FALSE,
                         add = FALSE){
+  .Deprecated(
+      msg = paste0(
+        "'smoothLayer' is deprecated.\nUse 'potential' package instead.\n", 
+        "https://riatelab.github.io/potential/")
+    )
+  
+  
+  
   if (!requireNamespace("SpatialPosition", quietly = TRUE)) {
     stop("'SpatialPosition' package needed for this function to work. Please install it.",
          call. = FALSE)

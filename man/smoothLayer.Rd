@@ -103,6 +103,11 @@ not (FALSE).}
 An \code{\link{invisible}} sf object (MULTIPOLYGONs) is returned (see \code{\link[SpatialPosition:quickStewart]{quickStewart}}).
 }
 \description{
+This function is deprecated. 
+Please use the `potential` package instead 
+(\url{https://riatelab.github.io/potential/}).\cr \cr
+
+
 Plot a layer of smoothed data. It can also compute a ratio of potentials.\cr \cr
 This function is a wrapper around the \code{\link[SpatialPosition:quickStewart]{quickStewart}} function in 
 \code{\link[SpatialPosition]{SpatialPosition}} package.\cr \cr
@@ -116,18 +121,7 @@ If var2 is provided the ratio between the potentials of var (numerator)
 and var2 (denominator) is computed.
 }
 \examples{
-library(sf)
-mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-smoothLayer(x = mtq, var = 'POP',
-            span = 4000, beta = 2,
-            mask = mtq, border = NA,
-            col = carto.pal(pal1 = 'wine.pal', n1 = 8),
-            legend.title.txt = "Population\nPotential",
-            legend.pos = "topright", legend.values.rnd = 0)
-propSymbolsLayer(x = mtq, var = "POP", legend.pos = c(690000, 1599950),
-                 legend.title.txt = "Population 2015",
-                 col = NA, border = "#ffffff50")
-layoutLayer(title = "Actual and Potential Popultation in Martinique")
+# install.packages('potential')
 }
 \seealso{
 \link[SpatialPosition]{quickStewart}, \link[SpatialPosition]{SpatialPosition}, \link{choroLayer}
