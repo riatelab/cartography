@@ -3,7 +3,7 @@
 [![](https://www.r-pkg.org/badges/version/cartography)](https://cran.r-project.org/package=cartography)
 [![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
 [![R-CMD-check](https://github.com/riatelab/cartography/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/riatelab/cartography/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/cartography)
+[![Codecov test coverage](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://app.codecov.io/gh/riatelab/cartography)
 [![status](https://tinyverse.netlify.com/badge/cartography)](https://tinyverse.netlify.app/)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.00054/status.svg)](https://doi.org/10.21105/joss.00054)
 [![minimal R version](https://img.shields.io/badge/R-%E2%89%A5%203.3.0-brightgreen)](https://cran.r-project.org/)
