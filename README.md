@@ -98,10 +98,10 @@ install.packages("cartography")
 
 One can contribute to the package through [pull requests](https://github.com/riatelab/cartography/pulls) and report issues or ask questions [here](https://github.com/riatelab/cartography/issues).
 
-<br><br><br>
-<small>
+
+_________
+
 To cite package `cartography` in publications use one of these:  
 
 * [Giraud, T. and Lambert, N. (2016). cartography: Create and Integrate Maps in your R Workflow. JOSS, 1(4). doi: 10.21105/joss.00054.](https://doi.org/10.21105/joss.00054)
 * [Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson M. (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp. 173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography)  
-</small>

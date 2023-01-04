@@ -1,3 +1,9 @@
+# cartography 3.1.0
+## Major changes
+- defunct getTiles(), please use maptiles package instead
+- remove rgeos, rgdal and slippymath from Imports
+- deprecate smoothLayer(), please use potential package instead
+
 # cartography 3.0.1
 ## Major changes
 - Remove defunct arguments in dotdensityLayer, getBorders, getFigDim, 
