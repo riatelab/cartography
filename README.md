@@ -1,13 +1,10 @@
 # cartography <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 [![](https://www.r-pkg.org/badges/version/cartography)](https://cran.r-project.org/package=cartography)
-[![](https://cranlogs.r-pkg.org/badges/cartography?color=brightgreen)](https://cran.r-project.org/package=cartography)
 [![R-CMD-check](https://github.com/riatelab/cartography/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/riatelab/cartography/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/riatelab/cartography/branch/master/graph/badge.svg)](https://app.codecov.io/gh/riatelab/cartography)
-[![status](https://tinyverse.netlify.com/badge/cartography)](https://tinyverse.netlify.app/)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.00054/status.svg)](https://doi.org/10.21105/joss.00054)
-[![minimal R version](https://img.shields.io/badge/R-%E2%89%A5%203.3.0-brightgreen)](https://cran.r-project.org/)
-![CRAN/METACRAN](https://img.shields.io/cran/l/cartography?color=brightgreen)
+
 
 
 ## Consider [`mapsf`](https://riatelab.github.io/mapsf/)
@@ -21,29 +18,11 @@ See [`mapsf` vignette](https://riatelab.github.io/mapsf/articles/mapsf.html) or 
 
 
 
-## Create and integrate maps in your R workflow! 
+### Create and integrate maps in your R workflow! 
 This package helps to design **cartographic representations** such as proportional symbols, choropleth, typology, flows or discontinuities maps. It also offers several features that improve the graphic presentation of maps, for instance, map palettes, layout elements (scale, north arrow, title...), labels or legends.
 
-## Cheat Sheet
-The [cheat sheet](http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf) displays a quick overview of `cartography`'s main features.
 
-<a href="http://riatelab.github.io/cartography/vignettes/cheatsheet/cartography_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/riatelab/cartography/master/img/cheat_sheet.png" alt="cartography cheat sheet" width="300"/></a>
-
-
-## Vignette
-The [vignette](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html) 
-contains commented scripts on how to build various types of maps with `cartography`:  
-
-[![](https://raw.githubusercontent.com/riatelab/cartography/master/img/vignettes.png)](https://CRAN.R-project.org/package=cartography/vignettes/cartography.html)
-
-## Other Resources 
-
-* [Giraud T. (2019). Thematic Maps with `cartography`. useR! 2019. Toulouse, France.](https://github.com/rCarto/user2019) (EN)  
-* [Giraud T., Lambert N. (2017). Reproducible Cartography. In: Peterson M. (eds) Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography. Springer, Cham](https://github.com/riatelab/ReproducibleCartography) (EN)      
-* [Blog posts](https://rgeomatic.hypotheses.org/category/cartography) (FR / EN)  
-
-
-## Demo
+### Demo
 The following script creates a map of symbols that are proportional to values of a 
 first variable and colored to reflect the classification of a second variable.  
 
@@ -96,11 +75,10 @@ par(opar)
 ![](https://raw.githubusercontent.com/riatelab/cartography/master/img/readme_final.png)
 
 
-## Installation
+### Installation
 * Development version on GitHub
 ```{r}
-require(remotes)
-install_github("riatelab/cartography")
+remotes::install_github("riatelab/cartography")
 ```
 
 * Stable version on [CRAN](https://CRAN.R-project.org/package=cartography/)
@@ -109,17 +87,21 @@ install.packages("cartography")
 ```
 
 
-
-## Alternatives Packages
+### Alternatives
 
 * [mapsf](https://github.com/riatelab/mapsf) (successor of `cartography`)
 * [tmap](https://github.com/r-tmap/tmap)    
 * [ggplot2](https://github.com/tidyverse/ggplot2) + [ggspatial](https://github.com/paleolimbot/ggspatial)     
 
 
-## Community Guidelines
+### Community Guidelines
 
 One can contribute to the package through [pull requests](https://github.com/riatelab/cartography/pulls) and report issues or ask questions [here](https://github.com/riatelab/cartography/issues).
 
+<br><br><br>
+<small>
+To cite package `cartography` in publications use one of these:  
 
-
+* [Giraud, T. and Lambert, N. (2016). cartography: Create and Integrate Maps in your R Workflow. JOSS, 1(4). doi: 10.21105/joss.00054.](https://doi.org/10.21105/joss.00054)
+* [Giraud, T. and Lambert, N. (2017). “Reproducible Cartography.” In Peterson M. (ed.), _Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography._, pp. 173-183. doi: 10.1007/978-3-319-57336-6_13.](https://github.com/riatelab/ReproducibleCartography)  
+</small>
