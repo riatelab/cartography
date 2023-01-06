@@ -11,14 +11,16 @@
 #' @examples
 #' library(sf)
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
+#' # extract
+#' m <- mtq[c(5, 29, 9), ]
 #' # Get borders
-#' mtq.borders <- getBorders(x = mtq)
+#' m_borders <- getBorders(x = m)
 #' # Plot polygons
-#' plot(st_geometry(mtq), border = NA, col = "grey60")
+#' plot(st_geometry(m), border = NA, col = "grey60")
 #' # Plot borders
-#' plot(st_geometry(mtq.borders), 
-#'      col = sample(x = rainbow(nrow(mtq.borders))), 
-#'      lwd = 3, add = TRUE)
+#' plot(st_geometry(m_borders),
+#'      col = sample(x = rainbow(nrow(m_borders))),
+#'      lwd = 2 * c(4, 3, 2, 1), add = TRUE)
 #' @seealso \link{discLayer}
 #' @export
 getBorders <- function(x, id){
