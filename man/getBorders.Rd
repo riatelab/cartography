@@ -50,13 +50,16 @@ plot(st_geometry(m_borders),
      lwd = 2 * c(4, 3, 2, 1), add = TRUE)
 library(sf)
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
-# Get units borders
-mtq.outer <- getOuterBorders(x = mtq, res = 1000, width = 2500)
-# Plot municipalities
-plot(st_geometry(mtq), col = "grey60")
+# extract
+m <- mtq[c(29, 9), ]
+# Get borders
+m_borders <- getOuterBorders(x = m)
+# Plot polygons
+plot(st_geometry(m))
 # Plot borders
-plot(st_geometry(mtq.outer), col = sample(x = rainbow(nrow(mtq.outer))),
-     lwd = 3, add = TRUE)
+plot(st_geometry(m_borders),
+     col = sample(x = rainbow(nrow(m_borders))),
+     lwd = c(4, 1), add = TRUE)
 }
 \seealso{
 \link{discLayer}
