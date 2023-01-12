@@ -1,3 +1,9 @@
+# cartography 3.1.2
+
+## Minor change
+- lighter examples for get*Borders() functions
+
+
 # cartography 3.1.0
 ## Major changes
 - defunct getTiles(), please use maptiles package instead
