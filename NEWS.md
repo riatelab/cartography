@@ -1,3 +1,10 @@
+# cartography 3.1.3
+
+## Minor change
+- deactivate examples for get*Borders() functions
+
+
+
 # cartography 3.1.2
 
 ## Minor change
