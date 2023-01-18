@@ -10,6 +10,7 @@
 #' A higher width will build borders between units that are farther apart. (optional)
 #' @examples
 #' library(sf)
+#' \dontrun{
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 #' # extract
 #' m <- mtq[c(29, 9), ]
@@ -21,6 +22,7 @@
 #' plot(st_geometry(m_borders),
 #'      col = sample(x = rainbow(nrow(m_borders))),
 #'      lwd = c(4, 1), add = TRUE)
+#' }
 #' @export
 getOuterBorders <- function(x, id, res = NULL, width = NULL){
   

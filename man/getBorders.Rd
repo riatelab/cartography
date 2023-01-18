@@ -37,6 +37,7 @@ getBorders and getOuterBorders can be combined with rbind.
 }
 \examples{
 library(sf)
+\dontrun{
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 # extract
 m <- mtq[c(5, 29, 9), ]
@@ -48,7 +49,9 @@ plot(st_geometry(m), border = NA, col = "grey60")
 plot(st_geometry(m_borders),
      col = sample(x = rainbow(nrow(m_borders))),
      lwd = 2 * c(4, 3, 2, 1), add = TRUE)
+}
 library(sf)
+\dontrun{
 mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 # extract
 m <- mtq[c(29, 9), ]
@@ -60,6 +63,7 @@ plot(st_geometry(m))
 plot(st_geometry(m_borders),
      col = sample(x = rainbow(nrow(m_borders))),
      lwd = c(4, 1), add = TRUE)
+}
 }
 \seealso{
 \link{discLayer}

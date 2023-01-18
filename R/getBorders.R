@@ -10,6 +10,7 @@
 #' of id1 and id2 (with "_" as separator).
 #' @examples
 #' library(sf)
+#' \dontrun{
 #' mtq <- st_read(system.file("gpkg/mtq.gpkg", package="cartography"))
 #' # extract
 #' m <- mtq[c(5, 29, 9), ]
@@ -21,6 +22,7 @@
 #' plot(st_geometry(m_borders),
 #'      col = sample(x = rainbow(nrow(m_borders))),
 #'      lwd = 2 * c(4, 3, 2, 1), add = TRUE)
+#' }
 #' @seealso \link{discLayer}
 #' @export
 getBorders <- function(x, id){
