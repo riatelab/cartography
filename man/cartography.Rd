@@ -3,6 +3,7 @@
 \docType{package}
 \name{cartography}
 \alias{cartography}
+\alias{cartography-package}
 \title{Cartography Package}
 \description{
 This package helps to design cartographic representations such as 
@@ -94,4 +95,27 @@ This function uses classification methods for binning data.
 }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/riatelab/cartography/}
+  \item Report bugs at \url{https://github.com/riatelab/cartography/issues/}
+}
+
+}
+\author{
+\strong{Maintainer}: Timothée Giraud \email{timothee.giraud@cnrs.fr} (\href{https://orcid.org/0000-0002-1932-3323}{ORCID})
+
+Authors:
+\itemize{
+  \item Nicolas Lambert \email{nicolas.lambert@cnrs.fr}
+}
+
+Other contributors:
+\itemize{
+  \item Diego Hernangómez (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) [contributor]
+  \item Ian Fellows (no overlap algorithm for labels, from wordcloud package) [copyright holder]
+}
+
+}
 \keyword{internal}

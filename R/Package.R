@@ -80,4 +80,4 @@
 #' 
 #' @keywords internal
 #' @docType package
-NULL
+"_PACKAGE"
