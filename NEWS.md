@@ -1,3 +1,10 @@
+# cartography 3.1.4
+
+## Minor change
+* fix pkg level documentation
+* add codemeta and cff 
+* use bibentry() instead of citEntry()
+
 # cartography 3.1.3
 
 ## Minor change
@@ -18,10 +25,12 @@
 - deprecate smoothLayer(), please use potential package instead
 
 # cartography 3.0.1
+
 ## Major changes
 - Remove defunct arguments in dotdensityLayer, getBorders, getFigDim, 
 getGridLayer, getOuterBorders, getTiles
-## minor changes
+
+## Minor changes
 - Move some tests to local tests
 
 # cartography 3.0.0
