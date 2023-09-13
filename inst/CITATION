@@ -1,6 +1,4 @@
-citHeader("To cite package cartography in publications use one of these:")
-
-citEntry(entry = "Article",
+bibentry(bibtype = "Article",
   doi = "10.21105/joss.00054",
   url = "http://dx.doi.org/10.21105/joss.00054",
   year  = "2016",
@@ -13,7 +11,7 @@ citEntry(entry = "Article",
   journal = "JOSS", 
   textVersion = "Giraud, T. and Lambert, N. (2016). cartography: Create and Integrate Maps in your R Workflow. JOSS, 1(4). doi: 10.21105/joss.00054.")
 
-citEntry(entry = "InProceedings",
+bibentry(bibtype = "InProceedings",
          booktitle = "Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation and Cartography.",
          author = c(person(given = "Timothée",
                            family = "Giraud"),
