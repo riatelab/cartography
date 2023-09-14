@@ -8,7 +8,7 @@
 SpatialPolygonsDataFrame.
 }
 \source{
-UMS RIATE - \url{http://riate.cnrs.fr/}
+UMS RIATE - \url{https://riate.cnrs.fr/}
 }
 \description{
 World background.

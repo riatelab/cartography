@@ -8,7 +8,7 @@ message: 'To cite package "cartography" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'cartography: Thematic Cartography'
-version: 3.1.4
+version: 3.1.5
 doi: 10.21105/joss.00054
 abstract: Create and integrate maps in your R workflow. This package helps to design
   cartographic representations such as proportional symbols, choropleth, typology,
