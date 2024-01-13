@@ -90,8 +90,8 @@ getBreaks <- function(v, nclass = NULL, method = "quantile",
     {
       intervals <- min(v)
       intervals <- c(intervals,max(v))
-      r <- exp((log(max(v))-log(min(v)))/nclass) # raison
-      tmp <- min(v)
+      r <- exp((log(max(v))-log(min(v[v!=0])))/nclass) # raison
+      tmp <- min(v[v!=0])
       for ( i in 1:(nclass-1)) {
         intervals <- c(intervals,tmp*r)
         tmp <- tmp*r
