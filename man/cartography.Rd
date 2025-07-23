@@ -2,8 +2,8 @@
 % Please edit documentation in R/Package.R
 \docType{package}
 \name{cartography}
-\alias{cartography}
 \alias{cartography-package}
+\alias{cartography}
 \title{Cartography Package}
 \description{
 This package helps to design cartographic representations such as 
@@ -24,7 +24,7 @@ Basic maintenance and support will continue indefinitely.
 Existing projects that use \code{cartography} can safely continue to use \code{cartography}. 
 The \code{mapsf} R package is the successor of \code{cartography} and it is friendlier, 
 lighter and more robust. 
-See mapsf vignette (\url{https://riatelab.github.io/mapsf/articles/mapsf.html}) 
+See mapsf website (\url{https://riatelab.github.io/mapsf/}) 
 to migrate from \code{cartography} to \code{mapsf}.
 }
 

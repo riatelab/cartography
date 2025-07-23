@@ -2,7 +2,7 @@
 
 ## Minor change
 * fix urls in documentation
-
+* fix Rd cross-references
 
 
 # cartography 3.1.4

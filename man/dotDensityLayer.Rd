@@ -70,7 +70,7 @@ not (FALSE).}
 Plot a dot density layer.
 }
 \details{
-The type parameters is defined within the \link{st_sample} function.
+The type parameters is defined within the \link[sf]{st_sample} function.
 }
 \examples{
 \dontrun{

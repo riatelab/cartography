@@ -1,7 +1,7 @@
-# -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.5.0
+# --------------------------------------------
+# CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# -----------------------------------------------------------
+# --------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "cartography" in publications use:'
@@ -10,11 +10,14 @@ license: GPL-3.0-only
 title: 'cartography: Thematic Cartography'
 version: 3.1.5
 doi: 10.21105/joss.00054
+identifiers:
+- type: doi
+  value: 10.32614/CRAN.package.cartography
 abstract: Create and integrate maps in your R workflow. This package helps to design
   cartographic representations such as proportional symbols, choropleth, typology,
   flows or discontinuities maps. It also offers several features that improve the
   graphic presentation of maps, for instance, map palettes, layout elements (scale,
-  north arrow, title...), labels or legends. See Giraud and Lambert (2017) <doi:10.1007/978-3-319-57336-6_13>.
+  north arrow, title...), labels or legends. See Giraud and Lambert (2017) <https://doi.org/10.1007/978-3-319-57336-6_13>.
 authors:
 - family-names: Giraud
   given-names: Timothée
@@ -61,28 +64,30 @@ references:
     given-names: Nicolas
   collection-title: Advances in Cartography and GIScience. ICACI 2017. Lecture Notes
     in Geoinformation and Cartography.
+  collection-type: proceedings
   editors:
   - family-names: Peterson
     given-names: Michael
   section: '13'
   publisher:
     name: Springer
-  location:
-    name: Cham, Switzerland
   year: '2017'
   doi: 10.1007/978-3-319-57336-6_13
   start: 173-183
+  conference:
+    name: Advances in Cartography and GIScience. ICACI 2017. Lecture Notes in Geoinformation
+      and Cartography.
+    address: Cham, Switzerland
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
   notes: Depends
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
   version: '>= 3.5.0'
 - type: software
   title: classInt
@@ -95,7 +100,8 @@ references:
     given-names: Roger
     email: Roger.Bivand@nhh.no
     orcid: https://orcid.org/0000-0003-2392-6140
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.classInt
 - type: software
   title: curl
   abstract: 'curl: A Modern and Flexible Web Client for R'
@@ -105,31 +111,30 @@ references:
   authors:
   - family-names: Ooms
     given-names: Jeroen
-    email: jeroen@berkeley.edu
+    email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.curl
 - type: software
   title: graphics
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
 - type: software
   title: png
   abstract: 'png: Read and write PNG images'
@@ -140,7 +145,8 @@ references:
   - family-names: Urbanek
     given-names: Simon
     email: Simon.Urbanek@r-project.org
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.png
 - type: software
   title: raster
   abstract: 'raster: Geographic Data Analysis and Modeling'
@@ -152,7 +158,8 @@ references:
     given-names: Robert J.
     email: r.hijmans@gmail.com
     orcid: https://orcid.org/0000-0001-5872-2872
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.raster
 - type: software
   title: Rcpp
   abstract: 'Rcpp: Seamless R and C++ Integration'
@@ -162,23 +169,32 @@ references:
   authors:
   - family-names: Eddelbuettel
     given-names: Dirk
+    email: edd@debian.org
+    orcid: https://orcid.org/0000-0001-6419-907X
   - family-names: Francois
     given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
   - family-names: Allaire
     given-names: JJ
+    orcid: https://orcid.org/0000-0003-0174-9868
   - family-names: Ushey
     given-names: Kevin
+    orcid: https://orcid.org/0000-0003-2880-7407
   - family-names: Kou
     given-names: Qiang
+    orcid: https://orcid.org/0000-0001-6786-5453
   - family-names: Russell
     given-names: Nathan
   - family-names: Ucar
-    given-names: Inaki
+    given-names: Iñaki
+    orcid: https://orcid.org/0000-0001-6403-5550
   - family-names: Bates
-    given-names: Douglas
+    given-names: Doug
+    orcid: https://orcid.org/0000-0001-8316-9503
   - family-names: Chambers
     given-names: John
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.Rcpp
 - type: software
   title: sf
   abstract: 'sf: Simple Features for R'
@@ -190,7 +206,8 @@ references:
     given-names: Edzer
     email: edzer.pebesma@uni-muenster.de
     orcid: https://orcid.org/0000-0001-8049-7069
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.sf
 - type: software
   title: sp
   abstract: 'sp: Classes and Methods for Spatial Data'
@@ -204,52 +221,51 @@ references:
   - family-names: Bivand
     given-names: Roger
     email: Roger.Bivand@nhh.no
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.sp
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
 - type: software
   title: grDevices
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
 - type: software
   title: lwgeom
   abstract: 'lwgeom: Bindings to Selected ''liblwgeom'' Functions for Simple Features'
   notes: Suggests
-  url: https://github.com/r-spatial/lwgeom/
+  url: https://r-spatial.github.io/lwgeom/
   repository: https://CRAN.R-project.org/package=lwgeom
   authors:
   - family-names: Pebesma
     given-names: Edzer
     email: edzer.pebesma@uni-muenster.de
     orcid: https://orcid.org/0000-0001-8049-7069
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.lwgeom
 - type: software
   title: SpatialPosition
   abstract: 'SpatialPosition: Spatial Position Models'
@@ -263,7 +279,8 @@ references:
     orcid: https://orcid.org/0000-0002-1932-3323
   - family-names: Commenges
     given-names: Hadrien
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.SpatialPosition
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -275,7 +292,8 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.knitr
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -318,7 +336,8 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: tinytest
   abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
@@ -326,11 +345,13 @@ references:
   url: https://github.com/markvanderloo/tinytest
   repository: https://CRAN.R-project.org/package=tinytest
   authors:
-  - family-names: van der Loo
+  - family-names: Loo
     given-names: Mark
+    name-particle: van der
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.tinytest
 - type: software
   title: covr
   abstract: 'covr: Test Coverage for Packages'
@@ -341,4 +362,6 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.f.hester@gmail.com
-  year: '2023'
+  year: '2025'
+  doi: 10.32614/CRAN.package.covr
+

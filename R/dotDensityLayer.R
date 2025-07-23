@@ -27,7 +27,7 @@
 #' @param add whether to add the layer to an existing plot (TRUE) or 
 #' not (FALSE).
 #' @details 
-#' The type parameters is defined within the \link{st_sample} function.
+#' The type parameters is defined within the \link[sf]{st_sample} function.
 #' @export
 #' @seealso \link{propSymbolsLayer}
 #' @examples
